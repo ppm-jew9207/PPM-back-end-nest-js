@@ -45,28 +45,8 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "@nestjs/cli": "^7.1.5",
-    "@nestjs/schematics": "^7.0.0",
-    "@nestjs/testing": "^7.0.11",
-    "@types/express": "^4.17.6",
-    "@types/jest": "^25.2.2",
-    "@types/mongoose": "^5.7.21",
-    "@types/node": "^14.0.1",
-    "@types/passport-local": "^1.0.33",
-    "@types/supertest": "^2.0.9",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^7.0.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.2",
-    "jest": "^26.0.1",
-    "prettier": "^2.0.5",
-    "supertest": "^4.0.2",
-    "ts-jest": "^25.5.1",
-    "ts-loader": "^7.0.4",
-    "ts-node": "^8.10.1",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.9.2"
+    "@types/node": "^8.0.28",
+    "ts-node": "^3.3.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -83,7 +63,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
     "@nestjs/common": "^4.0.0",
     "@nestjs/core": "^4.0.0",
     "@nestjs/microservices": "^4.0.0",
@@ -93,9 +73,5 @@
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.0",
     "typescript": "^2.2.1"
-  },
-  "devDependencies": {
-    "@types/node": "^8.0.28",
-    "ts-node": "^3.3.0"
   }
 }
