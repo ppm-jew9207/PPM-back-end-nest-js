@@ -83,7 +83,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
     "@nestjs/common": "^4.0.0",
     "@nestjs/core": "^4.0.0",
     "@nestjs/microservices": "^4.0.0",
