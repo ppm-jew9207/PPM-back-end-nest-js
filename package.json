@@ -20,7 +20,6 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@nestjs/common": "^7.0.11",
     "@nestjs/core": "^7.0.11",
     "@nestjs/cqrs": "^7.0.0",
@@ -85,7 +84,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-=======
     "@nestjs/common": "^4.0.0",
     "@nestjs/core": "^4.0.0",
     "@nestjs/microservices": "^4.0.0",
