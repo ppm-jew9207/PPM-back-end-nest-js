@@ -13,7 +13,6 @@ export class StudentController {
   async create( @Body()  payload: CreateProjectPayloadDto) {
 
     console.log(payload);
-    // return this.commandBus.execute(new CreateProject(dto));
   }
 
 }
