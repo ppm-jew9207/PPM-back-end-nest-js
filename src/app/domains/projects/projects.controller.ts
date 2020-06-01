@@ -5,14 +5,11 @@ import { CreateProjectPayloadDto } from '../../models/projects/dtos/create-proje
 
 @Controller('projects')
 export class ProjectsController {
-  constructor(
-    private readonly commandBus: CommandBus,
-  ) {}
+  constructor(private readonly commandBus: CommandBus) {}
 
-    // TODO: example
-  // @Post('test')
-  // async killDragon( @Body() dto: CreateProjectPayloadDto) {
-  //   return this.commandBus.execute(new CreateProject(dto));
-  // }
-
+  // TODO: example
+  @Post('test')
+  async killDragon(@Body() dto: CreateProjectPayloadDto) {
+    return this.commandBus.execute(new CreateProject(dto));
+  }
 }
