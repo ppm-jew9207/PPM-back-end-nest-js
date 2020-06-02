@@ -8,14 +8,19 @@ import { Model } from 'mongoose';
 @Injectable()
 export class AdvertsService {
   constructor(
-    @InjectModel(ViewModels.ADVERT) private _advertModel: Model<Advert>
+    @InjectModel(ViewModels.ADVERT) private _model: Model<Advert>
   ) {}
 
-  async createAdvert(createAdvertDto: CreateAdvertDto): Promise<Advert>  {
+  async createAdvert(createAdvertDto: CreateAdvertDto): Promise<Boolean>  {
     const { title, description } = createAdvertDto;
-    const newAdvert = new this._advertModel();
-    newAdvert.title = title;
-    newAdvert.description = description;
-    return newAdvert.save();
+    await this._model.findOneAndUpdate(
+      { title },
+      {
+        title,
+        description
+      },
+      { upsert: true, new: true }
+    );
+    return true;
   }
 }

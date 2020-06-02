@@ -7,10 +7,10 @@ import { Model } from 'mongoose';
 @Injectable()
 export class AdvertsService {
   constructor(
-    @InjectModel(ViewModels.ADVERT) private _advertModel: Model<Advert>
+    @InjectModel(ViewModels.ADVERT) private _model: Model<Advert>
   ) {}
 
   async getAdverts(): Promise<Advert[]>  {
-    return this._advertModel.find().exec();
+    return this._model.find().exec();
   }
 }
