@@ -3,5 +3,6 @@ export enum ViewModels {
   PROJECTS_VIEW = 'Projects',
   EMAIL_VERIFICATION = 'EmailVerification',
   FORGOTTEN_PASSWORD = 'ForgottenPassword',
-  CONSENT_REGISTRY = 'ConsentRegistration'
+  CONSENT_REGISTRY = 'ConsentRegistration',
+  ADVERT = 'Advert'
 }
