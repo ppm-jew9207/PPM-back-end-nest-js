@@ -8,13 +8,13 @@ import {
 import { AdvertsService } from './adverts.service';
 import { Advert } from 'src/app/common/interfaces/advert.interface';
 
-@Controller('advert-view')
+@Controller('adverts-view')
 export class AdvertsController {
-  constructor(private advertsService: AdvertsService) {}
+  constructor(private _advertsService: AdvertsService) {}
 
-  @Get('')
+  @Get()
   @HttpCode(HttpStatus.OK)
   async createAdvert(): Promise<Advert[]> {
-    return await this.advertsService.getAdverts();
+    return this._advertsService.getAdverts();
   }
 }

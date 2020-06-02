@@ -10,13 +10,13 @@ import { CreateAdvertDto } from '../../common/dto/createAdvert.dto';
 import { AdvertsService } from './adverts.service';
 import { Advert } from 'src/app/common/interfaces/advert.interface';
 
-@Controller('advert-domain')
+@Controller('adverts-domain')
 export class AdvertsController {
-  constructor(private advertsService: AdvertsService) {}
+  constructor(private _advertsService: AdvertsService) {}
 
-  @Post('')
+  @Post()
   @HttpCode(HttpStatus.OK)
   async createAdvert(@Body() createAdvertDto: CreateAdvertDto): Promise<Advert> {
-    return await this.advertsService.createAdvert(createAdvertDto);
+    return this._advertsService.createAdvert(createAdvertDto);
   }
 }

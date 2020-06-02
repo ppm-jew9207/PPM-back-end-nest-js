@@ -8,14 +8,14 @@ import { Model } from 'mongoose';
 @Injectable()
 export class AdvertsService {
   constructor(
-    @InjectModel(ViewModels.ADVERT) private advertModel: Model<Advert>
+    @InjectModel(ViewModels.ADVERT) private _advertModel: Model<Advert>
   ) {}
 
   async createAdvert(createAdvertDto: CreateAdvertDto): Promise<Advert>  {
     const { title, description } = createAdvertDto;
-    const newAdvert = new this.advertModel();
+    const newAdvert = new this._advertModel();
     newAdvert.title = title;
     newAdvert.description = description;
-    return await newAdvert.save();
+    return newAdvert.save();
   }
 }
