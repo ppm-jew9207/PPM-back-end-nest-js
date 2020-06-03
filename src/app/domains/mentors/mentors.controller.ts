@@ -4,7 +4,7 @@ import { CommandBus } from '@nestjs/cqrs';
 @Controller('mentors')
 export class MentorsController {
   constructor(
-    private readonly commandBus: CommandBus,
+    private readonly _commandBus: CommandBus,
   ) {}
 
   @Post()
