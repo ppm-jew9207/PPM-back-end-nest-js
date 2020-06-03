@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Advert } from 'src/app/common/interfaces/advert.interface';
-import { CreateAdvertDto, UpdateAdvertDto } from 'src/app/common/dto/createAdvert.dto';
+import { CreateAdvertDto, UpdateAdvertDto } from 'src/app/common/dto/advert.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { ViewModels } from '../../helpers/constants';
 import { Model } from 'mongoose';
@@ -11,9 +11,9 @@ export class AdvertsService {
     @InjectModel(ViewModels.ADVERT) private _model: Model<Advert>
   ) {}
 
-  async createAdvert(createAdvertDto: CreateAdvertDto): Promise<Boolean>  {
+  async createAdvert(createAdvertDto: CreateAdvertDto): Promise<Advert>  {
     const { title, description } = createAdvertDto;
-    await this._model.findOneAndUpdate(
+    return this._model.findOneAndUpdate(
       { title },
       {
         title,
@@ -21,7 +21,6 @@ export class AdvertsService {
       },
       { upsert: true, new: true }
     );
-    return true;
   }
 
   async updateAdvert(id: string, createAdvertDto: UpdateAdvertDto): Promise<Advert>  {

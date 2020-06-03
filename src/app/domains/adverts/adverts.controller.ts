@@ -7,8 +7,9 @@ import {
   Param,
 } from '@nestjs/common';
 
-import { CreateAdvertDto, UpdateAdvertDto } from '../../common/dto/createAdvert.dto';
+import { CreateAdvertDto, UpdateAdvertDto } from '../../common/dto/advert.dto';
 import { AdvertsService } from './adverts.service';
+import { Advert } from 'src/app/common/interfaces/advert.interface';
 
 @Controller('adverts-domain')
 export class AdvertsController {
@@ -16,7 +17,7 @@ export class AdvertsController {
 
   @Post()
   @HttpCode(HttpStatus.OK)
-  async createAdvert(@Body() createAdvertDto: CreateAdvertDto): Promise<Boolean> {
+  async createAdvert(@Body() createAdvertDto: CreateAdvertDto): Promise<Advert> {
     return this._advertsService.createAdvert(createAdvertDto);
   }
 

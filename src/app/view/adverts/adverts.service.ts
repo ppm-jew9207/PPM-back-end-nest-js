@@ -13,4 +13,8 @@ export class AdvertsService {
   async getAdverts(): Promise<Advert[]>  {
     return this._model.find().exec();
   }
+
+  async getAdvertById(id: string): Promise<Advert>  {
+    return this._model.findById({ _id: id }).exec();
+  }
 }
