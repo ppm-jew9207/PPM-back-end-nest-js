@@ -4,9 +4,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { ProjectsDomainModule } from './projects/projects.module';
 import { ProjectCreated } from './projects/events/project-created.event';
 import { AdvertsModule } from './adverts/adverts.module';
+import { MentorsModule } from './mentors/mentors.module';
 
 @Module({
-  imports: [CqrsModule, ProjectsDomainModule, AdvertsModule],
+  imports: [CqrsModule, ProjectsDomainModule, AdvertsModule,MentorsModule],
   controllers: [],
   providers: [
     ProjectCreated
