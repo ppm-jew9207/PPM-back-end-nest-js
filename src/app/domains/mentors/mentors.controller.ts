@@ -1,16 +1,26 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Param, ForbiddenException, Req } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateMentor } from './commands/create-mentor.command';
+import { CreateMentor, TestTemplate } from './commands/create-mentor.command';
 
 @Controller('mentors')
 export class MentorsController {
   constructor(
     private readonly _commandBus: CommandBus,
-  ) {}
+  ) { }
 
   @Post()
-  async getAll() {
-    const val='hello';
-    return this._commandBus.execute(new CreateMentor(val))
+  async createMentor(@Body() test: TestTemplate) {
+    console.log('controller : ' + test);
+    return this._commandBus.execute(new CreateMentor(test));
   }
 }
+
+
+
+
+
+
+
+
+
+
