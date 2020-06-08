@@ -36,4 +36,5 @@ testem.log
 
 # System Files
 .DS_Store
+.env
 Thumbs.db
