@@ -25,6 +25,9 @@
     "ppm-e2e": {
       "tags": [],
       "implicitDependencies": ["ppm"]
+    },
+    "api": {
+      "tags": []
     }
   }
 }
