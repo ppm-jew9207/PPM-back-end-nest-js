@@ -10,6 +10,7 @@ export class ProjectCreatedHandler implements IEventHandler<ProjectCreated> {
 
   public async handle(event: ProjectCreated) {
     const newId = new Types.ObjectId();
+    console.log('suveike', newId);
     // await this._projectsViewService.findOneAndUpdate(
     //   { _id: newId },
     //   { ...event.project, _id: newId },
