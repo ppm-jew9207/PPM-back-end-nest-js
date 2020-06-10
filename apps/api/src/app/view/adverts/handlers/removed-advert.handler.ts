@@ -8,6 +8,6 @@ export class AdvertRemovedHandler implements IEventHandler<AdvertRemoved> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
   public async handle(event: AdvertRemoved) {
-    return this._advertsViewService.removeAdvert(event.advert);
+    return this._advertsViewService.remove(event.advert);
   }
 }

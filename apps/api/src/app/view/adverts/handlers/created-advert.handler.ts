@@ -8,7 +8,7 @@ export class AdvertCreatedHandler implements IEventHandler<AdvertCreated> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
   public async handle(event: AdvertCreated) {
-    this._advertsViewService.createAdvert(event.advert);
+    this._advertsViewService.create(event.advert);
     return null;
   }
 }

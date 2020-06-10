@@ -11,19 +11,19 @@ export class AdvertsController {
   constructor(private readonly commandBus: CommandBus) {}
 
   @Post()
-  async createAdvert(@Body() dto: CreateAdvertPayloadDto) {
+  async create(@Body() dto: CreateAdvertPayloadDto) {
     return this.commandBus.execute(new CreateAdvert(dto));
   }
 
   @Post('/:id/update')
   @HttpCode(HttpStatus.OK)
-  async updatesAdvert(@Param('id') id: string, @Body() updateAdvertDto: UpdateAdvertPayloadDto): Promise<Boolean> {
-    return this.commandBus.execute(new UpdateAdvert({ id, ...updateAdvertDto }));
+  async updates(@Param('id') id: string, @Body() updateAdvert: UpdateAdvertPayloadDto): Promise<Boolean> {
+    return this.commandBus.execute(new UpdateAdvert({ id, ...updateAdvert }));
   }
 
   @Post('/:id/delete')
   @HttpCode(HttpStatus.OK)
-  async removeAdvert(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.commandBus.execute(new RemoveAdvert({ id }));
   }
 }

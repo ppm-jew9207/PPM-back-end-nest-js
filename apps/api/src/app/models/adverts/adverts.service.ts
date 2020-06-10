@@ -10,15 +10,15 @@ import { AdvertsViewModel, CreateAdvertPayload, RemoveAdvertPayload, UpdateAdver
 export class AdvertsModelService  {
   @InjectModel(ViewModels.ADVERTS_VIEW) private _model!: Model<AdvertsViewModel>;
 
-  async getAllAdverts(): Promise<AdvertsViewModel[]> {
+  async getAll(): Promise<AdvertsViewModel[]> {
     return this._model.find().exec();
   }
 
-  async getAdvert(id: string): Promise<AdvertsViewModel[]> {
+  async getById(id: string): Promise<AdvertsViewModel[]> {
     return this._model.find({ _id: Types.ObjectId(id) }).exec();
   }
 
-  async createAdvert(advert: CreateAdvertPayload) {
+  async create(advert: CreateAdvertPayload) {
     await this._model.findOneAndUpdate(
       { _id: advert._id },
       { ...advert },
@@ -26,7 +26,7 @@ export class AdvertsModelService  {
     );
   }
 
-  async updateAdvert(id: string, advert: UpdateAdvertPayload) {
+  async update(id: string, advert: UpdateAdvertPayload) {
     await this._model.findOneAndUpdate(
       { _id: Types.ObjectId(id) },
       { ...advert },
@@ -34,7 +34,7 @@ export class AdvertsModelService  {
     );
   }
 
-  async removeAdvert({ id }: RemoveAdvertPayload) {
+  async remove({ id }: RemoveAdvertPayload) {
     await this._model.deleteOne(
       { _id: Types.ObjectId(id) }
     );

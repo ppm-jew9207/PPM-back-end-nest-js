@@ -10,6 +10,6 @@ export class GetAdvertsHandler implements IQueryHandler<GetAdvertsQuery> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
   async execute(): Promise<AdvertsViewModel[]> {
-    return this._advertsViewService.getAllAdverts();
+    return this._advertsViewService.getAll();
   }
 }
