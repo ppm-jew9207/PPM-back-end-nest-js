@@ -19,8 +19,6 @@ export class AdvertsController {
   @HttpCode(HttpStatus.OK)
   async updatesAdvert(@Param('id') id: Types.ObjectId, @Body() updateAdvertDto: UpdateAdvertDto): Promise<Boolean> {
     return this.commandBus.execute(new UpdateAdvert({ _id: id, ...updateAdvertDto }));
-    // this._advertsService.updateAdvert(id, updateAdvertDto);
-    // return true;
   }
 
   @Post('/:id/delete')
