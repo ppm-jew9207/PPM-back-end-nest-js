@@ -23,9 +23,7 @@ export class AdvertsModelService  {
       { _id },
       { ...advert, _id },
       { upsert: true, new: true },
-    ).then( res => {
-      console.log(res);
-    });
+    );
   }
 
   async updateAdvert(_id: Types.ObjectId, advert: UpdateAdvertPayload) {
@@ -33,18 +31,12 @@ export class AdvertsModelService  {
       { _id },
       { ...advert },
       { upsert: true, new: true },
-    ).then( res => {
-      console.log(res);
-    });
+    );
   }
 
   async removeAdvert(advert: RemoveAdvertPayload) {
-    await this._model.findOneAndDelete(
-      { _id: advert._id },
-      (err) => {
-        if(err) console.log(err);
-        console.log("Successful deletion");
-      }
+    await this._model.deleteOne(
+      { _id: advert._id }
     );
   }  
 }

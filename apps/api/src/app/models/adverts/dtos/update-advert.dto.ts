@@ -1,10 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {CreateAdvertPayload, UpdateAdvertPayload} from '../adverts.interface';
-import { Types } from 'mongoose';
+import { UpdateAdvertPayload } from '../adverts.interface';
 
 export class UpdateAdvertPayloadDto implements UpdateAdvertPayload {
   @ApiProperty()
-  public readonly _id: Types.ObjectId;
+  public readonly _id: string;
   @ApiProperty()
   public readonly title: string;
   @ApiProperty()

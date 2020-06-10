@@ -9,7 +9,6 @@ export class GetProjectsHandler implements IQueryHandler<GetProjectsQuery> {
   @Inject() private readonly _projectsViewService: ProjectsModelService;
 
   async execute() {
-    console.log(await this._projectsViewService.model.find().exec());
     return this._projectsViewService.model.find().exec();
   }
 }

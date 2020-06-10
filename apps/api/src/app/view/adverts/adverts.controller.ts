@@ -1,7 +1,7 @@
 import {  Controller, Get, Param } from '@nestjs/common';
 import {  QueryBus } from '@nestjs/cqrs';
+import { GetAdvertsQuery } from './queries/handlers/get-adverts.handler';
 import { GetAdvertQuery } from './queries/handlers/get-advert.handler';
-import { Types } from 'mongoose';
 
 @Controller('adverts-view')
 export class AdvertsController {
@@ -15,8 +15,7 @@ export class AdvertsController {
   }
 
   @Get('/:id')
-  async getAdvert(@Param('id') id: Types.ObjectId): Promise<any[]> {
-    console.log(id);
+  async getAdvert(@Param('id') id: string): Promise<any[]> {
     return this.queryBus.execute(new GetAdvertQuery({ _id: id }));
   }
 }
