@@ -7,7 +7,7 @@ import { CreateMentor } from './commands/create-mentor.command';
 export class MentorsController {
   constructor(
     private readonly _commandBus: CommandBus,
-  ) {}
+  ) { }
 
   @Post()
   async createMentor(@Body() payload: CreateMentorPayloadDto) {
