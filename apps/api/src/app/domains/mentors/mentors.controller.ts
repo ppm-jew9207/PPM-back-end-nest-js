@@ -1,6 +1,7 @@
-import { Body, Controller, Post, Param, ForbiddenException, Req } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateMentor, TestTemplate } from './commands/create-mentor.command';
+import { CreateMentorPayloadDto } from './dto/create-mentor-payload.dto';
+import { CreateMentor } from './commands/create-mentor.command';
 
 @Controller('mentors')
 export class MentorsController {
@@ -9,8 +10,7 @@ export class MentorsController {
   ) {}
 
   @Post()
-  async createMentor(@Body() test: TestTemplate) {
-    console.log('controller : ' + test);
-    return this._commandBus.execute(new CreateMentor(test));
+  async createMentor(@Body() dto: CreateMentorPayloadDto) {
+    return this._commandBus.execute(new CreateMentor(dto));
   }
 }
