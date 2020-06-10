@@ -3,7 +3,6 @@ import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { AdvertUpdated } from '../events/advert-updated.event';
 import { UpdateAdvertPayloadDto } from '../../../models/adverts/dtos/update-advert.dto';
-import { Types } from 'mongoose';
 
 export class UpdateAdvert {
   constructor(public data: UpdateAdvertPayloadDto) {}

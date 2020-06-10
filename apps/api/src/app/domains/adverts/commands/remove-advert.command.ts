@@ -2,8 +2,7 @@ import { AdvertsAggregate } from '../adverts.aggregate';
 import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { AdvertRemoved } from '../events/advert-removed.event';
-import { RemoveAdvertPayloadDto } from '../../../models/adverts/dtos/create-advert.dto';
-import { Types } from 'mongoose';
+import { RemoveAdvertPayloadDto } from '../../../models/adverts/dtos/remove-advert.dto';
 
 export class RemoveAdvert {
   constructor(public data: RemoveAdvertPayloadDto) {}

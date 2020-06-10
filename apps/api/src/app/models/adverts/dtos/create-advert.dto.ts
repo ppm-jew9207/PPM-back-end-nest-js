@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {CreateAdvertPayload, RemoveAdvertPayload} from '../adverts.interface';
+import { CreateAdvertPayload } from '../adverts.interface';
 
 export class CreateAdvertPayloadDto implements CreateAdvertPayload {
   @ApiProperty()
