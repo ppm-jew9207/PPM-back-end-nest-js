@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ppm/shared/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@ppm/shared/test": ["libs/shared/test/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
