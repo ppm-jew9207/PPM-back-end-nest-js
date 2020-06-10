@@ -16,6 +16,6 @@ export class AdvertsController {
 
   @Get('/:id')
   async getAdvert(@Param('id') id: string): Promise<any[]> {
-    return this.queryBus.execute(new GetAdvertQuery({ _id: id }));
+    return this.queryBus.execute(new GetAdvertQuery({ id }));
   }
 }

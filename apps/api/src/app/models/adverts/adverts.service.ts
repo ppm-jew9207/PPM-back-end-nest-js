@@ -14,29 +14,29 @@ export class AdvertsModelService  {
     return this._model.find().exec();
   }
 
-  async getAdvert(_id: string): Promise<AdvertsViewModel[]> {
-    return this._model.find({ _id: Types.ObjectId(_id) }).exec();
+  async getAdvert(id: string): Promise<AdvertsViewModel[]> {
+    return this._model.find({ _id: Types.ObjectId(id) }).exec();
   }
 
-  async createAdvert(_id: string, advert: CreateAdvertPayload) {
+  async createAdvert(advert: CreateAdvertPayload) {
     await this._model.findOneAndUpdate(
-      { _id: Types.ObjectId(_id) },
+      { _id: advert._id },
       { ...advert },
       { upsert: true, new: true },
     );
   }
 
-  async updateAdvert(_id: string, advert: UpdateAdvertPayload) {
+  async updateAdvert(id: string, advert: UpdateAdvertPayload) {
     await this._model.findOneAndUpdate(
-      { _id: Types.ObjectId(_id) },
+      { _id: Types.ObjectId(id) },
       { ...advert },
       { upsert: true, new: true },
     );
   }
 
-  async removeAdvert({ _id }: RemoveAdvertPayload) {
+  async removeAdvert({ id }: RemoveAdvertPayload) {
     await this._model.deleteOne(
-      { _id: Types.ObjectId(_id) }
+      { _id: Types.ObjectId(id) }
     );
   }  
 }

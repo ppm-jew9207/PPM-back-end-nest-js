@@ -14,8 +14,7 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
 
   async execute({ data }: CreateAdvert) {
     const aggregate = new AdvertsAggregate();
-    aggregate.apply(new AdvertCreated(data));
-    aggregate._id = new Types.ObjectId();
+    aggregate.apply(new AdvertCreated({_id: new Types.ObjectId(), ...data}));
 
     const advert = this._publisher.mergeObjectContext(aggregate);
     advert.commit();

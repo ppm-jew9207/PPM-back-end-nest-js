@@ -7,22 +7,23 @@ export interface LeanAdvertsView {
 }
 
 export interface GetAdvertPayload {
-  _id: string
+  id: string
 }
 
 export interface CreateAdvertPayload {
+  _id: Types.ObjectId,
   title: string,
   description?: string
 }
 
 export interface UpdateAdvertPayload {
-  _id: string,
+  id: string,
   title?: string,
   description?: string
 }
 
 export interface RemoveAdvertPayload {
-  _id: string
+  id: string
 }
 
 export interface AdvertPayload {
