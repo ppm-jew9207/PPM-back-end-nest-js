@@ -10,7 +10,7 @@ export class MentorsController {
   ) {}
 
   @Post()
-  async createMentor(@Body() dto: CreateMentorPayloadDto) {
-    return this._commandBus.execute(new CreateMentor(dto));
+  async createMentor(@Body() payload: CreateMentorPayloadDto) {
+    return this._commandBus.execute(new CreateMentor(payload));
   }
 }
