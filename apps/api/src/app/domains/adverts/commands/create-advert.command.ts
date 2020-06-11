@@ -17,9 +17,9 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
     if (!data.title) {
       throw new BadRequestException('Title is required!');
     }
-
     const aggregate = new AdvertsAggregate();
-    aggregate.apply(new AdvertCreated({_id: new Types.ObjectId(), ...data}));
+    const id = new Types.ObjectId().toHexString();
+    aggregate.apply(new AdvertCreated(id, data));
     const advert = this._publisher.mergeObjectContext(aggregate);
     advert.commit();
 

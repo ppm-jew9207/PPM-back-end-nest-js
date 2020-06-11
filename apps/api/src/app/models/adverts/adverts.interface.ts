@@ -11,7 +11,6 @@ export interface GetAdvertPayload {
 }
 
 export interface CreateAdvertPayload {
-  _id: Types.ObjectId,
   title: string,
   description?: string
 }
