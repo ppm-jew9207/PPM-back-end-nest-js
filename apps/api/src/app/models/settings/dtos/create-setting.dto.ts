@@ -3,11 +3,11 @@ import { CreateSettingPayload } from '../settings.interface';
 
 export class CreateSettingPayloadDto implements CreateSettingPayload {
   @ApiProperty()
-  public readonly type?: string;
+  public readonly type: string;
   @ApiProperty()
-  public readonly settings?: any;
+  public readonly settings: any;
   @ApiProperty()
-  public readonly user?: { _id: string; userName: string; };  
+  public readonly user: { _id: string; userName: string };
   @ApiProperty()
-  public readonly enabled?: boolean  
+  public readonly enabled: boolean;
 }
