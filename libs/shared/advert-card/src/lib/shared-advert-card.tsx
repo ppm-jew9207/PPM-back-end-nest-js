@@ -1,26 +1,28 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
 
 import './shared-advert-card.scss';
 
 const MenuButton = () => {
-  const options = ['1', '2'];
+  // const options = ['1', '2'];
 
-  const ITEM_HEIGHT = 48;
+  // const ITEM_HEIGHT = 48;
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  // const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (): void => {
-    setAnchorEl(null);
-  };
+  // const handleClose = (): void => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <div>
@@ -33,7 +35,7 @@ const MenuButton = () => {
         <MoreVertIcon />
       </IconButton>
 
-      <Menu
+      {/* <Menu
         id="long-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -55,35 +57,8 @@ const MenuButton = () => {
             {option}
           </MenuItem>
         ))}
-      </Menu>
+      </Menu> */}
     </div>
-  );
-};
-
-const IconHeart = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
-      <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z" />
-    </svg>
-  );
-};
-
-const IconShare = () => {
-  return (
-    <svg
-      width="24"
-      height="24"
-      xmlns="http://www.w3.org/2000/svg"
-      fillRule="evenodd"
-      clipRule="evenodd"
-    >
-      <path d="M16.272 5.451c-.176-.45-.272-.939-.272-1.451 0-2.208 1.792-4 4-4s4 1.792 4 4-1.792 4-4 4c-1.339 0-2.525-.659-3.251-1.67l-7.131 3.751c.246.591.382 1.239.382 1.919 0 .681-.136 1.33-.384 1.922l7.131 3.751c.726-1.013 1.913-1.673 3.253-1.673 2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4c0-.51.096-.999.27-1.447l-7.129-3.751c-.9 1.326-2.419 2.198-4.141 2.198-2.76 0-5-2.24-5-5s2.24-5 5-5c1.723 0 3.243.873 4.143 2.201l7.129-3.75zm3.728 11.549c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3zm-15-9c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4zm15-7c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3z" />
-    </svg>
   );
 };
 
@@ -105,11 +80,8 @@ export interface Author {
 }
 
 const SharedAdvertCard = (props: SharedAdvertCardProps) => {
-  const onViewClick = (
-    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>,
-    authId: number
-  ): void => {
-    event.preventDefault();
+  const onViewClick = (authId: number): void => {
+    // event.preventDefault();
     // console.log(authId);
   };
 
@@ -124,10 +96,7 @@ const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   return (
     <div className="card">
       <div className="card-title-wrap flex-wrap">
-        <button
-          type="button"
-          onClick={(event): void => onViewClick(event, props.author._id)}
-        >
+        <button type="button" onClick={() => onViewClick(props.author._id)}>
           <img
             className="card-img"
             src={props.author.img}
@@ -138,10 +107,7 @@ const SharedAdvertCard = (props: SharedAdvertCardProps) => {
         </button>
 
         <div className="card-title">
-          <a
-            href="url"
-            onClick={(event): void => onViewClick(event, props.author._id)}
-          >
+          <a href="url" onClick={() => onViewClick(props.author._id)}>
             <span style={{ fontWeight: 'bold' }}>
               {`${props.author.firstName} ${props.author.lastName} `}
             </span>
@@ -165,7 +131,7 @@ const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           className="wrapper-like flex-wrap"
           onClick={onLikeClick}
         >
-          <IconHeart />
+          <FavoriteIcon />
           <p>Like</p>
           <div>{props.shared}</div>
         </button>
@@ -175,7 +141,7 @@ const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           className="wrapper-share flex-wrap"
           onClick={onSharedClick}
         >
-          <IconShare />
+          <ShareIcon />
           <p>Share</p>
           <div>{props.like}</div>
         </button>
