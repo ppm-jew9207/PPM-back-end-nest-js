@@ -1,5 +1,9 @@
-import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
+import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { CreateMentorPayloadDto } from '../dto/create-mentor-payload.dto';
+import { Inject } from '@nestjs/common';
+import { MentorAggregate } from '../mentors.aggregate';
+import { MentorCreated } from '../events/mentor-created.event';
+import { Types } from 'mongoose';
 
 export class CreateMentor {
   constructor(public data: CreateMentorPayloadDto) {
@@ -8,9 +12,17 @@ export class CreateMentor {
 
 @CommandHandler(CreateMentor)
 export class CreateMentorHandler implements ICommandHandler<CreateMentor> {
+  @Inject() private readonly _publicher: EventPublisher;
 
   async execute({ data }: CreateMentor) {
-    
-    return data
+    const aggregate = new MentorAggregate();
+
+    aggregate.apply(new MentorCreated(data))
+    aggregate._id=new Types.ObjectId();
+
+    const mentor=this._publicher.mergeObjectContext(aggregate);
+    mentor.commit();
+
+    return null;
   }
 } 
