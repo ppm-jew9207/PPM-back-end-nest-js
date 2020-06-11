@@ -18,18 +18,18 @@ export class AdvertsModelService  {
     return this._model.find({ _id: Types.ObjectId(id) }).exec();
   }
 
-  async create(advert: CreateAdvertPayload) {
+  async create(id: string, data: CreateAdvertPayload) {
     await this._model.findOneAndUpdate(
-      { _id: advert._id },
-      { ...advert },
+      { _id: Types.ObjectId(id) },
+      { ...data },
       { upsert: true, new: true },
     );
   }
 
-  async update(id: string, advert: UpdateAdvertPayload) {
+  async update(id: string, data: UpdateAdvertPayload) {
     await this._model.findOneAndUpdate(
       { _id: Types.ObjectId(id) },
-      { ...advert },
+      { ...data },
       { upsert: true, new: true },
     );
   }
