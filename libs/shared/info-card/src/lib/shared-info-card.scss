@@ -1,0 +1,20 @@
+.info-card-container {
+  background-color: #919191;
+  .info-header,
+  .info-body {
+    padding: 20px;
+  }
+  .info-header {
+    background-color: #1b3140;
+    color: white;
+  }
+  .info-body {
+    & > div {
+      background-color: hotpink;
+      margin: 5px 0;
+      p {
+        margin: 10px 0;
+      }
+    }
+  }
+}
