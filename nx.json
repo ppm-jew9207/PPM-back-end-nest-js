@@ -40,6 +40,9 @@
     },
     "shared-test": {
       "tags": []
+    },
+    "shared-login-component": {
+      "tags": []
     }
   }
 }
