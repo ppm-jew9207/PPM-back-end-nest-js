@@ -7,8 +7,8 @@ import { Inject } from '@nestjs/common';
 export class AdvertCreatedHandler implements IEventHandler<AdvertCreated> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
-  public async handle(event: AdvertCreated) {
-    this._advertsViewService.create(event.advert);
+  public async handle({ id, data}: AdvertCreated) {
+    this._advertsViewService.create(id, data);
     return null;
   }
 }
