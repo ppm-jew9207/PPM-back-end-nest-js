@@ -2,11 +2,11 @@ import React from 'react';
 
 import './shared-info-card.scss';
 
-enum FieldTypes {
+export enum FieldTypes {
   Test = 1,
 }
 
-interface SharedInfoCardProps {
+export interface SharedInfoCardProps {
   title?: string;
   fields?: {
     type: FieldTypes;
