@@ -18,7 +18,7 @@ export class CreateMentorHandler implements ICommandHandler<CreateMentor> {
     const aggregate = new MentorAggregate();
 
     aggregate.apply(new MentorCreated(data))
-    aggregate._id=new Types.ObjectId();
+    aggregate.id=new Types.ObjectId().toHexString();
 
     const mentor=this._publicher.mergeObjectContext(aggregate);
     mentor.commit();
