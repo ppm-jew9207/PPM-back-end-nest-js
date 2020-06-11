@@ -4,7 +4,6 @@ import './app.scss';
 
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
-import { SharedLoginComponent } from '@ppm/shared/login-component';
 
 export const App = () => {
   /*
