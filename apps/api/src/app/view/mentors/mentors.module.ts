@@ -1,13 +1,12 @@
-
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { MentorViewModule } from './mentors/mentors.module';
-;
+import { EventHandlers } from './handlers';
 
 @Module({
-  imports: [CqrsModule, MentorViewModule],
+  imports: [CqrsModule],
   controllers: [],
   providers: [
+    ...EventHandlers,
   ],
 })
-export class ViewModule {}
+export class MentorViewModule {}
