@@ -338,6 +338,34 @@
           }
         }
       }
+    },
+    "shared-menu-button": {
+      "root": "libs/shared/menu-button",
+      "sourceRoot": "libs/shared/menu-button/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/menu-button/.eslintrc",
+            "tsConfig": [
+              "libs/shared/menu-button/tsconfig.lib.json",
+              "libs/shared/menu-button/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/menu-button/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/menu-button/jest.config.js",
+            "tsConfig": "libs/shared/menu-button/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

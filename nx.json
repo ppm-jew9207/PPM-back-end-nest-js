@@ -30,9 +30,7 @@
     },
     "ppm-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "ppm"
-      ]
+      "implicitDependencies": ["ppm"]
     },
     "api": {
       "tags": []
@@ -44,6 +42,9 @@
       "tags": []
     },
     "shared-advert-card": {
+      "tags": []
+    },
+    "shared-menu-button": {
       "tags": []
     }
   }

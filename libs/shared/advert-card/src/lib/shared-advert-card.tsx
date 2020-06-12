@@ -1,31 +1,9 @@
-import React, { useState } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import { SharedMenuButton } from '../../../menu-button/src/lib/shared-menu-button';
 
 import './shared-advert-card.scss';
-
-const MenuButton = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  return (
-    <div>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-    </div>
-  );
-};
 
 export interface SharedAdvertCardProps {
   title: string;
@@ -78,7 +56,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           <p>{`${props.timeStamp} Minutes ago`}</p>
         </div>
 
-        <MenuButton />
+        <SharedMenuButton />
       </div>
 
       <div className="card-content">
