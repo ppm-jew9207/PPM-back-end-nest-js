@@ -6,7 +6,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 
-// import './shared-advert-card.scss';
+import './shared-advert-card.scss';
 
 const MenuButton = () => {
   // const options = ['1', '2'];
@@ -64,7 +64,12 @@ const MenuButton = () => {
 
 export interface SharedAdvertCardProps {
   title: string;
-  author: Author;
+  author: {
+    _id: number;
+    firstName: string;
+    lastName: string;
+    img: string;
+  };
   timeStamp: number;
   description: string;
   like: number;
@@ -72,14 +77,7 @@ export interface SharedAdvertCardProps {
   imgUrl: string;
 }
 
-export interface Author {
-  _id: number;
-  firstName: string;
-  lastName: string;
-  img: string;
-}
-
-const SharedAdvertCard = (props: SharedAdvertCardProps) => {
+export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const onViewClick = (authId: number): void => {
     // event.preventDefault();
     // console.log(authId);
@@ -149,5 +147,3 @@ const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     </div>
   );
 };
-
-export default SharedAdvertCard;
