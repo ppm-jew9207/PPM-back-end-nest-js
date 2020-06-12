@@ -6,9 +6,10 @@ import { AdvertCreated } from './adverts/events/advert-created.event';
 import { MentorsModule } from './mentors/mentors.module';
 import { AdvertsDomainModule } from './adverts/adverts.module';
 import { AdvertUpdated } from './adverts/events/advert-updated.event';
+import { SettingsDomainModule } from './settings/settings.module';
 
 @Module({
-  imports: [CqrsModule, ProjectsDomainModule,MentorsModule, AdvertsDomainModule],
+  imports: [CqrsModule, ProjectsDomainModule,MentorsModule, AdvertsDomainModule, SettingsDomainModule],
   controllers: [],
   providers: [
     ProjectCreated, AdvertCreated, AdvertUpdated
