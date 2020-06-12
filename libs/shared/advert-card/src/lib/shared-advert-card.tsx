@@ -8,7 +8,7 @@ import './shared-advert-card.scss';
 export interface SharedAdvertCardProps {
   title: string;
   author: {
-    _id: number;
+    _id: string;
     firstName: string;
     lastName: string;
     img: string;
@@ -18,26 +18,19 @@ export interface SharedAdvertCardProps {
   like: number;
   shared: number;
   imgUrl: string;
+  onViewClick: (id: string) => void;
+  onLikeClick: () => void;
+  onSharedClick: () => void;
 }
 
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
-  const onViewClick = (authId: number): void => {
-    // event.preventDefault();
-    // console.log(authId);
-  };
-
-  const onLikeClick = (): void => {
-    // console.log('onLikeClick');
-  };
-
-  const onSharedClick = (): void => {
-    // console.log('onSharedClick');
-  };
-
   return (
     <div className="card">
       <div className="card-title-wrap flex-wrap">
-        <button type="button" onClick={() => onViewClick(props.author._id)}>
+        <button
+          type="button"
+          onClick={() => props.onViewClick(props.author._id)}
+        >
           <img
             className="card-img"
             src={props.author.img}
@@ -48,7 +41,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
         </button>
 
         <div className="card-title">
-          <a href="url" onClick={() => onViewClick(props.author._id)}>
+          <a href="url" onClick={() => props.onViewClick(props.author._id)}>
             <span>{`${props.author.firstName} ${props.author.lastName} `}</span>
           </a>
 
@@ -68,7 +61,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
         <button
           type="button"
           className="wrapper-like flex-wrap"
-          onClick={onLikeClick}
+          onClick={props.onLikeClick}
         >
           <FavoriteIcon />
           <p>Like</p>
@@ -78,7 +71,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
         <button
           type="button"
           className="wrapper-share flex-wrap"
-          onClick={onSharedClick}
+          onClick={props.onSharedClick}
         >
           <ShareIcon />
           <p>Share</p>

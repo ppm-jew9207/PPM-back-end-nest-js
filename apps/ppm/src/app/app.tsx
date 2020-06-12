@@ -3,7 +3,7 @@ import { SharedAdvertCard } from '@ppm/shared/advert-card';
 // import './app.scss';
 
 const authorObj = {
-  _id: 1,
+  _id: '1',
   firstName: 'Marius',
   lastName: 'Mariakinas',
   img:
