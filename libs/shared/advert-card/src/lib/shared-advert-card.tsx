@@ -6,7 +6,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 
-import './shared-advert-card.scss';
+// import './shared-advert-card.scss';
 
 const MenuButton = () => {
   // const options = ['1', '2'];
