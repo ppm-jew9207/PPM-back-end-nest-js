@@ -8,7 +8,7 @@ export interface SharedTestProps {}
 export const SharedTest = (props: SharedTestProps) => {
   return (
     <div>
-      <h1>Welcome to shared-test!</h1>
+      <h1 className="test-class">Welcome to shared-test!</h1>
     </div>
   );
 };
