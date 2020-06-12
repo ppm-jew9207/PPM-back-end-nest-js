@@ -1,6 +1,7 @@
-import { CreateMentor } from '../dto/create-mentor-payload.dto';
+import { CreateMentor } from '../mentors.interface';
 
-export class MentorCreated{
-    constructor(public readonly mentor:CreateMentor){
+
+export class MentorCreated {
+    constructor(public readonly mentor: CreateMentor) {
     }
 }
