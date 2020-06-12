@@ -1,6 +1,6 @@
 import { number, text } from '@storybook/addon-knobs';
 import React from 'react';
-import SharedAdvertCard, { SharedAdvertCardProps } from './shared-advert-card';
+import { SharedAdvertCard, SharedAdvertCardProps } from './shared-advert-card';
 
 export default {
   component: SharedAdvertCard,
@@ -10,7 +10,7 @@ export default {
 export const primary = () => {
   const props: SharedAdvertCardProps = {
     title: text('title', ''),
-    author: ('author', ''),
+    author: text('author', ''),
     timeStamp: number('timeStamp', 0),
     description: text('description', ''),
     like: number('like', 0),

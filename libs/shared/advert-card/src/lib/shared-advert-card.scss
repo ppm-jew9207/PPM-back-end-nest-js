@@ -4,11 +4,17 @@
 }
 
 .card {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+  }
   background-color: #dadada;
   border-radius: 4px;
   padding: 15px;
   filter: drop-shadow(0 0 10px #00000080);
-
   .card-title-wrap {
     .card-img {
       border-radius: 50%;
