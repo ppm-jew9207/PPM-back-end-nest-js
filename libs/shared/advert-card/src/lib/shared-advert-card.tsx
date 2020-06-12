@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -7,10 +7,10 @@ import ShareIcon from '@material-ui/icons/Share';
 import './shared-advert-card.scss';
 
 const MenuButton = () => {
-  // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
-    // setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   return (
