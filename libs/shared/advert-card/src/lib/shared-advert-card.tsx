@@ -71,13 +71,11 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
         <div className="card-title">
           <a href="url" onClick={() => onViewClick(props.author._id)}>
-            <span style={{ fontWeight: 'bold' }}>
-              {`${props.author.firstName} ${props.author.lastName} `}
-            </span>
+            <span>{`${props.author.firstName} ${props.author.lastName} `}</span>
           </a>
 
           <span>posted on your timeline</span>
-          <p style={{ color: '#8B8B8B' }}>{`${props.timeStamp} Minutes ago`}</p>
+          <p>{`${props.timeStamp} Minutes ago`}</p>
         </div>
 
         <MenuButton />
