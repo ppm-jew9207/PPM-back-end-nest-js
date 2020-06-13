@@ -38,7 +38,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const classes = useStyles();
 
   function timeCalculator() {
-    const dbDate = '2020-06-13 16:34:10';
+    const dbDate = '2020-06-13 18:33:30';
     // const yyyy: number = +dbDate.slice(0, 4);
     // const mm: number = +dbDate.slice(5, 7);
     // const dd: number = +dbDate.slice(8, 10);
@@ -63,11 +63,20 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     const seconds = totalSeconds % 60;
 
     if (hours > 0) {
-      setTimeState(`${hours} hours, ${minutes} minutes and ${seconds} seconds`);
+      setTimeState(`
+				${hours} hour${hours > 1 ? 's' : ''},
+				${minutes} minute${minutes > 1 ? 's' : ''} and 
+				${seconds} second${seconds > 1 ? 's' : ''}
+			`);
     } else if (minutes) {
-      setTimeState(`${minutes} minute and ${seconds} seconds`);
+      setTimeState(`
+				${minutes} minute${minutes > 1 ? 's' : ''} and 
+				${seconds} second${seconds > 1 ? 's' : ''}
+			`);
     } else if (seconds) {
-      setTimeState(`${seconds} seconds`);
+      setTimeState(`
+				${seconds} second${seconds > 1 ? 's' : ''}
+			`);
     }
   }
 
