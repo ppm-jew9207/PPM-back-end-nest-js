@@ -42,9 +42,9 @@
         color: #4b89c4;
       }
     }
-    div:last-child {
-      margin-left: auto;
-    }
+    // div:last-child {
+    //   margin-left: auto;
+    // }
   }
 
   .card-content {
@@ -59,19 +59,8 @@
   }
 
   .social-wrapper {
-    .wrapper-like,
-    .wrapper-share {
-      padding: 0;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: var(--text-color);
-    }
     p {
-      padding: 0 5px;
-    }
-    .wrapper-like {
-      margin-right: 10px;
+      padding-right: 5px;
     }
   }
 }

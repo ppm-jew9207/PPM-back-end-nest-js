@@ -16,7 +16,7 @@ export const App = () => {
       title="Title"
       author={authorObj}
       timeStamp={44}
-      description="This is Description asdsssssssssssssssssssssss sdsdsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss dd              ssssssssss"
+      description="This is Description"
       like={3}
       shared={5}
       imgUrl="https://images.unsplash.com/photo-1591268557714-1b58f58e89cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
