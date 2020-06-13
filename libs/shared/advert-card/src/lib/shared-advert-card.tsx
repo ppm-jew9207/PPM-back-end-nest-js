@@ -102,7 +102,11 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
         <div className="card-title">
           <a href="url" onClick={() => props.onViewClick(props.author._id)}>
-            <span>{`${props.author.firstName} ${props.author.lastName} `}</span>
+            <span>
+              {`
+							${props.author.firstName || ''} ${props.author.lastName || ''} 
+						`}
+            </span>
           </a>
 
           <span>posted on {props.title}</span>
