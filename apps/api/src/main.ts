@@ -51,8 +51,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
-  const port = process.env.PORT || process.env.port;
-  const host = process.env.HOST || process.env.host;
+  // const port = process.env.port || process.env.PORT;
+  // const host = process.env.host || process.env.HOST;
 
 
 async function bootstrap() {
@@ -60,9 +60,9 @@ async function bootstrap() {
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
-  await app.listen(port, () => {
+  await app.listen(process.env.PORT, () => {
     console.log(
-      'Listening at http://' + host + ':' + port + '/' + globalPrefix
+      'Listening at http://' + process.env.HOST + ':' + process.env.PORT + '/' + globalPrefix
     );
   });
 }
