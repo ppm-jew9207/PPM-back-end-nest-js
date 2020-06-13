@@ -1,1 +1,1 @@
-web: npm install -g @nrwl/cli && npm run start-api
+web: npm run start:prod

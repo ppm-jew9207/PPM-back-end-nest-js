@@ -6,6 +6,8 @@
     "nx": "nx",
     "start": "nx serve",
     "start-api": "npm run build api",
+    "postinstall": "npm run build api",
+    "start:prod": "node dist/apps/api/main.js",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
