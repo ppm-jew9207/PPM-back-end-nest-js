@@ -1,13 +1,13 @@
 import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import { SharedMenuButton } from '../../../menu-button/src/lib/shared-menu-button';
+import { SharedMenuButton } from '@ppm/shared/menu-button';
 
 import './shared-advert-card.scss';
 
 export interface SharedAdvertCardProps {
   title: string;
-  author: {
+  author?: {
     _id: string;
     firstName: string;
     lastName: string;
@@ -18,14 +18,14 @@ export interface SharedAdvertCardProps {
   like: number;
   shared: number;
   imgUrl: string;
-  onViewClick: (id: string) => void;
-  onLikeClick: () => void;
-  onSharedClick: () => void;
+  onViewClick?: (id: string) => void;
+  onLikeClick?: () => void;
+  onSharedClick?: () => void;
 }
 
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   return (
-    <div className="card">
+    <div className="advert-card">
       <div className="card-title-wrap flex-wrap">
         <button
           type="button"

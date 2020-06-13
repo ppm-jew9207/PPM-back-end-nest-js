@@ -1,9 +1,9 @@
-.flex-wrap {
-  display: flex;
-  align-items: center;
-}
+.advert-card {
+  .flex-wrap {
+    display: flex;
+    align-items: center;
+  }
 
-.card {
   * {
     margin: 0;
     padding: 0;
