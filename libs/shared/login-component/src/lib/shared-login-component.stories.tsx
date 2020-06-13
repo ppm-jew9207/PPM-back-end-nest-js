@@ -12,7 +12,7 @@ export default {
 
 export const primary = () => {
   const props: SharedLoginComponentProps = {
-    onLogin: actions('onLogin'),
+    onLogin: (data) => console.log(data),
   };
 
   return <SharedLoginComponent onLogin={props.onLogin} />;
