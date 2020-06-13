@@ -14,7 +14,6 @@
   border-radius: 4px;
   padding: 15px;
   color: var(--text-color);
-  // filter: drop-shadow(0 0 10px #00000080);
   box-shadow: 4px 4px 49px -14px rgba(0, 0, 0, 0.75);
 
   .card-title-wrap {
@@ -40,7 +39,7 @@
       }
       margin-left: 10px;
       a {
-        color: #4b89c4 !important;
+        color: #4b89c4;
       }
     }
     div:last-child {
