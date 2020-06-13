@@ -96,7 +96,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             <span>{`${props.author.firstName} ${props.author.lastName} `}</span>
           </a>
 
-          <span>posted on your timeline</span>
+          <span>posted on {props.title}</span>
           <p>{`${timeState} ago`}</p>
         </div>
 
