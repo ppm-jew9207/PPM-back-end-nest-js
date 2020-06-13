@@ -3,6 +3,7 @@ import {
   SharedLoginComponent,
   SharedLoginComponentProps,
 } from './shared-login-component';
+import { actions } from '@storybook/addon-actions';
 
 export default {
   component: SharedLoginComponent,
@@ -11,8 +12,8 @@ export default {
 
 export const primary = () => {
   const props: SharedLoginComponentProps = {
-    login: ('login', ),
+    onLogin: actions('onLogin'),
   };
 
-  return <SharedLoginComponent login={props.login} />;
+  return <SharedLoginComponent onLogin={props.onLogin} />;
 };

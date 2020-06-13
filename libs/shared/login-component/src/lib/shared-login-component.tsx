@@ -13,17 +13,19 @@ import './shared-login-component.scss';
 import FormControlLabel from '@material-ui/core/FormControlLabel/FormControlLabel';
 import Grid from '@material-ui/core/Grid/Grid';
 import Box from '@material-ui/core/Box/Box';
+import { useForm } from 'react-hook-form';
 
 /* eslint-disable-next-line */
 export interface SharedLoginComponentProps {
-  login: Function;
+  onLogin: (loginData: { username: string; password: string }) => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
+  const { register, handleSubmit } = useForm();
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <AccountCircle style={{ fontSize: '7.1875rem' }} />
-      <form autoComplete="off">
+      <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
         <FormControl>
           <TextField
             id="username"
@@ -37,6 +39,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             }}
             type="text"
             variant="outlined"
+            ref={register}
           />
           <TextField
             id="password"
@@ -50,6 +53,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             }}
             type="password"
             variant="outlined"
+            ref={register}
           />
           <FormGroup aria-label="position" row>
             <FormControlLabel
@@ -57,6 +61,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
               control={<Checkbox color="primary" />}
               label="Remember Me"
               labelPlacement="end"
+              ref={register}
             />
             <Box py={2}>
               <a href="#forgotPassword">
@@ -65,11 +70,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             </Box>
           </FormGroup>
           <Grid container justify="center">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => props.login}
-            >
+            <Button variant="contained" color="primary" type="submit">
               LOGIN
             </Button>
           </Grid>

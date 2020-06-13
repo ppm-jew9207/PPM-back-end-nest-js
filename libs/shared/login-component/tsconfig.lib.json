@@ -10,6 +10,8 @@
     "**/*.stories.ts",
     "**/*.stories.js",
     "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.ts",
     "**/*.stories.js"
   ],
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]

@@ -6,7 +6,7 @@ import SharedLoginComponent from './shared-login-component';
 describe(' SharedLoginComponent', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <SharedLoginComponent login={() => console.log('login called')} />
+      <SharedLoginComponent onLogin={() => console.log('login called')} />
     );
     expect(baseElement).toBeTruthy();
   });
