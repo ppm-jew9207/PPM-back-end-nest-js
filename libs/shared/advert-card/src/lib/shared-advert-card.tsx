@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import moment from 'moment';
 
 import './shared-advert-card.scss';
 import { Button } from '@material-ui/core';
@@ -37,37 +38,36 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const classes = useStyles();
 
   function timeCalculator() {
-    const dbDate = '2020-06-13 18:33:30';
-    const date = dbDate.slice(0, 10);
-    const time = dbDate.slice(11, 19);
-    console.log('dbDate', date, time);
+    const then = moment('2020-06-13 22:00:00');
+    const now = moment('2020-06-14 22:10:01');
+    const duration = moment.duration(now.diff(then));
 
-    const startTime: any = new Date(`${date}T${time}`);
-    console.log('Start Time', startTime);
+    const days = duration.days();
+    const hours = duration.hours();
+    const minutes = duration.minutes();
+    const seconds = duration.seconds();
 
-    const endTime: any = new Date();
-    console.log('endTime', endTime);
-    const timeDiff = (endTime - startTime) / 1000;
-
-    let totalSeconds = Math.round(timeDiff);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds %= 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    if (hours > 0) {
+    if (days > 0) {
       setTimeState(`
-				${hours} hour${hours > 1 ? 's' : ''},
-				${minutes} minute${minutes > 1 ? 's' : ''} and 
-				${seconds} second${seconds > 1 ? 's' : ''}
+				${days} day${days > 1 ? 's' : ''},
+				${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''},` : ''}
+				${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
+				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
+			`);
+    } else if (hours > 0) {
+      setTimeState(`
+				${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''},` : ''}
+				${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
+				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
 			`);
     } else if (minutes) {
       setTimeState(`
-				${minutes} minute${minutes > 1 ? 's' : ''} and 
-				${seconds} second${seconds > 1 ? 's' : ''}
+				${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
+				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
 			`);
     } else if (seconds) {
       setTimeState(`
-				${seconds} second${seconds > 1 ? 's' : ''}
+				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
 			`);
     }
   }
