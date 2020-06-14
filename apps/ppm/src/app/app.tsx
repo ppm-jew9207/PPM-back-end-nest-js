@@ -10,7 +10,7 @@ const authorObj = {
     'https://cdn.thecoachingmanual.com/front_end_technical_test_assets/avatar_1.jpg',
 };
 
-export const App = () => {
+const App = () => {
   return (
     <SharedAdvertCard
       title="Title"

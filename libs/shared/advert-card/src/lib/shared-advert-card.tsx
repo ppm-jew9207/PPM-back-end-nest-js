@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-// import { SharedMenuButton } from '@ppm/shared/menu-button';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 import './shared-advert-card.scss';
@@ -39,15 +38,8 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
   function timeCalculator() {
     const dbDate = '2020-06-13 18:33:30';
-    // const yyyy: number = +dbDate.slice(0, 4);
-    // const mm: number = +dbDate.slice(5, 7);
-    // const dd: number = +dbDate.slice(8, 10);
     const date = dbDate.slice(0, 10);
-    // const h: number = +dbDate.slice(11, 13);
-    // const m: number = +dbDate.slice(14, 16);
-    // const s: number = +dbDate.slice(17, 19);
     const time = dbDate.slice(11, 19);
-    // console.log('dbDate - time', yyyy, mm, dd, ' ', h, m, s);
     console.log('dbDate', date, time);
 
     const startTime: any = new Date(`${date}T${time}`);
@@ -112,8 +104,6 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           <span>posted on {props.title}</span>
           <p>{`${timeState} ago`}</p>
         </div>
-
-        {/* <SharedMenuButton /> */}
       </div>
 
       <div className="card-content">
