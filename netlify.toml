@@ -5,4 +5,4 @@ publish = "build"
 
 [[redirects]]
 from = "/main"
-to = "/.netlify/dist/apps/api/main"
+to = "./dist/apps/api/main"
