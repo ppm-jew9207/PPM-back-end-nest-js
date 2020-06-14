@@ -1,0 +1,8 @@
+[build]
+command = "npm run prod"
+functions = "lambda"
+publish = "build"
+
+[[redirects]]
+from = "/main"
+to = "/.netlify/dist/apps/api/main"
