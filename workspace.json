@@ -281,9 +281,9 @@
         }
       }
     },
-    "shared-advert-card": {
-      "root": "libs/shared/advert-card",
-      "sourceRoot": "libs/shared/advert-card/src",
+    "shared-login-component": {
+      "root": "libs/shared/login-component",
+      "sourceRoot": "libs/shared/login-component/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -291,19 +291,19 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/advert-card/.eslintrc",
+            "config": "libs/shared/login-component/.eslintrc",
             "tsConfig": [
-              "libs/shared/advert-card/tsconfig.lib.json",
-              "libs/shared/advert-card/tsconfig.spec.json"
+              "libs/shared/login-component/tsconfig.lib.json",
+              "libs/shared/login-component/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/login-component/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/advert-card/jest.config.js",
-            "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
+            "jestConfig": "libs/shared/login-component/jest.config.js",
+            "tsConfig": "libs/shared/login-component/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -313,7 +313,7 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/advert-card/.storybook"
+              "configFolder": "libs/shared/login-component/.storybook"
             }
           },
           "configurations": {
@@ -326,43 +326,15 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-advert-card",
+            "outputPath": "dist/storybook/shared-login-component",
             "config": {
-              "configFolder": "libs/shared/advert-card/.storybook"
+              "configFolder": "libs/shared/login-component/.storybook"
             }
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
-        }
-      }
-    },
-    "shared-menu-button": {
-      "root": "libs/shared/menu-button",
-      "sourceRoot": "libs/shared/menu-button/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "config": "libs/shared/menu-button/.eslintrc",
-            "tsConfig": [
-              "libs/shared/menu-button/tsconfig.lib.json",
-              "libs/shared/menu-button/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/menu-button/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/menu-button/jest.config.js",
-            "tsConfig": "libs/shared/menu-button/tsconfig.spec.json",
-            "passWithNoTests": true
           }
         }
       }

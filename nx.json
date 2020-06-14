@@ -41,10 +41,7 @@
     "shared-test": {
       "tags": []
     },
-    "shared-advert-card": {
-      "tags": []
-    },
-    "shared-menu-button": {
+    "shared-login-component": {
       "tags": []
     }
   }
