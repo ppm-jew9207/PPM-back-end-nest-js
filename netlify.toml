@@ -1,8 +1,8 @@
 [build]
 command = "npm run build"
 functions = "lambda"
-publish = "build"
+publish = "dist/apps/api"
 
 [[redirects]]
-from = "/main"
+from = "/_base"
 to = "./dist/apps/api/main"
