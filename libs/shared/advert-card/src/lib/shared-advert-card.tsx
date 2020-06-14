@@ -43,8 +43,6 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     const duration = moment.duration(now.diff(then));
 
     const months = duration.months();
-    console.log(months);
-
     const days = duration.days();
     const hours = duration.hours();
     const minutes = duration.minutes();
