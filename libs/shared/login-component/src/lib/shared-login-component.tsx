@@ -25,50 +25,58 @@ export interface SharedLoginComponentProps {
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, errors } = useForm();
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <AccountCircle style={{ fontSize: '7.1875rem' }} />
       <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
         <FormControl>
-          <TextField
-            id="username"
-            placeholder="Username"
-            name="username"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Person />
-                </InputAdornment>
-              ),
-            }}
-            type="text"
-            variant="outlined"
-            inputRef={register({
-              required: 'Required',
-            })}
-          />
-          {errors.email && errors.email.message}
+          <Box my={1}>
+            <TextField
+              id="username"
+              placeholder="Username"
+              name="username"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Person />
+                  </InputAdornment>
+                ),
+              }}
+              type="text"
+              variant="outlined"
+              inputRef={register({
+                required: 'Required',
+              })}
+              error={errors.username ? true : false}
+              label={errors.username ? 'Error' : ''}
+              helperText={errors.username ? 'This field is required' : ''}
+            />
+          </Box>
 
-          <TextField
-            id="password"
-            placeholder="Password"
-            name="password"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon />
-                </InputAdornment>
-              ),
-            }}
-            type="password"
-            variant="outlined"
-            inputRef={register({
-              required: 'Required',
-            })}
-          />
-          {errors.password && errors.password.message}
+          <Box my={1}>
+            <TextField
+              id="password"
+              placeholder="Password"
+              name="password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+              type="password"
+              variant="outlined"
+              inputRef={register({
+                required: 'Required',
+              })}
+              error={errors.password ? true : false}
+              label={errors.password ? 'Error' : ''}
+              helperText={errors.password ? 'This field is required' : ''}
+            />
+          </Box>
 
           <FormGroup aria-label="position" row>
             <FormControlLabel
