@@ -1,1 +1,1 @@
-api: npm run build && npm run start:prod
+web: node server.js
