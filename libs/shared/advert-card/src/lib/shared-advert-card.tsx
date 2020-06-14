@@ -38,8 +38,8 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const classes = useStyles();
 
   function timeCalculator() {
-    const then = moment('2020-04-14 22:00:00');
-    const now = moment('2020-06-14 22:10:01');
+    const then = moment('2020-05-12 21:10:00');
+    const now = moment('2020-06-14 22:10:50');
     const duration = moment.duration(now.diff(then));
 
     const months = duration.months();
@@ -65,18 +65,18 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 			`);
     } else if (hours > 0) {
       setTimeState(`
-				${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''},` : ''}
+				${hours} hour${hours > 1 ? 's' : ''}
 				${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
 				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
 			`);
-    } else if (minutes) {
+    } else if (minutes > 0) {
       setTimeState(`
-				${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
+				${minutes} minute${minutes > 1 ? 's' : ''} and 
 				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
 			`);
-    } else if (seconds) {
+    } else if (seconds > 0) {
       setTimeState(`
-				${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
+				${seconds} second${seconds > 1 ? 's' : ''}
 			`);
     }
   }
