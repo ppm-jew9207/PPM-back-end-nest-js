@@ -25,13 +25,12 @@ export interface SharedLoginComponentProps {
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
-  const { handleSubmit, register, errors } = useForm();
-  const onSubmit = (values) => console.log(values);
+  const { handleSubmit, register } = useForm();
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <AccountCircle style={{ fontSize: '7.1875rem' }} />
-      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
         <FormControl>
           <TextField
             id="username"
