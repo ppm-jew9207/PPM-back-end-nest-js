@@ -1,1 +1,1 @@
-api: node server.js
+api: node dist/apps/api/main
