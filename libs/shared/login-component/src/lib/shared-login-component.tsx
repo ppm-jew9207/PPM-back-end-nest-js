@@ -17,19 +17,26 @@ import { useForm } from 'react-hook-form';
 
 /* eslint-disable-next-line */
 export interface SharedLoginComponentProps {
-  onLogin: (loginData: { username: string; password: string }) => void;
+  onLogin: (loginData: {
+    username: string;
+    password: string;
+    rememberMe: boolean;
+  }) => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit, register, errors } = useForm();
+  const onSubmit = (values) => console.log(values);
+
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <AccountCircle style={{ fontSize: '7.1875rem' }} />
-      <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <FormControl>
           <TextField
             id="username"
             placeholder="Username"
+            name="username"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -39,11 +46,16 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             }}
             type="text"
             variant="outlined"
-            ref={register}
+            inputRef={register({
+              required: 'Required',
+            })}
           />
+          {errors.email && errors.email.message}
+
           <TextField
             id="password"
             placeholder="Password"
+            name="password"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -53,15 +65,20 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             }}
             type="password"
             variant="outlined"
-            ref={register}
+            inputRef={register({
+              required: 'Required',
+            })}
           />
+          {errors.password && errors.password.message}
+
           <FormGroup aria-label="position" row>
             <FormControlLabel
               value="rememberMe"
               control={<Checkbox color="primary" />}
+              name="rememberMe"
               label="Remember Me"
               labelPlacement="end"
-              ref={register}
+              inputRef={register()}
             />
             <Box py={2}>
               <a href="#forgotPassword">
