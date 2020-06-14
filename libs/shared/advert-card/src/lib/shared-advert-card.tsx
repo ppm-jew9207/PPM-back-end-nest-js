@@ -10,9 +10,9 @@ export interface SharedAdvertCardProps {
   title: string;
   author?: {
     _id: string;
-    firstName: string;
-    lastName: string;
-    img: string;
+    firstName?: string;
+    lastName?: string;
+    img?: string;
   };
   timeStamp: number;
   description: string;
