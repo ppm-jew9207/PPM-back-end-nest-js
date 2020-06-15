@@ -6,7 +6,6 @@
     "nx": "nx",
     "start": "nx serve",
     "start-api": "npm run build api",
-    "postinstall": "nx build api",
     "build": "nx build",
     "start:prod": "node dist/apps/api/main",
     "test": "nx test",

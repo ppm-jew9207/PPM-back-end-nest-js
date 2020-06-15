@@ -54,17 +54,22 @@ async function bootstrap() {
   // const port = process.env.port || process.env.PORT;
   // const host = process.env.host || process.env.HOST;
 
+  async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.enableCors(); // protection
+    await app.listen(process.env.PORT || '80');
+  }
+  bootstrap();
+// async function bootstrap() {
+//   const app = await NestFactory.create(AppModule);
+//   await app.listen(process.env.PORT || 3000);
+// }
+// bootstrap();
+//   await app.listen(process.env.PORT, () => {
+//     console.log(
+//       'Listening at http://' + process.env.HOST + ':' + process.env.PORT + '/' + globalPrefix
+//     );
+//   });
+// }
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT || 3000);
-}
-bootstrap();
-  await app.listen(process.env.PORT, () => {
-    console.log(
-      'Listening at http://' + process.env.HOST + ':' + process.env.PORT + '/' + globalPrefix
-    );
-  });
-}
-
-bootstrap();
+// bootstrap();
