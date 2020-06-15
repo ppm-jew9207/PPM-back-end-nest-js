@@ -6,5 +6,5 @@ export enum ViewModels {
   EMAIL_VERIFICATION = 'EmailVerification',
   FORGOTTEN_PASSWORD = 'ForgottenPassword',
   CONSENT_REGISTRY = 'ConsentRegistration',
-
+  MENTORS = 'Mentors'
 }
