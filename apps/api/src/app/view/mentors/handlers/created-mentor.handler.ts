@@ -8,7 +8,6 @@ export class MentorCreatedHandler implements IEventHandler<MentorCreated>{
     @Inject() private readonly _mentorModelService: MentorModelService;
     public async handle(event: MentorCreated) {
         await this._mentorModelService.createMentor(event)
-        console.log(event, 'event');
         return null;
     }
 }

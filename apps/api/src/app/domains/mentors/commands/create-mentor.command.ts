@@ -15,13 +15,9 @@ export class CreateMentorHandler implements ICommandHandler<CreateMentor> {
   @Inject() private readonly _publicher: EventPublisher;
 
   async execute({ data }: CreateMentor) {
-    console.log(data, 'command');
-
     const aggregate = new MentorAggregate();
 
-    // aggregate.id = new Types.ObjectId().toHexString();
     aggregate.apply(new MentorCreated(data, new Types.ObjectId().toHexString()))
-
 
     const mentor = this._publicher.mergeObjectContext(aggregate);
     mentor.commit();
