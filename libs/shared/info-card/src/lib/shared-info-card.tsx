@@ -9,9 +9,9 @@ export enum FieldTypes {
 export interface SharedInfoCardProps {
   title?: string;
   fields?: {
-    type: FieldTypes;
-    label: string;
-    value: string;
+    type?: FieldTypes;
+    label?: string;
+    value?: string;
   }[];
 }
 
@@ -24,13 +24,8 @@ export const SharedInfoCard = (props: SharedInfoCardProps) => {
 
       <div className="info-body">
         <div>
-          <p>Gender</p>
-          <p>*****</p>
-        </div>
-
-        <div>
-          <p>Birthday</p>
-          <p>*****</p>
+          <p>{props.fields[0].label}</p>
+          <p>{props.fields[0].value}</p>
         </div>
       </div>
     </div>
