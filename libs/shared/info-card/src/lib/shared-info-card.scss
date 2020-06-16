@@ -1,17 +1,19 @@
 .info-card-container {
-  background-color: #919191;
+  background-color: var(--primary);
+  box-shadow: var(--box-shadow);
   .info-header,
   .info-body {
     padding: 20px;
   }
   .info-header {
     background-color: #1b3140;
-    color: white;
+    color: var(--text-color-white);
   }
   .info-body {
     & > div {
       margin: 5px 0;
       p {
+        color: var(--text-color-dark);
         margin: 10px 0;
       }
     }
