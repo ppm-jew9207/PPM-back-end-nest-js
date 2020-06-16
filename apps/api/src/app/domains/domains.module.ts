@@ -7,12 +7,13 @@ import { MentorsModule } from './mentors/mentors.module';
 import { AdvertsDomainModule } from './adverts/adverts.module';
 import { AdvertUpdated } from './adverts/events/advert-updated.event';
 import { SettingsDomainModule } from './settings/settings.module';
+import { StudentsModule } from './students/students.module';
 
 @Module({
-  imports: [CqrsModule, ProjectsDomainModule,MentorsModule, AdvertsDomainModule, SettingsDomainModule],
+  imports: [CqrsModule, ProjectsDomainModule, MentorsModule, AdvertsDomainModule, SettingsDomainModule, StudentsModule],
   controllers: [],
   providers: [
     ProjectCreated, AdvertCreated, AdvertUpdated
   ],
 })
-export class DomainsModule {}
+export class DomainsModule { }
