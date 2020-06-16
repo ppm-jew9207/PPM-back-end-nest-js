@@ -43,6 +43,9 @@
     },
     "shared-login-component": {
       "tags": []
+    },
+    "shared-profile-form": {
+      "tags": []
     }
   }
 }
