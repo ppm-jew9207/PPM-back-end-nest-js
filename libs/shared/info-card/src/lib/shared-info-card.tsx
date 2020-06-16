@@ -23,10 +23,14 @@ export const SharedInfoCard = (props: SharedInfoCardProps) => {
       </div>
 
       <div className="info-body">
-        <div>
-          <p>{props.fields[0].label}</p>
-          <p>{props.fields[0].value}</p>
-        </div>
+        {props.fields.map((e, index) => {
+          return (
+            <div key={index}>
+              <p>{e.label}</p>
+              <p>{e.value}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
