@@ -8,7 +8,7 @@ import { StudentViewModel } from './student.interface';
 export class StudentModelService {
   @InjectModel(ViewModels.STUDENTS) public model!: Model<StudentViewModel>;
 
-  public async createStudent(data: string): Promise<void> {
+  public async create(data: string): Promise<void> {
     return null
   }
 }
