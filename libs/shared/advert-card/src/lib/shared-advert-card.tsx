@@ -15,7 +15,7 @@ export interface SharedAdvertCardProps {
     lastName?: string;
     img?: string;
   };
-  timeStamp: string;
+  createAt: string;
   description: string;
   like: number;
   shared: number;
@@ -79,7 +79,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           </a>
 
           <span>posted on {props.title}</span>
-          <p>{`${timeCalculator(props.timeStamp)} ago`}</p>
+          <p>{`${timeCalculator(props.createAt)} ago`}</p>
         </div>
       </div>
 

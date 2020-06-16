@@ -11,7 +11,7 @@ export const primary = () => {
   const props: SharedAdvertCardProps = {
     title: text('title', ''),
     author: object('author', { _id: '', fistName: '', lastName: '', img: '' }),
-    timeStamp: number('timeStamp', 0),
+    createAt: text('createAt', ''),
     description: text('description', ''),
     like: number('like', 0),
     shared: number('shared', 0),
@@ -22,7 +22,7 @@ export const primary = () => {
     <SharedAdvertCard
       title={props.title}
       author={props.author}
-      timeStamp={props.timeStamp}
+      createAt={props.createAt}
       description={props.description}
       like={props.like}
       shared={props.shared}
