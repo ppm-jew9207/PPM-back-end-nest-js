@@ -41,11 +41,10 @@
     "shared-test": {
       "tags": []
     },
-    "shared-advert-card": {
+    "shared-login-component": {
       "tags": []
     },
-    "shared-info-card": {
-    "shared-login-component": {
+    "info-card": {
       "tags": []
     }
   }
