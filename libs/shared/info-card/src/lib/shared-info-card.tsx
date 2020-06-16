@@ -32,16 +32,6 @@ export const SharedInfoCard = (props: SharedInfoCardProps) => {
           <p>Birthday</p>
           <p>*****</p>
         </div>
-
-        <div>
-          <p>Location</p>
-          <p>*****</p>
-        </div>
-
-        <div>
-          <p>About Me</p>
-          <p>*****</p>
-        </div>
       </div>
     </div>
   );
