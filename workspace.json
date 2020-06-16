@@ -284,6 +284,9 @@
     "shared-advert-card": {
       "root": "libs/shared/advert-card",
       "sourceRoot": "libs/shared/advert-card/src",
+    "shared-login-component": {
+      "root": "libs/shared/login-component",
+      "sourceRoot": "libs/shared/login-component/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -297,6 +300,12 @@
               "libs/shared/advert-card/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+            "config": "libs/shared/login-component/.eslintrc",
+            "tsConfig": [
+              "libs/shared/login-component/tsconfig.lib.json",
+              "libs/shared/login-component/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/login-component/**"]
           }
         },
         "test": {
@@ -304,6 +313,8 @@
           "options": {
             "jestConfig": "libs/shared/advert-card/jest.config.js",
             "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
+            "jestConfig": "libs/shared/login-component/jest.config.js",
+            "tsConfig": "libs/shared/login-component/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -314,6 +325,7 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/shared/advert-card/.storybook"
+              "configFolder": "libs/shared/login-component/.storybook"
             }
           },
           "configurations": {
@@ -387,6 +399,9 @@
             "outputPath": "dist/storybook/shared-info-card",
             "config": {
               "configFolder": "libs/shared/info-card/.storybook"
+            "outputPath": "dist/storybook/shared-login-component",
+            "config": {
+              "configFolder": "libs/shared/login-component/.storybook"
             }
           },
           "configurations": {

@@ -1,13 +1,27 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { CreateMentor } from '../mentors.interface';
 
-export interface CreateMentor{
-    title: string;
-    description: string; 
-}
-
-export class CreateMentorPayloadDto implements CreateMentor{
+export class CreateMentorPayloadDto implements CreateMentor {
     @ApiProperty()
-    public readonly title: string;
+    public readonly type: string;
     @ApiProperty()
     public readonly description: string;
+    @ApiProperty()
+    public readonly firstName: string;
+    @ApiProperty()
+    public readonly lastName: string;
+    @ApiProperty()
+    public readonly photo: string;
+    @ApiProperty()
+    public readonly fieldOfProfession: string;
+    @ApiProperty()
+    public readonly company: string;
+    @ApiProperty()
+    public readonly categories: string;
+    @ApiProperty()
+    public readonly city: string;
+    @ApiProperty()
+    public readonly phone: string;
+    @ApiProperty()
+    public readonly email: string;
 }
