@@ -9,6 +9,7 @@ export class StudentCreatedHandler implements IEventHandler<StudentCreated>{
     @Inject() private readonly _studentModelService: StudentModelService;
     public async handle(event: StudentCreated) {
         await this._studentModelService.create(event)
+        console.log('views-handler');
         return null;
     }
 }

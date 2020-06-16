@@ -2,21 +2,20 @@ import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { CreateStudentPayloadDto } from '../dto/create-student-payload.dto';
 import { Inject } from '@nestjs/common';
 import { StudentAggregate } from '../students.aggregate';
-import { StudentCreated } from '../events/student-created.event';
-import { Types } from 'mongoose';
+import { StudentDeleted } from '../events/student-deleted.event';
+import { DeleteStudentPayloadDto } from '../dto/delete-student-payload.dto';
 
-export class CreateStudent {
-    constructor(public data: CreateStudentPayloadDto) {
+export class DeleteStudent {
+    constructor(public data: DeleteStudentPayloadDto) {
     }
 };
 
-@CommandHandler(CreateStudent)
-export class CreateStudentHandler implements ICommandHandler<CreateStudent> {
+@CommandHandler(DeleteStudent)
+export class DeleteStudentHandler implements ICommandHandler<DeleteStudent> {
     @Inject() private readonly _publisher: EventPublisher;
-    async execute({ data }: CreateStudent) {
+    async execute({ data }: DeleteStudent) {
         const aggregate = new StudentAggregate();
-
-        aggregate.apply(new StudentCreated(data, new Types.ObjectId().toHexString()))
+        aggregate.apply(new StudentDeleted(data));
 
         const student = this._publisher.mergeObjectContext(aggregate);
         student.commit();
