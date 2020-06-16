@@ -281,9 +281,6 @@
         }
       }
     },
-    "shared-advert-card": {
-      "root": "libs/shared/advert-card",
-      "sourceRoot": "libs/shared/advert-card/src",
     "shared-login-component": {
       "root": "libs/shared/login-component",
       "sourceRoot": "libs/shared/login-component/src",
@@ -294,12 +291,6 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/advert-card/.eslintrc",
-            "tsConfig": [
-              "libs/shared/advert-card/tsconfig.lib.json",
-              "libs/shared/advert-card/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
             "config": "libs/shared/login-component/.eslintrc",
             "tsConfig": [
               "libs/shared/login-component/tsconfig.lib.json",
@@ -311,8 +302,6 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/advert-card/jest.config.js",
-            "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
             "jestConfig": "libs/shared/login-component/jest.config.js",
             "tsConfig": "libs/shared/login-component/tsconfig.spec.json",
             "passWithNoTests": true
@@ -324,7 +313,6 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/advert-card/.storybook"
               "configFolder": "libs/shared/login-component/.storybook"
             }
           },
@@ -338,9 +326,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-advert-card",
+            "outputPath": "dist/storybook/shared-login-component",
             "config": {
-              "configFolder": "libs/shared/advert-card/.storybook"
+              "configFolder": "libs/shared/login-component/.storybook"
             }
           },
           "configurations": {
@@ -375,39 +363,6 @@
             "jestConfig": "libs/shared/info-card/jest.config.js",
             "tsConfig": "libs/shared/info-card/tsconfig.spec.json",
             "passWithNoTests": true
-          }
-        },
-        "storybook": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/shared/info-card/.storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        },
-        "build-storybook": {
-          "builder": "@nrwl/storybook:build",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-info-card",
-            "config": {
-              "configFolder": "libs/shared/info-card/.storybook"
-            "outputPath": "dist/storybook/shared-login-component",
-            "config": {
-              "configFolder": "libs/shared/login-component/.storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
           }
         }
       }

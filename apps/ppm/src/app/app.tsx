@@ -1,15 +1,9 @@
 import React from 'react';
-
+import { SharedInfoCard } from '@ppm/shared/info-card';
 import './app.scss';
 
-
-
 export const App = () => {
-  return (
-    <div>
-     
-    </div>
-  );
+  return <SharedInfoCard />;
 };
 
 export default App;
