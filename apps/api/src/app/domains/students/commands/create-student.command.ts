@@ -1,7 +1,8 @@
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
+import { CreateStudentPayloadDto } from '../dto/create-student-payload.dto';
 
 export class CreateStudent {
-    constructor(public data: string) {
+    constructor(public data: CreateStudentPayloadDto) {
     }
 };
 
