@@ -127,17 +127,18 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
             </Badge>
           </IconButton>
 
+          <IconButton color="inherit">
+            <SettingsIcon />
+          </IconButton>
+
           <IconButton
+            edge="end"
             aria-controls={menuId}
             aria-haspopup="true"
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
             <AccountCircle />
-          </IconButton>
-
-          <IconButton edge="end" color="inherit">
-            <SettingsIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
