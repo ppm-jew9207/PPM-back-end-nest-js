@@ -15,7 +15,7 @@ const App = () => {
     <SharedAdvertCard
       title="Title"
       author={authorObj}
-      timeStamp={44}
+      timeStamp={'2020-06-14 21:24:00'}
       description="This is Description"
       like={3}
       shared={5}

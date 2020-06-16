@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -15,7 +15,7 @@ export interface SharedAdvertCardProps {
     lastName?: string;
     img?: string;
   };
-  timeStamp: number;
+  timeStamp: string;
   description: string;
   like: number;
   shared: number;
@@ -34,32 +34,24 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
-  const [timeState, setTimeState] = useState('');
   const classes = useStyles();
 
-  function timeCalculator() {
-    const then = moment('2020-05-12 21:10:00');
-    const now = moment('2020-06-14 22:10:50');
+  function timeCalculator(createdAt: string) {
+    const dateKeys = ['months', 'days', 'hours', 'minutes', 'seconds'];
+    const then = moment(createdAt);
+    const now = moment();
     const duration = moment.duration(now.diff(then));
-
-    const months = duration.months();
-    const days = duration.days();
-    const hours = duration.hours();
-    const minutes = duration.minutes();
-    const seconds = duration.seconds();
-
-    setTimeState(`
-			${months > 0 ? `${months} month${months > 1 ? 's' : ''},` : ''}
-			${days > 0 ? `${days} day${days > 1 ? 's' : ''},` : ''}
-			${hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''},` : ''}
-			${minutes > 0 ? `${minutes} minute${minutes > 1 ? 's' : ''} and ` : ''}
-			${seconds > 0 ? `${seconds} second${seconds > 1 ? 's' : ''}` : ''}
-		`);
+    let string = '';
+    for (const key of dateKeys) {
+      const count = duration[key]();
+      string += `${
+        count > 0
+          ? `${count} ${key.slice(0, key.length - 1)}${count > 1 ? 's' : ''} `
+          : ''
+      }`;
+    }
+    return string;
   }
-
-  useEffect(() => {
-    timeCalculator();
-  }, []);
 
   return (
     <div className="advert-card">
@@ -87,7 +79,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           </a>
 
           <span>posted on {props.title}</span>
-          <p>{`${timeState} ago`}</p>
+          <p>{`${timeCalculator(props.timeStamp)} ago`}</p>
         </div>
       </div>
 
