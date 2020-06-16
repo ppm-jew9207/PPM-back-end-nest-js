@@ -10,12 +10,11 @@
     color: var(--text-color-white);
   }
   .info-body {
-    & > div {
-      margin: 5px 0;
-      p {
-        color: var(--text-color-dark);
-        margin: 10px 0;
-      }
+    span {
+      color: var(--text-color-dark);
+    }
+    span:last-child {
+      float: right;
     }
   }
 }
