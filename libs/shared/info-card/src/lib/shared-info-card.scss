@@ -1,17 +1,19 @@
+@import '../../../../../apps/ppm/src/styles.scss';
+
 .info-card-container {
-  background-color: var(--primary);
-  box-shadow: var(--box-shadow);
+  background-color: $primary;
+  box-shadow: $box-shadow;
   .info-header,
   .info-body {
     padding: 5px 20px;
   }
   .info-header {
     background-color: #1b3140;
-    color: var(--text-color-white);
+    color: $text-color-white;
   }
   .info-body {
     span {
-      color: var(--text-color-dark);
+      color: $text-color-dark;
     }
     span:last-child {
       float: right;

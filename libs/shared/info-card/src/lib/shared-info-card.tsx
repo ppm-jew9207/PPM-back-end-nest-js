@@ -2,16 +2,14 @@ import React from 'react';
 
 import './shared-info-card.scss';
 
-export enum FieldTypes {
-  Test = 1,
-}
+export enum FieldTypes {}
 
 export interface SharedInfoCardProps {
-  title?: string;
-  fields?: {
-    type?: FieldTypes;
-    label?: string;
-    value?: string;
+  title: string;
+  fields: {
+    type: FieldTypes;
+    label: string;
+    value: string;
   }[];
 }
 
@@ -22,14 +20,14 @@ export const SharedInfoCard = (props: SharedInfoCardProps) => {
         <h2>{props.title}</h2>
       </div>
 
-      {props.fields.map((e, index) => {
+      {props.fields.map((fields, index) => {
         return (
           <div className="info-body" key={index}>
             <span>
-              <b>{e.label}</b>
+              <b>{fields.label}</b>
             </span>
 
-            <span>{e.value}</span>
+            <span>{fields.value}</span>
           </div>
         );
       })}
