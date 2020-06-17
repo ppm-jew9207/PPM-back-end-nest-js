@@ -7,7 +7,7 @@ export enum FieldTypes {}
 export interface SharedInfoCardProps {
   title: string;
   fields: {
-    type: FieldTypes;
+    type?: FieldTypes;
     label: string;
     value: string;
   }[];
