@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { DeleteStudent } from '../students.interface';
+import { DeleteStudent } from '../../../models/students/student.interface';
 
 export class DeleteStudentPayloadDto implements DeleteStudent {
     @ApiProperty()

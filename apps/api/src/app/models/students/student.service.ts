@@ -4,7 +4,8 @@ import { Model, Types } from 'mongoose';
 import { ViewModels } from '../../helpers/constants';
 import { StudentViewModel } from './student.interface';
 import { StudentCreated } from '../../domains/students/events/student-created.event';
-import { DeleteStudentPayloadDto } from '../../domains/students/dto/delete-student-payload.dto';
+import { DeleteStudentPayloadDto } from './dto/delete-student-payload.dto';
+
 
 @Injectable()
 export class StudentModelService {

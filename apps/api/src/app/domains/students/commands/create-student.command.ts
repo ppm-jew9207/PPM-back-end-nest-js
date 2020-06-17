@@ -1,9 +1,9 @@
 import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
-import { CreateStudentPayloadDto } from '../dto/create-student-payload.dto';
 import { Inject } from '@nestjs/common';
 import { StudentAggregate } from '../students.aggregate';
 import { StudentCreated } from '../events/student-created.event';
 import { Types } from 'mongoose';
+import { CreateStudentPayloadDto } from '../../../models/students/dto/create-student-payload.dto';
 
 export class CreateStudent {
     constructor(public data: CreateStudentPayloadDto) {

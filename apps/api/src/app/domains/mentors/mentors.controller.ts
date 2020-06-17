@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateMentorPayloadDto } from './dto/create-mentor-payload.dto';
 import { CreateMentor } from './commands/create-mentor.command';
+import { CreateMentorPayloadDto } from '../../models/mentors/dto/create-mentor-payload.dto';
 
 @Controller('mentors')
 export class MentorsController {

@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Param } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateStudentPayloadDto } from './dto/create-student-payload.dto';
 import { CreateStudent } from './commands/create-student.command';
 import { DeleteStudent } from './commands/delete-student.command';
+import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
 
 @Controller('students')
 export class StudentsController {

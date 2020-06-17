@@ -1,4 +1,4 @@
-import { DeleteStudent } from '../students.interface';
+import { DeleteStudent } from '../../../models/students/student.interface';
 
 export class StudentDeleted {
     constructor(public readonly student: DeleteStudent) {

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateStudent } from '../students.interface';
+import { CreateMentor } from '../mentor.interface';
 
-export class CreateStudentPayloadDto implements CreateStudent {
+export class CreateMentorPayloadDto implements CreateMentor {
     @ApiProperty()
     public readonly type: string;
     @ApiProperty()
