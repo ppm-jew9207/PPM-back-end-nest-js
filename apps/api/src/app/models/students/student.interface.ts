@@ -14,7 +14,4 @@ export interface CreateStudent {
   email: string,
 }
 
-export interface DeleteStudent {
-  id: string,
-}
 export type StudentViewModel = CreateStudent & Document;

@@ -18,6 +18,6 @@ export class StudentsController {
 
     @Post(':id/delete')
     async delete(@Param('id') id: string) {
-        return this._commandBus.execute(new DeleteStudent({ id }))
+        return this._commandBus.execute(new DeleteStudent(id))
     }
 }
