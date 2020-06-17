@@ -15,6 +15,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import './shared-top-right-bar.scss';
+import { Box } from '@material-ui/core';
 
 /* eslint-disable-next-line */
 export interface SharedTopRightBarProps {}
@@ -91,7 +92,7 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -110,6 +111,10 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem>
+        <a href="url"> Show All</a>
+      </MenuItem>
+
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
@@ -121,7 +126,12 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
         <Toolbar>
           <div className={classes.grow} />
 
-          <IconButton color="inherit">
+          <IconButton
+            color="inherit"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleMenuOpen}
+          >
             <Badge badgeContent={17} color="secondary">
               <NotificationsIcon />
             </Badge>
@@ -135,7 +145,7 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
             edge="end"
             aria-controls={menuId}
             aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
+            onClick={handleMenuOpen}
             color="inherit"
           >
             <AccountCircle />
