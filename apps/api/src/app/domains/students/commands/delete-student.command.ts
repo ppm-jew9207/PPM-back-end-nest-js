@@ -3,12 +3,7 @@ import { Inject } from '@nestjs/common';
 import { StudentAggregate } from '../students.aggregate';
 import { StudentDeleted } from '../events/student-deleted.event';
 
-export class DeleteStudent {
-    constructor(public id: string) {
-    }
-};
-
-@CommandHandler(DeleteStudent)
+@CommandHandler(String)
 export class DeleteStudentHandler implements ICommandHandler<string> {
     @Inject() private readonly _publisher: EventPublisher;
     async execute(id: string) {
