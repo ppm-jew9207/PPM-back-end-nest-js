@@ -11,13 +11,13 @@ export class StudentsController {
     ) { }
 
     @Post()
-    async createStudent(@Body() payload: CreateStudentPayloadDto) {
+    async create(@Body() payload: CreateStudentPayloadDto) {
         console.log('domains-controller');
         return this._commandBus.execute(new CreateStudent(payload))
     }
 
     @Post(':id/delete')
-    async deleteStudent(@Param('id') id: string) {
+    async delete(@Param('id') id: string) {
         return this._commandBus.execute(new DeleteStudent({ id }))
     }
 }
