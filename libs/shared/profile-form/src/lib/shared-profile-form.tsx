@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import FormControl from '@material-ui/core/FormControl/FormControl';
 import TextField from '@material-ui/core/TextField/TextField';
 import Button from '@material-ui/core/Button';
@@ -41,12 +41,12 @@ export interface SharedProfileFormProps {
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const { handleSubmit, register, control, errors } = useForm();
 
-  const [categories, setCategories] = React.useState<string[]>([]);
-  const [city, setCity] = React.useState<string>('');
-  const [country, setCountry] = React.useState<string>('');
+  const [categories, setCategories] = useState<string[]>([]);
+  const [city, setCity] = useState<string>('');
+  const [country, setCountry] = useState<string>('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCategories(event.target.value as string[]);
+  const handleChange = (event: ChangeEvent<{ value }>) => {
+    setCategories(event.target.value);
   };
 
   return (
