@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { SharedInfoCard } from './shared-info-card';
+import SharedMenuButton from './shared-menu-button';
 
-describe(' SharedInfoCard', () => {
+describe(' SharedMenuButton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<SharedInfoCard />);
+    const { baseElement } = render(<SharedMenuButton />);
     expect(baseElement).toBeTruthy();
   });
 });

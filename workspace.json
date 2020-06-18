@@ -339,9 +339,15 @@
         }
       }
     },
+<<<<<<< HEAD
     "shared-info-card": {
       "root": "libs/shared/info-card",
       "sourceRoot": "libs/shared/info-card/src",
+=======
+    "shared-advert-card": {
+      "root": "libs/shared/advert-card",
+      "sourceRoot": "libs/shared/advert-card/src",
+>>>>>>> 3d2a2f7386e615db420be0cfca1e406b7cd86233
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -349,19 +355,33 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
+<<<<<<< HEAD
             "config": "libs/shared/info-card/.eslintrc",
             "tsConfig": [
               "libs/shared/info-card/tsconfig.lib.json",
               "libs/shared/info-card/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**", "!libs/shared/info-card/**"]
+=======
+            "config": "libs/shared/advert-card/.eslintrc",
+            "tsConfig": [
+              "libs/shared/advert-card/tsconfig.lib.json",
+              "libs/shared/advert-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+>>>>>>> 3d2a2f7386e615db420be0cfca1e406b7cd86233
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
+<<<<<<< HEAD
             "jestConfig": "libs/shared/info-card/jest.config.js",
             "tsConfig": "libs/shared/info-card/tsconfig.spec.json",
+=======
+            "jestConfig": "libs/shared/advert-card/jest.config.js",
+            "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
+>>>>>>> 3d2a2f7386e615db420be0cfca1e406b7cd86233
             "passWithNoTests": true
           }
         }
