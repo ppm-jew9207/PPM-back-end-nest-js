@@ -1,9 +1,9 @@
 import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
-import { CreateMentorPayloadDto } from '../dto/create-mentor-payload.dto';
 import { Inject } from '@nestjs/common';
 import { MentorAggregate } from '../mentors.aggregate';
 import { MentorCreated } from '../events/mentor-created.event';
 import { Types } from 'mongoose';
+import { CreateMentorPayloadDto } from '../../../models/mentors/dto/create-mentor-payload.dto';
 
 export class CreateMentor {
   constructor(public data: CreateMentorPayloadDto) {

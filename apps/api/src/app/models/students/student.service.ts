@@ -12,4 +12,8 @@ export class StudentModelService {
   public async create(data: StudentCreated): Promise<void> {
     await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, data.student, { upsert: true })
   }
+
+  async delete(id: string) {
+    await this.model.deleteOne({ _id: Types.ObjectId(id) });
+  }
 }

@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateMentor, UpdateMentor } from '../mentors.interface';
+import { CreateMentor } from '../mentor.interface';
+import { UpdateMentor } from '../../../domains/mentors/mentors.interface';
+
 
 export class CreateMentorPayloadDto implements CreateMentor {
     @ApiProperty()
