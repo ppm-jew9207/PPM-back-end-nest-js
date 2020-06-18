@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Param } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateMentor } from './commands/create-mentor.command';
-import { CreateMentorPayloadDto } from '../../models/mentors/dto/create-mentor-payload.dto';
+import { UpdateMentorCommand } from './commands/update-mentor-command';
+import { CreateMentorPayloadDto, UpdateMentorPayloadDto } from '../../models/mentors/dto/create-mentor-payload.dto';
 
 @Controller('mentors')
 export class MentorsController {
@@ -12,5 +13,10 @@ export class MentorsController {
   @Post()
   async createMentor(@Body() payload: CreateMentorPayloadDto) {
     return this._commandBus.execute(new CreateMentor(payload));
+  }
+
+  @Post('/:id/update')
+  async update(@Param('id') id: string, @Body() payload: UpdateMentorPayloadDto) {
+    return this._commandBus.execute(new UpdateMentorCommand(id, payload));
   }
 }
