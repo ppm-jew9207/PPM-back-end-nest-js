@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Param, Logger } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateStudent } from './commands/create-student.command';
-
 import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
+import { DeleteStudentId } from './commands/delete-student.command';
 
 @Controller('students')
 export class StudentsController {
@@ -17,6 +17,6 @@ export class StudentsController {
 
     @Post(':id/delete')
     async delete(@Param('id') id: string) {
-        return this._commandBus.execute(id)
+        return this._commandBus.execute(new DeleteStudentId(id))
     }
 }
