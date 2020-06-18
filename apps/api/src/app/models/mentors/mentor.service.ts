@@ -14,9 +14,6 @@ export class MentorModelService {
   }
 
   public async update(id: string, data: UpdateMentor): Promise<void> {
-    console.log(id);
-    console.log(data);
-    
     await this.model.findOneAndUpdate({ _id: Types.ObjectId(id) }, {$set: data})
   }
 
