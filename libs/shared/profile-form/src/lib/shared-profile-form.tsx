@@ -45,9 +45,25 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const [city, setCity] = useState<string>('');
   const [country, setCountry] = useState<string>('');
 
-  const handleChange = (event: ChangeEvent<{ value }>) => {
+  const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     setCategories(event.target.value);
   };
+
+  const handleCityChange = (event: ChangeEvent<{ value }>) => {
+    setCity(event.target.value);
+  };
+
+  const handleCountryChange = (event: ChangeEvent<{ value }>) => {
+    setCountry(event.target.value);
+  };
+
+  const renderCategoryValue = (selected) => (
+    <div>
+      {selected.map((value: string) => (
+        <Chip key={value} label={value} />
+      ))}
+    </div>
+  );
 
   return (
     <Grid container direction="column">
@@ -74,7 +90,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             inputRef={register({
               required: 'Required',
             })}
-            error={errors.firstName ? true : false}
+            error={!!errors.firstName}
             helperText={errors.firstName ? 'This field is required' : ''}
             fullWidth
           />
@@ -142,18 +158,12 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   multiple
                   label="Categories"
                   value={categories}
-                  onChange={handleChange}
+                  onChange={handleCategoriesChange}
                   input={<Input id="select-multiple-chip" />}
                   inputRef={register()}
-                  renderValue={(selected) => (
-                    <div>
-                      {(selected as string[]).map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </div>
-                  )}
+                  renderValue={renderCategoryValue}
                 >
-                  {props.categories.map((category) => (
+                  {props.categories.map((category: data) => (
                     <MenuItem key={category.id} value={category.name}>
                       {category.name}
                     </MenuItem>
@@ -180,7 +190,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   id="city"
                   name="city"
                   value={city}
-                  onChange={(event) => setCity(event.target.value as string)}
+                  onChange={handleCityChange}
                   label="City"
                   inputRef={register()}
                 >
@@ -211,7 +221,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   id="country"
                   name="country"
                   value={country}
-                  onChange={(event) => setCountry(event.target.value as string)}
+                  onChange={handleCountryChange}
                   label="Country"
                 >
                   {props.countries.map((country) => (
