@@ -52,9 +52,9 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             inputRef={register({
               required: 'Required',
             })}
-            error={errors.username ? true : false}
-            label={errors.username ? 'Error' : ''}
-            helperText={errors.username ? 'This field is required' : ''}
+            error={!errors.username ? false : true}
+            label={!errors.username ? '' : 'Error'}
+            helperText={!errors.username ? '' : 'This field is required'}
           />
         </Box>
 
@@ -76,9 +76,9 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             inputRef={register({
               required: 'Required',
             })}
-            error={errors.password ? true : false}
-            label={errors.password ? 'Error' : ''}
-            helperText={errors.password ? 'This field is required' : ''}
+            error={!errors.password ? false : true}
+            label={!errors.password ? '' : 'Error'}
+            helperText={!errors.password ? '' : 'This field is required'}
           />
         </Box>
 
