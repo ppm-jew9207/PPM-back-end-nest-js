@@ -13,7 +13,13 @@ export default {
 export const primary = () => {
   const props: SharedLoginComponentProps = {
     onLogin: action('onLogin'),
+    onForgotPassword: action('onForgotPassword'),
   };
 
-  return <SharedLoginComponent onLogin={props.onLogin} />;
+  return (
+    <SharedLoginComponent
+      onLogin={props.onLogin}
+      onForgotPassword={props.onForgotPassword}
+    />
+  );
 };

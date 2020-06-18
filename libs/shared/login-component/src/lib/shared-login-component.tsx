@@ -22,6 +22,7 @@ export interface SharedLoginComponentProps {
     password: string;
     rememberMe: boolean;
   }) => void;
+  onForgotPassword: () => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
@@ -93,7 +94,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             />
           </Box>
           <Box py={1.5}>
-            <a href="#forgotPassword">
+            <a href="#forgotPassword" onClick={props.onForgotPassword}>
               <i>Forgot Password?</i>
             </a>
           </Box>
