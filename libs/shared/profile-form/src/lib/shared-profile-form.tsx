@@ -6,12 +6,13 @@ import Button from '@material-ui/core/Button';
 import './shared-profile-form.scss';
 import Grid from '@material-ui/core/Grid/Grid';
 import Box from '@material-ui/core/Box/Box';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, ErrorMessage } from 'react-hook-form';
 import Select from '@material-ui/core/Select/Select';
 import Input from '@material-ui/core/Input/Input';
 import Chip from '@material-ui/core/Chip/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 
 /* eslint-disable-next-line */
 interface data {
@@ -64,6 +65,10 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       ))}
     </div>
   );
+
+  const validateCategories = (value) => {
+    return value.length > 0;
+  };
 
   return (
     <Grid container direction="column">
@@ -142,26 +147,28 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={1}>
-          <FormControl variant="outlined" fullWidth>
+          <FormControl variant="outlined" fullWidth error={!!errors.categories}>
             <InputLabel id="categoriesLabel">Categories *</InputLabel>
             <Controller
               name="categories"
               defaultValue={[]}
               control={control}
+              rules={{ validate: (value) => validateCategories(value) }}
               onChange={([selected]) => {
                 return selected;
               }}
               as={
                 <Select
                   id="categories"
-                  name="categories"
                   multiple
                   label="Categories"
+                  name="categories"
                   value={categories}
                   onChange={handleCategoriesChange}
                   input={<Input id="select-multiple-chip" />}
                   inputRef={register()}
                   renderValue={renderCategoryValue}
+                  error={!!errors.categories}
                 >
                   {props.categories.map((category: data) => (
                     <MenuItem key={category.id} value={category.name}>
@@ -172,6 +179,9 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               }
               fullWidth
             />
+            <FormHelperText>
+              {errors.categories ? 'This field is required' : ''}
+            </FormHelperText>
           </FormControl>
         </Box>
         <Box my={1}>
@@ -257,7 +267,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Button variant="contained" color="primary" type="submit">
+        <Button name="submit" variant="contained" color="primary" type="submit">
           SAVE
         </Button>
       </form>
