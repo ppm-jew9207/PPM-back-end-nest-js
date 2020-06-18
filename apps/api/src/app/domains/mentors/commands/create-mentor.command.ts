@@ -6,7 +6,7 @@ import { Types } from 'mongoose';
 import { CreateMentorPayloadDto } from '../../../models/mentors/dto/create-mentor-payload.dto';
 
 export class CreateMentor {
-  constructor(public data: CreateMentorPayloadDto) {
+  constructor(public userId: string, public data: CreateMentorPayloadDto) {
   }
 };
 
@@ -14,7 +14,8 @@ export class CreateMentor {
 export class CreateMentorHandler implements ICommandHandler<CreateMentor> {
   @Inject() private readonly _publicher: EventPublisher;
 
-  async execute({ data }: CreateMentor) {
+  async execute({userId, data }: CreateMentor) {
+    
     const aggregate = new MentorAggregate();
 
     aggregate.apply(new MentorCreated(data, new Types.ObjectId().toHexString()))

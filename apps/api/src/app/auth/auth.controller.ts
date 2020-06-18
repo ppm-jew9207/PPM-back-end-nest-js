@@ -55,10 +55,10 @@ export class AuthController {
     }
   }
 
-  @Get('email/verify/:token')
-  public async verifyEmail(@Param() params): Promise<IResponse> {
+  @Get('email/verify/:code')
+  public async verifyEmail(@Param('code') code: string): Promise<IResponse> {
     try {
-      const isEmailVerified = await this.authService.verifyEmail(params.token);
+      const isEmailVerified = await this.authService.verifyEmail(code);
       return new ResponseSuccess('LOGIN.EMAIL_VERIFIED', isEmailVerified);
     } catch (error) {
       return new ResponseError('LOGIN.ERROR', error);
