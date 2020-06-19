@@ -3,6 +3,8 @@ import { CommandBus } from '@nestjs/cqrs';
 import { CreateStudent } from './commands/create-student.command';
 import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
 import { DeleteStudentCommand } from './commands/delete-student.command';
+import { UpdateStudentCommand } from './commands/update-student.command';
+import { UpdateStudentPayloadDto } from '../../models/students/dto/update-student-payload.dto copy';
 
 @Controller('students')
 export class StudentsController {
@@ -18,5 +20,10 @@ export class StudentsController {
     @Post(':id/delete')
     async delete(@Param('id') id: string) {
         return this._commandBus.execute(new DeleteStudentCommand(id))
+    }
+
+    @Post(':id/update')
+    async update(@Param('id') id: string, @Body() payload: UpdateStudentPayloadDto) {
+        return this._commandBus.execute(new UpdateStudentCommand(id, payload))
     }
 }
