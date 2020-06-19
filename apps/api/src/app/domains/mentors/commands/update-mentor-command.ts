@@ -1,9 +1,9 @@
 import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
-import { UpdateMentorPayloadDto } from '../dto/create-mentor-payload.dto';
 import { Inject, BadRequestException } from '@nestjs/common';
 import { MentorAggregate } from '../mentors.aggregate';
 import { MentorUpdated } from '../events/mentor-updated.event';
 import { MentorModelService } from '../../../models/mentors/mentor.service';
+import { UpdateMentorPayloadDto } from '../../../models/mentors/dto/create-mentor-payload.dto';
 
 export class UpdateMentorCommand {
   constructor(public id: string, public data: UpdateMentorPayloadDto) {
