@@ -22,63 +22,68 @@ export interface SharedLoginComponentProps {
     password: string;
     rememberMe: boolean;
   }) => void;
+  onForgotPassword: () => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
   const { handleSubmit, register, errors } = useForm();
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
-      <AccountCircle style={{ fontSize: '7.1875rem' }} />
+    <Grid container direction="column" justify="center">
+      <Box display="flex" alignItems="center" mx="auto">
+        <AccountCircle style={{ fontSize: '7.1875rem' }} />
+      </Box>
       <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
-        <FormControl>
-          <Box my={1}>
-            <TextField
-              id="username"
-              placeholder="Username"
-              name="username"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Person />
-                  </InputAdornment>
-                ),
-              }}
-              type="text"
-              variant="outlined"
-              inputRef={register({
-                required: 'Required',
-              })}
-              error={errors.username ? true : false}
-              label={errors.username ? 'Error' : ''}
-              helperText={errors.username ? 'This field is required' : ''}
-            />
-          </Box>
+        <Box my={1}>
+          <TextField
+            id="username"
+            placeholder="Username"
+            name="username"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Person />
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
+            type="text"
+            variant="outlined"
+            inputRef={register({
+              required: 'Required',
+            })}
+            error={!!errors.username}
+            label={!errors.username ? '' : 'Error'}
+            helperText={!errors.username ? '' : 'This field is required'}
+          />
+        </Box>
 
-          <Box my={1}>
-            <TextField
-              id="password"
-              placeholder="Password"
-              name="password"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LockIcon />
-                  </InputAdornment>
-                ),
-              }}
-              type="password"
-              variant="outlined"
-              inputRef={register({
-                required: 'Required',
-              })}
-              error={errors.password ? true : false}
-              label={errors.password ? 'Error' : ''}
-              helperText={errors.password ? 'This field is required' : ''}
-            />
-          </Box>
+        <Box my={1}>
+          <TextField
+            id="password"
+            placeholder="Password"
+            name="password"
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
+            type="password"
+            variant="outlined"
+            inputRef={register({
+              required: 'Required',
+            })}
+            error={!!errors.username}
+            label={!errors.password ? '' : 'Error'}
+            helperText={!errors.password ? '' : 'This field is required'}
+          />
+        </Box>
 
-          <FormGroup aria-label="position" row>
+        <Box display="flex" justifyContent="space-between">
+          <Box>
             <FormControlLabel
               value="rememberMe"
               control={<Checkbox color="primary" />}
@@ -87,18 +92,18 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
               labelPlacement="end"
               inputRef={register()}
             />
-            <Box py={2}>
-              <a href="#forgotPassword">
-                <i>Forgot Password?</i>
-              </a>
-            </Box>
-          </FormGroup>
-          <Grid container justify="center">
-            <Button variant="contained" color="primary" type="submit">
-              LOGIN
-            </Button>
-          </Grid>
-        </FormControl>
+          </Box>
+          <Box py={1.5}>
+            <a href="#forgotPassword" onClick={props.onForgotPassword}>
+              <i>Forgot Password?</i>
+            </a>
+          </Box>
+        </Box>
+        <Grid container justify="center">
+          <Button variant="contained" color="primary" type="submit">
+            LOGIN
+          </Button>
+        </Grid>
       </form>
     </Grid>
   );
