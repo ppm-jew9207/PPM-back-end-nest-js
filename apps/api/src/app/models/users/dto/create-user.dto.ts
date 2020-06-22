@@ -12,5 +12,5 @@ export class CreateUserDto {
   @ApiProperty()
   public readonly birthDayDate?: Date;
   @ApiProperty()
-  public readonly password: string;
+  public password: string;
 }
