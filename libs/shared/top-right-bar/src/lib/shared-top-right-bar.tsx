@@ -90,8 +90,6 @@ interface Prop {
   children: ReactNode;
 }
 const MenuButton = (props: Prop) => {
-  console.log(props);
-
   const [state, setState] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -103,7 +101,7 @@ const MenuButton = (props: Prop) => {
   };
 
   return (
-    <div>
+    <>
       <IconButton
         color="inherit"
         aria-owns={state ? 'menu-appbar' : null}
@@ -127,7 +125,7 @@ const MenuButton = (props: Prop) => {
           </div>
         ))}
       </Menu>
-    </div>
+    </>
   );
 };
 
