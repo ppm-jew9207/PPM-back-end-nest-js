@@ -15,8 +15,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 
 /* eslint-disable-next-line */
-interface Data {
-  id: string;
+interface EntityRef {
+  _id: string;
   name: string;
 }
 /* eslint-disable-next-line */
@@ -34,9 +34,9 @@ export interface SharedProfileFormProps {
     phone: string;
     web: string;
   }) => void;
-  categories: Data[];
-  cities: Data[];
-  countries: Data[];
+  categories: EntityRef[];
+  cities: EntityRef[];
+  countries: EntityRef[];
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
@@ -170,8 +170,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   renderValue={renderCategoryValue}
                   error={!!errors.categories}
                 >
-                  {props.categories.map((category: data) => (
-                    <MenuItem key={category.id} value={category.name}>
+                  {props.categories.map((category: EntityRef) => (
+                    <MenuItem key={category._id} value={category.name}>
                       {category.name}
                     </MenuItem>
                   ))}
@@ -205,7 +205,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   inputRef={register()}
                 >
                   {props.cities.map((city) => (
-                    <MenuItem key={city.id} value={city.name}>
+                    <MenuItem key={city._id} value={city.name}>
                       {city.name}
                     </MenuItem>
                   ))}
@@ -235,7 +235,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   label="Country"
                 >
                   {props.countries.map((country) => (
-                    <MenuItem key={country.id} value={country.name}>
+                    <MenuItem key={country._id} value={country.name}>
                       {country.name}
                     </MenuItem>
                   ))}
