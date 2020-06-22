@@ -85,38 +85,48 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+const MenuButton = (props: any) => {
+  const [state, setState] = React.useState<null | HTMLElement>(null);
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setState(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setState(null);
+  };
+
+  return (
+    <div>
+      <IconButton
+        color="inherit"
+        aria-owns={state ? 'menu-appbar' : null}
+        aria-haspopup="true"
+        onClick={handleMenu}
+      >
+        {props.children}
+      </IconButton>
+
+      <Menu
+        id="menu-appbar"
+        anchorEl={state}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={Boolean(state)}
+        onClose={handleClose}
+      >
+        {props.items.map((link: JSX.Element, index: number) => (
+          <div key={index}>
+            <MenuItem onClick={handleClose}>{link}</MenuItem>
+          </div>
+        ))}
+      </Menu>
+    </div>
+  );
+};
+
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement> | any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const RenderMenu = () => (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem>
-        <a href="url"> Show All</a>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
@@ -124,36 +134,23 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
         <Toolbar>
           <div className={classes.grow} />
 
-          <IconButton
-            color="inherit"
-            aria-controls="notification-menu"
-            aria-haspopup="true"
-            name="notification-menu"
-            onClick={handleMenuOpen}
+          <MenuButton
+            items={['Notification 1', 'Notification 2', 'Notification 3']}
           >
             <Badge badgeContent={17} color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </MenuButton>
 
           <IconButton color="inherit">
             <SettingsIcon />
           </IconButton>
 
-          <IconButton
-            edge="end"
-            aria-controls="profile-menu"
-            aria-haspopup="true"
-            name="profile-menu"
-            onClick={handleMenuOpen}
-            color="inherit"
-          >
+          <MenuButton items={['Profile 1', 'Profile 2', 'Profile 3']}>
             <AccountCircle />
-          </IconButton>
+          </MenuButton>
         </Toolbar>
       </AppBar>
-
-      <RenderMenu />
     </div>
   );
 };
