@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   fade,
   makeStyles,
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const MenuButton = (props: any) => {
-  const [state, setState] = React.useState<null | HTMLElement>(null);
+  const [state, setState] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setState(event.currentTarget);
