@@ -15,7 +15,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import './shared-top-right-bar.scss';
-import { Box } from '@material-ui/core';
 
 /* eslint-disable-next-line */
 export interface SharedTopRightBarProps {}
@@ -92,7 +91,7 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement> | any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -101,7 +100,7 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
+  const RenderMenu = () => (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -114,7 +113,6 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
       <MenuItem>
         <a href="url"> Show All</a>
       </MenuItem>
-
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
@@ -128,8 +126,9 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
 
           <IconButton
             color="inherit"
-            aria-controls={menuId}
+            aria-controls="notification-menu"
             aria-haspopup="true"
+            name="notification-menu"
             onClick={handleMenuOpen}
           >
             <Badge badgeContent={17} color="secondary">
@@ -143,8 +142,9 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
 
           <IconButton
             edge="end"
-            aria-controls={menuId}
+            aria-controls="profile-menu"
             aria-haspopup="true"
+            name="profile-menu"
             onClick={handleMenuOpen}
             color="inherit"
           >
@@ -153,7 +153,7 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
         </Toolbar>
       </AppBar>
 
-      {renderMenu}
+      <RenderMenu />
     </div>
   );
 };
