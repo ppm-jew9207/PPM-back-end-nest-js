@@ -1,4 +1,5 @@
 import { Schema } from 'mongoose';
+import { ViewModels } from '../../helpers/constants';
 
 export const AdvertsSchema = new Schema({
     title: {
@@ -9,5 +10,9 @@ export const AdvertsSchema = new Schema({
     description: {
       type: String
     },
-  },
+    creator: {
+      _id: {type: String, ref: ViewModels.USERS_VIEW},
+      name: String
+    },
+  }, {timestamps: true}
 );
