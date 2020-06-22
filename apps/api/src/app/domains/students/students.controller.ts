@@ -7,6 +7,8 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
+import { UpdateStudentPayloadDto } from '../../models/students/dto/update-student-payload.dto copy';
+import { UpdateStudentCommand } from './commands/update-student.command';
 
 @Controller('students')
 @ApiBearerAuth('JWT')
@@ -25,5 +27,10 @@ export class StudentsController {
     @Post(':id/delete')
     async delete(@Param('id') id: string) {
         return this._commandBus.execute(new DeleteStudentCommand(id))
+    }
+
+    @Post(':id/update')
+    async update(@Param('id') id: string, @Body() payload: UpdateStudentPayloadDto) {
+        return this._commandBus.execute(new UpdateStudentCommand(id, payload))
     }
 }
