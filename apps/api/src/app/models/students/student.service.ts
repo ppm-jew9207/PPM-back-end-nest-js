@@ -11,13 +11,12 @@ export class StudentModelService {
   @InjectModel(ViewModels.STUDENTS) public model!: Model<StudentViewModel>;
 
   public async create(data: StudentCreated): Promise<void> {
-    await this.model.create(data.student)
+    await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, data.student, { upsert: true })
   }
   async delete(id: string) {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: StudentUpdated) {
-    await this.model.findByIdAndUpdate({ _id: Types.ObjectId(data.id) }, data.student, { upsert: true });
-
+    await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, { $set: data.student })
   }
 }
