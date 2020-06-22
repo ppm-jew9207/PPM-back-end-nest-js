@@ -15,7 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 
 /* eslint-disable-next-line */
-interface data {
+interface Data {
   id: string;
   name: string;
 }
@@ -34,9 +34,9 @@ export interface SharedProfileFormProps {
     phone: string;
     web: string;
   }) => void;
-  categories: data[];
-  cities: data[];
-  countries: data[];
+  categories: Data[];
+  cities: Data[];
+  countries: Data[];
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
