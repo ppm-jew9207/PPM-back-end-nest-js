@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, MouseEvent } from 'react';
 import {
   fade,
   makeStyles,
@@ -90,33 +90,39 @@ interface Prop {
   children: ReactNode;
 }
 const MenuButton = (props: Prop) => {
-  const [state, setState] = useState<null | HTMLElement>(null);
+  // const [state, setState] = useState<null | HTMLElement>(null);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement>();
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setState(event.currentTarget);
+  const handleMenu = (event: MouseEvent<HTMLElement>) => {
+    // setState(event.currentTarget);
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
   };
 
   const handleClose = () => {
-    setState(null);
+    // setState(null);
+    setMenuOpen(false);
   };
 
   return (
-    <>
+    <div>
       <IconButton
         color="inherit"
-        aria-owns={state ? 'menu-appbar' : null}
-        aria-haspopup="true"
+        // aria-owns={!anchorEl ? 'menu-appbar' : null}
+        // aria-haspopup="true"
         onClick={handleMenu}
       >
         {props.children}
       </IconButton>
 
       <Menu
-        id="menu-appbar"
-        anchorEl={state}
+        // id="menu-appbar"
+        anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={Boolean(state)}
+        // open={Boolean(state)}
+        open={menuOpen}
         onClose={handleClose}
       >
         {props.items.map((link, index) => (
@@ -125,7 +131,7 @@ const MenuButton = (props: Prop) => {
           </div>
         ))}
       </Menu>
-    </>
+    </div>
   );
 };
 
@@ -134,27 +140,25 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <div className={classes.grow} />
+      <Toolbar>
+        <div className={classes.grow} />
 
-          <MenuButton
-            items={['Notification 1', 'Notification 2', 'Notification 3']}
-          >
-            <Badge badgeContent={17} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </MenuButton>
+        <MenuButton
+          items={['Notification 1', 'Notification 2', 'Notification 3']}
+        >
+          <Badge badgeContent={17} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </MenuButton>
 
-          <IconButton color="inherit">
-            <SettingsIcon />
-          </IconButton>
+        <IconButton color="inherit">
+          <SettingsIcon />
+        </IconButton>
 
-          <MenuButton items={['Profile 1', 'Profile 2', 'Profile 3']}>
-            <AccountCircle />
-          </MenuButton>
-        </Toolbar>
-      </AppBar>
+        <MenuButton items={['Profile 1', 'Profile 2', 'Profile 3']}>
+          <AccountCircle />
+        </MenuButton>
+      </Toolbar>
     </div>
   );
 };
