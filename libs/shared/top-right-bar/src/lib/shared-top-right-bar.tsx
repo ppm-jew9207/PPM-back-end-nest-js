@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import {
   fade,
   makeStyles,
@@ -85,7 +85,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const MenuButton = (props: any) => {
+interface Prop {
+  items: string[];
+  children: ReactNode;
+}
+const MenuButton = (props: Prop) => {
+  console.log(props);
+
   const [state, setState] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -115,7 +121,7 @@ const MenuButton = (props: any) => {
         open={Boolean(state)}
         onClose={handleClose}
       >
-        {props.items.map((link: JSX.Element, index: number) => (
+        {props.items.map((link, index) => (
           <div key={index}>
             <MenuItem onClick={handleClose}>{link}</MenuItem>
           </div>
