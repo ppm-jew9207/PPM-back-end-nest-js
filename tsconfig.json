@@ -21,7 +21,8 @@
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
       ],
-      "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"]
+      "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"],
+      "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
