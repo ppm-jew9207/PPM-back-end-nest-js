@@ -1,4 +1,5 @@
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
+import { AdvertRef } from '../adverts/adverts.interface';
 
 export interface CreateMentor {
   type: string,
@@ -12,6 +13,7 @@ export interface CreateMentor {
   city: string,
   phone: string,
   email: string,
+  adverts?: AdvertRef[],
 }
 
 export type MentorViewModel = CreateMentor & Document;

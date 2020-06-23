@@ -14,6 +14,7 @@ import { IResponse } from '../common/interfaces/response.interface';
 import { CreateUserDto } from '../models/users/dto/create-user.dto';
 import { UsersService } from '../models/users/users.service';
 import { ResetPasswordDto } from './dto/reset-password.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -24,7 +25,7 @@ export class AuthController {
 
   @Post('email/login')
   @HttpCode(HttpStatus.OK)
-  public async login(@Body() login: Login): Promise<IResponse> {
+  public async login(@Body() login: LoginDto): Promise<IResponse> {
     try {
       const response = await this.authService.validateLogin(
         login.email,
