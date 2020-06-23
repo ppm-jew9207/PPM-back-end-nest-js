@@ -1,6 +1,6 @@
-import { CreateStudent } from '../students.interface';
+import { CreateStudent } from '../../../models/students/student.interface';
 
 export class StudentCreated {
-    constructor(public readonly mentor: CreateStudent, public readonly id: string) {
+    constructor(public readonly student: CreateStudent, public readonly id: string) {
     }
 }

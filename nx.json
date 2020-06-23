@@ -49,6 +49,9 @@
     },
     "shared-top-right-bar": {
       "tags": []
+    },
+    "shared-info-card": {
+      "tags": []
     }
   }
 }

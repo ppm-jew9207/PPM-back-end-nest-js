@@ -7,7 +7,7 @@ import { Inject } from '@nestjs/common';
 export class MentorCreatedHandler implements IEventHandler<MentorCreated>{
     @Inject() private readonly _mentorModelService: MentorModelService;
     public async handle(event: MentorCreated) {
-        await this._mentorModelService.createMentor(event)
+        await this._mentorModelService.createMentor(event.mentor)
         return null;
     }
 }
