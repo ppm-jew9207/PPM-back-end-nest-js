@@ -1,4 +1,4 @@
-import { Body, Controller, Post, HttpCode, HttpStatus, Param, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Post, HttpCode, HttpStatus, Param, UseGuards, UseInterceptors, Req } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateAdvert } from './commands/create-advert.command';
 import { RemoveAdvert } from './commands/remove-advert.command';
@@ -18,8 +18,9 @@ export class AdvertsController {
   constructor(private readonly commandBus: CommandBus) {}
 
   @Post()
-  async create(@Body() dto: CreateAdvertPayloadDto) {
-    return this.commandBus.execute(new CreateAdvert(dto));
+  async create(@Body() dto: CreateAdvertPayloadDto, @Req() request: any) {
+    const user = request.user;
+    return this.commandBus.execute(new CreateAdvert(dto, user));
   }
 
   @Post('/:id/update')

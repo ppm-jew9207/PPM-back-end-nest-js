@@ -28,7 +28,7 @@ export class CreateMentorPayloadDto implements CreateMentor {
     public readonly email: string;
 }
 
-export class UpdateMentorPayloadDto implements UpdateMentor {
+export class UpdateMentorPayloadDto {
 
     @ApiProperty()
     public readonly type?: string;
@@ -52,6 +52,4 @@ export class UpdateMentorPayloadDto implements UpdateMentor {
     public readonly phone?: string;
     @ApiProperty()
     public readonly email: string;
-    @ApiProperty()
-    public readonly adverts: string[];
 }
