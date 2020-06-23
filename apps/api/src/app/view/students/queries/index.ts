@@ -1,3 +1,6 @@
-import { GetStudentsByIdQuery, GetStudentByIdHandler } from './get-student-by-id.handler';
+import {
+  GetStudentByIdQuery,
+  GetStudentByIdHandler,
+} from './get-student-by-id.handler';
 
-export const QueryHandlers = [GetStudentByIdHandler]
+export const QueryHandlers = [GetStudentByIdHandler];
