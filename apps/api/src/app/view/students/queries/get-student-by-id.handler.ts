@@ -4,12 +4,12 @@ import { StudentModelService } from '../../../models/students/student.service';
 import { CreateStudentPayloadDto } from '../../../models/students/dto/create-student-payload.dto';
 
 
-export class GetStudentsByIdQuery {
+export class GetStudentByIdQuery {
     constructor(public id: string) { }
 }
 
-@QueryHandler(GetStudentsByIdQuery)
-export class GetStudentByIdHandler implements IQueryHandler<GetStudentsByIdQuery>{
+@QueryHandler(GetStudentByIdQuery)
+export class GetStudentByIdHandler implements IQueryHandler<GetStudentByIdQuery>{
     @Inject() private readonly _studentModelService: StudentModelService;
     async execute({ id }): Promise<CreateStudentPayloadDto> {
         return this._studentModelService.getById(id);

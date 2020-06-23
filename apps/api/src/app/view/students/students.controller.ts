@@ -5,7 +5,7 @@ import { LoggingInterceptor } from '../../common/interceptors/logging.intercepto
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { QueryBus } from '@nestjs/cqrs';
 import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
-import { GetStudentsByIdQuery } from './queries/get-student-by-id.handler';
+import { GetStudentByIdQuery } from './queries/get-student-by-id.handler';
 
 
 @Controller('students-view')
@@ -16,6 +16,6 @@ export class StudentsController {
     constructor(private readonly queryBus: QueryBus) { }
     @Get('/:id')
     async getById(@Param('id') id: string): Promise<CreateStudentPayloadDto> {
-        return this.queryBus.execute(new GetStudentsByIdQuery(id));
+        return this.queryBus.execute(new GetStudentByIdQuery(id));
     }
 }
