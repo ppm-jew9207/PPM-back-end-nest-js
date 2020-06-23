@@ -8,6 +8,6 @@ export class GetStudentsQuery { }
 export class GetStudentsHandler implements IQueryHandler<GetStudentsQuery>{
     @Inject() private readonly _studentModelService: StudentModelService;
     async execute() {
-        return this._studentModelService.model.find().exec();
+        return this._studentModelService.getAll();
     }
 }
