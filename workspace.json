@@ -452,6 +452,64 @@
           }
         }
       }
+    },
+    "shared-top-menu-button": {
+      "root": "libs/shared/top-menu-button",
+      "sourceRoot": "libs/shared/top-menu-button/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/top-menu-button/.eslintrc",
+            "tsConfig": [
+              "libs/shared/top-menu-button/tsconfig.lib.json",
+              "libs/shared/top-menu-button/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/top-menu-button/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/top-menu-button/jest.config.js",
+            "tsConfig": "libs/shared/top-menu-button/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/top-menu-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-top-menu-button",
+            "config": {
+              "configFolder": "libs/shared/top-menu-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -52,6 +52,9 @@
     },
     "shared-info-card": {
       "tags": []
+    },
+    "shared-top-menu-button": {
+      "tags": []
     }
   }
 }

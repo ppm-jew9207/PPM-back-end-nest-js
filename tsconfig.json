@@ -23,6 +23,9 @@
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
+      ],
+      "@ppm/shared/top-menu-button": [
+        "libs/shared/top-menu-button/src/index.ts"
       ]
     }
   },
