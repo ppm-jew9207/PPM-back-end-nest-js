@@ -8,9 +8,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from '@material-ui/core';
 
-/* eslint-disable-next-line */
 export interface SharedTopRightBarProps {
-  dataFromDb?: any;
+  dataFromDb: {
+    notifications: {
+      _id: string;
+      title: string;
+      path: string;
+      timeStamp: string;
+      isRead: boolean;
+    }[];
+    settings: { _id: string; label: string; path: string };
+    profile: { _id: string; label: string; path: string };
+  };
 }
 
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
