@@ -6,28 +6,36 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
+import { Link } from '@material-ui/core';
 
 /* eslint-disable-next-line */
-export interface SharedTopRightBarProps {}
+export interface SharedTopRightBarProps {
+  dataFromDb?: any;
+}
 
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
+  const { notifications, settings, profile } = props.dataFromDb;
+  console.log(notifications);
+
   return (
     <Toolbar>
-      <SharedTopMenuButton
-        items={['Notification 1', 'Notification 2', 'Notification 3']}
-      >
-        <Badge badgeContent={17} color="secondary">
+      <SharedTopMenuButton items={notifications}>
+        <Badge badgeContent={notifications.length} color="secondary">
           <NotificationsIcon />
         </Badge>
       </SharedTopMenuButton>
 
-      <IconButton color="inherit">
-        <SettingsIcon />
-      </IconButton>
+      <Link href={settings.path}>
+        <IconButton color="inherit">
+          <SettingsIcon />
+        </IconButton>
+      </Link>
 
-      <SharedTopMenuButton items={['Profile 1', 'Profile 2', 'Profile 3']}>
-        <AccountCircle />
-      </SharedTopMenuButton>
+      <Link href={profile.path}>
+        <IconButton color="inherit">
+          <AccountCircle />
+        </IconButton>
+      </Link>
     </Toolbar>
   );
 };

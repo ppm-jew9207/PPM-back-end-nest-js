@@ -2,9 +2,18 @@ import React, { useState, MouseEvent, ReactNode } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import { Link } from '@material-ui/core';
+
+export interface Items {
+  _id: string;
+  title: string;
+  path: string;
+  timeStamp: string;
+  isRead: boolean;
+}
 
 export interface SharedTopMenuButtonProps {
-  items: string[];
+  items: Items[];
   children: ReactNode;
 }
 
@@ -34,9 +43,13 @@ export const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
         open={menuOpen}
         onClose={handleClose}
       >
-        {props.items.map((link, index) => (
-          <div key={index}>
-            <MenuItem onClick={handleClose}>{link}</MenuItem>
+        {props.items.map((link) => (
+          <div key={link._id}>
+            <MenuItem onClick={handleClose}>
+              <Link href={link.path}>
+                {link.title}, {link.timeStamp}
+              </Link>
+            </MenuItem>
           </div>
         ))}
       </Menu>
