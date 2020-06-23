@@ -20,7 +20,7 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
 
     const userFromDB = await this._usersService.getById(user._id.toHexString());
     if (!userFromDB) {
-      throw new BadRequestException('This user dos`t exist');
+      throw new BadRequestException(`This user doesn't exist`);
     }
 
     if (!data.title) {
