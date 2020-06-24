@@ -10,25 +10,25 @@ const buttons = [
   {
     label: 'Home',
     path: '/',
-    icon: 'Home',
+    icon: 'home',
     onClick: () => callName('home1'),
   },
   {
     label: 'Home2',
-    path: '/',
-    icon: 'Apps',
+    path: '/home2',
+    icon: 'apps',
     onClick: () => callName('home2'),
   },
   {
     label: 'Home3',
-    path: '/',
-    icon: 'HomeWork',
+    path: '/home3',
+    icon: 'homeWork',
     onClick: () => callName('home3'),
   },
   {
     label: 'Home4',
-    path: '/',
-    icon: 'Home',
+    path: '/home4',
+    icon: 'home',
     onClick: () => callName('home4'),
   },
 ];
