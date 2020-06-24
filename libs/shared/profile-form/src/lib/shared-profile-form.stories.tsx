@@ -10,12 +10,12 @@ export default {
   title: 'SharedProfileForm',
 };
 const data = [
-  { id: 'A', name: 'A' },
-  { id: 'B', name: 'B' },
-  { id: 'C', name: 'C' },
-  { id: 'D', name: 'D' },
-  { id: 'E', name: 'E' },
-  { id: 'F', name: 'F' },
+  { _id: 'A', name: 'A' },
+  { _id: 'B', name: 'B' },
+  { _id: 'C', name: 'C' },
+  { _id: 'D', name: 'D' },
+  { _id: 'E', name: 'E' },
+  { _id: 'F', name: 'F' },
 ];
 export const primary = () => {
   const props: SharedProfileFormProps = {
