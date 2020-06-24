@@ -7,21 +7,9 @@ export interface LeanPermissionsView {
   role: string;
 }
 
-export interface GetPermissionPayload {
-  id: string;
-}
-
 export interface CreatePermissionPayload {
   user: UserRef;
   role: string;
-}
-
-export interface UpdatePermissionPayload extends PermissionPayload {
-  id: string;
-}
-
-export interface RemovePermissionPayload {
-  id: string;
 }
 
 export interface PermissionPayload {

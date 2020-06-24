@@ -40,13 +40,13 @@ export class PermissionsController {
     @Body() updatePermissionPayload: UpdatePermissionPayloadDto
   ): Promise<boolean> {
     return this.commandBus.execute(
-      new UpdatePermission({ id, ...updatePermissionPayload })
+      new UpdatePermission(id, updatePermissionPayload)
     );
   }
 
   @Post('/:id/delete')
   @HttpCode(HttpStatus.OK)
   async remove(@Param('id') id: string) {
-    return this.commandBus.execute(new RemovePermission({ id }));
+    return this.commandBus.execute(new RemovePermission(id));
   }
 }

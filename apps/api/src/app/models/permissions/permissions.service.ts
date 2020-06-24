@@ -7,8 +7,7 @@ import { ViewModels } from '../../helpers/constants';
 import {
   PermissionsViewModel,
   CreatePermissionPayload,
-  RemovePermissionPayload,
-  UpdatePermissionPayload,
+  PermissionPayload,
 } from './permissions.interface';
 
 @Injectable()
@@ -32,14 +31,14 @@ export class PermissionsModelService {
     });
   }
 
-  async update(id: string, data: UpdatePermissionPayload) {
+  async update(id: string, data: PermissionPayload) {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async remove({ id }: RemovePermissionPayload) {
+  async remove(id: string) {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
 }
