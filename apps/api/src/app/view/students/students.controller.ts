@@ -21,7 +21,7 @@ export class StudentsController {
         return this.queryBus.execute(new GetStudentByIdQuery(id));
     }
 
-    @Get('/:email/FindByEmail')
+    @Get('/:email/find-by-email')
     async getByEmail(@Param('email') email: string) {
         return this.queryBus.execute(new GetStudentByEmailQuery(email));
     }
