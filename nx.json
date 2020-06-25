@@ -44,7 +44,13 @@
     "shared-login-component": {
       "tags": []
     },
+    "shared-profile-form": {
+      "tags": []
+    },
     "shared-advert-card": {
+      "tags": []
+    },
+    "shared-navigation": {
       "tags": []
     },
     "shared-info-card": {
