@@ -12,10 +12,6 @@ export interface CreatePermissionPayload {
   role: string;
 }
 
-export interface PermissionPayload {
-  role: string;
-}
-
 export interface PermissionRef {
   _id: string;
   role: string;

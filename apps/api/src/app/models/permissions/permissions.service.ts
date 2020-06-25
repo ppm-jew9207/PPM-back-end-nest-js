@@ -7,38 +7,41 @@ import { ViewModels } from '../../helpers/constants';
 import {
   PermissionsViewModel,
   CreatePermissionPayload,
-  PermissionPayload,
 } from './permissions.interface';
 
 @Injectable()
 export class PermissionsModelService {
-  @InjectModel(ViewModels.PERMISSIONS_VIEW) private _model!: Model<
+  @InjectModel(ViewModels.PERMISSIONS_VIEW) public model!: Model<
     PermissionsViewModel
   >;
 
   async getAll(): Promise<PermissionsViewModel[]> {
-    return this._model.find().exec();
+    return this.model.find().exec();
   }
 
   async getById(id: string): Promise<PermissionsViewModel[]> {
-    return this._model.find({ _id: Types.ObjectId(id) }).exec();
+    return this.model.find({ _id: Types.ObjectId(id) }).exec();
   }
 
   async create(id: string, data: CreatePermissionPayload) {
-    await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
+    await this.model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async update(id: string, data: PermissionPayload) {
-    await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
-      upsert: true,
-      new: true,
-    });
+  async update(id: string, role: string) {
+    await this.model.findOneAndUpdate(
+      { _id: Types.ObjectId(id) },
+      { role },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
   }
 
   async remove(id: string) {
-    await this._model.deleteOne({ _id: Types.ObjectId(id) });
+    await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
 }

@@ -13,7 +13,6 @@ import { CommandBus } from '@nestjs/cqrs';
 import { CreatePermission } from './commands/create-permission.command';
 import { RemovePermission } from './commands/remove-permission.command';
 import { UpdatePermission } from './commands/update-permission.command';
-import { UpdatePermissionPayloadDto } from '../../models/permissions/dtos/update-permission.dto';
 import { CreatePermissionPayloadDto } from '../../models/permissions/dtos/create-permission.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -37,11 +36,9 @@ export class PermissionsController {
   @HttpCode(HttpStatus.OK)
   async updates(
     @Param('id') id: string,
-    @Body() updatePermissionPayload: UpdatePermissionPayloadDto
+    @Body() role: string
   ): Promise<boolean> {
-    return this.commandBus.execute(
-      new UpdatePermission(id, updatePermissionPayload)
-    );
+    return this.commandBus.execute(new UpdatePermission(id, role));
   }
 
   @Post('/:id/delete')
