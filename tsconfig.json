@@ -18,11 +18,12 @@
     "paths": {
       "@ppm/shared/storybook": ["libs/shared/storybook/src/index.ts"],
       "@ppm/shared/test": ["libs/shared/test/src/index.ts"],
+      "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"],
+      "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"],
+      "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
-      ],
-      "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"],
-      "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

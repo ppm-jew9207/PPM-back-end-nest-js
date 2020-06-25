@@ -4,11 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DomainsModule } from './domains/domains.module';
 import { ViewModule } from './view/view.module';
-import { HeroesGameSagas } from './sagas/heroes.sagas';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { UsersModelModule } from './models/users/users.module';
 import { RolesGuard } from './common/guards/roles.guard';
+import { SagasModule } from './sagas/sagas.module';
 
 const domains = [DomainsModule];
 const view = [ViewModule];
@@ -20,8 +20,9 @@ const view = [ViewModule];
     MongooseModule.forRoot(process.env.MONGO_DB),
     UsersModelModule,
     AuthModule,
+    SagasModule
   ],
   controllers: [AppController],
-  providers: [AppService, HeroesGameSagas, RolesGuard],
+  providers: [AppService, RolesGuard],
 })
 export class AppModule {}

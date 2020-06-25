@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { SharedAdvertCard } from './shared-advert-card';
+import { SharedInfoCard } from './shared-info-card';
 
-describe(' SharedAdvertCard', () => {
+describe(' SharedInfoCard', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<SharedAdvertCard />);
+    const { baseElement } = render(<SharedInfoCard />);
     expect(baseElement).toBeTruthy();
   });
 });

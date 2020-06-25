@@ -49,6 +49,9 @@
     },
     "shared-navigation": {
       "tags": []
+    },
+    "shared-info-card": {
+      "tags": []
     }
   }
 }
