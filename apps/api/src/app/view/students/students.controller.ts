@@ -14,7 +14,6 @@ import { GetStudentByEmailQuery } from './queries/get-student-by-email.handler';
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class StudentsController {
     constructor(private readonly queryBus: QueryBus) {
-        console.log('controller');
     }
 
     @Get('/:id')
