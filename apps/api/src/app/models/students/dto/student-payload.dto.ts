@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateStudent } from '../student.interface';
+import { CreateStudent, Student } from '../student.interface';
 
-export class StudentPayloadDto implements CreateStudent {
+export class StudentPayloadDto implements Student {
     @ApiProperty()
     public readonly type: string;
     @ApiProperty()
@@ -16,7 +16,7 @@ export class StudentPayloadDto implements CreateStudent {
     public readonly fieldOfProfession: string;
     @ApiProperty()
     public readonly company: string;
-    @ApiProperty()
+    @ApiProperty({ isArray: true, type: 'string' })
     public readonly categories: [string];
     @ApiProperty()
     public readonly city: string;

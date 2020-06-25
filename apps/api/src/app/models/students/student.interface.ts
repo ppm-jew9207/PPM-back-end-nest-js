@@ -1,6 +1,17 @@
 import { Document } from 'mongoose';
 
 export interface CreateStudent {
+
+  firstName?: string,
+  lastName?: string,
+  photo?: string,
+  fieldOfProfession?: string,
+
+  categories?: [string],
+  city?: string,
+
+}
+export interface Student {
   type: string,
   description: string,
   firstName: string,
@@ -28,4 +39,4 @@ export interface UpdateStudent {
   email: string,
 }
 
-export type StudentViewModel = CreateStudent & Document;
+export type StudentViewModel = Student & Document;
