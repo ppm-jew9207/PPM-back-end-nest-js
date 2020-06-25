@@ -22,12 +22,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/ppm/src/environments/environment.ts",
-                  "with": "apps/ppm/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "apps/ppm/src/environments/environment.ts",
+                "with": "apps/ppm/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -35,13 +33,11 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
           }
         },
@@ -128,12 +124,10 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "apps/api/src/environments/environment.ts",
+                "with": "apps/api/src/environments/environment.prod.ts"
+              }]
             }
           }
         },
@@ -393,6 +387,77 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-login-component",
+            "config": {
+              "configFolder": "libs/shared/login-component/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-info-card": {
+      "root": "libs/shared/info-card",
+      "sourceRoot": "libs/shared/info-card/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/info-card/.eslintrc",
+            "tsConfig": [
+              "libs/shared/info-card/tsconfig.lib.json",
+              "libs/shared/info-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/info-card/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/info-card/jest.config.js",
+            "tsConfig": "libs/shared/info-card/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-advert-card": {
+      "root": "libs/shared/advert-card",
+      "sourceRoot": "libs/shared/advert-card/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/advert-card/.eslintrc",
+            "tsConfig": [
+              "libs/shared/advert-card/tsconfig.lib.json",
+              "libs/shared/advert-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/advert-card/jest.config.js",
+            "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

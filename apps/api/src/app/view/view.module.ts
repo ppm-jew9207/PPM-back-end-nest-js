@@ -4,6 +4,7 @@ import { MentorViewModule } from './mentors/mentors.module';
 import { ProjectsViewModule } from './projects/projects.module';
 import { AdvertsViewModule } from './adverts/adverts.module';
 import { SettingsViewModule } from './settings/settings.module';
+import { StudentViewModule } from './students/students.module';
 
 @Module({
   imports: [
@@ -12,8 +13,9 @@ import { SettingsViewModule } from './settings/settings.module';
     ProjectsViewModule,
     AdvertsViewModule,
     SettingsViewModule,
+    StudentViewModule,
   ],
   controllers: [],
   providers: [],
 })
-export class ViewModule {}
+export class ViewModule { }

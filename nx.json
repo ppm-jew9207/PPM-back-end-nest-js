@@ -46,6 +46,12 @@
     },
     "shared-profile-form": {
       "tags": []
+    },
+    "shared-advert-card": {
+      "tags": []
+    },
+    "shared-info-card": {
+      "tags": []
     }
   }
 }
