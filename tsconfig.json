@@ -22,7 +22,8 @@
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/profile-form": ["libs/shared/profile-form/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

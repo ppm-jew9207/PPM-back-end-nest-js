@@ -44,6 +44,9 @@
     "shared-login-component": {
       "tags": []
     },
+    "shared-profile-form": {
+      "tags": []
+    },
     "shared-advert-card": {
       "tags": []
     },
