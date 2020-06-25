@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { ViewModels } from '../../helpers/constants';
-import { StudentViewModel } from './student.interface';
+import { StudentViewModel, CreateStudent } from './student.interface';
 import { StudentCreated } from '../../domains/students/events/student-created.event';
 import { StudentUpdated } from '../../domains/students/events/student-updated.event';
 import { CreateStudentPayloadDto } from './dto/create-student-payload.dto';
@@ -23,4 +23,8 @@ export class StudentModelService {
   async getById(id: string): Promise<CreateStudentPayloadDto> {
     return this.model.findById({ _id: Types.ObjectId(id) })
   }
+  async getByEmail(email: string) {
+    return this.model.find({ email: email }).exec()
+  }
 }
+

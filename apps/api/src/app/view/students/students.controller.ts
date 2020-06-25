@@ -6,16 +6,23 @@ import { TransformInterceptor } from '../../common/interceptors/transform.interc
 import { QueryBus } from '@nestjs/cqrs';
 import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
 import { GetStudentByIdQuery } from './queries/get-student-by-id.handler';
-
+import { GetStudentByEmailQuery } from './queries/get-student-by-email.handler';
 
 @Controller('students-view')
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class StudentsController {
-    constructor(private readonly queryBus: QueryBus) { }
+    constructor(private readonly queryBus: QueryBus) {
+    }
+
     @Get('/:id')
     async getById(@Param('id') id: string): Promise<CreateStudentPayloadDto> {
         return this.queryBus.execute(new GetStudentByIdQuery(id));
+    }
+
+    @Get('/:email/find-by-email')
+    async getByEmail(@Param('email') email: string) {
+        return this.queryBus.execute(new GetStudentByEmailQuery(email));
     }
 }
