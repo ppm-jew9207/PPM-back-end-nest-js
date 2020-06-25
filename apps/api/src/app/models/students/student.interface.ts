@@ -22,7 +22,7 @@ export interface UpdateStudent {
   photo: string,
   fieldOfProfession: string,
   company: string,
-  categories: string,
+  categories: [String],
   city: string,
   phone: string,
   email: string,

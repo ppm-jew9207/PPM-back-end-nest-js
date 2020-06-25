@@ -17,7 +17,7 @@ export class CreateStudentPayloadDto implements CreateStudent {
     @ApiProperty()
     public readonly company: string;
     @ApiProperty()
-    public readonly categories: string;
+    public readonly categories: [String];
     @ApiProperty()
     public readonly city: string;
     @ApiProperty()
