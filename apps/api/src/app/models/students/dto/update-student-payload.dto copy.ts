@@ -17,7 +17,7 @@ export class UpdateStudentPayloadDto implements UpdateStudent {
     @ApiProperty()
     public readonly company: string;
     @ApiProperty()
-    public readonly categories: [String];
+    public readonly categories: [string];
     @ApiProperty()
     public readonly city: string;
     @ApiProperty()
