@@ -11,9 +11,9 @@ import { UpdateStudentPayloadDto } from '../../models/students/dto/update-studen
 import { UpdateStudentCommand } from './commands/update-student.command';
 
 @Controller('students')
-// @ApiBearerAuth('JWT')
-// @UseGuards(AuthGuard('jwt'))
-// @UseInterceptors(LoggingInterceptor, TransformInterceptor)
+@ApiBearerAuth('JWT')
+@UseGuards(AuthGuard('jwt'))
+@UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class StudentsController {
     constructor(
         private readonly _commandBus: CommandBus,

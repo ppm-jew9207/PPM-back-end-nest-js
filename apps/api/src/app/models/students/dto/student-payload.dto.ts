@@ -17,7 +17,7 @@ export class StudentPayloadDto implements Student {
     @ApiProperty()
     public readonly company: string;
     @ApiProperty({ isArray: true, type: 'string' })
-    public readonly categories: [string];
+    public readonly categories: string[];
     @ApiProperty()
     public readonly city: string;
     @ApiProperty()

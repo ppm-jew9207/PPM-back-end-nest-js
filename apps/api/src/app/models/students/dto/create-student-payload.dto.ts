@@ -13,7 +13,7 @@ export class CreateStudentPayloadDto implements CreateStudent {
     public readonly fieldOfProfession?: string;
 
     @ApiProperty({ isArray: true, type: 'string' })
-    public readonly categories?: [string];
+    public readonly categories?: string[];
     @ApiProperty()
     public readonly city?: string;
 }

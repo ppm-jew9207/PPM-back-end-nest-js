@@ -6,8 +6,7 @@ export interface CreateStudent {
   lastName?: string,
   photo?: string,
   fieldOfProfession?: string,
-
-  categories?: [string],
+  categories?: string[],
   city?: string,
 
 }
@@ -19,7 +18,7 @@ export interface Student {
   photo: string,
   fieldOfProfession: string,
   company: string,
-  categories: [string],
+  categories: string[],
   city: string,
   phone: string,
   email: string,
@@ -33,7 +32,7 @@ export interface UpdateStudent {
   photo: string,
   fieldOfProfession: string,
   company: string,
-  categories: [string],
+  categories: string[],
   city: string,
   phone: string,
   email: string,

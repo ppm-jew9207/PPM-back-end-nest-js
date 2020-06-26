@@ -7,5 +7,6 @@ export enum ViewModels {
   FORGOTTEN_PASSWORD = 'ForgottenPassword',
   CONSENT_REGISTRY = 'ConsentRegistration',
   MENTORS = 'Mentors',
-  STUDENTS = 'Students'
+  STUDENTS = 'Students',
+  PERMISSIONS_VIEW = 'Permissions',
 }
