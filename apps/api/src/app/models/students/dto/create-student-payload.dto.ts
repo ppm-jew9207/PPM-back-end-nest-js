@@ -11,7 +11,6 @@ export class CreateStudentPayloadDto implements CreateStudent {
     public readonly photo?: string;
     @ApiProperty()
     public readonly fieldOfProfession?: string;
-
     @ApiProperty({ isArray: true, type: 'string' })
     public readonly categories?: string[];
     @ApiProperty()
