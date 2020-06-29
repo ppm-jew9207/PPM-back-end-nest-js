@@ -8,7 +8,7 @@ export const StudentSchema = new Schema({
   photo: String,
   fieldOfProfession: String,
   company: String,
-  categories: String,
+  categories: [String],
   city: String,
   phone: String,
   email: String,

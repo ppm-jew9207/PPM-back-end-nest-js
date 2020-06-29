@@ -5,6 +5,7 @@ import { ViewModels } from '../../helpers/constants';
 import { StudentViewModel, CreateStudent } from './student.interface';
 import { StudentCreated } from '../../domains/students/events/student-created.event';
 import { StudentUpdated } from '../../domains/students/events/student-updated.event';
+import { StudentPayloadDto } from './dto/student-payload.dto';
 import { CreateStudentPayloadDto } from './dto/create-student-payload.dto';
 
 @Injectable()
@@ -19,6 +20,9 @@ export class StudentModelService {
   }
   async update(data: StudentUpdated) {
     await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, { $set: data.student })
+  }
+  async getAll(): Promise<StudentPayloadDto[]> {
+    return this.model.find().exec()
   }
   async getById(id: string): Promise<CreateStudentPayloadDto> {
     return this.model.findById({ _id: Types.ObjectId(id) })

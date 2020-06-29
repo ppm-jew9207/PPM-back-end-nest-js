@@ -7,7 +7,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
-import { UpdateStudentPayloadDto } from '../../models/students/dto/update-student-payload.dto copy';
+import { UpdateStudentPayloadDto } from '../../models/students/dto/update-student-payload.dto';
 import { UpdateStudentCommand } from './commands/update-student.command';
 
 @Controller('students')
