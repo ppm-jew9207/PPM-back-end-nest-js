@@ -61,12 +61,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/ppm/.eslintrc",
             "tsConfig": [
               "apps/ppm/tsconfig.app.json",
               "apps/ppm/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ppm/**"]
+            "exclude": ["**/node_modules/**", "!apps/ppm/**/*"]
           }
         },
         "test": {
@@ -101,9 +100,8 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/ppm-e2e/.eslintrc",
             "tsConfig": ["apps/ppm-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ppm-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/ppm-e2e/**/*"]
           }
         }
       }
@@ -147,12 +145,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/api/.eslintrc",
             "tsConfig": [
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
+            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
           }
         },
         "test": {
@@ -175,12 +172,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/storybook/.eslintrc",
             "tsConfig": [
               "libs/shared/storybook/tsconfig.lib.json",
               "libs/shared/storybook/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/storybook/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/storybook/**/*"]
           }
         },
         "test": {
@@ -233,12 +229,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/test/.eslintrc",
             "tsConfig": [
               "libs/shared/test/tsconfig.lib.json",
               "libs/shared/test/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/test/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/test/**/*"]
           }
         },
         "test": {
@@ -291,12 +286,14 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/login-component/.eslintrc",
             "tsConfig": [
               "libs/shared/login-component/tsconfig.lib.json",
               "libs/shared/login-component/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/login-component/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/login-component/**/*"
+            ]
           }
         },
         "test": {
@@ -349,12 +346,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/profile-form/.eslintrc",
             "tsConfig": [
               "libs/shared/profile-form/tsconfig.lib.json",
               "libs/shared/profile-form/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/profile-form/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/profile-form/**/*"]
           }
         },
         "test": {
@@ -407,12 +403,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/info-card/.eslintrc",
             "tsConfig": [
               "libs/shared/info-card/tsconfig.lib.json",
               "libs/shared/info-card/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/info-card/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/info-card/**/*"]
           }
         },
         "test": {
@@ -435,12 +430,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/advert-card/.eslintrc",
             "tsConfig": [
               "libs/shared/advert-card/tsconfig.lib.json",
               "libs/shared/advert-card/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**/*"]
           }
         },
         "test": {
@@ -463,12 +457,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/navigation/.eslintrc",
             "tsConfig": [
               "libs/shared/navigation/tsconfig.lib.json",
               "libs/shared/navigation/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/navigation/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/navigation/**/*"]
           }
         },
         "test": {

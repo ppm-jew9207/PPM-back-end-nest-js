@@ -28,8 +28,7 @@ export class PermissionsController {
 
   @Post()
   async create(@Body() dto: CreatePermissionPayloadDto, @Req() request: any) {
-    const user = request.user;
-    return this.commandBus.execute(new CreatePermission(dto, user));
+    return this.commandBus.execute(new CreatePermission(dto));
   }
 
   @Post('/:id/update')

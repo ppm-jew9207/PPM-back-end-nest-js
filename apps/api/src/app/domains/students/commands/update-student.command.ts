@@ -1,6 +1,6 @@
 import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
-import { UpdateStudentPayloadDto } from '../../../models/students/dto/update-student-payload.dto copy';
+import { UpdateStudentPayloadDto } from '../../../models/students/dto/update-student-payload.dto';
 import { StudentAggregate } from '../students.aggregate';
 import { StudentUpdated } from '../events/student-updated.event';
 

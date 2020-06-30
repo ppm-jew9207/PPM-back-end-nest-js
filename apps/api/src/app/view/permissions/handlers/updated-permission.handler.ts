@@ -8,8 +8,8 @@ export class PermissionUpdatedHandler
   implements IEventHandler<PermissionUpdated> {
   @Inject() private readonly _permissionsViewService: PermissionsModelService;
 
-  public async handle({ id, permission }: PermissionUpdated) {
-    this._permissionsViewService.update(id, permission);
+  public async handle({ id, role }: PermissionUpdated) {
+    this._permissionsViewService.update(id, role);
     return null;
   }
 }
