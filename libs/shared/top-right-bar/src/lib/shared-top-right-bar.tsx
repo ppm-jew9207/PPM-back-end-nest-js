@@ -1,5 +1,5 @@
 import React from 'react';
-import { SharedTopMenuButton } from '../../../top-menu-button/src/lib/shared-top-menu-button';
+import { SharedTopMenuButton } from '@ppm/shared/top-menu-button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
@@ -24,8 +24,6 @@ export interface SharedTopRightBarProps {
 
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
   const { notifications, settings, profile } = props.dataFromDb;
-  console.log(notifications);
-
   return (
     <Toolbar>
       <SharedTopMenuButton items={notifications}>
