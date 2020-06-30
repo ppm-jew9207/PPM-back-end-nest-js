@@ -24,7 +24,10 @@
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
       ],
-      "@ppm/shared/profile-form": ["libs/shared/profile-form/src/index.ts"]
+      "@ppm/shared/profile-form": ["libs/shared/profile-form/src/index.ts"],
+      "@ppm/shared/forgot-password-form": [
+        "libs/shared/forgot-password-form/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
