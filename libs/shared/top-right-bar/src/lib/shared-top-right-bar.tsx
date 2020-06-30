@@ -34,13 +34,13 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
       </SharedTopMenuButton>
 
       <Link href={settings.path}>
-        <IconButton color="inherit">
+        <IconButton color="primary">
           <SettingsIcon />
         </IconButton>
       </Link>
 
       <Link href={profile.path}>
-        <IconButton color="inherit">
+        <IconButton color="primary">
           <AccountCircle />
         </IconButton>
       </Link>

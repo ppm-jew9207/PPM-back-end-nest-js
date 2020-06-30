@@ -32,7 +32,7 @@ export const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
 
   return (
     <div>
-      <IconButton color="inherit" onClick={handleMenu}>
+      <IconButton color="primary" onClick={handleMenu}>
         {props.children}
       </IconButton>
 
