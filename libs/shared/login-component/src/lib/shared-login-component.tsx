@@ -1,11 +1,9 @@
 import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Person from '@material-ui/icons/Person';
-import FormControl from '@material-ui/core/FormControl/FormControl';
 import TextField from '@material-ui/core/TextField/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockIcon from '@material-ui/icons/Lock';
-import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 
