@@ -3,6 +3,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { MentorViewModule } from './mentors/mentors.module';
 import { ProjectsViewModule } from './projects/projects.module';
 import { AdvertsViewModule } from './adverts/adverts.module';
+import { PermissionsViewModule } from './permissions/permissions.module';
 import { SettingsViewModule } from './settings/settings.module';
 import { StudentViewModule } from './students/students.module';
 
@@ -14,8 +15,9 @@ import { StudentViewModule } from './students/students.module';
     AdvertsViewModule,
     SettingsViewModule,
     StudentViewModule,
+    PermissionsViewModule,
   ],
   controllers: [],
   providers: [],
 })
-export class ViewModule { }
+export class ViewModule {}

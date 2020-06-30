@@ -20,13 +20,15 @@
       "@ppm/shared/test": ["libs/shared/test/src/index.ts"],
       "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"],
       "@ppm/shared/top-right-bar": ["libs/shared/top-right-bar/src/index.ts"],
+      "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"],
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
       ],
       "@ppm/shared/top-menu-button": [
         "libs/shared/top-menu-button/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/profile-form": ["libs/shared/profile-form/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
