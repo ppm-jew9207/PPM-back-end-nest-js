@@ -21,18 +21,14 @@ export interface SharedTopRightBarProps {
     settings: { _id: string; label: string; path: string };
     profile: { _id: string; label: string; path: string };
   };
+  children: any;
 }
 
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
   const { notifications, settings, profile } = props.dataFromDb;
   return (
     <Toolbar>
-      <SharedTopMenuButton items={notifications}>
-        <Badge badgeContent={notifications.length} color="secondary">
-          <NotificationsIcon />
-        </Badge>
-      </SharedTopMenuButton>
-
+      {props.children}
       <Link href={settings.path}>
         <IconButton color="primary">
           <SettingsIcon />

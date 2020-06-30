@@ -5,15 +5,20 @@ export default {
   component: SharedTopMenuButton,
   title: 'SharedTopMenuButton'
 };
+const data = [
+  {
+    _id: '',
+    title: '',
+    path: '',
+    timeStamp: '',
+    isRead: true,
+  },
+];
 
 export const primary = () => {
-  
-  
-  const props:SharedTopMenuButtonProps = {
-    items: ('items', ),
-    children: ('children', ),
+  const props: SharedTopMenuButtonProps = {
+    items: data,
   };
-  
 
-  return <SharedTopMenuButton items = {props.items} children = {props.children}  />;
+return <SharedTopMenuButton items={props.items}></SharedTopMenuButton>;
 };

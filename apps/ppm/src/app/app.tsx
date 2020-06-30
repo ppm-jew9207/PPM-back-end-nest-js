@@ -10,7 +10,10 @@
 
 import React from 'react';
 import { SharedTopRightBar } from '@ppm/shared/top-right-bar';
+import { SharedTopMenuButton } from '@ppm/shared/top-menu-button';
 import './app.scss';
+import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const DataFromDB = {
   notifications: [
@@ -34,7 +37,19 @@ const DataFromDB = {
 };
 
 export const App = () => {
-  return <SharedTopRightBar dataFromDb={DataFromDB} />;
+  return <SharedTopRightBar dataFromDb={DataFromDB} >
+      <SharedTopMenuButton items={[{
+        _id: 'string;',
+        title: 'string;',
+        path: 'string;',
+        timeStamp: 'string;',
+        isRead: true
+      }]}>
+        <Badge badgeContent={10} color="secondary">
+          <NotificationsIcon />
+        </Badge>
+      </SharedTopMenuButton>
+  </SharedTopRightBar>;
 };
 
 export default App;
