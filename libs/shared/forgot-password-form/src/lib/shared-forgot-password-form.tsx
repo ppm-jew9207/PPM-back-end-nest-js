@@ -5,7 +5,11 @@ import './shared-forgot-password-form.scss';
 
 /* eslint-disable-next-line */
 export interface SharedForgotPasswordFormProps {
-  onSendEmail: (loginData: { email: string }) => void;
+  onSubmit: (loginData: { email: string }) => void;
+  title: string;
+  subtitle: string;
+  submitButtonText: string;
+  inputLabel: string;
 }
 
 export const SharedForgotPasswordForm = (
@@ -16,21 +20,20 @@ export const SharedForgotPasswordForm = (
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
-        Forgot password?
+        {props.title}
         <Typography component="small" display="block">
-          No worries! Just enter your email and we'll send you a reset password
-          link.
+          {props.subtitle}
         </Typography>
       </Typography>
 
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSendEmail)}>
+      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
           id="email"
-          label="Email Address"
+          label={props.inputLabel}
           type="email"
           name="email"
           autoComplete="email"
@@ -42,7 +45,7 @@ export const SharedForgotPasswordForm = (
           helperText={!errors.email ? '' : 'This field is required'}
         />
         <Button fullWidth variant="contained" color="primary" type="submit">
-          Reset password
+          {props.submitButtonText}
         </Button>
       </form>
     </Box>
