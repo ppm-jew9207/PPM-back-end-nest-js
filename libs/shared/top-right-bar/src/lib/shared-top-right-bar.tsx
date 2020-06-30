@@ -7,6 +7,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from '@material-ui/core';
+import './shared-top-right-bar.scss';
 
 export interface SharedTopRightBarProps {
   dataFromDb: {

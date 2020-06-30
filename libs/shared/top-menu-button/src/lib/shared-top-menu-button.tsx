@@ -47,7 +47,10 @@ export const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
           <div key={link._id}>
             <MenuItem onClick={handleClose}>
               <Link href={link.path}>
-                {link.title}, {link.timeStamp}
+                <div className="container">
+                  <div>{link.title}</div>
+                  <div>{link.timeStamp}</div>
+                </div>
               </Link>
             </MenuItem>
           </div>
