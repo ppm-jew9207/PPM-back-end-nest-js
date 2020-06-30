@@ -13,7 +13,7 @@ import './shared-registration-verification.scss';
 
 /* eslint-disable-next-line */
 export interface SharedRegistrationVerificationProps {
-  onSubmit: (data: { code: string }) => void;
+  onSubmit: (code: string) => void;
   onCancel: () => void;
   resendVerification: () => void;
 }
@@ -25,7 +25,10 @@ export const SharedRegistrationVerification = (
 
   return (
     <Grid container direction="column" justify="center">
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit((e: { code: string }) => props.onSubmit(e.code))}
+      >
         <Box my={1}>
           <TextField
             id="code"
