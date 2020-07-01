@@ -50,6 +50,9 @@
     "shared-advert-card": {
       "tags": []
     },
+    "shared-top-right-bar": {
+      "tags": []
+    },
     "shared-navigation": {
       "tags": []
     },
@@ -57,6 +60,9 @@
       "tags": []
     },
     "shared-registration-verification": {
+      "tags": []
+    },
+    "shared-top-menu-button": {
       "tags": []
     },
     "shared-forgot-password-form": {
