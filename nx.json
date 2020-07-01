@@ -56,6 +56,9 @@
     "shared-info-card": {
       "tags": []
     },
+    "shared-registration-verification": {
+      "tags": []
+    },
     "shared-forgot-password-form": {
       "tags": []
     }
