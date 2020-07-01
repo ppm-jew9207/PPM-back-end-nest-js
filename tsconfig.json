@@ -27,6 +27,9 @@
       "@ppm/shared/profile-form": ["libs/shared/profile-form/src/index.ts"],
       "@ppm/shared/registration-verification": [
         "libs/shared/registration-verification/src/index.ts"
+      ],
+      "@ppm/shared/forgot-password-form": [
+        "libs/shared/forgot-password-form/src/index.ts"
       ]
     }
   },
