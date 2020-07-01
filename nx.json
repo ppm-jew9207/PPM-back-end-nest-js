@@ -55,6 +55,9 @@
     },
     "shared-info-card": {
       "tags": []
+    },
+    "shared-forgot-password-form": {
+      "tags": []
     }
   }
 }
