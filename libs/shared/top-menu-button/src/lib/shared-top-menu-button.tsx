@@ -14,7 +14,7 @@ export interface Items {
 
 export interface SharedTopMenuButtonProps {
   items: Items[];
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
