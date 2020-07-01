@@ -6,10 +6,16 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from '@material-ui/core';
 import './shared-top-right-bar.scss';
 
+export interface MenuIconLink {
+  _id: string;
+  label: string;
+  path: string;
+}
+
 export interface SharedTopRightBarProps {
   dataFromDb: {
-    settings: { _id: string; label: string; path: string };
-    profile: { _id: string; label: string; path: string };
+    settings: MenuIconLink;
+    profile: MenuIconLink;
   };
   children: ReactNode;
 }
