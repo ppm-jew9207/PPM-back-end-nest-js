@@ -16,8 +16,10 @@ import { UsersService } from '../models/users/users.service';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { LoginDto } from './dto/login.dto';
 import { PrivateRoutesPath } from '@ppm/common/main';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller(PrivateRoutesPath.AUTH)
+@ApiTags(PrivateRoutesPath.AUTH)
 export class AuthController {
   constructor(
     private readonly authService: AuthService,

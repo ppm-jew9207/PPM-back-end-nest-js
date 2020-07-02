@@ -5,13 +5,14 @@ import { RemoveAdvert } from './commands/remove-advert.command';
 import { UpdateAdvert } from './commands/update-advert.command';
 import { UpdateAdvertPayloadDto } from '../../models/adverts/dtos/update-advert.dto';
 import { CreateAdvertPayloadDto } from '../../models/adverts/dtos/create-advert.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.ADVERTS)
+@ApiTags(PrivateRoutesPath.ADVERTS)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)

@@ -42,9 +42,6 @@ async function bootstrap() {
     .setTitle('PPR BE')
     .setDescription('PPR BE')
     .setVersion('1.0')
-    .addTag('ppr')
-    .addTag('auth')
-    .addTag('users')
     .addBearerAuth(
     { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
     'JWT',

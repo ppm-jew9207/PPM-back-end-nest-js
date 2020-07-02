@@ -6,7 +6,7 @@ import {
   Param,
   Query,
 } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
@@ -21,6 +21,7 @@ import { ResponseError } from '../../common/dto/response.dto';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.STUDENT)
+@ApiTags(PrivateRoutesPath.STUDENT)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)

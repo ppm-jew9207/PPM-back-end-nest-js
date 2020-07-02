@@ -11,7 +11,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import { CreateStudent } from './commands/create-student.command';
 import { CreateStudentPayloadDto } from '../../models/students/dto/create-student-payload.dto';
 import { DeleteStudentCommand } from './commands/delete-student.command';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
@@ -23,6 +23,7 @@ import { IResponse } from '../../common/interfaces/response.interface';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.STUDENT)
+@ApiTags(PrivateRoutesPath.STUDENT)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)

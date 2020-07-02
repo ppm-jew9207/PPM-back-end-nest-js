@@ -5,13 +5,14 @@ import { RemoveSetting } from './commands/remove-setting.command';
 import { UpdateSetting } from './commands/update-setting.command';
 import { UpdateSettingPayloadDto } from '../../models/settings/dtos/update-setting.dto';
 import { CreateSettingPayloadDto } from '../../models/settings/dtos/create-setting.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.SETTINGS)
+@ApiTags(PrivateRoutesPath.SETTINGS)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
