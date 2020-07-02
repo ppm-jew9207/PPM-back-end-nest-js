@@ -22,10 +22,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "apps/ppm/src/environments/environment.ts",
-                "with": "apps/ppm/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ppm/src/environments/environment.ts",
+                  "with": "apps/ppm/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -33,11 +35,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -122,10 +126,12 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [{
-                "replace": "apps/api/src/environments/environment.ts",
-                "with": "apps/api/src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -731,6 +737,106 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      }
+    },
+    "common-main": {
+      "root": "libs/common/main",
+      "sourceRoot": "libs/common/main/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["libs/common/main/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**", "!libs/common/main/**/*"]
+          }
+        }
+      }
+    },
+    "features-dashboard-mentor": {
+      "root": "libs/features/dashboard/mentor",
+      "sourceRoot": "libs/features/dashboard/mentor/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/dashboard/mentor/tsconfig.lib.json",
+              "libs/features/dashboard/mentor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/dashboard/mentor/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/dashboard/mentor/jest.config.js",
+            "tsConfig": "libs/features/dashboard/mentor/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-mentors": {
+      "root": "libs/features/mentors",
+      "sourceRoot": "libs/features/mentors/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/mentors/tsconfig.lib.json",
+              "libs/features/mentors/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/mentors/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/mentors/jest.config.js",
+            "tsConfig": "libs/features/mentors/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-mentor": {
+      "root": "libs/features/mentor",
+      "sourceRoot": "libs/features/mentor/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/mentor/tsconfig.lib.json",
+              "libs/features/mentor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/mentor/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/mentor/jest.config.js",
+            "tsConfig": "libs/features/mentor/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
