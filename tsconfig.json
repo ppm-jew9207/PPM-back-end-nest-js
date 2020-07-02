@@ -34,7 +34,14 @@
       ],
       "@ppm/shared/forgot-password-form": [
         "libs/shared/forgot-password-form/src/index.ts"
-      ]
+      ],
+      "@ppm/common/main": ["libs/common/main/src/index.ts"],
+      "@ppm/features/dashboard/mentor": [
+        "libs/features/dashboard/mentor/src/index.ts"
+      ],
+      "@ppm/features//mentors": ["libs/features//mentors/src/index.ts"],
+      "@ppm/features/mentors": ["libs/features/mentors/src/index.ts"],
+      "@ppm/features/mentor": ["libs/features/mentor/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

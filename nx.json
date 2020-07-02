@@ -67,6 +67,18 @@
     },
     "shared-forgot-password-form": {
       "tags": []
+    },
+    "common-main": {
+      "tags": []
+    },
+    "features-dashboard-mentor": {
+      "tags": []
+    },
+    "features-mentors": {
+      "tags": []
+    },
+    "features-mentor": {
+      "tags": []
     }
   }
 }
