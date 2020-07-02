@@ -19,6 +19,7 @@ import { UpdateStudentPayloadDto } from '../../models/students/dto/update-studen
 import { UpdateStudentCommand } from './commands/update-student.command';
 import { Types } from 'mongoose';
 import { ResponseError } from '../../common/dto/response.dto';
+import { IResponse } from '../../common/interfaces/response.interface';
 
 @Controller('students')
 @ApiBearerAuth('JWT')
@@ -33,13 +34,9 @@ export class StudentsController {
   }
 
   @Post(':id/delete')
-  async delete(@Param('id') id: string) {
-    try {
-      if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('Invalid Id');
-      }
-    } catch (error) {
-      return new ResponseError('DATA.ERROR', error);
+  async delete(@Param('id') id: string): Promise<IResponse> {
+    if (!Types.ObjectId.isValid(id)) {
+      return new ResponseError('DATA.ERROR', 'Invalid Id');
     }
     return this._commandBus.execute(new DeleteStudentCommand(id));
   }
@@ -48,13 +45,9 @@ export class StudentsController {
   async update(
     @Param('id') id: string,
     @Body() payload: UpdateStudentPayloadDto
-  ) {
-    try {
-      if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('Invalid Id');
-      }
-    } catch (error) {
-      return new ResponseError('DATA.ERROR', error);
+  ): Promise<IResponse> {
+    if (!Types.ObjectId.isValid(id)) {
+      return new ResponseError('Invalid id');
     }
     return this._commandBus.execute(new UpdateStudentCommand(id, payload));
   }

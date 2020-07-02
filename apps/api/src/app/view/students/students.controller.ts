@@ -5,7 +5,6 @@ import {
   UseInterceptors,
   Param,
   Query,
-  BadRequestException,
 } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -36,15 +35,10 @@ export class StudentsController {
   async getByEmail(
     @Query('email') email: string
   ): Promise<StudentPayloadDto | IResponse> {
-    try {
-      let isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        email
-      );
-      if (!isValidEmail) throw new BadRequestException('Invalid email');
-    } catch (error) {
-      return new ResponseError('DATA.ERROR', error);
-    }
-
+    let isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    );
+    if (!isValidEmail) return new ResponseError('Invalid email');
     return this._queryBus.execute(
       new GetStudentByEmailQuery(email.toLowerCase())
     );
@@ -54,14 +48,9 @@ export class StudentsController {
   async getById(
     @Param('id') id: string
   ): Promise<StudentPayloadDto | IResponse> {
-    try {
-      if (!Types.ObjectId.isValid(id)) {
-        throw new BadRequestException('Invalid Id');
-      }
-    } catch (error) {
-      return new ResponseError('DATA.ERROR', error);
+    if (!Types.ObjectId.isValid(id)) {
+      return new ResponseError('Invalid id');
     }
-
     return this._queryBus.execute(new GetStudentByIdQuery(id));
   }
 }
