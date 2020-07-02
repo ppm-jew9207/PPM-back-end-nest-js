@@ -56,7 +56,7 @@ export class StudentsController {
   ): Promise<StudentPayloadDto | IResponse> {
     try {
       if (!Types.ObjectId.isValid(id)) {
-        return new ResponseError('DATA.ERROR', new Error('Error: Invalid Id'));
+        throw new BadRequestException('Invalid Id');
       }
     } catch (error) {
       return new ResponseError('DATA.ERROR', error);

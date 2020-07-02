@@ -5,6 +5,7 @@ import {
   Param,
   UseGuards,
   UseInterceptors,
+  BadRequestException,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateStudent } from './commands/create-student.command';
@@ -35,7 +36,7 @@ export class StudentsController {
   async delete(@Param('id') id: string) {
     try {
       if (!Types.ObjectId.isValid(id)) {
-        return new ResponseError('DATA.ERROR', new Error('Error: Invalid Id'));
+        throw new BadRequestException('Invalid Id');
       }
     } catch (error) {
       return new ResponseError('DATA.ERROR', error);
@@ -50,7 +51,7 @@ export class StudentsController {
   ) {
     try {
       if (!Types.ObjectId.isValid(id)) {
-        return new ResponseError('DATA.ERROR', new Error('Error: Invalid Id'));
+        throw new BadRequestException('Invalid Id');
       }
     } catch (error) {
       return new ResponseError('DATA.ERROR', error);
