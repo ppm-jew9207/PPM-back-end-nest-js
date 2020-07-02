@@ -8,12 +8,11 @@ export enum PrivateRoutesPath {
   AUTH = 'auth',
   GET_BY_ID = '/:id',
   GET_ALL = '/all',
-  //TODO: only for POST
+
+  // TODO only for API
   POST_CREATE = '/create',
   POST_UPDATE = '/update/:id',
   POST_DELETE = '/delete/:id',
-
-  // TODO only for API
   GET_FIND_BY_ID = '/find-by-email',
   POST_LOGIN = '/login',
   POST_REGISTRY = '/registry',
