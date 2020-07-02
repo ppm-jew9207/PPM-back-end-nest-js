@@ -1,9 +1,8 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Typography, TextField, Button, Box } from '@material-ui/core';
 import './shared-forgot-password-form.scss';
 
-/* eslint-disable-next-line */
 export interface SharedForgotPasswordFormProps {
   onSubmit: (loginData: { email: string }) => void;
   title: string;
