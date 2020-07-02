@@ -13,22 +13,28 @@ export class StudentModelService {
   @InjectModel(ViewModels.STUDENTS) public model!: Model<StudentViewModel>;
 
   public async create(data: StudentCreated): Promise<void> {
-    await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, data.student, { upsert: true })
+    await this.model.findOneAndUpdate(
+      { _id: Types.ObjectId(data.id) },
+      data.student,
+      { upsert: true }
+    );
   }
   async delete(id: string) {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: StudentUpdated) {
-    await this.model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, { $set: data.student })
+    await this.model.findOneAndUpdate(
+      { _id: Types.ObjectId(data.id) },
+      { $set: data.student }
+    );
   }
   async getAll(): Promise<StudentPayloadDto[]> {
-    return this.model.find().exec()
+    return this.model.find().exec();
   }
   async getById(id: string): Promise<CreateStudentPayloadDto> {
-    return this.model.findById({ _id: Types.ObjectId(id) })
+    return this.model.findById({ _id: Types.ObjectId(id) });
   }
   async getByEmail(email: string) {
-    return this.model.find({ email: email }).exec()
+    return this.model.find({ email }).exec();
   }
 }
-
