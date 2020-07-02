@@ -11,7 +11,6 @@ export default {
 };
 
 export const primary = () => {
-  /* eslint-disable-next-line */
   const props: SharedForgotPasswordFormProps = {
     onSubmit: action('onSubmit'),
     title: 'Forgot password?',
