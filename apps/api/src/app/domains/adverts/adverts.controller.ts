@@ -9,8 +9,9 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('adverts-domain')
+@Controller(PrivateRoutesPath.ADVERTS)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
@@ -23,13 +24,13 @@ export class AdvertsController {
     return this.commandBus.execute(new CreateAdvert(dto, user));
   }
 
-  @Post('/:id/update')
+  @Post(PrivateRoutesPath.POST_UPDATE)
   @HttpCode(HttpStatus.OK)
   async updates(@Param('id') id: string, @Body() updateAdvertPayload: UpdateAdvertPayloadDto): Promise<boolean> {
     return this.commandBus.execute(new UpdateAdvert({ id, ...updateAdvertPayload }));
   }
 
-  @Post('/:id/delete')
+  @Post(PrivateRoutesPath.POST_DELETE)
   @HttpCode(HttpStatus.OK)
   async remove(@Param('id') id: string) {
     return this.commandBus.execute(new RemoveAdvert({ id }));

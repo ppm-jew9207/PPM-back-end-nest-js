@@ -8,8 +8,9 @@ import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { Request } from 'express';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('mentors')
+@Controller(PrivateRoutesPath.MENTOR)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
@@ -25,7 +26,7 @@ export class MentorsController {
     return this._commandBus.execute(new CreateMentor(user._id, payload));
   }
 
-  @Post('/:id/update')
+  @Post(PrivateRoutesPath.POST_UPDATE)
   async update(@Param('id') id: string, @Body() payload: UpdateMentorPayloadDto) {
     return this._commandBus.execute(new UpdateMentorCommand(id, payload));
   }

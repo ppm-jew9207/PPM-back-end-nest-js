@@ -6,8 +6,9 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('settings-view')
+@Controller(PrivateRoutesPath.SETTINGS)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
@@ -21,7 +22,7 @@ export class SettingsController {
     return this.queryBus.execute(new GetSettingsQuery());
   }
 
-  @Get('/:id')
+  @Get(PrivateRoutesPath.GET_BY_ID)
   async getById(@Param('id') id: string): Promise<any[]> {
     return this.queryBus.execute(new GetSettingQuery({ id }));
   }
