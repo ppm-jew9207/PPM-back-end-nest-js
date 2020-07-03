@@ -6,7 +6,7 @@ import {
   Param,
   Query,
 } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
@@ -18,8 +18,10 @@ import { GetStudentsQuery } from './queries/get-students.handlers';
 import { Types } from 'mongoose';
 import { IResponse } from '../../common/interfaces/response.interface';
 import { ResponseError } from '../../common/dto/response.dto';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('students-view')
+@Controller(PrivateRoutesPath.STUDENT)
+@ApiTags(PrivateRoutesPath.STUDENT)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
@@ -31,11 +33,12 @@ export class StudentsController {
     return this._queryBus.execute(new GetStudentsQuery());
   }
 
-  @Get('/find-by-email')
+  @Get(PrivateRoutesPath.GET_FIND_BY_ID)
   async getByEmail(
     @Query('email') email: string
   ): Promise<StudentPayloadDto | IResponse> {
-    let isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    // eslint-disable-next-line no-useless-escape
+    const isValidEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
     if (!isValidEmail) return new ResponseError('Invalid email');
@@ -44,7 +47,7 @@ export class StudentsController {
     );
   }
 
-  @Get('/:id')
+  @Get(PrivateRoutesPath.GET_BY_ID)
   async getById(
     @Param('id') id: string
   ): Promise<StudentPayloadDto | IResponse> {

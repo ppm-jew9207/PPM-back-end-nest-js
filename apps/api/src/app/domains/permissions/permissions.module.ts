@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 
-import { PermissionsController } from './permissions.controller';
 
 import { PermissionsModelModule } from '../../models/permissions/permissions.module';
 import { RemovePermissionHandler } from './commands/remove-permission.command';
@@ -17,7 +16,6 @@ const commandHandlers = [
 
 @Module({
   imports: [CqrsModule, PermissionsModelModule, UsersModelModule],
-  controllers: [PermissionsController],
   providers: [...commandHandlers],
 })
 export class PermissionsDomainModule {}
