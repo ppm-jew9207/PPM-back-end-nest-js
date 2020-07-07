@@ -25,7 +25,7 @@ export class AdvertsSagas {
 
         const permissions = await this._permissionsService.getByUserIdAndRole(
           user._id.toHexString(),
-          'user'
+          'mentor'
         );
 
         if (permissions.length) {

@@ -33,7 +33,7 @@ export class AdvertsController {
   @Post()
   async create(@Body() dto: CreateAdvertPayloadDto, @Req() request: any) {
     const user = request.user;
-    if (user.roles.includes('mentor')) {
+    if (!user.roles.includes('mentor')) {
       throw new BadRequestException(
         `You don't have permissions to create the advert`
       );
