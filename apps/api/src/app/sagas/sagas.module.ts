@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AdvertsSagas } from './adverts.sagas';
-import { MentorsSagas } from './mentors.sagas';
+import { UserProfilesSagas } from './user-profiles.sagas';
 import { UsersModelModule } from '../models/users/users.module';
-import { MentorModelModule } from '../models/mentors/mentor.module';
+import { UserProfileModelModule } from '../models/userProfiles/user-profile.module';
 import { PermissionsModelModule } from '../models/permissions/permissions.module';
 
 @Module({
-  imports: [UsersModelModule, MentorModelModule, PermissionsModelModule],
-  providers: [AdvertsSagas, MentorsSagas],
+  imports: [UsersModelModule, PermissionsModelModule, UserProfileModelModule],
+  providers: [AdvertsSagas, UserProfilesSagas],
   exports: [],
 })
 export class SagasModule {}

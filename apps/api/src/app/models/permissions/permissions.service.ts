@@ -7,6 +7,7 @@ import { ViewModels } from '../../helpers/constants';
 import {
   PermissionsViewModel,
   CreatePermissionPayload,
+  UpdatePermissionPayload,
 } from './permissions.interface';
 
 @Injectable()
@@ -23,6 +24,15 @@ export class PermissionsModelService {
     return this.model.find({ _id: Types.ObjectId(id) }).exec();
   }
 
+  async getByUserIdAndRole(
+    id: string,
+    role: string
+  ): Promise<PermissionsViewModel[]> {
+    return this.model
+      .find({ 'user._id': Types.ObjectId(id), role: role })
+      .exec();
+  }
+
   async create(id: string, data: CreatePermissionPayload) {
     await this.model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
@@ -30,15 +40,11 @@ export class PermissionsModelService {
     });
   }
 
-  async update(id: string, role: string) {
-    await this.model.findOneAndUpdate(
-      { _id: Types.ObjectId(id) },
-      { role },
-      {
-        upsert: true,
-        new: true,
-      }
-    );
+  async update(id: string, data: UpdatePermissionPayload) {
+    await this.model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
+      upsert: true,
+      new: true,
+    });
   }
 
   async remove(id: string) {

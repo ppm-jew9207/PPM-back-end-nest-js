@@ -12,8 +12,8 @@ export const PermissionsSchema = new Schema(
       max: 100,
       required: true,
     },
-    mentors: [
-      { _id: { type: String, ref: ViewModels.MENTORS }, title: String },
+    adverts: [
+      { _id: { type: String, ref: ViewModels.ADVERTS_VIEW }, title: String },
     ],
   },
   { timestamps: true }

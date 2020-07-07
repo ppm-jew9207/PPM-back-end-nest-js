@@ -1,4 +1,15 @@
-import { Body, Controller, Post, HttpCode, HttpStatus, Param, UseGuards, UseInterceptors, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  HttpCode,
+  HttpStatus,
+  Param,
+  UseGuards,
+  UseInterceptors,
+  Req,
+  BadRequestException,
+} from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateAdvert } from './commands/create-advert.command';
 import { RemoveAdvert } from './commands/remove-advert.command';
@@ -22,13 +33,24 @@ export class AdvertsController {
   @Post()
   async create(@Body() dto: CreateAdvertPayloadDto, @Req() request: any) {
     const user = request.user;
+    if (user.roles.includes('mentor')) {
+      throw new BadRequestException(
+        `You don't have permissions to create the advert`
+      );
+    }
+
     return this.commandBus.execute(new CreateAdvert(dto, user));
   }
 
   @Post(PrivateRoutesPath.POST_UPDATE)
   @HttpCode(HttpStatus.OK)
-  async updates(@Param('id') id: string, @Body() updateAdvertPayload: UpdateAdvertPayloadDto): Promise<boolean> {
-    return this.commandBus.execute(new UpdateAdvert({ id, ...updateAdvertPayload }));
+  async updates(
+    @Param('id') id: string,
+    @Body() updateAdvertPayload: UpdateAdvertPayloadDto
+  ): Promise<boolean> {
+    return this.commandBus.execute(
+      new UpdateAdvert({ id, ...updateAdvertPayload })
+    );
   }
 
   @Post(PrivateRoutesPath.POST_DELETE)
