@@ -58,7 +58,8 @@ async function bootstrap() {
     app.enableCors(); // protection
     await app.listen(process.env.PORT || '80');
   }
-  bootstrap();
+}
+bootstrap();
 // async function bootstrap() {
 //   const app = await NestFactory.create(AppModule);
 //   await app.listen(process.env.PORT || 3000);

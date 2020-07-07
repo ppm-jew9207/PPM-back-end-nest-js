@@ -2,9 +2,12 @@
   "name": "ppm",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
+    "start": "node dist/apps/api/main",
     "start-api": "npm run build api",
     "build": "nx build",
     "start:prod": "node dist/apps/api/main",
@@ -41,10 +44,11 @@
     "@nestjs/mongoose": "^7.0.1",
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^6.11.11",
+    "@nestjs/serve-static": "^2.1.3",
     "@nestjs/swagger": "^4.5.10",
+    "@storybook/addon-actions": "^5.3.19",
     "aws-lambda": "^1.0.6",
     "aws-serverless-express": "^3.3.8",
-    "@storybook/addon-actions": "^5.3.19",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
