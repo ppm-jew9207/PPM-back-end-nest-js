@@ -6,6 +6,7 @@ import { AdvertCreated } from '../domains/adverts/events/advert-created.event';
 import { UsersService } from '../models/users/users.service';
 import { PermissionsModelService } from '../models/permissions/permissions.service';
 import { UpdatePermission } from '../domains/permissions/commands/update-permission.command';
+import { Roles } from '@ppm/common/main';
 
 @Injectable()
 export class AdvertsSagas {
@@ -25,7 +26,7 @@ export class AdvertsSagas {
 
         const permissions = await this._permissionsService.getByUserIdAndRole(
           user._id.toHexString(),
-          'mentor'
+          Roles.MENTOR
         );
 
         if (permissions.length) {

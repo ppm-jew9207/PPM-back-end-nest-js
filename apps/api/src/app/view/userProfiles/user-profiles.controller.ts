@@ -14,6 +14,7 @@ import { GetUserProfileByIdQuery } from './queries/get-user-profile-by-id.handle
 import { GetUserProfileByEmailQuery } from './queries/get-user-profile-by-email.handler';
 import { UserProfilePayloadDto } from '../../models/userProfiles/dto/user-profile-payload.dto';
 import { GetUserProfilesQuery } from './queries/get-user-profiles.handlers';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller('user-profiles-view')
 @ApiBearerAuth('JWT')
@@ -26,7 +27,7 @@ export class UserProfilesController {
   async findAll(): Promise<UserProfilePayloadDto[]> {
     return this._queryBus.execute(new GetUserProfilesQuery());
   }
-  @Get('/:id')
+  @Get(PrivateRoutesPath.GET_BY_ID)
   async getById(@Param('id') id: string): Promise<UserProfilePayloadDto> {
     return this._queryBus.execute(new GetUserProfileByIdQuery(id));
   }

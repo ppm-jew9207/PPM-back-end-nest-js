@@ -20,7 +20,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { PrivateRoutesPath, Roles } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.ADVERTS)
 @ApiTags(PrivateRoutesPath.ADVERTS)
@@ -33,7 +33,7 @@ export class AdvertsController {
   @Post()
   async create(@Body() dto: CreateAdvertPayloadDto, @Req() request: any) {
     const user = request.user;
-    if (!user.roles.includes('mentor')) {
+    if (!user.roles.includes(Roles.MENTOR)) {
       throw new BadRequestException(
         `You don't have permissions to create the advert`
       );

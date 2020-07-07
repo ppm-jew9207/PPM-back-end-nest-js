@@ -36,12 +36,12 @@ export class UserProfilesController {
     return this._commandBus.execute(new CreateUserProfile(user._id, payload));
   }
 
-  @Post(':id/delete')
+  @Post(PrivateRoutesPath.POST_DELETE)
   async delete(@Param('id') id: string) {
     return this._commandBus.execute(new DeleteUserProfileCommand(id));
   }
 
-  @Post(':id/update')
+  @Post(PrivateRoutesPath.POST_UPDATE)
   async update(
     @Param('id') id: string,
     @Body() payload: UpdateUserProfilePayloadDto

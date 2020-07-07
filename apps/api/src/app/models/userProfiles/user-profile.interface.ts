@@ -1,12 +1,12 @@
 import { Document } from 'mongoose';
 
 export interface CreateUserProfile {
-  firstName?: string;
-  lastName?: string;
-  photo?: string;
-  fieldOfProfession?: string;
-  categories?: string[];
-  city?: string;
+  firstName: string;
+  lastName: string;
+  photo: string;
+  fieldOfProfession: string;
+  categories: string[];
+  city: string;
 }
 export interface UserProfile {
   type: string;
