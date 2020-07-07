@@ -20,7 +20,7 @@ import { UpdateUserProfileCommand } from './commands/update-user-profile.command
 import { Request } from 'express';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('user-profiles-domain')
+@Controller(PrivateRoutesPath.USER_PROFILES)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)

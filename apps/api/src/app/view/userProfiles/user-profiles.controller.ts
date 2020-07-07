@@ -16,7 +16,7 @@ import { UserProfilePayloadDto } from '../../models/userProfiles/dto/user-profil
 import { GetUserProfilesQuery } from './queries/get-user-profiles.handlers';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
-@Controller('user-profiles-view')
+@Controller(PrivateRoutesPath.USER_PROFILES)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
