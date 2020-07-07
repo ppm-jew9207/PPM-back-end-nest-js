@@ -42,10 +42,9 @@ async function bootstrap() {
     .setTitle('PPR BE')
     .setDescription('PPR BE')
     .setVersion('1.0')
-    .addTag('ppr')
     .addBearerAuth(
-      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' },
-      'token'
+    { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+    'JWT',
     )
     .build();
   const document = SwaggerModule.createDocument(app, options);

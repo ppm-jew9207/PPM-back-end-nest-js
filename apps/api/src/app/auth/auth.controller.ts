@@ -14,17 +14,21 @@ import { IResponse } from '../common/interfaces/response.interface';
 import { CreateUserDto } from '../models/users/dto/create-user.dto';
 import { UsersService } from '../models/users/users.service';
 import { ResetPasswordDto } from './dto/reset-password.dto';
+import { LoginDto } from './dto/login.dto';
+import { PrivateRoutesPath } from '@ppm/common/main';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller(PrivateRoutesPath.AUTH)
+@ApiTags(PrivateRoutesPath.AUTH)
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UsersService
   ) {}
 
-  @Post('email/login')
+  @Post(PrivateRoutesPath.POST_LOGIN)
   @HttpCode(HttpStatus.OK)
-  public async login(@Body() login: Login): Promise<IResponse> {
+  public async login(@Body() login: LoginDto): Promise<IResponse> {
     try {
       const response = await this.authService.validateLogin(
         login.email,
@@ -36,7 +40,7 @@ export class AuthController {
     }
   }
 
-  @Post('email/register')
+  @Post(PrivateRoutesPath.POST_REGISTRY)
   @HttpCode(HttpStatus.OK)
   async register(@Body() createUserDto: CreateUserDto): Promise<IResponse> {
     try {
@@ -55,17 +59,17 @@ export class AuthController {
     }
   }
 
-  @Get('email/verify/:token')
-  public async verifyEmail(@Param() params): Promise<IResponse> {
+  @Get(PrivateRoutesPath.POST_VERIFY)
+  public async verifyEmail(@Param('code') code: string): Promise<IResponse> {
     try {
-      const isEmailVerified = await this.authService.verifyEmail(params.token);
+      const isEmailVerified = await this.authService.verifyEmail(code);
       return new ResponseSuccess('LOGIN.EMAIL_VERIFIED', isEmailVerified);
     } catch (error) {
       return new ResponseError('LOGIN.ERROR', error);
     }
   }
 
-  @Get('email/resend-verification/:email')
+  @Get(PrivateRoutesPath.POST_RESEND_VERIFY)
   public async sendEmailVerification(@Param() params): Promise<IResponse> {
     try {
       await this.authService.createEmailToken(params.email);
@@ -82,7 +86,7 @@ export class AuthController {
     }
   }
 
-  @Get('email/forgot-password/:email')
+  @Get(PrivateRoutesPath.POST_FORGOT_PASSWORD)
   public async sendEmailForgotPassword(@Param() params): Promise<IResponse> {
     try {
       const isEmailSent = await this.authService.sendEmailForgotPassword(
@@ -98,7 +102,7 @@ export class AuthController {
     }
   }
 
-  @Post('email/reset-password')
+  @Post(PrivateRoutesPath.POST_RESET_PASSWORD)
   @HttpCode(HttpStatus.OK)
   public async setNewPassord(
     @Body() resetPassword: ResetPasswordDto

@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,15 +12,19 @@ const saltRounds = 10;
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>) {}
+    @InjectModel('User') private readonly model: Model<User>) {}
 
   
   async findAll(): Promise<User[]> {
-    return await this.userModel.find().exec();
+    return await this.model.find().exec();
+  }
+
+  async getById(id: string): Promise<User> {
+     return this.model.findOne({_id: Types.ObjectId(id)}).exec();
   }
 
   async findByEmail(email: string): Promise<User> {
-    return await this.userModel.findOne({email: email}).exec();
+    return await this.model.findOne({email: email}).exec();
   }
 
   async createNewUser(newUser: CreateUserDto): Promise<User> {     
@@ -30,7 +34,7 @@ export class UsersService {
       
       if(!userRegistered){
         newUser.password = await bcrypt.hash(newUser.password, saltRounds);
-        const createdUser = new this.userModel(newUser);
+        const createdUser = new this.model(newUser);
         createdUser.roles = [UserRoles.User];
         createdUser.userName = `${createdUser.firstName} ${createdUser.lastName}`;
         return createdUser.save();
@@ -53,7 +57,7 @@ export class UsersService {
   }
 
   async setPassword(email: string, newPassword: string): Promise<boolean> { 
-    const userFromDb = await this.userModel.findOne({ email: email});
+    const userFromDb = await this.model.findOne({ email: email});
     if(!userFromDb) throw new HttpException('LOGIN.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     
     userFromDb.password = await bcrypt.hash(newPassword, saltRounds);
@@ -72,11 +76,12 @@ export class UsersService {
   }
 
   async updateSettings(settingsDto: SettingsDto): Promise<User> {
-    const userFromDb = await this.userModel.findOne({ email: settingsDto.email});
+    const userFromDb = await this.model.findOne({ email: settingsDto.email});
     if(!userFromDb) throw new HttpException('COMMON.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     
     userFromDb.settings = userFromDb.settings || {};
     for (const key in settingsDto) {
+      // eslint-disable-next-line no-prototype-builtins
       if (settingsDto.hasOwnProperty(key) && key != "email") {
         userFromDb.settings[key] = settingsDto[key];
       }

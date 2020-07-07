@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { MentorViewModule } from './mentors/mentors.module';
-import { ProjectsViewModule } from './projects/projects.module';
+import { UserProfileViewModule } from './userProfiles/user-profiles.module';
 import { AdvertsViewModule } from './adverts/adverts.module';
+import { PermissionsViewModule } from './permissions/permissions.module';
 import { SettingsViewModule } from './settings/settings.module';
 
 @Module({
   imports: [
     CqrsModule,
-    MentorViewModule,
-    ProjectsViewModule,
     AdvertsViewModule,
+    UserProfileViewModule,
     SettingsViewModule,
+    PermissionsViewModule,
   ],
   controllers: [],
   providers: [],

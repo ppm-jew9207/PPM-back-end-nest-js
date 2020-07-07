@@ -61,12 +61,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/ppm/.eslintrc",
             "tsConfig": [
               "apps/ppm/tsconfig.app.json",
               "apps/ppm/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ppm/**"]
+            "exclude": ["**/node_modules/**", "!apps/ppm/**/*"]
           }
         },
         "test": {
@@ -101,9 +100,8 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/ppm-e2e/.eslintrc",
             "tsConfig": ["apps/ppm-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ppm-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/ppm-e2e/**/*"]
           }
         }
       }
@@ -147,12 +145,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/api/.eslintrc",
             "tsConfig": [
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
+            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
           }
         },
         "test": {
@@ -175,12 +172,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/storybook/.eslintrc",
             "tsConfig": [
               "libs/shared/storybook/tsconfig.lib.json",
               "libs/shared/storybook/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/storybook/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/storybook/**/*"]
           }
         },
         "test": {
@@ -233,12 +229,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/test/.eslintrc",
             "tsConfig": [
               "libs/shared/test/tsconfig.lib.json",
               "libs/shared/test/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/test/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/test/**/*"]
           }
         },
         "test": {
@@ -291,12 +286,14 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/login-component/.eslintrc",
             "tsConfig": [
               "libs/shared/login-component/tsconfig.lib.json",
               "libs/shared/login-component/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/login-component/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/login-component/**/*"
+            ]
           }
         },
         "test": {
@@ -339,6 +336,90 @@
         }
       }
     },
+    "shared-profile-form": {
+      "root": "libs/shared/profile-form",
+      "sourceRoot": "libs/shared/profile-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/profile-form/tsconfig.lib.json",
+              "libs/shared/profile-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/profile-form/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/profile-form/jest.config.js",
+            "tsConfig": "libs/shared/profile-form/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/profile-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-login-component",
+            "config": {
+              "configFolder": "libs/shared/login-component/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-info-card": {
+      "root": "libs/shared/info-card",
+      "sourceRoot": "libs/shared/info-card/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/info-card/tsconfig.lib.json",
+              "libs/shared/info-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/info-card/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/info-card/jest.config.js",
+            "tsConfig": "libs/shared/info-card/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-advert-card": {
       "root": "libs/shared/advert-card",
       "sourceRoot": "libs/shared/advert-card/src",
@@ -349,12 +430,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/shared/advert-card/.eslintrc",
             "tsConfig": [
               "libs/shared/advert-card/tsconfig.lib.json",
               "libs/shared/advert-card/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**/*"]
           }
         },
         "test": {
@@ -362,6 +442,400 @@
           "options": {
             "jestConfig": "libs/shared/advert-card/jest.config.js",
             "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-top-right-bar": {
+      "root": "libs/shared/top-right-bar",
+      "sourceRoot": "libs/shared/top-right-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/top-right-bar/.eslintrc",
+            "tsConfig": [
+              "libs/shared/top-right-bar/tsconfig.lib.json",
+              "libs/shared/top-right-bar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/top-right-bar/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/top-right-bar/jest.config.js",
+            "tsConfig": "libs/shared/top-right-bar/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/top-right-bar/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-top-right-bar",
+            "config": {
+              "configFolder": "libs/shared/top-right-bar/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-top-menu-button": {
+      "root": "libs/shared/top-menu-button",
+      "sourceRoot": "libs/shared/top-menu-button/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/top-menu-button/.eslintrc",
+            "tsConfig": [
+              "libs/shared/top-menu-button/tsconfig.lib.json",
+              "libs/shared/top-menu-button/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/top-menu-button/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/top-menu-button/jest.config.js",
+            "tsConfig": "libs/shared/top-menu-button/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/top-menu-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-top-menu-button",
+            "config": {
+              "configFolder": "libs/shared/top-menu-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-navigation": {
+      "root": "libs/shared/navigation",
+      "sourceRoot": "libs/shared/navigation/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/navigation/tsconfig.lib.json",
+              "libs/shared/navigation/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/navigation/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/navigation/jest.config.js",
+            "tsConfig": "libs/shared/navigation/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/navigation/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-navigation",
+            "config": {
+              "configFolder": "libs/shared/navigation/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-registration-verification": {
+      "root": "libs/shared/registration-verification",
+      "sourceRoot": "libs/shared/registration-verification/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/registration-verification/.eslintrc",
+            "tsConfig": [
+              "libs/shared/registration-verification/tsconfig.lib.json",
+              "libs/shared/registration-verification/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/registration-verification/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/registration-verification/jest.config.js",
+            "tsConfig": "libs/shared/registration-verification/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/registration-verification/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-registration-verification",
+            "config": {
+              "configFolder": "libs/shared/registration-verification/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-forgot-password-form": {
+      "root": "libs/shared/forgot-password-form",
+      "sourceRoot": "libs/shared/forgot-password-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/forgot-password-form/tsconfig.lib.json",
+              "libs/shared/forgot-password-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/forgot-password-form/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/forgot-password-form/jest.config.js",
+            "tsConfig": "libs/shared/forgot-password-form/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/forgot-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-forgot-password-form",
+            "config": {
+              "configFolder": "libs/shared/forgot-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "common-main": {
+      "root": "libs/common/main",
+      "sourceRoot": "libs/common/main/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["libs/common/main/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**", "!libs/common/main/**/*"]
+          }
+        }
+      }
+    },
+    "features-dashboard-mentor": {
+      "root": "libs/features/dashboard/mentor",
+      "sourceRoot": "libs/features/dashboard/mentor/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/dashboard/mentor/tsconfig.lib.json",
+              "libs/features/dashboard/mentor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/dashboard/mentor/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/dashboard/mentor/jest.config.js",
+            "tsConfig": "libs/features/dashboard/mentor/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-mentors": {
+      "root": "libs/features/mentors",
+      "sourceRoot": "libs/features/mentors/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/mentors/tsconfig.lib.json",
+              "libs/features/mentors/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/mentors/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/mentors/jest.config.js",
+            "tsConfig": "libs/features/mentors/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-mentor": {
+      "root": "libs/features/mentor",
+      "sourceRoot": "libs/features/mentor/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/mentor/tsconfig.lib.json",
+              "libs/features/mentor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/mentor/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/mentor/jest.config.js",
+            "tsConfig": "libs/features/mentor/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
