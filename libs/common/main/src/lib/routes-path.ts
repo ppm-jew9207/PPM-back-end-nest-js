@@ -5,6 +5,7 @@ export enum PrivateRoutesPath {
   STUDENT = 'student',
   ADVERTS = 'adverts',
   SETTINGS = 'settings',
+  USER_PROFILES = 'user-profiles',
   AUTH = 'auth',
   GET_BY_ID = '/:id',
   GET_ALL = '/all',

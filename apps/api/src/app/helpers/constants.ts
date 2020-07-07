@@ -9,4 +9,5 @@ export enum ViewModels {
   MENTORS = 'Mentors',
   STUDENTS = 'Students',
   PERMISSIONS_VIEW = 'Permissions',
+  USER_PROFILES = 'UserProfiles',
 }
