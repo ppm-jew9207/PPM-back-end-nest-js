@@ -2334,7 +2334,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Module"])({
         imports: [
             _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_11__["ServeStaticModule"].forRoot({
-                rootPath: Object(path__WEBPACK_IMPORTED_MODULE_12__["join"])(__dirname, '..', 'nx-app'),
+                rootPath: Object(path__WEBPACK_IMPORTED_MODULE_12__["join"])(__dirname, '..', 'ppm'),
                 exclude: ['/api*']
             }),
             ...domains,
