@@ -85,32 +85,32 @@ import * as rateLimit from 'express-rate-limit';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+  app.enableCors();
+  const globalPrefix = 'api';
+  app.setGlobalPrefix(globalPrefix);
+  app.useGlobalFilters(new AllExceptionsFilter());
+
   /* SECURITY */
   app.use(helmet());
-  
+
   app.use(
     rateLimit({
       windowMs: 15 * 60 * 1000, // 15 minutes
       max: 100, // limit each IP to 100 requests per windowMs
       message: 'Too many requests from this IP, please try again later'
     })
-    );
-    const createAccountLimiter = rateLimit({
-      windowMs: 60 * 60 * 1000, // 1 hour window
-      max: 3, // start blocking after 3 requests
-      message:
+  );
+  const createAccountLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour window
+    max: 3, // start blocking after 3 requests
+    message:
       'Too many accounts created from this IP, please try again after an hour'
-    });
-    app.use('/api/auth/register', createAccountLimiter);
-    
-    app.enableCors();
-    const globalPrefix = 'api';
-    app.setGlobalPrefix(globalPrefix);
-    app.useGlobalFilters(new AllExceptionsFilter());
-    const options = new DocumentBuilder()
-    .setTitle('PPM BE')
-    .setDescription('PPM BE')
+  });
+  app.use('/api/auth/register', createAccountLimiter);
+
+  const options = new DocumentBuilder()
+  .setTitle('PPM BE')
+  .setDescription('PPM BE')
   .setVersion('1.0')
   .addBearerAuth(
   { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
