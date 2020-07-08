@@ -2727,7 +2727,7 @@
         "type": "npm",
         "name": "npm:@babel/preset-env",
         "data": {
-          "version": "7.9.6",
+          "version": "7.10.2",
           "packageName": "@babel/preset-env",
           "files": []
         }
@@ -2736,7 +2736,7 @@
         "type": "npm",
         "name": "npm:@babel/preset-react",
         "data": {
-          "version": "7.9.4",
+          "version": "7.10.1",
           "packageName": "@babel/preset-react",
           "files": []
         }
@@ -2745,7 +2745,7 @@
         "type": "npm",
         "name": "npm:babel-jest",
         "data": {
-          "version": "25.1.0",
+          "version": "25.5.1",
           "packageName": "babel-jest",
           "files": []
         }
