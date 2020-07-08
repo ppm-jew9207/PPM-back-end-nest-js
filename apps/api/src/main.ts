@@ -109,8 +109,8 @@ async function bootstrap() {
   app.use('/api/auth/register', createAccountLimiter);
 
   const options = new DocumentBuilder()
-  .setTitle('PPR BE')
-  .setDescription('PPR BE')
+  .setTitle('PPM BE')
+  .setDescription('PPM BE')
   .setVersion('1.0')
   .addBearerAuth(
   { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
