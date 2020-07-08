@@ -87,6 +87,25 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.useGlobalFilters(new AllExceptionsFilter());
+
+  /* SECURITY */
+  app.use(helmet());
+
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // limit each IP to 100 requests per windowMs
+      message: 'Too many requests from this IP, please try again later'
+    })
+  );
+  const createAccountLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour window
+    max: 3, // start blocking after 3 requests
+    message:
+      'Too many accounts created from this IP, please try again after an hour'
+  });
+  app.use('/api/auth/register', createAccountLimiter);
 
   const options = new DocumentBuilder()
   .setTitle('PPR BE')
