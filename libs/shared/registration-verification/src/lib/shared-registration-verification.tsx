@@ -11,7 +11,6 @@ import { useForm } from 'react-hook-form';
 
 import './shared-registration-verification.scss';
 
-/* eslint-disable-next-line */
 export interface SharedRegistrationVerificationProps {
   onSubmit: (code: string) => void;
   onCancel: () => void;
@@ -48,19 +47,30 @@ export const SharedRegistrationVerification = (
           />
         </Box>
         <Grid container justify="center">
-          <Button variant="contained" color="primary" type="submit">
-            LOGIN
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={props.onCancel}
-          >
-            Resend Verification
-          </Button>
-          <Button variant="contained" onClick={props.resendVerification}>
-            Cancel
-          </Button>
+          <Box mx={2}>
+            <Button variant="contained" color="primary" type="submit">
+              LOGIN
+            </Button>
+          </Box>
+          <Box mx={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={props.onCancel}
+              className="widerButton"
+            >
+              Resend Verification
+            </Button>
+          </Box>
+          <Box mx={2}>
+            <Button
+              variant="contained"
+              onClick={props.resendVerification}
+              className="widerButton"
+            >
+              Cancel
+            </Button>
+          </Box>
         </Grid>
       </form>
     </Grid>
