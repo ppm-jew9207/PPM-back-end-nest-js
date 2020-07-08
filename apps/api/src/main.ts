@@ -77,11 +77,29 @@
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+import { AllExceptionsFilter } from './app/common/filters/all-exception.filter';
+import * as helmet from 'helmet';
+import * as rateLimit from 'express-rate-limit';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+
+  const options = new DocumentBuilder()
+  .setTitle('PPR BE')
+  .setDescription('PPR BE')
+  .setVersion('1.0')
+  .addBearerAuth(
+  { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+  'JWT',
+  )
+  .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
+
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
     console.log('Listening at http://localhost:' + port + '/' + globalPrefix);
