@@ -5044,6 +5044,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nestjs_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
 /* harmony import */ var _nestjs_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nestjs_core__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77);
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4);
+/* harmony import */ var _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__);
 // require('dotenv').config();
 // import { NestFactory } from '@nestjs/core';
 // import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -5112,11 +5114,20 @@ __webpack_require__.r(__webpack_exports__);
 // // bootstrap();
 
 
+
 function bootstrap() {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
         const app = yield _nestjs_core__WEBPACK_IMPORTED_MODULE_1__["NestFactory"].create(_app_app_module__WEBPACK_IMPORTED_MODULE_2__[/* AppModule */ "a"]);
         const globalPrefix = 'api';
         app.setGlobalPrefix(globalPrefix);
+        const options = new _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["DocumentBuilder"]()
+            .setTitle('PPR BE')
+            .setDescription('PPR BE')
+            .setVersion('1.0')
+            .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'JWT')
+            .build();
+        const document = _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].createDocument(app, options);
+        _nestjs_swagger__WEBPACK_IMPORTED_MODULE_3__["SwaggerModule"].setup('api', app, document);
         const port = process.env.PORT || 3333;
         yield app.listen(port, () => {
             console.log('Listening at http://localhost:' + port + '/' + globalPrefix);
