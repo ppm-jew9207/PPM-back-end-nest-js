@@ -840,6 +840,66 @@
           }
         }
       }
+    },
+    "data-access-redux-configuration": {
+      "root": "libs/data-access/redux-configuration",
+      "sourceRoot": "libs/data-access/redux-configuration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/redux-configuration/tsconfig.lib.json",
+              "libs/data-access/redux-configuration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/redux-configuration/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/redux-configuration/jest.config.js",
+            "tsConfig": "libs/data-access/redux-configuration/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-authorization": {
+      "root": "libs/data-access/authorization",
+      "sourceRoot": "libs/data-access/authorization/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/authorization/tsconfig.lib.json",
+              "libs/data-access/authorization/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/authorization/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/authorization/jest.config.js",
+            "tsConfig": "libs/data-access/authorization/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
