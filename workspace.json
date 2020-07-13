@@ -840,6 +840,63 @@
           }
         }
       }
+    },
+    "shared-search-input": {
+      "root": "libs/shared/search-input",
+      "sourceRoot": "libs/shared/search-input/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/search-input/tsconfig.lib.json",
+              "libs/shared/search-input/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/search-input/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/search-input/jest.config.js",
+            "tsConfig": "libs/shared/search-input/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/search-input/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-search-input",
+            "config": {
+              "configFolder": "libs/shared/search-input/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -79,6 +79,9 @@
     },
     "features-mentor": {
       "tags": []
+    },
+    "shared-search-input": {
+      "tags": []
     }
   }
 }
