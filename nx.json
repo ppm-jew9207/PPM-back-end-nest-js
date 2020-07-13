@@ -85,6 +85,9 @@
     },
     "data-access-authorization": {
       "tags": []
+    },
+    "shared-search-input": {
+      "tags": []
     }
   }
 }
