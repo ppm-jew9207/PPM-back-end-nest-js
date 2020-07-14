@@ -11,7 +11,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import { CreateUserProfile } from './commands/create-user-profile.command';
 import { CreateUserProfilePayloadDto } from '../../models/userProfiles/dto/create-user-profile-payload.dto';
 import { DeleteUserProfileCommand } from './commands/delete-user-profile.command';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
@@ -21,6 +21,7 @@ import { Request } from 'express';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.USER_PROFILES)
+@ApiTags(PrivateRoutesPath.USER_PROFILES)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
