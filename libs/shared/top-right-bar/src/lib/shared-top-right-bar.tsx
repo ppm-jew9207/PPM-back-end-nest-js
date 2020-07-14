@@ -64,22 +64,18 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
         open={menuOpen}
         onClose={handleClose}
       >
-        {props.items.map((link) => {
-          console.log(link);
-
-          return (
-            <div key={link._id}>
-              <MenuItem onClick={handleClose}>
-                <Link href={link.path}>
-                  <div className="container">
-                    <div>{link.title}</div>
-                    <div>{link.timeStamp}</div>
-                  </div>
-                </Link>
-              </MenuItem>
-            </div>
-          );
-        })}
+        {props.items.map((link) => (
+          <div key={link._id}>
+            <MenuItem onClick={handleClose}>
+              <Link href={link.path}>
+                <div className="container">
+                  <div>{link.title}</div>
+                  <div>{link.timeStamp}</div>
+                </div>
+              </Link>
+            </MenuItem>
+          </div>
+        ))}
       </Menu>
     </div>
   );
