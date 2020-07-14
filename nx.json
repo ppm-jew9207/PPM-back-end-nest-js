@@ -82,6 +82,9 @@
     },
     "shared-search-input": {
       "tags": []
+    },
+    "shared-modal": {
+      "tags": []
     }
   }
 }
