@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import PrivateRouter from './routes/private';
 import './app.scss';
 
