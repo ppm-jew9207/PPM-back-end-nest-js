@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { SharedSearchInput } from '@ppm/shared/search-input';
 import PrivateRouter from './routes/private';
 import './app.scss';
 
@@ -47,11 +46,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
-      <SharedSearchInput
-        onSearch={(e) => {
-          console.log(e);
-        }}
-      />
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (
