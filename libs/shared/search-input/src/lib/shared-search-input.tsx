@@ -19,10 +19,10 @@ export const SharedSearchInput = (props: SharedSearchInputProps) => {
       debounce((searchString: string) => {
         props.onSearch(searchString);
       }, 500),
-    []
+    [props]
   );
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
     waitTime(e.target.value);
   };
