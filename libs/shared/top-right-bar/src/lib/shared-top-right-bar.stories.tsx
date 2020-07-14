@@ -33,11 +33,11 @@ const DataFromDB = {
 export const primary = () => {
   return (
     <SharedTopRightBar dataFromDb={DataFromDB}>
-      <SharedTopMenuButton items={DataFromDB.notifications}>
-        <Badge badgeContent={DataFromDB.notifications.length} color="secondary">
-          <NotificationsIcon />
-        </Badge>
-      </SharedTopMenuButton>
+      {/* <SharedTopMenuButton items={DataFromDB.notifications}> */}
+      <Badge badgeContent={DataFromDB.notifications.length} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+      {/* </SharedTopMenuButton> */}
     </SharedTopRightBar>
   );
 };
