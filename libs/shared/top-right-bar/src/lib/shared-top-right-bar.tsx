@@ -68,7 +68,7 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
         {props.children}
       </IconButton>
 
-      {props.items.length === 0 ? null : (
+      {!!props.items.length && (
         <Menu
           anchorEl={anchorEl}
           anchorOrigin={menuPosition}
