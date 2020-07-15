@@ -36,6 +36,16 @@ export interface SharedTopRightBarProps {
   notifications: Notifications[];
 }
 
+export interface MenuProps {
+  vertical: string;
+  horizontal: string;
+}
+
+export interface PopoverOrigin {
+  horizontal: 'left' | 'center' | 'right' | number;
+  vertical: 'top' | 'center' | 'bottom' | number;
+}
+
 const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
   console.log(props.items);
 
@@ -51,7 +61,7 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
     setMenuOpen(false);
   };
 
-  const menuPosition: any = { vertical: 'top', horizontal: 'right' };
+  const menuPosition: PopoverOrigin = { vertical: 'top', horizontal: 'right' };
 
   return (
     <div>
