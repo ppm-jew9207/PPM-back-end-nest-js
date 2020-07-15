@@ -1,15 +1,21 @@
 import React, { useState, MouseEvent, ReactNode } from 'react';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
-import { Link } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-
 import './shared-top-right-bar.scss';
+
+import {
+  Toolbar,
+  IconButton,
+  MenuItem,
+  Menu,
+  Badge,
+  PopoverOrigin,
+  Link,
+} from '@material-ui/core';
+
+import {
+  AccountCircle,
+  Settings as SettingsIcon,
+  Notifications as NotificationsIcon,
+} from '@material-ui/icons';
 
 export interface Notifications {
   _id: string;
@@ -39,11 +45,6 @@ export interface SharedTopRightBarProps {
 export interface MenuProps {
   vertical: string;
   horizontal: string;
-}
-
-export interface PopoverOrigin {
-  horizontal: 'left' | 'center' | 'right' | number;
-  vertical: 'top' | 'center' | 'bottom' | number;
 }
 
 const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
