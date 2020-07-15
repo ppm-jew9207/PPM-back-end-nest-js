@@ -11,7 +11,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import './shared-top-right-bar.scss';
 
-export interface Items {
+export interface Notifications {
   _id: string;
   title: string;
   path: string;
@@ -21,7 +21,7 @@ export interface Items {
 
 export interface SharedTopMenuButtonProps {
   children: ReactNode;
-  items?: Items[];
+  items: Notifications[] | undefined;
 }
 
 export interface MenuIconLink {
@@ -31,14 +31,14 @@ export interface MenuIconLink {
 }
 
 export interface SharedTopRightBarProps {
-  dataFromDb?: {
-    settings: MenuIconLink;
-    profile: MenuIconLink;
-    notifications: Items[];
-  };
+  settings: MenuIconLink;
+  profile: MenuIconLink;
+  notifications: Notifications[];
 }
 
 const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
+  console.log(props.items);
+
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement>();
 
@@ -59,7 +59,7 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
         {props.children}
       </IconButton>
 
-      {props.items ? null : (
+      {props.items.length === 0 ? null : (
         <Menu
           anchorEl={anchorEl}
           anchorOrigin={menuPosition}
@@ -88,23 +88,21 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
 };
 
 export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
-  const { notifications, settings, profile } = props.dataFromDb;
-
   return (
     <Toolbar>
-      <SharedTopMenuButton items={notifications}>
-        <Badge badgeContent={notifications.length} color="secondary">
+      <SharedTopMenuButton items={props.notifications}>
+        <Badge badgeContent={props.notifications.length} color="secondary">
           <NotificationsIcon />
         </Badge>
       </SharedTopMenuButton>
 
-      <Link href={settings.path}>
+      <Link href={props.settings.path}>
         <IconButton color="primary">
           <SettingsIcon />
         </IconButton>
       </Link>
 
-      <Link href={profile.path}>
+      <Link href={props.profile.path}>
         <IconButton color="primary">
           <AccountCircle />
         </IconButton>

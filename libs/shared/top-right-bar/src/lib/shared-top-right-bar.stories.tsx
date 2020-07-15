@@ -28,5 +28,11 @@ const DataFromDB = {
 };
 
 export const primary = () => {
-  return <SharedTopRightBar dataFromDb={DataFromDB} />;
+  return (
+    <SharedTopRightBar
+      notifications={DataFromDB.notifications}
+      settings={DataFromDB.settings}
+      profile={DataFromDB.profile}
+    />
+  );
 };
