@@ -20,8 +20,8 @@ export interface Items {
 }
 
 export interface SharedTopMenuButtonProps {
-  items?: Items[];
   children: ReactNode;
+  items?: Items[];
 }
 
 export interface MenuIconLink {
