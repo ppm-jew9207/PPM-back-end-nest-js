@@ -80,6 +80,12 @@
     "features-mentor": {
       "tags": []
     },
+    "data-access-redux-configuration": {
+      "tags": []
+    },
+    "data-access-authorization": {
+      "tags": []
+    },
     "shared-search-input": {
       "tags": []
     },
