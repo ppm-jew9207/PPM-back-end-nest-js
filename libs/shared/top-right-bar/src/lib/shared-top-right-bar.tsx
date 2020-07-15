@@ -51,32 +51,38 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
     setMenuOpen(false);
   };
 
+  const menuPosition: any = { vertical: 'top', horizontal: 'right' };
+
   return (
     <div>
       <IconButton color="primary" onClick={handleMenu}>
         {props.children}
       </IconButton>
 
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={menuOpen}
-        onClose={handleClose}
-      >
-        {props.items.map((link) => (
-          <div key={link._id}>
-            <MenuItem onClick={handleClose}>
-              <Link href={link.path}>
-                <div className="container">
-                  <div>{link.title}</div>
-                  <div>{link.timeStamp}</div>
-                </div>
-              </Link>
-            </MenuItem>
-          </div>
-        ))}
-      </Menu>
+      {props.items ? null : (
+        <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={menuPosition}
+          transformOrigin={menuPosition}
+          open={menuOpen}
+          onClose={handleClose}
+        >
+          {props.items.map((link) => {
+            return (
+              <div key={link._id}>
+                <MenuItem onClick={handleClose}>
+                  <Link href={link.path}>
+                    <div className="container">
+                      <div>{link.title}</div>
+                      <div>{link.timeStamp}</div>
+                    </div>
+                  </Link>
+                </MenuItem>
+              </div>
+            );
+          })}
+        </Menu>
+      )}
     </div>
   );
 };
