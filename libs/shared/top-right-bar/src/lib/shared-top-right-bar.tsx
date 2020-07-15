@@ -21,7 +21,7 @@ export interface Notifications {
 
 export interface SharedTopMenuButtonProps {
   children: ReactNode;
-  items: Notifications[] | undefined;
+  items: Notifications[];
 }
 
 export interface MenuIconLink {
