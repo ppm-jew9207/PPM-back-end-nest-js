@@ -47,9 +47,9 @@ export interface MenuProps {
   horizontal: string;
 }
 
-const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
-  console.log(props.items);
+const menuPosition: PopoverOrigin = { vertical: 'top', horizontal: 'right' };
 
+const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement>();
 
@@ -61,8 +61,6 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
   const handleClose = () => {
     setMenuOpen(false);
   };
-
-  const menuPosition: PopoverOrigin = { vertical: 'top', horizontal: 'right' };
 
   return (
     <div>
