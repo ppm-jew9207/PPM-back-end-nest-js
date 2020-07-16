@@ -26,7 +26,10 @@ export const SharedRank = (props: SharedRankProps) => {
 
   const handleChange = (event: ChangeEvent, newValue: number) => {
     if (!rank.isRanked) {
-      const newRank = { isRanked: true, value: newValue };
+      const newRank = {
+        isRanked: true,
+        value: !!newValue ? newValue : rank.value,
+      };
       setRank(newRank);
       props.onUpdate(newRank);
     }
