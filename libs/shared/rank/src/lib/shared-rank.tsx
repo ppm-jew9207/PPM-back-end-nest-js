@@ -35,7 +35,7 @@ export const SharedRank = (props: SharedRankProps) => {
           }
         }}
       />
-      {rank !== null && (
+      {!!rank && (
         <Box ml={2} className="rank__summary">
           <span>{rank.value}</span>
         </Box>
