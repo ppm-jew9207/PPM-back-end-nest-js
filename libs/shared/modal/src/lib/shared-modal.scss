@@ -1,21 +1,24 @@
 .modal {
   outline: 'none';
-  width: 50%;
   display: 'flex';
   align-items: 'center';
   justify-content: 'center';
   .paper {
     outline: none;
+    width: 400px;
     background-color: white;
     border: 2px solid #000;
     padding: 10px 20px;
+    display: inline-block;
   }
 }
 
 .button-wrap {
   display: flex;
-  .button-confirm,
+  float: right;
+  margin-right: 10px;
   .button-cancel {
-    margin: 10px;
+    position: relative;
+    left: 10px;
   }
 }

@@ -12,10 +12,10 @@ export interface SharedModalProps {
 }
 
 export const SharedModal = (props: SharedModalProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleConfirm = () => {
+    setOpen(false);
   };
 
   const handleClose = () => {
@@ -29,7 +29,6 @@ export const SharedModal = (props: SharedModalProps) => {
         aria-describedby="transition-modal-description"
         className="modal"
         open={open}
-        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{ timeout: 500 }}
@@ -39,28 +38,33 @@ export const SharedModal = (props: SharedModalProps) => {
             <h2 id="transition-modal-title">{props.title}</h2>
 
             <p id="transition-modal-description">{props.text}</p>
+
+            <div className="button-wrap">
+              <div className="button-confirm">
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="primary"
+                  onClick={handleConfirm}
+                >
+                  Confirm
+                </Button>
+              </div>
+
+              <div className="button-cancel">
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
           </div>
         </Fade>
       </Modal>
-
-      <div className="button-wrap">
-        <div className="button-confirm">
-          <Button
-            type="button"
-            variant="contained"
-            color="primary"
-            onClick={handleOpen}
-          >
-            Confirm
-          </Button>
-        </div>
-
-        <div className="button-cancel">
-          <Button type="button" variant="contained" color="secondary">
-            Cancel
-          </Button>
-        </div>
-      </div>
     </div>
   );
 };
