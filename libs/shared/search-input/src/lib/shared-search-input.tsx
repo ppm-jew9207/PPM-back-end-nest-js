@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, ChangeEvent } from 'react';
 import TextField from '@material-ui/core/TextField';
 
 import Grid from '@material-ui/core/Grid/Grid';
@@ -19,10 +19,10 @@ export const SharedSearchInput = (props: SharedSearchInputProps) => {
       debounce((searchString: string) => {
         props.onSearch(searchString);
       }, 500),
-    []
+    [props]
   );
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
     waitTime(e.target.value);
   };

@@ -841,6 +841,66 @@
         }
       }
     },
+    "data-access-redux-configuration": {
+      "root": "libs/data-access/redux-configuration",
+      "sourceRoot": "libs/data-access/redux-configuration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/redux-configuration/tsconfig.lib.json",
+              "libs/data-access/redux-configuration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/redux-configuration/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/redux-configuration/jest.config.js",
+            "tsConfig": "libs/data-access/redux-configuration/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-authorization": {
+      "root": "libs/data-access/authorization",
+      "sourceRoot": "libs/data-access/authorization/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/authorization/tsconfig.lib.json",
+              "libs/data-access/authorization/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/authorization/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/authorization/jest.config.js",
+            "tsConfig": "libs/data-access/authorization/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-search-input": {
       "root": "libs/shared/search-input",
       "sourceRoot": "libs/shared/search-input/src",
@@ -901,128 +961,132 @@
     "shared-modal": {
       "root": "libs/shared/modal",
       "sourceRoot": "libs/shared/modal/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/modal/tsconfig.lib.json",
-              "libs/shared/modal/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/modal/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/modal/jest.config.js",
-            "tsConfig": "libs/shared/modal/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        },
-        "storybook": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/shared/modal/.storybook"
+      "shared-rank": {
+        "root": "libs/shared/rank",
+        "sourceRoot": "libs/shared/rank/src",
+        "projectType": "library",
+        "schematics": {},
+        "architect": {
+          "lint": {
+            "builder": "@nrwl/linter:lint",
+            "options": {
+              "linter": "eslint",
+              "tsConfig": [
+                "libs/shared/modal/tsconfig.lib.json",
+                "libs/shared/modal/tsconfig.spec.json"
+              ],
+              "exclude": ["**/node_modules/**", "!libs/shared/rank/**/*"]
             }
           },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        },
-        "build-storybook": {
-          "builder": "@nrwl/storybook:build",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-modal",
-            "config": {
-              "configFolder": "libs/shared/modal/.storybook"
+          "test": {
+            "builder": "@nrwl/jest:jest",
+            "options": {
+              "jestConfig": "libs/shared/modal/jest.config.js",
+              "tsConfig": "libs/shared/modal/tsconfig.spec.json",
+              "passWithNoTests": true
             }
           },
-          "configurations": {
-            "ci": {
-              "quiet": true
+          "storybook": {
+            "builder": "@nrwl/storybook:storybook",
+            "options": {
+              "uiFramework": "@storybook/react",
+              "port": 4400,
+              "config": {
+                "configFolder": "libs/shared/rank/.storybook"
+              }
+            },
+            "configurations": {
+              "ci": {
+                "quiet": true
+              }
+            }
+          },
+          "build-storybook": {
+            "builder": "@nrwl/storybook:build",
+            "options": {
+              "uiFramework": "@storybook/react",
+              "outputPath": "dist/storybook/shared-rank",
+              "config": {
+                "configFolder": "libs/shared/rank/.storybook"
+              }
+            },
+            "configurations": {
+              "ci": {
+                "quiet": true
+              }
             }
           }
         }
       }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "schematics": {
-    "@nrwl/workspace": {
-      "library": {
-        "linter": "eslint"
-      }
     },
-    "@nrwl/cypress": {
-      "cypress-project": {
-        "linter": "eslint"
-      }
+    "cli": {
+      "defaultCollection": "@nrwl/react"
     },
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
+    "schematics": {
+      "@nrwl/workspace": {
+        "library": {
+          "linter": "eslint"
+        }
       },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
+      "@nrwl/cypress": {
+        "cypress-project": {
+          "linter": "eslint"
+        }
       },
-      "storybook-configuration": {
-        "linter": "eslint"
+      "@nrwl/react": {
+        "application": {
+          "style": "scss",
+          "linter": "eslint",
+          "babel": true
+        },
+        "library": {
+          "style": "scss",
+          "linter": "eslint"
+        },
+        "storybook-configuration": {
+          "linter": "eslint"
+        },
+        "component": {
+          "style": "scss"
+        }
       },
-      "component": {
-        "style": "scss"
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/web": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/node": {
-      "application": {
-        "linter": "eslint"
+      "@nrwl/next": {
+        "application": {
+          "linter": "eslint"
+        }
       },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nx-plugin": {
-      "plugin": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nest": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/express": {
-      "application": {
-        "linter": "eslint"
+      "@nrwl/web": {
+        "application": {
+          "linter": "eslint"
+        }
       },
-      "library": {
-        "linter": "eslint"
+      "@nrwl/node": {
+        "application": {
+          "linter": "eslint"
+        },
+        "library": {
+          "linter": "eslint"
+        }
+      },
+      "@nrwl/nx-plugin": {
+        "plugin": {
+          "linter": "eslint"
+        }
+      },
+      "@nrwl/nest": {
+        "application": {
+          "linter": "eslint"
+        }
+      },
+      "@nrwl/express": {
+        "application": {
+          "linter": "eslint"
+        },
+        "library": {
+          "linter": "eslint"
+        }
       }
-    }
-  },
-  "defaultProject": "ppm"
+    },
+    "defaultProject": "ppm"
+  }
 }
