@@ -12,8 +12,10 @@ export default {
 export const primary = () => {
   const value = number('Value', 2, { max: 5, min: 0, range: true, step: 0.5 });
   const isRanked = boolean('IsRated', false);
+  const onUpdate = action('onUpdate');
+
   const props: SharedRankProps = {
-    onUpdate: action('onUpdate'),
+    onUpdate,
     value,
     isRanked,
   };
