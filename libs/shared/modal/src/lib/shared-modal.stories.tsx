@@ -1,5 +1,5 @@
 import React from 'react';
-import { SharedModal, SharedModalProps } from './shared-modal';
+import { SharedModal } from './shared-modal';
 
 export default {
   component: SharedModal,
@@ -7,8 +7,5 @@ export default {
 };
 
 export const primary = () => {
-  /* eslint-disable-next-line */
-  const props: SharedModalProps = {};
-
-  return <SharedModal />;
+  return <SharedModal title="Test" text="Test 2" />;
 };
