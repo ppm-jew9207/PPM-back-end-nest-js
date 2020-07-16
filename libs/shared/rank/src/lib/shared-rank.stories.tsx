@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { action, withActions } from '@storybook/addon-actions';
 import { SharedRank, SharedRankProps } from './shared-rank';
 
 export default {
   component: SharedRank,
   title: 'SharedRank',
-  decorators: [withKnobs],
+  decorators: [withKnobs, withActions('click')],
 };
 
 export const primary = () => {
