@@ -42,10 +42,8 @@
       "@ppm/features//mentors": ["libs/features//mentors/src/index.ts"],
       "@ppm/features/mentors": ["libs/features/mentors/src/index.ts"],
       "@ppm/features/mentor": ["libs/features/mentor/src/index.ts"],
-
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],
-      "@ppm/shared/rank": ["libs/shared/rank/src/index.ts"]
-
+      "@ppm/shared/rank": ["libs/shared/rank/src/index.ts"],
       "@ppm/data-access/redux-configuration": [
         "libs/data-access/redux-configuration/src/index.ts"
       ],
@@ -53,7 +51,6 @@
         "libs/data-access/authorization/src/index.ts"
       ],
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"]
-
     }
   },
   "exclude": ["node_modules", "tmp"]

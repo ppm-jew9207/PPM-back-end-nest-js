@@ -1,6 +1,6 @@
 import React from 'react';
 import { SharedTopRightBar } from './shared-top-right-bar';
-import { SharedTopMenuButton } from '@ppm/shared/top-menu-button';
+// import { SharedTopMenuButton } from '@ppm/shared/top-menu-button';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
@@ -33,11 +33,11 @@ const DataFromDB = {
 export const primary = () => {
   return (
     <SharedTopRightBar dataFromDb={DataFromDB}>
-      <SharedTopMenuButton items={DataFromDB.notifications}>
-        <Badge badgeContent={DataFromDB.notifications.length} color="secondary">
-          <NotificationsIcon />
-        </Badge>
-      </SharedTopMenuButton>
+      {/* <SharedTopMenuButton items={DataFromDB.notifications}> */}
+      <Badge badgeContent={DataFromDB.notifications.length} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+      {/* </SharedTopMenuButton> */}
     </SharedTopRightBar>
   );
 };
