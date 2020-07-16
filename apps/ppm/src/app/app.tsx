@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import PrivateRouter from './routes/private';
 import './app.scss';
+import PublicRouter from './routes/public';
 
 // TODO: all commented lines below i use in future for login
 const stateSelector = createStructuredSelector({
@@ -52,6 +53,13 @@ export const App = () => {
           {PrivateRouter.map((prop) => (
             <PrivateRoute
               path={`/${prop.path}`}
+              key={prop.path}
+              component={prop.component}
+            />
+          ))}
+          {PublicRouter.map((prop) => (
+            <Route
+              path={`${prop.path}`}
               key={prop.path}
               component={prop.component}
             />

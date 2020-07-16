@@ -88,6 +88,9 @@
     },
     "shared-search-input": {
       "tags": []
+    },
+    "features-authorization": {
+      "tags": []
     }
   }
 }

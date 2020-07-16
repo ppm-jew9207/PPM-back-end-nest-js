@@ -30,6 +30,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   public async login(@Body() login: LoginDto): Promise<IResponse> {
     try {
+      console.log(login);
+      
       const response = await this.authService.validateLogin(
         login.email,
         login.password

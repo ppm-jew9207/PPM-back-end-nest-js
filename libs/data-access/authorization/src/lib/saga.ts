@@ -4,8 +4,10 @@ import { logInSuccess, logInFailed } from './actions';
 import { Authorize } from '../../../redux-configuration/src/lib/until/api';
 
 export function* logIn(actions){
-  try{
+  try{    
     const result = yield call( Authorize.login, actions.payload);
+    console.log(result);
+    
     if(!result.success){
       yield put(logInFailed(null));
     }
