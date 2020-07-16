@@ -12,13 +12,9 @@ export interface SharedModalProps {
 }
 
 export const SharedModal = (props: SharedModalProps) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState<boolean>(true);
 
-  const handleConfirm = () => {
-    setOpen(false);
-  };
-
-  const handleClose = () => {
+  const handleToggle = () => {
     setOpen(false);
   };
 
@@ -45,7 +41,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="primary"
-                  onClick={handleConfirm}
+                  onClick={handleToggle}
                 >
                   Confirm
                 </Button>
@@ -56,7 +52,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="secondary"
-                  onClick={handleClose}
+                  onClick={handleToggle}
                 >
                   Cancel
                 </Button>
