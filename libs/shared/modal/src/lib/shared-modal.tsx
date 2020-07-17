@@ -8,6 +8,7 @@ import './shared-modal.scss';
 
 export interface SharedModal {
   isOpen: boolean;
+  isConfirmed: boolean;
 }
 
 export interface SharedModalProps {
@@ -15,6 +16,7 @@ export interface SharedModalProps {
   text: string;
   submit: (data: SharedModal) => void;
   isModal: boolean;
+  isConfirmed: boolean;
 }
 
 export const SharedModal = (props: SharedModalProps) => {
@@ -25,7 +27,7 @@ export const SharedModal = (props: SharedModalProps) => {
   }, [props]);
 
   const handleToggle = (bool: boolean) => {
-    props.submit({ isOpen: bool });
+    props.submit({ isOpen: bool, isConfirmed: bool });
     setOpen(false);
   };
 

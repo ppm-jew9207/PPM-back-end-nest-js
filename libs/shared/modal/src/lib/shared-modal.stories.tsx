@@ -10,14 +10,16 @@ export default {
 };
 
 export const primary = () => {
-  const isModal = boolean('isOpen', true);
+  const isOpen = boolean('isOpen', true);
+  const isConfirmed = boolean('isConfirmed', true);
 
   return (
     <SharedModal
       title="Test"
       text="Test 2"
       submit={action('submit')}
-      isModal={isModal}
+      isModal={isOpen}
+      isConfirmed={isConfirmed}
     />
   );
 };
