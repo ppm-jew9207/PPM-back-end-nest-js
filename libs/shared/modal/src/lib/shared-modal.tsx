@@ -6,15 +6,22 @@ import Button from '@material-ui/core/Button';
 
 import './shared-modal.scss';
 
+export interface SharedModal {
+  isModal: boolean;
+}
+
 export interface SharedModalProps {
   title: string;
   text: string;
+  submit: (data: SharedModal) => void;
+  // isModal: boolean;
 }
 
 export const SharedModal = (props: SharedModalProps) => {
   const [open, setOpen] = useState<boolean>(true);
 
-  const handleToggle = () => {
+  const handleToggle = (bool: boolean) => {
+    props.submit({ isModal: bool });
     setOpen(false);
   };
 
@@ -41,7 +48,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="primary"
-                  onClick={handleToggle}
+                  onClick={() => handleToggle(true)}
                 >
                   Confirm
                 </Button>
@@ -52,7 +59,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="secondary"
-                  onClick={handleToggle}
+                  onClick={() => handleToggle(false)}
                 >
                   Cancel
                 </Button>
