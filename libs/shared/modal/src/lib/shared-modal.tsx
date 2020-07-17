@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -7,21 +7,25 @@ import Button from '@material-ui/core/Button';
 import './shared-modal.scss';
 
 export interface SharedModal {
-  isModal: boolean;
+  isOpen: boolean;
 }
 
 export interface SharedModalProps {
   title: string;
   text: string;
   submit: (data: SharedModal) => void;
-  // isModal: boolean;
+  isModal: boolean;
 }
 
 export const SharedModal = (props: SharedModalProps) => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(props.isModal);
+
+  useEffect(() => {
+    setOpen(props.isModal);
+  }, [props]);
 
   const handleToggle = (bool: boolean) => {
-    props.submit({ isModal: bool });
+    props.submit({ isOpen: bool });
     setOpen(false);
   };
 
@@ -48,7 +52,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="primary"
-                  onClick={() => handleToggle(true)}
+                  onClick={handleToggle.bind(false)}
                 >
                   Confirm
                 </Button>
@@ -59,7 +63,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="secondary"
-                  onClick={() => handleToggle(false)}
+                  onClick={handleToggle.bind(false)}
                 >
                   Cancel
                 </Button>
