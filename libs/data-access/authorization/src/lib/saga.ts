@@ -1,15 +1,17 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import { logInSuccess, logInFailed } from './actions';
-import { Authorize } from '../../../redux-configuration/src/lib/until/api';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import {login, saveToken, removeToken} from '@ppm/api-requests/authorization';
 
 export function* logIn(actions){
   try{    
-    const result = yield call( Authorize.login, actions.payload);
+    const result = yield call( login, actions.payload);
     console.log(result);
     
     if(!result.success){
       yield put(logInFailed(null));
+      removeToken();
     }
 
     yield put(logInSuccess({
@@ -17,6 +19,8 @@ export function* logIn(actions){
       isLoggedIn: true,
       loading: false,
     }));
+
+    saveToken(result.data.token.token);
 
   }catch (error) {
     yield put(logInFailed(error));

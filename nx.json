@@ -91,6 +91,9 @@
     },
     "features-authorization": {
       "tags": []
+    },
+    "api-requests-authorization": {
+      "tags": []
     }
   }
 }

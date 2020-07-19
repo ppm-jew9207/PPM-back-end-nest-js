@@ -1,4 +1,4 @@
-import request from "./request";
+import {request} from "./request";
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 const headerOptions = {
@@ -11,7 +11,7 @@ const requestOptions = {
 };
 
 
-const login = data => {
+export const login = data => {
   const response = request(`/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_LOGIN}`, {
     body: JSON.stringify(data),
     method: 'POST',
@@ -19,7 +19,3 @@ const login = data => {
   });
   return response;
 };
-
-export const Authorize = {
-  login
-}

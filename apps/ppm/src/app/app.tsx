@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { getToken } from '@ppm/api-requests/authorization';
 
 import PrivateRouter from './routes/private';
 import './app.scss';
@@ -16,11 +18,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   // const dispatch = useDispatch();
   // const { isLoggedIn } = useSelector(stateSelector);
 
-  const isLoggedIn = true;
+  const [isLoggedIn, setLoginStatus] = useState<boolean>(false);
+
   useEffect(() => {
-    //   if (!localStorage.getItem('token')) {
-    //     // dispatch(loginActions.logOut());
-    //   }
+    console.log(getToken());
+    
+      setLoginStatus(!!getToken);
   }, []);
 
   return (
@@ -46,6 +49,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export const App = () => {
+  useEffect(() => {
+    console.log('testas authorization');
+    
+  });
   return (
     <div className="app">
       <BrowserRouter basename="/">
@@ -64,6 +71,7 @@ export const App = () => {
               component={prop.component}
             />
           ))}
+          <Redirect from="/login" to="/mentor/all" />
         </Switch>
       </BrowserRouter>
     </div>

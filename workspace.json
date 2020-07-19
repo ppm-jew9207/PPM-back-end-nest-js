@@ -987,6 +987,36 @@
           }
         }
       }
+    },
+    "api-requests-authorization": {
+      "root": "libs/api-requests/authorization",
+      "sourceRoot": "libs/api-requests/authorization/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/api-requests/authorization/tsconfig.lib.json",
+              "libs/api-requests/authorization/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api-requests/authorization/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-requests/authorization/jest.config.js",
+            "tsConfig": "libs/api-requests/authorization/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

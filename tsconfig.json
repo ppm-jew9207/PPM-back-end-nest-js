@@ -51,6 +51,9 @@
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],
       "@ppm/features/authorization": [
         "libs/features/authorization/src/index.ts"
+      ],
+      "@ppm/api-requests/authorization": [
+        "libs/api-requests/authorization/src/index.ts"
       ]
     }
   },
