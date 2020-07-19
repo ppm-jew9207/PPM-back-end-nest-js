@@ -54,7 +54,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="primary"
-                  onClick={handleToggle.bind(false)}
+                  onClick={() => handleToggle(false)}
                 >
                   Confirm
                 </Button>
@@ -65,7 +65,7 @@ export const SharedModal = (props: SharedModalProps) => {
                   type="button"
                   variant="contained"
                   color="secondary"
-                  onClick={handleToggle.bind(false)}
+                  onClick={() => handleToggle(false)}
                 >
                   Cancel
                 </Button>
