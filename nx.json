@@ -88,6 +88,9 @@
     },
     "shared-search-input": {
       "tags": []
+    },
+    "shared-footer": {
+      "tags": []
     }
   }
 }
