@@ -3,6 +3,7 @@ import { ActionTypes } from './constants';
 import { logInSuccess, logInFailed } from './actions';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {login, saveToken, removeToken} from '@ppm/api-requests/authorization';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* logIn(actions){
   try{    
@@ -21,7 +22,7 @@ export function* logIn(actions){
     }));
 
     saveToken(result.data.token.token);
-    window.location.href = '/mentor/all';
+    window.location.href = `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_ALL}`;
 
 
   }catch (error) {
