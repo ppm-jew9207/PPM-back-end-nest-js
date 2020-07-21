@@ -6,6 +6,9 @@ import { createStructuredSelector } from 'reselect';
 import PrivateRouter from './routes/private';
 import './app.scss';
 
+import { SharedUserProfileCard } from '@ppm/shared/user-profile-card';
+
+
 // TODO: all commented lines below i use in future for login
 const stateSelector = createStructuredSelector({
   // isLogedIn: loginSelectors.selectIsLogedIn(),
@@ -47,6 +50,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
+      <SharedUserProfileCard
+        mentorImage="/testphoto.jpg" 
+        fullName="John Doe"
+        location="Vilnius" 
+        aboutMentor="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+        facebook="https://www.facebook.com"
+        twitter="https://www.twitter.com"
+        linkedin="https://www.linkedin.com"
+        instagram="https://www.instagram.com"
+      />
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (

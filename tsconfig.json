@@ -48,7 +48,13 @@
       "@ppm/data-access/authorization": [
         "libs/data-access/authorization/src/index.ts"
       ],
-      "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"]
+      "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],
+      "@ppm/shared//user-profile-card": [
+        "libs/shared//user-profile-card/src/index.ts"
+      ],
+      "@ppm/shared/user-profile-card": [
+        "libs/shared/user-profile-card/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
