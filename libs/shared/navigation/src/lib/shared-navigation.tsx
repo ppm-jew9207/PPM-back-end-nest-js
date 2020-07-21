@@ -18,6 +18,7 @@ export interface SharedNavigationProps {
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
+  console.log(props)
   return (
     <AppBar className="navigation-bar">
       <Toolbar>
