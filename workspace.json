@@ -22,12 +22,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/ppm/src/environments/environment.ts",
-                  "with": "apps/ppm/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "apps/ppm/src/environments/environment.ts",
+                "with": "apps/ppm/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -35,13 +33,11 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
           }
         },
@@ -72,7 +68,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/ppm/jest.config.js",
-            "tsConfig": "apps/ppm/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -126,12 +121,10 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "apps/api/src/environments/environment.ts",
+                "with": "apps/api/src/environments/environment.prod.ts"
+              }]
             }
           }
         },
@@ -156,7 +149,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -183,7 +175,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/storybook/jest.config.js",
-            "tsConfig": "libs/shared/storybook/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -240,7 +231,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/test/jest.config.js",
-            "tsConfig": "libs/shared/test/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -300,7 +290,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/login-component/jest.config.js",
-            "tsConfig": "libs/shared/login-component/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -357,7 +346,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/profile-form/jest.config.js",
-            "tsConfig": "libs/shared/profile-form/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -414,7 +402,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/info-card/jest.config.js",
-            "tsConfig": "libs/shared/info-card/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -441,7 +428,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/advert-card/jest.config.js",
-            "tsConfig": "libs/shared/advert-card/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -469,7 +455,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/top-right-bar/jest.config.js",
-            "tsConfig": "libs/shared/top-right-bar/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -527,7 +512,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/top-menu-button/jest.config.js",
-            "tsConfig": "libs/shared/top-menu-button/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -584,7 +568,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/navigation/jest.config.js",
-            "tsConfig": "libs/shared/navigation/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -645,7 +628,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/registration-verification/jest.config.js",
-            "tsConfig": "libs/shared/registration-verification/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -705,7 +687,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/forgot-password-form/jest.config.js",
-            "tsConfig": "libs/shared/forgot-password-form/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -781,7 +762,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/dashboard/mentor/jest.config.js",
-            "tsConfig": "libs/features/dashboard/mentor/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -808,7 +788,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/mentors/jest.config.js",
-            "tsConfig": "libs/features/mentors/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -835,7 +814,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/mentor/jest.config.js",
-            "tsConfig": "libs/features/mentor/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -865,7 +843,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/redux-configuration/jest.config.js",
-            "tsConfig": "libs/data-access/redux-configuration/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -895,7 +872,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/authorization/jest.config.js",
-            "tsConfig": "libs/data-access/authorization/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -922,7 +898,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/search-input/jest.config.js",
-            "tsConfig": "libs/shared/search-input/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -958,9 +933,9 @@
         }
       }
     },
-    "features-authorization": {
-      "root": "libs/features/authorization",
-      "sourceRoot": "libs/features/authorization/src",
+    "shared-rank": {
+      "root": "libs/shared/rank",
+      "sourceRoot": "libs/shared/rank/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -969,28 +944,54 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/features/authorization/tsconfig.lib.json",
-              "libs/features/authorization/tsconfig.spec.json"
+              "libs/shared/rank/tsconfig.lib.json",
+              "libs/shared/rank/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/authorization/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/rank/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/features/authorization/jest.config.js",
-            "tsConfig": "libs/features/authorization/tsconfig.spec.json",
+            "jestConfig": "libs/shared/rank/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/rank/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-rank",
+            "config": {
+              "configFolder": "libs/shared/rank/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
     },
-    "api-requests-authorization": {
-      "root": "libs/api-requests/authorization",
-      "sourceRoot": "libs/api-requests/authorization/src",
+    "shared-modal": {
+      "root": "libs/shared/modal",
+      "sourceRoot": "libs/shared/modal/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -999,22 +1000,108 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/api-requests/authorization/tsconfig.lib.json",
-              "libs/api-requests/authorization/tsconfig.spec.json"
+              "libs/shared/modal/tsconfig.lib.json",
+              "libs/shared/modal/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api-requests/authorization/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/modal/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/api-requests/authorization/jest.config.js",
-            "tsConfig": "libs/api-requests/authorization/tsconfig.spec.json",
+            "jestConfig": "libs/shared/modal/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/modal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-modal",
+            "config": {
+              "configFolder": "libs/shared/modal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "features-authorization": {
+    "root": "libs/features/authorization",
+    "sourceRoot": "libs/features/authorization/src",
+    "projectType": "library",
+    "schematics": {},
+    "architect": {
+      "lint": {
+        "builder": "@nrwl/linter:lint",
+        "options": {
+          "linter": "eslint",
+          "tsConfig": [
+            "libs/features/authorization/tsconfig.lib.json",
+            "libs/features/authorization/tsconfig.spec.json"
+          ],
+          "exclude": [
+            "**/node_modules/**",
+            "!libs/features/authorization/**/*"
+          ]
+        }
+      },
+      "test": {
+        "builder": "@nrwl/jest:jest",
+        "options": {
+          "jestConfig": "libs/features/authorization/jest.config.js",
+          "tsConfig": "libs/features/authorization/tsconfig.spec.json",
+          "passWithNoTests": true
+        }
+      }
+    }
+  },
+  "api-requests-authorization": {
+    "root": "libs/api-requests/authorization",
+    "sourceRoot": "libs/api-requests/authorization/src",
+    "projectType": "library",
+    "schematics": {},
+    "architect": {
+      "lint": {
+        "builder": "@nrwl/linter:lint",
+        "options": {
+          "linter": "eslint",
+          "tsConfig": [
+            "libs/api-requests/authorization/tsconfig.lib.json",
+            "libs/api-requests/authorization/tsconfig.spec.json"
+          ],
+          "exclude": [
+            "**/node_modules/**",
+            "!libs/api-requests/authorization/**/*"
+          ]
+        }
+      },
+      "test": {
+        "builder": "@nrwl/jest:jest",
+        "options": {
+          "jestConfig": "libs/api-requests/authorization/jest.config.js",
+          "tsConfig": "libs/api-requests/authorization/tsconfig.spec.json",
+          "passWithNoTests": true
         }
       }
     }

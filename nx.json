@@ -6,9 +6,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -94,6 +94,15 @@
     },
     "api-requests-authorization": {
       "tags": []
+    },
+    "shared-modal": {
+      "tags": []
+    },
+    "shared-rank": {
+      "tags": []
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }
