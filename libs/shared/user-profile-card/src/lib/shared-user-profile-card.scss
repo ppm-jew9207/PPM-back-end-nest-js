@@ -1,29 +1,29 @@
 $location-icon-color: rgba(0, 0, 0, 0.54);
 
 .profile-card {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
     height: 400px;
-    width: 300px;
+    justify-content: space-evenly;
     margin: 5px;
+    width: 300px;
     &-media {
-        width: 75px;
-        height: 75px;
         border-radius: 50%;
+        height: 75px;
         margin: 8.4px auto;
+        width: 75px;
     }
     &-location {
-        display: flex;
-        justify-content: center;
         align-items: center;
+        display: flex;
         font-size: 12px;
+        justify-content: center;
         &-icon {
-            display: flex;
-            justify-content: center;
             align-items: center;
             color: $location-icon-color;
+            display: flex;
+            justify-content: center;
         }
     }
 }
