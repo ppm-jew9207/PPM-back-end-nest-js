@@ -1,38 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { useDispatch } from 'react-redux';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { getToken } from '@ppm/api-requests/authorization';
 
 import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
-
-// TODO: all commented lines below i use in future for login
-const stateSelector = createStructuredSelector({
-  // isLogedIn: loginSelectors.selectIsLogedIn(),
-});
+import { authorizationActions } from '@ppm/data-access/authorization';
+import { PrivateRoutesPath } from '@ppm/common/main';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  // const dispatch = useDispatch();
-  // const { isLoggedIn } = useSelector(stateSelector);
-
-  const [isLoggedIn, setLoginStatus] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(getToken());
-    
-      setLoginStatus(!!getToken);
-  }, []);
-
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn ? (
+        rest.isLoggedIn ? (
           <div>
-            {console.log('on')}
             <Component {...props} />
           </div>
         ) : (
@@ -48,11 +32,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export const App = () => {
+export const App = (props: any) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    console.log('testas authorization');
-    
+    const isTokenSet = !!getToken();
+    if (!isTokenSet) {
+      dispatch(authorizationActions.logInFailed({}));
+    } else {
+      console.log(props);
+
+      // props.history.push(
+      //   `${PrivateRoutesPath.DASHBOARD}${PrivateRoutesPath.DASHBOARD_MENTOR}`
+      // );
+    }
+
+    console.log(isTokenSet);
   });
+
   return (
     <div className="app">
       <BrowserRouter basename="/">
@@ -62,6 +59,7 @@ export const App = () => {
               path={`/${prop.path}`}
               key={prop.path}
               component={prop.component}
+              isLoggedIn={!!getToken()}
             />
           ))}
           {PublicRouter.map((prop) => (
@@ -71,7 +69,6 @@ export const App = () => {
               component={prop.component}
             />
           ))}
-          <Redirect from="/login" to="/mentor/all" />
         </Switch>
       </BrowserRouter>
     </div>

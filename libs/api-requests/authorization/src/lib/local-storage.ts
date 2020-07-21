@@ -6,6 +6,4 @@ export const removeToken = () => {
   localStorage.removeItem('Authorization');
 };
 
-export const getToken = () => {
-  localStorage.getItem('Authorization');
-};
+export const getToken = () => localStorage.getItem('Authorization');
