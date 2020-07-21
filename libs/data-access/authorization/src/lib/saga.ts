@@ -8,8 +8,7 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 export function* logIn(actions){
   try{    
     const result = yield call( login, actions.payload);
-    console.log(result);
-    
+        
     if(!result.success){
       yield put(logInFailed(null));
       removeToken();
