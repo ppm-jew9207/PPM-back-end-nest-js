@@ -21,6 +21,8 @@ export function* logIn(actions){
     }));
 
     saveToken(result.data.token.token);
+    window.location.href = '/mentor/all';
+
 
   }catch (error) {
     yield put(logInFailed(error));
