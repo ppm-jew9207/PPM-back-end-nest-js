@@ -43,7 +43,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
           </Icon>
           {props.location}
         </Typography>
-        <Typography variant="body2" component="p" color="textSecondary" align="center" paragraph>
+        <Typography variant="body2" component="p" align="center" color="textSecondary" paragraph>
           {props.aboutMentor}
         </Typography>
         <Typography variant="subtitle1" component="h5" align="center" color="textSecondary" gutterBottom>
@@ -67,6 +67,3 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
     </Card>
   );
 };
-
-// export default SharedUserProfileCard;
-
