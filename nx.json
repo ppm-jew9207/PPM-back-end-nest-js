@@ -97,6 +97,10 @@
     },
     "shared-registration": {
       "tags": []
+    },
+    "shared-registration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-registration"]
     }
   },
   "affected": {
