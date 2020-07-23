@@ -94,6 +94,9 @@
     },
     "shared-rank": {
       "tags": []
+    },
+    "shared-registration": {
+      "tags": []
     }
   },
   "affected": {

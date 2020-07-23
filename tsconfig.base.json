@@ -50,7 +50,8 @@
       ],
       "@ppm/data-access/authorization": [
         "libs/data-access/authorization/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/registration": ["libs/shared/registration/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
