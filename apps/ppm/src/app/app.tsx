@@ -6,9 +6,6 @@ import { createStructuredSelector } from 'reselect';
 import PrivateRouter from './routes/private';
 import './app.scss';
 
-import { SharedUserProfileCard } from '@ppm/shared/user-profile-card';
-
-
 // TODO: all commented lines below i use in future for login
 const stateSelector = createStructuredSelector({
   // isLogedIn: loginSelectors.selectIsLogedIn(),
