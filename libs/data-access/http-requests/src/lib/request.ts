@@ -1,4 +1,4 @@
-import { removeToken } from './local-storage';
+import { removeToken } from '@ppm/data-access/local-storage';
 
 export class ResponseError extends Error {
   public response: Response;

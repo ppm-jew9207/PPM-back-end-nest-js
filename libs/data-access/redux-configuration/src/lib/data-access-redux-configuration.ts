@@ -10,6 +10,7 @@ import { History } from 'history';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootSaga from './injectedSagas';
 import createReducer from './reducers';
+import { allReducers } from './injectedReducers';
 
 export const configureStore = (
   initialState: ApplicationRootState | {} = {},
@@ -32,7 +33,7 @@ export const configureStore = (
   ) as InjectedStore;
   sagaMiddleware.run(rootSaga);
   store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {};
+  store.injectedReducers = allReducers || {};
 
   store.replaceReducer(createReducer(store.injectedReducers));
 

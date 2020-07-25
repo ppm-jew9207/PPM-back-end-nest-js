@@ -92,13 +92,16 @@
     "features-authorization": {
       "tags": []
     },
-    "api-requests-authorization": {
-      "tags": []
-    },
     "shared-modal": {
       "tags": []
     },
     "shared-rank": {
+      "tags": []
+    },
+    "data-access-local-storage": {
+      "tags": []
+    },
+    "data-access-http-requests": {
       "tags": []
     }
   },

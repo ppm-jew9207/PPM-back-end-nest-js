@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { getToken } from '@ppm/api-requests/authorization';
+import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';

@@ -22,10 +22,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "apps/ppm/src/environments/environment.ts",
-                "with": "apps/ppm/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ppm/src/environments/environment.ts",
+                  "with": "apps/ppm/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -33,11 +35,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -121,10 +125,12 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [{
-                "replace": "apps/api/src/environments/environment.ts",
-                "with": "apps/api/src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -1075,9 +1081,9 @@
         }
       }
     },
-    "api-requests-authorization": {
-      "root": "libs/api-requests/authorization",
-      "sourceRoot": "libs/api-requests/authorization/src",
+    "data-access-local-storage": {
+      "root": "libs/data-access/local-storage",
+      "sourceRoot": "libs/data-access/local-storage/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1086,20 +1092,50 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/api-requests/authorization/tsconfig.lib.json",
-              "libs/api-requests/authorization/tsconfig.spec.json"
+              "libs/data-access/local-storage/tsconfig.lib.json",
+              "libs/data-access/local-storage/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/api-requests/authorization/**/*"
+              "!libs/data-access/local-storage/**/*"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/api-requests/authorization/jest.config.js",
-            "tsConfig": "libs/api-requests/authorization/tsconfig.spec.json",
+            "jestConfig": "libs/data-access/local-storage/jest.config.js",
+            "tsConfig": "libs/data-access/local-storage/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-http-requests": {
+      "root": "libs/data-access/http-requests",
+      "sourceRoot": "libs/data-access/http-requests/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/http-requests/tsconfig.lib.json",
+              "libs/data-access/http-requests/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/http-requests/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/http-requests/jest.config.js",
+            "tsConfig": "libs/data-access/http-requests/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
