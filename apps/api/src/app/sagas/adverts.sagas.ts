@@ -7,6 +7,7 @@ import { UsersService } from '../models/users/users.service';
 import { PermissionsModelService } from '../models/permissions/permissions.service';
 import { UpdatePermission } from '../domains/permissions/commands/update-permission.command';
 import { Roles } from '@ppm/common/main';
+import { CreatePermission } from '../domains/permissions/commands/create-permission.command';
 
 @Injectable()
 export class AdvertsSagas {
@@ -36,8 +37,12 @@ export class AdvertsSagas {
           }
           permission.adverts.push({ _id: event.id, title: event.data.title });
           return new UpdatePermission(permission._id.toHexString(), permission);
+        } else {
+          return new CreatePermission({
+            role: Roles.MENTOR,
+            user: { _id: user._id, name: user.userName },
+          });
         }
-        return null;
       })
     );
   };

@@ -6,9 +6,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -79,6 +79,33 @@
     },
     "features-mentor": {
       "tags": []
+    },
+    "data-access-redux-configuration": {
+      "tags": []
+    },
+    "data-access-authorization": {
+      "tags": []
+    },
+    "shared-search-input": {
+      "tags": []
+    },
+    "features-authorization": {
+      "tags": []
+    },
+    "shared-modal": {
+      "tags": []
+    },
+    "shared-rank": {
+      "tags": []
+    },
+    "data-access-local-storage": {
+      "tags": []
+    },
+    "data-access-http-requests": {
+      "tags": []
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }
