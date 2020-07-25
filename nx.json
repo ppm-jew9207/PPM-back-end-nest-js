@@ -89,10 +89,19 @@
     "shared-search-input": {
       "tags": []
     },
+    "features-authorization": {
+      "tags": []
+    },
     "shared-modal": {
       "tags": []
     },
     "shared-rank": {
+      "tags": []
+    },
+    "data-access-local-storage": {
+      "tags": []
+    },
+    "data-access-http-requests": {
       "tags": []
     },
     "shared-registration": {

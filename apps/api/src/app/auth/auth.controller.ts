@@ -29,7 +29,7 @@ export class AuthController {
   @Post(PrivateRoutesPath.POST_LOGIN)
   @HttpCode(HttpStatus.OK)
   public async login(@Body() login: LoginDto): Promise<IResponse> {
-    try {
+    try {      
       const response = await this.authService.validateLogin(
         login.email,
         login.password
