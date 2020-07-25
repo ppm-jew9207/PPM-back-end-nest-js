@@ -1050,6 +1050,96 @@
           }
         }
       }
+    },
+    "features-authorization": {
+      "root": "libs/features/authorization",
+      "sourceRoot": "libs/features/authorization/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/authorization/tsconfig.lib.json",
+              "libs/features/authorization/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/authorization/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/authorization/jest.config.js",
+            "tsConfig": "libs/features/authorization/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-local-storage": {
+      "root": "libs/data-access/local-storage",
+      "sourceRoot": "libs/data-access/local-storage/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/local-storage/tsconfig.lib.json",
+              "libs/data-access/local-storage/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/local-storage/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/local-storage/jest.config.js",
+            "tsConfig": "libs/data-access/local-storage/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-http-requests": {
+      "root": "libs/data-access/http-requests",
+      "sourceRoot": "libs/data-access/http-requests/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/http-requests/tsconfig.lib.json",
+              "libs/data-access/http-requests/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/http-requests/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/http-requests/jest.config.js",
+            "tsConfig": "libs/data-access/http-requests/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

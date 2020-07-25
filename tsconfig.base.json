@@ -50,6 +50,15 @@
       ],
       "@ppm/data-access/authorization": [
         "libs/data-access/authorization/src/index.ts"
+      ],
+      "@ppm/features/authorization": [
+        "libs/features/authorization/src/index.ts"
+      ],
+      "@ppm/data-access/local-storage": [
+        "libs/data-access/local-storage/src/index.ts"
+      ],
+      "@ppm/data-access/http-requests": [
+        "libs/data-access/http-requests/src/index.ts"
       ]
     }
   },

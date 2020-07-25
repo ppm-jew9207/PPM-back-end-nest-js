@@ -1,3 +1,4 @@
+import { removeToken } from '@ppm/data-access/local-storage';
 
 export class ResponseError extends Error {
   public response: Response;
@@ -29,6 +30,10 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
+  if (response.status === 401) {
+    removeToken();
+  }
+
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -46,7 +51,10 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default async function request(url: string, options?: RequestInit): Promise<{ } | { err: ResponseError }> {
+export async function request(
+  url: string,
+  options?: RequestInit
+): Promise<{} | { err: ResponseError }> {
   const fetchResponse = await fetch(url, options);
   const response = await checkStatus(fetchResponse);
   return parseJSON(response);
