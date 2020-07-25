@@ -152,8 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_users_users_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/users/users.module */ "./apps/api/src/app/models/users/users.module.ts");
 /* harmony import */ var _common_guards_roles_guard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./common/guards/roles.guard */ "./apps/api/src/app/common/guards/roles.guard.ts");
 /* harmony import */ var _sagas_sagas_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sagas/sagas.module */ "./apps/api/src/app/sagas/sagas.module.ts");
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @nestjs/serve-static */ "@nestjs/serve-static");
-/* harmony import */ var _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_nestjs_serve_static__WEBPACK_IMPORTED_MODULE_11__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module '@nestjs/serve-static'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! path */ "path");
 /* harmony import */ var path__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_12__);
 
@@ -176,7 +175,7 @@ let AppModule = class AppModule {
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Module"])({
         imports: [
-            _nestjs_serve_static__WEBPACK_IMPORTED_MODULE_11__["ServeStaticModule"].forRoot({
+            !(function webpackMissingModule() { var e = new Error("Cannot find module '@nestjs/serve-static'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).forRoot({
                 rootPath: Object(path__WEBPACK_IMPORTED_MODULE_12__["join"])(__dirname, '..', 'ppm'),
                 exclude: ['/api*']
             }),
@@ -1274,9 +1273,6 @@ let AdvertsController = class AdvertsController {
     create(dto, request) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const user = request.user;
-            if (!user.roles.includes(_ppm_common_main__WEBPACK_IMPORTED_MODULE_12__["Roles"].MENTOR)) {
-                throw new _nestjs_common__WEBPACK_IMPORTED_MODULE_1__["BadRequestException"](`You don't have permissions to create the advert`);
-            }
             return this.commandBus.execute(new _commands_create_advert_command__WEBPACK_IMPORTED_MODULE_3__["CreateAdvert"](dto, user));
         });
     }
@@ -2700,6 +2696,7 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], UserProfilesController.prototype, "update", null);
 UserProfilesController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])(_ppm_common_main__WEBPACK_IMPORTED_MODULE_13__["PrivateRoutesPath"].USER_PROFILES),
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_6__["ApiTags"])(_ppm_common_main__WEBPACK_IMPORTED_MODULE_13__["PrivateRoutesPath"].USER_PROFILES),
     Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_6__["ApiBearerAuth"])('JWT'),
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["UseGuards"])(Object(_nestjs_passport__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"])('jwt')),
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["UseInterceptors"])(_common_interceptors_logging_interceptor__WEBPACK_IMPORTED_MODULE_8__["LoggingInterceptor"], _common_interceptors_transform_interceptor__WEBPACK_IMPORTED_MODULE_9__["TransformInterceptor"]),
@@ -3991,7 +3988,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_permissions_permissions_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/permissions/permissions.service */ "./apps/api/src/app/models/permissions/permissions.service.ts");
 /* harmony import */ var _domains_permissions_commands_update_permission_command__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../domains/permissions/commands/update-permission.command */ "./apps/api/src/app/domains/permissions/commands/update-permission.command.ts");
 /* harmony import */ var _ppm_common_main__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ppm/common/main */ "./libs/common/main/src/index.ts");
+/* harmony import */ var _domains_permissions_commands_create_permission_command__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../domains/permissions/commands/create-permission.command */ "./apps/api/src/app/domains/permissions/commands/create-permission.command.ts");
 var _a, _b;
+
 
 
 
@@ -4015,7 +4014,12 @@ let AdvertsSagas = class AdvertsSagas {
                     permission.adverts.push({ _id: event.id, title: event.data.title });
                     return new _domains_permissions_commands_update_permission_command__WEBPACK_IMPORTED_MODULE_7__["UpdatePermission"](permission._id.toHexString(), permission);
                 }
-                return null;
+                else {
+                    return new _domains_permissions_commands_create_permission_command__WEBPACK_IMPORTED_MODULE_9__["CreatePermission"]({
+                        role: _ppm_common_main__WEBPACK_IMPORTED_MODULE_8__["Roles"].MENTOR,
+                        user: { _id: user._id, name: user.userName },
+                    });
+                }
             })));
         };
     }
@@ -5502,6 +5506,7 @@ Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], UserProfilesController.prototype, "getByEmail", null);
 UserProfilesController = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["Controller"])(_ppm_common_main__WEBPACK_IMPORTED_MODULE_10__["PrivateRoutesPath"].USER_PROFILES),
+    Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_2__["ApiTags"])(_ppm_common_main__WEBPACK_IMPORTED_MODULE_10__["PrivateRoutesPath"].USER_PROFILES),
     Object(_nestjs_swagger__WEBPACK_IMPORTED_MODULE_2__["ApiBearerAuth"])('JWT'),
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["UseGuards"])(Object(_nestjs_passport__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"])('jwt')),
     Object(_nestjs_common__WEBPACK_IMPORTED_MODULE_1__["UseInterceptors"])(_common_interceptors_logging_interceptor__WEBPACK_IMPORTED_MODULE_4__["LoggingInterceptor"], _common_interceptors_transform_interceptor__WEBPACK_IMPORTED_MODULE_5__["TransformInterceptor"]),
@@ -5905,17 +5910,6 @@ module.exports = require("@nestjs/mongoose");
 /***/ (function(module, exports) {
 
 module.exports = require("@nestjs/passport");
-
-/***/ }),
-
-/***/ "@nestjs/serve-static":
-/*!***************************************!*\
-  !*** external "@nestjs/serve-static" ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@nestjs/serve-static");
 
 /***/ }),
 
