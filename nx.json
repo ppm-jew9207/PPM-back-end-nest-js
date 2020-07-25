@@ -88,6 +88,9 @@
     },
     "shared-search-input": {
       "tags": []
+    },
+    "data-access-adverts-list": {
+      "tags": []
     }
   }
 }
