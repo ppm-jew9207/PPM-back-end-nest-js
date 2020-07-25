@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Person from '@material-ui/icons/Person';
 import {
   Box,
   Grid,
@@ -9,6 +8,7 @@ import {
   InputAdornment,
   Button,
 } from '@material-ui/core';
+import Person from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import PhoneIcon from '@material-ui/icons/Phone';
 import './shared-registration.scss';
@@ -19,6 +19,13 @@ interface RegistrationInterface {
   phone?: string;
 }
 
+interface RegistrationFormData{
+  email: string;
+  password: string;
+  repeatPassword: string;
+  phone?: string;
+}
+
 interface SharedRegistrationProps {
   onSubmit?: (data: RegistrationInterface) => void;
 }
@@ -26,12 +33,7 @@ interface SharedRegistrationProps {
 export const SharedRegistration = (props: SharedRegistrationProps) => {
   const { handleSubmit, register, errors, watch } = useForm();
 
-  const submit = (data: {
-    email: string;
-    password: string;
-    repeatPassword: string;
-    phone?: string;
-  }) => {
+  const submit = (data: RegistrationFormData) => {
     props.onSubmit({
       email: data.email,
       password: data.password,
@@ -43,7 +45,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
     <div className="shared-registration">
       <Grid className="card" container direction="column" justify="center">
         <form autoComplete="off" onSubmit={handleSubmit(submit)}>
-          <Box my={1}>
+          <Box my={1} className="form-field">
             <TextField
               id="email"
               placeholder="Email"
@@ -72,7 +74,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
             {console.log(errors.email)}
           </Box>
 
-          <Box my={1}>
+          <Box my={1} className="form-field">
             <TextField
               id="password"
               placeholder="Password"
@@ -95,7 +97,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
               helperText={!errors.password ? '' : errors.password.message}
             />
           </Box>
-          <Box my={1}>
+          <Box my={1} className="form-field">
             <TextField
               id="repeatPassword"
               placeholder="Repeat Password"
@@ -124,7 +126,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
             {console.log(errors.repeatPassword)}
           </Box>
 
-          <Box my={1}>
+          <Box my={1} className="form-field">
             <TextField
               id="phone"
               name="phone"
