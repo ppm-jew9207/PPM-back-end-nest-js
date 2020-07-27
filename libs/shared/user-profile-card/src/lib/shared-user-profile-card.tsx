@@ -2,9 +2,6 @@ import React from 'react';
 
 import './shared-user-profile-card.scss';
 
-// Import default image:
-import defaultImage from './defaultimage.jpg';
-
 import {
   Card,
   CardContent,
@@ -47,14 +44,12 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
         <Typography variant="h5" component="h2" align="center" gutterBottom>
           {props.fullName}
         </Typography>
-        {props.mentorLocation ? 
-        <Typography variant="subtitle2" component="p" align="center" color="textSecondary" gutterBottom className="profile-card-location">
-          <Icon aria-label="location" className="profile-card-location-icon">
+        {!!props.mentorLocation && 
+        <Typography variant="subtitle2" component="p" align="center" color="textSecondary" gutterBottom className="profile-card-location"> 
+          <Icon aria-label="location" className="profile-card-location-icon"> 
             <RoomIcon style={{ fontSize: 14 }} />
-          </Icon>
-          {props.mentorLocation}
-        </Typography> 
-        : null}        
+          </Icon> {props.mentorLocation} 
+        </Typography>}       
         <Typography variant="body2" component="p" align="center" color="textSecondary" paragraph>
           {props.aboutMentor}
         </Typography>
