@@ -1,0 +1,11 @@
+.rank {
+  display: flex;
+  align-items: center;
+
+  &__summary {
+    span {
+      font-weight: 700;
+      color: #696969;
+    }
+  }
+}

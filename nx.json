@@ -6,9 +6,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -89,8 +89,23 @@
     "shared-search-input": {
       "tags": []
     },
-    "shared-user-profile-card": {
+    "features-authorization": {
+      "tags": []
+    },
+    "shared-modal": {
+      "tags": []
+    },
+    "shared-rank": {
+      "tags": []
+    },
+    "data-access-local-storage": {
+      "tags": []
+    },
+    "data-access-http-requests": {
       "tags": []
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }
