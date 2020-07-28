@@ -3,14 +3,6 @@ import { useForm } from 'react-hook-form';
 import { TextField, Button, Box, Typography } from '@material-ui/core';
 import './shared-create-advert-form.scss';
 
-export interface SharedForgotPasswordFormProps {
-  onSubmit: (advertData: { title: string }) => void;
-  title: string;
-  subtitle: string;
-  submitButtonText: string;
-  inputLabel: string;
-}
-
 export interface SharedCreateAdvertFormProps {
   onSubmit: (advertData: { title: string }) => void;
   title: string;
