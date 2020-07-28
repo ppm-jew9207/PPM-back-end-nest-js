@@ -19,14 +19,14 @@ interface RegistrationInterface {
   phone?: string;
 }
 
-interface RegistrationFormData{
+interface RegistrationFormData {
   email: string;
   password: string;
   repeatPassword: string;
   phone?: string;
 }
 
-interface SharedRegistrationProps {
+export interface SharedRegistrationProps {
   onSubmit?: (data: RegistrationInterface) => void;
 }
 
@@ -58,7 +58,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
                 ),
               }}
               fullWidth
-              type="text"
+              type="email"
               variant="outlined"
               inputRef={register({
                 required: 'Required',
@@ -71,7 +71,6 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
               label={!errors.email ? 'Email *' : 'Error'}
               helperText={!errors.email ? '' : errors.email.message}
             />
-            {console.log(errors.email)}
           </Box>
 
           <Box my={1} className="form-field">
@@ -123,7 +122,6 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
                 !errors.repeatPassword ? '' : errors.repeatPassword.message
               }
             />
-            {console.log(errors.repeatPassword)}
           </Box>
 
           <Box my={1} className="form-field">
@@ -139,7 +137,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
                   </InputAdornment>
                 ),
               }}
-              type="string"
+              type="phone"
               variant="outlined"
               inputRef={register}
               label="Phone"
