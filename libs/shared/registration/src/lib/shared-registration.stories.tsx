@@ -20,5 +20,5 @@ export const primary = () => {
   };
   
 
-  return <SharedRegistration onSubmit = {props.onSubmit}  />;
+  return <SharedRegistration {...props}  />;
 };
