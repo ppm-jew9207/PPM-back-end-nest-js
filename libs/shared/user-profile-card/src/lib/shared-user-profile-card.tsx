@@ -92,3 +92,5 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
     </Card>
   );
 };
+
+export default SharedUserProfileCard;
