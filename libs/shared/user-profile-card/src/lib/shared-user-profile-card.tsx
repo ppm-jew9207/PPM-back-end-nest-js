@@ -53,44 +53,25 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
         <Typography variant="body2" component="p" align="center" color="textSecondary" paragraph>
           {props.aboutMentor}
         </Typography>
-        {props.facebook || props.twitter || props.linkedin || props.instagram ?
+        {!!(props.facebook || props.twitter || props.linkedin || props.instagram) &&
         <Typography variant="subtitle1" component="h5" align="center" color="textSecondary" gutterBottom>
           Get Connected
-        </Typography> 
-        : null}
+        </Typography>}
         <CardActions>
-          {props.facebook ? 
-          <IconButton aria-label="facebook" href={props.facebook}>
-            <FacebookIcon style={{ fontSize: 32, color: '#3b5999' }}/>
-          </IconButton> : 
-          <IconButton aria-label="facebook" disabled>
-            <FacebookIcon style={{ fontSize: 32 }}/>
-          </IconButton>}
-          {props.twitter ?
-          <IconButton aria-label="twitter" href={props.twitter}>
-            <TwitterIcon style={{ fontSize: 32, color: '#55acee' }} />
-          </IconButton> :
-          <IconButton aria-label="twitter" disabled>
-            <TwitterIcon style={{ fontSize: 32 }} />
-          </IconButton>}
-          {props.linkedin ?
-          <IconButton aria-label="linkedin" href={props.linkedin}>
-            <LinkedInIcon style={{ fontSize: 32, color: '#0077B5' }} />
-          </IconButton> :
-          <IconButton aria-label="linkedin" disabled>
-            <LinkedInIcon style={{ fontSize: 32 }} />
-          </IconButton>}
-          {props.instagram ?
-          <IconButton aria-label="instagram" href={props.instagram}>
-            <InstagramIcon style={{ fontSize: 32, color: '#e4405f' }} />
-          </IconButton> :
-          <IconButton aria-label="instagram" disabled>
-            <InstagramIcon style={{ fontSize: 32 }} />
-          </IconButton>}
+          <IconButton aria-label="facebook" href={props.facebook} disabled={!props.facebook}>
+            <FacebookIcon style={{ fontSize: 32, color: props.facebook ? '#3b5999' : 'rgba(0, 0, 0, 0.26)' }} />
+          </IconButton>
+          <IconButton aria-label="twitter" href={props.twitter} disabled={!props.twitter}>
+            <TwitterIcon style={{ fontSize: 32, color: props.twitter ? '#55acee' : 'rgba(0, 0, 0, 0.26)' }} />
+          </IconButton>
+          <IconButton aria-label="linkedin" href={props.linkedin} disabled={!props.linkedin}>
+            <LinkedInIcon style={{ fontSize: 32, color: props.linkedin ? '#0077B5' : 'rgba(0, 0, 0, 0.26)' }} />
+          </IconButton>
+          <IconButton aria-label="instagram" href={props.instagram} disabled={!props.instagram}>
+            <InstagramIcon style={{ fontSize: 32, color: props.instagram ? '#e4405f' : 'rgba(0, 0, 0, 0.26)' }} />
+          </IconButton>
         </CardActions>
       </CardContent>
     </Card>
   );
 };
-
-export default SharedUserProfileCard;

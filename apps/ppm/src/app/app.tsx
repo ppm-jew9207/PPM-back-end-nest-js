@@ -5,8 +5,6 @@ import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 
-import SharedUserProfileCard from '@ppm/shared/user-profile-card';
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -33,7 +31,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
-      <SharedUserProfileCard/>
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (
