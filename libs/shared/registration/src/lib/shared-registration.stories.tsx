@@ -8,17 +8,13 @@ export default {
   component: SharedRegistration,
   title: 'SharedRegistration',
   decorators: [withKnobs, withActions('click')],
-
 };
 
 export const primary = () => {
   const onSubmit = action('onSubmit');
-
-  
   const props: SharedRegistrationProps = {
     onSubmit
   };
   
-
   return <SharedRegistration {...props}  />;
 };
