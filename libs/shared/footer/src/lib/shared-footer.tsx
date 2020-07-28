@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './shared-footer.scss';
 import HomeIcon from '@material-ui/icons/Home';
@@ -11,39 +11,31 @@ import {
   Paper,
 } from '@material-ui/core';
 
+interface MenuInterface {
+  tittle: string;
+  path: string;
+}
+
+interface MenuBox {
+  allMenu: MenuInterface[];
+  title: string;
+}
+
 /* eslint-disable-next-line */
-export interface SharedFooterProps {}
+export interface SharedFooterProps {
+  menu1: MenuBox;
+  menu2: MenuBox;
+  menu3: MenuBox;
+}
 
 export const SharedFooter = (props: SharedFooterProps) => {
-  const [menu, setMenu] = useState({
-    menu1: {
-      allMenu: [
-        { tittle: 'link1', path: '#' },
-        { tittle: 'link2', path: '#' },
-        { tittle: 'link3', path: '#' },
-      ],
-      tiitle: 'Title 1',
-    },
-    menu2: {
-      allMenu: [
-        { tittle: 'link1', path: '#' },
-        { tittle: 'link2', path: '#' },
-        { tittle: 'link3', path: '#' },
-      ],
-      tiitle: 'Title 2',
-    },
-    menu3: {
-      allMenu: [
-        { tittle: 'link1', path: '#' },
-        { tittle: 'link2', path: '#' },
-        { tittle: 'link3', path: '#' },
-      ],
-      tiitle: 'Title 3',
-    },
-  });
+  const [menu, setMenu] = useState<SharedFooterProps>();
+  useEffect(() => {
+    setMenu({ ...props });
+  }, [props]);
   return (
     <Paper className="footer" elevation={3}>
-      <Container maxWidth="75%">
+      <Container maxWidth="xl">
         <Grid container>
           <Grid item xs={3}>
             <Box>
@@ -54,20 +46,23 @@ export const SharedFooter = (props: SharedFooterProps) => {
               </Typography>
             </Box>
           </Grid>
-          {Object.keys(menu).map((menuKey, menuIndex) => (
-            <Grid key={menuIndex} item xs={3}>
-              <Typography variant="body1" color="textPrimary">
-                Title 1
-              </Typography>
-              {menu[menuKey].allMenu.map((item, index) => (
-                <Typography key={index}>
-                  <Link className="footer-link" href={item.path}>
-                    {item.tittle}
-                  </Link>
+          {!!menu &&
+            Object.keys(menu).map((menuKey, menuIndex) => (
+              <Grid key={menuIndex} item xs={3}>
+                <Typography variant="body1" color="textPrimary">
+                  {menu[menuKey].title}
                 </Typography>
-              ))}
-            </Grid>
-          ))}
+                {!!menu[menuKey] &&
+                  !!menu[menuKey].allMenu &&
+                  menu[menuKey].allMenu.map((item, index) => (
+                    <Typography key={index}>
+                      <Link className="footer-link" href={item.path}>
+                        {item.tittle}
+                      </Link>
+                    </Typography>
+                  ))}
+              </Grid>
+            ))}
         </Grid>
       </Container>
       <Container maxWidth="75%">
