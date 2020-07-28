@@ -2,16 +2,11 @@ import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetAdvertsQuery } from './queries/handlers/get-adverts.handler';
 import { GetAdvertQuery } from './queries/handlers/get-advert.handler';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
-import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
-import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
+import { ApiTags } from '@nestjs/swagger';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.ADVERTS)
 @ApiTags(PrivateRoutesPath.ADVERTS)
-@ApiBearerAuth('JWT')
-@UseInterceptors(LoggingInterceptor, TransformInterceptor)
 export class AdvertsController {
   constructor(private readonly queryBus: QueryBus) {}
 
