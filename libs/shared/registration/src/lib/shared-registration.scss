@@ -1,0 +1,21 @@
+.shared-registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+
+  .card {
+    align-self: center;
+    max-width: 400px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .form-field {
+    line-height: 80px;
+  }
+}

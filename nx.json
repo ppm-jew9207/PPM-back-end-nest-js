@@ -107,6 +107,13 @@
     "data-access-http-requests": {
       "tags": []
     },
+    "shared-registration": {
+      "tags": []
+    },
+    "shared-registration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-registration"]
+    },
     "shared-create-advert-form": {
       "tags": []
     }
