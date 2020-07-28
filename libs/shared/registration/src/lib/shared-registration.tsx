@@ -8,9 +8,11 @@ import {
   InputAdornment,
   Button,
 } from '@material-ui/core';
-import Person from '@material-ui/icons/Person';
-import LockIcon from '@material-ui/icons/Lock';
-import PhoneIcon from '@material-ui/icons/Phone';
+import {
+  Person,
+  Lock as LockIcon,
+  Phone as PhoneIcon,
+  } from '@material-ui/icons';
 import './shared-registration.scss';
 
 interface RegistrationInterface {
