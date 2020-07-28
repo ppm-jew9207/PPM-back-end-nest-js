@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import { getAllSuccess, getAllFailed } from './actions';
-import { Adverts } from '../../../redux-configuration/src/lib/until/api';
+import { getAdverts } from '@ppm/data-access/http-requests';
 
 export function* getAll() {
   try {
-    const result = yield call(Adverts.getAdverts);
+    const result = yield call(getAdvert);
     if (!result.data.isArray()) {
       yield put(getAllFailed(null));
     }
