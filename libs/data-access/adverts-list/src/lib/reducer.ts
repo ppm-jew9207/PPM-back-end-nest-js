@@ -26,6 +26,8 @@ export function advertsListReducer(
         list: state.list,
         loading: false,
       };
+    default:
+      return state;
   }
 }
 

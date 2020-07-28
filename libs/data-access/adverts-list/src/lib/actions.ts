@@ -1,8 +1,8 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
 
-export function getAll(payload: any) {
-  return action(ActionTypes.GET_ALL, payload);
+export function getAll() {
+  return action(ActionTypes.GET_ALL);
 }
 
 export function getAllSuccess(payload: any) {
