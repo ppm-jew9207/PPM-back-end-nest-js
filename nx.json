@@ -89,6 +89,9 @@
     "shared-search-input": {
       "tags": []
     },
+    "shared-user-profile-card": {
+      "tags": []
+    },
     "features-authorization": {
       "tags": []
     },
@@ -110,6 +113,9 @@
     "shared-registration-e2e": {
       "tags": [],
       "implicitDependencies": ["shared-registration"]
+    },
+    "shared-create-advert-form": {
+      "tags": []
     }
   },
   "affected": {
