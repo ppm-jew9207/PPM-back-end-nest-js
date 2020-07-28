@@ -106,6 +106,9 @@
     },
     "data-access-http-requests": {
       "tags": []
+    },
+    "shared-create-advert-form": {
+      "tags": []
     }
   },
   "affected": {

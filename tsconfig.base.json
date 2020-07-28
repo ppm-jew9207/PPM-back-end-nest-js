@@ -22,7 +22,9 @@
       "@ppm/shared/top-right-bar": ["libs/shared/top-right-bar/src/index.ts"],
       "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"],
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
-      "@ppm/shared/user-profile-card": ["libs/shared/user-profile-card/src/index.ts"],
+      "@ppm/shared/user-profile-card": [
+        "libs/shared/user-profile-card/src/index.ts"
+      ],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
       ],
@@ -60,6 +62,9 @@
       ],
       "@ppm/data-access/http-requests": [
         "libs/data-access/http-requests/src/index.ts"
+      ],
+      "@ppm/shared/create-advert-form": [
+        "libs/shared/create-advert-form/src/index.ts"
       ]
     }
   },
