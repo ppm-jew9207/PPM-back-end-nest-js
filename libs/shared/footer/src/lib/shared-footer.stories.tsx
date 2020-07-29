@@ -9,27 +9,28 @@ export default {
 const testMenu = {
   menu1: {
     allMenu: [
-      { tittle: 'link1', path: '#' },
-      { tittle: 'link2', path: '#' },
-      { tittle: 'link3', path: '#' },
+      { tittle: 'Github', path: '#' },
+      { tittle: 'Twitter', path: '#' },
+      { tittle: 'StackOverflow', path: '#' },
+      { tittle: 'Team', path: '#' },
     ],
-    title: 'Title 1',
+    title: 'Community',
   },
   menu2: {
     allMenu: [
-      { tittle: 'link1', path: '#' },
-      { tittle: 'link2', path: '#' },
-      { tittle: 'link3', path: '#' },
+      { tittle: 'Support', path: '#' },
+      { tittle: 'Blog', path: '#' },
+      { tittle: 'Material Icons', path: '#' },
     ],
-    title: 'Title 2',
+    title: 'Resources',
   },
   menu3: {
     allMenu: [
-      { tittle: 'link1', path: '#' },
-      { tittle: 'link2', path: '#' },
-      { tittle: 'link3', path: '#' },
+      { tittle: 'About', path: '#' },
+      { tittle: 'Contact Us', path: '#' },
+      { tittle: 'Jobs', path: '#' },
     ],
-    title: 'Title 3',
+    title: 'Company',
   },
 };
 
