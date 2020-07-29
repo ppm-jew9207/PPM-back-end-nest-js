@@ -2,7 +2,7 @@ import { ActionTypes } from './constants';
 import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
-  list: null,
+  list: [],
   loading: false,
 };
 
