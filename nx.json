@@ -6,9 +6,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -91,6 +91,37 @@
     },
     "shared-footer": {
       "tags": []
+    },
+    "shared-user-profile-card": {
+      "tags": []
+    },
+    "features-authorization": {
+      "tags": []
+    },
+    "shared-modal": {
+      "tags": []
+    },
+    "shared-rank": {
+      "tags": []
+    },
+    "data-access-local-storage": {
+      "tags": []
+    },
+    "data-access-http-requests": {
+      "tags": []
+    },
+    "shared-registration": {
+      "tags": []
+    },
+    "shared-registration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-registration"]
+    },
+    "shared-create-advert-form": {
+      "tags": []
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }

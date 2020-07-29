@@ -17,4 +17,9 @@ const selectLoading = () =>
     return subState.loading || false;
   });
 
-export { selectUser, selectLoading };
+const selectIsLogged = () =>
+  createSelector(selectAuthorizationState, (subState) => {
+    return subState.isLoggedIn || false;
+  });
+
+export { selectUser, selectLoading, selectIsLogged };
