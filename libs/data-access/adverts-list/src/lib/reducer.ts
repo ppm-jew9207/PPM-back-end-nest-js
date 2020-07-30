@@ -18,7 +18,7 @@ export function advertsListReducer(
       };
     case ActionTypes.GET_ALL_SUCCESS:
       return {
-        list: action.payload,
+        list: action.payload.list,
         loading: false,
       };
     case ActionTypes.GET_ALL_FAILED:
