@@ -5,7 +5,7 @@ import { getAdverts } from '@ppm/data-access/http-requests';
 
 export function* getAll() {
   try {
-    const result = yield call(getAdvert);
+    const result = yield call(getAdverts);
     if (!result.data.isArray()) {
       yield put(getAllFailed(null));
     }

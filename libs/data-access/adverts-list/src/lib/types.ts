@@ -2,8 +2,13 @@ import { ApplicationRootState } from 'types';
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
+interface AdvertType {
+  title: string;
+  description: string;
+}
+
 interface AdvertListState {
-  readonly list: Array<any>;
+  readonly list: Array<AdvertType>;
   readonly loading: boolean;
 }
 
