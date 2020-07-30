@@ -66,7 +66,8 @@
       ],
       "@ppm/shared/create-advert-form": [
         "libs/shared/create-advert-form/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/left-side-menu": ["libs/shared/left-side-menu/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

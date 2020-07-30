@@ -5,6 +5,8 @@ import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 
+import { SharedLeftSideMenu } from '@ppm/shared/left-side-menu';
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -31,6 +33,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
+      <SharedLeftSideMenu/>
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (
