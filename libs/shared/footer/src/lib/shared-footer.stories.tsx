@@ -7,7 +7,7 @@ export default {
 };
 
 const testMenu = {
-  menu1: {
+  column1: {
     allMenu: [
       { tittle: 'Github', path: '#' },
       { tittle: 'Twitter', path: '#' },
@@ -16,7 +16,7 @@ const testMenu = {
     ],
     title: 'Community',
   },
-  menu2: {
+  column2: {
     allMenu: [
       { tittle: 'Support', path: '#' },
       { tittle: 'Blog', path: '#' },
@@ -24,7 +24,7 @@ const testMenu = {
     ],
     title: 'Resources',
   },
-  menu3: {
+  column3: {
     allMenu: [
       { tittle: 'About', path: '#' },
       { tittle: 'Contact Us', path: '#' },
@@ -35,8 +35,5 @@ const testMenu = {
 };
 
 export const primary = () => {
-  /* eslint-disable-next-line */
-  const props: SharedFooterProps = {};
-
   return <SharedFooter {...testMenu} />;
 };

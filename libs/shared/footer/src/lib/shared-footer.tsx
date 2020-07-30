@@ -21,11 +21,10 @@ interface MenuBox {
   title: string;
 }
 
-/* eslint-disable-next-line */
 export interface SharedFooterProps {
-  menu1: MenuBox;
-  menu2: MenuBox;
-  menu3: MenuBox;
+  column1: MenuBox;
+  column2: MenuBox;
+  column3: MenuBox;
 }
 
 export const SharedFooter = (props: SharedFooterProps) => {
@@ -40,7 +39,7 @@ export const SharedFooter = (props: SharedFooterProps) => {
           <Grid item xs={3}>
             <Box>
               <Typography variant="body1">
-                <Link className="footer-home" color="textPrimary" href="#">
+                <Link className="footer-link" color="textPrimary" href="#">
                   <HomeIcon className="footer-icon" /> PPM
                 </Link>
               </Typography>
@@ -49,7 +48,7 @@ export const SharedFooter = (props: SharedFooterProps) => {
           {!!menu &&
             Object.keys(menu).map((menuKey, menuIndex) => (
               <Grid key={menuIndex} item xs={3}>
-                <Typography className="footer-title" variant="body1">
+                <Typography className="footer-link" variant="body1">
                   {menu[menuKey].title}
                 </Typography>
                 {!!menu[menuKey] &&
