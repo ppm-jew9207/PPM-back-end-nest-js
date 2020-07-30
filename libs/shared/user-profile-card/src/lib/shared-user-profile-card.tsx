@@ -20,7 +20,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import PersonIcon from '@material-ui/icons/Person';
 
 /* eslint-disable-next-line */
-interface SharedUserProfileCardProps {
+export interface SharedUserProfileCardProps {
   mentorImage?: string;
   fullName: string;
   aboutMentor: string;
