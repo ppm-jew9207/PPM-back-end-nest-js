@@ -66,6 +66,9 @@
       ],
       "@ppm/shared/create-advert-form": [
         "libs/shared/create-advert-form/src/index.ts"
+      ],
+      "@ppm/data-access/adverts-list": [
+        "libs/data-access/adverts-list/src/index.ts"
       ]
     }
   },
