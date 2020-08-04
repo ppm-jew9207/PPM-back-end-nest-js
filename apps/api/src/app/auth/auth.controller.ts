@@ -5,7 +5,8 @@ import {
   HttpCode,
   Get,
   Body,
-  Param
+  Param,
+  BadRequestException
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Login } from './interfaces/login.interface';
@@ -52,7 +53,7 @@ export class AuthController {
       if (sent) {
         return new ResponseSuccess('REGISTRATION.USER_REGISTERED_SUCCESSFULLY');
       } else {
-        return new ResponseError('REGISTRATION.ERROR.MAIL_NOT_SENT');
+        throw new BadRequestException('REGISTRATION.ERROR.MAIL_NOT_SENT');
       }
     } catch (error) {
       return new ResponseError('REGISTRATION.ERROR.GENERIC_ERROR', error);

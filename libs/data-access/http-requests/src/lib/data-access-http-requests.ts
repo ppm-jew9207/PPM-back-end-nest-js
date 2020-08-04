@@ -1,5 +1,5 @@
 import { request } from './request';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { PrivateRoutesPath, RegistrationInterface } from '@ppm/common/main';
 
 const headerOptions = {
   'Content-Type': 'application/json',
@@ -13,6 +13,18 @@ const requestOptions = {
 export const login = (data) => {
   const response = request(
     `/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_LOGIN}`,
+    {
+      body: JSON.stringify(data),
+      method: 'POST',
+      ...requestOptions,
+    }
+  );
+  return response;
+};
+
+export const registration = (data: RegistrationInterface) => {
+  const response = request(
+    `/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_REGISTRY}`,
     {
       body: JSON.stringify(data),
       method: 'POST',

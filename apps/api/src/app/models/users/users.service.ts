@@ -36,7 +36,7 @@ export class UsersService {
         newUser.password = await bcrypt.hash(newUser.password, saltRounds);
         const createdUser = new this.model(newUser);
         createdUser.roles = [UserRoles.User];
-        createdUser.userName = `${createdUser.firstName} ${createdUser.lastName}`;
+        createdUser.userName = createdUser.email;
         return createdUser.save();
       } else if (!userRegistered.auth.email.valid) {
         return userRegistered;

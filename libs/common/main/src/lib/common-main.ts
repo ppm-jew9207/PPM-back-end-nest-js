@@ -17,3 +17,13 @@ export interface RouterItem {
   component: any;
   onMenu: boolean;
 }
+
+export interface ApiResponse{
+  success: boolean; 
+  message: string;
+  data?: {
+    response: string;
+    status: number;
+    message: string;
+  }
+}
