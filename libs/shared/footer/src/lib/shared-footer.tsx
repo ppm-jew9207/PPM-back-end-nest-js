@@ -25,6 +25,7 @@ export interface SharedFooterProps {
   column1: MenuBox;
   column2: MenuBox;
   column3: MenuBox;
+  home: string;
 }
 
 export const SharedFooter = (props: SharedFooterProps) => {
@@ -40,7 +41,7 @@ export const SharedFooter = (props: SharedFooterProps) => {
             <Box>
               <Typography variant="body1">
                 <Link className="footer-link" color="textPrimary" href="#">
-                  <HomeIcon className="footer-icon" /> PPM
+                  <HomeIcon className="footer-icon" /> {props.home}
                 </Link>
               </Typography>
             </Box>
