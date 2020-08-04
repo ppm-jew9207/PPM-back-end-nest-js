@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { logInSuccess, logInFailed, registrationFailed, registrationSuccess } from './actions';
-import { saveToken, removeToken } from '@ppm/data-access/local-storage';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { logInSuccess, logInFailed, registrationFailed } from './actions';
+import { saveToken, removeToken, setRegistrationStep } from '@ppm/data-access/local-storage';
+import { PrivateRoutesPath, ApiResponse } from '@ppm/common/main';
 import { login, registration } from '@ppm/data-access/http-requests';
 
 export function* logIn(actions) {
@@ -31,8 +31,10 @@ export function* logIn(actions) {
 
 export function* registrationUser(actions) {
   try {
-    const result = yield call(registration, actions.payload);
-    
+    const result: ApiResponse = yield call(registration, actions.payload);    
+    if(result && result.success){
+      setRegistrationStep(1);
+    }
 
   } catch (error) {
     yield put(registrationFailed(error));

@@ -1,9 +1,10 @@
 import React from 'react';
-import { SharedRegistration, RegistrationInterface } from '@ppm/shared/registration';
+import { SharedRegistration } from '@ppm/shared/registration';
 import { authorizationActions } from '@ppm/data-access/authorization';
 import { useDispatch } from 'react-redux';
 
 import './features-registration.scss';
+import { RegistrationInterface } from '@ppm/common/main';
 
 export const FeaturesRegistration = () => {
   const dispatch = useDispatch();

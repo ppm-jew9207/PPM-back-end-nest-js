@@ -93,11 +93,9 @@ export class AuthService {
       newConsent.email = email;
       newConsent.date = new Date();
       newConsent.registrationForm = [
-        'firstName',
-        'lastName',
         'email',
-        'birthday date',
-        'password'
+        'password',
+        'phone'
       ];
       newConsent.checkboxText = 'I accept privacy policy';
       const privacyPolicyResponse: any = await http
@@ -187,20 +185,20 @@ export class AuthService {
     const model = await this.emailVerificationModel.findOne({ email: email });
 
     if (model && model.emailToken) {
-      const url = `http://${process.env.HOST}:${process.env.PORT}/api/auth/email/verify/${model.emailToken}`;
+      const url = `http://${process.env.HOST}:4200/verify`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
         to: email, // list of receivers (separated by ,)
         subject: 'Registracijos patvirtinimas',
-        text: 'Registracijos patvirtinima',
+        text: 'Registracijos patvirtinimas',
         html:
-          '<b>Sveiki, Registracijos patvirtinimas <br><a href=' +
-          url +
-          '>Patvirtinti  registracija</a></b>'
+          `Sveiki, <br> Registracijos patvirtinimas <br>
+          <b>Registracijos patvirtinimo kodas: ${model.emailToken}</b><br>
+          <a href='${url}'>Registracijos patvirtinimo nuoroda</a>`
       };
 
-      const sent = await new Promise<boolean>(async function(resolve, reject) {
-        return await transporter.sendMail(mailOptions, async (error, info) => {
+      const sent = await new Promise<boolean>( (resolve, reject) => {
+        return transporter.sendMail(mailOptions, async (error, info) => {
           if (error) {
             console.log('Message sent: %s', error);
             return reject(false);
@@ -247,11 +245,11 @@ export class AuthService {
           url +
           '>čia</a></b>'
       };
-      const sended = await new Promise<boolean>(async function(
+      const sended = await new Promise<boolean>( (
         resolve,
         reject
-      ) {
-        return await transporter.sendMail(mailOptions, async (error, info) => {
+      ) => {
+        return transporter.sendMail(mailOptions, async (error, info) => {
           if (error) {
             console.log('Message sent: %s', error);
             return reject(false);
