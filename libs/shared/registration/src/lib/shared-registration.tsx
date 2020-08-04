@@ -15,7 +15,7 @@ import {
   } from '@material-ui/icons';
 import './shared-registration.scss';
 
-interface RegistrationInterface {
+export interface RegistrationInterface {
   email: string;
   password: string;
   phone?: string;

@@ -22,6 +22,22 @@ export const login = (data) => {
   return response;
 };
 
+export const registration = (data: {
+  email: string;
+  password: string;
+  phone?: string;
+}) => {
+  const response = request(
+    `/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_REGISTRY}`,
+    {
+      body: JSON.stringify(data),
+      method: 'POST',
+      ...requestOptions,
+    }
+  );
+  return response;
+};
+
 export const getAdverts = () => {
   const response = request(`/api/${PrivateRoutesPath.ADVERTS}`, {
     method: 'GET',

@@ -10,3 +10,17 @@ export function logInSuccess(payload: any) {
 export function logInFailed(error: any) {
   return action(ActionTypes.LOG_IN_FAILED, error);
 }
+
+export function registration(payload: {
+  email: string;
+  password: string;
+  phone?: string;
+}) {  
+  return action(ActionTypes.REGISTRATION, payload);
+}
+export function registrationSuccess() {
+  return action(ActionTypes.REGISTRATION_SUCCESS);
+}
+export function registrationFailed(error: any) {
+  return action(ActionTypes.REGISTRATION_FAILED, error);
+}
