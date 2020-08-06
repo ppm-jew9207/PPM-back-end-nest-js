@@ -1,0 +1,46 @@
+$hover-color: #9983FC;
+
+.title {
+    margin: 30px 10px !important;
+    width: auto;
+}
+
+.list-item {
+    padding: 5px 50px !important;
+    width: auto !important;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 40px;
+      width: 5px;
+      height: 0;
+    }
+    &:hover {
+        transition: .4s ease;
+        color: $hover-color;
+        font-weight: 900;
+        &::before {
+        transition: .4s ease;
+        height: 100%;
+        background-color: $hover-color;
+        border-radius: 4px;
+        }
+    }
+    &:focus {
+        background-color: transparent !important;
+        &::before {
+          transition: .4s ease;
+          height: 0;
+          background-color: $hover-color;
+          border-radius: 4px;
+        }
+    }
+    
+}
+
+.list-item-text {
+    width: auto !important;
+    margin-left: 10px;
+    position: relative;
+    right: 0;
+}

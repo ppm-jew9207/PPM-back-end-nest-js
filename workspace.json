@@ -1440,19 +1440,22 @@
       "root": "libs/shared/left-side-menu",
       "sourceRoot": "libs/shared/left-side-menu/src",
       "projectType": "library",
-        "schematics": {},
-        "architect": {
-          "lint": {
-            "builder": "@nrwl/linter:lint",
-            "options": {
-              "linter": "eslint",
-              "tsConfig": [
-                "libs/shared/left-side-menu/tsconfig.lib.json",
-                "libs/shared/left-side-menu/tsconfig.spec.json"
-              ],
-              "exclude": [ "**/node_modules/**", "!libs/shared/left-side-menu/**/*"]
-            }
-          },
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/left-side-menu/tsconfig.lib.json",
+              "libs/shared/left-side-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/left-side-menu/**/*"
+            ]
+          }
+        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -1483,16 +1486,17 @@
             "outputPath": "dist/storybook/shared-left-side-menu",
             "config": {
               "configFolder": "libs/shared/left-side-menu/.storybook"
-            },
-            "configurations": {
-              "ci": {
-                "quiet": true
-              }
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
             }
           }
         }
       }
-    },
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
