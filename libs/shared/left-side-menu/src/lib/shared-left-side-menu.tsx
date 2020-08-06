@@ -49,7 +49,8 @@ export const LeftSideMenu = (props: LeftSideMenuProps) => {
       <List>
         {menuItems.map((item, index) => (
           <ListItem button key={index} href={item.path} className="list-item">
-            <ListItemText primary={item.name} className="list-item-text"/>            </ListItem>
+            <ListItemText primary={item.name} className="list-item-text"/>            
+          </ListItem>
         ))}
       </List>
     </div>

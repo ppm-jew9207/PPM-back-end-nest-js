@@ -8,39 +8,43 @@ $hover-color: #9983FC;
 .list-item {
     padding: 5px 50px !important;
     width: auto !important;
+
     &::before {
       content: "";
-      position: absolute;
-      left: 40px;
-      width: 5px;
       height: 0;
+      left: 40px;
+      position: absolute;
+      width: 5px;
     }
+
     &:hover {
-        transition: .4s ease;
         color: $hover-color;
         font-weight: 900;
-        &::before {
         transition: .4s ease;
-        height: 100%;
+
+        &::before {
         background-color: $hover-color;
         border-radius: 4px;
+        height: 100%;
+        transition: .4s ease;
         }
     }
+
     &:focus {
         background-color: transparent !important;
+        
         &::before {
-          transition: .4s ease;
-          height: 0;
           background-color: $hover-color;
           border-radius: 4px;
+          height: 0;
+          transition: .4s ease;
         }
     }
-    
 }
 
 .list-item-text {
-    width: auto !important;
     margin-left: 10px;
     position: relative;
     right: 0;
+    width: auto !important;
 }

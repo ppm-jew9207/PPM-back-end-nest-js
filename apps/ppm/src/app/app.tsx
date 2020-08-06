@@ -5,8 +5,6 @@ import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 
-import { LeftSideMenu } from '@ppm/shared/left-side-menu';
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -33,38 +31,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
-      <LeftSideMenu menuItemsArray={
-        [
-          {
-            "name": "Profile",
-            "path": '/'
-          },
-          {
-            "name": "Password",
-            "path": '/'
-          },
-          {
-            "name": "Certificates",
-            "path": '/'
-          },
-          {
-            "name": "My Orders",
-            "path": '/'
-          },
-          {
-            "name": "Experience",
-            "path": '/'
-          },
-          {
-            "name": "Job Preferences",
-            "path": '/'
-          },
-          {
-            "name": "Blockchain",
-            "path": '/'
-          }
-        ]
-      }/>
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (
