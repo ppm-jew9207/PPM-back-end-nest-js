@@ -70,7 +70,8 @@
       ],
       "@ppm/data-access/adverts-list": [
         "libs/data-access/adverts-list/src/index.ts"
-      ]
+      ],
+      "@ppm/features/adverts": ["libs/features/adverts/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
