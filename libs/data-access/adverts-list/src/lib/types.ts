@@ -7,8 +7,8 @@ export interface AdvertType {
   description: string;
 }
 
-export interface AdvertListState {
-  readonly list: Array<AdvertType>;
+interface AdvertListState {
+  readonly list: AdvertType[];
   readonly loading: boolean;
 }
 

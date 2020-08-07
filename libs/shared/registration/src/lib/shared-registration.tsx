@@ -14,12 +14,7 @@ import {
   Phone as PhoneIcon,
   } from '@material-ui/icons';
 import './shared-registration.scss';
-
-interface RegistrationInterface {
-  email: string;
-  password: string;
-  phone?: string;
-}
+import { RegistrationInterface } from '@ppm/common/main';
 
 interface RegistrationFormData {
   email: string;
