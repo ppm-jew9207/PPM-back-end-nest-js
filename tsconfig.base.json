@@ -71,7 +71,8 @@
       "@ppm/data-access/adverts-list": [
         "libs/data-access/adverts-list/src/index.ts"
       ],
-      "@ppm/features/registration": ["libs/features/registration/src/index.ts"]
+      "@ppm/features/registration": ["libs/features/registration/src/index.ts"],
+      "@ppm/data-access/advert": ["libs/data-access/advert/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -10,13 +10,13 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 export class AdvertsController {
   constructor(private readonly queryBus: QueryBus) {}
 
+  @Get(PrivateRoutesPath.GET_BY_ID)
+  async getById(@Param('id') id: string): Promise<any> {
+    return this.queryBus.execute(new GetAdvertQuery({ id }));
+  }
+
   @Get()
   async findAll(): Promise<any[]> {
     return this.queryBus.execute(new GetAdvertsQuery());
-  }
-
-  @Get(PrivateRoutesPath.GET_BY_ID)
-  async getById(@Param('id') id: string): Promise<any[]> {
-    return this.queryBus.execute(new GetAdvertQuery({ id }));
   }
 }
