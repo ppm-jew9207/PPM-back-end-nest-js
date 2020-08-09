@@ -1,14 +1,14 @@
 import React from 'react';
 import { withKnobs, object } from '@storybook/addon-knobs';
 import {
-  LeftSideMenu,
-  LeftSideMenuProps,
+  SharedLeftSideMenu,
+  SharedLeftSideMenuProps,
 } from './shared-left-side-menu';
 
 export default {
-  component: LeftSideMenu,
-  title: 'LeftSideMenu',
-  decorators: [withKnobs]
+  component: SharedLeftSideMenu,
+  title: 'SharedLeftSideMenu',
+  decorators: [withKnobs],
 };
 
 export const primary = () => {
@@ -47,9 +47,9 @@ export const primary = () => {
   );
 
   /* eslint-disable-next-line */
-  const props: LeftSideMenuProps = {
+  const props: SharedLeftSideMenuProps = {
     menuItemsArray,
   };
 
-  return <LeftSideMenu {...props}/>;
+  return <SharedLeftSideMenu {...props} />;
 };
