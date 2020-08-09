@@ -16,7 +16,7 @@ export interface LeftSideMenuProps {
 
 interface Type {
   name: string;
-  path: string
+  path?: string
 }
 
 export const LeftSideMenu = (props: LeftSideMenuProps) => {

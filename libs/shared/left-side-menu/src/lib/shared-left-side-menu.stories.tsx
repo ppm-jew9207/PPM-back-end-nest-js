@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, object } from '@storybook/addon-knobs';
 import {
   LeftSideMenu,
   LeftSideMenuProps,
@@ -8,42 +8,44 @@ import {
 export default {
   component: LeftSideMenu,
   title: 'LeftSideMenu',
-  decorators: [withKnobs],
+  decorators: [withKnobs]
 };
 
 export const primary = () => {
 
-  const menuItemsArray = 
+  const menuItemsArray = object('Selections array', 
     [
       {
-        "name": "Profile",
-        "path": '/'
+        'name': 'Profile',
+        'path': '/'
       },
       {
-        "name": "Password",
-        "path": '/'
+        'name': 'Password',
+        'path': '/'
       },
       {
-        "name": "Certificates",
-        "path": '/'
+        'name': 'Certificates',
+        'path': '/'
       },
       {
-        "name": "My Orders",
-        "path": '/'
+        'name': 'My Orders',
+        'path': '/'
       },
       {
-        "name": "Experience",
-        "path": '/'
+        'name': 'Experience',
+        'path': '/'
       },
       {
-        "name": "Job Preferences",
-        "path": '/'
+        'name': 'Job Preferences',
+        'path': '/'
       },
       {
-        "name": "Blockchain",
-        "path": '/'
+        'name': 'Blockchain',
+        'path': '/'
       }
     ]
+  );
+
   /* eslint-disable-next-line */
   const props: LeftSideMenuProps = {
     menuItemsArray,
