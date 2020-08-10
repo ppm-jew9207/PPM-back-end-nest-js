@@ -10,20 +10,14 @@ import {
   getByIdSuccess,
   getByIdFailed,
 } from './actions';
-import {
-  getById,
-  create,
-  remove,
-  update,
-} from '@ppm/data-access/http-requests';
+import { post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createAdvert(actions) {
   try {
-    yield call(create, {
-      data: actions.payload,
-      path: PrivateRoutesPath.ADVERTS,
-    });
+    const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+    const data = actions.payload;
+    yield call(post, path, data);
     yield put(
       createSuccess({
         loading: false,
@@ -36,10 +30,9 @@ export function* createAdvert(actions) {
 
 export function* updateAdvert(actions) {
   try {
-    yield call(update, {
-      data: actions.payload,
-      path: PrivateRoutesPath.ADVERTS,
-    });
+    const data = actions.payload;
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+    yield call(post, path, data);
     yield put(
       updateSuccess({
         loading: false,
@@ -52,10 +45,9 @@ export function* updateAdvert(actions) {
 
 export function* removeAdvert(actions) {
   try {
-    const result = yield call(remove, {
-      id: actions.payload,
-      path: PrivateRoutesPath.ADVERTS,
-    });
+    const id = actions.payload;
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/delete/${id}`;
+    const result = yield call(post, path);
     if (!!result) {
       yield put(removeFailed());
     }
@@ -67,10 +59,9 @@ export function* removeAdvert(actions) {
 
 export function* getAdvertById(actions) {
   try {
-    const result = yield call(getById, {
-      id: actions.payload,
-      path: PrivateRoutesPath.ADVERTS,
-    });
+    const id = actions.payload;
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
+    const result = yield call(get, path);
     if (!!result) {
       yield put(getByIdFailed());
     }

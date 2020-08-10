@@ -44,34 +44,17 @@ export const getAdverts = () => {
   return response;
 };
 
-export const create = ({ data, path }) => {
-  const response = request(`/api/${path}`, {
-    body: JSON.stringify(data),
-    method: 'POST',
-    ...requestOptions,
-  });
-  return response;
-};
-
-export const update = ({ data, path }) => {
-  const response = request(`/api/${path}/update/${data.id}`, {
-    body: JSON.stringify(data),
-    method: 'POST',
-    ...requestOptions,
-  });
-  return response;
-};
-
-export const getById = ({ path, id }) => {
-  const response = request(`/api/${path}/${id}`, {
+export const get = (path) => {
+  const response = request(path, {
     method: 'GET',
     ...requestOptions,
   });
   return response;
 };
 
-export const remove = ({ path, id }) => {
-  const response = request(`/api/${path}/delete/${id}`, {
+export const post = (path, data = {}) => {
+  const response = request(path, {
+    body: JSON.stringify(data),
     method: 'POST',
     ...requestOptions,
   });
