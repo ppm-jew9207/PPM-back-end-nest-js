@@ -11,9 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         rest.isLoggedIn ? (
-          <div>
-            <Component {...props} />
-          </div>
+          <Component {...props} />
         ) : (
           <Redirect
             to={{
@@ -33,9 +31,11 @@ export const App = () => {
     <div className="app">
       <BrowserRouter basename="/">
         <Switch>
+          {console.log(PrivateRouter)
+          }
           {PrivateRouter.map((prop) => (
             <PrivateRoute
-              path={`/${prop.path}`}
+              path={prop.path}
               key={prop.path}
               component={prop.component}
               isLoggedIn={!!getToken()}
@@ -43,7 +43,7 @@ export const App = () => {
           ))}
           {PublicRouter.map((prop) => (
             <Route
-              path={`${prop.path}`}
+              path={prop.path}
               key={prop.path}
               component={prop.component}
             />

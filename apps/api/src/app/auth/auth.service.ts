@@ -185,10 +185,10 @@ export class AuthService {
     const model = await this.emailVerificationModel.findOne({ email: email });
 
     if (model && model.emailToken) {
-      const url = `http://${process.env.HOST}:4200/verify`;
+      const url = `http://${process.env.HOST}:4200/registry/${model.emailToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
-        to: email, // list of receivers (separated by ,)
+        to: email,
         subject: 'Registracijos patvirtinimas',
         text: 'Registracijos patvirtinimas',
         html:

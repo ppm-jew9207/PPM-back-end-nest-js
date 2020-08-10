@@ -18,6 +18,7 @@ export enum PrivateRoutesPath {
   POST_LOGIN = '/login',
   POST_REGISTRY = '/registry',
   POST_VERIFY = '/verify/:code',
+  POST_VERIFY_FE = '/verify/',
   POST_RESEND_VERIFY = '/resend-verification/:email',
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_RESET_PASSWORD = '/reset-password',

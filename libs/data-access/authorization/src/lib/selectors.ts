@@ -22,4 +22,9 @@ const selectIsLogged = () =>
     return subState.isLoggedIn || false;
   });
 
-export { selectUser, selectLoading, selectIsLogged };
+const selectRegistrationStep = () =>
+  createSelector(selectAuthorizationState, (subState) => {
+    return subState.registrationStep || 0;
+  });
+
+export { selectUser, selectLoading, selectIsLogged, selectRegistrationStep };

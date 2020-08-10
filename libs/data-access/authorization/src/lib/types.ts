@@ -5,9 +5,11 @@ import { ApplicationRootState } from 'types';
 /* --- STATE --- */
 
 interface AuthState {
-  readonly user: any;
-  readonly isLoggedIn: boolean;
+  readonly user?: any;
+  readonly isLoggedIn?: boolean;
   readonly loading: boolean;
+  readonly registrationStep?: number;
+  
 }
 
 /* --- ACTIONS --- */
