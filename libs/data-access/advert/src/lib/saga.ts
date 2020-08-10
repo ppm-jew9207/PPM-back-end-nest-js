@@ -20,7 +20,7 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createAdvert(actions) {
   try {
-    const result = yield call(create, {
+    yield call(create, {
       data: actions.payload,
       table: PrivateRoutesPath.ADVERTS,
     });
@@ -36,7 +36,7 @@ export function* createAdvert(actions) {
 
 export function* updateAdvert(actions) {
   try {
-    const result = yield call(update, {
+    yield call(update, {
       data: actions.payload,
       table: PrivateRoutesPath.ADVERTS,
     });
@@ -86,10 +86,10 @@ export function* getAdvertById(actions) {
 }
 
 export function* advertSaga() {
-  yield takeEvery(ActionTypes.CREATE, createAdvert);
-  yield takeEvery(ActionTypes.UPDATE, updateAdvert);
-  yield takeEvery(ActionTypes.REMOVE, removeAdvert);
-  yield takeEvery(ActionTypes.GET_BY_ID, getAdvertById);
+  yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
+  yield takeEvery(ActionTypes.ADVERT_UPDATE, updateAdvert);
+  yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
+  yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
 }
 
 export default advertSaga;

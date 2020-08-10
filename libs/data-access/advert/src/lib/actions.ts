@@ -2,49 +2,49 @@ import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
 
 export function create(payload: any) {
-  return action(ActionTypes.CREATE, payload);
+  return action(ActionTypes.ADVERT_CREATE, payload);
 }
 
 export function createSuccess(payload: any) {
-  return action(ActionTypes.CREATE_SUCCESS, payload);
+  return action(ActionTypes.ADVERT_CREATE_SUCCESS, payload);
 }
 
 export function createFailed() {
-  return action(ActionTypes.CREATE_FAILED);
+  return action(ActionTypes.ADVERT_CREATE_FAILED);
 }
 
 export function update(payload: any) {
-  return action(ActionTypes.UPDATE, payload);
+  return action(ActionTypes.ADVERT_UPDATE, payload);
 }
 
 export function updateSuccess(payload: any) {
-  return action(ActionTypes.UPDATE_SUCCESS, payload);
+  return action(ActionTypes.ADVERT_UPDATE_SUCCESS, payload);
 }
 
 export function updateFailed() {
-  return action(ActionTypes.UPDATE_FAILED);
+  return action(ActionTypes.ADVERT_UPDATE_FAILED);
 }
 
 export function remove(id: string) {
-  return action(ActionTypes.REMOVE, id);
+  return action(ActionTypes.ADVERT_REMOVE, id);
 }
 
 export function removeSuccess() {
-  return action(ActionTypes.REMOVE_SUCCESS);
+  return action(ActionTypes.ADVERT_REMOVE_SUCCESS);
 }
 
 export function removeFailed() {
-  return action(ActionTypes.REMOVE_FAILED);
+  return action(ActionTypes.ADVERT_REMOVE_FAILED);
 }
 
 export function getById(id: string) {
-  return action(ActionTypes.GET_BY_ID, id);
+  return action(ActionTypes.ADVERT_GET_BY_ID, id);
 }
 
 export function getByIdSuccess(payload: any) {
-  return action(ActionTypes.GET_BY_ID_SUCCESS, payload);
+  return action(ActionTypes.ADVERT_GET_BY_ID_SUCCESS, payload);
 }
 
 export function getByIdFailed() {
-  return action(ActionTypes.GET_BY_ID_FAILED);
+  return action(ActionTypes.ADVERT_GET_BY_ID_FAILED);
 }

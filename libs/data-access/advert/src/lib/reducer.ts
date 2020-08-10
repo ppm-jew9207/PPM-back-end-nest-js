@@ -11,65 +11,65 @@ export function advertReducer(
   action: ContainerActions
 ): ContainerState {
   switch (action.type) {
-    case ActionTypes.CREATE:
+    case ActionTypes.ADVERT_CREATE:
       return {
         advert: state.advert,
         loading: true,
       };
-    case ActionTypes.CREATE_SUCCESS:
+    case ActionTypes.ADVERT_CREATE_SUCCESS:
       return {
         advert: state.advert,
         loading: false,
       };
-    case ActionTypes.CREATE_FAILED:
+    case ActionTypes.ADVERT_CREATE_FAILED:
       return {
         advert: state.advert,
         loading: false,
       };
 
-    case ActionTypes.UPDATE:
+    case ActionTypes.ADVERT_UPDATE:
       return {
         advert: state.advert,
         loading: true,
       };
-    case ActionTypes.UPDATE_SUCCESS:
+    case ActionTypes.ADVERT_UPDATE_SUCCESS:
       return {
         advert: action.payload.advert,
         loading: false,
       };
-    case ActionTypes.UPDATE_FAILED:
+    case ActionTypes.ADVERT_UPDATE_FAILED:
       return {
         advert: state.advert,
         loading: false,
       };
 
-    case ActionTypes.REMOVE:
+    case ActionTypes.ADVERT_REMOVE:
       return {
         advert: state.advert,
         loading: true,
       };
-    case ActionTypes.REMOVE_SUCCESS:
+    case ActionTypes.ADVERT_REMOVE_SUCCESS:
       return {
         advert: null,
         loading: false,
       };
-    case ActionTypes.REMOVE_FAILED:
+    case ActionTypes.ADVERT_REMOVE_FAILED:
       return {
         advert: state.advert,
         loading: false,
       };
 
-    case ActionTypes.GET_BY_ID:
+    case ActionTypes.ADVERT_GET_BY_ID:
       return {
         advert: state.advert,
         loading: true,
       };
-    case ActionTypes.GET_BY_ID_SUCCESS:
+    case ActionTypes.ADVERT_GET_BY_ID_SUCCESS:
       return {
         advert: action.payload.advert,
         loading: false,
       };
-    case ActionTypes.GET_BY_ID_FAILED:
+    case ActionTypes.ADVERT_GET_BY_ID_FAILED:
       return {
         advert: state.advert,
         loading: false,
