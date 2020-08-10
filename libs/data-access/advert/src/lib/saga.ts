@@ -22,7 +22,7 @@ export function* createAdvert(actions) {
   try {
     yield call(create, {
       data: actions.payload,
-      table: PrivateRoutesPath.ADVERTS,
+      path: PrivateRoutesPath.ADVERTS,
     });
     yield put(
       createSuccess({
@@ -38,7 +38,7 @@ export function* updateAdvert(actions) {
   try {
     yield call(update, {
       data: actions.payload,
-      table: PrivateRoutesPath.ADVERTS,
+      path: PrivateRoutesPath.ADVERTS,
     });
     yield put(
       updateSuccess({
@@ -54,7 +54,7 @@ export function* removeAdvert(actions) {
   try {
     const result = yield call(remove, {
       id: actions.payload,
-      table: PrivateRoutesPath.ADVERTS,
+      path: PrivateRoutesPath.ADVERTS,
     });
     if (!!result) {
       yield put(removeFailed());
@@ -69,7 +69,7 @@ export function* getAdvertById(actions) {
   try {
     const result = yield call(getById, {
       id: actions.payload,
-      table: PrivateRoutesPath.ADVERTS,
+      path: PrivateRoutesPath.ADVERTS,
     });
     if (!!result) {
       yield put(getByIdFailed());

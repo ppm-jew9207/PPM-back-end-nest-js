@@ -44,8 +44,8 @@ export const getAdverts = () => {
   return response;
 };
 
-export const create = ({ data, table }) => {
-  const response = request(`/api/${table}`, {
+export const create = ({ data, path }) => {
+  const response = request(`/api/${path}`, {
     body: JSON.stringify(data),
     method: 'POST',
     ...requestOptions,
@@ -53,8 +53,8 @@ export const create = ({ data, table }) => {
   return response;
 };
 
-export const update = ({ data, table }) => {
-  const response = request(`/api/${table}/update/${data.id}`, {
+export const update = ({ data, path }) => {
+  const response = request(`/api/${path}/update/${data.id}`, {
     body: JSON.stringify(data),
     method: 'POST',
     ...requestOptions,
@@ -62,16 +62,16 @@ export const update = ({ data, table }) => {
   return response;
 };
 
-export const getById = ({ table, id }) => {
-  const response = request(`/api/${table}/${id}`, {
+export const getById = ({ path, id }) => {
+  const response = request(`/api/${path}/${id}`, {
     method: 'GET',
     ...requestOptions,
   });
   return response;
 };
 
-export const remove = ({ table, id }) => {
-  const response = request(`/api/${table}/delete/${id}`, {
+export const remove = ({ path, id }) => {
+  const response = request(`/api/${path}/delete/${id}`, {
     method: 'POST',
     ...requestOptions,
   });
