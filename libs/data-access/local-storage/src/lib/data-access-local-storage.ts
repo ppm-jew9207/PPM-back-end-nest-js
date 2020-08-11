@@ -22,9 +22,7 @@ export const removeToken = () => {
   localStorage.removeItem('Authorization');
 };
 
-export const clearRegistrationData = () => {
-  console.log(localStorage.removeItem('registrationEmail'));
-  
+export const clearRegistrationData = () => {  
   localStorage.removeItem('registrationEmail');
   localStorage.removeItem('registrationStep');
 };
