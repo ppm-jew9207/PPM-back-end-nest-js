@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 import { ApplicationRootState } from 'types';
 
-const selectAdvertsListState = (state: ApplicationRootState) => {
+export const selectAdvertsListState = (state: ApplicationRootState) => {
   return state.advertsList || initialState;
 };
 
