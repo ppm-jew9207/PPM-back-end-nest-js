@@ -1460,6 +1460,33 @@
         }
       }
     },
+    "data-access-advert": {
+      "root": "libs/data-access/advert",
+      "sourceRoot": "libs/data-access/advert/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/advert/tsconfig.lib.json",
+              "libs/data-access/advert/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access/advert/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/advert/jest.config.js",
+            "tsConfig": "libs/data-access/advert/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "features-adverts": {
       "root": "libs/features/adverts",
       "sourceRoot": "libs/features/adverts/src",
