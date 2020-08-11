@@ -11,7 +11,6 @@ import './features-adverts.scss';
 export const FeaturesAdverts = () => {
   const dispatch = useDispatch();
   const advertsState = useSelector(advertsSelectors.selectAdvertsListState);
-  const [loading, setLoading] = useState(true);
   const [adverts, setAdverts] = useState<
     {
       _id: string;
@@ -40,14 +39,11 @@ export const FeaturesAdverts = () => {
 
   useEffect(() => {
     if (!advertsState.loading) {
-      setLoading(false);
       setAdverts(advertsState.list);
-    } else {
-      setLoading(true);
     }
   }, [advertsState]);
 
-  if (loading) return <CircularProgress />;
+  if (advertsState.loading) return <CircularProgress />;
 
   return (
     <div>
