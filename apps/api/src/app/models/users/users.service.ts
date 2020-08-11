@@ -2,32 +2,33 @@ import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User, UserRoles } from './user.interface';
+import { UserLean } from './user.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import * as _ from 'lodash'
 import { SettingsDto } from './dto/settings.dto';
+import { UserRoles } from '@ppm/common/main';
 
 const saltRounds = 10;
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel('User') private readonly model: Model<User>) {}
+    @InjectModel('User') private readonly model: Model<UserLean>) {}
 
   
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<UserLean[]> {
     return await this.model.find().exec();
   }
 
-  async getById(id: string): Promise<User> {
+  async getById(id: string): Promise<UserLean> {
      return this.model.findOne({_id: Types.ObjectId(id)}).exec();
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<UserLean> {
     return await this.model.findOne({email: email}).exec();
   }
 
-  async createNewUser(newUser: CreateUserDto): Promise<User> {     
+  async createNewUser(newUser: CreateUserDto): Promise<UserLean> {     
     
     if(this.isValidEmail(newUser.email) && newUser.password){
       const userRegistered = await this.findByEmail(newUser.email);
@@ -35,7 +36,7 @@ export class UsersService {
       if(!userRegistered){
         newUser.password = await bcrypt.hash(newUser.password, saltRounds);
         const createdUser = new this.model(newUser);
-        createdUser.roles = [UserRoles.User];
+        createdUser.roles = [UserRoles.Student];
         createdUser.userName = createdUser.email;
         return createdUser.save();
       } else if (!userRegistered.auth.email.valid) {
@@ -51,6 +52,7 @@ export class UsersService {
 
   isValidEmail (email : string){
     if(email){
+      // eslint-disable-next-line no-useless-escape
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     } else return false
@@ -75,7 +77,7 @@ export class UsersService {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
-  async updateSettings(settingsDto: SettingsDto): Promise<User> {
+  async updateSettings(settingsDto: SettingsDto): Promise<UserLean> {
     const userFromDb = await this.model.findOne({ email: settingsDto.email});
     if(!userFromDb) throw new HttpException('COMMON.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     

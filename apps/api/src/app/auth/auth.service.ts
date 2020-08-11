@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { JWTService } from './jwt.service';
 import { Model } from 'mongoose';
-import { User } from '../models/users/user.interface';
+import { UserLean } from '../models/users/user.interface';
 import { UserDto } from '../models/users/dto/user.dto';
 import { EmailVerification } from './interfaces/emailverification.interface';
 import { ForgottenPassword } from './interfaces/forgottenpassword.interface';
@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>,
+    @InjectModel('User') private readonly userModel: Model<UserLean>,
     @InjectModel(ViewModels.EMAIL_VERIFICATION)
     private readonly emailVerificationModel: Model<EmailVerification>,
     @InjectModel(ViewModels.FORGOTTEN_PASSWORD)

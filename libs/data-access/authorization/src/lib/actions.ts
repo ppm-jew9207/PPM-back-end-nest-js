@@ -1,12 +1,12 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
-import { RegistrationInterface } from '@ppm/common/main';
+import { RegistrationInterface, User } from '@ppm/common/main';
 
 export function logIn(payload: { email: string; password: string }) {  
   return action(ActionTypes.LOG_IN, payload);
 }
 export function logInSuccess(payload: {
-  user: any;
+  user: User;
   isLoggedIn: boolean;
   loading: boolean;
 }) {
@@ -22,7 +22,7 @@ export function registration(payload: RegistrationInterface) {
 export function registrationSuccess(step: number) {
   return action(ActionTypes.REGISTRATION_SUCCESS, step);
 }
-export function registrationFailed(error: any) {
+export function registrationFailed(error: Error) {
   return action(ActionTypes.REGISTRATION_FAILED, error);
 }
 
@@ -32,6 +32,6 @@ export function verification(code: string) {
 export function verificationSuccess(step: number) {
   return action(ActionTypes.VERIFICATION_SUCCESS, step);
 }
-export function verificationFailed(error: any) {
+export function verificationFailed(error: Error) {
   return action(ActionTypes.VERIFICATION_FAILED, error);
 }

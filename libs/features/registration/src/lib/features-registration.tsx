@@ -59,7 +59,7 @@ export const FeaturesRegistration = (props) => {
 
   return (
     <div className="features-registration">
-      {!loading &&  
+      {loading &&  
         <div className="overlay">
           <div className="overlay__wrapper">
           <CircularProgress className="overlay__spinner" /> 
