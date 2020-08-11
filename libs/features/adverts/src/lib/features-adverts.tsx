@@ -18,7 +18,6 @@ export const FeaturesAdverts = () => {
   const dispatch = useDispatch();
   const { adverts, loading } = useSelector(stateSelector);
 
-  console.log(adverts);
   useEffect(() => {
     dispatch(advertsActions.getAll());
   }, [dispatch]);
