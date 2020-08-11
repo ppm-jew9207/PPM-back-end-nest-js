@@ -1,10 +1,12 @@
 import { request } from './request';
 import { PrivateRoutesPath, RegistrationInterface } from '@ppm/common/main';
+import { getToken } from '@ppm/data-access/local-storage';
 
 const headerOptions = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
   'Access-Control-Allow-Headers': 'Content-Type',
+  Authorization: getToken(),
 };
 const requestOptions = {
   headers: new Headers(headerOptions),
@@ -37,6 +39,23 @@ export const registration = (data: RegistrationInterface) => {
 export const getAdverts = () => {
   const response = request(`/api/${PrivateRoutesPath.ADVERTS}`, {
     method: 'GET',
+    ...requestOptions,
+  });
+  return response;
+};
+
+export const get = (path) => {
+  const response = request(path, {
+    method: 'GET',
+    ...requestOptions,
+  });
+  return response;
+};
+
+export const post = (path, data = {}) => {
+  const response = request(path, {
+    body: JSON.stringify(data),
+    method: 'POST',
     ...requestOptions,
   });
   return response;
