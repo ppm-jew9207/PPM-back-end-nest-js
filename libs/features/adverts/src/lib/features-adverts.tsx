@@ -2,48 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { createStructuredSelector } from 'reselect';
 import {
   advertsActions,
   advertsSelectors,
 } from '@ppm/data-access/adverts-list';
 import './features-adverts.scss';
 
+const stateSelector = createStructuredSelector({
+  adverts: advertsSelectors.selectAdverts(),
+  loading: advertsSelectors.selectLoading(),
+});
+
 export const FeaturesAdverts = () => {
   const dispatch = useDispatch();
-  const advertsState = useSelector(advertsSelectors.selectAdvertsListState);
-  const [adverts, setAdverts] = useState<
-    {
-      _id: string;
-      title: string;
-      description: string;
-      // TODO: should be Date in shared component?
-      createdAt: string;
-      //TODO:
-      // imgUrl: string;
-      // likes: number;
-      // shares: number;
+  const { adverts, loading } = useSelector(stateSelector);
 
-      // TODO: first and last name should be separated
-      creator: {
-        _id: string;
-        name: string;
-        //TODO:
-        //img: string
-      };
-    }[]
-  >([]);
-
+  console.log(adverts);
   useEffect(() => {
     dispatch(advertsActions.getAll());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (!advertsState.loading) {
-      setAdverts(advertsState.list);
-    }
-  }, [advertsState]);
-
-  if (advertsState.loading) return <CircularProgress />;
+  if (loading) return <CircularProgress />;
 
   return (
     <div>
