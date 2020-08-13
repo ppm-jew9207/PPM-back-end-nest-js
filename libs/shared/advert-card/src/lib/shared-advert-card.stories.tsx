@@ -10,7 +10,7 @@ export default {
 export const primary = () => {
   const props: SharedAdvertCardProps = {
     title: text('title', ''),
-    author: object('author', { _id: '', fistName: '', lastName: '', img: '' }),
+    author: object('author', { _id: '', firstName: '', lastName: '', img: '' }),
     createAt: text('createAt', ''),
     description: text('description', ''),
     like: number('like', 0),

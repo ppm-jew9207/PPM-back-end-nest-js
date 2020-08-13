@@ -123,7 +123,13 @@
     "shared-create-advert-form": {
       "tags": []
     },
+    "features-adverts": {
+      "tags": []
+    },
     "features-registration": {
+      "tags": []
+    },
+    "data-access-advert": {
       "tags": []
     }
   },

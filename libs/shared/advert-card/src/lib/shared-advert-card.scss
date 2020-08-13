@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
   }
+
   * {
     margin: 0;
     padding: 0;
@@ -10,6 +11,7 @@
     text-decoration: none;
     outline: none;
   }
+
   background-color: var(--secondary);
   border-radius: 4px;
   padding: 15px;
@@ -21,23 +23,28 @@
       border-radius: 50%;
       display: inline-block;
     }
+
     button {
       padding: 0;
       border: none;
       background: none;
       cursor: pointer;
+
       .card-img {
         border-radius: 50%;
         display: inline-block;
       }
     }
+
     .card-title {
       a {
         span {
           font-weight: bold;
         }
       }
+
       margin-left: 10px;
+
       a {
         color: #4b89c4;
       }
@@ -46,9 +53,11 @@
 
   .card-content {
     margin-top: 10px;
+
     p {
       text-align: justify;
     }
+
     img {
       margin: 10px 0;
       width: 100%;

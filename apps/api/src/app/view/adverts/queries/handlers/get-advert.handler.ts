@@ -12,7 +12,7 @@ export class GetAdvertQuery {
 export class GetAdvertHandler implements IQueryHandler<GetAdvertQuery> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
-  async execute({data}): Promise<AdvertsViewModel> {
+  async execute({ data }): Promise<AdvertsViewModel> {
     return this._advertsViewService.getById(data.id);
   }
 }

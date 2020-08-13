@@ -1,8 +1,6 @@
-import {
-  RouterItem,
-  PrivateRoutesPath,
-} from '@ppm/common/main';
+import { RouterItem, PrivateRoutesPath } from '@ppm/common/main';
 import { FeaturesAuthorization } from '@ppm/features/authorization';
+import { FeaturesAdverts } from '@ppm/features/adverts';
 import { FeaturesRegistration } from '@ppm/features/registration';
 
 const PublicRouter: RouterItem[] = [
@@ -21,13 +19,19 @@ const PublicRouter: RouterItem[] = [
     onMenu: false,
   },
   {
+    path: `/${PrivateRoutesPath.ADVERTS}`,
+    title: null,
+    icon: null,
+    component: FeaturesAdverts,
+    onMenu: false,
+  },
+  {
     path: `${PrivateRoutesPath.POST_REGISTRY}`,
     title: null,
     icon: null,
     component: FeaturesRegistration,
     onMenu: false,
   },
-
 ];
 
 export default PublicRouter;
