@@ -1,4 +1,4 @@
-$hover-color: #9983FC;
+$hover-color: #2196f3;
 
 .title {
     margin: 30px 10px !important;
@@ -32,7 +32,7 @@ $hover-color: #9983FC;
 
     &:focus {
         background-color: transparent !important;
-        
+
         &::before {
           background-color: $hover-color;
           border-radius: 4px;
@@ -47,4 +47,14 @@ $hover-color: #9983FC;
     position: relative;
     right: 0;
     width: auto !important;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+    margin: 10px auto !important;
+    
+    &:hover {
+      color: $hover-color;
+    }
 }

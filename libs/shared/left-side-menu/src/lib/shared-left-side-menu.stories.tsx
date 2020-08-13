@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, object } from '@storybook/addon-knobs';
+import { withKnobs, object, text } from '@storybook/addon-knobs';
 import {
   SharedLeftSideMenu,
   SharedLeftSideMenuProps,
@@ -46,9 +46,11 @@ export const primary = () => {
     ]
   );
 
-  /* eslint-disable-next-line */
+  const title = text('Title', 'Settings');
+
   const props: SharedLeftSideMenuProps = {
     menuItemsArray,
+    title
   };
 
   return <SharedLeftSideMenu {...props} />;

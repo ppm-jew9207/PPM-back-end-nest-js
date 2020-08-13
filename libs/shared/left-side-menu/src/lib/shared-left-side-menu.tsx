@@ -1,89 +1,106 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import './shared-left-side-menu.scss';
 
 import {
-  SwipeableDrawer,
+  Drawer,
   List,
   ListItem,
   Typography,
-  ListItemText
+  ListItemText,
+  IconButton
 } from '@material-ui/core';
 
-export interface SharedLeftSideMenuProps {
-  menuItemsArray: Array<Type>
-}
+import { 
+  ChevronLeft as ChevronLeftIcon,
+  Menu as MenuIcon
+ } from '@material-ui/icons';
 
 interface Type {
   name: string;
-  path?: string
+  path: string
+}
+
+export interface SharedLeftSideMenuProps {
+  title: string,
+  menuItemsArray: Array<Type>
 }
 
 export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
-         const [state, setState] = React.useState({
-           menuOpen: true,
-         });
+  const [state, setState] = useState({
+    menuOpen: false,
+  })
 
-         const menuItems = props.menuItemsArray;
+  const [menuItems, setMenuItems] = useState([]);
 
-         const toggleDrawer = (open: boolean) => (
-           event: React.KeyboardEvent | React.MouseEvent
-         ) => {
-           if (
-             event &&
-             event.type === 'keydown' &&
-             ((event as React.KeyboardEvent).key === 'Tab' ||
-               (event as React.KeyboardEvent).key === 'Shift')
-           ) {
-             return;
-           }
-           setState({ menuOpen: open });
-         };
+  useEffect(() => {
+    setMenuItems(props.menuItemsArray);
+  }, [props]);
 
-         const list = () => (
-           <div
-             role="presentation"
-             onClick={toggleDrawer(false)}
-             onKeyDown={toggleDrawer(false)}
-           >
-             <List>
-               {menuItems.map((item, index) => (
-                 <ListItem
-                   button
-                   key={index}
-                   href={item.path}
-                   className="list-item"
-                 >
-                   <ListItemText
-                     primary={item.name}
-                     className="list-item-text"
-                   />
-                 </ListItem>
-               ))}
-             </List>
-           </div>
-         );
+  const toggleDrawer = (open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
+    setState({ menuOpen: open });
+  };
 
-         return (
-           <div>
-             <SwipeableDrawer
-               open={state.menuOpen}
-               onClose={toggleDrawer(false)}
-               onOpen={toggleDrawer(true)}
-             >
-               <Typography
-                 variant="h4"
-                 component="h2"
-                 align="center"
-                 gutterBottom
-                 className="title"
-               >
-                 Settings
-               </Typography>
-               {list()}
-             </SwipeableDrawer>
-           </div>
-         );
-       };
+  const list = () => (
+    <div
+      role="presentation"
+    >
+      <List>
+        {menuItems.map((item, index) => (
+        <ListItem
+          component='a'
+          button
+          key={index}
+          href={item.path}
+          className="list-item"
+        >
+          <ChevronLeftIcon />
+          <ListItemText
+            primary={item.name}
+            className="list-item-text"
+          />
+        </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+
+  return (
+    <div>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={toggleDrawer(true)}
+        // edge="start"
+        className='button'
+      >
+        <MenuIcon />
+      </IconButton>
+      <Drawer
+        open={state.menuOpen}
+      >
+        <IconButton 
+          onClick={toggleDrawer(false)} 
+          className='button'
+          aria-label="close drawer"
+          >
+          <ChevronLeftIcon />
+        </IconButton>
+        <Typography
+          variant="h4"
+          component="h2"
+          align="center"
+          gutterBottom
+          className="title"
+        >
+          {props.title}
+        </Typography>
+        {list()}
+      </Drawer>
+    </div>
+  );
+};
 
 export default SharedLeftSideMenu;
