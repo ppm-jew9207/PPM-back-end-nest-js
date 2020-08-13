@@ -8,6 +8,7 @@ import { PermissionsDomainModule } from './permissions/permissions.module';
 import { AdvertUpdated } from './adverts/events/advert-updated.event';
 import { PermissionUpdated } from './permissions/events/permission-updated.event';
 import { SettingsDomainModule } from './settings/settings.module';
+import { ImagesDomainModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SettingsDomainModule } from './settings/settings.module';
     PermissionsDomainModule,
     UserProfilesModule,
     SettingsDomainModule,
+    ImagesDomainModule
   ],
   controllers: [],
   providers: [
