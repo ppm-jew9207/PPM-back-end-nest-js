@@ -33,13 +33,16 @@ export function* registrationUser(actions) {
   try {
     const result:ApiResponse = yield call(registration, actions.payload);    
     
-    if(result && (result.success || result.data.response === 'LOGIN.EMAIL_SENDED_RECENTLY')){
-      yield put(
-        registrationSuccess(1)
-      );
-      setRegistrationStep(1);
-      setRegistrationEmail(actions.payload.email);
+    if(result && result.success === false){
+      yield put(registrationFailed({}));
+      throw new Error('Registration failed');
     }
+
+    yield put(
+      registrationSuccess(1)
+    );
+    setRegistrationStep(1);
+    setRegistrationEmail(actions.payload.email);
 
 
   } catch (error) {

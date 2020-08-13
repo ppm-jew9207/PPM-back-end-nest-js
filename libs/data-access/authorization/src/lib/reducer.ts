@@ -39,6 +39,11 @@ export function authorizeReducer(
         registrationStep: 0,
         loading: true
       };
+    case ActionTypes.REGISTRATION_FAILED:
+      return {
+        registrationStep: 0,
+        loading: false
+      };
     case ActionTypes.VERIFICATION_SUCCESS:
       return {
         registrationStep: action.payload,

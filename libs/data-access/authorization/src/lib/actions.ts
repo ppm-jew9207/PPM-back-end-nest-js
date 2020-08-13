@@ -22,7 +22,7 @@ export function registration(payload: RegistrationInterface) {
 export function registrationSuccess(step: number) {
   return action(ActionTypes.REGISTRATION_SUCCESS, step);
 }
-export function registrationFailed(error: Error) {
+export function registrationFailed(error: any) {
   return action(ActionTypes.REGISTRATION_FAILED, error);
 }
 
