@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class JWTService {
-  constructor(@InjectModel('User') private readonly userModel: Model<UserLean>) {}
+  constructor(@InjectModel('User') private readonly _userModel: Model<UserLean>) {}
 
 
   async createToken(email, roles) {
@@ -21,7 +21,7 @@ export class JWTService {
   }
 
   async validateUser(signedUser): Promise<UserLean> {
-    const userFromDb = await this.userModel.findOne({ email: signedUser.email});
+    const userFromDb = await this._userModel.findOne({ email: signedUser.email});
     if (userFromDb) {
         return userFromDb;
     }

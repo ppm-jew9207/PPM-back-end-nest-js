@@ -13,19 +13,19 @@ const saltRounds = 10;
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel('User') private readonly model: Model<UserLean>) {}
+    @InjectModel('User') private readonly _model: Model<UserLean>) {}
 
   
   async findAll(): Promise<UserLean[]> {
-    return await this.model.find().exec();
+    return await this._model.find().exec();
   }
 
   async getById(id: string): Promise<UserLean> {
-     return this.model.findOne({_id: Types.ObjectId(id)}).exec();
+     return this._model.findOne({_id: Types.ObjectId(id)}).exec();
   }
 
   async findByEmail(email: string): Promise<UserLean> {
-    return await this.model.findOne({email: email}).exec();
+    return await this._model.findOne({email: email}).exec();
   }
 
   async createNewUser(newUser: CreateUserDto): Promise<UserLean> {     
@@ -35,7 +35,7 @@ export class UsersService {
       
       if(!userRegistered){
         newUser.password = await bcrypt.hash(newUser.password, saltRounds);
-        const createdUser = new this.model(newUser);
+        const createdUser = new this._model(newUser);
         createdUser.roles = [UserRoles.Student];
         createdUser.userName = createdUser.email;
         return createdUser.save();
@@ -59,7 +59,7 @@ export class UsersService {
   }
 
   async setPassword(email: string, newPassword: string): Promise<boolean> { 
-    const userFromDb = await this.model.findOne({ email: email});
+    const userFromDb = await this._model.findOne({ email: email});
     if(!userFromDb) throw new HttpException('LOGIN.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     
     userFromDb.password = await bcrypt.hash(newPassword, saltRounds);
@@ -78,7 +78,7 @@ export class UsersService {
   }
 
   async updateSettings(settingsDto: SettingsDto): Promise<UserLean> {
-    const userFromDb = await this.model.findOne({ email: settingsDto.email});
+    const userFromDb = await this._model.findOne({ email: settingsDto.email});
     if(!userFromDb) throw new HttpException('COMMON.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     
     userFromDb.settings = userFromDb.settings || {};

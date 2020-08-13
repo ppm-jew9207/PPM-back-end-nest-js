@@ -36,7 +36,7 @@ export const registration = (data: RegistrationInterface) => {
   return response;
 };
 
-export const verify = ( code: string) => {
+export const verify = (code: string) => {
   const response = request(
     `/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_VERIFY_FE}${code}`,
     {

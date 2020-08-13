@@ -31,8 +31,6 @@ export const App = () => {
     <div className="app">
       <BrowserRouter basename="/">
         <Switch>
-          {console.log(PrivateRouter)
-          }
           {PrivateRouter.map((prop) => (
             <PrivateRoute
               path={prop.path}
