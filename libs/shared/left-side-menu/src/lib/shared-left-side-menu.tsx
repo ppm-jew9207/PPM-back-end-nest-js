@@ -48,7 +48,7 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
       role="presentation"
     >
       <List>
-        {menuItems.map((item, index) => (
+        {!!menuItems && menuItems.map((item, index) => (
         <ListItem
           component='a'
           button
