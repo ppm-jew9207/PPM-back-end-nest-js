@@ -7,7 +7,6 @@ import { ViewModels } from '../../helpers/constants';
 import {
   CategoriesViewModel,
   CreateCategoryPayload,
-  RemoveCategoryPayload,
   UpdateCategoryPayload,
 } from './categories.interface';
 
@@ -21,25 +20,26 @@ export class CategoriesModelService {
     return this._model.find().exec();
   }
 
-  async getById(id: string): Promise<CategoriesViewModel[]> {
-    return this._model.find({ _id: Types.ObjectId(id) }).exec();
+  async getById(id: string): Promise<CategoriesViewModel> {
+    return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
   }
 
-  async create(id: string, data: CreateCategoryPayload) {
+  // Neaisku
+  async create(id: string, data: CreateCategoryPayload): Promise<void> {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async update(id: string, data: UpdateCategoryPayload) {
+  async update(id: string, data: UpdateCategoryPayload): Promise<void> {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async remove({ id }: RemoveCategoryPayload) {
+  async remove(id: string): Promise<void> {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
 }

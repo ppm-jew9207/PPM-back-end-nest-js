@@ -12,13 +12,13 @@ export class RemoveAdvert {
 export class RemoveAdvertHandler implements ICommandHandler<RemoveAdvert> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute({ data }: RemoveAdvert) {
+  async execute({ data }: RemoveAdvert): Promise<Boolean> {
     const aggregate = new AdvertsAggregate();
     aggregate.apply(new AdvertRemoved(data));
 
     const advert = this._publisher.mergeObjectContext(aggregate);
     advert.commit();
 
-    return null;
+    return true;
   }
 }

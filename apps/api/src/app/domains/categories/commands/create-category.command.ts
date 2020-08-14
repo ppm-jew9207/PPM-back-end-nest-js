@@ -13,7 +13,7 @@ export class CreateCategory {
 export class CreateCategoryHandler implements ICommandHandler<CreateCategory> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute({ data }: CreateCategory) {
+  async execute({ data }: CreateCategory): Promise<Boolean> {
     if (!data.title) {
       throw new BadRequestException('Title is required!');
     }
@@ -30,6 +30,6 @@ export class CreateCategoryHandler implements ICommandHandler<CreateCategory> {
     const category = this._publisher.mergeObjectContext(aggregate);
     category.commit();
 
-    return null;
+    return true;
   }
 }

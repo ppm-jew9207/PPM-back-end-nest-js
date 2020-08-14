@@ -13,6 +13,7 @@ import { SettingsViewModule } from './settings/settings.module';
     UserProfileViewModule,
     SettingsViewModule,
     PermissionsViewModule,
+    AdvertsViewModule,
   ],
   controllers: [],
   providers: [],

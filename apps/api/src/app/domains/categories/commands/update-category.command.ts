@@ -12,13 +12,13 @@ export class UpdateCategory {
 export class UpdateCategoryHandler implements ICommandHandler<UpdateCategory> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute({ data }: UpdateCategory) {
+  async execute({ data }: UpdateCategory): Promise<Boolean> {
     const aggregate = new CategoriesAggregate();
     aggregate.apply(new CategoryUpdated(data));
 
     const category = this._publisher.mergeObjectContext(aggregate);
     category.commit();
 
-    return null;
+    return true;
   }
 }

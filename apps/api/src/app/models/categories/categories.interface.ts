@@ -1,13 +1,10 @@
-import { Document } from "mongoose";
-
-export interface LeanCategoriesView {
-  _id: string;
+import { Document } from 'mongoose';
+export interface CategoryPayload {
   title: string;
   value: string;
 }
-
-export interface GetCategoryPayload {
-  id: string;
+export interface LeanCategoriesView extends CategoryPayload {
+  _id: string;
 }
 
 export interface CreateCategoryPayload {
@@ -17,15 +14,6 @@ export interface CreateCategoryPayload {
 
 export interface UpdateCategoryPayload extends CategoryPayload {
   id: string;
-}
-
-export interface RemoveCategoryPayload {
-  id: string;
-}
-
-export interface CategoryPayload {
-  title: string;
-  value: string;
 }
 
 export interface CategoryRef {

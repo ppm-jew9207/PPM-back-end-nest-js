@@ -6,6 +6,7 @@ export interface LeanAdvertsView {
   title: string;
   description: string;
   category: string;
+  imageUrl: string;
   creator: UserRef;
 }
 
@@ -18,6 +19,7 @@ export interface CreateAdvertPayload {
   description?: string;
   category: string;
   creator: UserRef;
+  imageUrl?: string;
 }
 
 export interface UpdateAdvertPayload extends AdvertPayload {
@@ -32,12 +34,15 @@ export interface AdvertPayload {
   title: string;
   description?: string;
   category: string;
+  imageUrl?: string;
 }
 
 export interface AdvertRef {
   _id: string;
   title: string;
   category: string;
+  description: string;
+  imageUrl: string;
 }
 
 export type AdvertsViewModel = LeanAdvertsView & Document;

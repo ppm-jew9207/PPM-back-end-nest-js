@@ -31,7 +31,7 @@ export class CategoriesController {
   constructor(private readonly commandBus: CommandBus) {}
 
   @Post()
-  async create(@Body() dto: CreateCategoryPayloadDto, @Req() request: any) {
+  async create(@Body() dto: CreateCategoryPayloadDto): Promise<Boolean> {
     return this.commandBus.execute(new CreateCategory(dto));
   }
 
@@ -48,7 +48,7 @@ export class CategoriesController {
 
   @Post(PrivateRoutesPath.POST_DELETE)
   @HttpCode(HttpStatus.OK)
-  async remove(@Param('id') id: string) {
-    return this.commandBus.execute(new RemoveCategory({ id }));
+  async remove(@Param('id') id: string): Promise<Boolean> {
+    return this.commandBus.execute(new RemoveCategory(id));
   }
 }
