@@ -5,6 +5,7 @@ export interface LeanAdvertsView {
   _id: string;
   title: string;
   description: string;
+  category: string;
   creator: UserRef;
 }
 
@@ -15,10 +16,11 @@ export interface GetAdvertPayload {
 export interface CreateAdvertPayload {
   title: string;
   description?: string;
+  category: string;
   creator: UserRef;
 }
 
-export interface UpdateAdvertPayload extends AdvertPayload{
+export interface UpdateAdvertPayload extends AdvertPayload {
   id: string;
 }
 
@@ -29,11 +31,13 @@ export interface RemoveAdvertPayload {
 export interface AdvertPayload {
   title: string;
   description?: string;
+  category: string;
 }
 
 export interface AdvertRef {
   _id: string;
   title: string;
+  category: string;
 }
 
 export type AdvertsViewModel = LeanAdvertsView & Document;

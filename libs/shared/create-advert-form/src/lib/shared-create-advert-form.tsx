@@ -1,33 +1,118 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { TextField, Button, Box, Typography } from '@material-ui/core';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  MenuItem,
+  FormControl,
+  Select,
+  InputLabel,
+} from '@material-ui/core';
 import './shared-create-advert-form.scss';
+import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
-export interface SharedCreateAdvertFormProps {
-  onSubmit: (advertData: { title: string }) => void;
+export interface AdvertData {
   title: string;
   submitButtonText: string;
   titleInputLabel: string;
   descriptionInputLabel: string;
+  category: string;
+  imageUrl: string;
+}
+export interface Category {
+  title: string;
+  value: string;
+  _id: string;
+}
+
+export interface SharedCreateAdvertFormProps {
+  onSubmit: (advertData: {
+    title: string;
+    description: string;
+    advertImage: FileList;
+    category: string;
+  }) => void;
+  data: AdvertData;
+  categories: Category[];
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
-  const { handleSubmit, register, control, errors } = useForm();
+  const [uploadedImg, setUploadedImg] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [data, setData] = useState(null);
 
-  return (
+  useEffect(() => {
+    if (!data) setData(props.data);
+    if (!categories.length) setCategories(props.categories);
+  }, [props]);
+
+  const onFileLoad = (e) => {
+    const file = e.currentTarget.files[0];
+    let fileReader = new FileReader();
+    fileReader.onload = () => {
+      setUploadedImg(fileReader.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
+  const { handleSubmit, register, control, errors } = useForm();
+  return !data ? (
+    <div>Loading...</div>
+  ) : (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
-        {props.title}
+        {data.title}
       </Typography>
 
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(data.onSubmit)}>
+        <div
+          className="inner-container"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
+            <TextField
+              inputRef={register({})}
+              type="file"
+              id="file-browser-input"
+              name="advertImage"
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onDrop={onFileLoad.bind(this)}
+              onChange={onFileLoad.bind(this)}
+            />
+            <div className="files-preview-container">
+              <img
+                className="files-preview-container__image"
+                src={uploadedImg || data.imageUrl}
+              />
+            </div>
+            <div className="helper-text">
+              <Typography
+                variant="body1"
+                component="p"
+                align="center"
+                gutterBottom
+              >
+                Drag and Drop Images Here
+              </Typography>
+              <SystemUpdateAltIcon display="inline" />
+            </div>
+          </div>
+        </div>
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
           id="title"
-          label={props.titleInputLabel}
+          label={data.title}
           type="text"
           name="title"
           autoComplete="title"
@@ -43,7 +128,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           margin="normal"
           fullWidth
           id="description"
-          label={props.descriptionInputLabel}
+          label={data.descriptionInputLabel}
           type="text"
           name="description"
           autoComplete="description"
@@ -52,8 +137,45 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           multiline
           rows={8}
         />
-        <Button fullWidth variant="contained" color="primary" type="submit">
-          {props.submitButtonText}
+        <FormControl
+          variant="outlined"
+          fullWidth
+          className="category"
+          margin="normal"
+        >
+          <InputLabel id="category-label">Category</InputLabel>
+          <Controller
+            variant="outlined"
+            name="category"
+            defaultValue={data.category}
+            control={control}
+            onChange={([selected]) => {
+              return selected;
+            }}
+            as={
+              <Select id="category" variant="outlined">
+                {!!categories &&
+                  categories.map((category) => {
+                    return (
+                      <MenuItem key={category._id} value={category.value}>
+                        {category.title}
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+            }
+            fullWidth
+          />
+        </FormControl>
+
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          type="submit"
+          className="submit-form"
+        >
+          {data.submitButtonText}
         </Button>
       </form>
     </Box>
