@@ -6,7 +6,7 @@ import { Types } from 'mongoose';
 import { ViewModels } from '../../helpers/constants';
 import {
   CategoriesViewModel,
-  CreateCategoryPayload,
+  CategoryPayload,
   UpdateCategoryPayload,
 } from './categories.interface';
 
@@ -25,7 +25,7 @@ export class CategoriesModelService {
   }
 
   // Neaisku
-  async create(id: string, data: CreateCategoryPayload): Promise<void> {
+  async create(id: string, data: CategoryPayload): Promise<void> {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,

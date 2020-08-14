@@ -7,11 +7,6 @@ export interface LeanCategoriesView extends CategoryPayload {
   _id: string;
 }
 
-export interface CreateCategoryPayload {
-  title: string;
-  value: string;
-}
-
 export interface UpdateCategoryPayload extends CategoryPayload {
   id: string;
 }

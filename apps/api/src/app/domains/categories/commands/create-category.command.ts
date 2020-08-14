@@ -4,7 +4,7 @@ import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
 import { CreateCategoryPayloadDto } from '../../../models/categories/dtos/create-category.dto';
 import { Inject, BadRequestException } from '@nestjs/common';
 import { CategoryCreated } from '../events/category-created.event';
-import { CreateCategoryPayload } from '../../../models/categories/categories.interface';
+import { CategoryPayload } from '../../../models/categories/categories.interface';
 
 export class CreateCategory {
   constructor(public data: CreateCategoryPayloadDto) {}
@@ -21,7 +21,7 @@ export class CreateCategoryHandler implements ICommandHandler<CreateCategory> {
     if (!data.value) {
       throw new BadRequestException('Value is required!');
     }
-    const categoryData: CreateCategoryPayload = {
+    const categoryData: CategoryPayload = {
       ...data,
     };
     const aggregate = new CategoriesAggregate();
