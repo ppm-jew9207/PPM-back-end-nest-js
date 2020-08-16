@@ -24,7 +24,6 @@ export class CategoriesModelService {
     return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
   }
 
-  // Neaisku
   async create(id: string, data: CategoryPayload): Promise<void> {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
