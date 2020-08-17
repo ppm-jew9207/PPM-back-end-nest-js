@@ -12,6 +12,13 @@ const PublicRouter: RouterItem[] = [
     onMenu: false,
   },
   {
+    path: `${PrivateRoutesPath.POST_REGISTRY}/:code`,
+    title: null,
+    icon: null,
+    component: FeaturesRegistration,
+    onMenu: false,
+  },
+  {
     path: `/${PrivateRoutesPath.ADVERTS}`,
     title: null,
     icon: null,

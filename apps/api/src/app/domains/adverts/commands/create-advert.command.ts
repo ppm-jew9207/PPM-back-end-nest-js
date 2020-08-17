@@ -4,12 +4,12 @@ import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
 import { CreateAdvertPayloadDto } from '../../../models/adverts/dtos/create-advert.dto';
 import { Inject, BadRequestException } from '@nestjs/common';
 import { AdvertCreated } from '../events/advert-created.event';
-import { User } from '../../../models/users/user.interface';
+import { UserLean } from '../../../models/users/user.interface';
 import { CreateAdvertPayload } from '../../../models/adverts/adverts.interface';
 import { UsersService } from '../../../models/users/users.service';
 
 export class CreateAdvert {
-  constructor(public data: CreateAdvertPayloadDto, public user: User) {}
+  constructor(public data: CreateAdvertPayloadDto, public user: UserLean) {}
 }
 @CommandHandler(CreateAdvert)
 export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
