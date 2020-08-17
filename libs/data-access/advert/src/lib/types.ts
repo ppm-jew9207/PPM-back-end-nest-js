@@ -8,7 +8,7 @@ export interface AdvertType {
 }
 
 interface AdvertState {
-  readonly advert: AdvertType;
+  readonly advert?: AdvertType;
   readonly loading: boolean;
 }
 

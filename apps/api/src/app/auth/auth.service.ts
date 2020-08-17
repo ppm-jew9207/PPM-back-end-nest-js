@@ -185,7 +185,7 @@ export class AuthService {
     const model = await this._emailVerificationModel.findOne({ email: email });
 
     if (model && model.emailToken) {
-      const url = `http://${process.env.HOST}:4200/registry/${model.emailToken}`;
+      const url = `${process.env.HOST}:4200/registry/${model.emailToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
         to: email,
@@ -234,7 +234,7 @@ export class AuthService {
     const tokenModel = await this.createForgottenPasswordToken(email);
 
     if (tokenModel && tokenModel.newPasswordToken) {
-      const url = `http://${process.env.HOST}:${process.env.PORT}/api/auth/email/reset-password/${tokenModel.newPasswordToken}`;
+      const url = `${process.env.HOST}:${process.env.PORT}/api/auth/email/reset-password/${tokenModel.newPasswordToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
         to: email, // list of receivers (separated by ,)

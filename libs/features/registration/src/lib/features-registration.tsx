@@ -25,7 +25,7 @@ const stateSelector = createStructuredSelector({
   loading: authorizationSelectors.selectLoading()
 });
 
-export const FeaturesRegistration = (props) => {
+export const FeaturesRegistration = (props: {history: object}) => {
   const dispatch = useDispatch();
   const { registrationStep, loading } = useSelector(stateSelector);
   const {code} = useParams();
@@ -42,7 +42,7 @@ export const FeaturesRegistration = (props) => {
     window.location.href = PrivateRoutesPath.POST_REGISTRY;
   }
 
-  const getStepContent = (stepIndex) => {
+  const getStepContent = (stepIndex: number) => {
     switch (stepIndex) {
       case 0:
         return <SharedRegistration onSubmit={registration}/>;
