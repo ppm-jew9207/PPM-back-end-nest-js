@@ -29,8 +29,6 @@ export interface SharedLeftSideMenuProps {
 export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const menuItems = props.menuItemsArray;
-
   const toggleDrawer = (open: boolean) => {
     setMenuOpen(open);
   };
@@ -40,7 +38,7 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
       role="presentation"
     >
       <List>
-        {!!menuItems && menuItems.map((item, index) => (
+        {!!props.menuItemsArray && props.menuItemsArray.map((item, index) => (
         <ListItem
           component='a'
           button
