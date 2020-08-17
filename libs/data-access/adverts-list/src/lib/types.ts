@@ -2,13 +2,13 @@ import { ApplicationRootState } from 'types';
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
-interface AdvertType {
+export interface AdvertType {
   title: string;
   description: string;
 }
 
 interface AdvertListState {
-  readonly list: Array<AdvertType>;
+  readonly list: AdvertType[];
   readonly loading: boolean;
 }
 

@@ -125,6 +125,15 @@
     },
     "shared-left-side-menu": {
       "tags": []
+    },
+    "features-adverts": {
+      "tags": []
+    },
+    "features-registration": {
+      "tags": []
+    },
+    "data-access-advert": {
+      "tags": []
     }
   },
   "affected": {

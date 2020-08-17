@@ -32,6 +32,7 @@ const testMenu = {
     ],
     title: 'Company',
   },
+  home: 'PPM',
 };
 
 export const primary = () => {

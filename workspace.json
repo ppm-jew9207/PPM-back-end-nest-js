@@ -1436,6 +1436,63 @@
         }
       }
     },
+    "features-registration": {
+      "root": "libs/features/registration",
+      "sourceRoot": "libs/features/registration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/registration/tsconfig.lib.json",
+              "libs/features/registration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/registration/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/registration/jest.config.js",
+            "tsConfig": "libs/features/registration/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-advert": {
+      "root": "libs/data-access/advert",
+      "sourceRoot": "libs/data-access/advert/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/advert/tsconfig.lib.json",
+              "libs/data-access/advert/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access/advert/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/advert/jest.config.js",
+            "tsConfig": "libs/data-access/advert/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-left-side-menu": {
       "root": "libs/shared/left-side-menu",
       "sourceRoot": "libs/shared/left-side-menu/src",
@@ -1492,6 +1549,33 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      }
+    },
+    "features-adverts": {
+      "root": "libs/features/adverts",
+      "sourceRoot": "libs/features/adverts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/adverts/tsconfig.lib.json",
+              "libs/features/adverts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/adverts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/adverts/jest.config.js",
+            "tsConfig": "libs/features/adverts/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

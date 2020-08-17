@@ -1,8 +1,8 @@
-import { UpdateUserProfile } from '../../../models/userProfiles/user-profile.interface';
+import { UserProfile } from '../../../models/userProfiles/user-profile.interface';
 
 export class UserProfileUpdated {
   constructor(
     public readonly id: string,
-    public readonly userProfile: UpdateUserProfile
+    public readonly userProfile: UserProfile
   ) {}
 }
