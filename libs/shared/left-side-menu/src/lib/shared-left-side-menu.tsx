@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import './shared-left-side-menu.scss';
 
@@ -27,20 +27,12 @@ export interface SharedLeftSideMenuProps {
 }
 
 export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
-  const [state, setState] = useState({
-    menuOpen: false,
-  })
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const [menuItems, setMenuItems] = useState([]);
+  const menuItems = props.menuItemsArray;
 
-  useEffect(() => {
-    setMenuItems(props.menuItemsArray);
-  }, [props]);
-
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
-  ) => {
-    setState({ menuOpen: open });
+  const toggleDrawer = (open: boolean) => {
+    setMenuOpen(open);
   };
 
   const list = () => (
@@ -72,20 +64,20 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
       <IconButton
         color="inherit"
         aria-label="open drawer"
-        onClick={toggleDrawer(true)}
-        // edge="start"
+        onClick={() => toggleDrawer(true)}
+        edge="start"
         className='button'
       >
         <MenuIcon />
       </IconButton>
       <Drawer
-        open={state.menuOpen}
+        open={isMenuOpen}
       >
         <IconButton 
-          onClick={toggleDrawer(false)} 
+          onClick={() => toggleDrawer(false)} 
           className='button'
           aria-label="close drawer"
-          >
+        >
           <ChevronLeftIcon />
         </IconButton>
         <Typography
