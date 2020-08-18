@@ -22,10 +22,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "apps/ppm/src/environments/environment.ts",
-                "with": "apps/ppm/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ppm/src/environments/environment.ts",
+                  "with": "apps/ppm/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -33,11 +35,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -121,10 +125,12 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [{
-                "replace": "apps/api/src/environments/environment.ts",
-                "with": "apps/api/src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -1509,6 +1515,36 @@
           "options": {
             "jestConfig": "libs/features/adverts/jest.config.js",
             "tsConfig": "libs/features/adverts/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-user-profile": {
+      "root": "libs/data-access/user-profile",
+      "sourceRoot": "libs/data-access/user-profile/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/user-profile/tsconfig.lib.json",
+              "libs/data-access/user-profile/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/user-profile/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/user-profile/jest.config.js",
+            "tsConfig": "libs/data-access/user-profile/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
