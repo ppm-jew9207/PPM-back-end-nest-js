@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UpdateUserProfile } from '../user-profile.interface';
+import { UserProfile } from '../user-profile.interface';
 
-export class UpdateUserProfilePayloadDto implements UpdateUserProfile {
+export class UpdateUserProfilePayloadDto implements UserProfile {
   @ApiProperty()
   public readonly type: string;
   @ApiProperty()

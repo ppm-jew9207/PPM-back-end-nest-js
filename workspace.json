@@ -1492,6 +1492,93 @@
           }
         }
       }
+    },
+    "shared-left-side-menu": {
+      "root": "libs/shared/left-side-menu",
+      "sourceRoot": "libs/shared/left-side-menu/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/left-side-menu/tsconfig.lib.json",
+              "libs/shared/left-side-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/left-side-menu/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/left-side-menu/jest.config.js",
+            "tsConfig": "libs/shared/left-side-menu/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/left-side-menu/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-left-side-menu",
+            "config": {
+              "configFolder": "libs/shared/left-side-menu/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "features-adverts": {
+      "root": "libs/features/adverts",
+      "sourceRoot": "libs/features/adverts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/adverts/tsconfig.lib.json",
+              "libs/features/adverts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/adverts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/adverts/jest.config.js",
+            "tsConfig": "libs/features/adverts/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

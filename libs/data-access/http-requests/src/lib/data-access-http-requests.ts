@@ -36,6 +36,17 @@ export const registration = (data: RegistrationInterface) => {
   return response;
 };
 
+export const verify = (code: string) => {
+  const response = request(
+    `/api/${PrivateRoutesPath.AUTH}${PrivateRoutesPath.POST_VERIFY_FE}${code}`,
+    {
+      method: 'GET',
+      ...requestOptions,
+    }
+  );
+  return response;
+};
+
 export const getAdverts = () => {
   const response = request(`/api/${PrivateRoutesPath.ADVERTS}`, {
     method: 'GET',

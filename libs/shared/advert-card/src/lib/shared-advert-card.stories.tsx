@@ -12,7 +12,7 @@ export const primary = () => {
     title: text('title', 'Title'),
     author: object('author', {
       _id: '1',
-      fistName: 'Name',
+      firstName: 'Name',
       lastName: 'Surname',
       img: 'https://placekitten.com/300/300',
     }),
