@@ -7,8 +7,8 @@ import { Inject } from '@nestjs/common';
 export class CategoryCreatedHandler implements IEventHandler<CategoryCreated> {
   @Inject() private readonly _categoriesViewService: CategoriesModelService;
 
-  public handle({ id, data }: CategoryCreated): Boolean {
+  public handle({ id, data }: CategoryCreated): void {
     this._categoriesViewService.create(id, data);
-    return true;
+    return null;
   }
 }

@@ -7,8 +7,8 @@ import { Inject } from '@nestjs/common';
 export class CategoryRemovedHandler implements IEventHandler<CategoryRemoved> {
   @Inject() private readonly _categoriesViewService: CategoriesModelService;
 
-  public handle({ id }: CategoryRemoved): Boolean {
+  public handle({ id }: CategoryRemoved): void {
     this._categoriesViewService.remove(id);
-    return true;
+    return null;
   }
 }
