@@ -17,7 +17,7 @@ export class CategoriesController {
   }
 
   @Get(PrivateRoutesPath.GET_BY_ID)
-  async getById(@Param('id') id: string): Promise<CategoryPayload[]> {
+  async getById(@Param('id') id: string): Promise<CategoryPayload> {
     return this.queryBus.execute(new GetCategoryQuery(id));
   }
 }

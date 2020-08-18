@@ -39,20 +39,20 @@ export interface SharedCreateAdvertFormProps {
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
-  const [uploadedImg, setUploadedImg] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const [data, setData] = useState(null);
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [data, setData] = useState<AdvertData>(null);
 
   useEffect(() => {
-    if (!data) setData(props.data);
-    if (!categories.length) setCategories(props.categories);
+    !data && setData(props.data);
+    !categories.length && setCategories(props.categories);
   }, [props]);
 
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
     let fileReader = new FileReader();
-    fileReader.onload = () => {
-      setUploadedImg(fileReader.result);
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
     };
     if (file) fileReader.readAsDataURL(file);
   };
@@ -66,7 +66,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         {data.title}
       </Typography>
 
-      <form autoComplete="off" onSubmit={handleSubmit(data.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <div
           className="inner-container"
           style={{
@@ -90,7 +90,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             <div className="files-preview-container">
               <img
                 className="files-preview-container__image"
-                src={uploadedImg || data.imageUrl}
+                src={(!!uploadedImg && uploadedImg.toString()) || data.imageUrl}
               />
             </div>
             <div className="helper-text">
