@@ -51,8 +51,13 @@ export function authorizeReducer(
       };
     case ActionTypes.VERIFICATION:
       return {
-        registrationStep: 1,
+        registrationStep: state.registrationStep,
         loading: true
+      };
+    case ActionTypes.VERIFICATION_FAILED:
+      return {
+        registrationStep: state.registrationStep,
+        loading: false
       };
     default:
       return state;

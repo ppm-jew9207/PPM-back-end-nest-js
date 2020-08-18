@@ -4,6 +4,7 @@ import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
+import {FeaturesSnackBar} from '@ppm/features/snack-bar';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -48,6 +49,7 @@ export const App = () => {
           ))}
         </Switch>
       </BrowserRouter>
+      <FeaturesSnackBar/>
     </div>
   );
 };

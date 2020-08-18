@@ -43,6 +43,8 @@ export const FeaturesRegistration = (props: {history: object}) => {
   }
 
   const getStepContent = (stepIndex: number) => {
+    console.log(stepIndex);
+    
     switch (stepIndex) {
       case 0:
         return <SharedRegistration onSubmit={registration}/>;
@@ -74,7 +76,7 @@ export const FeaturesRegistration = (props: {history: object}) => {
         ))}
       </Stepper>
       <div>
-        <div >{getStepContent(registrationStep)}</div>
+        <div>{getStepContent(registrationStep)}</div>
       </div>
     </div>
   );

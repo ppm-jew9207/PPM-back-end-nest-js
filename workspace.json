@@ -1579,6 +1579,63 @@
           }
         }
       }
+    },
+    "data-access-snack-bar": {
+      "root": "libs/data-access/snack-bar",
+      "sourceRoot": "libs/data-access/snack-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/snack-bar/tsconfig.lib.json",
+              "libs/data-access/snack-bar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/snack-bar/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/snack-bar/jest.config.js",
+            "tsConfig": "libs/data-access/snack-bar/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-snack-bar": {
+      "root": "libs/features/snack-bar",
+      "sourceRoot": "libs/features/snack-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/snack-bar/tsconfig.lib.json",
+              "libs/features/snack-bar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/snack-bar/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/snack-bar/jest.config.js",
+            "tsConfig": "libs/features/snack-bar/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
