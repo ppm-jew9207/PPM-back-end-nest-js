@@ -1,3 +1,4 @@
+import { withKnobs, text } from '@storybook/addon-knobs';
 import React from 'react';
 import {
   SharedCreateAdvertForm,
@@ -8,6 +9,7 @@ import { action } from '@storybook/addon-actions';
 export default {
   component: SharedCreateAdvertForm,
   title: 'SharedCreateAdvertForm',
+  decorators: [withKnobs],
 };
 
 export const primary = () => {

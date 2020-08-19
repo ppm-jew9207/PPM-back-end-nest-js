@@ -1,13 +1,15 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
+import { User } from '@ppm/common/main';
 
 /* --- STATE --- */
 
 interface AuthState {
-  readonly user: any;
-  readonly isLoggedIn: boolean;
+  readonly user?: User;
+  readonly isLoggedIn?: boolean;
   readonly loading: boolean;
+  readonly registrationStep?: number;
 }
 
 /* --- ACTIONS --- */

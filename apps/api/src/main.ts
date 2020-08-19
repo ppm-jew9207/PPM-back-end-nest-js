@@ -54,7 +54,7 @@ async function bootstrap() {
   const host = process.env.host || process.env.HOST;
   await app.listen(port, () => {
     console.log(
-      'Listening at http://' + host + ':' + port + '/' + globalPrefix
+      'Listening at ' + host + ':' + port + '/' + globalPrefix
     );
   });
 }
