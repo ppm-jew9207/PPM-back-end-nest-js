@@ -9,6 +9,5 @@ export class CategoryCreatedHandler implements IEventHandler<CategoryCreated> {
 
   public handle({ id, data }: CategoryCreated): void {
     this._categoriesViewService.create(id, data);
-    return null;
   }
 }

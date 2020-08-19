@@ -9,6 +9,5 @@ export class CategoryUpdatedHandler implements IEventHandler<CategoryUpdated> {
 
   public handle(event: CategoryUpdated): void {
     this._categoriesViewService.update(event.category.id, event.category);
-    return null;
   }
 }

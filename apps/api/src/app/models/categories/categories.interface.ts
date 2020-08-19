@@ -1,19 +1,14 @@
 import { Document } from 'mongoose';
 export interface CategoryPayload {
+  id: string;
   title: string;
   value: string;
-}
-export interface LeanCategoriesView extends CategoryPayload {
-  _id: string;
-}
-
-export interface UpdateCategoryPayload extends CategoryPayload {
-  id: string;
 }
 
 export interface CategoryRef {
   _id: string;
   title: string;
+  value: string;
 }
 
-export type CategoriesViewModel = LeanCategoriesView & Document;
+export type CategoriesViewModel = CategoryPayload & Document;

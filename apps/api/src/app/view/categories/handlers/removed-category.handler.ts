@@ -9,6 +9,5 @@ export class CategoryRemovedHandler implements IEventHandler<CategoryRemoved> {
 
   public handle({ id }: CategoryRemoved): void {
     this._categoriesViewService.remove(id);
-    return null;
   }
 }
