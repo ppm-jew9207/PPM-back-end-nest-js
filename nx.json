@@ -134,6 +134,9 @@
     },
     "data-access-advert": {
       "tags": []
+    },
+    "data-access-user-profile": {
+      "tags": []
     }
   },
   "affected": {
