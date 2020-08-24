@@ -131,6 +131,15 @@
     },
     "features-registration": {
       "tags": []
+    },
+    "data-access-snack-bar": {
+      "tags": []
+    },
+    "features-snack-bar": {
+      "tags": []
+    },
+    "data-access-user-profile": {
+      "tags": []
     }
   },
   "affected": {

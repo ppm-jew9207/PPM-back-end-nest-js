@@ -71,7 +71,12 @@
       "@ppm/shared/left-side-menu": ["libs/shared/left-side-menu/src/index.ts"],
       "@ppm/data-access/adverts": ["libs/data-access/adverts/src/index.ts"],
       "@ppm/features/adverts": ["libs/features/adverts/src/index.ts"],
-      "@ppm/features/registration": ["libs/features/registration/src/index.ts"]
+      "@ppm/features/registration": ["libs/features/registration/src/index.ts"],
+      "@ppm/data-access/snack-bar": ["libs/data-access/snack-bar/src/index.ts"],
+      "@ppm/features/snack-bar": ["libs/features/snack-bar/src/index.ts"],
+      "@ppm/data-access/user-profile": [
+        "libs/data-access/user-profile/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -43,7 +43,7 @@ export class AdvertsController {
     @Body() updateAdvertPayload: UpdateAdvertPayloadDto
   ): Promise<boolean> {
     return this.commandBus.execute(
-      new UpdateAdvert({ id, ...updateAdvertPayload })
+      new UpdateAdvert({ ...updateAdvertPayload, id })
     );
   }
 

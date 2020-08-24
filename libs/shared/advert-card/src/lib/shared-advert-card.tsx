@@ -36,19 +36,35 @@ const useStyles = makeStyles((theme: Theme) =>
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const classes = useStyles();
 
-  function timeCalculator(createdAt: string) {
+  const getSortedTimeNames = (key: string) => {
+    switch(key){
+      case 'months': return 'mo.';
+      case 'days': return 'd.';
+      case 'hours': return 'h';
+      case 'minutes': return 'min.';
+      case 'seconds': return 's';
+      default: return key;
+    }
+  }
+
+  const timeCalculator = (createdAt: string) =>  {
     const dateKeys = ['months', 'days', 'hours', 'minutes', 'seconds'];
     const then = moment(createdAt);
     const now = moment();
     const duration = moment.duration(now.diff(then));
     let string = '';
     for (const key of dateKeys) {
-      const count = duration[key]();
+      
+      const count = duration[key]();      
       string += `${
         count > 0
-          ? `${count} ${key.slice(0, key.length - 1)}${count > 1 ? 's' : ''} `
+          ? `${count} ${getSortedTimeNames(key)} `
           : ''
       }`;
+
+      if(count > 0 && (key === 'months' || key === 'days' || key === 'hours')){
+        break;
+      }
     }
     return string;
   }
@@ -79,7 +95,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           </a>
 
           <span>posted on {props.title}</span>
-          <p>{`${timeCalculator(props.createAt)} ago`}</p>
+          <p>{`${timeCalculator(props.createAt)}`}</p>
         </div>
       </div>
 
@@ -96,7 +112,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           onClick={props.onLikeClick}
         >
           <p>Like</p>
-          <div>{props.shared}</div>
+          <div>{props.like}</div>
         </Button>
 
         <Button
@@ -107,7 +123,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           onClick={props.onLikeClick}
         >
           <p>Share</p>
-          <div>{props.like}</div>
+          <div>{props.shared}</div>
         </Button>
       </div>
     </div>
