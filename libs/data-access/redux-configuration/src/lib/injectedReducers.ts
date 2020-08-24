@@ -1,13 +1,10 @@
 import { authorizeReducer } from '@ppm/data-access/authorization';
-import { advertsListReducer } from '@ppm/data-access/adverts-list';
-import { advertReducer } from '@ppm/data-access/advert';
-import { snackBarReducer } from '@ppm/data-access/snack-bar';
-import { userProfileReducer } from '@ppm/data-access/user-profile';
+import { advertsReducer } from '@ppm/data-access/adverts';
 
 export const allReducers = {
   authorization: authorizeReducer,
-  advertsList: advertsListReducer,
-  advert: advertReducer,
+  adverts: advertsReducer,
   snackBar: snackBarReducer,
   userProfile: userProfileReducer,
 };
+

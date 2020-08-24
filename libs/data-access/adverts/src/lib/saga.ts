@@ -1,6 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
+  getAllSuccess,
+  getAllFailed,
   createSuccess,
   createFailed,
   updateSuccess,
@@ -10,7 +12,7 @@ import {
   getByIdSuccess,
   getByIdFailed,
 } from './actions';
-import { post, get } from '@ppm/data-access/http-requests';
+import { getAdverts, post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createAdvert(actions) {
@@ -76,11 +78,30 @@ export function* getAdvertById(actions) {
   }
 }
 
-export function* advertSaga() {
+export function* getAll() {
+  try {
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const result = yield call(get, path);
+    if (!Array.isArray(result)) {
+      yield put(getAllFailed(null));
+    }
+    yield put(
+      getAllSuccess({
+        list: result,
+        loading: false,
+      })
+    );
+  } catch (error) {
+    yield put(getAllFailed(null));
+  }
+}
+
+export function* advertsSaga() {
+  yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
   yield takeEvery(ActionTypes.ADVERT_UPDATE, updateAdvert);
   yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
   yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
 }
 
-export default advertSaga;
+export default advertsSaga;

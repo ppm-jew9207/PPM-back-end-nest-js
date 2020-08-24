@@ -69,12 +69,9 @@
         "libs/shared/create-advert-form/src/index.ts"
       ],
       "@ppm/shared/left-side-menu": ["libs/shared/left-side-menu/src/index.ts"],
-      "@ppm/data-access/adverts-list": [
-        "libs/data-access/adverts-list/src/index.ts"
-      ],
+      "@ppm/data-access/adverts": ["libs/data-access/adverts/src/index.ts"],
       "@ppm/features/adverts": ["libs/features/adverts/src/index.ts"],
       "@ppm/features/registration": ["libs/features/registration/src/index.ts"],
-      "@ppm/data-access/advert": ["libs/data-access/advert/src/index.ts"],
       "@ppm/data-access/snack-bar": ["libs/data-access/snack-bar/src/index.ts"],
       "@ppm/features/snack-bar": ["libs/features/snack-bar/src/index.ts"],
       "@ppm/data-access/user-profile": [
