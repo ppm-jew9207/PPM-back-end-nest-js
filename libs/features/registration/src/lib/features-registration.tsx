@@ -43,7 +43,6 @@ export const FeaturesRegistration = (props: {history: object}) => {
   }
 
   const getStepContent = (stepIndex: number) => {
-    console.log(stepIndex);
     
     switch (stepIndex) {
       case 0:
