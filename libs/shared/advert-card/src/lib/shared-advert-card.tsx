@@ -112,7 +112,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           onClick={props.onLikeClick}
         >
           <p>Like</p>
-          <div>{props.shared}</div>
+          <div>{props.like}</div>
         </Button>
 
         <Button
@@ -123,7 +123,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           onClick={props.onLikeClick}
         >
           <p>Share</p>
-          <div>{props.like}</div>
+          <div>{props.shared}</div>
         </Button>
       </div>
     </div>
