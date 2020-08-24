@@ -1,8 +1,7 @@
 import { all, fork } from 'redux-saga/effects';
 import { authorizationSaga } from '@ppm/data-access/authorization';
-import { advertsListSaga } from '@ppm/data-access/adverts-list';
-import { advertSaga } from '@ppm/data-access/advert';
+import { advertsSaga } from '@ppm/data-access/adverts';
 
 export default function* rootSaga() {
-  yield all([fork(authorizationSaga), fork(advertsListSaga), fork(advertSaga)]);
+  yield all([fork(authorizationSaga), fork(advertsSaga)]);
 }

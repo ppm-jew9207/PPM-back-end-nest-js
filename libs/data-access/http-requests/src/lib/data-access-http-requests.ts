@@ -47,14 +47,6 @@ export const verify = (code: string) => {
   return response;
 };
 
-export const getAdverts = () => {
-  const response = request(`/api/${PrivateRoutesPath.ADVERTS}`, {
-    method: 'GET',
-    ...requestOptions,
-  });
-  return response;
-};
-
 export const get = (path) => {
   const response = request(path, {
     method: 'GET',

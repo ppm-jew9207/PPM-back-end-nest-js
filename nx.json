@@ -92,7 +92,7 @@
     "shared-footer": {
       "tags": []
     },
-    "data-access-adverts-list": {
+    "data-access-adverts": {
       "tags": []
     },
     "shared-user-profile-card": {
@@ -130,9 +130,6 @@
       "tags": []
     },
     "features-registration": {
-      "tags": []
-    },
-    "data-access-advert": {
       "tags": []
     }
   },

@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'data-access-adverts-list',
+  name: 'data-access-adverts',
   preset: '../../../jest.config.js',
   transform: {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../../coverage/libs/data-access/adverts-list',
+  coverageDirectory: '../../../coverage/libs/data-access/adverts',
 };
