@@ -6,7 +6,7 @@ import { userProfileSaga } from '@ppm/data-access/user-profile';
 export default function* rootSaga() {
   yield all([
     fork(authorizationSaga),
-    fork(advertsSaga)
+    fork(advertsSaga),
     fork(userProfileSaga),
   ]);
 }
