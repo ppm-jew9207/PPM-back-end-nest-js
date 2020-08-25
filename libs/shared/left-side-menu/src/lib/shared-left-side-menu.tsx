@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 
 import { 
+  Close as CloseIcon,
   ChevronLeft as ChevronLeftIcon,
   Menu as MenuIcon
  } from '@material-ui/icons';
@@ -64,19 +65,20 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
         aria-label="open drawer"
         onClick={() => toggleDrawer(true)}
         edge="start"
-        className='button'
+        className="button"
       >
         <MenuIcon />
       </IconButton>
       <Drawer
         open={isMenuOpen}
+        ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
       >
-        <IconButton 
-          onClick={() => toggleDrawer(false)} 
-          className='button'
+        <IconButton
+          onClick={() => toggleDrawer(false)}
+          className="button"
           aria-label="close drawer"
         >
-          <ChevronLeftIcon />
+          <CloseIcon />
         </IconButton>
         <Typography
           variant="h4"

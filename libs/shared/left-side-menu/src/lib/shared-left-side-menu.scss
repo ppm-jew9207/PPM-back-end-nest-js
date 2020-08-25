@@ -1,4 +1,9 @@
 $hover-color: #2196f3;
+$background: #ffffff;
+
+.MuiDrawer-paper {
+  background-color: $background !important;
+}
 
 .title {
     margin: 30px 10px !important;
