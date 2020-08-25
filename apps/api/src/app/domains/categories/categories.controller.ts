@@ -7,8 +7,6 @@ import {
   Param,
   UseGuards,
   UseInterceptors,
-  Req,
-  BadRequestException,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateCategory } from './commands/create-category.command';
