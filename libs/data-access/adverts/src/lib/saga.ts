@@ -12,7 +12,7 @@ import {
   getByIdSuccess,
   getByIdFailed,
 } from './actions';
-import { getAdverts, post, get } from '@ppm/data-access/http-requests';
+import { post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createAdvert(actions) {
@@ -50,7 +50,7 @@ export function* removeAdvert(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.ADVERTS}/delete/${id}`;
     const result = yield call(post, path);
-    if (!!result) {
+    if (result) {
       yield put(removeFailed());
     }
     yield put(removeSuccess());
@@ -64,7 +64,7 @@ export function* getAdvertById(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
     const result = yield call(get, path);
-    if (!!result) {
+    if (result) {
       yield put(getByIdFailed());
     }
     yield put(
