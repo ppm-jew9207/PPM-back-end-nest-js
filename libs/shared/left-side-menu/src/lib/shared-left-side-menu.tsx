@@ -8,18 +8,20 @@ import {
   ListItem,
   Typography,
   ListItemText,
-  IconButton
+  IconButton,
+  ListItemIcon,
+  Icon
 } from '@material-ui/core';
 
 import { 
   Close as CloseIcon,
-  ChevronLeft as ChevronLeftIcon,
   Menu as MenuIcon
  } from '@material-ui/icons';
 
 interface Type {
-  name: string;
-  path: string
+  name: string,
+  path: string,
+  icon: string
 }
 
 export interface SharedLeftSideMenuProps {
@@ -35,25 +37,24 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
   };
 
   const list = () => (
-    <div
-      role="presentation"
-    >
+    <div role="presentation">
       <List>
-        {!!props.menuItemsArray && props.menuItemsArray.map((item, index) => (
-        <ListItem
-          component='a'
-          button
-          key={index}
-          href={item.path}
-          className="list-item"
-        >
-          <ChevronLeftIcon />
-          <ListItemText
-            primary={item.name}
-            className="list-item-text"
-          />
-        </ListItem>
-        ))}
+        {!!props.menuItemsArray &&
+          props.menuItemsArray.map((item, index) => (
+            <ListItem
+              component="a"
+              button
+              key={index}
+              href={item.path}
+              className="list-item"
+            >
+              <ListItemIcon>
+                <Icon>{item.icon}</Icon>
+              </ListItemIcon>
+              <ListItemText primary={item.name} className="list-item-text" />
+            </ListItem>
+          ))
+        }
       </List>
     </div>
   );
