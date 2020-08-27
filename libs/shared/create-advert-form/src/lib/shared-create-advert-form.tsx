@@ -15,15 +15,22 @@ import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 export interface AdvertData {
   title: string;
-  submitButtonText: string;
   titleInputLabel: string;
   descriptionInputLabel: string;
-  category: string;
-  imageUrl: string;
+  categoryInputLabel: string;
+  submitButtonText: string;
 }
 export interface Category {
   title: string;
   value: string;
+  _id: string;
+}
+
+export interface Advert {
+  category: string;
+  description: string;
+  imageUrl: string;
+  title: string;
   _id: string;
 }
 
@@ -36,20 +43,25 @@ export interface SharedCreateAdvertFormProps {
   }) => void;
   data: AdvertData;
   categories: Category[];
+  advert?: Advert;
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [advert, setAdvert] = useState<Advert>(null);
   const [data, setData] = useState<AdvertData>(null);
 
   useEffect(() => {
-    !data && setData(props.data);
+    setData(props.data);
     !categories.length && setCategories(props.categories);
+    !advert && setAdvert(props.advert);
+    props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
   }, [props]);
 
-  const onFileLoad = (e) => {
+  const onFileLoad = (e, beda) => {
     const file = e.currentTarget.files[0];
+
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
       setUploadedImg(e.target.result);
@@ -65,7 +77,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
       <Typography className="header" component="h1" variant="h5">
         {data.title}
       </Typography>
-
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <div
           className="inner-container"
@@ -90,7 +101,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             <div className="files-preview-container">
               <img
                 className="files-preview-container__image"
-                src={(!!uploadedImg && uploadedImg.toString()) || data.imageUrl}
+                src={(!!uploadedImg && uploadedImg.toString()) || ''}
               />
             </div>
             <div className="helper-text">
@@ -112,7 +123,8 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           required
           fullWidth
           id="title"
-          label={data.title}
+          label={data.titleInputLabel}
+          value={advert && advert.title}
           type="text"
           name="title"
           autoComplete="title"
@@ -133,6 +145,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           name="description"
           autoComplete="description"
           autoFocus
+          value={advert && advert.description}
           inputRef={register({})}
           multiline
           rows={8}
@@ -143,11 +156,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="category"
           margin="normal"
         >
-          <InputLabel id="category-label">Category</InputLabel>
+          <InputLabel id="category-label">{data.categoryInputLabel}</InputLabel>
           <Controller
             variant="outlined"
             name="category"
-            defaultValue={data.category}
+            defaultValue=""
             control={control}
             onChange={([selected]) => {
               return selected;

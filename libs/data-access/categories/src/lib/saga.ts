@@ -15,9 +15,9 @@ import {
 import { post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
-export function* createAdvert(actions) {
+export function* createCategory(actions) {
   try {
-    const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+    const path = `/api/${PrivateRoutesPath.CATEGORIES}`;
     const data = actions.payload;
     yield call(post, path, data);
     yield put(
@@ -30,10 +30,10 @@ export function* createAdvert(actions) {
   }
 }
 
-export function* updateAdvert(actions) {
+export function* updateCategory(actions) {
   try {
     const data = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+    const path = `/api/${PrivateRoutesPath.CATEGORIES}/update/${data.id}`;
     yield call(post, path, data);
     yield put(
       updateSuccess({
@@ -45,10 +45,10 @@ export function* updateAdvert(actions) {
   }
 }
 
-export function* removeAdvert(actions) {
+export function* removeCategory(actions) {
   try {
     const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/delete/${id}`;
+    const path = `/api/${PrivateRoutesPath.CATEGORIES}/delete/${id}`;
     const result = yield call(post, path);
     if (result) {
       yield put(removeFailed());
@@ -59,19 +59,17 @@ export function* removeAdvert(actions) {
   }
 }
 
-export function* getAdvertById(actions) {
+export function* getCategoryById(actions) {
   try {
     const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
+    const path = `/api/${PrivateRoutesPath.CATEGORIES}/${id}`;
     const result = yield call(get, path);
-
-    if (!!result) {
+    if (result) {
       yield put(getByIdFailed());
     }
-
     yield put(
       getByIdSuccess({
-        advert: result,
+        category: result,
         loading: false,
       })
     );
@@ -82,8 +80,9 @@ export function* getAdvertById(actions) {
 
 export function* getAll() {
   try {
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const path = `/api/${PrivateRoutesPath.CATEGORIES}/`;
     const result = yield call(get, path);
+
     if (!Array.isArray(result)) {
       yield put(getAllFailed(null));
     }
@@ -98,12 +97,12 @@ export function* getAll() {
   }
 }
 
-export function* advertsSaga() {
+export function* categoriesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
-  yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
-  yield takeEvery(ActionTypes.ADVERT_UPDATE, updateAdvert);
-  yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
-  yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
+  yield takeEvery(ActionTypes.CATEGORY_CREATE, createCategory);
+  yield takeEvery(ActionTypes.CATEGORY_UPDATE, updateCategory);
+  yield takeEvery(ActionTypes.CATEGORY_REMOVE, removeCategory);
+  yield takeEvery(ActionTypes.CATEGORY_GET_BY_ID, getCategoryById);
 }
 
-export default advertsSaga;
+export default categoriesSaga;

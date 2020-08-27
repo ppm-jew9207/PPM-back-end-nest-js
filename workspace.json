@@ -1636,6 +1636,63 @@
           }
         }
       }
+    },
+    "features-advert-form": {
+      "root": "libs/features/advert-form",
+      "sourceRoot": "libs/features/advert-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/advert-form/tsconfig.lib.json",
+              "libs/features/advert-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/advert-form/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/advert-form/jest.config.js",
+            "tsConfig": "libs/features/advert-form/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-categories": {
+      "root": "libs/data-access/categories",
+      "sourceRoot": "libs/data-access/categories/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/categories/tsconfig.lib.json",
+              "libs/data-access/categories/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/categories/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/categories/jest.config.js",
+            "tsConfig": "libs/data-access/categories/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

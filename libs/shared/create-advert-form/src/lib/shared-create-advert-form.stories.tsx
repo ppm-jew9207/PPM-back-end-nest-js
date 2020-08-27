@@ -18,10 +18,9 @@ export const primary = () => {
     data: {
       title: 'New advert',
       submitButtonText: 'Create',
-      titleInputLabel: 'Title',
       descriptionInputLabel: 'Description',
-      category: 'category-a',
-      imageUrl: '',
+      titleInputLabel: 'New Advert',
+      categoryInputLabel: 'Category',
     },
     categories: [
       { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },
