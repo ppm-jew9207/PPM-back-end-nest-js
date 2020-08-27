@@ -1261,9 +1261,9 @@
         }
       }
     },
-    "data-access-adverts-list": {
-      "root": "libs/data-access/adverts-list",
-      "sourceRoot": "libs/data-access/adverts-list/src",
+    "data-access-adverts": {
+      "root": "libs/data-access/adverts",
+      "sourceRoot": "libs/data-access/adverts/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1272,20 +1272,17 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "libs/data-access/adverts-list/tsconfig.lib.json",
-              "libs/data-access/adverts-list/tsconfig.spec.json"
+              "libs/data-access/adverts/tsconfig.lib.json",
+              "libs/data-access/adverts/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/adverts-list/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/data-access/adverts/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/data-access/adverts-list/jest.config.js",
-            "tsConfig": "libs/data-access/adverts-list/tsconfig.spec.json",
+            "jestConfig": "libs/data-access/adverts/jest.config.js",
+            "tsConfig": "libs/data-access/adverts/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1461,33 +1458,6 @@
           "options": {
             "jestConfig": "libs/features/registration/jest.config.js",
             "tsConfig": "libs/features/registration/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "data-access-advert": {
-      "root": "libs/data-access/advert",
-      "sourceRoot": "libs/data-access/advert/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/advert/tsconfig.lib.json",
-              "libs/data-access/advert/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/data-access/advert/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/data-access/advert/jest.config.js",
-            "tsConfig": "libs/data-access/advert/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

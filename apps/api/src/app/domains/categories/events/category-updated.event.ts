@@ -1,5 +1,5 @@
-import { UpdateCategoryPayload } from '../../../models/categories/categories.interface';
+import { CategoryPayload } from '../../../models/categories/categories.interface';
 
 export class CategoryUpdated {
-  constructor(public readonly category: UpdateCategoryPayload) {}
+  constructor(public readonly category: CategoryPayload) {}
 }

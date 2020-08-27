@@ -3,10 +3,7 @@ import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
-import {
-  advertsActions,
-  advertsSelectors,
-} from '@ppm/data-access/adverts-list';
+import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import './features-adverts.scss';
 
 const stateSelector = createStructuredSelector({

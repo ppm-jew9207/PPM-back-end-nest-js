@@ -13,7 +13,7 @@ export class CreateCategory {
 export class CreateCategoryHandler implements ICommandHandler<CreateCategory> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute({ data }: CreateCategory): Promise<Boolean> {
+  async execute({ data }: CreateCategory): Promise<boolean> {
     if (!data.title) {
       throw new BadRequestException('Title is required!');
     }

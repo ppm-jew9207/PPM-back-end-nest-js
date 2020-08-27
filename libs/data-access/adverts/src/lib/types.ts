@@ -7,7 +7,8 @@ export interface AdvertType {
   description: string;
 }
 
-interface AdvertListState {
+interface AdvertsState {
+  readonly advert?: AdvertType;
   readonly list: AdvertType[];
   readonly loading: boolean;
 }
@@ -15,7 +16,7 @@ interface AdvertListState {
 type AppActions = ActionType<typeof actions>;
 
 type RootState = ApplicationRootState;
-type ContainerState = AdvertListState;
+type ContainerState = AdvertsState;
 type ContainerActions = AppActions;
 
 export { RootState, ContainerState, ContainerActions };

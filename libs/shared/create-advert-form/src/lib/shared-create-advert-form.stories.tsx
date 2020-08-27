@@ -1,4 +1,4 @@
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import {
   SharedCreateAdvertForm,
@@ -16,7 +16,7 @@ export const primary = () => {
   const props: SharedCreateAdvertFormProps = {
     onSubmit: action('onSubmit'),
     data: {
-      title: 'New advert?',
+      title: 'New advert',
       submitButtonText: 'Create',
       titleInputLabel: 'Title',
       descriptionInputLabel: 'Description',

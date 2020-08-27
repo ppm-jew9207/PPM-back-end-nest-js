@@ -1,6 +1,8 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
+  getAllSuccess,
+  getAllFailed,
   createSuccess,
   createFailed,
   updateSuccess,
@@ -48,7 +50,7 @@ export function* removeAdvert(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.ADVERTS}/delete/${id}`;
     const result = yield call(post, path);
-    if (!!result) {
+    if (result) {
       yield put(removeFailed());
     }
     yield put(removeSuccess());
@@ -62,7 +64,7 @@ export function* getAdvertById(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
     const result = yield call(get, path);
-    if (!!result) {
+    if (result) {
       yield put(getByIdFailed());
     }
     yield put(
@@ -76,11 +78,30 @@ export function* getAdvertById(actions) {
   }
 }
 
-export function* advertSaga() {
+export function* getAll() {
+  try {
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const result = yield call(get, path);
+    if (!Array.isArray(result)) {
+      yield put(getAllFailed(null));
+    }
+    yield put(
+      getAllSuccess({
+        list: result,
+        loading: false,
+      })
+    );
+  } catch (error) {
+    yield put(getAllFailed(null));
+  }
+}
+
+export function* advertsSaga() {
+  yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
   yield takeEvery(ActionTypes.ADVERT_UPDATE, updateAdvert);
   yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
   yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
 }
 
-export default advertSaga;
+export default advertsSaga;
