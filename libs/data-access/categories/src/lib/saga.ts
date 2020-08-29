@@ -50,9 +50,7 @@ export function* removeCategory(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.CATEGORIES}/delete/${id}`;
     const result = yield call(post, path);
-    if (result) {
-      yield put(removeFailed());
-    }
+    yield result && put(removeFailed());
     yield put(removeSuccess());
   } catch (error) {
     yield put(removeFailed());
@@ -64,9 +62,8 @@ export function* getCategoryById(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.CATEGORIES}/${id}`;
     const result = yield call(get, path);
-    if (result) {
-      yield put(getByIdFailed());
-    }
+    yield result && put(getByIdFailed());
+
     yield put(
       getByIdSuccess({
         category: result,
@@ -82,10 +79,8 @@ export function* getAll() {
   try {
     const path = `/api/${PrivateRoutesPath.CATEGORIES}/`;
     const result = yield call(get, path);
+    yield !Array.isArray(result) && put(getAllFailed(null));
 
-    if (!Array.isArray(result)) {
-      yield put(getAllFailed(null));
-    }
     yield put(
       getAllSuccess({
         list: result,

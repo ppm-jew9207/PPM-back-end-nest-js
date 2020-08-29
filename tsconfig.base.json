@@ -42,7 +42,6 @@
       "@ppm/features/dashboard/mentor": [
         "libs/features/dashboard/mentor/src/index.ts"
       ],
-      "@ppm/features//mentors": ["libs/features//mentors/src/index.ts"],
       "@ppm/features/mentors": ["libs/features/mentors/src/index.ts"],
       "@ppm/features/mentor": ["libs/features/mentor/src/index.ts"],
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],

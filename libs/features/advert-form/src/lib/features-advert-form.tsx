@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { postFormData } from '@ppm/data-access/http-requests';
-import {
-  SharedCreateAdvertForm,
-  SharedCreateAdvertFormProps,
-} from '@ppm/shared/create-advert-form';
+import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
@@ -29,55 +27,78 @@ const stateSelector = createStructuredSelector({
 export const FeaturesAdvertForm = (props: FeaturesAdvertFormProps) => {
   const dispatch = useDispatch();
   const { categories, advert, loading } = useSelector(stateSelector);
+  const redirect = () => history.push(`/${PrivateRoutesPath.ADVERTS}`);
 
-  const create = async (data) => {
+  const history = useHistory();
+  const createImage = (data, saveChanges) => {
     try {
       const file = data.advertImage[0];
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append('file', file);
       const path = `/api/${PrivateRoutesPath.IMAGES}`;
       postFormData(path, formData).then((result) => {
-        dispatch(advertsActions.create({ ...data, imageUrl: result.data }));
+        if (result) {
+          dispatch(saveChanges({ ...data, imageUrl: result.data }));
+          redirect();
+        }
       });
     } catch (error) {}
   };
 
-  let createContent = {
+  const create = async (data) => {
+    createImage(data, advertsActions.create);
+  };
+
+  const update = async (data) => {
+    data.id = advert._id;
+    if (data.advertImage.length) {
+      createImage(data, advertsActions.update);
+    } else {
+      dispatch(advertsActions.update({ ...data, imageUrl: advert.imageUrl }));
+      redirect();
+    }
+  };
+
+  const createContent = {
     onSubmit: create,
+    onCancel: redirect,
     data: {
       title: 'New advert',
       submitButtonText: 'Create',
       descriptionInputLabel: 'Description',
-      titleInputLabel: 'New Advert',
+      titleInputLabel: 'Title',
       categoryInputLabel: 'Category',
+      cancelButtonText: 'Cancel',
     },
     categories,
   };
 
-  let editContent = {
-    onSubmit: create,
+  const editContent = {
+    onSubmit: update,
+    onCancel: redirect,
     data: {
       title: 'Edit advert',
       submitButtonText: 'Update',
       descriptionInputLabel: 'Description',
-      titleInputLabel: 'Edit Advert',
+      titleInputLabel: 'Title',
       categoryInputLabel: 'Category',
+      cancelButtonText: 'Cancel',
     },
     categories,
     advert,
   };
 
-  let content: SharedCreateAdvertFormProps = createContent;
+  const [content, setContent] = useState(createContent);
 
   useEffect(() => {
     props.match.path === '/adverts/:id/edit' &&
       dispatch(advertsActions.getById(props.match.params.id));
     dispatch(categoriesActions.getAll());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
-    advert && !!advert._id && (content = { ...editContent });
-  }, [advert]);
+    advert && !!advert._id && setContent(editContent);
+  }, [advert, categories]);
 
   if (loading) return <CircularProgress />;
 

@@ -65,9 +65,7 @@ export function* getAdvertById(actions) {
     const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
     const result = yield call(get, path);
 
-    if (!!result) {
-      yield put(getByIdFailed());
-    }
+    yield result && put(getByIdFailed());
 
     yield put(
       getByIdSuccess({

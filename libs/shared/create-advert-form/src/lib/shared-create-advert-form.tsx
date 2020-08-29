@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+
 import {
   TextField,
   Button,
@@ -19,6 +20,7 @@ export interface AdvertData {
   descriptionInputLabel: string;
   categoryInputLabel: string;
   submitButtonText: string;
+  cancelButtonText: string;
 }
 export interface Category {
   title: string;
@@ -41,6 +43,7 @@ export interface SharedCreateAdvertFormProps {
     advertImage: FileList;
     category: string;
   }) => void;
+  onCancel: () => void;
   data: AdvertData;
   categories: Category[];
   advert?: Advert;
@@ -59,7 +62,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
   }, [props]);
 
-  const onFileLoad = (e, beda) => {
+  const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
 
     let fileReader = new FileReader();
@@ -69,22 +72,16 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
-  const { handleSubmit, register, control, errors } = useForm();
-  return !data ? (
-    <div>Loading...</div>
-  ) : (
+  const { handleSubmit, register, control, errors, setValue } = useForm();
+  if (!data) return <div>Loading...</div>;
+
+  return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
         {data.title}
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
-        <div
-          className="inner-container"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <div className="inner-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
               inputRef={register({})}
@@ -117,23 +114,27 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             </div>
           </div>
         </div>
+
         <TextField
           variant="outlined"
           margin="normal"
-          required
           fullWidth
           id="title"
           label={data.titleInputLabel}
-          value={advert && advert.title}
           type="text"
           name="title"
           autoComplete="title"
           autoFocus
+          value={advert && advert.title}
+          onChange={(event) =>
+            setAdvert({ ...advert, title: event.target.value })
+          }
           inputRef={register({
             required: 'Required',
           })}
-          error={!!errors.title}
-          helperText={!errors.title ? '' : 'Title is required'}
+          multiline
+          rows={1}
+          className="header"
         />
         <TextField
           variant="outlined"
@@ -145,28 +146,39 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           name="description"
           autoComplete="description"
           autoFocus
-          value={advert && advert.description}
+          defaultValue={advert && advert.description}
           inputRef={register({})}
           multiline
           rows={8}
+          className="description"
         />
-        <FormControl
-          variant="outlined"
-          fullWidth
-          className="category"
-          margin="normal"
-        >
-          <InputLabel id="category-label">{data.categoryInputLabel}</InputLabel>
-          <Controller
-            variant="outlined"
-            name="category"
-            defaultValue=""
-            control={control}
-            onChange={([selected]) => {
-              return selected;
-            }}
-            as={
-              <Select id="category" variant="outlined">
+        <Controller
+          control={control}
+          name="category"
+          as={
+            <FormControl
+              className="category"
+              variant="outlined"
+              margin="normal"
+            >
+              <InputLabel id="category-label">Category</InputLabel>
+              <Select
+                name="category"
+                labelId="category-label"
+                id="category"
+                inputRef={register({
+                  required: 'Required',
+                })}
+                value={
+                  (advert && advert.category) ||
+                  (categories[0] && categories[0].value) ||
+                  ''
+                }
+                onChange={(event: React.ChangeEvent<{ value: string }>) => {
+                  setValue('category', event.target.value);
+                  setAdvert({ ...advert, category: event.target.value });
+                }}
+              >
                 {!!categories &&
                   categories.map((category) => {
                     return (
@@ -176,11 +188,9 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                     );
                   })}
               </Select>
-            }
-            fullWidth
-          />
-        </FormControl>
-
+            </FormControl>
+          }
+        ></Controller>
         <Button
           fullWidth
           variant="contained"
@@ -189,6 +199,16 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="submit-form"
         >
           {data.submitButtonText}
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          type="reset"
+          className="cancel-form"
+          onClick={props.onCancel}
+        >
+          {data.cancelButtonText}
         </Button>
       </form>
     </Box>
