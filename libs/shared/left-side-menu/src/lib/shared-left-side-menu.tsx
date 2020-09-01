@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import LeftSideMenuList from './list/list';
+import LeftSideMenuList from './shared-left-side-menu-list/list';
 import './shared-left-side-menu.scss';
 
 import { Drawer, Typography, IconButton } from '@material-ui/core';
