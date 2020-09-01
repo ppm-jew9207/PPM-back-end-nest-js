@@ -12,7 +12,7 @@ export interface CreateUserProfile {
   city: string;
   phone: string;
   email: string;
-  socialLinks?: string[];
+  socialLinks?: { link: String; icon: String }[];
 }
 export interface UserProfile {
   type: string;
@@ -26,7 +26,7 @@ export interface UserProfile {
   city: string;
   phone: string;
   email: string;
-  socialLinks: string[];
+  socialLinks: { link: String; icon: String }[];
 }
 
 export type UserProfileViewModel = UserProfile & Document;

@@ -25,5 +25,5 @@ export class CreateUserProfilePayloadDto implements CreateUserProfile {
   @ApiProperty()
   public readonly email: string;
   @ApiProperty({ isArray: true, type: 'string' })
-  public readonly socialLinks?: string[];
+  public readonly socialLinks?: { link: String; icon: String }[];
 }
