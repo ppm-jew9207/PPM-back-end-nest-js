@@ -1,5 +1,10 @@
 import { Document } from 'mongoose';
 
+export interface SocialLink {
+  icon: string;
+  link: string;
+}
+
 export interface CreateUserProfile {
   type: string;
   description: string;
@@ -12,7 +17,7 @@ export interface CreateUserProfile {
   city: string;
   phone: string;
   email: string;
-  socialLinks?: { link: String; icon: String }[];
+  socialLinks?: SocialLink[];
 }
 export interface UserProfile {
   type: string;
@@ -26,7 +31,7 @@ export interface UserProfile {
   city: string;
   phone: string;
   email: string;
-  socialLinks: { link: String; icon: String }[];
+  socialLinks?: SocialLink[];
 }
 
 export type UserProfileViewModel = UserProfile & Document;
