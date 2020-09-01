@@ -23,7 +23,6 @@ export const LeftSideMenuList = (props: LeftSideMenuProps) => {
             <ListItem
               component="a"
               button
-              key={index}
               href={item.path}
             >
               <div className="list-item-inner">

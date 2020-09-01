@@ -24,10 +24,9 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
     setMenuOpen(open);
   };
 
-
   return (
     <div>
-      <div className='shared-left-side-menu-button'>
+      <div className="shared-left-side-menu-button">
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -42,7 +41,7 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
         open={isMenuOpen}
         ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
       >
-        <div className='shared-left-side-menu'>
+        <div className="shared-left-side-menu">
           <IconButton
             onClick={() => toggleDrawer(false)}
             aria-label="close drawer"
