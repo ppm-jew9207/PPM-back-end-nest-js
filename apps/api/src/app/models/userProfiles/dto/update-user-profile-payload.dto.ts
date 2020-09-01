@@ -24,4 +24,6 @@ export class UpdateUserProfilePayloadDto implements UserProfile {
   public readonly phone: string;
   @ApiProperty()
   public readonly email: string;
+  @ApiProperty({ isArray: true, type: 'string' })
+  public readonly socialLinks: string[];
 }
