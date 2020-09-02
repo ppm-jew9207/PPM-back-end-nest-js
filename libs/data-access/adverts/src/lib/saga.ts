@@ -98,7 +98,6 @@ export function* getAll() {
 
 export function* getAllByAuthor(actions) {
   try {
-    console.log(actions);
     const id = actions.payload;
     // todo: include authorID, for now: all adverts are shown
     const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
