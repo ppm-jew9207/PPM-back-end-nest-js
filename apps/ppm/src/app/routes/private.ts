@@ -5,6 +5,7 @@ import {
 } from '@ppm/common/main';
 import { FeaturesDashboardMentor } from '@ppm/features/dashboard/mentor';
 import { FeaturesMentors } from '@ppm/features/mentors';
+import { FeaturesProfile } from '@ppm/features/profile';
 
 const PrivateRouter: RouterItem[] = [
   {
@@ -19,6 +20,13 @@ const PrivateRouter: RouterItem[] = [
     title: 'Mentors',
     icon: RouterMenuIcons.MENTOR,
     component: FeaturesMentors,
+    onMenu: true,
+  },
+  {
+    path: `/${PrivateRoutesPath.USER_PROFILES}${PrivateRoutesPath.GET_BY_ID}`,
+    title: null,
+    icon: null,
+    component: FeaturesProfile,
     onMenu: true,
   },
 ];

@@ -140,6 +140,9 @@
     },
     "data-access-user-profile": {
       "tags": []
+    },
+    "features-profile": {
+      "tags": []
     }
   },
   "affected": {
