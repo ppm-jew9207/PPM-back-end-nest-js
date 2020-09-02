@@ -102,6 +102,12 @@ export function advertsReducer(
         advert: state.advert,
         loading: false,
       };
+    case ActionTypes.ADVERT_GET_ALL_BY_AUTHOR:
+      return {
+        list: state.list,
+        advert: state.advert,
+        loading: false,
+      };
     default:
       return state;
   }

@@ -96,12 +96,34 @@ export function* getAll() {
   }
 }
 
+export function* getAllByAuthor(actions) {
+  try {
+    console.log(actions);
+    const id = actions.payload;
+    // todo: include authorID, for now: all adverts are shown
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const result = yield call(get, path);
+    if (!Array.isArray(result)) {
+      yield put(getAllFailed(null));
+    }
+    yield put(
+      getAllSuccess({
+        list: result,
+        loading: false,
+      })
+    );
+  } catch (error) {
+    yield put(getAllFailed(null));
+  }
+}
+
 export function* advertsSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
   yield takeEvery(ActionTypes.ADVERT_UPDATE, updateAdvert);
   yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
   yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
+  yield takeEvery(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR, getAllByAuthor);
 }
 
 export default advertsSaga;
