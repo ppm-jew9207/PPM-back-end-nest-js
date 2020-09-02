@@ -17,31 +17,38 @@ export const primary = () => {
     [
       {
         'name': 'Profile',
-        'path': '/'
+        'path': '/',
+        'icon': 'dashboard_rounded'
       },
       {
         'name': 'Password',
-        'path': '/'
+        'path': '/',
+        'icon': 'person_outlined_rounded'
       },
       {
         'name': 'Certificates',
-        'path': '/'
+        'path': '/',
+        'icon': 'list_alt_rounded'
       },
       {
         'name': 'My Orders',
-        'path': '/'
+        'path': '/',
+        'icon': 'text_fields_rounded'
       },
       {
         'name': 'Experience',
-        'path': '/'
+        'path': '/',
+        'icon': 'apps_rounded'
       },
       {
         'name': 'Job Preferences',
-        'path': '/'
+        'path': '/',
+        'icon': 'room_rounded'
       },
       {
         'name': 'Blockchain',
-        'path': '/'
+        'path': '/',
+        'icon': 'notifications_none_rounded'
       }
     ]
   );

@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 
+import LeftSideMenuList from './shared-left-side-menu-list/list';
 import './shared-left-side-menu.scss';
 
-import {
-  Drawer,
-  List,
-  ListItem,
-  Typography,
-  ListItemText,
-  IconButton
-} from '@material-ui/core';
-
-import { 
-  ChevronLeft as ChevronLeftIcon,
-  Menu as MenuIcon
- } from '@material-ui/icons';
+import { Drawer, Typography, IconButton } from '@material-ui/core';
+import { Close as CloseIcon, Menu as MenuIcon } from '@material-ui/icons';
 
 interface Type {
-  name: string;
-  path: string
+  name: string,
+  path: string,
+  icon: string
 }
 
 export interface SharedLeftSideMenuProps {
@@ -33,61 +24,40 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
     setMenuOpen(open);
   };
 
-  const list = () => (
-    <div
-      role="presentation"
-    >
-      <List>
-        {!!props.menuItemsArray && props.menuItemsArray.map((item, index) => (
-        <ListItem
-          component='a'
-          button
-          key={index}
-          href={item.path}
-          className="list-item"
-        >
-          <ChevronLeftIcon />
-          <ListItemText
-            primary={item.name}
-            className="list-item-text"
-          />
-        </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
   return (
     <div>
-      <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        onClick={() => toggleDrawer(true)}
-        edge="start"
-        className='button'
-      >
-        <MenuIcon />
-      </IconButton>
+      <div className="shared-left-side-menu-button">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={() => toggleDrawer(true)}
+          edge="start"
+          className="menu-button"
+        >
+          <MenuIcon />
+        </IconButton>
+      </div>
       <Drawer
         open={isMenuOpen}
+        ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
       >
-        <IconButton 
-          onClick={() => toggleDrawer(false)} 
-          className='button'
-          aria-label="close drawer"
-        >
-          <ChevronLeftIcon />
-        </IconButton>
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          className="title"
-        >
-          {props.title}
-        </Typography>
-        {list()}
+        <div className="shared-left-side-menu">
+          <IconButton
+            onClick={() => toggleDrawer(false)}
+            aria-label="close drawer"
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography
+            variant="h4"
+            component="h2"
+            align="center"
+            gutterBottom
+          >
+            {props.title}
+          </Typography>
+          <LeftSideMenuList menuItemsArray={props.menuItemsArray}/>
+        </div>
       </Drawer>
     </div>
   );

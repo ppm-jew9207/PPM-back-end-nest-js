@@ -26,7 +26,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-
 export const App = () => {
   return (
     <div className="app">
