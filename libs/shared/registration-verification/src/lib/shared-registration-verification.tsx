@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import TextField from '@material-ui/core/TextField/TextField';
@@ -22,6 +22,9 @@ export const SharedRegistrationVerification = (
   props: SharedRegistrationVerificationProps
 ) => {
   const { handleSubmit, register } = useForm();
+  const [inputValue, setInputValue] = useState(props.code)
+
+  const isButtonEnabled = inputValue.length > 0;
   
   return (
     <Grid container direction="column" justify="center" className="registrationVerification">
@@ -41,16 +44,17 @@ export const SharedRegistrationVerification = (
                 </InputAdornment>
               ),
             }}
-            defaultValue={props.code}
             fullWidth
             type="text"
             variant="outlined"
             inputRef={register}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
           />
         </Box>
         <Grid container justify="center">
           <Box mx={2}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" disabled={!isButtonEnabled}>
               Confirm verification
             </Button>
           </Box>
