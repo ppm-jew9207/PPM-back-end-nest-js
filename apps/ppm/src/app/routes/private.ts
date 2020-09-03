@@ -23,7 +23,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.USER_PROFILES}${PrivateRoutesPath.GET_BY_ID}`,
+    path: `/${PrivateRoutesPath.USER_PROFILES}`,
     title: null,
     icon: null,
     component: FeaturesProfile,

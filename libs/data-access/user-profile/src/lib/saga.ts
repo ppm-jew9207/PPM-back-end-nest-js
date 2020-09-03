@@ -4,10 +4,9 @@ import { getUserProfileFailed, getUserProfileSuccess } from './actions';
 import { get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
-export function* getUserProfile(actions) {
+export function* getUserProfile() {
   try {
-    const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${id}`;
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}`;
     const result = yield call(get, path);
     if (!result) {
       yield put(getUserProfileFailed());
