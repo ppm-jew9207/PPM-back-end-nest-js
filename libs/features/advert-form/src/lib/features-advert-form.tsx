@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, RouteComponentProps } from 'react-router-dom';
 import { postFormData } from '@ppm/data-access/http-requests';
 import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,9 +13,9 @@ import './features-advert-form.scss';
 import { PrivateRoutesPath } from '@ppm/common/main';
 import { CircularProgress } from '@material-ui/core';
 
-export interface FeaturesAdvertFormProps {
-  match: any;
-}
+type Props = {
+  id: string;
+};
 
 const stateSelector = createStructuredSelector({
   adverts: advertsSelectors.selectAdverts(),
@@ -24,7 +24,7 @@ const stateSelector = createStructuredSelector({
   categories: categoriesSelectors.selectCategories(),
 });
 
-export const FeaturesAdvertForm = (props: FeaturesAdvertFormProps) => {
+export const FeaturesAdvertForm = (props: RouteComponentProps<Props>) => {
   const dispatch = useDispatch();
   const { categories, advert, loading } = useSelector(stateSelector);
   const redirect = () => history.push(`/${PrivateRoutesPath.ADVERTS}`);
@@ -46,13 +46,15 @@ export const FeaturesAdvertForm = (props: FeaturesAdvertFormProps) => {
   };
 
   const create = async (data) => {
-    createImage(data, advertsActions.create);
+    dispatch(advertsActions.update(data));
+    redirect();
   };
 
   const update = async (data) => {
     data.id = advert._id;
     if (data.advertImage.length) {
-      createImage(data, advertsActions.update);
+      dispatch(advertsActions.update(data));
+      redirect();
     } else {
       dispatch(advertsActions.update({ ...data, imageUrl: advert.imageUrl }));
       redirect();
@@ -84,7 +86,7 @@ export const FeaturesAdvertForm = (props: FeaturesAdvertFormProps) => {
       categoryInputLabel: 'Category',
       cancelButtonText: 'Cancel',
     },
-    categories,
+    categories: categories,
     advert,
   };
 
@@ -97,7 +99,9 @@ export const FeaturesAdvertForm = (props: FeaturesAdvertFormProps) => {
   }, []);
 
   useEffect(() => {
-    advert && !!advert._id && setContent(editContent);
+    advert && !!advert._id
+      ? setContent(editContent)
+      : setContent(createContent);
   }, [advert, categories]);
 
   if (loading) return <CircularProgress />;

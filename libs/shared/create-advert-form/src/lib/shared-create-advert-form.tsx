@@ -57,6 +57,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
 
   useEffect(() => {
     setData(props.data);
+    console.log(props.categories);
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
