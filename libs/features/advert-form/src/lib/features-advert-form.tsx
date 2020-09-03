@@ -30,20 +30,6 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<Props>) => {
   const redirect = () => history.push(`/${PrivateRoutesPath.ADVERTS}`);
 
   const history = useHistory();
-  const createImage = (data, saveChanges) => {
-    try {
-      const file = data.advertImage[0];
-      const formData = new FormData();
-      formData.append('file', file);
-      const path = `/api/${PrivateRoutesPath.IMAGES}`;
-      postFormData(path, formData).then((result) => {
-        if (result) {
-          dispatch(saveChanges({ ...data, imageUrl: result.data }));
-          redirect();
-        }
-      });
-    } catch (error) {}
-  };
 
   const create = async (data) => {
     dispatch(advertsActions.update(data));
