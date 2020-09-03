@@ -11,33 +11,55 @@ import {
 import './features-profile.scss';
 
 const stateSelector = createStructuredSelector({
-  profiles: userProfileSelectors.selectUserProfile(),
+  profile: userProfileSelectors.selectUserProfile,
   loading: userProfileSelectors.selectLoading(),
 });
 
 export const FeaturesProfile = (props) => {
   const dispatch = useDispatch();
-  const { profiles, loading } = useSelector(stateSelector);
+  const { profile, loading } = useSelector(stateSelector);
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile(props.match.params.id));
   }, [dispatch]);
 
-  const data = {
+  let data = {
     mentorImage: 'https://placekitten.com/300/300',
     fullName: 'John Doe',
     aboutMentor: 'Lorem ipsum dolor sit amet',
-    mentorLocation: 'Vilnius',
+    mentorLocation: 'Kaunas',
     facebook: '#',
     twitter: '#',
     linkedin: '#',
     instagram: '#',
   };
 
+  //   data: {categories: ["string"], _id: "5f4ff4ce65f254295c363f00", __v: 0, city: "Vilnius", company: "string",…}
+  // categories: ["string"]
+  // city: "Vilnius"
+  // company: "string"
+  // description: "Lorem ipsum dolor sit amet"
+  // email: "string"
+  // fieldOfProfession: "string"
+  // firstName: "John"
+  // lastName: "Doe"
+  // phone: "string"
+  // photo: "string"
+  // socialLinks: [{_id: "5f4ff4ce65f254295c363f01", link: "#", icon: "TwitterIcon"}]
+  // type: "string"
+  // __v: 0
+  // _id: "5f4ff4ce65f254295c363f00"
+
+  useEffect(() => {
+    console.log(profile && profile.data);
+    // if (profile) data = { ...data, mentorLocation: profile.data.city };
+  }, [profile]);
+
   if (loading) return <CircularProgress />;
 
   return (
     <div>
+      {JSON.stringify(profile)}
       <SharedUserProfileCard {...data} />
     </div>
   );
