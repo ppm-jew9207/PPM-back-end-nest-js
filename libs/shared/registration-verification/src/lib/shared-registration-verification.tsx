@@ -58,9 +58,7 @@ export const SharedRegistrationVerification = (
         </p>
         <Grid container justify="center">
           <Box mx={2}>
-            <Button variant="contained" color="primary" type="submit"
-             disabled={!isButtonEnabled}
-             >
+            <Button variant="contained" color="primary" type="submit" disabled={!isButtonEnabled}>
               Confirm verification
             </Button>
           </Box>
