@@ -13,6 +13,7 @@ import './shared-registration-verification.scss';
 
 export interface SharedRegistrationVerificationProps {
   code: string;
+  informationTitle?: string;
   onSubmit: (code: string) => void;
   onCancel: () => void;
   resendVerification: () => void;
@@ -52,6 +53,9 @@ export const SharedRegistrationVerification = (
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Box>
+        <p className="information-title">
+          * {props.informationTitle}
+        </p>
         <Grid container justify="center">
           <Box mx={2}>
             <Button variant="contained" color="primary" type="submit" disabled={!isButtonEnabled}>
