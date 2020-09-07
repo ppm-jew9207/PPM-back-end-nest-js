@@ -21,7 +21,7 @@ import { TransformInterceptor } from '../../common/interceptors/transform.interc
 export class AdvertsController {
   constructor(private readonly queryBus: QueryBus) {}
 
-  @Get(PrivateRoutesPath.USER + PrivateRoutesPath.GET_BY_ID)
+  @Get(`${PrivateRoutesPath.USER}${PrivateRoutesPath.GET_BY_ID}`)
   async getById(@Param('id') id: string): Promise<any[]> {
     return this.queryBus.execute(new GetUsersAdvertsQuery(id));
   }
