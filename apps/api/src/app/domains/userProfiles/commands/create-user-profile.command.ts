@@ -28,9 +28,7 @@ export class CreateUserProfileHandler
 
     const aggregate = new UserProfileAggregate();
 
-    aggregate.apply(
-      new UserProfileCreated(data, new Types.ObjectId().toHexString(), userId)
-    );
+    aggregate.apply(new UserProfileCreated(data, userId));
 
     const userProfile = this._publicher.mergeObjectContext(aggregate);
     userProfile.commit();

@@ -21,6 +21,10 @@ export class AdvertsModelService {
     return this._model.find().exec();
   }
 
+  async getByUserId(id): Promise<AdvertsViewModel[]> {
+    return this._model.find({ 'creator._id': id }).exec();
+  }
+
   async getById(id: string): Promise<AdvertsViewModel> {
     return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
   }

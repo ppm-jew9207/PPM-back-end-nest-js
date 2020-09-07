@@ -4,6 +4,7 @@ export enum PrivateRoutesPath {
   MENTOR = 'mentor',
   STUDENT = 'student',
   ADVERTS = 'adverts',
+  USER = 'user',
   CATEGORIES = 'categories',
   SETTINGS = 'settings',
   IMAGES = 'images',
