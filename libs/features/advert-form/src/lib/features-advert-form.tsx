@@ -36,12 +36,12 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<RouteInfo>) => {
 
   const history = useHistory();
 
-  const create = async (data) => {
+  const create = (data: AdvertData) => {
     dispatch(advertsActions.update(data));
     redirect();
   };
 
-  const update = async (data: AdvertData) => {
+  const update = (data: AdvertData) => {
     data.id = advert._id;
     if (data.advertImage.length) {
       dispatch(advertsActions.update(data));

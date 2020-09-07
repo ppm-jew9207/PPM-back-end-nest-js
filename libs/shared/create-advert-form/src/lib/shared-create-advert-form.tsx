@@ -60,10 +60,9 @@ export interface SharedCreateAdvertFormProps {
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [advert, setAdvert] = useState<Advert>(null);
+  const [advert, setAdvert] = useState<Advert>();
 
   useEffect(() => {
-    console.log(props.categories);
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
@@ -143,6 +142,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           rows={1}
           className="header"
         />
+        <div>{advert && advert.description}</div>
         <TextField
           variant="outlined"
           margin="normal"
@@ -153,7 +153,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           name="description"
           autoComplete="description"
           autoFocus
-          defaultValue={advert && advert.description}
+          value={advert && advert.description}
           inputRef={register({})}
           multiline
           rows={8}
