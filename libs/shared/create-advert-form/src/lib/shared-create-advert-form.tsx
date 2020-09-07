@@ -14,7 +14,7 @@ import {
 import './shared-create-advert-form.scss';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
-export interface AdvertData {
+export interface AdvertDefaultParams {
   title: string;
   titleInputLabel: string;
   descriptionInputLabel: string;
@@ -36,6 +36,14 @@ export interface Advert {
   _id: string;
 }
 
+export interface AdvertData {
+  id: string;
+  title: string;
+  description: string;
+  advertImage: FileList;
+  category: string;
+}
+
 export interface SharedCreateAdvertFormProps {
   onSubmit: (advertData: {
     title: string;
@@ -44,7 +52,7 @@ export interface SharedCreateAdvertFormProps {
     category: string;
   }) => void;
   onCancel: () => void;
-  data: AdvertData;
+  data: AdvertDefaultParams;
   categories: Category[];
   advert?: Advert;
 }
@@ -53,10 +61,8 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [advert, setAdvert] = useState<Advert>(null);
-  const [data, setData] = useState<AdvertData>(null);
 
   useEffect(() => {
-    setData(props.data);
     console.log(props.categories);
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
@@ -74,12 +80,12 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   };
 
   const { handleSubmit, register, control, errors, setValue } = useForm();
-  if (!data) return <div>Loading...</div>;
+  if (!props.data) return <div>Loading...</div>;
 
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
-        {data.title}
+        {props.data.title}
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <div className="inner-container">
@@ -121,7 +127,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           margin="normal"
           fullWidth
           id="title"
-          label={data.titleInputLabel}
+          label={props.data.titleInputLabel}
           type="text"
           name="title"
           autoComplete="title"
@@ -142,7 +148,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           margin="normal"
           fullWidth
           id="description"
-          label={data.descriptionInputLabel}
+          label={props.data.descriptionInputLabel}
           type="text"
           name="description"
           autoComplete="description"
@@ -199,7 +205,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          {data.submitButtonText}
+          {props.data.submitButtonText}
         </Button>
         <Button
           fullWidth
@@ -209,7 +215,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="cancel-form"
           onClick={props.onCancel}
         >
-          {data.cancelButtonText}
+          {props.data.cancelButtonText}
         </Button>
       </form>
     </Box>
