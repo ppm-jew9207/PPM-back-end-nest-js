@@ -3,7 +3,6 @@ import { CreateUserProfile } from '../../../models/userProfiles/user-profile.int
 export class UserProfileCreated {
   constructor(
     public readonly userProfile: CreateUserProfile,
-    public readonly id: string,
     public readonly userId: string
   ) {}
 }

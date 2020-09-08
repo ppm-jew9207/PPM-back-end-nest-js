@@ -3,12 +3,13 @@ import { AdvertsModelService } from '../../../../models/adverts/adverts.service'
 import { Inject } from '@nestjs/common';
 import { AdvertsViewModel } from '../../../../models/adverts/adverts.interface';
 
-export class GetAdvertQuery {
+export class GetUsersAdvertsQuery {
   constructor(public readonly id: string) {}
 }
 
-@QueryHandler(GetAdvertQuery)
-export class GetAdvertHandler implements IQueryHandler<GetAdvertQuery> {
+@QueryHandler(GetUsersAdvertsQuery)
+export class GetUsersAdvertsHandler
+  implements IQueryHandler<GetUsersAdvertsQuery> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
   async execute({ id }): Promise<AdvertsViewModel[]> {

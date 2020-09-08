@@ -16,7 +16,7 @@ export class UserProfileModelService {
 
   public async create(data: UserProfileCreated): Promise<void> {
     await this.model.findOneAndUpdate(
-      { _id: Types.ObjectId(data.id) },
+      { _id: Types.ObjectId(data.userId) },
       data.userProfile,
       { upsert: true }
     );
