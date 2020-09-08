@@ -18,7 +18,7 @@ export function userProfileReducer(
       };
     case ActionTypes.USER_PROFILE_GET_SUCCESS:
       return {
-        profile: action.payload.profile.data,
+        profile: action.payload.profile,
         loading: false,
       };
     case ActionTypes.USER_PROFILE_GET_FAILED:

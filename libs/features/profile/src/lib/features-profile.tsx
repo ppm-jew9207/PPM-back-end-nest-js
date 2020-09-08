@@ -40,8 +40,7 @@ export const FeaturesProfile = (props) => {
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
 
   useEffect(() => {
-    console.log(profile);
-    if (profile && profile._id) {
+    if (profile) {
       setData({
         mentorImage: profile.photo,
         fullName: profile.firstName + ' ' + profile.lastName,
@@ -55,56 +54,13 @@ export const FeaturesProfile = (props) => {
     }
   }, [profile]);
 
-  useEffect(() => {
-    console.log(data, 'data');
-  }, [data]);
-
   if (loading) return <CircularProgress />;
 
   return (
     <div>
-      {console.log(data, 'testas')}
       <SharedUserProfileCard {...data} />
     </div>
   );
 };
 
 export default FeaturesProfile;
-
-// let data = {
-//   mentorImage: 'https://placekitten.com/300/300',
-//   fullName: 'John Doe',
-//   aboutMentor: 'Lorem ipsum dolor sit amet',
-//   mentorLocation: 'Kaunas',
-//   facebook: '#',
-//   twitter: '#',
-//   linkedin: '#',
-//   instagram: '#',
-// };
-
-// [
-//   {
-//     "categories": [
-//       "string"
-//     ],
-//     "_id": "5f4ff1e565f254295c363efe",
-//     "__v": 0,
-//     "city": "Vilnius",
-//     "company": "string",
-//     "description": "Lorem ipsum dolor sit amet",
-//     "email": "string",
-//     "fieldOfProfession": "string",
-//     "firstName": "John",
-//     "lastName": "Doe",
-//     "phone": "string",
-//     "photo": "string",
-//     "socialLinks": [
-//       {
-//         "_id": "5f4ff4ce65f254295c363f01",
-//         "link": "#",
-//         "icon": "TwitterIcon"
-//       }
-//     ],
-//     "type": "string"
-//   }
-// ]
