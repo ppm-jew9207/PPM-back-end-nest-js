@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+
 import {
   TextField,
   Button,
@@ -13,18 +14,34 @@ import {
 import './shared-create-advert-form.scss';
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
-export interface AdvertData {
+export interface AdvertDefaultParams {
   title: string;
-  submitButtonText: string;
   titleInputLabel: string;
   descriptionInputLabel: string;
-  category: string;
-  imageUrl: string;
+  categoryInputLabel: string;
+  submitButtonText: string;
+  cancelButtonText: string;
 }
 export interface Category {
   title: string;
   value: string;
   _id: string;
+}
+
+export interface Advert {
+  category: string;
+  description: string;
+  imageUrl: string;
+  title: string;
+  _id: string;
+}
+
+export interface AdvertData {
+  id: string;
+  title: string;
+  description: string;
+  advertImage: FileList;
+  category: string;
 }
 
 export interface SharedCreateAdvertFormProps {
@@ -34,22 +51,26 @@ export interface SharedCreateAdvertFormProps {
     advertImage: FileList;
     category: string;
   }) => void;
-  data: AdvertData;
+  onCancel: () => void;
+  data: AdvertDefaultParams;
   categories: Category[];
+  advert?: Advert;
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [data, setData] = useState<AdvertData>(null);
+  const [advert, setAdvert] = useState<Advert>();
 
   useEffect(() => {
-    !data && setData(props.data);
     !categories.length && setCategories(props.categories);
+    !advert && setAdvert(props.advert);
+    props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
   }, [props]);
 
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
+
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
       setUploadedImg(e.target.result);
@@ -57,23 +78,16 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
-  const { handleSubmit, register, control, errors } = useForm();
-  return !data ? (
-    <div>Loading...</div>
-  ) : (
+  const { handleSubmit, register, control, errors, setValue } = useForm();
+  if (!props.data) return <div>Loading...</div>;
+
+  return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
-        {data.title}
+        {props.data.title}
       </Typography>
-
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
-        <div
-          className="inner-container"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <div className="inner-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
               inputRef={register({})}
@@ -90,7 +104,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             <div className="files-preview-container">
               <img
                 className="files-preview-container__image"
-                src={(!!uploadedImg && uploadedImg.toString()) || data.imageUrl}
+                src={(!!uploadedImg && uploadedImg.toString()) || ''}
               />
             </div>
             <div className="helper-text">
@@ -106,54 +120,72 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             </div>
           </div>
         </div>
+
         <TextField
           variant="outlined"
           margin="normal"
-          required
           fullWidth
           id="title"
-          label={data.title}
+          label={props.data.titleInputLabel}
           type="text"
           name="title"
           autoComplete="title"
           autoFocus
+          value={advert && advert.title}
+          onChange={(event) =>
+            setAdvert({ ...advert, title: event.target.value })
+          }
           inputRef={register({
             required: 'Required',
           })}
-          error={!!errors.title}
-          helperText={!errors.title ? '' : 'Title is required'}
+          multiline
+          rows={1}
+          className="header"
         />
+        <div>{advert && advert.description}</div>
         <TextField
           variant="outlined"
           margin="normal"
           fullWidth
           id="description"
-          label={data.descriptionInputLabel}
+          label={props.data.descriptionInputLabel}
           type="text"
           name="description"
           autoComplete="description"
           autoFocus
+          value={advert && advert.description}
           inputRef={register({})}
           multiline
           rows={8}
+          className="description"
         />
-        <FormControl
-          variant="outlined"
-          fullWidth
-          className="category"
-          margin="normal"
-        >
-          <InputLabel id="category-label">Category</InputLabel>
-          <Controller
-            variant="outlined"
-            name="category"
-            defaultValue={data.category}
-            control={control}
-            onChange={([selected]) => {
-              return selected;
-            }}
-            as={
-              <Select id="category" variant="outlined">
+        <Controller
+          control={control}
+          name="category"
+          as={
+            <FormControl
+              className="category"
+              variant="outlined"
+              margin="normal"
+            >
+              <InputLabel id="category-label">Category</InputLabel>
+              <Select
+                name="category"
+                labelId="category-label"
+                id="category"
+                inputRef={register({
+                  required: 'Required',
+                })}
+                value={
+                  (advert && advert.category) ||
+                  (categories[0] && categories[0].value) ||
+                  ''
+                }
+                onChange={(event: React.ChangeEvent<{ value: string }>) => {
+                  setValue('category', event.target.value);
+                  setAdvert({ ...advert, category: event.target.value });
+                }}
+              >
                 {!!categories &&
                   categories.map((category) => {
                     return (
@@ -163,11 +195,9 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                     );
                   })}
               </Select>
-            }
-            fullWidth
-          />
-        </FormControl>
-
+            </FormControl>
+          }
+        ></Controller>
         <Button
           fullWidth
           variant="contained"
@@ -175,7 +205,17 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          {data.submitButtonText}
+          {props.data.submitButtonText}
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          type="reset"
+          className="cancel-form"
+          onClick={props.onCancel}
+        >
+          {props.data.cancelButtonText}
         </Button>
       </form>
     </Box>

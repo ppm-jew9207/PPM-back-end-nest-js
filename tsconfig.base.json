@@ -42,7 +42,6 @@
       "@ppm/features/dashboard/mentor": [
         "libs/features/dashboard/mentor/src/index.ts"
       ],
-      "@ppm/features//mentors": ["libs/features//mentors/src/index.ts"],
       "@ppm/features/mentors": ["libs/features/mentors/src/index.ts"],
       "@ppm/features/mentor": ["libs/features/mentor/src/index.ts"],
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],
@@ -77,7 +76,11 @@
       "@ppm/data-access/user-profile": [
         "libs/data-access/user-profile/src/index.ts"
       ],
-      "@ppm/features/profile": ["libs/features/profile/src/index.ts"]
+      "@ppm/features/profile": ["libs/features/profile/src/index.ts"],
+      "@ppm/features/advert-form": ["libs/features/advert-form/src/index.ts"],
+      "@ppm/data-access/categories": [
+        "libs/data-access/categories/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

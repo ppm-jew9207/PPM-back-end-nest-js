@@ -143,6 +143,12 @@
     },
     "features-profile": {
       "tags": []
+    },
+    "features-advert-form": {
+      "tags": []
+    },
+    "data-access-categories": {
+      "tags": []
     }
   },
   "affected": {

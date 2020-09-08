@@ -15,13 +15,14 @@ export default {
 export const primary = () => {
   const props: SharedCreateAdvertFormProps = {
     onSubmit: action('onSubmit'),
+    onCancel: action('onCancel'),
     data: {
       title: 'New advert',
       submitButtonText: 'Create',
-      titleInputLabel: 'Title',
+      cancelButtonText: 'Cancel',
       descriptionInputLabel: 'Description',
-      category: 'category-a',
-      imageUrl: '',
+      titleInputLabel: 'New Advert',
+      categoryInputLabel: 'Category',
     },
     categories: [
       { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },

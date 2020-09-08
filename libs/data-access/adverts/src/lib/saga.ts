@@ -12,37 +12,73 @@ import {
   getByIdSuccess,
   getByIdFailed,
 } from './actions';
-import { post, get } from '@ppm/data-access/http-requests';
+import { post, postFormData, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createAdvert(actions) {
+  const data = actions.payload;
   try {
-    const path = `/api/${PrivateRoutesPath.ADVERTS}`;
-    const data = actions.payload;
-    yield call(post, path, data);
-    yield put(
-      createSuccess({
-        loading: false,
-      })
-    );
+    if (data.advertImage.length) {
+      const file = data.advertImage[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      const path = `/api/${PrivateRoutesPath.IMAGES}`;
+      const imageResult = yield call(postFormData, path, formData);
+
+      if (imageResult) {
+        const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+        const data = actions.payload;
+        yield call(post, path, data);
+        yield put(
+          createSuccess({
+            loading: false,
+          })
+        );
+      }
+    } else {
+      const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+      const data = actions.payload;
+      yield call(post, path, data);
+      yield put(
+        createSuccess({
+          loading: false,
+        })
+      );
+    }
   } catch (error) {
     yield put(createFailed());
   }
 }
 
 export function* updateAdvert(actions) {
+  const data = actions.payload;
   try {
-    const data = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
-    yield call(post, path, data);
-    yield put(
-      updateSuccess({
-        loading: false,
-      })
-    );
-  } catch (error) {
-    yield put(updateFailed());
-  }
+    if (data.advertImage.length) {
+      const file = data.advertImage[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      const path = `/api/${PrivateRoutesPath.IMAGES}`;
+      const imageResult = yield call(postFormData, path, formData);
+
+      if (imageResult) {
+        const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+        yield call(post, path, { ...data, imageUrl: imageResult.data });
+        yield put(
+          updateSuccess({
+            loading: false,
+          })
+        );
+      }
+    } else {
+      const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+      yield call(post, path, data);
+      yield put(
+        updateSuccess({
+          loading: false,
+        })
+      );
+    }
+  } catch (error) {}
 }
 
 export function* removeAdvert(actions) {
@@ -64,9 +100,9 @@ export function* getAdvertById(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
     const result = yield call(get, path);
-    if (result) {
-      yield put(getByIdFailed());
-    }
+
+    yield result && put(getByIdFailed());
+
     yield put(
       getByIdSuccess({
         advert: result,
