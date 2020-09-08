@@ -11,9 +11,12 @@ export function* getUserProfile() {
     if (!result) {
       yield put(getUserProfileFailed());
     }
+    console.log(result, 'saga');
+
+    // TODO: need to fix backend to result only object, not array
     yield put(
       getUserProfileSuccess({
-        profile: result,
+        profile: result.data[0],
         loading: false,
       })
     );
