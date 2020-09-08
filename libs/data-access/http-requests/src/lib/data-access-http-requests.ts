@@ -2,14 +2,23 @@ import { request } from './request';
 import { PrivateRoutesPath, RegistrationInterface } from '@ppm/common/main';
 import { getToken } from '@ppm/data-access/local-storage';
 
-const headerOptions = {
-  'Content-Type': 'application/json',
+const generalOptions = {
   Accept: 'application/json',
   'Access-Control-Allow-Headers': 'Content-Type',
   Authorization: getToken(),
 };
+
+const headerOptions = {
+  ...generalOptions,
+  'Content-Type': 'application/json',
+};
+
 const requestOptions = {
   headers: new Headers(headerOptions),
+};
+
+const fileRequestOptions = {
+  headers: new Headers(generalOptions),
 };
 
 export const login = (data) => {
@@ -60,6 +69,15 @@ export const post = (path, data = {}) => {
     body: JSON.stringify(data),
     method: 'POST',
     ...requestOptions,
+  });
+  return response;
+};
+
+export const postFormData = (path, data) => {
+  const response: any = request(path, {
+    body: data,
+    method: 'POST',
+    ...fileRequestOptions,
   });
   return response;
 };

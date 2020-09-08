@@ -22,7 +22,7 @@ const selectLoading = () =>
   });
 
 const selectAdvert = () =>
-  createSelector(selectAdvertState, (subState) => {
+  createSelector(selectAdvertsState, (subState) => {
     return subState.advert || null;
   });
 
