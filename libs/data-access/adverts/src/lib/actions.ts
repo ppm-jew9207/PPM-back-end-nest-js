@@ -60,3 +60,7 @@ export function getByIdSuccess(payload: any) {
 export function getByIdFailed() {
   return action(ActionTypes.ADVERT_GET_BY_ID_FAILED);
 }
+
+export function getAllByAuthor(payload: any) {
+  return action(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR, payload);
+}
