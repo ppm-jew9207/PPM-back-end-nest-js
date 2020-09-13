@@ -23,9 +23,7 @@ export const SharedRegistrationVerification = (
   props: SharedRegistrationVerificationProps
 ) => {
   const { handleSubmit, register } = useForm();
-  const [inputValue, setInputValue] = useState(props.code)
-
-  const isButtonEnabled = inputValue.length > 0;
+  const [inputValue, setInputValue] = useState(!props.code ? '' : props.code);
   
   return (
     <Grid container direction="column" justify="center" className="registrationVerification">
@@ -58,7 +56,7 @@ export const SharedRegistrationVerification = (
         </p>
         <Grid container justify="center">
           <Box mx={2}>
-            <Button variant="contained" color="primary" type="submit" disabled={!isButtonEnabled}>
+            <Button variant="contained" color="primary" type="submit" disabled={!inputValue}>
               Confirm verification
             </Button>
           </Box>
