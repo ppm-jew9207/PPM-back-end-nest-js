@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UpdateLessonPayload } from '../lessons.interface';
+import { LessonPayload } from '../lessons.interface';
 
-export class UpdateLessonPayloadDto implements UpdateLessonPayload {
+export class UpdateLessonPayloadDto implements LessonPayload {
   @ApiProperty()
   public readonly id: string;
   @ApiProperty()

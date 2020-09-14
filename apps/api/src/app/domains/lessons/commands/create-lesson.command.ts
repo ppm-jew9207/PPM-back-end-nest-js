@@ -1,12 +1,12 @@
-import { LessonsAggregate } from "../lessons.aggregate";
-import { Types } from "mongoose";
-import { ICommandHandler, EventPublisher, CommandHandler } from "@nestjs/cqrs";
-import { CreateLessonPayloadDto } from "../../../models/lessons/dtos/create-lesson.dto";
-import { Inject, BadRequestException } from "@nestjs/common";
-import { LessonCreated } from "../events/lesson-created.event";
-import { UserLean } from "../../../models/users/user.interface";
-import { CreateLessonPayload } from "../../../models/lessons/lessons.interface";
-import { UsersService } from "../../../models/users/users.service";
+import { LessonsAggregate } from '../lessons.aggregate';
+import { Types } from 'mongoose';
+import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
+import { CreateLessonPayloadDto } from '../../../models/lessons/dtos/create-lesson.dto';
+import { Inject, BadRequestException } from '@nestjs/common';
+import { LessonCreated } from '../events/lesson-created.event';
+import { UserLean } from '../../../models/users/user.interface';
+import { CreateLessonPayload } from '../../../models/lessons/lessons.interface';
+import { UsersService } from '../../../models/users/users.service';
 
 export class CreateLesson {
   constructor(public data: CreateLessonPayloadDto, public user: UserLean) {}
@@ -23,7 +23,7 @@ export class CreateLessonHandler implements ICommandHandler<CreateLesson> {
     }
 
     if (!data.title) {
-      throw new BadRequestException("Title is required!");
+      throw new BadRequestException('Title is required!');
     }
 
     const lessonData: CreateLessonPayload = {

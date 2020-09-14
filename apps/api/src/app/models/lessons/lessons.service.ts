@@ -1,15 +1,14 @@
-import { Injectable, Type } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { Types } from "mongoose";
+import { Injectable, Type } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Types } from 'mongoose';
 
-import { ViewModels } from "../../helpers/constants";
+import { ViewModels } from '../../helpers/constants';
 import {
   LessonsViewModel,
   CreateLessonPayload,
-  RemoveLessonPayload,
-  UpdateLessonPayload,
-} from "./lessons.interface";
+  LessonPayload,
+} from './lessons.interface';
 
 @Injectable()
 export class LessonsModelService {
@@ -21,8 +20,8 @@ export class LessonsModelService {
     return this._model.find().exec();
   }
 
-  async getByUserId(id): Promise<LessonsViewModel[]> {
-    return this._model.find({ "creator._id": id }).exec();
+  async getByUserId(id: string): Promise<LessonsViewModel[]> {
+    return this._model.find({ 'creator._id': id }).exec();
   }
 
   async getById(id: string): Promise<LessonsViewModel> {
@@ -36,14 +35,14 @@ export class LessonsModelService {
     });
   }
 
-  async update(id: string, data: UpdateLessonPayload) {
+  async update(id: string, data: LessonPayload) {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async remove({ id }: RemoveLessonPayload) {
+  async remove(id: string) {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
 }

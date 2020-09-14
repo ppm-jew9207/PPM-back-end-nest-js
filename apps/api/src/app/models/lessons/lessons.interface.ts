@@ -11,11 +11,6 @@ export interface LeanLessonsView {
   imageUrl?: string;
   creator: UserRef;
 }
-
-export interface GetLessonPayload {
-  id: string;
-}
-
 export interface CreateLessonPayload {
   title: string;
   description: string;
@@ -26,25 +21,8 @@ export interface CreateLessonPayload {
   creator: UserRef;
 }
 
-export interface UpdateLessonPayload extends LessonPayload {
-  id: string;
-}
-
-export interface RemoveLessonPayload {
-  id: string;
-}
-
 export interface LessonPayload {
-  title: string;
-  description: string;
-  datetime: Date;
-  resources?: string[];
-  connectionUrl: string;
-  imageUrl?: string;
-}
-
-export interface LessonRef {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   datetime: Date;

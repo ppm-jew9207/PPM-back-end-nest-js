@@ -8,9 +8,9 @@ export class CreateLessonPayloadDto {
   @ApiProperty()
   public readonly datetime: Date;
   @ApiProperty({ isArray: true, type: 'string' })
-  public readonly resources: string[];
+  public readonly resources?: string[];
   @ApiProperty()
-  public readonly connectionUrl?: string;
+  public readonly connectionUrl: string;
   @ApiProperty()
   public readonly imageUrl?: string;
 }
