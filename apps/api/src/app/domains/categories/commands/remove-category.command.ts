@@ -11,7 +11,7 @@ export class RemoveCategory {
 export class RemoveCategoryHandler implements ICommandHandler<RemoveCategory> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute(id): Promise<Boolean> {
+  async execute({ id }: RemoveCategory): Promise<Boolean> {
     const aggregate = new CategoriesAggregate();
     aggregate.apply(new CategoryRemoved(id));
 
