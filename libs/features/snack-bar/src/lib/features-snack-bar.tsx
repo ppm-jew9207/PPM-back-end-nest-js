@@ -16,6 +16,8 @@ export const FeaturesSnackBar = () => {
   const { message, type } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
     if (message) {
       snackBarMessage(type, message);
@@ -29,7 +31,9 @@ export const FeaturesSnackBar = () => {
           vertical: 'top',
           horizontal: 'center',
         }, 
-        variant
+        variant,
+        persist: false,
+        autoHideDuration: 1000,
     });
   };
   return <div></div>
