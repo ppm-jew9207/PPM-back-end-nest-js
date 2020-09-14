@@ -80,6 +80,9 @@
       "@ppm/features/advert-form": ["libs/features/advert-form/src/index.ts"],
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
+      ],
+      "@ppm/hooks/use-registration": [
+        "libs/hooks/use-registration/src/index.ts"
       ]
     }
   },
