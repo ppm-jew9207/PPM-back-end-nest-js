@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
+import { FeaturesProfile } from '@ppm/features/profile';
 
 import './features-dashboard-mentor.scss';
 
@@ -21,13 +22,14 @@ export const FeaturesDashboardMentor = (
   const { adverts, loading } = useSelector(stateSelector);
 
   useEffect(() => {
-    // TODO take ID from state
-    dispatch(advertsActions.getAllByAuthor('5f2d0f4c022c954774d5313e'));
+    dispatch(advertsActions.getAllByAuthor());
   }, [dispatch]);
 
   return (
     <div>
       <h1>Welcome to features-dashboard-mentor!</h1>
+      <h2>User Profile</h2>
+      <FeaturesProfile />
       <h2>Mentor adverts</h2>
       {adverts.map((advert, i) => {
         return (

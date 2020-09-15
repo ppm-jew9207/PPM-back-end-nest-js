@@ -10,7 +10,7 @@ import { FeaturesAdvertForm } from '@ppm/features/advert-form';
 
 const PrivateRouter: RouterItem[] = [
   {
-    path: `/${PrivateRoutesPath.DASHBOARD}${PrivateRoutesPath.DASHBOARD_MENTOR}`,
+    path: `/${PrivateRoutesPath.DASHBOARD}`,
     title: null,
     icon: null,
     component: FeaturesDashboardMentor,
