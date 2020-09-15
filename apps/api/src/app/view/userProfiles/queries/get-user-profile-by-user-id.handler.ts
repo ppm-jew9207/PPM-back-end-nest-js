@@ -10,7 +10,7 @@ export class GetUserProfileByUserIdQuery {
 export class GetUserProfileByUserIdHandler
   implements IQueryHandler<GetUserProfileByUserIdQuery> {
   @Inject() private readonly _userProfileModelService: UserProfileModelService;
-  async execute({ id }) {
+  async execute({ id }: GetUserProfileByUserIdQuery) {
     return this._userProfileModelService.getById(id);
   }
 }
