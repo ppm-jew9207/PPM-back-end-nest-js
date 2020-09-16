@@ -10,6 +10,7 @@ import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
+import { FeaturesAdverts } from '@ppm/features/adverts';
 
 import './features-profile.scss';
 
@@ -58,7 +59,10 @@ export const FeaturesProfile = (props) => {
 
   return (
     <div>
-      <SharedUserProfileCard {...data} />
+      <div className="profile-card-container">
+        <SharedUserProfileCard {...data} />
+      </div>
+      <FeaturesAdverts />
     </div>
   );
 };
