@@ -22,10 +22,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "apps/ppm/src/environments/environment.ts",
-                "with": "apps/ppm/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ppm/src/environments/environment.ts",
+                  "with": "apps/ppm/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -33,11 +35,13 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -121,10 +125,12 @@
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
-              "fileReplacements": [{
-                "replace": "apps/api/src/environments/environment.ts",
-                "with": "apps/api/src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -1069,7 +1075,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/authorization/jest.config.js",
-            "tsConfig": "libs/features/authorization/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1099,7 +1104,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/local-storage/jest.config.js",
-            "tsConfig": "libs/data-access/local-storage/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1129,7 +1133,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/http-requests/jest.config.js",
-            "tsConfig": "libs/data-access/http-requests/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1159,7 +1162,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/user-profile-card/jest.config.js",
-            "tsConfig": "libs/shared/user-profile-card/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -1219,7 +1221,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/create-advert-form/jest.config.js",
-            "tsConfig": "libs/shared/create-advert-form/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -1276,7 +1277,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/adverts/jest.config.js",
-            "tsConfig": "libs/data-access/adverts/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1303,7 +1303,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/registration/jest.config.js",
-            "tsConfig": "libs/shared/registration/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -1391,7 +1390,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/footer/jest.config.js",
-            "tsConfig": "libs/shared/footer/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -1451,7 +1449,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/registration/jest.config.js",
-            "tsConfig": "libs/features/registration/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1481,7 +1478,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/left-side-menu/jest.config.js",
-            "tsConfig": "libs/shared/left-side-menu/tsconfig.spec.json",
             "passWithNoTests": true
           }
         },
@@ -1538,7 +1534,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/adverts/jest.config.js",
-            "tsConfig": "libs/features/adverts/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1568,7 +1563,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/user-profile/jest.config.js",
-            "tsConfig": "libs/data-access/user-profile/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1598,7 +1592,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/snack-bar/jest.config.js",
-            "tsConfig": "libs/data-access/snack-bar/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1625,7 +1618,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/snack-bar/jest.config.js",
-            "tsConfig": "libs/features/snack-bar/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1652,7 +1644,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/advert-form/jest.config.js",
-            "tsConfig": "libs/features/advert-form/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1682,7 +1673,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/categories/jest.config.js",
-            "tsConfig": "libs/data-access/categories/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1709,7 +1699,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/profile/jest.config.js",
-            "tsConfig": "libs/features/profile/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
