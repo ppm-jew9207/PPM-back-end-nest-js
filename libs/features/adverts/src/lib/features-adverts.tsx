@@ -21,7 +21,7 @@ export const FeaturesAdverts = () => {
   if (loading) return <CircularProgress />;
 
   return (
-    <div>
+    <div className="advert-cards">
       {adverts.map((advert, i) => {
         return (
           <SharedAdvertCard
