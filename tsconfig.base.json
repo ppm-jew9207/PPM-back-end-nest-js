@@ -80,7 +80,8 @@
       "@ppm/features/advert-form": ["libs/features/advert-form/src/index.ts"],
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
-      ]
+      ],
+      "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -149,6 +149,9 @@
     },
     "data-access-categories": {
       "tags": []
+    },
+    "data-access-lessons": {
+      "tags": []
     }
   },
   "affected": {
