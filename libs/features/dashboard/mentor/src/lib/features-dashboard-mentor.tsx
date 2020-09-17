@@ -26,11 +26,7 @@ export const FeaturesDashboardMentor = (
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Welcome to features-dashboard-mentor!</h1>
-      <h2>User Profile</h2>
-      <FeaturesProfile />
-      <h2>Mentor adverts</h2>
+    <div className="advert-cards">
       {adverts.map((advert, i) => {
         return (
           <SharedAdvertCard
