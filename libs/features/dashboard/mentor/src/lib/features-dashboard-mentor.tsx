@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
-import { FeaturesProfile } from '@ppm/features/profile';
 
 import './features-dashboard-mentor.scss';
 
