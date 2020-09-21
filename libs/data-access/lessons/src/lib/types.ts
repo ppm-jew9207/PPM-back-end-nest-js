@@ -7,9 +7,9 @@ export interface LessonType {
   description: string;
 }
 
-interface LessonsState {
+export interface LessonsState {
   readonly lesson?: LessonType;
-  readonly list: LessonType[];
+  readonly list?: LessonType[];
   readonly loading: boolean;
 }
 

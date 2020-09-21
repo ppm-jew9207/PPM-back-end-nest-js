@@ -100,7 +100,7 @@ export function* getLessonById(actions) {
     const path = `/api/${PrivateRoutesPath.LESSONS}/${PrivateRoutesPath.USER}/${id}`;
     const result = yield call(get, path);
 
-    if (!!result && !Array.isArray(result.data)) {
+    if (!result && !Array.isArray(result.data)) {
       yield put(getAllFailed(null));
     }
 
