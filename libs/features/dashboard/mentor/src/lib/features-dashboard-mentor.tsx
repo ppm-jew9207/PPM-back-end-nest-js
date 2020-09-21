@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
-import { FeaturesProfile } from '@ppm/features/profile';
 
 import './features-dashboard-mentor.scss';
 
@@ -26,11 +25,7 @@ export const FeaturesDashboardMentor = (
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Welcome to features-dashboard-mentor!</h1>
-      <h2>User Profile</h2>
-      <FeaturesProfile />
-      <h2>Mentor adverts</h2>
+    <div className="advert-cards">
       {adverts.map((advert, i) => {
         return (
           <SharedAdvertCard
