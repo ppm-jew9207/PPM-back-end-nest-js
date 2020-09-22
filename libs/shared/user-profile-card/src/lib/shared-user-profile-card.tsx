@@ -82,13 +82,10 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
                 disabled={!socialLink.link}
                 className="profile-card-social-button"
               >
-                {console.log(socialLink)}
                 <Icon
-                  className="profile-card-social-icon"
+                  className={`profile-card-social-icon fab fa-${socialLink.icon}`}
                   style={{ color: socialLink.color }}
-                >
-                  {socialLink.icon}
-                </Icon>
+                ></Icon>
               </IconButton>
             ))}
           {/*           
