@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ObjectHTMLAttributes } from 'react';
 
 import './shared-user-profile-card.scss';
 
@@ -9,31 +9,20 @@ import {
   CardMedia,
   Icon,
   CardActions,
-  IconButton
+  IconButton,
 } from '@material-ui/core';
 
-import {
-  Person as PersonIcon,
-  Room as RoomIcon,
-  Instagram as InstagramIcon,
-  LinkedIn as LinkedInIcon,
-  Twitter as TwitterIcon,
-  Facebook as FacebookIcon,
-} from '@material-ui/icons';
+import { Person as PersonIcon, Room as RoomIcon } from '@material-ui/icons';
 
 export interface SharedUserProfileCardProps {
   mentorImage?: string;
   fullName: string;
   aboutMentor: string;
   mentorLocation?: string;
-  facebook?: string;
-  twitter?: string;
-  linkedin?: string;
-  instagram?: string;
+  socialLinks?: Array;
 }
 
 export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
-
   return (
     <Card className="profile-card">
       <CardContent>
@@ -71,12 +60,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
         >
           {props.aboutMentor}
         </Typography>
-        {!!(
-          props.facebook ||
-          props.twitter ||
-          props.linkedin ||
-          props.instagram
-        ) && (
+        {!!props.socialLinks && (
           <Typography
             variant="subtitle1"
             component="h5"
@@ -88,17 +72,26 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
           </Typography>
         )}
         <CardActions>
-          <IconButton
-            aria-label="facebook"
-            href={props.facebook}
-            disabled={!props.facebook}
-            className="profile-card-social-button"
-          >
-            <FacebookIcon
-              className="profile-card-social-icon"
-              style={{ color: '#3b5999' }}
-            />
-          </IconButton>
+          {props.socialLinks &&
+            props.socialLinks.length &&
+            props.socialLinks.map((socialLink) => (
+              <IconButton
+                key={socialLink.icon}
+                aria-label={socialLink.icon}
+                href={socialLink.link}
+                disabled={!socialLink.link}
+                className="profile-card-social-button"
+              >
+                {console.log(socialLink)}
+                <Icon
+                  className="profile-card-social-icon"
+                  style={{ color: socialLink.color }}
+                >
+                  {socialLink.icon}
+                </Icon>
+              </IconButton>
+            ))}
+          {/*           
           <IconButton
             aria-label="twitter"
             href={props.twitter}
@@ -131,7 +124,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
               className="profile-card-social-icon"
               style={{ color: '#55acee' }}
             />
-          </IconButton>
+          </IconButton> */}
         </CardActions>
       </CardContent>
     </Card>

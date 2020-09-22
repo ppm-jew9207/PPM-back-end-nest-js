@@ -19,20 +19,39 @@ export const primary = () => {
     'About Mentor',
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.'
   );
-  const facebook = text('Facebook', '#');
-  const twitter = text('Twitter', '#');
-  const linkedin = text('LinkedIn', '');
-  const instagram = text('Instagram', '');
+  const socialLinks = [
+    {
+      type: 'facebook',
+      link: '#',
+    },
+    {
+      type: 'twitter',
+      link: '#',
+    },
+    {
+      type: 'linkedin',
+      link: '#',
+    },
+    {
+      type: 'instagram',
+      link: '#',
+    },
+  ];
+  // const facebook = text('Facebook', '#');
+  // const twitter = text('Twitter', '#');
+  // const linkedin = text('LinkedIn', '');
+  // const instagram = text('Instagram', '');
 
   const props: SharedUserProfileCardProps = {
     mentorImage,
     fullName,
     aboutMentor,
     mentorLocation,
-    facebook,
-    twitter,
-    linkedin,
-    instagram,
+    socialLinks,
+    // facebook,
+    // twitter,
+    // linkedin,
+    // instagram,
   };
 
   return <SharedUserProfileCard {...props} />;
