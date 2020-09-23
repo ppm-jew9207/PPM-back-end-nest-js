@@ -59,15 +59,9 @@ export interface SharedLessonComponentProps {
 }
 
 export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
-        const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(
-          null
-        );
+        const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>();
         const [mentors, setMentors] = useState<Mentor[]>([]);
         const [lesson, setLesson] = useState<Lesson>();
-
-         
-
-         console.log(lesson);
 
          useEffect(() => {
            !lesson && setLesson(props.lesson);
@@ -259,19 +253,18 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                  fullWidth
                  variant="contained"
                  color="secondary"
-                 type="reset"
+                 type="button"
                  className="cancel-form"
-                 onClick={() => 
-                   reset()
-                  //  reset({
-                  //    mentorName: '',
-                  //    description: '',
-                  //    resources: '',
-                  //    imageUrl: '',
-                  //    title: '',
-                  //    connectionURL: '',
-                  //    date: moment().format('YYYY-MM-DDTHH:MM'),
-                  //  });
+                 onClick={
+                   reset({
+                     mentorName: '',
+                     description: '',
+                     resources: '',
+                     imageUrl: '',
+                     title: '',
+                     connectionURL: '',
+                     date: moment().format('YYYY-MM-DDTHH:MM')
+                   })
                  }
                >
                  {props.data.cancelButtonText}
