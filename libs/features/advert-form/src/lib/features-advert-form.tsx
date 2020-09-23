@@ -14,7 +14,6 @@ import {
 import './features-advert-form.scss';
 import { PrivateRoutesPath } from '@ppm/common/main';
 import { CircularProgress } from '@material-ui/core';
-
 interface RouteInfo extends RouteProps {
   params: {
     id: string;

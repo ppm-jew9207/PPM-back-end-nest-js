@@ -150,6 +150,9 @@
     "data-access-categories": {
       "tags": []
     },
+    "hooks-use-registration": {
+      "tags": []
+    },
     "data-access-lessons": {
       "tags": []
     }
