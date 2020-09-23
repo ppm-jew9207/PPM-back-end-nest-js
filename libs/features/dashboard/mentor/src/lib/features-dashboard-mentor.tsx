@@ -21,14 +21,11 @@ export const FeaturesDashboardMentor = (
   const { adverts, loading } = useSelector(stateSelector);
 
   useEffect(() => {
-    // TODO take ID from state
-    dispatch(advertsActions.getAllByAuthor('5f2d0f4c022c954774d5313e'));
+    dispatch(advertsActions.getAllByAuthor());
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Welcome to features-dashboard-mentor!</h1>
-      <h2>Mentor adverts</h2>
+    <div className="advert-cards">
       {adverts.map((advert, i) => {
         return (
           <SharedAdvertCard

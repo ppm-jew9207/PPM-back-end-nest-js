@@ -132,18 +132,16 @@ export function* getAll() {
   }
 }
 
-export function* getAllByAuthor(actions) {
+export function* getAllByAuthor() {
   try {
-    const id = actions.payload;
-    // todo: include authorID, for now: all adverts are shown
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const path = `/api/${PrivateRoutesPath.ADVERTS}/${PrivateRoutesPath.USER}`;
     const result = yield call(get, path);
-    if (!Array.isArray(result)) {
+    if (result && !Array.isArray(result.data)) {
       yield put(getAllFailed(null));
     }
     yield put(
       getAllSuccess({
-        list: result,
+        list: result.data,
         loading: false,
       })
     );

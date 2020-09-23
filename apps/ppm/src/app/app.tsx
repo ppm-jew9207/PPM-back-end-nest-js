@@ -5,7 +5,6 @@ import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 import { FeaturesSnackBar } from '@ppm/features/snack-bar';
-import { FeaturesAdvertForm } from '@ppm/features/advert-form';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (

@@ -15,7 +15,7 @@ export function* getUserProfile() {
     // TODO: need to fix backend to result only object, not array
     yield put(
       getUserProfileSuccess({
-        profile: result.data[0],
+        profile: result.data,
         loading: false,
       })
     );
