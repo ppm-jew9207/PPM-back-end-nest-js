@@ -21,20 +21,24 @@ export const primary = () => {
   );
   const socialLinks = [
     {
-      type: 'facebook',
+      icon: 'facebook',
       link: '#',
+      color: '#3b5999',
     },
     {
-      type: 'twitter',
+      icon: 'twitter',
       link: '#',
+      color: '#55acee',
     },
     {
-      type: 'linkedin',
+      icon: 'linkedin',
       link: '#',
+      color: '#55acee',
     },
     {
-      type: 'instagram',
+      icon: 'instagram',
       link: '#',
+      color: '#55acee',
     },
   ];
 
