@@ -16,7 +16,7 @@ export interface SharedRegistrationVerificationProps {
   informationTitle?: string;
   onSubmit: (code: string) => void;
   onCancel: () => void;
-  resendVerification: () => void;
+  resendVerification?: () => void;
 }
 
 export const SharedRegistrationVerification = (
