@@ -19,7 +19,12 @@ export interface SharedUserProfileCardProps {
   fullName: string;
   aboutMentor: string;
   mentorLocation?: string;
-  socialLinks?: Array[];
+  socialLinks?: Array<SocialLink>;
+}
+export interface SocialLink {
+  icon: string;
+  link: string;
+  color: string;
 }
 
 export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
