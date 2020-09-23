@@ -1,4 +1,4 @@
-import React, { ObjectHTMLAttributes } from 'react';
+import React from 'react';
 
 import './shared-user-profile-card.scss';
 
@@ -19,7 +19,7 @@ export interface SharedUserProfileCardProps {
   fullName: string;
   aboutMentor: string;
   mentorLocation?: string;
-  socialLinks?: Array;
+  socialLinks?: Array<any>;
 }
 
 export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
@@ -73,6 +73,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
         )}
         <CardActions>
           {props.socialLinks &&
+            props.socialLinks[0] &&
             props.socialLinks.length &&
             props.socialLinks.map((socialLink) => (
               <IconButton
@@ -88,40 +89,6 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
                 ></Icon>
               </IconButton>
             ))}
-          {/*           
-          <IconButton
-            aria-label="twitter"
-            href={props.twitter}
-            disabled={!props.twitter}
-            className="profile-card-social-button"
-          >
-            <TwitterIcon
-              className="profile-card-social-icon"
-              style={{ color: '#55acee' }}
-            />
-          </IconButton>
-          <IconButton
-            aria-label="linkedin"
-            href={props.linkedin}
-            disabled={!props.linkedin}
-            className="profile-card-social-button"
-          >
-            <LinkedInIcon
-              className="profile-card-social-icon"
-              style={{ color: '#55acee' }}
-            />
-          </IconButton>
-          <IconButton
-            aria-label="instagram"
-            href={props.instagram}
-            disabled={!props.instagram}
-            className="profile-card-social-button"
-          >
-            <InstagramIcon
-              className="profile-card-social-icon"
-              style={{ color: '#55acee' }}
-            />
-          </IconButton> */}
         </CardActions>
       </CardContent>
     </Card>
