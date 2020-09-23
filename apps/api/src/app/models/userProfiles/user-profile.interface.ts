@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 export interface SocialLink {
   icon: string;
   link: string;
+  color: string;
 }
 
 export interface CreateUserProfile {
