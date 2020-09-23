@@ -37,10 +37,6 @@ export const primary = () => {
       link: '#',
     },
   ];
-  // const facebook = text('Facebook', '#');
-  // const twitter = text('Twitter', '#');
-  // const linkedin = text('LinkedIn', '');
-  // const instagram = text('Instagram', '');
 
   const props: SharedUserProfileCardProps = {
     mentorImage,
@@ -48,10 +44,6 @@ export const primary = () => {
     aboutMentor,
     mentorLocation,
     socialLinks,
-    // facebook,
-    // twitter,
-    // linkedin,
-    // instagram,
   };
 
   return <SharedUserProfileCard {...props} />;
