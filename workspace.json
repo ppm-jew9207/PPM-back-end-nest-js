@@ -1703,6 +1703,33 @@
           }
         }
       }
+    },
+    "data-access-lessons": {
+      "root": "libs/data-access/lessons",
+      "sourceRoot": "libs/data-access/lessons/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/lessons/tsconfig.lib.json",
+              "libs/data-access/lessons/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access/lessons/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/lessons/jest.config.js",
+            "tsConfig": "libs/data-access/lessons/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
