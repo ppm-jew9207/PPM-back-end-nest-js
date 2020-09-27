@@ -1829,7 +1829,8 @@
             "linter": "eslint",
             "tsConfig": [
               "libs/shared/create-new-password-form/tsconfig.lib.json",
-              "libs/shared/create-new-password-form/tsconfig.spec.json"
+              "libs/shared/create-new-password-form/tsconfig.spec.json",
+              "libs/shared/create-new-password-form/.storybook/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**",
@@ -1842,6 +1843,36 @@
           "options": {
             "jestConfig": "libs/shared/create-new-password-form/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/create-new-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-create-new-password-form",
+            "config": {
+              "configFolder": "libs/shared/create-new-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
