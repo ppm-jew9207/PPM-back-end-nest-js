@@ -12,13 +12,19 @@ interface AuthState {
   readonly registrationStep?: number;
 }
 
+interface ForgotPasswordState {
+  readonly step: number;
+  readonly loading: boolean;
+  readonly error: Error;
+}
+
 /* --- ACTIONS --- */
 type AppActions = ActionType<typeof actions>;
 
 /* --- EXPORTS --- */
-
+type ContainerForgotPasswordState = ForgotPasswordState;
 type RootState = ApplicationRootState;
 type ContainerState = AuthState;
 type ContainerActions = AppActions;
 
-export { RootState, ContainerState, ContainerActions };
+export { RootState, ContainerState, ContainerActions, ContainerForgotPasswordState };

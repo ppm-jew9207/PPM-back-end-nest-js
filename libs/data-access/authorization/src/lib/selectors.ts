@@ -1,9 +1,14 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { initialForgotPasswordState, initialState } from './reducer';
 import { ApplicationRootState } from 'types';
 
 const selectAuthorizationState = (state: ApplicationRootState) => {
   return state.authorization || initialState;
+};
+
+const selectForgotPasswordState = (state: ApplicationRootState) => {
+  
+  return state.forgotPassword || initialForgotPasswordState;
 };
 
 // Selectors
@@ -27,4 +32,21 @@ const selectRegistrationStep = () =>
     return subState.registrationStep || 0;
   });
 
-export { selectUser, selectLoading, selectIsLogged, selectRegistrationStep };
+const selectStep = () =>
+  createSelector(
+    selectForgotPasswordState,
+    substate => {
+      return substate.step;
+    }
+  );
+
+const selectStepLoading = () =>
+  createSelector(
+    selectForgotPasswordState,
+    substate => {
+      return substate.loading;
+    }
+  );
+  
+
+export { selectUser, selectLoading, selectIsLogged, selectRegistrationStep, selectStep, selectStepLoading };

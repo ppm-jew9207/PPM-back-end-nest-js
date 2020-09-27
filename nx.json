@@ -155,6 +155,15 @@
     },
     "data-access-lessons": {
       "tags": []
+    },
+    "features-forgot-password": {
+      "tags": []
+    },
+    "hooks-use-authorization": {
+      "tags": []
+    },
+    "shared-create-new-password-form": {
+      "tags": []
     }
   },
   "affected": {

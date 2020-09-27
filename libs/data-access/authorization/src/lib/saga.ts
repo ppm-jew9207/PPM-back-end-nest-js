@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { logInSuccess, logInFailed, registrationFailed, registrationSuccess, verificationSuccess, verificationFailed } from './actions';
+import { logInSuccess, logInFailed, registrationFailed, registrationSuccess, verificationSuccess, verificationFailed, forgotPasswordSuccess } from './actions';
 import { saveToken, removeToken, setRegistrationStep, setRegistrationEmail } from '@ppm/data-access/local-storage';
 import { PrivateRoutesPath, ApiResponse } from '@ppm/common/main';
-import { login, registration, verify } from '@ppm/data-access/http-requests';
+import { get, login, post, registration, verify } from '@ppm/data-access/http-requests';
 import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* logIn(actions) {
@@ -98,10 +98,85 @@ export function* verifyEmail(actions) {
   }
 }
 
+export function* forgotPassword(actions) {
+  try {
+    const email = actions.payload;
+    const path = `/api/${PrivateRoutesPath.AUTH}/forgot-password/${email}`;
+    const result = yield call(get, path);
+    console.log(result);
+    
+    if (result.success) {
+      yield put(forgotPasswordSuccess(1));
+      yield put(
+        snackbarActions.setMessage({
+          variant: 'success',
+          message: 'Your verification code has been sent to your email. '
+        })
+      );
+    }else{
+      yield put(
+        snackbarActions.setMessage({
+          variant: 'error',
+          message: 'Request failed. Check entered data'
+        })
+      );
+    }
+
+
+  } catch (err) {
+    console.log(err);
+    
+    yield put(
+      snackbarActions.setMessage({
+        variant: 'error',
+        message: 'Reset password failed.'
+      })
+    );
+  }
+}
+
+export function* forgotPasswordResetPassword(actions) {
+  try {
+    const data = actions.payload;
+    const path = `/api/${PrivateRoutesPath.AUTH}/${PrivateRoutesPath.POST_RESET_PASSWORD}`;
+    const result = yield call(post, path, data);
+    
+    if (result.success) {
+      yield put(forgotPasswordSuccess(3));
+      yield put(
+        snackbarActions.setMessage({
+          variant: 'success',
+          message: 'Your password changed'
+        })
+      );
+    }else{
+      yield put(
+        snackbarActions.setMessage({
+          variant: 'error',
+          message: 'Request failed, check your entered data.'
+        })
+      );
+    }
+
+
+  } catch (err) {
+    console.log(err);
+    
+    yield put(
+      snackbarActions.setMessage({
+        variant: 'error',
+        message: 'Reset password failed.'
+      })
+    );
+  }
+}
+
 export function* authorizationSaga() {
   yield takeLatest(ActionTypes.LOG_IN, logIn);
   yield takeLatest(ActionTypes.REGISTRATION, registrationUser);
   yield takeLatest(ActionTypes.VERIFICATION, verifyEmail);
+  yield takeLatest(ActionTypes.FORGOT_PASSWORD, forgotPassword);
+  yield takeLatest(ActionTypes.FORGOT_PASSWORD_CHANGE, forgotPasswordResetPassword);
 }
 
 export default authorizationSaga;
