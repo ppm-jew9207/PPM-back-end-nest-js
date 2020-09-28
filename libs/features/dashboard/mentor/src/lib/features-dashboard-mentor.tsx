@@ -47,7 +47,7 @@ export const FeaturesDashboardMentor = (
             // TODO add shares to backend
             shared={25}
             // TODO advert needs IMG too, also I think we should limit img size from component, maybe width 100% is bad idea
-            imgUrl="https://via.placeholder.com/200"
+            imgUrl={advert.imageUrl}
           />
         );
       })}
