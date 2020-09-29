@@ -1,0 +1,23 @@
+.chip-tag {
+  margin: 2px;
+}
+
+.main-part {
+  position: relative;
+  overflow: hidden;
+  padding: 1vh 0;
+
+  .bg-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.2;
+  }
+
+  .info {
+    position: relative;
+    z-index: 2;
+  }
+}
