@@ -89,6 +89,15 @@
     "shared-search-input": {
       "tags": []
     },
+    "shared-footer": {
+      "tags": []
+    },
+    "data-access-adverts": {
+      "tags": []
+    },
+    "shared-user-profile-card": {
+      "tags": []
+    },
     "features-authorization": {
       "tags": []
     },
@@ -102,6 +111,49 @@
       "tags": []
     },
     "data-access-http-requests": {
+      "tags": []
+    },
+    "shared-registration": {
+      "tags": []
+    },
+    "shared-registration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-registration"]
+    },
+    "shared-create-advert-form": {
+      "tags": []
+    },
+    "shared-left-side-menu": {
+      "tags": []
+    },
+    "features-adverts": {
+      "tags": []
+    },
+    "features-registration": {
+      "tags": []
+    },
+    "data-access-snack-bar": {
+      "tags": []
+    },
+    "features-snack-bar": {
+      "tags": []
+    },
+    "data-access-user-profile": {
+      "tags": []
+    },
+    "features-profile": {
+      "tags": []
+    },
+    "features-advert-form": {
+      "tags": []
+    },
+    "data-access-categories": {
+      "tags": []
+    },
+    "hooks-use-registration": {
+      "tags": []
+    },
+    "data-access-lessons": {
       "tags": []
     }
   },

@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { JWTService } from './jwt.service';
 import { Model } from 'mongoose';
-import { User } from '../models/users/user.interface';
+import { UserLean } from '../models/users/user.interface';
 import { UserDto } from '../models/users/dto/user.dto';
 import { EmailVerification } from './interfaces/emailverification.interface';
 import { ForgottenPassword } from './interfaces/forgottenpassword.interface';
@@ -28,18 +28,18 @@ const transporter = nodemailer.createTransport({
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>,
+    @InjectModel('User') private readonly _userModel: Model<UserLean>,
     @InjectModel(ViewModels.EMAIL_VERIFICATION)
-    private readonly emailVerificationModel: Model<EmailVerification>,
+    private readonly _emailVerificationModel: Model<EmailVerification>,
     @InjectModel(ViewModels.FORGOTTEN_PASSWORD)
-    private readonly forgottenPasswordModel: Model<ForgottenPassword>,
+    private readonly _forgottenPasswordModel: Model<ForgottenPassword>,
     @InjectModel(ViewModels.CONSENT_REGISTRY)
-    private readonly consentRegistryModel: Model<ConsentRegistry>,
-    private readonly jwtService: JWTService
+    private readonly _consentRegistryModel: Model<ConsentRegistry>,
+    private readonly _jwtService: JWTService
   ) {}
 
   async validateLogin(email, password) {
-    const userFromDb = await this.userModel.findOne({ email: email });
+    const userFromDb = await this._userModel.findOne({ email: email });
     if (!userFromDb)
       throw new HttpException('LOGIN.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
     if (!userFromDb.auth.email.valid)
@@ -48,7 +48,7 @@ export class AuthService {
     const isValidPass = await bcrypt.compare(password, userFromDb.password);
 
     if (isValidPass) {
-      const accessToken = await this.jwtService.createToken(
+      const accessToken = await this._jwtService.createToken(
         email,
         userFromDb.roles
       );
@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   async createEmailToken(email: string): Promise<boolean> {
-    const emailVerification = await this.emailVerificationModel.findOne({
+    const emailVerification = await this._emailVerificationModel.findOne({
       email: email
     });
     if (
@@ -72,7 +72,7 @@ export class AuthService {
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     } else {
-      await this.emailVerificationModel.findOneAndUpdate(
+      await this._emailVerificationModel.findOneAndUpdate(
         { email: email },
         {
           email: email,
@@ -89,15 +89,13 @@ export class AuthService {
     try {
       const http = new HttpService();
 
-      const newConsent = new this.consentRegistryModel();
+      const newConsent = new this._consentRegistryModel();
       newConsent.email = email;
       newConsent.date = new Date();
       newConsent.registrationForm = [
-        'firstName',
-        'lastName',
         'email',
-        'birthday date',
-        'password'
+        'password',
+        'phone'
       ];
       newConsent.checkboxText = 'I accept privacy policy';
       const privacyPolicyResponse: any = await http
@@ -118,7 +116,7 @@ export class AuthService {
   async createForgottenPasswordToken(
     email: string
   ): Promise<ForgottenPassword> {
-    const forgottenPassword = await this.forgottenPasswordModel.findOne({
+    const forgottenPassword = await this._forgottenPasswordModel.findOne({
       email: email
     });
     if (
@@ -131,7 +129,7 @@ export class AuthService {
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     } else {
-      const forgottenPasswordModel = await this.forgottenPasswordModel.findOneAndUpdate(
+      const forgottenPasswordModel = await this._forgottenPasswordModel.findOneAndUpdate(
         { email: email },
         {
           email: email,
@@ -154,11 +152,11 @@ export class AuthService {
   }
 
   async verifyEmail(token: string): Promise<boolean> {
-    const emailVerif = await this.emailVerificationModel.findOne({
+    const emailVerif = await this._emailVerificationModel.findOne({
       emailToken: token
     });
     if (emailVerif && emailVerif.email) {
-      const userFromDb = await this.userModel.findOne({
+      const userFromDb = await this._userModel.findOne({
         email: emailVerif.email
       });
       if (userFromDb) {
@@ -178,29 +176,29 @@ export class AuthService {
   async getForgottenPasswordModel(
     newPasswordToken: string
   ): Promise<ForgottenPassword> {
-    return await this.forgottenPasswordModel.findOne({
+    return await this._forgottenPasswordModel.findOne({
       newPasswordToken: newPasswordToken
     });
   }
 
   async sendEmailVerification(email: string): Promise<boolean> {
-    const model = await this.emailVerificationModel.findOne({ email: email });
+    const model = await this._emailVerificationModel.findOne({ email: email });
 
     if (model && model.emailToken) {
-      const url = `http://${process.env.HOST}:${process.env.PORT}/api/auth/email/verify/${model.emailToken}`;
+      const url = `${process.env.HOST}:4200/registry/${model.emailToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
-        to: email, // list of receivers (separated by ,)
+        to: email,
         subject: 'Registracijos patvirtinimas',
-        text: 'Registracijos patvirtinima',
+        text: 'Registracijos patvirtinimas',
         html:
-          '<b>Sveiki, Registracijos patvirtinimas <br><a href=' +
-          url +
-          '>Patvirtinti  registracija</a></b>'
+          `Sveiki, <br> Registracijos patvirtinimas <br>
+          <b>Registracijos patvirtinimo kodas: ${model.emailToken}</b><br>
+          <a href='${url}'>Registracijos patvirtinimo nuoroda</a>`
       };
 
-      const sent = await new Promise<boolean>(async function(resolve, reject) {
-        return await transporter.sendMail(mailOptions, async (error, info) => {
+      const sent = await new Promise<boolean>( (resolve, reject) => {
+        return transporter.sendMail(mailOptions, async (error, info) => {
           if (error) {
             console.log('Message sent: %s', error);
             return reject(false);
@@ -221,7 +219,7 @@ export class AuthService {
   }
 
   async checkPassword(email: string, password: string) {
-    const userFromDb = await this.userModel.findOne({ email: email });
+    const userFromDb = await this._userModel.findOne({ email: email });
     if (!userFromDb)
       throw new HttpException('LOGIN.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
 
@@ -229,14 +227,14 @@ export class AuthService {
   }
 
   async sendEmailForgotPassword(email: string): Promise<boolean> {
-    const userFromDb = await this.userModel.findOne({ email: email });
+    const userFromDb = await this._userModel.findOne({ email: email });
     if (!userFromDb)
       throw new HttpException('LOGIN.USER_NOT_FOUND', HttpStatus.NOT_FOUND);
 
     const tokenModel = await this.createForgottenPasswordToken(email);
 
     if (tokenModel && tokenModel.newPasswordToken) {
-      const url = `http://${process.env.HOST}:${process.env.PORT}/api/auth/email/reset-password/${tokenModel.newPasswordToken}`;
+      const url = `${process.env.HOST}:${process.env.PORT}/api/auth/email/reset-password/${tokenModel.newPasswordToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
         to: email, // list of receivers (separated by ,)
@@ -247,11 +245,11 @@ export class AuthService {
           url +
           '>čia</a></b>'
       };
-      const sended = await new Promise<boolean>(async function(
+      const sended = await new Promise<boolean>( (
         resolve,
         reject
-      ) {
-        return await transporter.sendMail(mailOptions, async (error, info) => {
+      ) => {
+        return transporter.sendMail(mailOptions, async (error, info) => {
           if (error) {
             console.log('Message sent: %s', error);
             return reject(false);

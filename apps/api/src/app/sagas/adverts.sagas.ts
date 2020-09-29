@@ -20,9 +20,9 @@ export class AdvertsSagas {
   ): Observable<ICommand> => {
     return events$.pipe(
       ofType(AdvertCreated),
-      switchMap(async (event) => {
+      switchMap(async ({ id, data }) => {
         const user = await this._userService.getById(
-          event.data.creator._id.toHexString()
+          data.creator._id.toHexString()
         );
 
         const permissions = await this._permissionsService.getByUserIdAndRole(
@@ -35,7 +35,13 @@ export class AdvertsSagas {
           if (!permission.adverts) {
             permission.adverts = [];
           }
-          permission.adverts.push({ _id: event.id, title: event.data.title });
+          permission.adverts.push({
+            _id: id,
+            title: data.title,
+            description: data.description,
+            category: data.category,
+            imageUrl: data.imageUrl,
+          });
           return new UpdatePermission(permission._id.toHexString(), permission);
         } else {
           return new CreatePermission({

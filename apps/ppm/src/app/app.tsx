@@ -4,6 +4,7 @@ import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
+import { FeaturesSnackBar } from '@ppm/features/snack-bar';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -11,9 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) =>
         rest.isLoggedIn ? (
-          <div>
-            <Component {...props} />
-          </div>
+          <Component {...props} />
         ) : (
           <Redirect
             to={{
@@ -27,7 +26,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-
 export const App = () => {
   return (
     <div className="app">
@@ -35,7 +33,7 @@ export const App = () => {
         <Switch>
           {PrivateRouter.map((prop) => (
             <PrivateRoute
-              path={`/${prop.path}`}
+              path={prop.path}
               key={prop.path}
               component={prop.component}
               isLoggedIn={!!getToken()}
@@ -43,13 +41,14 @@ export const App = () => {
           ))}
           {PublicRouter.map((prop) => (
             <Route
-              path={`${prop.path}`}
+              path={prop.path}
               key={prop.path}
               component={prop.component}
             />
           ))}
         </Switch>
       </BrowserRouter>
+      <FeaturesSnackBar />
     </div>
   );
 };

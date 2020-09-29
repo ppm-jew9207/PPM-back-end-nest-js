@@ -4,8 +4,7 @@
     "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["node", "jest"]
+    "allowSyntheticDefaultImports": true
   },
   "files": [],
   "include": [],

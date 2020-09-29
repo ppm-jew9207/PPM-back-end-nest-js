@@ -12,4 +12,5 @@ export const UserProfileSchema = new Schema({
   city: String,
   phone: String,
   email: String,
+  socialLinks: [{ link: String, icon: String, color: String }],
 });

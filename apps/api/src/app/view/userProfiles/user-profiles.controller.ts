@@ -4,6 +4,7 @@ import {
   UseGuards,
   UseInterceptors,
   Param,
+  Req,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -13,7 +14,7 @@ import { QueryBus } from '@nestjs/cqrs';
 import { GetUserProfileByIdQuery } from './queries/get-user-profile-by-id.handler';
 import { GetUserProfileByEmailQuery } from './queries/get-user-profile-by-email.handler';
 import { UserProfilePayloadDto } from '../../models/userProfiles/dto/user-profile-payload.dto';
-import { GetUserProfilesQuery } from './queries/get-user-profiles.handlers';
+import { GetUserProfileByUserIdQuery } from './queries/get-user-profile-by-user-id.handler';
 import { PrivateRoutesPath } from '@ppm/common/main';
 
 @Controller(PrivateRoutesPath.USER_PROFILES)
@@ -25,8 +26,10 @@ export class UserProfilesController {
   constructor(private readonly _queryBus: QueryBus) {}
 
   @Get()
-  async findAll(): Promise<UserProfilePayloadDto[]> {
-    return this._queryBus.execute(new GetUserProfilesQuery());
+  @Get(PrivateRoutesPath.USER)
+  async getByUserId(@Req() request: any): Promise<UserProfilePayloadDto> {
+    const user = request.user;
+    return this._queryBus.execute(new GetUserProfileByUserIdQuery(user.id));
   }
   @Get(PrivateRoutesPath.GET_BY_ID)
   async getById(@Param('id') id: string): Promise<UserProfilePayloadDto> {

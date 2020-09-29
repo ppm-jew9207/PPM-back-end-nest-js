@@ -1,5 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateUserProfile, UserProfile } from '../user-profile.interface';
+import {
+  CreateUserProfile,
+  UserProfile,
+  SocialLink,
+} from '../user-profile.interface';
 
 export class UserProfilePayloadDto implements UserProfile {
   @ApiProperty()
@@ -24,4 +28,9 @@ export class UserProfilePayloadDto implements UserProfile {
   public readonly phone: string;
   @ApiProperty()
   public readonly email: string;
+  @ApiProperty({
+    isArray: true,
+    type: ['SocialLink'],
+  })
+  public readonly socialLinks?: SocialLink[];
 }

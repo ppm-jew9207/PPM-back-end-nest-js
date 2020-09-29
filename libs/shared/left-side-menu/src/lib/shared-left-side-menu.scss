@@ -1,0 +1,29 @@
+$hover-color: #2196f3;
+$background: #ffffff;
+
+.shared-left-side-menu {
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 300px;
+
+  &-button button {
+    margin: 10px;
+  }
+
+  & h2 {
+    margin: 30px 10px;
+    width: auto;
+  }
+
+  & button {
+    height: 40px;
+    margin: 10px auto;
+    width: 40px;
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}

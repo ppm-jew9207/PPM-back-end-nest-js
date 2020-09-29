@@ -22,6 +22,9 @@
       "@ppm/shared/top-right-bar": ["libs/shared/top-right-bar/src/index.ts"],
       "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"],
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
+      "@ppm/shared/user-profile-card": [
+        "libs/shared/user-profile-card/src/index.ts"
+      ],
       "@ppm/shared/login-component": [
         "libs/shared/login-component/src/index.ts"
       ],
@@ -39,7 +42,6 @@
       "@ppm/features/dashboard/mentor": [
         "libs/features/dashboard/mentor/src/index.ts"
       ],
-      "@ppm/features//mentors": ["libs/features//mentors/src/index.ts"],
       "@ppm/features/mentors": ["libs/features/mentors/src/index.ts"],
       "@ppm/features/mentor": ["libs/features/mentor/src/index.ts"],
       "@ppm/shared/search-input": ["libs/shared/search-input/src/index.ts"],
@@ -51,6 +53,8 @@
       "@ppm/data-access/authorization": [
         "libs/data-access/authorization/src/index.ts"
       ],
+      "@ppm/shared/footer": ["libs/shared/footer/src/index.ts"],
+      "@ppm/shared/registration": ["libs/shared/registration/src/index.ts"],
       "@ppm/features/authorization": [
         "libs/features/authorization/src/index.ts"
       ],
@@ -59,7 +63,28 @@
       ],
       "@ppm/data-access/http-requests": [
         "libs/data-access/http-requests/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/create-advert-form": [
+        "libs/shared/create-advert-form/src/index.ts"
+      ],
+      "@ppm/shared/left-side-menu": ["libs/shared/left-side-menu/src/index.ts"],
+      "@ppm/data-access/adverts": ["libs/data-access/adverts/src/index.ts"],
+      "@ppm/features/adverts": ["libs/features/adverts/src/index.ts"],
+      "@ppm/features/registration": ["libs/features/registration/src/index.ts"],
+      "@ppm/data-access/snack-bar": ["libs/data-access/snack-bar/src/index.ts"],
+      "@ppm/features/snack-bar": ["libs/features/snack-bar/src/index.ts"],
+      "@ppm/data-access/user-profile": [
+        "libs/data-access/user-profile/src/index.ts"
+      ],
+      "@ppm/features/profile": ["libs/features/profile/src/index.ts"],
+      "@ppm/features/advert-form": ["libs/features/advert-form/src/index.ts"],
+      "@ppm/data-access/categories": [
+        "libs/data-access/categories/src/index.ts"
+      ],
+      "@ppm/hooks/use-registration": [
+        "libs/hooks/use-registration/src/index.ts"
+      ],
+      "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,6 +1,6 @@
 import React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { SharedModal } from './shared-modal';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { SharedModal, SharedModalProps } from './shared-modal';
 import { action, withActions } from '@storybook/addon-actions';
 
 export default {
@@ -10,16 +10,21 @@ export default {
 };
 
 export const primary = () => {
-  const isOpen = boolean('isOpen', true);
-  const isConfirmed = boolean('isConfirmed', true);
+  const props: SharedModalProps = {
+    title: text('Modal title', 'Test'),
+    text: text('Modal text', 'Test 2'),
+    submit: action('submit'),
+    isModal: boolean('isOpen', true),
+    isConfirmed: boolean('isConfirmed', true),
+  };
 
   return (
     <SharedModal
-      title="Test"
-      text="Test 2"
-      submit={action('submit')}
-      isModal={isOpen}
-      isConfirmed={isConfirmed}
+      title={props.title}
+      text={props.text}
+      submit={props.submit}
+      isModal={props.isModal}
+      isConfirmed={props.isConfirmed}
     />
   );
 };

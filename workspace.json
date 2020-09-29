@@ -1075,7 +1075,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/features/authorization/jest.config.js",
-            "tsConfig": "libs/features/authorization/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1105,7 +1104,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/local-storage/jest.config.js",
-            "tsConfig": "libs/data-access/local-storage/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -1135,7 +1133,627 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-access/http-requests/jest.config.js",
-            "tsConfig": "libs/data-access/http-requests/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-user-profile-card": {
+      "root": "libs/shared/user-profile-card",
+      "sourceRoot": "libs/shared/user-profile-card/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/user-profile-card/tsconfig.lib.json",
+              "libs/shared/user-profile-card/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/user-profile-card/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/user-profile-card/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/user-profile-card/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-user-profile-card",
+            "config": {
+              "configFolder": "libs/shared/user-profile-card/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-create-advert-form": {
+      "root": "libs/shared/create-advert-form",
+      "sourceRoot": "libs/shared/create-advert-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/create-advert-form/tsconfig.lib.json",
+              "libs/shared/create-advert-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/create-advert-form/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/create-advert-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/create-advert-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-create-advert-form",
+            "config": {
+              "configFolder": "libs/shared/create-advert-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "data-access-adverts": {
+      "root": "libs/data-access/adverts",
+      "sourceRoot": "libs/data-access/adverts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/adverts/tsconfig.lib.json",
+              "libs/data-access/adverts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access/adverts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/adverts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-registration": {
+      "root": "libs/shared/registration",
+      "sourceRoot": "libs/shared/registration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/registration/tsconfig.lib.json",
+              "libs/shared/registration/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/registration/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/registration/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/registration/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-registration",
+            "config": {
+              "configFolder": "libs/shared/registration/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-registration-e2e": {
+      "root": "apps/shared-registration-e2e",
+      "sourceRoot": "apps/shared-registration-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/shared-registration-e2e/cypress.json",
+            "tsConfig": "apps/shared-registration-e2e/tsconfig.e2e.json",
+            "devServerTarget": "shared-registration:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "shared-registration:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["apps/shared-registration-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/shared-registration-e2e/**/*"
+            ]
+          }
+        }
+      }
+    },
+    "shared-footer": {
+      "root": "libs/shared/footer",
+      "sourceRoot": "libs/shared/footer/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/footer/tsconfig.lib.json",
+              "libs/shared/footer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/footer/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/footer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/footer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-footer",
+            "config": {
+              "configFolder": "libs/shared/footer/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "features-registration": {
+      "root": "libs/features/registration",
+      "sourceRoot": "libs/features/registration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/registration/tsconfig.lib.json",
+              "libs/features/registration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/registration/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/registration/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-left-side-menu": {
+      "root": "libs/shared/left-side-menu",
+      "sourceRoot": "libs/shared/left-side-menu/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/left-side-menu/tsconfig.lib.json",
+              "libs/shared/left-side-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/left-side-menu/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/left-side-menu/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/left-side-menu/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-left-side-menu",
+            "config": {
+              "configFolder": "libs/shared/left-side-menu/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "features-adverts": {
+      "root": "libs/features/adverts",
+      "sourceRoot": "libs/features/adverts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/adverts/tsconfig.lib.json",
+              "libs/features/adverts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/adverts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/adverts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-user-profile": {
+      "root": "libs/data-access/user-profile",
+      "sourceRoot": "libs/data-access/user-profile/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/user-profile/tsconfig.lib.json",
+              "libs/data-access/user-profile/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/user-profile/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/user-profile/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-snack-bar": {
+      "root": "libs/data-access/snack-bar",
+      "sourceRoot": "libs/data-access/snack-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/snack-bar/tsconfig.lib.json",
+              "libs/data-access/snack-bar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/snack-bar/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/snack-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-snack-bar": {
+      "root": "libs/features/snack-bar",
+      "sourceRoot": "libs/features/snack-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/snack-bar/tsconfig.lib.json",
+              "libs/features/snack-bar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/snack-bar/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/snack-bar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-advert-form": {
+      "root": "libs/features/advert-form",
+      "sourceRoot": "libs/features/advert-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/advert-form/tsconfig.lib.json",
+              "libs/features/advert-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/advert-form/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/advert-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-categories": {
+      "root": "libs/data-access/categories",
+      "sourceRoot": "libs/data-access/categories/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/categories/tsconfig.lib.json",
+              "libs/data-access/categories/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-access/categories/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/categories/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-profile": {
+      "root": "libs/features/profile",
+      "sourceRoot": "libs/features/profile/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/profile/tsconfig.lib.json",
+              "libs/features/profile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/profile/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/profile/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-access-lessons": {
+      "root": "libs/data-access/lessons",
+      "sourceRoot": "libs/data-access/lessons/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/data-access/lessons/tsconfig.lib.json",
+              "libs/data-access/lessons/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access/lessons/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/lessons/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hooks-use-registration": {
+      "root": "libs/hooks/use-registration",
+      "sourceRoot": "libs/hooks/use-registration/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/hooks/use-registration/tsconfig.lib.json",
+              "libs/hooks/use-registration/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/hooks/use-registration/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/hooks/use-registration/jest.config.js",
             "passWithNoTests": true
           }
         }
