@@ -28,6 +28,10 @@ export class CreateUserProfileHandler
 
     const aggregate = new UserProfileAggregate();
 
+    if (data.socialLinks[0] == null) {
+      data.socialLinks = [];
+    }
+
     aggregate.apply(new UserProfileCreated(data, userId));
 
     const userProfile = this._publicher.mergeObjectContext(aggregate);
