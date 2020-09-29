@@ -31,22 +31,18 @@ export const FeaturesDashboardMentor = (
           <SharedAdvertCard
             key={advert._id}
             title={advert.title}
-            // TO DO improve author return from BE
-            // Need: to split first and last name
-            //       user does not have avatar
             author={{
               _id: advert.creator._id,
               firstName: advert.creator.name,
               lastName: '',
-              img: 'https://via.placeholder.com/100',
+              img: advert.creator.imageUrl,
             }}
             createAt={advert.createdAt}
             description={advert.description}
             // TODO add likes to backend
-            like={25}
+            like={0}
             // TODO add shares to backend
-            shared={25}
-            // TODO advert needs IMG too, also I think we should limit img size from component, maybe width 100% is bad idea
+            shared={0}
             imgUrl={advert.imageUrl}
           />
         );
