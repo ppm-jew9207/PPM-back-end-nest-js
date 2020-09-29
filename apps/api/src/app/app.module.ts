@@ -9,8 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModelModule } from './models/users/users.module';
 import { RolesGuard } from './common/guards/roles.guard';
 import { SagasModule } from './sagas/sagas.module';
-import { ServeStaticModule } from '@nestjs/serve-static'; // <- INSERT LINE
-import { join } from 'path'; // <- INSERT LINE
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 const domains = [DomainsModule];
 const view = [ViewModule];

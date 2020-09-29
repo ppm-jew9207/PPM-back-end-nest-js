@@ -123,7 +123,7 @@ async function bootstrap() {
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
     console.log(
-      'Listening at ' + host + ':' + port + '/' + globalPrefix
+      'Listening at ' + process.env.HOST + ':' + port + '/' + globalPrefix
     );
   });
 }
