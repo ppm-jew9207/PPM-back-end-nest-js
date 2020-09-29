@@ -7,6 +7,7 @@ import { AdvertCreated } from '../events/advert-created.event';
 import { UserLean } from '../../../models/users/user.interface';
 import { CreateAdvertPayload } from '../../../models/adverts/adverts.interface';
 import { UsersService } from '../../../models/users/users.service';
+import { UserProfileModelService } from '../../../models/userProfiles/user-profile.service';
 
 export class CreateAdvert {
   constructor(public data: CreateAdvertPayloadDto, public user: UserLean) {}
@@ -15,9 +16,14 @@ export class CreateAdvert {
 export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
   @Inject() private readonly _publisher: EventPublisher;
   @Inject() private readonly _usersService: UsersService;
+  @Inject() private readonly _userProfileService: UserProfileModelService;
 
   async execute({ data, user }: CreateAdvert): Promise<Boolean> {
     const userFromDB = await this._usersService.getById(user._id.toHexString());
+    const userProfile = await this._userProfileService.getById(
+      user._id.toHexString()
+    );
+    console.log(userProfile);
     if (!userFromDB) {
       throw new BadRequestException(`This user doesn't exist`);
     }
@@ -28,7 +34,11 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
 
     const advertData: CreateAdvertPayload = {
       ...data,
-      creator: { _id: userFromDB._id, name: userFromDB.userName },
+      creator: {
+        _id: userFromDB._id,
+        name: `${userProfile.firstName} ${userProfile.lastName}`,
+        imageUrl: userProfile.photo,
+      },
     };
     const aggregate = new AdvertsAggregate();
     const id = new Types.ObjectId().toHexString();
