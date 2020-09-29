@@ -16,19 +16,22 @@ export interface SharedRegistrationVerificationProps {
   informationTitle?: string;
   onSubmit: (code: string) => void;
   onCancel: () => void;
-  resendVerification: () => void;
+  resendVerification?: () => void;
 }
 
 export const SharedRegistrationVerification = (
   props: SharedRegistrationVerificationProps
 ) => {
   const { handleSubmit, register } = useForm();
-  const [inputValue, setInputValue] = useState(props.code)
+  const [inputValue, setInputValue] = useState(!props.code ? '' : props.code);
 
-  const isButtonEnabled = inputValue.length > 0;
-  
   return (
-    <Grid container direction="column" justify="center" className="registrationVerification">
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      className="registrationVerification"
+    >
       <form
         autoComplete="off"
         onSubmit={handleSubmit((e: { code: string }) => props.onSubmit(e.code))}
@@ -53,12 +56,15 @@ export const SharedRegistrationVerification = (
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Box>
-        <p className="information-title">
-          * {props.informationTitle}
-        </p>
+        <p className="information-title">* {props.informationTitle}</p>
         <Grid container justify="center">
           <Box mx={2}>
-            <Button variant="contained" color="primary" type="submit" disabled={!isButtonEnabled}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={!inputValue}
+            >
               Confirm verification
             </Button>
           </Box>
@@ -72,10 +78,7 @@ export const SharedRegistrationVerification = (
             </Button>
           </Box>
           <Box mx={2}>
-            <Button
-              variant="contained"
-              onClick={props.onCancel}
-            >
+            <Button variant="contained" onClick={props.onCancel}>
               Cancel
             </Button>
           </Box>

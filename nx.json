@@ -152,6 +152,12 @@
     },
     "shared-lesson-component": {
       "tags": []
+    },
+    "hooks-use-registration": {
+      "tags": []
+    },
+    "data-access-lessons": {
+      "tags": []
     }
   },
   "affected": {

@@ -83,7 +83,11 @@
       ],
       "@ppm/shared/lesson-component": [
         "libs/shared/lesson-component/src/index.ts"
-      ]
+      ],
+      "@ppm/hooks/use-registration": [
+        "libs/hooks/use-registration/src/index.ts"
+      ],
+      "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

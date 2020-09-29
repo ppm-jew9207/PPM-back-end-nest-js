@@ -10,6 +10,7 @@ import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
+import { FeaturesDashboardMentor } from '@ppm/features/dashboard/mentor';
 
 import './features-profile.scss';
 
@@ -31,10 +32,7 @@ export const FeaturesProfile = (props) => {
     fullName: '',
     aboutMentor: '',
     mentorLocation: '',
-    facebook: '',
-    twitter: '',
-    linkedin: '',
-    instagram: '',
+    socialLinks: [],
   };
 
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
@@ -46,10 +44,7 @@ export const FeaturesProfile = (props) => {
         fullName: profile.firstName + ' ' + profile.lastName,
         aboutMentor: profile.description,
         mentorLocation: profile.city,
-        facebook: profile.socialLinks[0].link,
-        twitter: profile.socialLinks[0].link,
-        linkedin: profile.socialLinks[0].link,
-        instagram: profile.socialLinks[0].link,
+        socialLinks: profile.socialLinks,
       });
     }
   }, [profile]);
@@ -58,7 +53,10 @@ export const FeaturesProfile = (props) => {
 
   return (
     <div>
-      <SharedUserProfileCard {...data} />
+      <div className="profile-card-container">
+        <SharedUserProfileCard {...data} />
+      </div>
+      <FeaturesDashboardMentor />
     </div>
   );
 };
