@@ -35,7 +35,7 @@ export const primary = () => {
       imageUrl: 'https://placekitten.com/300/300',
       title: 'lesson title',
       connectionURL: 'https://placekitten.com/300/300',
-      date: '2021-09-22T17:09',
+      datetime: '2021-09-22T17:09',
     },
     mentors: [
       { name: 'John Doe', value: 'John Doe', _id: 'as3dg432zd' },

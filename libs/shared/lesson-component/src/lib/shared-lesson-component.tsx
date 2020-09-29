@@ -36,17 +36,6 @@ export interface Mentor {
 }
 
 export interface Lesson {
-  mentorName: string;
-  description: string;
-  resources: string;
-  imageUrl: string;
-  title: string;
-  connectionURL: string;
-  datetime: string;
-}
-
-export interface SharedLessonComponentProps {
-  onSubmit: (lesson: {
     title: string;
     description: string;
     datetime: string;
@@ -54,7 +43,10 @@ export interface SharedLessonComponentProps {
     resources: string;
     mentorName: string;
     connectionURL: string;
-  }) => void;
+}
+
+export interface SharedLessonComponentProps {
+  onSubmit: (lesson: Lesson) => void;
   onCancel: () => void;
   data: LessonDefaultParams;
   mentors: Mentor[];
@@ -72,9 +64,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
     props.lesson && !uploadedImg && setUploadedImg(props.lesson.imageUrl);
     !mentors.length && setMentors(props.mentors);
   },[props, lesson, mentors, uploadedImg]);
-
-  console.log(lesson);
-
+  
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
 
@@ -90,7 +80,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
   if (!props.data) return <div>Loading...</div>;
          
   return (
-    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
+    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className='lesson'>
       <Typography component="h1" variant="h5">
         {props.data.title}
       </Typography>
@@ -159,7 +149,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             (lesson && lesson.datetime) || moment().format('YYYY-MM-DDTHH:MM')
           }
         />
-        <div className="inner-container">
+        <div className="image-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
               inputRef={register({})}
