@@ -28,7 +28,8 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "heroku-postbuild": "nx build --prod ppm && nx build --prod api"
   },
   "private": true,
   "dependencies": {
