@@ -81,6 +81,9 @@
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
       ],
+      "@ppm/shared/lesson-component": [
+        "libs/shared/lesson-component/src/index.ts"
+      ],
       "@ppm/hooks/use-registration": [
         "libs/hooks/use-registration/src/index.ts"
       ],
