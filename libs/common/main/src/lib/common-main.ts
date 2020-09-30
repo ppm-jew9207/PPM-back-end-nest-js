@@ -27,3 +27,8 @@ export interface ApiResponse{
     message: string;
   }
 }
+
+
+export interface History{
+  push(url: string): void;
+}

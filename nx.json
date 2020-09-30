@@ -156,16 +156,14 @@
     "shared-advert-details": {
       "tags": []
     },
-    "shared-advert-details-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shared-advert-details"]
-    },
     "shared-lessons-accordion": {
       "tags": []
     },
-    "shared-lessons-accordion-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shared-lessons-accordion"]
+    "hooks-use-registration": {
+      "tags": []
+    },
+    "data-access-lessons": {
+      "tags": []
     }
   },
   "affected": {

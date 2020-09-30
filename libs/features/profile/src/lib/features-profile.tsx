@@ -32,10 +32,7 @@ export const FeaturesProfile = (props) => {
     fullName: '',
     aboutMentor: '',
     mentorLocation: '',
-    facebook: '',
-    twitter: '',
-    linkedin: '',
-    instagram: '',
+    socialLinks: [],
   };
 
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
@@ -47,7 +44,7 @@ export const FeaturesProfile = (props) => {
         fullName: profile.firstName + ' ' + profile.lastName,
         aboutMentor: profile.description,
         mentorLocation: profile.city,
-        //TO DO: change social links according to BE in profile card component then link here
+        socialLinks: profile.socialLinks,
       });
     }
   }, [profile]);
