@@ -19,11 +19,9 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
   @Inject() private readonly _userProfileService: UserProfileModelService;
 
   async execute({ data, user }: CreateAdvert): Promise<Boolean> {
-    const userFromDB = await this._usersService.getById(user._id.toHexString());
-    const userProfile = await this._userProfileService.getById(
-      user._id.toHexString()
-    );
-    console.log(userProfile);
+    const userFromDB = await this._usersService.getById(user._id);
+    const userProfile = await this._userProfileService.getById(user._id);
+
     if (!userFromDB) {
       throw new BadRequestException(`This user doesn't exist`);
     }
