@@ -81,7 +81,8 @@
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
       ],
-      "@ppm/shared/advert-info": ["libs/shared/advert-info/src/index.ts"]
+      "@ppm/shared/advert-info": ["libs/shared/advert-info/src/index.ts"],
+      "@ppm/shared/advert-details": ["libs/shared/advert-details/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

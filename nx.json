@@ -152,6 +152,13 @@
     },
     "shared-advert-info": {
       "tags": []
+    },
+    "shared-advert-details": {
+      "tags": []
+    },
+    "shared-advert-details-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-advert-details"]
     }
   },
   "affected": {
