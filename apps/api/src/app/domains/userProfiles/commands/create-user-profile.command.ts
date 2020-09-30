@@ -28,7 +28,7 @@ export class CreateUserProfileHandler
 
     const aggregate = new UserProfileAggregate();
 
-    if (data.socialLinks[0] == null) {
+    if (data.socialLinks.includes(null)) {
       data.socialLinks = [];
     }
 
