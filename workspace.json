@@ -1752,253 +1752,252 @@
           }
         }
       }
-    }
-  },
-  "shared-advert-info": {
-    "root": "libs/shared/advert-info",
-    "sourceRoot": "libs/shared/advert-info/src",
-    "projectType": "library",
-    "schematics": {},
-    "architect": {
-      "lint": {
-        "builder": "@nrwl/linter:lint",
-        "options": {
-          "linter": "eslint",
-          "tsConfig": [
-            "libs/shared/advert-info/tsconfig.lib.json",
-            "libs/shared/advert-info/tsconfig.spec.json",
-            "libs/shared/advert-info/.storybook/tsconfig.json"
-          ],
-          "exclude": ["**/node_modules/**", "!libs/shared/advert-info/**/*"]
-        }
-      },
-      "test": {
-        "builder": "@nrwl/jest:jest",
-        "options": {
-          "jestConfig": "libs/shared/advert-info/jest.config.js",
-          "passWithNoTests": true
-        }
-      },
-      "storybook": {
-        "builder": "@nrwl/storybook:storybook",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "port": 4400,
-          "config": {
-            "configFolder": "libs/shared/advert-info/.storybook"
+    },
+    "shared-advert-info": {
+      "root": "libs/shared/advert-info",
+      "sourceRoot": "libs/shared/advert-info/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/advert-info/tsconfig.lib.json",
+              "libs/shared/advert-info/tsconfig.spec.json",
+              "libs/shared/advert-info/.storybook/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/advert-info/**/*"]
           }
         },
-        "configurations": {
-          "ci": {
-            "quiet": true
-          }
-        }
-      },
-      "build-storybook": {
-        "builder": "@nrwl/storybook:build",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "outputPath": "dist/storybook/shared-advert-info",
-          "config": {
-            "configFolder": "libs/shared/advert-info/.storybook"
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/advert-info/jest.config.js",
+            "passWithNoTests": true
           }
         },
-        "configurations": {
-          "ci": {
-            "quiet": true
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/advert-info/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-advert-info",
+            "config": {
+              "configFolder": "libs/shared/advert-info/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-advert-details": {
+      "root": "libs/shared/advert-details",
+      "sourceRoot": "libs/shared/advert-details/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/advert-details/tsconfig.lib.json",
+              "libs/shared/advert-details/tsconfig.spec.json",
+              "libs/shared/advert-details/.storybook/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/advert-details/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/advert-details/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/advert-details/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-advert-details",
+            "config": {
+              "configFolder": "libs/shared/advert-details/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-lessons-accordion": {
+      "root": "libs/shared/lessons-accordion",
+      "sourceRoot": "libs/shared/lessons-accordion/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/lessons-accordion/tsconfig.lib.json",
+              "libs/shared/lessons-accordion/tsconfig.spec.json",
+              "libs/shared/lessons-accordion/.storybook/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/lessons-accordion/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lessons-accordion/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/lessons-accordion/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-lessons-accordion",
+            "config": {
+              "configFolder": "libs/shared/lessons-accordion/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
     }
   },
-  "shared-advert-details": {
-    "root": "libs/shared/advert-details",
-    "sourceRoot": "libs/shared/advert-details/src",
-    "projectType": "library",
-    "schematics": {},
-    "architect": {
-      "lint": {
-        "builder": "@nrwl/linter:lint",
-        "options": {
-          "linter": "eslint",
-          "tsConfig": [
-            "libs/shared/advert-details/tsconfig.lib.json",
-            "libs/shared/advert-details/tsconfig.spec.json",
-            "libs/shared/advert-details/.storybook/tsconfig.json"
-          ],
-          "exclude": [
-            "**/node_modules/**",
-            "!libs/shared/advert-details/**/*"
-          ]
-        }
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
       },
-      "test": {
-        "builder": "@nrwl/jest:jest",
-        "options": {
-          "jestConfig": "libs/shared/advert-details/jest.config.js",
-          "passWithNoTests": true
-        }
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
       },
-      "storybook": {
-        "builder": "@nrwl/storybook:storybook",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "port": 4400,
-          "config": {
-            "configFolder": "libs/shared/advert-details/.storybook"
-          }
-        },
-        "configurations": {
-          "ci": {
-            "quiet": true
-          }
-        }
+      "storybook-configuration": {
+        "linter": "eslint"
       },
-      "build-storybook": {
-        "builder": "@nrwl/storybook:build",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "outputPath": "dist/storybook/shared-advert-details",
-          "config": {
-            "configFolder": "libs/shared/advert-details/.storybook"
-          }
-        },
-        "configurations": {
-          "ci": {
-            "quiet": true
-          }
-        }
+      "component": {
+        "style": "scss"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
       }
     }
   },
-  "shared-lessons-accordion": {
-    "root": "libs/shared/lessons-accordion",
-    "sourceRoot": "libs/shared/lessons-accordion/src",
-    "projectType": "library",
-    "schematics": {},
-    "architect": {
-      "lint": {
-        "builder": "@nrwl/linter:lint",
-        "options": {
-          "linter": "eslint",
-          "tsConfig": [
-            "libs/shared/lessons-accordion/tsconfig.lib.json",
-            "libs/shared/lessons-accordion/tsconfig.spec.json",
-            "libs/shared/lessons-accordion/.storybook/tsconfig.json"
-          ],
-          "exclude": [
-            "**/node_modules/**",
-            "!libs/shared/lessons-accordion/**/*"
-          ]
-        }
-      },
-      "test": {
-        "builder": "@nrwl/jest:jest",
-        "options": {
-          "jestConfig": "libs/shared/lessons-accordion/jest.config.js",
-          "passWithNoTests": true
-        }
-      },
-      "storybook": {
-        "builder": "@nrwl/storybook:storybook",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "port": 4400,
-          "config": {
-            "configFolder": "libs/shared/lessons-accordion/.storybook"
-          }
-        },
-        "configurations": {
-          "ci": {
-            "quiet": true
-          }
-        }
-      },
-      "build-storybook": {
-        "builder": "@nrwl/storybook:build",
-        "options": {
-          "uiFramework": "@storybook/react",
-          "outputPath": "dist/storybook/shared-lessons-accordion",
-          "config": {
-            "configFolder": "libs/shared/lessons-accordion/.storybook"
-          }
-        },
-        "configurations": {
-          "ci": {
-            "quiet": true
-          }
-        }
-      }
-    }
-  }
-},
-"cli": {
-  "defaultCollection": "@nrwl/react"
-},
-"schematics": {
-  "@nrwl/workspace": {
-    "library": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/cypress": {
-    "cypress-project": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/react": {
-    "application": {
-      "style": "scss",
-      "linter": "eslint",
-      "babel": true
-    },
-    "library": {
-      "style": "scss",
-      "linter": "eslint"
-    },
-    "storybook-configuration": {
-      "linter": "eslint"
-    },
-    "component": {
-      "style": "scss"
-    }
-  },
-  "@nrwl/next": {
-    "application": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/web": {
-    "application": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/node": {
-    "application": {
-      "linter": "eslint"
-    },
-    "library": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/nx-plugin": {
-    "plugin": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/nest": {
-    "application": {
-      "linter": "eslint"
-    }
-  },
-  "@nrwl/express": {
-    "application": {
-      "linter": "eslint"
-    },
-    "library": {
-      "linter": "eslint"
-    }
-  }
-},
-"defaultProject": "ppm"
+  "defaultProject": "ppm"
 }
