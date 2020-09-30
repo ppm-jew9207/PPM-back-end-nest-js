@@ -1851,6 +1851,35 @@
           }
         }
       }
+    },
+    "shared-lessons-accordion": {
+      "root": "libs/shared/lessons-accordion",
+      "sourceRoot": "libs/shared/lessons-accordion/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/lessons-accordion/tsconfig.lib.json",
+              "libs/shared/lessons-accordion/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/lessons-accordion/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lessons-accordion/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

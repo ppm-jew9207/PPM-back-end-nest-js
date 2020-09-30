@@ -159,6 +159,9 @@
     "shared-advert-details-e2e": {
       "tags": [],
       "implicitDependencies": ["shared-advert-details"]
+    },
+    "shared-lessons-accordion": {
+      "tags": []
     }
   },
   "affected": {
