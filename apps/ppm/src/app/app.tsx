@@ -5,7 +5,6 @@ import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 import { FeaturesSnackBar } from '@ppm/features/snack-bar';
-import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -30,53 +29,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const App = () => {
   return (
     <div className="app">
-      <SharedLessonsAccordion
-        lessonsDescription="Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today."
-        lessons={[
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-          {
-            title: 'Gecko',
-            authorName: 'Donatas',
-            image:
-              'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-          },
-        ]}
-      />
       <BrowserRouter basename="/">
         <Switch>
           {PrivateRouter.map((prop) => (

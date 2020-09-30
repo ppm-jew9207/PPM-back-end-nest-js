@@ -162,6 +162,10 @@
     },
     "shared-lessons-accordion": {
       "tags": []
+    },
+    "shared-lessons-accordion-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-lessons-accordion"]
     }
   },
   "affected": {
