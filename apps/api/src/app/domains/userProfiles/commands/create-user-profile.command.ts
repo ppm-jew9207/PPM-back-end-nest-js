@@ -29,7 +29,7 @@ export class CreateUserProfileHandler
     const aggregate = new UserProfileAggregate();
 
     if (data.socialLinks.includes(null)) {
-      data.socialLinks = [];
+      throw new BadRequestException(`Social links invalid.`);
     }
 
     aggregate.apply(new UserProfileCreated(data, userId));
