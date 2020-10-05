@@ -20,6 +20,7 @@ export const AdvertsSchema = new Schema(
     creator: {
       _id: { type: String, ref: ViewModels.USERS_VIEW },
       name: String,
+      imageUrl: String,
     },
   },
   { timestamps: true }

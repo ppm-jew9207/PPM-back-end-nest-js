@@ -134,13 +134,13 @@
       justify-content: center;
       bottom: 0;
       right: 0;
-      background: rgba(0 0 0 / 0%);
+      background: rgba(0, 0, 0, 0%);
     }
 
     &:hover .helper-text,
     &.empty .helper-text {
       color: white;
-      background: rgba(0 0 0 / 44%);
+      background: rgba(0, 0, 0, 44%);
     }
 
     .file-browser-container {
