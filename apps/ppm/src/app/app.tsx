@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
@@ -27,6 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export const App = () => {
+
   return (
     <div className="app">
       <BrowserRouter basename="/">

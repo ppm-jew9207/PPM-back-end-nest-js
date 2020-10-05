@@ -81,6 +81,9 @@
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
       ],
+      "@ppm/shared/lesson-component": [
+        "libs/shared/lesson-component/src/index.ts"
+      ],
       "@ppm/hooks/use-registration": [
         "libs/hooks/use-registration/src/index.ts"
       ],
@@ -93,6 +96,11 @@
       ],
       "@ppm/shared/create-new-password-form": [
         "libs/shared/create-new-password-form/src/index.ts"
+      ],
+      "@ppm/shared/advert-info": ["libs/shared/advert-info/src/index.ts"],
+      "@ppm/shared/advert-details": ["libs/shared/advert-details/src/index.ts"],
+      "@ppm/shared/lessons-accordion": [
+        "libs/shared/lessons-accordion/src/index.ts"
       ]
     }
   },
