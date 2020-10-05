@@ -103,7 +103,6 @@ export function* forgotPassword(actions) {
     const email = actions.payload;
     const path = `/api/${PrivateRoutesPath.AUTH}/forgot-password/${email}`;
     const result = yield call(get, path);
-    console.log(result);
     
     if (result.success) {
       yield put(forgotPasswordSuccess(1));
