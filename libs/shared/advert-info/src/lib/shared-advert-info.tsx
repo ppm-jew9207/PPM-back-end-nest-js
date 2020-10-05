@@ -12,12 +12,11 @@ interface Category {
   value: string;
 }
 
-/* eslint-disable-next-line */
 export interface SharedAdvertInfoProps {
   title: string;
   description: string;
   creator: string;
-  image?: string;
+  image: string;
   categories?: Category[];
   onGetStartedClick: () => void;
 }
@@ -25,15 +24,7 @@ export interface SharedAdvertInfoProps {
 export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
   return (
     <div className="main-part">
-      <img
-        className="bg-image"
-        alt={props.title}
-        src={
-          props.image
-            ? props.image
-            : 'https://images.ctfassets.net/nm1bt7p4165n/7aK9MEwnD0Y1weylWYzTy7/d2cfb80b084f72d7c6bb275af5423efb/Birstonas2_small.png?w=1920&q=50'
-        }
-      />
+      <img className="bg-image" alt={props.title} src={props.image} />
       <Container fixed className="info">
         <Grid container spacing={3}>
           <Grid item xs={8}>
@@ -67,7 +58,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             <Button
               variant="outlined"
               color="secondary"
-              onClick={() => props.onGetStartedClick()}
+              onClick={() => props.onGetStartedClick}
             >
               Get Started
             </Button>

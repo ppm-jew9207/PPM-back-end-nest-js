@@ -5,10 +5,9 @@ import Grid from '@material-ui/core/Grid';
 
 import './shared-advert-details.scss';
 
-/* eslint-disable-next-line */
 export interface SharedAdvertDetailsProps {
-  learnItems?: string[];
-  preRequisites?: string;
+  learnItems: string[];
+  preRequisites: string;
 }
 
 export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
@@ -20,16 +19,15 @@ export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
         </Typography>
 
         <Grid container className="learn-list">
-          {props.learnItems &&
-            props.learnItems.map((item, i) => {
-              return (
-                <Grid item xs={4}>
-                  <Typography variant="body1" component="li">
-                    {item}
-                  </Typography>
-                </Grid>
-              );
-            })}
+          {props.learnItems.map((item, i) => {
+            return (
+              <Grid item xs={4}>
+                <Typography variant="body1" component="li">
+                  {item}
+                </Typography>
+              </Grid>
+            );
+          })}
         </Grid>
 
         <Typography variant="h6" component="h2" gutterBottom>

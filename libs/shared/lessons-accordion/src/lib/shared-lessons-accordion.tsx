@@ -18,10 +18,10 @@ interface Lesson {
   authorName: string;
   image: string;
 }
-/* eslint-disable-next-line */
+
 export interface SharedLessonsAccordionProps {
   lessonsDescription: string;
-  lessons?: Lesson[];
+  lessons: Lesson[];
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
@@ -43,30 +43,29 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           </div>
           <div>
             <Grid container spacing={2}>
-              {props.lessons &&
-                props.lessons.map((lesson, i) => {
-                  return (
-                    <Grid key={i} item xs={3}>
-                      <Card>
-                        <CardActionArea>
-                          <CardMedia
-                            className="lesson-image"
-                            image={lesson.image}
-                            title={lesson.title}
-                          />
-                          <CardContent>
-                            <Typography variant="body1" gutterBottom>
-                              {lesson.title}
-                            </Typography>
-                            <Typography variant="body2" gutterBottom>
-                              {lesson.authorName}
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </Grid>
-                  );
-                })}
+              {props.lessons.map((lesson, i) => {
+                return (
+                  <Grid key={i} item xs={3}>
+                    <Card>
+                      <CardActionArea>
+                        <CardMedia
+                          className="lesson-image"
+                          image={lesson.image}
+                          title={lesson.title}
+                        />
+                        <CardContent>
+                          <Typography variant="body1" gutterBottom>
+                            {lesson.title}
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            {lesson.authorName}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+                );
+              })}
             </Grid>
           </div>
         </AccordionDetails>
