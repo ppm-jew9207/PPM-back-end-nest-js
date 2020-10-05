@@ -98,11 +98,7 @@ export const FeaturesForgotPassword = () => {
       <div>
         {step === steps.length ? (
           <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
+            className="center-all-element"
           >
             <Link to="/login">
               All steps is done. Click here.
@@ -115,7 +111,7 @@ export const FeaturesForgotPassword = () => {
               <Button
                 disabled={step === 0}
                 onClick={forgotPasswordStepDown}
-                style={{ backgroundColor: 'primary' }}
+                color="primary"
               >
                 Back
               </Button>

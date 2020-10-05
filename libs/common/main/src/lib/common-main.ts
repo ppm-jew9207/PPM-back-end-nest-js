@@ -32,3 +32,11 @@ export interface ApiResponse{
 export interface History{
   push(url: string): void;
 }
+
+export enum MessagesStatus{
+  SUCCESS = 'success',
+  ERROR = 'error',
+  DEFAULT = 'default', 
+  WARNING = 'warning',
+  INFO =  'info'
+}

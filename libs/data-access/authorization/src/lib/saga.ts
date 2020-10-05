@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import { logInSuccess, logInFailed, registrationFailed, registrationSuccess, verificationSuccess, verificationFailed, forgotPasswordSuccess } from './actions';
 import { saveToken, removeToken, setRegistrationStep, setRegistrationEmail } from '@ppm/data-access/local-storage';
-import { PrivateRoutesPath, ApiResponse } from '@ppm/common/main';
+import { PrivateRoutesPath, ApiResponse, MessagesStatus } from '@ppm/common/main';
 import { get, login, post, registration, verify } from '@ppm/data-access/http-requests';
 import { snackbarActions } from '@ppm/data-access/snack-bar';
 
@@ -27,7 +27,7 @@ export function* logIn(actions) {
     saveToken(result.data.token.token);
     yield put(
       snackbarActions.setMessage({
-        variant: 'success',
+        variant: MessagesStatus.SUCCESS,
         message: 'Welcome to PPM.'
       })
     );
@@ -36,7 +36,7 @@ export function* logIn(actions) {
     yield put(logInFailed(error));
     yield put(
       snackbarActions.setMessage({
-        variant: 'error',
+        variant: MessagesStatus.ERROR,
         message: error.message
       })
     );
@@ -67,7 +67,7 @@ export function* registrationUser(actions) {
     yield put(registrationFailed(error));
     yield put(
       snackbarActions.setMessage({
-        variant: 'error',
+        variant: MessagesStatus.ERROR,
         message: error.message
       })
     );
@@ -91,7 +91,7 @@ export function* verifyEmail(actions) {
     yield put(verificationFailed(error));
     yield put(
       snackbarActions.setMessage({
-        variant: 'error',
+        variant: MessagesStatus.ERROR,
         message: error.message
       })
     );
@@ -108,14 +108,14 @@ export function* forgotPassword(actions) {
       yield put(forgotPasswordSuccess(1));
       yield put(
         snackbarActions.setMessage({
-          variant: 'success',
+          variant: MessagesStatus.SUCCESS,
           message: 'Your verification code has been sent to your email. '
         })
       );
     }else{
       yield put(
         snackbarActions.setMessage({
-          variant: 'error',
+          variant: MessagesStatus.ERROR,
           message: 'Request failed. Check entered data'
         })
       );
@@ -127,7 +127,7 @@ export function* forgotPassword(actions) {
     
     yield put(
       snackbarActions.setMessage({
-        variant: 'error',
+        variant: MessagesStatus.ERROR,
         message: 'Reset password failed.'
       })
     );
@@ -144,14 +144,14 @@ export function* forgotPasswordResetPassword(actions) {
       yield put(forgotPasswordSuccess(3));
       yield put(
         snackbarActions.setMessage({
-          variant: 'success',
+          variant: MessagesStatus.SUCCESS,
           message: 'Your password changed'
         })
       );
     }else{
       yield put(
         snackbarActions.setMessage({
-          variant: 'error',
+          variant: MessagesStatus.ERROR,
           message: 'Request failed, check your entered data.'
         })
       );
@@ -163,7 +163,7 @@ export function* forgotPasswordResetPassword(actions) {
     
     yield put(
       snackbarActions.setMessage({
-        variant: 'error',
+        variant: MessagesStatus.ERROR,
         message: 'Reset password failed.'
       })
     );
