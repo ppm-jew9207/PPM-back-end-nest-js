@@ -153,6 +153,15 @@
     "shared-lesson-component": {
       "tags": []
     },
+    "shared-advert-info": {
+      "tags": []
+    },
+    "shared-advert-details": {
+      "tags": []
+    },
+    "shared-lessons-accordion": {
+      "tags": []
+    },
     "hooks-use-registration": {
       "tags": []
     },

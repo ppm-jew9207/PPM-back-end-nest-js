@@ -87,7 +87,12 @@
       "@ppm/hooks/use-registration": [
         "libs/hooks/use-registration/src/index.ts"
       ],
-      "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"]
+      "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"],
+      "@ppm/shared/advert-info": ["libs/shared/advert-info/src/index.ts"],
+      "@ppm/shared/advert-details": ["libs/shared/advert-details/src/index.ts"],
+      "@ppm/shared/lessons-accordion": [
+        "libs/shared/lessons-accordion/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
