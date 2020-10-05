@@ -19,12 +19,12 @@ export const FeaturesForgotPassword = () => {
     step,
     forgotPasswordStepDown,
     forgotPasswordStepUp,
-    forgotPasswordReset
+    forgotPasswordReset,
   } = useAuthorization();
   const steps: string[] = [
     'Reset password request',
     'Confirm your email',
-    'Reset password'
+    'Reset password',
   ];
 
   const firstStepSubmit = (email?: string) => {
@@ -47,17 +47,17 @@ export const FeaturesForgotPassword = () => {
     forgotPasswordReset({
       email: myEmail,
       newPassword: data.newPassword,
-      newPasswordToken: confirmToken
+      newPasswordToken: confirmToken,
     });
   };
 
-  const getStepContent = stepIndex => {
+  const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
         return (
           <SharedForgotPasswordForm
             title="Reset password"
-            onSubmit={data => firstStepSubmit(data.email)}
+            onSubmit={(data) => firstStepSubmit(data.email)}
             subtitle=""
             submitButtonText="Confirm reset password"
             inputLabel="Email"
@@ -70,7 +70,7 @@ export const FeaturesForgotPassword = () => {
             onSubmit={submitVerificationCode}
             onCancel={console.log}
             resendVerification={() => firstStepSubmit()}
-            informationTitle="Enter verification code. (Verification code sended in your email.)"
+            informationTitle="Enter verification code. (Verification code sent in your email.)"
           />
         );
       case 2:
@@ -89,7 +89,7 @@ export const FeaturesForgotPassword = () => {
   return (
     <div>
       <Stepper activeStep={step} alternativeLabel>
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
@@ -97,12 +97,8 @@ export const FeaturesForgotPassword = () => {
       </Stepper>
       <div>
         {step === steps.length ? (
-          <div
-            className="center-all-element"
-          >
-            <Link to="/login">
-              All steps is done. Click here.
-            </Link>
+          <div className="center-all-element">
+            <Link to="/login">All steps is done. Click here.</Link>
           </div>
         ) : (
           <div>
