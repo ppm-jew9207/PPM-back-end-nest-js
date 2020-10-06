@@ -3,7 +3,6 @@ import { List } from '@material-ui/core';
 import './shared-lessons.scss';
 import LessonItem, { Action, Lesson } from './lesson-item/lesson-item';
 
-/* eslint-disable-next-line */
 export interface SharedLessonsProps {
   lessons: Lesson[];
   actions: Action[];

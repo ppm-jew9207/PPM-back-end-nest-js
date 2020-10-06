@@ -1,6 +1,7 @@
 import React from 'react';
-import { text, object } from '@storybook/addon-knobs';
+import { object } from '@storybook/addon-knobs';
 import { SharedLessons, SharedLessonsProps } from './shared-lessons';
+import { Lesson } from './lesson-item/lesson-item';
 
 export default {
   component: SharedLessons,
@@ -15,7 +16,7 @@ export const primary = () => {
       {
         _id: '1',
         title: 'Full React Js Course: React JS, Redux, Hooks and Context',
-        datime: '2020-05-20',
+        datetime: '2020-05-20',
         creator: {
           _id: '1',
           name: 'Creator name',
@@ -28,7 +29,7 @@ export const primary = () => {
       {
         _id: '2',
         title: 'React JS: Learn React JS From Scratch with Hands-On Projects',
-        datime: '2020-05-20',
+        datetime: '2020-05-20',
         creator: {
           _id: '1',
           name: 'Creator name',
@@ -42,19 +43,19 @@ export const primary = () => {
     actions: [
       {
         title: 'VIEW MORE',
-        action: (lesson) => {
+        onAction: (lesson: Lesson) => {
           console.log('View More');
         },
       },
       {
         title: 'ADD TO CALENDAR',
-        action: (lesson) => {
+        onAction: (lesson: Lesson) => {
           console.log('Add To Calendar');
         },
       },
       {
         title: 'REMOVE',
-        action: (lesson) => {
+        onAction: (lesson: Lesson) => {
           console.log('Remove');
         },
       },

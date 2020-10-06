@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, MouseEvent, SyntheticEvent } from 'react';
+import moment from 'moment';
 import {
   Typography,
   ListItem,
@@ -14,7 +15,7 @@ import './lesson-item.scss';
 export interface Lesson {
   _id: string;
   title: string;
-  datime: string;
+  datetime: string;
   creator?: {
     _id: string;
     name: string;
@@ -26,43 +27,29 @@ export interface Lesson {
 
 export interface Action {
   title: string;
-  action(lesson: Lesson): void;
+  onAction: (lesson: Lesson) => void;
 }
 
 export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
-  );
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const open = Boolean(anchorEl);
-
-  const preventDefault = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-  };
 
   return (
     <ListItem className="lesson" alignItems="flex-start">
       <div className="lesson__details">
-        <Link className="lesson__title" href="#" onClick={preventDefault}>
+        <Link className="lesson__title" href="#">
           <Typography variant="h3">{props.lesson.title}</Typography>
         </Link>
 
         <address className="author lesson__text">
           By
-          <a rel="author" href="#">
+          <Link rel="author" href="#">
             {props.lesson.creator.name}
-          </a>
+          </Link>
         </address>
-        <time className=" lesson__text" dateTime={props.lesson.datime}>
-          {new Date(props.lesson.datime).toDateString()}
+        <time className=" lesson__text" dateTime={props.lesson.datetime}>
+          {moment(props.lesson.datetime).format('LLL')}
         </time>
         <span className=" lesson__text">2h30min</span>
       </div>
@@ -71,14 +58,14 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
         variant="text"
         color="primary"
         aria-describedby={props.lesson._id}
-        onClick={handleClick}
+        onClick={(event) => setAnchorEl(event.currentTarget)}
       >
         <Icon className="fas fa-plus-circle" color="secondary" />
       </Button>
       <Popover
         id={props.lesson._id}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 'center',
@@ -98,7 +85,7 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
           {props.actions.map((item) => (
             <Button
               onClick={() => {
-                item.action(props.lesson);
+                item.onAction(props.lesson);
               }}
             >
               {item.title}
