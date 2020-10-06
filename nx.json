@@ -153,10 +153,28 @@
     "shared-lesson-component": {
       "tags": []
     },
+    "shared-advert-info": {
+      "tags": []
+    },
+    "shared-advert-details": {
+      "tags": []
+    },
+    "shared-lessons-accordion": {
+      "tags": []
+    },
     "hooks-use-registration": {
       "tags": []
     },
     "data-access-lessons": {
+      "tags": []
+    },
+    "features-forgot-password": {
+      "tags": []
+    },
+    "hooks-use-authorization": {
+      "tags": []
+    },
+    "shared-create-new-password-form": {
       "tags": []
     },
     "features-advert-page": {

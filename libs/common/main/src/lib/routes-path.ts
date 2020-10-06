@@ -25,5 +25,6 @@ export enum PrivateRoutesPath {
   POST_VERIFY_FE = '/verify/',
   POST_RESEND_VERIFY = '/resend-verification/:email',
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
+  POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
 }
