@@ -234,16 +234,13 @@ export class AuthService {
     const tokenModel = await this.createForgottenPasswordToken(email);
 
     if (tokenModel && tokenModel.newPasswordToken) {
-      const url = `${process.env.HOST}:${process.env.PORT}/api/auth/email/reset-password/${tokenModel.newPasswordToken}`;
       const mailOptions = {
         from: process.env.MAIL_SERVER_USER,
-        to: email, // list of receivers (separated by ,)
-        subject: 'Slaptažodžio keitimas',
-        text: 'Slaptažodžio keitimas',
+        to: email,
+        subject: 'Password reset code',
+        text: 'Password reset code',
         html:
-          '<b>Sveiki, Jei norite pakeisti slaptažodį spauskite <a href=' +
-          url +
-          '>čia</a></b>'
+          `<b>Your verification code: ${tokenModel.newPasswordToken}</b>`
       };
       const sended = await new Promise<boolean>( (
         resolve,
