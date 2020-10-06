@@ -42,19 +42,19 @@ export const primary = () => {
     actions: [
       {
         title: 'VIEW MORE',
-        action: () => {
+        action: (lesson) => {
           console.log('View More');
         },
       },
       {
         title: 'ADD TO CALENDAR',
-        action: () => {
+        action: (lesson) => {
           console.log('Add To Calendar');
         },
       },
       {
         title: 'REMOVE',
-        action: () => {
+        action: (lesson) => {
           console.log('Remove');
         },
       },
