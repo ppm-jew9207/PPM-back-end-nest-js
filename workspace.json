@@ -1818,6 +1818,32 @@
           }
         }
       }
+    },
+    "features-advert-page": {
+      "root": "libs/features/advert-page",
+      "sourceRoot": "libs/features/advert-page/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/advert-page/tsconfig.lib.json",
+              "libs/features/advert-page/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/advert-page/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/advert-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
