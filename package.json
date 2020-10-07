@@ -134,19 +134,5 @@
     "tslint": "~6.0.0",
     "typescript": "3.9.7",
     "@types/webpack": "4.41.21"
-  },
-  "lint-staged": {
-    "src/**/*.(spec|test).ts": [
-      "npm run run-all-test"
-    ],
-    "src/**/*.{ts,vue}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
