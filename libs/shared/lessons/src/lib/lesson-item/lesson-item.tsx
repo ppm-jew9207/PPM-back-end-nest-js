@@ -39,7 +39,7 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
     <ListItem className="lesson" alignItems="flex-start">
       <div className="lesson__details">
         <Link className="lesson__title" href="#">
-          <Typography variant="h3">{props.lesson.title}</Typography>
+          {props.lesson.title}
         </Link>
 
         <address className="author lesson__text">
@@ -51,7 +51,6 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
         <time className=" lesson__text" dateTime={props.lesson.datetime}>
           {moment(props.lesson.datetime).format('LLL')}
         </time>
-        <span className=" lesson__text">2h30min</span>
       </div>
       <img className="lesson__image" src={props.lesson.imageUrl} />
       <Button
