@@ -1,6 +1,6 @@
 import { ActionTypes } from './constants';
-import { ContainerState, ContainerActions } from './types';
-import { getRegistrationStep } from '@ppm/data-access/local-storage';
+import { ContainerState, ContainerActions, ContainerForgotPasswordState } from './types';
+import { getRegistrationStep, removeToken } from '@ppm/data-access/local-storage';
 
 export const initialState: ContainerState = {
   user: null,
@@ -58,6 +58,50 @@ export function authorizeReducer(
       return {
         registrationStep: state.registrationStep,
         loading: false
+      };
+
+      case ActionTypes.LOG_OUT:
+        removeToken();
+        return {
+          user: state.user,
+          isLoggedIn: false,
+          loading: false,
+        };
+    default:
+      return state;
+  }
+}
+
+export const initialForgotPasswordState: ContainerForgotPasswordState = {
+  step: 0,
+  loading: false,
+  error: null
+};
+
+export function forgotPasswordReducer(
+  state: ContainerForgotPasswordState = initialForgotPasswordState,
+  action: ContainerActions
+): ContainerForgotPasswordState {
+  
+  switch (action.type) {
+    case ActionTypes.FORGOT_PASSWORD:
+      return {
+        step: state.step,
+        loading: true,
+        error: null
+      };
+    case ActionTypes.FORGOT_PASSWORD_SUCCESS:
+      
+      return {
+        step: action.payload,
+        loading: false,
+        error: null
+      };
+    case ActionTypes.FORGOT_PASSWORD_FAILED:
+      return {
+        step: 1,
+        loading: false,
+        error: action.payload
       };
     default:
       return state;

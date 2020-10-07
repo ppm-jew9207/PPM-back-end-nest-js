@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
-import { RegistrationInterface, User } from '@ppm/common/main';
+import { RegistrationInterface, ResetPasswordPayload, User } from '@ppm/common/main';
 
 export function logIn(payload: { email: string; password: string }) {  
   return action(ActionTypes.LOG_IN, payload);
@@ -34,4 +34,22 @@ export function verificationSuccess(step: number) {
 }
 export function verificationFailed(error: Error) {
   return action(ActionTypes.VERIFICATION_FAILED, error);
+}
+
+export function forgotPassword(email: string) {
+  return action(ActionTypes.FORGOT_PASSWORD, email);
+}
+export function forgotPasswordSuccess(step: number) {
+  return action(ActionTypes.FORGOT_PASSWORD_SUCCESS, step);
+}
+
+export function forgotChangePassword(payload: ResetPasswordPayload) {
+  return action(ActionTypes.FORGOT_PASSWORD_CHANGE, payload);
+}
+export function forgotPasswordFailed(error: any) {
+  return action(ActionTypes.FORGOT_PASSWORD_FAILED, error);
+}
+
+export function logOut() {
+  return action(ActionTypes.LOG_OUT);
 }

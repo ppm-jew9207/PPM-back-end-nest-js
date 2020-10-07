@@ -5,9 +5,10 @@ import StepLabel from '@material-ui/core/StepLabel';
 import './features-registration.scss';
 import { CircularProgress } from '@material-ui/core';
 import { useRegistration } from '@ppm/hooks/use-registration';
+import { History } from '@ppm/common/main';
 
-export const FeaturesRegistration = (props: {history: object}) => {
-  const {loading, steps, registrationStep, getStepContent} = useRegistration(props.history);
+export const FeaturesRegistration = (props: {history: History}) => {
+  const {loading, staticSteps, registrationStep, getStepContent} = useRegistration(props.history);
 
   return (
     <div className="features-registration">
@@ -19,7 +20,7 @@ export const FeaturesRegistration = (props: {history: object}) => {
         </div>
       }
       <Stepper activeStep={registrationStep} alternativeLabel>
-        {steps.map((label) => (
+        {staticSteps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>

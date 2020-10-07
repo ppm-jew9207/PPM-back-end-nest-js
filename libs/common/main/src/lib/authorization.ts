@@ -31,3 +31,10 @@ export interface User{
   },
   settings: {}
 }
+
+export interface ResetPasswordPayload{
+  email: string;
+  newPassword: string;
+  newPasswordToken?: string;
+  currentPassword?: string;
+}
