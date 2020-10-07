@@ -1,6 +1,5 @@
 module.exports = {
-  name: 'shared-user-profile-card',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
       'babel-jest',
@@ -9,4 +8,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../../coverage/libs/shared/user-profile-card',
+  displayName: 'shared-user-profile-card',
 };
