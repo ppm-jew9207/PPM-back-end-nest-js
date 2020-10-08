@@ -1813,6 +1813,63 @@
         }
       }
     },
+    "shared-lessons": {
+      "root": "libs/shared/lessons",
+      "sourceRoot": "libs/shared/lessons/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/lessons/tsconfig.lib.json",
+              "libs/shared/lessons/tsconfig.spec.json",
+              "libs/shared/lessons/.storybook/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/lessons/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lessons/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/lessons/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-lessons",
+            "config": {
+              "configFolder": "libs/shared/lessons/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
     "shared-advert-info": {
       "root": "libs/shared/advert-info",
       "sourceRoot": "libs/shared/advert-info/src",

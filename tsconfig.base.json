@@ -88,6 +88,7 @@
         "libs/hooks/use-registration/src/index.ts"
       ],
       "@ppm/data-access/lessons": ["libs/data-access/lessons/src/index.ts"],
+      "@ppm/shared/lessons": ["libs/shared/lessons/src/index.ts"],
       "@ppm/features/forgot-password": [
         "libs/features/forgot-password/src/index.ts"
       ],
