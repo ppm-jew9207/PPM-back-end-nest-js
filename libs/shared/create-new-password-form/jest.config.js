@@ -1,6 +1,5 @@
 module.exports = {
-  name: 'shared-create-new-password-form',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
       'babel-jest',
@@ -9,4 +8,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../../coverage/libs/shared/create-new-password-form',
+  displayName: 'shared-create-new-password-form',
 };
