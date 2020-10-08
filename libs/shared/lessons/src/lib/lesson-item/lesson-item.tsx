@@ -1,7 +1,6 @@
 import React, { useState, MouseEvent, SyntheticEvent } from 'react';
 import moment from 'moment';
 import {
-  Typography,
   ListItem,
   Icon,
   Popover,
@@ -32,8 +31,6 @@ export interface Action {
 
 export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  const open = Boolean(anchorEl);
 
   return (
     <ListItem className="lesson" alignItems="flex-start">
