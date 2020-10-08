@@ -63,7 +63,7 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
       </Button>
       <Popover
         id={props.lesson._id}
-        open={open}
+        open={!!anchorEl}
         onClose={() => setAnchorEl(null)}
         anchorEl={anchorEl}
         anchorOrigin={{
