@@ -31,15 +31,30 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             <Typography variant="h5" component="h1">
               {props.title}
             </Typography>
-            <Typography variant="overline" display="block" gutterBottom>
+            <Typography
+              className="creator-text"
+              variant="overline"
+              display="block"
+              gutterBottom
+            >
               Creator: {props.creator}
             </Typography>
-            <Typography variant="body1" display="block" gutterBottom>
+            <Typography
+              className="advert-description"
+              variant="body1"
+              display="block"
+              gutterBottom
+            >
               {props.description}
             </Typography>
           </Grid>
-          <Grid item xs={4}>
-            <Typography variant="button" display="block" gutterBottom>
+          <Grid className="categories-holder" item xs={4}>
+            <Typography
+              className="categories-title"
+              variant="button"
+              display="block"
+              gutterBottom
+            >
               Categories
             </Typography>
             {props.categories &&
@@ -56,6 +71,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
           </Grid>
           <Grid item xs={12}>
             <Button
+              className="get-started"
               variant="outlined"
               color="secondary"
               onClick={() => props.onGetStartedClick}
