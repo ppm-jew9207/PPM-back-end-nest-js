@@ -15,17 +15,17 @@ import {
 } from '@material-ui/core';
 import './shared-profile-form.scss';
 
-/* eslint-disable-next-line */
 interface EntityRef {
   _id: string;
   name: string;
 }
-/* eslint-disable-next-line */
+
 export interface SharedProfileFormProps {
   onSubmit: (submitData: {
     description: string;
     firstName: string;
     lastName: string;
+    email: string;
     photo: FileList;
     fieldOfProfession: string;
     company: string;
@@ -34,6 +34,7 @@ export interface SharedProfileFormProps {
     country: string;
     phone: string;
     web: string;
+    type: string;
   }) => void;
   categories: EntityRef[];
   cities: EntityRef[];
@@ -72,20 +73,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   };
 
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" className="profileForm">
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
-        <Box my={1}>
-          <InputLabel id="descriptionLabel">Description</InputLabel>
-          <TextField
-            id="description"
-            name="description"
-            multiline
-            rows={4}
-            variant="outlined"
-            inputRef={register()}
-            fullWidth
-          />
-        </Box>
         <Box my={1}>
           <InputLabel id="firstNameLabel">First Name *</InputLabel>
           <TextField
@@ -113,11 +102,34 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={1}>
+          <InputLabel id="emailLabel">Email</InputLabel>
+          <TextField
+            id="email"
+            name="email"
+            type="email"
+            variant="outlined"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
           <InputLabel id="photoLabel">Photo</InputLabel>
           <TextField
             id="photo"
             name="photo"
             type="file"
+            variant="outlined"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
+          <InputLabel id="descriptionLabel">Description</InputLabel>
+          <TextField
+            id="description"
+            name="description"
+            multiline
+            rows={4}
             variant="outlined"
             inputRef={register()}
             fullWidth
@@ -262,6 +274,17 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="web"
             name="web"
+            type="text"
+            variant="outlined"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
+          <InputLabel id="typeLabel">Type</InputLabel>
+          <TextField
+            id="type"
+            name="type"
             type="text"
             variant="outlined"
             inputRef={register()}
