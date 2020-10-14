@@ -1,18 +1,19 @@
 import React, { useState, ChangeEvent } from 'react';
-import FormControl from '@material-ui/core/FormControl/FormControl';
-import TextField from '@material-ui/core/TextField/TextField';
-import Button from '@material-ui/core/Button';
-
-import './shared-profile-form.scss';
-import Grid from '@material-ui/core/Grid/Grid';
-import Box from '@material-ui/core/Box/Box';
 import { useForm, Controller, ErrorMessage } from 'react-hook-form';
-import Select from '@material-ui/core/Select/Select';
-import Input from '@material-ui/core/Input/Input';
-import Chip from '@material-ui/core/Chip/Chip';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
+import {
+  FormControl,
+  TextField,
+  Button,
+  Grid,
+  Box,
+  Select,
+  Input,
+  Chip,
+  MenuItem,
+  InputLabel,
+  FormHelperText,
+} from '@material-ui/core';
+import './shared-profile-form.scss';
 
 /* eslint-disable-next-line */
 interface EntityRef {
