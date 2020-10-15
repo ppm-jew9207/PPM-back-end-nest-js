@@ -204,3 +204,10 @@ textarea {
     padding-left: 22px !important;
   }
 }
+
+.dialog-list {
+  margin: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
