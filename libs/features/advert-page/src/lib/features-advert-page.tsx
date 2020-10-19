@@ -7,6 +7,10 @@ import './features-advert-page.scss';
 /* eslint-disable-next-line */
 export interface FeaturesAdvertPageProps {}
 
+/**
+ * // TODO:
+ * Change all variables from static to dynamic
+ */
 let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
 let preRequisites = 'Anglu ir Lietuviu kalbos';
 let title = 'React + Nest.js Project';
