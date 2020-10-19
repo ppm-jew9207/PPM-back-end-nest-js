@@ -7,6 +7,7 @@ import { FeaturesDashboardMentor } from '@ppm/features/dashboard/mentor';
 import { FeaturesMentors } from '@ppm/features/mentors';
 import { FeaturesProfile } from '@ppm/features/profile';
 import { FeaturesAdvertForm } from '@ppm/features/advert-form';
+import { FeaturesAdvertPage } from '@ppm/features/advert-page';
 
 const PrivateRouter: RouterItem[] = [
   {
@@ -42,6 +43,13 @@ const PrivateRouter: RouterItem[] = [
     title: 'Adverts',
     icon: RouterMenuIcons.MENTOR,
     component: FeaturesAdvertForm,
+    onMenu: false,
+  },
+  {
+    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}`,
+    title: 'Adverts',
+    icon: RouterMenuIcons.MENTOR,
+    component: FeaturesAdvertPage,
     onMenu: false,
   },
 ];
