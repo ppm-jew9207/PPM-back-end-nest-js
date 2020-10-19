@@ -180,6 +180,9 @@
     },
     "shared-create-new-password-form": {
       "tags": []
+    },
+    "features-advert-page": {
+      "tags": []
     }
   },
   "affected": {
