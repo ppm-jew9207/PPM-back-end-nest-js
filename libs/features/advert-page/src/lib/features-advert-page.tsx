@@ -9,7 +9,7 @@ export interface FeaturesAdvertPageProps {}
 
 /**
  * // TODO:
- * Change all variables from static to dynamic
+ * Change all data from static to dynamic
  */
 let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
 let preRequisites = 'Anglu ir Lietuviu kalbos';
