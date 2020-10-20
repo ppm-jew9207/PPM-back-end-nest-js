@@ -1,0 +1,82 @@
+[
+  {
+    "auth" : {
+        "email" : {
+            "valid" : true
+        }
+    },
+    "roles" : [ 
+        "student"
+    ],
+    "email" : "grsdsdfegweg@sfwegw.gwegwsdfe",
+    "password" : "$2a$10$7Udfg65dX1Zk6O6JAZKMU2of3a1OLp1df4545g5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
+    "phone" : "45645645678687678",
+    "registrationDate" : "2020-09-14T18:34:52.620Z",
+    "userName" : "Petras Petraitis",
+    "quantity" : 10
+  },
+  {
+    "auth" : {
+        "email" : {
+            "valid" : true
+        }
+    },
+    "roles" : [ 
+        "student"
+    ],
+    "email" : "gregweg@sfwsefgdfegw.gweg786we",
+    "password" : "$2a$10$7Udfg65d786678X1Zk6O6JAZKMU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
+    "phone" : "",
+    "registrationDate" : "2020-09-14T18:34:52.620Z",
+    "userName" : "Jonas Jonaitis",
+    "quantity" : 10
+  },
+  {
+    "auth" : {
+        "email" : {
+            "valid" : false
+        }
+    },
+    "roles" : [ 
+        "student"
+    ],
+    "email" : "gregweg@sfwegw.gwegwdfhe",
+    "password" : "$2a$10$7Udfg65dX1Zk6O6JAZKMdfhdhfU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
+    "phone" : "",
+    "registrationDate" : "2020-09-14T18:34:52.620Z",
+    "userName" : "Jon Biden",
+    "quantity" : 10
+  },
+  {
+    "auth" : {
+        "email" : {
+            "valid" : false
+        }
+    },
+    "roles" : [ 
+        "student"
+    ],
+    "email" : "gregweg@sfwegw.gwegwdhdfe",
+    "password" : "$2a$10$7Udfg65dX1Zk6O6JdfhdfhAZKMU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
+    "phone" : "",
+    "registrationDate" : "2020-09-14T18:34:52.620Z",
+    "userName" : "Trump Something",
+    "quantity" : 10
+  },
+  {
+    "auth" : {
+        "email" : {
+            "valid" : false
+        }
+    },
+    "roles" : [ 
+        "student"
+    ],
+    "email" : "gregweg@sfwegw.gwefgjfgjgwe",
+    "password" : "$2a$10$7Udfg65dX1Zfghfgjk6O6JAZKMU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
+    "phone" : "",
+    "registrationDate" : "2020-09-14T18:34:52.620Z",
+    "userName" : "Agne Chim",
+    "quantity" : 10
+  }
+]
