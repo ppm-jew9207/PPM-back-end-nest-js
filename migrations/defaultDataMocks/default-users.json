@@ -1,5 +1,8 @@
 [
   {
+    "_id": {
+        "$oid": "5f8f57ebbdf4657e5be58c68"
+    },
     "auth" : {
         "email" : {
             "valid" : true
@@ -16,6 +19,9 @@
     "quantity" : 10
   },
   {
+    "_id": {
+        "$oid": "5f8f57ebbdf4657e5be58c38"
+    },
     "auth" : {
         "email" : {
             "valid" : true
@@ -32,13 +38,16 @@
     "quantity" : 10
   },
   {
+    "_id": {
+        "$oid": "5f8f57ebbdf4657e5be58c69"
+    },
     "auth" : {
         "email" : {
             "valid" : false
         }
     },
     "roles" : [ 
-        "student"
+        "mentor"
     ],
     "email" : "gregweg@sfwegw.gwegwdfhe",
     "password" : "$2a$10$7Udfg65dX1Zk6O6JAZKMdfhdhfU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
@@ -48,13 +57,16 @@
     "quantity" : 10
   },
   {
+    "_id": {
+        "$oid": "5f8f57ebbdf4657e5be58c6a"
+    },
     "auth" : {
         "email" : {
             "valid" : false
         }
     },
     "roles" : [ 
-        "student"
+        "mentor"
     ],
     "email" : "gregweg@sfwegw.gwegwdhdfe",
     "password" : "$2a$10$7Udfg65dX1Zk6O6JdfhdfhAZKMU2of3a1OLp1dfg5d1hvS4E6tFSVdQs0YuDlRUQEG3lRC9m",
@@ -64,6 +76,9 @@
     "quantity" : 10
   },
   {
+    "_id": {
+        "$oid": "5f8f57ebbdf4657e5be58c6b"
+    },
     "auth" : {
         "email" : {
             "valid" : false
