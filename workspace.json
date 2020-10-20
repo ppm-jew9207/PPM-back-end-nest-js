@@ -2365,7 +2365,7 @@
           "options": {
             "lintFilePatterns": [
               "libs/features/private-layout/**/*.{ts,tsx,js,jsx}"
-            ],
+            ]
           }
         },
         "test": {
