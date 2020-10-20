@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { SharedAdvertDetails } from '@ppm/shared/advert-details';
 import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
+import { useParams } from "react-router-dom";
 import './features-advert-page.scss';
 
 /* eslint-disable-next-line */
@@ -11,6 +12,7 @@ export interface FeaturesAdvertPageProps {}
  * // TODO:
  * Change all data from static to dynamic
  */
+
 let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
 let preRequisites = 'Anglu ir Lietuviu kalbos';
 let title = 'React + Nest.js Project';
@@ -69,7 +71,15 @@ let lessons = [
 let lessonsDescription =
   'Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today.';
 
+
 export const FeaturesAdvertPage = (props: FeaturesAdvertPageProps) => {
+  const { id } = useParams();
+
+  useEffect(()=> {
+    /*TODO: load info with given ID from redux*/
+    console.log(id);
+  });
+
   return (
     <div>
       <SharedAdvertInfo
