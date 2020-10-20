@@ -47,5 +47,6 @@ module.exports = {
     '<rootDir>/libs/features/forgot-password',
     '<rootDir>/libs/hooks/use-authorization',
     '<rootDir>/libs/shared/create-new-password-form',
+    '<rootDir>/libs/features/private-layout',
   ],
 };

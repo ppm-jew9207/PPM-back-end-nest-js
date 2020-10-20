@@ -7,7 +7,6 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-/* eslint-disable-next-line */
 export interface SharedNavigationProps {
   buttons: {
     label: string;
