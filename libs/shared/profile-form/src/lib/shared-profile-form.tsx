@@ -13,6 +13,7 @@ import {
   InputLabel,
   FormHelperText,
 } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
 
 interface EntityRef {
@@ -71,6 +72,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const validateCategories = (value) => {
     return value.length > 0;
   };
+
+  
 
   return (
     <Grid container direction="column" className="profileForm">
@@ -197,6 +200,22 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
+        <Autocomplete
+          id="city"
+          freeSolo
+          options={props.cities.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField {...params} label="City" value={city} margin="normal" variant="outlined" />
+          )}
+        />
+        <Autocomplete
+          id="country"
+          freeSolo
+          options={props.countries.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField {...params} label="Country" value={country} margin="normal" variant="outlined" />
+          )}
+        />
         <Box my={1}>
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="citiesLabel">City</InputLabel>
