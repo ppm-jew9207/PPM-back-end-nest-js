@@ -48,7 +48,7 @@ const PrivateRouter: RouterItem[] = [
   {
     path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}`,
     title: 'Adverts',
-    icon: RouterMenuIcons.MENTOR,
+    icon: null,
     component: FeaturesAdvertPage,
     onMenu: false,
   },
