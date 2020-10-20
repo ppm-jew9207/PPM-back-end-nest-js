@@ -183,6 +183,9 @@
     },
     "features-private-layout": {
       "tags": []
+    },
+    "features-advert-page": {
+      "tags": []
     }
   },
   "affected": {
