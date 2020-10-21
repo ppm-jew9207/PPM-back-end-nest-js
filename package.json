@@ -38,7 +38,7 @@
   },
   "private": true,
   "dependencies": {
-    "dev": "node -r dotenv/config .",
+    
     "@date-io/date-fns": "^2.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
@@ -98,6 +98,7 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
+    "dev": "node -r dotenv/config .",
     "@babel/core": "7.8.3",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
