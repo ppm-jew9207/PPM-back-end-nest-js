@@ -25,7 +25,7 @@ export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
       <Grid container className="learn-list">
         {props.learnItems.map((item, i) => {
           return (
-            <Grid item xs={4}>
+            <Grid key={i} item xs={4}>
               <Typography className="item" variant="body1" component="li">
                 {item}
               </Typography>

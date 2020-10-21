@@ -170,7 +170,7 @@
       "tags": []
     },
     "shared-lessons": {
-    "tags": []
+      "tags": []
     },
     "features-forgot-password": {
       "tags": []
@@ -182,6 +182,12 @@
       "tags": []
     },
     "features-advert-page": {
+      "tags": []
+    },
+    "features-lesson-page": {
+      "tags": []
+    },
+    "hooks-use-lesson": {
       "tags": []
     }
   },

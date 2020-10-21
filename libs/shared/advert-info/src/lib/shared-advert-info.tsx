@@ -23,8 +23,7 @@ export interface SharedAdvertInfoProps {
 
 export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
   return (
-    <div className="main-part">
-      <img className="bg-image" alt={props.title} src={props.image} />
+    <div className="main-part" style={{ backgroundImage: `url(${props.image})`}}>
       <Container fixed className="info">
         <Grid container spacing={3}>
           <Grid item xs={8}>
