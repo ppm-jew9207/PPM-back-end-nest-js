@@ -2,9 +2,9 @@ require('dotenv').config();
 
 const config = {
   mongodb: {
-    url: process.env.MONGO_DB_HOST,
+    url: process.env.MONGO_DB,
 
-    databaseName: process.env.DB_NAME,
+    // databaseName: process.env.DB_NAME,
 
     options: {
       useNewUrlParser: true,
