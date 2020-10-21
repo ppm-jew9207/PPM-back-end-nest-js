@@ -34,7 +34,7 @@
     "migration:down": "migrate-mongo down",
     "run-all-test": "nx run-many --all --target=test",
     "heroku-prebuild": "migrate-mongo up",
-    "heroku-postbuild": "nx build --prod ppm && nx build --prod api",
+    "heroku-postbuild": "nx build --prod ppm && nx build --prod api"
   },
   "private": true,
   "dependencies": {
