@@ -19,7 +19,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}/page`,
+    path: `/${PrivateRoutesPath.ADVERTS}`,
     title: 'Adverts',
     icon: 'list',
     component: FeaturesAdverts,
