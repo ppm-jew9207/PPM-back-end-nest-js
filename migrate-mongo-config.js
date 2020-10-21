@@ -1,11 +1,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const result = dotenv.config();
+const envs = result.parsed;
 
 const config = {
   mongodb: {
-    url: process.env.MONGO_DB_HOST,
+    url: envs.MONGO_DB_HOST,
 
-    databaseName: process.env.DB_NAME,
+    databaseName: envs.DB_NAME,
 
     options: {
       useNewUrlParser: true,

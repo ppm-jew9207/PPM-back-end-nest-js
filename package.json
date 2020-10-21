@@ -98,7 +98,6 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
-    "dev": "node -r dotenv/config .",
     "@babel/core": "7.8.3",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
