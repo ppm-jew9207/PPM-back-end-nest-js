@@ -38,6 +38,7 @@
   },
   "private": true,
   "dependencies": {
+    "dev": "node -r dotenv/config .",
     "@date-io/date-fns": "^2.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
