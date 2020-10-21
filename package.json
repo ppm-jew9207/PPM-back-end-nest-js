@@ -33,7 +33,7 @@
     "migration:up": "migrate-mongo up",
     "migration:down": "migrate-mongo down",
     "run-all-test": "nx run-many --all --target=test",
-    "heroku-prebuild": "npm i -g dotenv && npm run migration:up",
+    "heroku-prebuild": "npm run migration:up",
     "heroku-postbuild": "nx build --prod ppm && nx build --prod api",
   },
   "private": true,
