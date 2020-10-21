@@ -11,7 +11,7 @@ export class GetAdvertQuery {
 export class GetAdvertHandler implements IQueryHandler<GetAdvertQuery> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
-  async execute({ id }): Promise<AdvertsViewModel[]> {
-    return this._advertsViewService.getByUserId(id);
+  async execute({ id }): Promise<AdvertsViewModel> {
+    return this._advertsViewService.getById(id);
   }
 }

@@ -22,6 +22,17 @@ export const AdvertsSchema = new Schema(
       name: String,
       imageUrl: String,
     },
+    programmingLanguages: [String],
+    preRequisites: {
+      type: String,
+    },
+    advertImageUrl: {
+      type: String,
+    },
+    lessonDescription: {
+      type: String,
+    },
+    lessonsList: [String],
   },
   { timestamps: true }
 );

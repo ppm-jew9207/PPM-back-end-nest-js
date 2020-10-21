@@ -1,12 +1,12 @@
 import { Document } from 'mongoose';
 import { UserRef } from '../../shared/shared.interface';
-import { AdvertRef } from '../adverts/adverts.interface';
+import { AdvertsViewModel } from '../adverts/adverts.interface';
 
 export interface LeanPermissionsView {
   _id: string;
   user: UserRef;
   role: string;
-  adverts: AdvertRef[];
+  adverts: AdvertsViewModel[];
 }
 
 export interface CreatePermissionPayload {
@@ -17,13 +17,13 @@ export interface CreatePermissionPayload {
 export interface UpdatePermissionPayload {
   user: UserRef;
   role: string;
-  adverts: AdvertRef[];
+  adverts: AdvertsViewModel[];
 }
 
 export interface PermissionRef {
   _id: string;
   role: string;
-  adverts: AdvertRef[];
+  adverts: AdvertsViewModel[];
 }
 
 export type PermissionsViewModel = LeanPermissionsView & Document;
