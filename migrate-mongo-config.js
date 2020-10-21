@@ -3,9 +3,7 @@ dotenv.config();
 
 const config = {
   mongodb: {
-    url: process.env.MONGO_DB_HOST || 'mongodb://localhost:27017',
-
-    databaseName: process.env.DB_NAME || 'PPM',
+    url: process.env.MONGO_DB,
 
     options: {
       useNewUrlParser: true,
