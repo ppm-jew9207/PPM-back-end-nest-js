@@ -8,7 +8,8 @@
     },
     "tslint.json": "*",
     "nx.json": "*",
-    "tsconfig.base.json": "*"
+    "tsconfig.base.json": "*",
+    ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -150,10 +151,40 @@
     "data-access-categories": {
       "tags": []
     },
+    "shared-lesson-component": {
+      "tags": []
+    },
+    "shared-advert-info": {
+      "tags": []
+    },
+    "shared-advert-details": {
+      "tags": []
+    },
+    "shared-lessons-accordion": {
+      "tags": []
+    },
     "hooks-use-registration": {
       "tags": []
     },
     "data-access-lessons": {
+      "tags": []
+    },
+    "shared-lessons": {
+      "tags": []
+    },
+    "features-forgot-password": {
+      "tags": []
+    },
+    "hooks-use-authorization": {
+      "tags": []
+    },
+    "shared-create-new-password-form": {
+      "tags": []
+    },
+    "features-private-layout": {
+      "tags": []
+    },
+    "features-advert-page": {
       "tags": []
     }
   },

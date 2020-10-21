@@ -1,0 +1,66 @@
+.chip-tag {
+  margin: 2px;
+}
+
+.main-part {
+  position: relative;
+  overflow: hidden;
+  padding: 1vh 0;
+
+  .bg-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.5;
+  }
+
+  .info {
+    position: relative;
+    z-index: 2;
+    padding: 50px 24px;
+    margin-bottom: 0px;
+
+    & h1 {
+      font-weight: 700;
+    }
+
+    & .creator-text {
+      font-size: 8px;
+    }
+
+    & .advert-description {
+      font-size: 14px;
+    }
+
+    & .categories-holder {
+
+      & .categories-title {
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: -0.5px;
+      }
+
+      & .chip-tag {
+        border: 1px solid black;
+      }
+    }
+
+    & .get-started {
+      border: 2px solid #ff0000;
+      color: #ff0000;
+      font-weight: 600;
+      letter-spacing: 3px;
+      padding: 8px 25px;
+
+      &:hover {
+        border: 2px solid #ea3939;
+        color: #ea3939;
+        font-weight: 600;
+        letter-spacing: 3px;
+        padding: 8px 25px;
+      }
+    }
+  }
+}

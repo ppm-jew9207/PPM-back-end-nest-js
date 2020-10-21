@@ -7,26 +7,35 @@ import { FeaturesDashboardMentor } from '@ppm/features/dashboard/mentor';
 import { FeaturesMentors } from '@ppm/features/mentors';
 import { FeaturesProfile } from '@ppm/features/profile';
 import { FeaturesAdvertForm } from '@ppm/features/advert-form';
+import { FeaturesAdverts } from '@ppm/features/adverts';
+import { FeaturesAdvertPage } from '@ppm/features/advert-page';
 
 const PrivateRouter: RouterItem[] = [
   {
     path: `/${PrivateRoutesPath.DASHBOARD}`,
-    title: null,
-    icon: null,
+    title: 'Dashboard',
+    icon: 'dashboard',
     component: FeaturesDashboardMentor,
-    onMenu: false,
+    onMenu: true,
+  },
+  {
+    path: `/${PrivateRoutesPath.ADVERTS}`,
+    title: 'Adverts',
+    icon: 'list',
+    component: FeaturesAdverts,
+    onMenu: true,
   },
   {
     path: `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_ALL}`,
     title: 'Mentors',
-    icon: RouterMenuIcons.MENTOR,
+    icon: 'group',
     component: FeaturesMentors,
     onMenu: true,
   },
   {
     path: `/${PrivateRoutesPath.USER}`,
-    title: null,
-    icon: null,
+    title: 'User',
+    icon: 'person',
     component: FeaturesProfile,
     onMenu: true,
   },
@@ -42,6 +51,13 @@ const PrivateRouter: RouterItem[] = [
     title: 'Adverts',
     icon: RouterMenuIcons.MENTOR,
     component: FeaturesAdvertForm,
+    onMenu: false,
+  },
+  {
+    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}`,
+    title: 'Adverts',
+    icon: null,
+    component: FeaturesAdvertPage,
     onMenu: false,
   },
 ];

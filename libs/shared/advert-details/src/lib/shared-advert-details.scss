@@ -1,0 +1,19 @@
+.info {
+  margin-bottom: 25px;
+
+  & .learn-title {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+
+  & .learn-list {
+    .item {
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+
+  & .description {
+    font-size: 14px;
+  }
+}

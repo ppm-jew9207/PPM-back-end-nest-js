@@ -28,5 +28,5 @@ export class CreateUserProfilePayloadDto implements CreateUserProfile {
     isArray: true,
     type: ['SocialLink'],
   })
-  public readonly socialLinks?: SocialLink[];
+  public socialLinks?: SocialLink[];
 }

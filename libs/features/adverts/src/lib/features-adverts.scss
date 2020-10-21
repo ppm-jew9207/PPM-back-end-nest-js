@@ -1,13 +1,21 @@
 .advert-cards {
+  margin-top: 30px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 20px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .advert-card {
   box-sizing: border-box;
-  width: 45%;
-  margin: 20px 0;
+  max-width: 800px;
+  margin-bottom: 20px;
+  width: 100%;
 }

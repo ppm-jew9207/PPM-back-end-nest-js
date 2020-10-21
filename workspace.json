@@ -58,14 +58,21 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "apps/ppm/tsconfig.app.json",
-              "apps/ppm/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/ppm/**/*"]
+            "lintFilePatterns": [
+              "apps/ppm/**/*.js",
+              "apps/ppm/**/*.jsx",
+              "apps/ppm/**/*.ts",
+              "apps/ppm/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "apps/ppm/**/*.spec.ts",
+              "apps/ppm/**/*.spec.tsx",
+              "apps/ppm/**/*.spec.js",
+              "apps/ppm/**/*.spec.jsx",
+              "apps/ppm/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -96,11 +103,12 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": ["apps/ppm-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/ppm-e2e/**/*"]
+            "lintFilePatterns": [
+              "apps/ppm-e2e/src/**/*.ts",
+              "apps/ppm-e2e/src/**/*.js"
+            ]
           }
         }
       }
@@ -141,14 +149,13 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/api/**/*"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts",
+              "apps/api/**/*.spec.ts",
+              "apps/api/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -167,14 +174,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/storybook/tsconfig.lib.json",
-              "libs/shared/storybook/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/storybook/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/storybook/**/*.js",
+              "libs/shared/storybook/**/*.jsx",
+              "libs/shared/storybook/**/*.ts",
+              "libs/shared/storybook/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/storybook/**/*.spec.ts",
+              "libs/shared/storybook/**/*.spec.tsx",
+              "libs/shared/storybook/**/*.spec.js",
+              "libs/shared/storybook/**/*.spec.jsx",
+              "libs/shared/storybook/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -223,14 +237,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/test/tsconfig.lib.json",
-              "libs/shared/test/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/test/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/test/**/*.js",
+              "libs/shared/test/**/*.jsx",
+              "libs/shared/test/**/*.ts",
+              "libs/shared/test/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/test/**/*.spec.ts",
+              "libs/shared/test/**/*.spec.tsx",
+              "libs/shared/test/**/*.spec.js",
+              "libs/shared/test/**/*.spec.jsx",
+              "libs/shared/test/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -279,16 +300,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/login-component/tsconfig.lib.json",
-              "libs/shared/login-component/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/login-component/**/*"
+            "lintFilePatterns": [
+              "libs/shared/login-component/**/*.js",
+              "libs/shared/login-component/**/*.jsx",
+              "libs/shared/login-component/**/*.ts",
+              "libs/shared/login-component/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/login-component/**/*.spec.ts",
+              "libs/shared/login-component/**/*.spec.tsx",
+              "libs/shared/login-component/**/*.spec.js",
+              "libs/shared/login-component/**/*.spec.jsx",
+              "libs/shared/login-component/**/*.d.ts"
             ]
           }
         },
@@ -338,14 +363,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/profile-form/tsconfig.lib.json",
-              "libs/shared/profile-form/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/profile-form/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/profile-form/**/*.js",
+              "libs/shared/profile-form/**/*.jsx",
+              "libs/shared/profile-form/**/*.ts",
+              "libs/shared/profile-form/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/profile-form/**/*.spec.ts",
+              "libs/shared/profile-form/**/*.spec.tsx",
+              "libs/shared/profile-form/**/*.spec.js",
+              "libs/shared/profile-form/**/*.spec.jsx",
+              "libs/shared/profile-form/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -394,14 +426,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/info-card/tsconfig.lib.json",
-              "libs/shared/info-card/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/info-card/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/info-card/**/*.js",
+              "libs/shared/info-card/**/*.jsx",
+              "libs/shared/info-card/**/*.ts",
+              "libs/shared/info-card/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/info-card/**/*.spec.ts",
+              "libs/shared/info-card/**/*.spec.tsx",
+              "libs/shared/info-card/**/*.spec.js",
+              "libs/shared/info-card/**/*.spec.jsx",
+              "libs/shared/info-card/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -420,14 +459,14 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/advert-card/tsconfig.lib.json",
-              "libs/shared/advert-card/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/advert-card/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/advert-card/**/*.js",
+              "libs/shared/advert-card/**/*.jsx",
+              "libs/shared/advert-card/**/*.ts",
+              "libs/shared/advert-card/**/*.tsx"
+            ]
           }
         },
         "test": {
@@ -446,15 +485,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/shared/top-right-bar/.eslintrc",
-            "tsConfig": [
-              "libs/shared/top-right-bar/tsconfig.lib.json",
-              "libs/shared/top-right-bar/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/top-right-bar/**"]
+            "lintFilePatterns": [
+              "libs/shared/top-right-bar/**/*.js",
+              "libs/shared/top-right-bar/**/*.jsx",
+              "libs/shared/top-right-bar/**/*.ts",
+              "libs/shared/top-right-bar/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/top-right-bar/**/*.spec.ts",
+              "libs/shared/top-right-bar/**/*.spec.tsx",
+              "libs/shared/top-right-bar/**/*.spec.js",
+              "libs/shared/top-right-bar/**/*.spec.jsx",
+              "libs/shared/top-right-bar/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -503,15 +548,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/shared/top-menu-button/.eslintrc",
-            "tsConfig": [
-              "libs/shared/top-menu-button/tsconfig.lib.json",
-              "libs/shared/top-menu-button/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/top-menu-button/**"]
+            "lintFilePatterns": [
+              "libs/shared/top-menu-button/**/*.js",
+              "libs/shared/top-menu-button/**/*.jsx",
+              "libs/shared/top-menu-button/**/*.ts",
+              "libs/shared/top-menu-button/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/top-menu-button/**/*.spec.ts",
+              "libs/shared/top-menu-button/**/*.spec.tsx",
+              "libs/shared/top-menu-button/**/*.spec.js",
+              "libs/shared/top-menu-button/**/*.spec.jsx",
+              "libs/shared/top-menu-button/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -560,14 +611,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/navigation/tsconfig.lib.json",
-              "libs/shared/navigation/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/navigation/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/navigation/**/*.js",
+              "libs/shared/navigation/**/*.jsx",
+              "libs/shared/navigation/**/*.ts",
+              "libs/shared/navigation/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/navigation/**/*.spec.ts",
+              "libs/shared/navigation/**/*.spec.tsx",
+              "libs/shared/navigation/**/*.spec.js",
+              "libs/shared/navigation/**/*.spec.jsx",
+              "libs/shared/navigation/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -616,17 +674,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/shared/registration-verification/.eslintrc",
-            "tsConfig": [
-              "libs/shared/registration-verification/tsconfig.lib.json",
-              "libs/shared/registration-verification/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/registration-verification/**"
+            "lintFilePatterns": [
+              "libs/shared/registration-verification/**/*.js",
+              "libs/shared/registration-verification/**/*.jsx",
+              "libs/shared/registration-verification/**/*.ts",
+              "libs/shared/registration-verification/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/registration-verification/**/*.spec.ts",
+              "libs/shared/registration-verification/**/*.spec.tsx",
+              "libs/shared/registration-verification/**/*.spec.js",
+              "libs/shared/registration-verification/**/*.spec.jsx",
+              "libs/shared/registration-verification/**/*.d.ts"
             ]
           }
         },
@@ -676,16 +737,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/forgot-password-form/tsconfig.lib.json",
-              "libs/shared/forgot-password-form/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/forgot-password-form/**/*"
+            "lintFilePatterns": [
+              "libs/shared/forgot-password-form/**/*.js",
+              "libs/shared/forgot-password-form/**/*.jsx",
+              "libs/shared/forgot-password-form/**/*.ts",
+              "libs/shared/forgot-password-form/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/forgot-password-form/**/*.spec.ts",
+              "libs/shared/forgot-password-form/**/*.spec.tsx",
+              "libs/shared/forgot-password-form/**/*.spec.js",
+              "libs/shared/forgot-password-form/**/*.spec.jsx",
+              "libs/shared/forgot-password-form/**/*.d.ts"
             ]
           }
         },
@@ -735,11 +800,9 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": ["libs/common/main/tsconfig.lib.json"],
-            "exclude": ["**/node_modules/**", "!libs/common/main/**/*"]
+            "lintFilePatterns": ["libs/common/main/**/*.ts"]
           }
         }
       }
@@ -751,16 +814,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/dashboard/mentor/tsconfig.lib.json",
-              "libs/features/dashboard/mentor/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/dashboard/mentor/**/*"
+            "lintFilePatterns": [
+              "libs/features/dashboard/mentor/**/*.js",
+              "libs/features/dashboard/mentor/**/*.jsx",
+              "libs/features/dashboard/mentor/**/*.ts",
+              "libs/features/dashboard/mentor/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/dashboard/mentor/**/*.spec.ts",
+              "libs/features/dashboard/mentor/**/*.spec.tsx",
+              "libs/features/dashboard/mentor/**/*.spec.js",
+              "libs/features/dashboard/mentor/**/*.spec.jsx",
+              "libs/features/dashboard/mentor/**/*.d.ts"
             ]
           }
         },
@@ -780,14 +847,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/mentors/tsconfig.lib.json",
-              "libs/features/mentors/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/mentors/**/*"]
+            "lintFilePatterns": [
+              "libs/features/mentors/**/*.js",
+              "libs/features/mentors/**/*.jsx",
+              "libs/features/mentors/**/*.ts",
+              "libs/features/mentors/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/mentors/**/*.spec.ts",
+              "libs/features/mentors/**/*.spec.tsx",
+              "libs/features/mentors/**/*.spec.js",
+              "libs/features/mentors/**/*.spec.jsx",
+              "libs/features/mentors/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -806,14 +880,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/mentor/tsconfig.lib.json",
-              "libs/features/mentor/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/mentor/**/*"]
+            "lintFilePatterns": [
+              "libs/features/mentor/**/*.js",
+              "libs/features/mentor/**/*.jsx",
+              "libs/features/mentor/**/*.ts",
+              "libs/features/mentor/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/mentor/**/*.spec.ts",
+              "libs/features/mentor/**/*.spec.tsx",
+              "libs/features/mentor/**/*.spec.js",
+              "libs/features/mentor/**/*.spec.jsx",
+              "libs/features/mentor/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -832,16 +913,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/redux-configuration/tsconfig.lib.json",
-              "libs/data-access/redux-configuration/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/redux-configuration/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/redux-configuration/**/*.ts",
+              "libs/data-access/redux-configuration/**/*.spec.ts",
+              "libs/data-access/redux-configuration/**/*.spec.tsx",
+              "libs/data-access/redux-configuration/**/*.spec.js",
+              "libs/data-access/redux-configuration/**/*.spec.jsx",
+              "libs/data-access/redux-configuration/**/*.d.ts"
             ]
           }
         },
@@ -861,16 +941,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/authorization/tsconfig.lib.json",
-              "libs/data-access/authorization/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/authorization/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/authorization/**/*.ts",
+              "libs/data-access/authorization/**/*.spec.ts",
+              "libs/data-access/authorization/**/*.spec.tsx",
+              "libs/data-access/authorization/**/*.spec.js",
+              "libs/data-access/authorization/**/*.spec.jsx",
+              "libs/data-access/authorization/**/*.d.ts"
             ]
           }
         },
@@ -890,14 +969,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/search-input/tsconfig.lib.json",
-              "libs/shared/search-input/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/search-input/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/search-input/**/*.js",
+              "libs/shared/search-input/**/*.jsx",
+              "libs/shared/search-input/**/*.ts",
+              "libs/shared/search-input/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/search-input/**/*.spec.ts",
+              "libs/shared/search-input/**/*.spec.tsx",
+              "libs/shared/search-input/**/*.spec.js",
+              "libs/shared/search-input/**/*.spec.jsx",
+              "libs/shared/search-input/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -946,14 +1032,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/rank/tsconfig.lib.json",
-              "libs/shared/rank/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/rank/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/rank/**/*.js",
+              "libs/shared/rank/**/*.jsx",
+              "libs/shared/rank/**/*.ts",
+              "libs/shared/rank/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/rank/**/*.spec.ts",
+              "libs/shared/rank/**/*.spec.tsx",
+              "libs/shared/rank/**/*.spec.js",
+              "libs/shared/rank/**/*.spec.jsx",
+              "libs/shared/rank/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1002,14 +1095,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/modal/tsconfig.lib.json",
-              "libs/shared/modal/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/modal/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/modal/**/*.js",
+              "libs/shared/modal/**/*.jsx",
+              "libs/shared/modal/**/*.ts",
+              "libs/shared/modal/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/modal/**/*.spec.ts",
+              "libs/shared/modal/**/*.spec.tsx",
+              "libs/shared/modal/**/*.spec.js",
+              "libs/shared/modal/**/*.spec.jsx",
+              "libs/shared/modal/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1058,16 +1158,14 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/authorization/tsconfig.lib.json",
-              "libs/features/authorization/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/authorization/**/*"
+            "lintFilePatterns": [
+              "libs/features/authorization/**/*.spec.ts",
+              "libs/features/authorization/**/*.spec.tsx",
+              "libs/features/authorization/**/*.spec.js",
+              "libs/features/authorization/**/*.spec.jsx",
+              "libs/features/authorization/**/*.d.ts"
             ]
           }
         },
@@ -1087,16 +1185,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/local-storage/tsconfig.lib.json",
-              "libs/data-access/local-storage/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/local-storage/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/local-storage/**/*.ts",
+              "libs/data-access/local-storage/**/*.spec.ts",
+              "libs/data-access/local-storage/**/*.spec.tsx",
+              "libs/data-access/local-storage/**/*.spec.js",
+              "libs/data-access/local-storage/**/*.spec.jsx",
+              "libs/data-access/local-storage/**/*.d.ts"
             ]
           }
         },
@@ -1116,16 +1213,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/http-requests/tsconfig.lib.json",
-              "libs/data-access/http-requests/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/http-requests/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/http-requests/**/*.ts",
+              "libs/data-access/http-requests/**/*.spec.ts",
+              "libs/data-access/http-requests/**/*.spec.tsx",
+              "libs/data-access/http-requests/**/*.spec.js",
+              "libs/data-access/http-requests/**/*.spec.jsx",
+              "libs/data-access/http-requests/**/*.d.ts"
             ]
           }
         },
@@ -1145,16 +1241,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/user-profile-card/tsconfig.lib.json",
-              "libs/shared/user-profile-card/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/user-profile-card/**/*"
+            "lintFilePatterns": [
+              "libs/shared/user-profile-card/**/*.js",
+              "libs/shared/user-profile-card/**/*.jsx",
+              "libs/shared/user-profile-card/**/*.ts",
+              "libs/shared/user-profile-card/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/user-profile-card/**/*.spec.ts",
+              "libs/shared/user-profile-card/**/*.spec.tsx",
+              "libs/shared/user-profile-card/**/*.spec.js",
+              "libs/shared/user-profile-card/**/*.spec.jsx",
+              "libs/shared/user-profile-card/**/*.d.ts"
             ]
           }
         },
@@ -1204,16 +1304,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/create-advert-form/tsconfig.lib.json",
-              "libs/shared/create-advert-form/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/create-advert-form/**/*"
+            "lintFilePatterns": [
+              "libs/shared/create-advert-form/**/*.js",
+              "libs/shared/create-advert-form/**/*.jsx",
+              "libs/shared/create-advert-form/**/*.ts",
+              "libs/shared/create-advert-form/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/create-advert-form/**/*.spec.ts",
+              "libs/shared/create-advert-form/**/*.spec.tsx",
+              "libs/shared/create-advert-form/**/*.spec.js",
+              "libs/shared/create-advert-form/**/*.spec.jsx",
+              "libs/shared/create-advert-form/**/*.d.ts"
             ]
           }
         },
@@ -1263,14 +1367,16 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/adverts/tsconfig.lib.json",
-              "libs/data-access/adverts/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/data-access/adverts/**/*"]
+            "lintFilePatterns": [
+              "libs/data-access/adverts/**/*.ts",
+              "libs/data-access/adverts/**/*.spec.ts",
+              "libs/data-access/adverts/**/*.spec.tsx",
+              "libs/data-access/adverts/**/*.spec.js",
+              "libs/data-access/adverts/**/*.spec.jsx",
+              "libs/data-access/adverts/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1289,14 +1395,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/registration/tsconfig.lib.json",
-              "libs/shared/registration/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/registration/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/registration/**/*.js",
+              "libs/shared/registration/**/*.jsx",
+              "libs/shared/registration/**/*.ts",
+              "libs/shared/registration/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/registration/**/*.spec.ts",
+              "libs/shared/registration/**/*.spec.tsx",
+              "libs/shared/registration/**/*.spec.js",
+              "libs/shared/registration/**/*.spec.jsx",
+              "libs/shared/registration/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1357,13 +1470,11 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": ["apps/shared-registration-e2e/tsconfig.e2e.json"],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/shared-registration-e2e/**/*"
+            "lintFilePatterns": [
+              "apps/shared-registration-e2e/src/**/*.ts",
+              "apps/shared-registration-e2e/src/**/*.js"
             ]
           }
         }
@@ -1376,14 +1487,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/footer/tsconfig.lib.json",
-              "libs/shared/footer/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/footer/**/*"]
+            "lintFilePatterns": [
+              "libs/shared/footer/**/*.js",
+              "libs/shared/footer/**/*.jsx",
+              "libs/shared/footer/**/*.ts",
+              "libs/shared/footer/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/footer/**/*.spec.ts",
+              "libs/shared/footer/**/*.spec.tsx",
+              "libs/shared/footer/**/*.spec.js",
+              "libs/shared/footer/**/*.spec.jsx",
+              "libs/shared/footer/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1432,16 +1550,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/registration/tsconfig.lib.json",
-              "libs/features/registration/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/registration/**/*"
+            "lintFilePatterns": [
+              "libs/features/registration/**/*.js",
+              "libs/features/registration/**/*.jsx",
+              "libs/features/registration/**/*.ts",
+              "libs/features/registration/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/registration/**/*.spec.ts",
+              "libs/features/registration/**/*.spec.tsx",
+              "libs/features/registration/**/*.spec.js",
+              "libs/features/registration/**/*.spec.jsx",
+              "libs/features/registration/**/*.d.ts"
             ]
           }
         },
@@ -1461,16 +1583,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/shared/left-side-menu/tsconfig.lib.json",
-              "libs/shared/left-side-menu/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/left-side-menu/**/*"
+            "lintFilePatterns": [
+              "libs/shared/left-side-menu/**/*.js",
+              "libs/shared/left-side-menu/**/*.jsx",
+              "libs/shared/left-side-menu/**/*.ts",
+              "libs/shared/left-side-menu/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/left-side-menu/**/*.spec.ts",
+              "libs/shared/left-side-menu/**/*.spec.tsx",
+              "libs/shared/left-side-menu/**/*.spec.js",
+              "libs/shared/left-side-menu/**/*.spec.jsx",
+              "libs/shared/left-side-menu/**/*.d.ts"
             ]
           }
         },
@@ -1520,14 +1646,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/adverts/tsconfig.lib.json",
-              "libs/features/adverts/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/adverts/**/*"]
+            "lintFilePatterns": [
+              "libs/features/adverts/**/*.js",
+              "libs/features/adverts/**/*.jsx",
+              "libs/features/adverts/**/*.ts",
+              "libs/features/adverts/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/adverts/**/*.spec.ts",
+              "libs/features/adverts/**/*.spec.tsx",
+              "libs/features/adverts/**/*.spec.js",
+              "libs/features/adverts/**/*.spec.jsx",
+              "libs/features/adverts/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1546,16 +1679,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/user-profile/tsconfig.lib.json",
-              "libs/data-access/user-profile/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/user-profile/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/user-profile/**/*.ts",
+              "libs/data-access/user-profile/**/*.spec.ts",
+              "libs/data-access/user-profile/**/*.spec.tsx",
+              "libs/data-access/user-profile/**/*.spec.js",
+              "libs/data-access/user-profile/**/*.spec.jsx",
+              "libs/data-access/user-profile/**/*.d.ts"
             ]
           }
         },
@@ -1575,16 +1707,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/snack-bar/tsconfig.lib.json",
-              "libs/data-access/snack-bar/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/snack-bar/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/snack-bar/**/*.ts",
+              "libs/data-access/snack-bar/**/*.spec.ts",
+              "libs/data-access/snack-bar/**/*.spec.tsx",
+              "libs/data-access/snack-bar/**/*.spec.js",
+              "libs/data-access/snack-bar/**/*.spec.jsx",
+              "libs/data-access/snack-bar/**/*.d.ts"
             ]
           }
         },
@@ -1604,14 +1735,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/snack-bar/tsconfig.lib.json",
-              "libs/features/snack-bar/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/snack-bar/**/*"]
+            "lintFilePatterns": [
+              "libs/features/snack-bar/**/*.js",
+              "libs/features/snack-bar/**/*.jsx",
+              "libs/features/snack-bar/**/*.ts",
+              "libs/features/snack-bar/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/snack-bar/**/*.spec.ts",
+              "libs/features/snack-bar/**/*.spec.tsx",
+              "libs/features/snack-bar/**/*.spec.js",
+              "libs/features/snack-bar/**/*.spec.jsx",
+              "libs/features/snack-bar/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1630,14 +1768,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/advert-form/tsconfig.lib.json",
-              "libs/features/advert-form/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/advert-form/**/*"]
+            "lintFilePatterns": [
+              "libs/features/advert-form/**/*.js",
+              "libs/features/advert-form/**/*.jsx",
+              "libs/features/advert-form/**/*.ts",
+              "libs/features/advert-form/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/advert-form/**/*.spec.ts",
+              "libs/features/advert-form/**/*.spec.tsx",
+              "libs/features/advert-form/**/*.spec.js",
+              "libs/features/advert-form/**/*.spec.jsx",
+              "libs/features/advert-form/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1656,16 +1801,15 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/categories/tsconfig.lib.json",
-              "libs/data-access/categories/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access/categories/**/*"
+            "lintFilePatterns": [
+              "libs/data-access/categories/**/*.ts",
+              "libs/data-access/categories/**/*.spec.ts",
+              "libs/data-access/categories/**/*.spec.tsx",
+              "libs/data-access/categories/**/*.spec.js",
+              "libs/data-access/categories/**/*.spec.jsx",
+              "libs/data-access/categories/**/*.d.ts"
             ]
           }
         },
@@ -1685,14 +1829,21 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/profile/tsconfig.lib.json",
-              "libs/features/profile/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/profile/**/*"]
+            "lintFilePatterns": [
+              "libs/features/profile/**/*.js",
+              "libs/features/profile/**/*.jsx",
+              "libs/features/profile/**/*.ts",
+              "libs/features/profile/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/profile/**/*.spec.ts",
+              "libs/features/profile/**/*.spec.tsx",
+              "libs/features/profile/**/*.spec.js",
+              "libs/features/profile/**/*.spec.jsx",
+              "libs/features/profile/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1711,14 +1862,16 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/data-access/lessons/tsconfig.lib.json",
-              "libs/data-access/lessons/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/data-access/lessons/**/*"]
+            "lintFilePatterns": [
+              "libs/data-access/lessons/**/*.ts",
+              "libs/data-access/lessons/**/*.spec.ts",
+              "libs/data-access/lessons/**/*.spec.tsx",
+              "libs/data-access/lessons/**/*.spec.js",
+              "libs/data-access/lessons/**/*.spec.jsx",
+              "libs/data-access/lessons/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -1737,16 +1890,20 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/hooks/use-registration/tsconfig.lib.json",
-              "libs/hooks/use-registration/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/hooks/use-registration/**/*"
+            "lintFilePatterns": [
+              "libs/hooks/use-registration/**/*.js",
+              "libs/hooks/use-registration/**/*.jsx",
+              "libs/hooks/use-registration/**/*.ts",
+              "libs/hooks/use-registration/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/hooks/use-registration/**/*.spec.ts",
+              "libs/hooks/use-registration/**/*.spec.tsx",
+              "libs/hooks/use-registration/**/*.spec.js",
+              "libs/hooks/use-registration/**/*.spec.jsx",
+              "libs/hooks/use-registration/**/*.d.ts"
             ]
           }
         },
@@ -1754,6 +1911,493 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/hooks/use-registration/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-lesson-component": {
+      "root": "libs/shared/lesson-component",
+      "sourceRoot": "libs/shared/lesson-component/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/lesson-component/**/*.js",
+              "libs/shared/lesson-component/**/*.jsx",
+              "libs/shared/lesson-component/**/*.ts",
+              "libs/shared/lesson-component/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/lesson-component/**/*.spec.ts",
+              "libs/shared/lesson-component/**/*.spec.tsx",
+              "libs/shared/lesson-component/**/*.spec.js",
+              "libs/shared/lesson-component/**/*.spec.jsx",
+              "libs/shared/lesson-component/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lesson-component/jest.config.js",
+            "tsConfig": "libs/shared/lesson-component/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/lesson-component/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-lesson-component",
+            "config": {
+              "configFolder": "libs/shared/lesson-component/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-lessons": {
+      "root": "libs/shared/lessons",
+      "sourceRoot": "libs/shared/lessons/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/shared/lessons/tsconfig.lib.json",
+              "libs/shared/lessons/tsconfig.spec.json",
+              "libs/shared/lessons/.storybook/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/lessons/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lessons/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/lessons/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-lessons",
+            "config": {
+              "configFolder": "libs/shared/lessons/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-advert-info": {
+      "root": "libs/shared/advert-info",
+      "sourceRoot": "libs/shared/advert-info/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/advert-info/**/*.js",
+              "libs/shared/advert-info/**/*.jsx",
+              "libs/shared/advert-info/**/*.ts",
+              "libs/shared/advert-info/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/advert-info/**/*.spec.ts",
+              "libs/shared/advert-info/**/*.spec.tsx",
+              "libs/shared/advert-info/**/*.spec.js",
+              "libs/shared/advert-info/**/*.spec.jsx",
+              "libs/shared/advert-info/**/*.d.ts",
+              "libs/shared/src/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/advert-info/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/advert-info/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-advert-info",
+            "config": {
+              "configFolder": "libs/shared/advert-info/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-advert-details": {
+      "root": "libs/shared/advert-details",
+      "sourceRoot": "libs/shared/advert-details/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/advert-details/**/*.js",
+              "libs/shared/advert-details/**/*.jsx",
+              "libs/shared/advert-details/**/*.ts",
+              "libs/shared/advert-details/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/advert-details/**/*.spec.ts",
+              "libs/shared/advert-details/**/*.spec.tsx",
+              "libs/shared/advert-details/**/*.spec.js",
+              "libs/shared/advert-details/**/*.spec.jsx",
+              "libs/shared/advert-details/**/*.d.ts",
+              "libs/shared/src/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/advert-details/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/advert-details/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-advert-details",
+            "config": {
+              "configFolder": "libs/shared/advert-details/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "shared-lessons-accordion": {
+      "root": "libs/shared/lessons-accordion",
+      "sourceRoot": "libs/shared/lessons-accordion/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/lessons-accordion/**/*.js",
+              "libs/shared/lessons-accordion/**/*.jsx",
+              "libs/shared/lessons-accordion/**/*.ts",
+              "libs/shared/lessons-accordion/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/lessons-accordion/**/*.spec.ts",
+              "libs/shared/lessons-accordion/**/*.spec.tsx",
+              "libs/shared/lessons-accordion/**/*.spec.js",
+              "libs/shared/lessons-accordion/**/*.spec.jsx",
+              "libs/shared/lessons-accordion/**/*.d.ts",
+              "libs/shared/src/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/lessons-accordion/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/lessons-accordion/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-lessons-accordion",
+            "config": {
+              "configFolder": "libs/shared/lessons-accordion/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "features-forgot-password": {
+      "root": "libs/features/forgot-password",
+      "sourceRoot": "libs/features/forgot-password/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/features/forgot-password/**/*.js",
+              "libs/features/forgot-password/**/*.jsx",
+              "libs/features/forgot-password/**/*.ts",
+              "libs/features/forgot-password/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/features/forgot-password/**/*.spec.ts",
+              "libs/features/forgot-password/**/*.spec.tsx",
+              "libs/features/forgot-password/**/*.spec.js",
+              "libs/features/forgot-password/**/*.spec.jsx",
+              "libs/features/forgot-password/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/forgot-password/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hooks-use-authorization": {
+      "root": "libs/hooks/use-authorization",
+      "sourceRoot": "libs/hooks/use-authorization/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/hooks/use-authorization/**/*.ts",
+              "libs/hooks/use-authorization/**/*.spec.ts",
+              "libs/hooks/use-authorization/**/*.spec.tsx",
+              "libs/hooks/use-authorization/**/*.spec.js",
+              "libs/hooks/use-authorization/**/*.spec.jsx",
+              "libs/hooks/use-authorization/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/hooks/use-authorization/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-create-new-password-form": {
+      "root": "libs/shared/create-new-password-form",
+      "sourceRoot": "libs/shared/create-new-password-form/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/create-new-password-form/**/*.js",
+              "libs/shared/create-new-password-form/**/*.jsx",
+              "libs/shared/create-new-password-form/**/*.ts",
+              "libs/shared/create-new-password-form/**/*.tsx",
+              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
+              "node_modules/@nrwl/react/typings/image.d.ts",
+              "libs/shared/create-new-password-form/**/*.spec.ts",
+              "libs/shared/create-new-password-form/**/*.spec.tsx",
+              "libs/shared/create-new-password-form/**/*.spec.js",
+              "libs/shared/create-new-password-form/**/*.spec.jsx",
+              "libs/shared/create-new-password-form/**/*.d.ts",
+              "libs/shared/src/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/create-new-password-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/create-new-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-create-new-password-form",
+            "config": {
+              "configFolder": "libs/shared/create-new-password-form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "features-private-layout": {
+      "root": "libs/features/private-layout",
+      "sourceRoot": "libs/features/private-layout/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/features/private-layout/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/private-layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "features-advert-page": {
+      "root": "libs/features/advert-page",
+      "sourceRoot": "libs/features/advert-page/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/features/advert-page/tsconfig.lib.json",
+              "libs/features/advert-page/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/advert-page/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/advert-page/jest.config.js",
             "passWithNoTests": true
           }
         }
