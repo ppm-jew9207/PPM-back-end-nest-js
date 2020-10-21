@@ -14,7 +14,7 @@ interface Type {
 
 export interface SharedLeftSideMenuProps {
   title: string,
-  menuItemsArray: Array<Type>
+  menuItemsArray: Type[]
 }
 
 export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
@@ -48,14 +48,14 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
           >
             <CloseIcon />
           </IconButton>
-          <Typography
+          {/* <Typography
             variant="h4"
             component="h2"
             align="center"
             gutterBottom
           >
             {props.title}
-          </Typography>
+          </Typography> */}
           <LeftSideMenuList menuItemsArray={props.menuItemsArray}/>
         </div>
       </Drawer>

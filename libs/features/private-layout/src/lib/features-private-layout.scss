@@ -1,0 +1,17 @@
+.features-private-layout{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  .content{
+    flex: 1;
+  }
+  .shared-left-side-menu-button{
+    z-index: 10;
+    position: absolute;
+  }
+  .navigation-bar{
+    padding-left: 50px;
+    position: relative;
+    z-index: 2;
+  }
+}

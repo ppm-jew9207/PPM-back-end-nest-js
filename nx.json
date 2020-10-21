@@ -170,7 +170,7 @@
       "tags": []
     },
     "shared-lessons": {
-    "tags": []
+      "tags": []
     },
     "features-forgot-password": {
       "tags": []
@@ -179,6 +179,9 @@
       "tags": []
     },
     "shared-create-new-password-form": {
+      "tags": []
+    },
+    "features-private-layout": {
       "tags": []
     },
     "features-advert-page": {

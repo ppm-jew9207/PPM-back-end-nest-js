@@ -103,6 +103,9 @@
       "@ppm/shared/lessons-accordion": [
         "libs/shared/lessons-accordion/src/index.ts"
       ],
+      "@ppm/features/private-layout": [
+        "libs/features/private-layout/src/index.ts"
+      ],
       "@ppm/features/advert-page": ["libs/features/advert-page/src/index.ts"]
     }
   },
