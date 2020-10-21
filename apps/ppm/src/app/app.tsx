@@ -44,15 +44,33 @@ export const App = () => {
           titleInputLabel: 'New Advert',
           categoryInputLabel: 'Category',
           prerequisitesInputLabel: 'Pre-requisites',
+          learningInputLabel: 'What to learn',
         }}
         categories={[
           { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },
           { title: 'Category B', value: 'category-b', _id: 'as33dg4432af' },
         ]}
         lesson={[
-          { title: 'Create React Component', _id:'gfsgsffa', datetime: '2021-09-22T17:09' },
-          { title: 'Create React Library', _id:'gfsgsffb', datetime: '2021-10-22T17:09' },
-          { title: 'Create React Feature', _id:'gfsgsffc', datetime: '2021-11-22T17:09' }
+          {
+            title: 'Create React Component',
+            _id: 'gfsgsffa',
+            datetime: '2021-09-22T17:09',
+          },
+          {
+            title: 'Create React Library',
+            _id: 'gfsgsffb',
+            datetime: '2021-10-22T17:09',
+          },
+          {
+            title: 'Create React Feature',
+            _id: 'gfsgsffc',
+            datetime: '2021-11-22T17:09',
+          },
+          {
+            title: 'Create React Beat',
+            _id: 'gfsgsffcd',
+            datetime: '2021-11-22T17:09',
+          },
         ]}
         onSubmit={(advert) => showData(advert)}
       />

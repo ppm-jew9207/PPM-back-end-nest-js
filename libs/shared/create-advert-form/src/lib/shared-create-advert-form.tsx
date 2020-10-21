@@ -11,19 +11,16 @@ import {
   Select,
   InputLabel,
   Dialog,
-  DialogTitle,
   List,
-  ListItemText,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
   DialogActions,
   FormControlLabel,
   Checkbox,
+  Chip
 } from '@material-ui/core';
 import './shared-create-advert-form.scss';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
+
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import { isContext } from 'vm';
 
@@ -35,6 +32,7 @@ export interface AdvertDefaultParams {
   submitButtonText: string;
   cancelButtonText: string;
   prerequisitesInputLabel: string;
+  learningInputLabel: string;
 }
 export interface Category {
   title: string;
@@ -46,6 +44,7 @@ export interface Lesson {
   title: string;
   datetime: string;
   _id: string;
+  checked: boolean;
 }
 
 export interface Advert {
@@ -55,6 +54,7 @@ export interface Advert {
   title: string;
   _id: string;
   prerequisites: string;
+  learning: string;
 }
 
 export interface AdvertData {
@@ -64,6 +64,7 @@ export interface AdvertData {
   advertImage: FileList;
   category: string;
   prerequisites: string;
+  learning: string;
   lessons: Lesson[];
 }
 
@@ -74,6 +75,7 @@ export interface SharedCreateAdvertFormProps {
     advertImage: FileList;
     category: string;
     prerequisites: string;
+    learning: string;
     lesson: Lesson[];
   }) => void;
   onCancel: () => void;
@@ -88,7 +90,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [advert, setAdvert] = useState<Advert>();
   const [lesson, setLesson] = useState<Lesson[]>([]);
-
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState([]);
 
@@ -98,13 +99,8 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
 
   const handleDialogClose = () => {
     setOpen(false);
-    setSelectedValue([]);
   };
-
-  console.log(lesson);
-  console.log(open);
-  console.log(selectedValue);
-
+  
   useEffect(() => {
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
@@ -123,11 +119,22 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   };
 
   function SimpleDialog(props) {
-    const { selectedValue, open } = props;
+    const { open, onChange, options } = props;
+    
+      const [data, setData] = useState(options);
 
-    const addData = (data) => {
-      setSelectedValue([...selectedValue, data]);
-    }
+      const toggle = (les) => {
+        data.forEach((_, key) => {
+          if (data[key].title === les.title) data[key].checked = !les.checked;
+        });
+        setData([...data]);
+        onChange(data);
+      };
+
+      const sendData = () => {
+        setSelectedValue([data]);
+        handleDialogClose();
+      }
 
     return (
       <Dialog
@@ -141,11 +148,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               <Controller
                 name={les.title}
                 control={control}
-                forwardRef={register}
-                as={(props) => (
+                as={() => (
                   <Checkbox
-                    onChange={(e) => props.onChange(e.target.checked)}
-                    checked={props.value}
+                    key={les._id}
+                    onClick={() => toggle(les)}
+                    checked={les.checked || false}
                   />
                 )}
               />
@@ -157,8 +164,8 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           <Button onClick={handleDialogClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleDialogClose} color="primary" type="submit">
-            Subscribe
+          <Button onClick={sendData} color="primary" type="submit">
+            Submit
           </Button>
         </DialogActions>
       </Dialog>
@@ -168,19 +175,16 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const { handleSubmit, register, control, errors, setValue } = useForm();
   if (!props.data) return <div>Loading...</div>;
 
-  console.log(control);
-  const elementList = [
-    { _id: '1', name: 'testas1' },
-    { _id: '2', name: 'testas2' },
-    { _id: '3', name: 'testas3' },
-  ];
+  const createAdvertHandler = (data) => {
+    props.onSubmit({ ...data, selectedCheckboxes: {selectedValue} });
+  };
 
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
       <Typography className="header" component="h1" variant="h5">
         {props.data.title}
       </Typography>
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(createAdvertHandler)}>
         <div className="inner-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
@@ -235,21 +239,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           rows={1}
           className="header"
         />
-        {elementList.map((item) => (
-          <section key={item._id}>
-            <label>MUI Checkbox</label>
-            <Controller
-              name={item.name}
-              control={control}
-              as={(props) => (
-                <Checkbox
-                  onChange={(e) => props.onChange(e.target.checked)}
-                  checked={props.value}
-                />
-              )}
-            />
-          </section>
-        ))}
         <div>{advert && advert.description}</div>
         <TextField
           variant="outlined"
@@ -281,18 +270,52 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           rows={2}
           className="prerequisites"
         />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="learning"
+          label={props.data.learningInputLabel}
+          type="text"
+          name="learning"
+          value={advert && advert.learning}
+          inputRef={register({})}
+          multiline
+          rows={2}
+          className="learning"
+        />
         <div>
           <Button
+            fullWidth
             variant="outlined"
             color="primary"
             onClick={handleDialogClickOpen}
           >
             Choose Lessons to add
           </Button>
+          <div className="chip-container">
+            {!!selectedValue[0] &&
+              selectedValue[0].map(
+                (value) =>
+                  !!value.checked && (
+                    <div key={value._id} className="chip">
+                      <Chip
+                        variant="outlined"
+                        color="primary"
+                        label={value.title}
+                      />
+                    </div>
+                  )
+              )}
+          </div>
           <SimpleDialog
             selectedValue={selectedValue}
             open={open}
+            options={!!lesson && lesson}
             onClose={handleDialogClose}
+            onChange={(data) => {
+              console.log(data);
+            }}
             name="lessons"
           />
         </div>
