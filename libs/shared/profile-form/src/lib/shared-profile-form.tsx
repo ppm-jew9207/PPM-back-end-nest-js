@@ -79,12 +79,12 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     <Grid container direction="column" className="profileForm">
       <form autoComplete="off" onSubmit={(handleSubmit(data => console.log(data)))}>
         <Box my={1}>
-          <InputLabel id="firstNameLabel">First Name *</InputLabel>
           <TextField
             id="firstName"
             name="firstName"
             type="text"
             variant="outlined"
+            label="First Name *"
             inputRef={register({
               required: 'Required',
             })}
@@ -94,23 +94,23 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="lastNameLabel">Last Name</InputLabel>
           <TextField
             id="lastName"
             name="lastName"
             type="text"
             variant="outlined"
+            label="Last Name"
             inputRef={register()}
             fullWidth
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="emailLabel">Email</InputLabel>
           <TextField
             id="email"
             name="email"
             type="email"
             variant="outlined"
+            label="Email"
             inputRef={register()}
             fullWidth
           />
@@ -127,37 +127,35 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="descriptionLabel">Description</InputLabel>
           <TextField
             id="description"
             name="description"
             multiline
             rows={4}
             variant="outlined"
+            label="Description"
             inputRef={register()}
             fullWidth
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="fieldOfProfessionLabel">
-            Field of Profession
-          </InputLabel>
           <TextField
             id="fieldOfProfession"
             name="fieldOfProfession"
             type="text"
             variant="outlined"
+            label="Field of Profession"
             inputRef={register()}
             fullWidth
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="companyLabel">Company</InputLabel>
           <TextField
             id="company"
             name="company"
             type="text"
             variant="outlined"
+            label="Company"
             inputRef={register()}
             fullWidth
           />
@@ -314,34 +312,34 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           </FormControl>
         </Box> */}
         <Box my={1}>
-          <InputLabel id="phoneLabel">Phone</InputLabel>
           <TextField
             id="phone"
             name="phone"
             type="text"
             variant="outlined"
+            label="Phone"
             inputRef={register()}
             fullWidth
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="webLabel">Website</InputLabel>
           <TextField
             id="web"
             name="web"
             type="text"
             variant="outlined"
+            label="Website"
             inputRef={register()}
             fullWidth
           />
         </Box>
         <Box my={1}>
-          <InputLabel id="typeLabel">Type</InputLabel>
           <TextField
             id="type"
             name="type"
             type="text"
             variant="outlined"
+            label="Type"
             inputRef={register()}
             fullWidth
           />
