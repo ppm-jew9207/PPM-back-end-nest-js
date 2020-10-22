@@ -77,7 +77,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
 
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={(handleSubmit(data => console.log(data)))}>
         <Box my={1}>
           <InputLabel id="firstNameLabel">First Name *</InputLabel>
           <TextField
@@ -200,23 +200,38 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
-        <Autocomplete
+        {/* <Autocomplete
           id="city"
           freeSolo
           options={props.cities.map((option) => option.name)}
           renderInput={(params) => (
             <TextField {...params} label="City" value={city} margin="normal" variant="outlined" />
           )}
+        /> */}
+        <Controller
+          as={
+            <Autocomplete
+              options={props.countries}
+              getOptionLabel={option => option.name}
+              renderOption={option => (
+                <span>
+                  {option.name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Country"
+                  variant="outlined"
+                />
+              )}
+            />
+          }
+          onChange={([, data]) => data}
+          name="country"
+          control={control}
         />
-        <Autocomplete
-          id="country"
-          freeSolo
-          options={props.countries.map((option) => option.name)}
-          renderInput={(params) => (
-            <TextField {...params} label="Country" value={country} margin="normal" variant="outlined" />
-          )}
-        />
-        <Box my={1}>
+        {/* <Box my={1}>
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="citiesLabel">City</InputLabel>
             <Controller
@@ -276,7 +291,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               fullWidth
             />
           </FormControl>
-        </Box>
+        </Box> */}
         <Box my={1}>
           <InputLabel id="phoneLabel">Phone</InputLabel>
           <TextField
