@@ -200,37 +200,56 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
-        {/* <Autocomplete
-          id="city"
-          freeSolo
-          options={props.cities.map((option) => option.name)}
-          renderInput={(params) => (
-            <TextField {...params} label="City" value={city} margin="normal" variant="outlined" />
-          )}
-        /> */}
-        <Controller
-          as={
-            <Autocomplete
-              options={props.countries}
-              getOptionLabel={option => option.name}
-              renderOption={option => (
-                <span>
-                  {option.name}
-                </span>
-              )}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  label="Country"
-                  variant="outlined"
-                />
-              )}
-            />
-          }
-          onChange={([, data]) => data}
-          name="country"
-          control={control}
-        />
+        <Box my={1}>
+          <Controller
+            as={
+              <Autocomplete
+                options={props.cities}
+                getOptionLabel={option => option.name}
+                renderOption={option => (
+                  <span>
+                    {option.name}
+                  </span>
+                )}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="City"
+                    variant="outlined"
+                  />
+                )}
+              />
+            }
+            onChange={([, data]) => data}
+            name="city"
+            control={control}
+          />
+        </Box>
+        <Box my={1}>
+          <Controller
+            as={
+              <Autocomplete
+                options={props.countries}
+                getOptionLabel={option => option.name}
+                renderOption={option => (
+                  <span>
+                    {option.name}
+                  </span>
+                )}
+                renderInput={params => (
+                  <TextField
+                    {...params}
+                    label="Country"
+                    variant="outlined"
+                  />
+                )}
+              />
+            }
+            onChange={([, data]) => data}
+            name="country"
+            control={control}
+          />
+        </Box>
         {/* <Box my={1}>
           <FormControl variant="outlined" fullWidth>
             <InputLabel id="citiesLabel">City</InputLabel>
