@@ -3,10 +3,16 @@ import { SharedAdvertDetails } from '@ppm/shared/advert-details';
 import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './features-advert-page.scss';
 
-/* eslint-disable-next-line */
-export interface FeaturesAdvertPageProps {}
+const stateSelector = createStructuredSelector({
+  advert: advertsSelectors.selectAdvert(),
+  loading: advertsSelectors.selectLoading(),
+});
 
 /**
  * // TODO:
@@ -72,13 +78,17 @@ let lessonsDescription =
   'Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today.';
 
 
-export const FeaturesAdvertPage = (props: FeaturesAdvertPageProps) => {
+export const FeaturesAdvertPage = () => {
   const { id } = useParams();
 
-  useEffect(()=> {
-    /*TODO: load info with given ID from redux*/
-    console.log(id);
-  });
+  const dispatch = useDispatch();
+  const { advert, loading } = useSelector(stateSelector);
+  console.log(advert);
+
+  useEffect(() => {
+    dispatch(advertsActions.getById(id));
+  }, [dispatch]);
+  if (loading) return <CircularProgress />;
 
   return (
     <div>
