@@ -204,6 +204,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <Controller
             as={
               <Autocomplete
+                freeSolo
                 options={props.cities}
                 getOptionLabel={option => option.name}
                 renderOption={option => (
@@ -229,6 +230,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <Controller
             as={
               <Autocomplete
+                freeSolo
                 options={props.countries}
                 getOptionLabel={option => option.name}
                 renderOption={option => (
