@@ -20,6 +20,8 @@ export const FeaturesAdverts = () => {
   }, [dispatch]);
   if (loading) return <CircularProgress />;
 
+  if(adverts && !adverts.length) return <div className="no-items">No adverts added...</div>
+
   return (
     <div className="advert-cards">
       {adverts.map((advert, i) => {
