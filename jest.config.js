@@ -49,5 +49,6 @@ module.exports = {
     '<rootDir>/libs/shared/create-new-password-form',
     '<rootDir>/libs/features/lesson-page',
     '<rootDir>/libs/hooks/use-lesson',
+    '<rootDir>/libs/features/private-layout',
   ],
 };
