@@ -1,65 +1,65 @@
-export function useLesson(history: History) {
-/**
- * // TODO:
- * Change all data from static to dynamic
- */
-let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
-let preRequisites = ''; //'Anglu ir Lietuviu kalbos';
-let title = 'React + Nest.js Project';
-let description =
-  'Norite dirbti, bet neuždirbti? Jei taip, tuomet šis skelbimas kaip tik Jums! Vergovė vedama patyrusio lektoriaus Donato Kuskio išmokins Jus, kad naudojant NX norisi keiktis. Manote, kad TypeScript tai tikra palaima? Prisijungę prie projekto pamatyse, jog gyvenime taip stipriai dar neklydote. Gyvenimo prasmės netekimas ir motyvacijos praradimas garantuotas!';
-let creator = 'Donatas Kuskys';
-let image =
-  'https://c402277.ssl.cf1.rackcdn.com/photos/14875/images/magazine_hero/Medium_WW248926.jpg?1513623521';
-let categories = [
-  { title: 'Programming', value: 'prog' },
-  { title: 'Javascript', value: 'js' },
-  { title: 'React', value: 'react' },
-  { title: 'Web Development', value: 'web' },
-];
-let onGetStartedClick = () => {
-  alert('paspaudei');
-};
-let lessons = [
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-  {
-    title: 'Gecko',
-    authorName: 'Donatas',
-    image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
-  },
-];
+import { createStructuredSelector } from 'reselect';
+import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-let lessonsDescription =
-  'Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today.';
+const stateSelector = createStructuredSelector({
+  lessons: lessonsSelectors.selectLessons(),
+  lesson: lessonsSelectors.selectLesson(),
+  loading: lessonsSelectors.selectLoading(),
+});
 
-  return { title, description, creator, image, categories, onGetStartedClick, learnItems, preRequisites, lessonsDescription, lessons };
+export function useLesson(history: History, id: string) {
+  const dispatch = useDispatch();
+  const { lessons, lesson, loading } = useSelector(stateSelector);
+
+  useEffect(() => {
+    dispatch(lessonsActions.getById(id));
+    dispatch(lessonsActions.getAll());
+  }, []);
+
+  // TODO: lessons don't have learnItems fields. Will add new fields on new task.
+  let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
+
+  // TODO: Add functionality
+  const onAction = () => {
+    alert('paspaudei');
+  };
+
+  const [ description, setDescription ] = useState('');
+  const [ creator, setCreator ] = useState('');
+  const [ title, setTitle ] = useState('');
+  const [ image, setImage ] = useState('');
+  const [ categories, setCategories ] = useState([]);
+  const [ lessonsData, setLessonsData ] = useState([]);
+  const [ startingDate, setStartingDate ] = useState('');
+
+  useEffect(() => {
+    if (lesson) {
+      setDescription(lesson.description);
+      setCreator(lesson.creator.name);
+      setTitle(lesson.title);
+      setImage(lesson.imageUrl);
+      setCategories([{title: lesson.category, value: lesson.category}]);
+      setStartingDate(lesson.datetime || '');
+    }
+  }, [lesson]);
+
+  useEffect(() => {
+    if (lessons && lessons.length) {
+      let tempArray = [];
+      for (let i = 0; i < 6; i++) {
+        if (lessons[i]) {
+          tempArray.push({ 
+            title: lessons[i].title, 
+            authorName: lessons[i].creator.name, 
+            image: lessons[i].imageUrl 
+          });
+        }
+      }
+      setLessonsData(tempArray);
+    }
+  }, [lessons]);
+
+  return { title, description, creator, image, categories, onAction, learnItems, lessons: lessonsData, startingDate  };
 }

@@ -11,6 +11,9 @@ export interface FeaturesAdvertPageProps {}
  * // TODO:
  * Change all data from static to dynamic
  */
+
+const getStartedButtonText = 'Get started';
+
 let learnItems = ['Javascript', 'React', 'Nx', 'NestJS'];
 let preRequisites = 'Anglu ir Lietuviu kalbos';
 let title = 'React + Nest.js Project';
@@ -68,7 +71,7 @@ let lessons = [
 
 let lessonsDescription =
   'Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today.';
-
+const accordionTitle = 'Lessons';
 export const FeaturesAdvertPage = (props: FeaturesAdvertPageProps) => {
   return (
     <div>
@@ -78,6 +81,7 @@ export const FeaturesAdvertPage = (props: FeaturesAdvertPageProps) => {
         creator={creator}
         image={image}
         categories={categories}
+        getStartedButtonText={getStartedButtonText}
         onGetStartedClick={onGetStartedClick}
       />
       <SharedAdvertDetails
@@ -87,6 +91,7 @@ export const FeaturesAdvertPage = (props: FeaturesAdvertPageProps) => {
       <SharedLessonsAccordion
         lessonsDescription={lessonsDescription}
         lessons={lessons}
+        accordionTitle={accordionTitle}
       />
     </div>
   );

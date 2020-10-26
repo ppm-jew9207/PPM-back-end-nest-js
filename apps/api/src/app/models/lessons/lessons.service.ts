@@ -28,6 +28,10 @@ export class LessonsModelService {
     return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
   }
 
+  async getUsersLessonById(userId: string, id: string): Promise<LessonsViewModel> {
+    return this._model.findOne({ 'creator._id': Types.ObjectId(userId),  _id: Types.ObjectId(id) }).exec();
+  }
+
   async create(id: string, data: CreateLessonPayload) {
     await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,

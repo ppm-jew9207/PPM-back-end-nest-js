@@ -7,7 +7,7 @@ import './shared-advert-details.scss';
 
 export interface SharedAdvertDetailsProps {
   learnItems: string[];
-  preRequisites: string;
+  preRequisites?: string;
 }
 
 export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
@@ -39,6 +39,7 @@ export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
         variant="h6"
         component="h2"
         gutterBottom
+        style={{display: !props.preRequisites && 'none'}}
       >
         Pre-requisites
       </Typography>
