@@ -59,14 +59,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     setCategories(event.target.value);
   };
 
-  // const handleCityChange = (event: ChangeEvent<{ value }>) => {
-  //   setCity(event.target.value);
-  // };
-
-  // const handleCountryChange = (event: ChangeEvent<{ value }>) => {
-  //   setCountry(event.target.value);
-  // };
-
   const renderCategoryValue = (selected) => (
     <div>
       {selected.map((value: string) => (
@@ -256,67 +248,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             control={control}
           />
         </Box>
-        {/* <Box my={1}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel id="citiesLabel">City</InputLabel>
-            <Controller
-              name="city"
-              defaultValue=""
-              control={control}
-              onChange={([selected]) => {
-                return selected;
-              }}
-              as={
-                <Select
-                  labelId="city-label"
-                  id="city"
-                  name="city"
-                  value={city}
-                  onChange={handleCityChange}
-                  label="City"
-                  inputRef={register()}
-                >
-                  {props.cities.map((city) => (
-                    <MenuItem key={city._id} value={city.name}>
-                      {city.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              }
-              fullWidth
-            />
-          </FormControl>
-        </Box>
-        <Box my={1}>
-          <FormControl variant="outlined" fullWidth>
-            <InputLabel id="country-label">Country</InputLabel>
-            <Controller
-              name="country"
-              defaultValue=""
-              control={control}
-              onChange={([selected]) => {
-                return selected;
-              }}
-              as={
-                <Select
-                  labelId="country-label"
-                  id="country"
-                  name="country"
-                  value={country}
-                  onChange={handleCountryChange}
-                  label="Country"
-                >
-                  {props.countries.map((country) => (
-                    <MenuItem key={country._id} value={country.name}>
-                      {country.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              }
-              fullWidth
-            />
-          </FormControl>
-        </Box> */}
         <Box my={1}>
           <TextField
             id="phone"
