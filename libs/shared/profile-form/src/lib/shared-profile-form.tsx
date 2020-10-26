@@ -52,8 +52,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const { handleSubmit, register, control, errors } = useForm();
 
   const [categories, setCategories] = useState<string[]>([]);
-  const [city, setCity] = useState<string>('');
-  const [country, setCountry] = useState<string>('');
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     setCategories(event.target.value);
