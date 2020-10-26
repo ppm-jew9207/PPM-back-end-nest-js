@@ -12,6 +12,8 @@ import {
   MenuItem,
   InputLabel,
   FormHelperText,
+  Divider,
+  Typography
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
@@ -36,6 +38,10 @@ export interface SharedProfileFormProps {
     phone: string;
     web: string;
     type: string;
+    facebook: string;
+    linkedin: string;
+    twitter: string;
+    instagram: string;
   }) => void;
   categories: EntityRef[];
   cities: EntityRef[];
@@ -53,13 +59,13 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     setCategories(event.target.value);
   };
 
-  const handleCityChange = (event: ChangeEvent<{ value }>) => {
-    setCity(event.target.value);
-  };
+  // const handleCityChange = (event: ChangeEvent<{ value }>) => {
+  //   setCity(event.target.value);
+  // };
 
-  const handleCountryChange = (event: ChangeEvent<{ value }>) => {
-    setCountry(event.target.value);
-  };
+  // const handleCountryChange = (event: ChangeEvent<{ value }>) => {
+  //   setCountry(event.target.value);
+  // };
 
   const renderCategoryValue = (selected) => (
     <div>
@@ -340,6 +346,54 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Type"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Typography variant="overline" display="block" gutterBottom>
+        Social Links
+        </Typography>
+        <Divider variant="middle" />
+        <Box my={1}>
+          <TextField
+            id="facebook"
+            name="facebook"
+            type="text"
+            variant="outlined"
+            label="Facebook"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
+          <TextField
+            id="linkedin"
+            name="linkedin"
+            type="text"
+            variant="outlined"
+            label="LinkedIn"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
+          <TextField
+            id="twitter"
+            name="twitter"
+            type="text"
+            variant="outlined"
+            label="Twitter"
+            inputRef={register()}
+            fullWidth
+          />
+        </Box>
+        <Box my={1}>
+          <TextField
+            id="instagram"
+            name="instagram"
+            type="text"
+            variant="outlined"
+            label="Instagram"
             inputRef={register()}
             fullWidth
           />
