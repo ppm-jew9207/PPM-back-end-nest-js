@@ -186,7 +186,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   value={categories}
                   onChange={handleCategoriesChange}
                   input={<Input id="select-multiple-chip" />}
-                  inputRef={register()}
+                  inputRef={register}
                   renderValue={renderCategoryValue}
                   error={!!errors.categories}
                 >
