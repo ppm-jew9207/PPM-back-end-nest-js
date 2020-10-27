@@ -10,7 +10,9 @@ export const UserProfileSchema = new Schema({
   company: String,
   categories: [String],
   city: String,
+  country: String,
   phone: String,
   email: String,
   socialLinks: [{ link: String, icon: String, color: String }],
+  website: String
 });

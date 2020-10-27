@@ -21,6 +21,8 @@ export class CreateUserProfilePayloadDto implements CreateUserProfile {
   @ApiProperty()
   public readonly city: string;
   @ApiProperty()
+  public readonly country: string;
+  @ApiProperty()
   public readonly phone: string;
   @ApiProperty()
   public readonly email: string;
@@ -29,4 +31,6 @@ export class CreateUserProfilePayloadDto implements CreateUserProfile {
     type: ['SocialLink'],
   })
   public socialLinks?: SocialLink[];
+  @ApiProperty()
+  public readonly website?: string;
 }

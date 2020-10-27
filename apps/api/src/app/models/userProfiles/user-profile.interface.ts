@@ -16,9 +16,11 @@ export interface CreateUserProfile {
   company?: string;
   categories: string[];
   city: string;
+  country:string;
   phone: string;
   email: string;
   socialLinks?: SocialLink[];
+  website?:string;
 }
 export interface UserProfile {
   type: string;
@@ -30,9 +32,11 @@ export interface UserProfile {
   company: string;
   categories: string[];
   city: string;
+  country:string;
   phone: string;
   email: string;
   socialLinks?: SocialLink[];
+  website?:string;
 }
 
 export type UserProfileViewModel = UserProfile & Document;
