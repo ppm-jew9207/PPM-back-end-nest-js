@@ -44,8 +44,8 @@ export interface SharedProfileFormProps {
     instagram: string;
   }) => void;
   categories: EntityRef[];
-  cities: EntityRef[];
-  countries: EntityRef[];
+  cities: Array<string>;
+  countries: Array<string>;
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
@@ -71,8 +71,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="off" onSubmit={(handleSubmit(data => console.log(data)))}>
-        <Box my={1}>
+      <form autoComplete="nope" onSubmit={(handleSubmit(data => console.log(data)))}>
+        <Box my={3}>
           <TextField
             id="firstName"
             name="firstName"
@@ -87,7 +87,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="lastName"
             name="lastName"
@@ -98,7 +98,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="email"
             name="email"
@@ -109,7 +109,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <InputLabel id="photoLabel">Photo</InputLabel>
           <TextField
             id="photo"
@@ -120,7 +120,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="description"
             name="description"
@@ -132,7 +132,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="fieldOfProfession"
             name="fieldOfProfession"
@@ -143,7 +143,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="company"
             name="company"
@@ -154,7 +154,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <FormControl variant="outlined" fullWidth error={!!errors.categories}>
             <InputLabel id="categoriesLabel">Categories *</InputLabel>
             <Controller
@@ -192,24 +192,18 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <Controller
             name="city"
             control={control}
-            onChange={([, data]) => {return data}}
-            onInputChange={(data) => {return data}}
+            onChange={([, data]) => data}
+            onInputChange={(data) => data}
             as={
               <Autocomplete
                 id="city"
                 freeSolo
                 autoSelect
                 options={props.cities}
-                getOptionLabel={option => option.name}
-                renderOption={option => (
-                  <span>
-                    {option.name}
-                  </span>
-                )}
                 renderInput={params => (
                   <TextField
                     {...params}
@@ -221,22 +215,18 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             }
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <Controller
           name="country"
           control={control}
           onChange={([, data]) => data}
+          onInputChange={(data) => data}
             as={
               <Autocomplete
-                id="country+"
+                id="country"
                 freeSolo
+                autoSelect
                 options={props.countries}
-                getOptionLabel={option => option.name}
-                renderOption={option => (
-                  <span>
-                    {option.name}
-                  </span>
-                )}
                 renderInput={params => (
                   <TextField
                     {...params}
@@ -248,7 +238,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             }
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="phone"
             name="phone"
@@ -259,7 +249,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="web"
             name="web"
@@ -270,7 +260,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="type"
             name="type"
@@ -285,7 +275,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         Social Links
         </Typography>
         <Divider variant="middle" />
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="facebook"
             name="facebook"
@@ -296,7 +286,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="linkedin"
             name="linkedin"
@@ -307,7 +297,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="twitter"
             name="twitter"
@@ -318,7 +308,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={1}>
+        <Box my={3}>
           <TextField
             id="instagram"
             name="instagram"

@@ -18,17 +18,9 @@ const data = [
   { _id: 'F', name: 'F' },
 ];
 
-const cities = [
-  { _id: 'A', name: 'Vilnius' },
-  { _id: 'B', name: 'Kaunas' },
-  { _id: 'C', name: 'Klaipėda' }
-];
+const cities = ['Vilnius','Kaunas', 'Klaipėda'];
 
-const countries = [
-  { _id: 'A', name: 'Lithuania' },
-  { _id: 'B', name: 'Latvia' },
-  { _id: 'C', name: 'Estonia' }
-];
+const countries = ['Lithuania', 'Latvia','Estonia'];
 
 
 export const primary = () => {
