@@ -71,7 +71,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="nope" onSubmit={(handleSubmit(data => console.log(data)))}>
+      <form autoComplete="nope" onSubmit={handleSubmit(props.onSubmit)}>
         <Box my={3}>
           <TextField
             id="firstName"
