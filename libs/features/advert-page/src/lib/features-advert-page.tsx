@@ -11,7 +11,7 @@ import './features-advert-page.scss';
 export const FeaturesAdvertPage = () => {
   const { id } = useParams();
 
-  const { getAdvertById, advert, loading, onGetStartedClick } = useAdverts(id);
+  const { advert, loading, onGetStartedClick } = useAdverts(id);
 
   if (loading || !advert) return <CircularProgress />;
 
