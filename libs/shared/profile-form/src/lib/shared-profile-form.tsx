@@ -68,9 +68,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const validateCategories = (value) => {
     return value.length > 0;
   };
-
   
-
   return (
     <Grid container direction="column" className="profileForm">
       <form autoComplete="off" onSubmit={(handleSubmit(data => console.log(data)))}>
@@ -196,9 +194,15 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={1}>
           <Controller
+            name="city"
+            control={control}
+            onChange={([, data]) => {return data}}
+            onInputChange={(data) => {return data}}
             as={
               <Autocomplete
+                id="city"
                 freeSolo
+                autoSelect
                 options={props.cities}
                 getOptionLabel={option => option.name}
                 renderOption={option => (
@@ -215,15 +219,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                 )}
               />
             }
-            onChange={([, data]) => data}
-            name="city"
-            control={control}
           />
         </Box>
         <Box my={1}>
           <Controller
+          name="country"
+          control={control}
+          onChange={([, data]) => data}
             as={
               <Autocomplete
+                id="country+"
                 freeSolo
                 options={props.countries}
                 getOptionLabel={option => option.name}
@@ -241,9 +246,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                 )}
               />
             }
-            onChange={([, data]) => data}
-            name="country"
-            control={control}
           />
         </Box>
         <Box my={1}>
