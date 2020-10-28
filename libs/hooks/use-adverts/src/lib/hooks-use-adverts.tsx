@@ -9,13 +9,12 @@ const stateSelector = createStructuredSelector({
 });
 
 export function useAdverts(id) {
-
   const dispatch = useDispatch();
   const { advert, loading } = useSelector(stateSelector);
 
   const getAdvertById = (id: string) => {
     dispatch(advertsActions.getById(id));
-  }
+  };
 
   useEffect(() => {
     getAdvertById(id);
@@ -28,7 +27,5 @@ export function useAdverts(id) {
     alert('paspaudei');
   };
 
-  return {getAdvertById, advert, loading, onGetStartedClick};
-
-};
-
+  return { getAdvertById, advert, loading, onGetStartedClick };
+}
