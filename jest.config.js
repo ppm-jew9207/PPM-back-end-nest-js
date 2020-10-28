@@ -48,5 +48,6 @@ module.exports = {
     '<rootDir>/libs/hooks/use-authorization',
     '<rootDir>/libs/shared/create-new-password-form',
     '<rootDir>/libs/features/private-layout',
+    '<rootDir>/libs/hooks/use-adverts',
   ],
 };

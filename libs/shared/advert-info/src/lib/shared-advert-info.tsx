@@ -74,7 +74,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
               className="get-started"
               variant="outlined"
               color="secondary"
-              onClick={() => props.onGetStartedClick}
+              onClick={props.onGetStartedClick}
             >
               Get Started
             </Button>

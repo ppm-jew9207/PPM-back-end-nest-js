@@ -186,6 +186,9 @@
     },
     "features-advert-page": {
       "tags": []
+    },
+    "hooks-use-adverts": {
+      "tags": []
     }
   },
   "affected": {
