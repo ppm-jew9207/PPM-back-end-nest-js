@@ -186,6 +186,12 @@
     },
     "features-advert-page": {
       "tags": []
+    },
+    "features-lesson-page": {
+      "tags": []
+    },
+    "hooks-use-lesson": {
+      "tags": []
     }
   },
   "affected": {

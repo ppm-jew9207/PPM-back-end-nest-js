@@ -20,8 +20,9 @@ interface Lesson {
 }
 
 export interface SharedLessonsAccordionProps {
-  lessonsDescription: string;
+  lessonsDescription?: string;
   lessons: Lesson[];
+  accordionTitle: string;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
@@ -34,7 +35,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           id="lessons"
           className="lessons-title"
         >
-          <Typography className="text">Lessons</Typography>
+          <Typography className="text">{props.accordionTitle}</Typography>
         </AccordionSummary>
         <AccordionDetails className="lessons-accordion">
           <div>

@@ -103,10 +103,12 @@
       "@ppm/shared/lessons-accordion": [
         "libs/shared/lessons-accordion/src/index.ts"
       ],
+      "@ppm/features/advert-page": ["libs/features/advert-page/src/index.ts"],
+      "@ppm/features/lesson-page": ["libs/features/lesson-page/src/index.ts"],
+      "@ppm/hooks/use-lesson": ["libs/hooks/use-lesson/src/index.ts"],
       "@ppm/features/private-layout": [
         "libs/features/private-layout/src/index.ts"
-      ],
-      "@ppm/features/advert-page": ["libs/features/advert-page/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
