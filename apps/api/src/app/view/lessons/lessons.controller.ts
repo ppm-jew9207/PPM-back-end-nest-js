@@ -42,7 +42,7 @@ export class LessonsController {
     return this.queryBus.execute(new GetUsersLessonsQuery(user.id));
   }
 
-  @Get(`${PrivateRoutesPath.GET_BY_ID}`)
+  @Get(PrivateRoutesPath.GET_BY_ID)
   async getById(@Param('id') id: string): Promise<LessonsViewModel> {
     return this.queryBus.execute(new GetLessonQuery(id));
   }

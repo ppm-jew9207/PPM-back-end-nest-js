@@ -55,9 +55,9 @@ const PrivateRouter: RouterItem[] = [
     onMenu: false,
   },
   {
-    path: `/${PrivateRoutesPath.LESSON}${PrivateRoutesPath.GET_BY_ID}`,
+    path: `/${PrivateRoutesPath.LESSONS}${PrivateRoutesPath.GET_BY_ID}`,
     title: 'Lesson',
-    icon: RouterMenuIcons.MENTOR,
+    icon: null,
     component: FeaturesLessonPage,
     onMenu: false
   },
