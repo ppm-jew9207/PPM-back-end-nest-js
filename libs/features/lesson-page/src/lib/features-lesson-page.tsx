@@ -14,11 +14,7 @@ interface RouteInfo extends RouteProps {
   path?: string | string[];
 }
 
-/* eslint-disable-next-line */
-export interface FeaturesLessonPageProps {}
-
 export const FeaturesLessonPage = (props: {history: History, match: RouteComponentProps<RouteInfo>}) => {
-  const lessonsDescription = 'Are you ready to find out what all the hype is about with ReactJS? These ReactJS for beginners tutorials will bring you completely up to speed on the hottest JavaScript framework used on the web today.';
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
 
@@ -40,7 +36,6 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
         learnItems={learnItems}
       />
       <SharedLessonsAccordion
-        lessonsDescription={lessonsDescription}
         lessons={lessons}
         accordionTitle={accordionTitle}
       />
