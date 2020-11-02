@@ -18,8 +18,6 @@ import {
   Chip
 } from '@material-ui/core';
 import './shared-create-advert-form.scss';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
 
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 import { isContext } from 'vm';
@@ -100,7 +98,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const handleDialogClose = () => {
     setOpen(false);
   };
-  
+
   useEffect(() => {
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
@@ -218,71 +216,87 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             </div>
           </div>
         </div>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="title"
-          label={props.data.titleInputLabel}
-          type="text"
-          name="title"
-          autoComplete="title"
-          autoFocus
-          value={advert && advert.title}
-          onChange={(event) =>
-            setAdvert({ ...advert, title: event.target.value })
+        <Controller
+          as={
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              label={props.data.titleInputLabel}
+              type="text"
+              className="header"
+              onChange={(event) =>
+                setAdvert({ ...advert, title: event.target.value })
+              }
+            />
           }
-          inputRef={register({
-            required: 'Required',
-          })}
-          multiline
-          rows={1}
-          className="header"
+          name="title"
+          control={control}
+          defaultValue={(advert && advert.title) || ''}
+          rules={{ required: true }}
         />
-        <div>{advert && advert.description}</div>
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="description"
-          label={props.data.descriptionInputLabel}
-          type="text"
+        <Controller
+          as={
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              label={props.data.descriptionInputLabel}
+              type="text"
+              className="description"
+              onChange={(event) =>
+                setAdvert({ ...advert, description: event.target.value })
+              }
+              multiline
+              rows={8}
+            />
+          }
           name="description"
-          autoComplete="description"
-          autoFocus
-          value={advert && advert.description}
-          inputRef={register({})}
-          multiline
-          rows={8}
-          className="description"
+          control={control}
+          defaultValue={(advert && advert.description) || ''}
+          rules={{ required: true }}
         />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="prerequisites"
-          label={props.data.prerequisitesInputLabel}
-          type="text"
+        <Controller
+          as={
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              label={props.data.prerequisitesInputLabel}
+              type="text"
+              className="prerequisites"
+              onChange={(event) =>
+                setAdvert({ ...advert, prerequisites: event.target.value })
+              }
+              multiline
+              rows={2}
+            />
+          }
           name="prerequisites"
-          value={advert && advert.prerequisites}
-          inputRef={register({})}
-          multiline
-          rows={2}
-          className="prerequisites"
+          control={control}
+          defaultValue={(advert && advert.prerequisites) || ''}
+          rules={{ required: true }}
         />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="learning"
-          label={props.data.learningInputLabel}
-          type="text"
+        <Controller
+          as={
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              label={props.data.learningInputLabel}
+              type="text"
+              className="learning"
+              onChange={(event) =>
+                setAdvert({ ...advert, learning: event.target.value })
+              }
+              multiline
+              rows={2}
+            />
+          }
           name="learning"
-          value={advert && advert.learning}
-          inputRef={register({})}
-          multiline
-          rows={2}
-          className="learning"
+          control={control}
+          defaultValue={(advert && advert.learning) || ''}
+          rules={{ required: true }}
         />
         <div>
           <Button
