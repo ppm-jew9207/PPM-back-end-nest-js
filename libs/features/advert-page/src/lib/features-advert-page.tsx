@@ -25,6 +25,7 @@ export const FeaturesAdvertPage = () => {
           image={advert.imageUrl}
           categories={[{ title: advert.category, value: advert.category }]}
           onGetStartedClick={onGetStartedClick}
+          getStartedButtonText="Get Started"
         />
         <SharedAdvertDetails
           learnItems={advert.programmingLanguages}
@@ -33,6 +34,7 @@ export const FeaturesAdvertPage = () => {
         <SharedLessonsAccordion
           lessonsDescription={advert.lessonsDescription}
           lessons={advert.lessonsList}
+          accordionTitle="Lessons"
         />
       </div>
     );

@@ -6,14 +6,17 @@
   position: relative;
   overflow: hidden;
   padding: 1vh 0;
+  background: #2a2c30 top fixed no-repeat;
+  background-size: cover;
 
-  .bg-image {
+  &:before {
+    content: ' ';
     position: absolute;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: auto;
-    opacity: 0.5;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color: #fff, $alpha: 0.5);
   }
 
   .info {
@@ -35,7 +38,6 @@
     }
 
     & .categories-holder {
-
       & .categories-title {
         font-weight: 700;
         font-size: 12px;
@@ -61,6 +63,13 @@
         letter-spacing: 3px;
         padding: 8px 25px;
       }
+    }
+  }
+
+  .starting-date {
+    color: rgb(39 39 39);
+    span {
+      font-weight: 600;
     }
   }
 }
