@@ -18,7 +18,7 @@ export function useAuthorization(){
   const dispatch = useDispatch();
   const { isLoggedIn, loading, step, loadingStep } = useSelector(stateSelector);
 
-  const logIn = (data: Login) => {
+  const logIn = (data: Login) => { 
     dispatch(authorizationActions.logIn(data));
   };
 
