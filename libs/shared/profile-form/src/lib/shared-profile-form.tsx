@@ -94,7 +94,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Last Name"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -105,7 +105,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="email"
             variant="outlined"
             label="Email"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -116,7 +116,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             name="photo"
             type="file"
             variant="outlined"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -128,7 +128,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             rows={4}
             variant="outlined"
             label="Description"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -139,7 +139,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Field of Profession"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -150,7 +150,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Company"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -245,7 +245,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Phone"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -256,7 +256,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Website"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -267,7 +267,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Type"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -282,7 +282,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Facebook"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -293,7 +293,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="LinkedIn"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -304,7 +304,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Twitter"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
@@ -315,7 +315,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             type="text"
             variant="outlined"
             label="Instagram"
-            inputRef={register()}
+            inputRef={register}
             fullWidth
           />
         </Box>
