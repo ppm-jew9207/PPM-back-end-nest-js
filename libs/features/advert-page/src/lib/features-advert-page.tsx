@@ -13,28 +13,32 @@ export const FeaturesAdvertPage = () => {
 
   const { advert, loading, onGetStartedClick } = useAdverts(id);
 
-  if (loading || !advert) return <CircularProgress />;
+  if (loading) return <CircularProgress />;
 
-  return (
-    <div>
-      <SharedAdvertInfo
-        title={advert.title}
-        description={advert.description}
-        creator={advert.creator.name}
-        image={advert.imageUrl}
-        categories={[{ title: advert.category, value: advert.category }]}
-        onGetStartedClick={onGetStartedClick}
-      />
-      <SharedAdvertDetails
-        learnItems={advert.programmingLanguages}
-        preRequisites={advert.preRequisites}
-      />
-      <SharedLessonsAccordion
-        lessonsDescription={advert.lessonsDescription}
-        lessons={advert.lessonsList}
-      />
-    </div>
-  );
+  if (advert) {
+    return (
+      <div>
+        <SharedAdvertInfo
+          title={advert.title}
+          description={advert.description}
+          creator={advert.creator.name}
+          image={advert.imageUrl}
+          categories={[{ title: advert.category, value: advert.category }]}
+          onGetStartedClick={onGetStartedClick}
+        />
+        <SharedAdvertDetails
+          learnItems={advert.programmingLanguages}
+          preRequisites={advert.preRequisites}
+        />
+        <SharedLessonsAccordion
+          lessonsDescription={advert.lessonsDescription}
+          lessons={advert.lessonsList}
+        />
+      </div>
+    );
+  } else {
+    return <div>Data is being loaded or failed to load.</div>;
+  }
 };
 
 export default FeaturesAdvertPage;
