@@ -17,12 +17,18 @@ const data = [
   { _id: 'E', name: 'E' },
   { _id: 'F', name: 'F' },
 ];
+
+const cities = ['Vilnius','Kaunas', 'Klaipėda'];
+
+const countries = ['Lithuania', 'Latvia','Estonia'];
+
+
 export const primary = () => {
   const props: SharedProfileFormProps = {
     onSubmit: action('onSubmit'),
     categories: data,
-    cities: data,
-    countries: data,
+    cities: cities,
+    countries: countries,
   };
 
   return (
