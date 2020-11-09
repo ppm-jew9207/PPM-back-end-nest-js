@@ -7,6 +7,7 @@ import PublicRouter from './routes/public';
 import { FeaturesSnackBar } from '@ppm/features/snack-bar';
 import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
+import { FeaturesPrivateLayout } from '@ppm/features/private-layout';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -55,42 +56,55 @@ export const App = () => {
             title: 'Create React Component',
             _id: 'gfsgsffa',
             datetime: '2021-09-22T17:09',
+            checked: false,
           },
           {
             title: 'Create React Library',
             _id: 'gfsgsffb',
             datetime: '2021-10-22T17:09',
+            checked: false,
           },
           {
             title: 'Create React Feature',
             _id: 'gfsgsffc',
             datetime: '2021-11-22T17:09',
+            checked: false,
           },
           {
             title: 'Create React Beat',
             _id: 'gfsgsffcd',
             datetime: '2021-11-22T17:09',
+            checked: false,
           },
         ]}
         onSubmit={(advert) => showData(advert)}
       />
       <BrowserRouter basename="/">
         <Switch>
-          {PrivateRouter.map((prop) => (
-            <PrivateRoute
-              path={prop.path}
-              key={prop.path}
-              component={prop.component}
-              isLoggedIn={!!getToken()}
-            />
-          ))}
           {PublicRouter.map((prop) => (
             <Route
+              exact
               path={prop.path}
               key={prop.path}
               component={prop.component}
             />
           ))}
+          <FeaturesPrivateLayout router={PrivateRouter}>
+
+            {PrivateRouter.map((prop) => (
+              <PrivateRoute
+                exact
+                path={prop.path}
+                key={prop.path}
+                component={prop.component}
+                isLoggedIn={!!getToken()}
+              />
+            ))}
+          </FeaturesPrivateLayout>
+          <Redirect
+            from='/login'
+            to="/dashboard"
+          />
         </Switch>
       </BrowserRouter>
       <FeaturesSnackBar />

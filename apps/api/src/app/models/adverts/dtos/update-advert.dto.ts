@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UpdateAdvertPayload } from '../adverts.interface';
+import { AdvertPayload } from '../adverts.interface';
 
-export class UpdateAdvertPayloadDto implements UpdateAdvertPayload {
+export class UpdateAdvertPayloadDto implements AdvertPayload {
   @ApiProperty()
   public readonly id: string;
   @ApiProperty()
@@ -12,4 +12,14 @@ export class UpdateAdvertPayloadDto implements UpdateAdvertPayload {
   public readonly category: string;
   @ApiProperty()
   public readonly imageUrl?: string;
+  @ApiProperty()
+  public readonly programmingLanguages?: string[];
+  @ApiProperty()
+  public readonly preRequisites?: string;
+  @ApiProperty()
+  public readonly advertImageUrl: string;
+  @ApiProperty()
+  public readonly lessonDescription?: string;
+  @ApiProperty()
+  public readonly lessonsList?: string[];
 }

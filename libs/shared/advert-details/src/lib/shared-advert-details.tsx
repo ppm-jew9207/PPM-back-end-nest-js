@@ -7,37 +7,46 @@ import './shared-advert-details.scss';
 
 export interface SharedAdvertDetailsProps {
   learnItems: string[];
-  preRequisites: string;
+  preRequisites?: string;
 }
 
 export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
   return (
-    <div>
-      <Container fixed className="info">
-        <Typography variant="h6" component="h2" gutterBottom>
-          What you will learn
-        </Typography>
+    <Container fixed className="info">
+      <Typography
+        className="learn-title"
+        variant="h6"
+        component="h2"
+        gutterBottom
+      >
+        What you will learn
+      </Typography>
 
-        <Grid container className="learn-list">
-          {props.learnItems.map((item, i) => {
-            return (
-              <Grid item xs={4}>
-                <Typography variant="body1" component="li">
-                  {item}
-                </Typography>
-              </Grid>
-            );
-          })}
-        </Grid>
+      <Grid container className="learn-list">
+        {props.learnItems.map((item, i) => {
+          return (
+            <Grid key={i} item xs={4}>
+              <Typography className="item" variant="body1" component="li">
+                {item}
+              </Typography>
+            </Grid>
+          );
+        })}
+      </Grid>
 
-        <Typography variant="h6" component="h2" gutterBottom>
-          Pre-requisites
-        </Typography>
-        <Typography variant="body1" component="p">
-          {props.preRequisites}
-        </Typography>
-      </Container>
-    </div>
+      <Typography
+        className="learn-title"
+        variant="h6"
+        component="h2"
+        gutterBottom
+        style={{display: !props.preRequisites && 'none'}}
+      >
+        Pre-requisites
+      </Typography>
+      <Typography className="description" variant="body1" component="p">
+        {props.preRequisites}
+      </Typography>
+    </Container>
   );
 };
 

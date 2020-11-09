@@ -28,6 +28,8 @@ export const primary = () => {
     onGetStartedClick: () => {
       alert('paspaudei');
     },
+    startingDate: text('Starting date', '2036-09-08T20:00:00'),
+    getStartedButtonText: text('Get Started button text', 'Add to lesson')
   };
 
   return (
@@ -38,6 +40,8 @@ export const primary = () => {
       image={props.image}
       categories={props.categories}
       onGetStartedClick={props.onGetStartedClick}
+      getStartedButtonText={props.getStartedButtonText}
+      startingDate={props.startingDate}
     />
   );
 };

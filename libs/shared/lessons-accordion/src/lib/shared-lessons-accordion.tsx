@@ -20,20 +20,22 @@ interface Lesson {
 }
 
 export interface SharedLessonsAccordionProps {
-  lessonsDescription: string;
+  lessonsDescription?: string;
   lessons: Lesson[];
+  accordionTitle: string;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
   return (
     <Container fixed>
-      <Accordion defaultExpanded>
+      <Accordion className="lessons-accordion" defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="lessons"
+          className="lessons-title"
         >
-          <Typography>Lessons</Typography>
+          <Typography className="text">{props.accordionTitle}</Typography>
         </AccordionSummary>
         <AccordionDetails className="lessons-accordion">
           <div>

@@ -90,7 +90,7 @@ export function lessonsReducer(
         lesson: state.lesson,
         loading: true,
       };
-    case ActionTypes.LESSON_GET_BY_ID_SUCCESS:
+    case ActionTypes.LESSON_GET_BY_ID_SUCCESS: 
       return {
         list: state.list,
         lesson: action.payload.lesson,

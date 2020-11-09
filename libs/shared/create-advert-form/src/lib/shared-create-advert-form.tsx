@@ -13,14 +13,12 @@ import {
   Dialog,
   List,
   DialogActions,
-  FormControlLabel,
   Checkbox,
   Chip
 } from '@material-ui/core';
 import './shared-create-advert-form.scss';
 
 import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
-import { isContext } from 'vm';
 
 export interface AdvertDefaultParams {
   title: string;
@@ -109,7 +107,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
 
-    let fileReader = new FileReader();
+    const fileReader = new FileReader();
     fileReader.onload = (e) => {
       setUploadedImg(e.target.result);
     };

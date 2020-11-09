@@ -1,11 +1,8 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 const config = {
   mongodb: {
-    url: process.env.MONGO_DB_HOST || 'mongodb://localhost:27017',
-
-    databaseName: process.env.DB_NAME || 'testDb',
+    url: process.env.MONGO_DB,
 
     options: {
       useNewUrlParser: true,
