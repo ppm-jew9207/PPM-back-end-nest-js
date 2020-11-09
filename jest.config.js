@@ -50,5 +50,6 @@ module.exports = {
     '<rootDir>/libs/features/lesson-page',
     '<rootDir>/libs/hooks/use-lesson',
     '<rootDir>/libs/features/private-layout',
+    '<rootDir>/libs/hooks/use-adverts',
   ],
 };
