@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
 import './app.scss';
 import PublicRouter from './routes/public';
 import { FeaturesSnackBar } from '@ppm/features/snack-bar';
-import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
-
 import { FeaturesPrivateLayout } from '@ppm/features/private-layout';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
@@ -30,55 +28,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 export const App = () => {
 
-  const showData = ( data ) => {
-    console.log(data);
-  }
-
   return (
     <div className="app">
-      <SharedCreateAdvertForm
-        data={{
-          title: 'New advert',
-          submitButtonText: 'Create',
-          cancelButtonText: 'Cancel',
-          descriptionInputLabel: 'Description',
-          titleInputLabel: 'New Advert',
-          categoryInputLabel: 'Category',
-          prerequisitesInputLabel: 'Pre-requisites',
-          learningInputLabel: 'What to learn',
-        }}
-        categories={[
-          { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },
-          { title: 'Category B', value: 'category-b', _id: 'as33dg4432af' },
-        ]}
-        lesson={[
-          {
-            title: 'Create React Component',
-            _id: 'gfsgsffa',
-            datetime: '2021-09-22T17:09',
-            checked: false,
-          },
-          {
-            title: 'Create React Library',
-            _id: 'gfsgsffb',
-            datetime: '2021-10-22T17:09',
-            checked: false,
-          },
-          {
-            title: 'Create React Feature',
-            _id: 'gfsgsffc',
-            datetime: '2021-11-22T17:09',
-            checked: false,
-          },
-          {
-            title: 'Create React Beat',
-            _id: 'gfsgsffcd',
-            datetime: '2021-11-22T17:09',
-            checked: false,
-          },
-        ]}
-        onSubmit={(advert) => showData(advert)}
-      />
       <BrowserRouter basename="/">
         <Switch>
           {PublicRouter.map((prop) => (

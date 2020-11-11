@@ -6,10 +6,6 @@ import {
   Button,
   Box,
   Typography,
-  MenuItem,
-  FormControl,
-  Select,
-  InputLabel,
   Dialog,
   List,
   DialogActions,
@@ -18,7 +14,10 @@ import {
 } from '@material-ui/core';
 import './shared-create-advert-form.scss';
 
-import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
+import {
+  ArrowRight as ArrowRightIcon,
+  SystemUpdateAlt as SystemUpdateAltIcon
+} from '@material-ui/icons';
 
 export interface AdvertDefaultParams {
   title: string;
@@ -34,6 +33,7 @@ export interface Category {
   title: string;
   value: string;
   _id: string;
+  checked: boolean;
 }
 
 export interface Lesson {
@@ -86,16 +86,10 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [advert, setAdvert] = useState<Advert>();
   const [lesson, setLesson] = useState<Lesson[]>([]);
-  const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState([]);
-
-  const handleDialogClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setOpen(false);
-  };
+  const [openLesson, setLessonOpen] = useState(false);
+  const [selectedLessonValue, setSelectedLessonValue] = useState([]);
+  const [openCategory, setCategoryOpen] = useState(false);
+  const [selectedCategoryValue, setSelectedCategoryValue] = useState([]);
 
   useEffect(() => {
     !categories.length && setCategories(props.categories);
@@ -107,34 +101,32 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
 
-    const fileReader = new FileReader();
+    let fileReader = new FileReader();
     fileReader.onload = (e) => {
       setUploadedImg(e.target.result);
     };
     if (file) fileReader.readAsDataURL(file);
   };
 
-  function SimpleDialog(props) {
+  function LessonDialog(props) {
     const { open, onChange, options } = props;
-    
-      const [data, setData] = useState(options);
+    const [data, setData] = useState(options);
 
-      const toggle = (les) => {
-        data.forEach((_, key) => {
-          if (data[key].title === les.title) data[key].checked = !les.checked;
-        });
-        setData([...data]);
-        onChange(data);
-      };
+    const toggle = (les) => {
+      data.forEach((_, key) => {
+        if (data[key].title === les.title) data[key].checked = !les.checked;
+      });
+      setData([...data]);
+    };
 
-      const sendData = () => {
-        setSelectedValue([data]);
-        handleDialogClose();
-      }
+    const sendData = () => {
+      setSelectedLessonValue([data]);
+      setLessonOpen(false);
+    }
 
     return (
       <Dialog
-        onClose={handleDialogClose}
+        onClose={() => setLessonOpen(false)}
         aria-labelledby="simple-dialog-title"
         open={open}
       >
@@ -157,7 +149,59 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           ))}
         </List>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={() => setLessonOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={sendData} color="primary" type="submit">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+
+  function CategoryDialog(props) {
+    const { open, onChange, options } = props;  
+    const [data, setData] = useState(options);
+
+    const toggle = (les) => {
+      data.forEach((_, key) => {
+        if (data[key].title === les.title) data[key].checked = !les.checked;
+      });
+      setData([...data]);
+    };
+
+    const sendData = () => {
+      setSelectedCategoryValue([data]);
+      setCategoryOpen(false);
+    }
+
+    return (
+      <Dialog
+        onClose={() => setCategoryOpen(false)}
+        aria-labelledby="simple-dialog-title"
+        open={open}
+      >
+        <List className="dialog-list">
+          {categories.map((les) => (
+            <section key={les._id}>
+              <Controller
+                name={les.title}
+                control={control}
+                as={() => (
+                  <Checkbox
+                    key={les._id}
+                    onClick={() => toggle(les)}
+                    checked={les.checked || false}
+                  />
+                )}
+              />
+              <label>{les.title}</label>
+            </section>
+          ))}
+        </List>
+        <DialogActions>
+          <Button onClick={() => setCategoryOpen(false)} color="primary">
             Cancel
           </Button>
           <Button onClick={sendData} color="primary" type="submit">
@@ -172,11 +216,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   if (!props.data) return <div>Loading...</div>;
 
   const createAdvertHandler = (data) => {
-    props.onSubmit({ ...data, selectedCheckboxes: {selectedValue} });
+    props.onSubmit({ ...data, selectedLessonCheckboxes: {selectedLessonValue}, selectedCategoryCheckboxes: {selectedCategoryValue}});
   };
 
   return (
-    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
+    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form">
       <Typography className="header" component="h1" variant="h5">
         {props.data.title}
       </Typography>
@@ -233,6 +277,12 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           defaultValue={(advert && advert.title) || ''}
           rules={{ required: true }}
         />
+        {errors.title && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            Title is required
+          </div>
+        )}
         <Controller
           as={
             <TextField
@@ -254,6 +304,12 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           defaultValue={(advert && advert.description) || ''}
           rules={{ required: true }}
         />
+        {errors.description && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            Description is required
+          </div>
+        )}
         <Controller
           as={
             <TextField
@@ -275,6 +331,12 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           defaultValue={(advert && advert.prerequisites) || ''}
           rules={{ required: true }}
         />
+        {errors.prerequisites && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            Prerequisites is required
+          </div>
+        )}
         <Controller
           as={
             <TextField
@@ -296,18 +358,24 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           defaultValue={(advert && advert.learning) || ''}
           rules={{ required: true }}
         />
-        <div>
+        {errors.learning && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            What to learn is required
+          </div>
+        )}
+        <div className='select-button'>
           <Button
             fullWidth
             variant="outlined"
             color="primary"
-            onClick={handleDialogClickOpen}
+            onClick={() => setLessonOpen(true)}
           >
             Choose Lessons to add
           </Button>
           <div className="chip-container">
-            {!!selectedValue[0] &&
-              selectedValue[0].map(
+            {!!selectedLessonValue[0] &&
+              selectedLessonValue[0].map(
                 (value) =>
                   !!value.checked && (
                     <div key={value._id} className="chip">
@@ -320,56 +388,46 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                   )
               )}
           </div>
-          <SimpleDialog
-            selectedValue={selectedValue}
-            open={open}
+          <LessonDialog
+            selectedValue={selectedLessonValue}
+            open={openLesson}
             options={!!lesson && lesson}
-            onClose={handleDialogClose}
-            onChange={(data) => {
-              console.log(data);
-            }}
+            onClose={() => setLessonOpen(false)}
             name="lessons"
           />
         </div>
-        <Controller
-          control={control}
-          name="category"
-          as={
-            <FormControl
-              className="category"
-              variant="outlined"
-              margin="normal"
-            >
-              <InputLabel id="category-label">Category</InputLabel>
-              <Select
-                name="category"
-                labelId="category-label"
-                id="category"
-                inputRef={register({
-                  required: 'Required',
-                })}
-                value={
-                  (advert && advert.category) ||
-                  (categories[0] && categories[0].value) ||
-                  ''
-                }
-                onChange={(event: React.ChangeEvent<{ value: string }>) => {
-                  setValue('category', event.target.value);
-                  setAdvert({ ...advert, category: event.target.value });
-                }}
-              >
-                {!!categories &&
-                  categories.map((category) => {
-                    return (
-                      <MenuItem key={category._id} value={category.value}>
-                        {category.title}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
-          }
-        ></Controller>
+        <div className='select-button'>
+          <Button
+            fullWidth
+            variant="outlined"
+            color="primary"
+            onClick={() => setCategoryOpen(true)}
+          >
+            Choose Categories to add
+          </Button>
+          <div className="chip-container">
+            {!!selectedCategoryValue[0] &&
+              selectedCategoryValue[0].map(
+                (value) =>
+                  !!value.checked && (
+                    <div key={value._id} className="chip">
+                      <Chip
+                        variant="outlined"
+                        color="primary"
+                        label={value.title}
+                      />
+                    </div>
+                  )
+              )}
+          </div>
+          <CategoryDialog
+            selectedValue={selectedCategoryValue}
+            open={openCategory}
+            options={!!categories && categories}
+            onClose={() => setCategoryOpen(false)}
+            name="category"
+          />
+        </div>
         <Button
           fullWidth
           variant="contained"
