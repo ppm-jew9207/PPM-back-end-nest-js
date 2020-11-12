@@ -225,4 +225,16 @@ $error: #3F51B5;
       color: $error;
     }
   }
+  .categories {
+    &__wrapper {
+      margin-top: 15px;
+      margin-bottom: 0px;
+      
+    }
+
+    &__item {
+      margin-right: 10px;
+      align-self: flex-start;
+    }
+  }
 }

@@ -51,5 +51,6 @@ module.exports = {
     '<rootDir>/libs/hooks/use-lesson',
     '<rootDir>/libs/features/private-layout',
     '<rootDir>/libs/hooks/use-adverts',
+    '<rootDir>/libs/shared/list-editor',
   ],
 };

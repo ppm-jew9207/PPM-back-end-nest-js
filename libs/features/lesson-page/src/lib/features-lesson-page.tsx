@@ -24,7 +24,7 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
     <div>
       <SharedAdvertInfo
         title={title}
-        description={description}
+        description={description} 
         creator={creator}
         image={image}
         categories={categories}

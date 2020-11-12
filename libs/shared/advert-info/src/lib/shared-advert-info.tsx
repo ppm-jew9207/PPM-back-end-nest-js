@@ -59,6 +59,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             >
               Categories
             </Typography>
+            { categories }
             {props.categories &&
               props.categories.map((category, i) => {
                 return (

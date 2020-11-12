@@ -25,6 +25,7 @@ export const LessonsSchema = new Schema(
       _id: { type: String, ref: ViewModels.USERS_VIEW },
       name: String,
     },
+    categories: [String],
   },
   { timestamps: true }
 );

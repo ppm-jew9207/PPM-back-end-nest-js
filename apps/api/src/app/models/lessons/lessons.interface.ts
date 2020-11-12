@@ -7,6 +7,7 @@ export interface LeanLessonsView {
   description: string;
   datetime: Date;
   resources?: string[];
+  categories?: string[];
   connectionUrl: string;
   imageUrl?: string;
   creator: UserRef;
@@ -16,6 +17,7 @@ export interface CreateLessonPayload {
   description: string;
   datetime: Date;
   resources?: string[];
+  categories?: string[];
   connectionUrl: string;
   imageUrl?: string;
   creator: UserRef;
@@ -27,6 +29,7 @@ export interface LessonPayload {
   description: string;
   datetime: Date;
   resources?: string[];
+  categories?: string[];
   connectionUrl: string;
   imageUrl?: string;
 }

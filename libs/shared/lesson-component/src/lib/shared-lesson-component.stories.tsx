@@ -36,12 +36,17 @@ export const primary = () => {
       title: 'lesson title',
       connectionURL: 'https://placekitten.com/300/300',
       datetime: '2021-09-22T17:09',
+      categories: ['as3dg432af', 'as33dg4432af']
     },
     mentors: [
       { name: 'John Doe', value: 'John Doe', _id: 'as3dg432zd' },
       { name: 'Dohn Joe', value: 'Dohn Joe', _id: 'as33dg4432dz' },
       { name: 'Gohn Boe', value: 'Gohn Boe', _id: 'as3dg432zdbg' },
-    ]
+    ],
+    categories: [
+      { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },
+      { title: 'Category B', value: 'category-b', _id: 'as33dg4432af' },
+    ],
   };
 
   return <SharedLessonComponent {...props}/>;

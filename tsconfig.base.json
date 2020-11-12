@@ -109,7 +109,8 @@
       "@ppm/hooks/use-lesson": ["libs/hooks/use-lesson/src/index.ts"],
       "@ppm/features/private-layout": [
         "libs/features/private-layout/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/list-editor": ["libs/shared/list-editor/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

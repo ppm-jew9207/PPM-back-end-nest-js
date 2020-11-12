@@ -16,4 +16,6 @@ export class UpdateLessonPayloadDto implements LessonPayload {
   public readonly connectionUrl: string;
   @ApiProperty()
   public readonly imageUrl?: string;
+  @ApiProperty({ isArray: true, type: 'string' })
+  public readonly categories?: string[];
 }

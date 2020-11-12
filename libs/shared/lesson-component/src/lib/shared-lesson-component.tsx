@@ -11,12 +11,24 @@ import {
   MenuItem,
   Select,
   InputLabel,
+  FormControl,
+  Fab
 } from '@material-ui/core';
 
 import {
   ArrowRight as ArrowRightIcon,
-  SystemUpdateAlt as SystemUpdateAltIcon
+  SystemUpdateAlt as SystemUpdateAltIcon,
+  Clear as ClearIcon,
+  Add as AddIcon
 } from '@material-ui/icons';
+
+import { green, teal } from '@material-ui/core/colors';
+
+export interface Category {
+  title: string;
+  value: string;
+  _id: string;
+}
 
 export interface LessonDefaultParams {
   title: string;
@@ -43,6 +55,7 @@ export interface Lesson {
     resources: string;
     mentorName: string;
     connectionURL: string;
+    categories: string[];
 }
 
 export interface SharedLessonComponentProps {
@@ -51,16 +64,19 @@ export interface SharedLessonComponentProps {
   data: LessonDefaultParams;
   mentors: Mentor[];
   lesson?: Lesson;
+  categories: Category[];
 }
 
 export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>();
   const [mentors, setMentors] = useState<Mentor[]>([]);
   const [lesson, setLesson] = useState<Lesson>();
+  const [categories, setCategories] = useState<Category[]>([]);
 
   !lesson && setLesson(props.lesson);
 
   useEffect(() => {
+    !categories.length && setCategories(props.categories);
     props.lesson && !uploadedImg && setUploadedImg(props.lesson.imageUrl);
     !mentors.length && setMentors(props.mentors);
   },[props, lesson, mentors, uploadedImg]);
@@ -241,6 +257,71 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             Connection URL is required
           </div>
         )}
+        <Controller
+          control={control}
+          name="category"
+          as={
+            <FormControl
+              className="category"
+              variant="outlined"
+              margin="normal"
+            >
+              <InputLabel id="category-label">Categories</InputLabel>
+
+
+              <Select
+                name="category"
+                labelId="category-label"
+                id="category"
+                inputRef={register({
+                  required: 'Required',
+                })}
+                // value={
+                //   (advert && advert.category) ||
+                //   (categories[0] && categories[0].value) ||
+                //   ''
+                // }
+                // onChange={(event: React.ChangeEvent<{ value: string }>) => {
+                //   setValue('category', event.target.value);
+                //   setAdvert({ ...advert, category: event.target.value });
+                // }}
+              >
+                {!!categories &&
+                  categories.map((category) => {
+                    return (
+                      <MenuItem key={category._id} value={category.value}>
+                        {category.title}
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+              <div className="categories__wrapper">
+                {!!categories && props.lesson.categories.map( categoryId => {
+                  const category = categories.filter(item => {
+                    console.log(item, categoryId);
+                    return item._id == categoryId;
+                  })[0];
+                  
+                  return (
+                    category && <Fab className="categories__item"   variant="extended">{category.title}<ClearIcon /></Fab>
+                  );
+                })
+                }
+                 <Fab className="categories__item"  variant="extended" style={{ color: '#fff', background: green[600] }} ><AddIcon /></Fab>
+               
+                
+                {/* {props.categories && props.categories.length > 0 && props.lesson.categories.map( categoryId => {
+                  console.log(categoryId, categories);
+                  const category = categories.filter(item => item._id == categoryId)[0];
+                  return (
+                    <Fab className="categories__item" variant="extended">{category.title}<ClearIcon /></Fab>
+                  );
+                })} */}
+                
+              </div>
+            </FormControl>
+          }
+        ></Controller>
         <Button
           fullWidth
           variant="contained"
