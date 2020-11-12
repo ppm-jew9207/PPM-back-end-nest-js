@@ -15,7 +15,7 @@ describe(' FeaturesProfile', () => {
     {
       profile: {photo: ''},
       loading: false,
-      adverts: [{_id: 'tetsId', creator: {_id: '4jh35b23jh5', name: 'Jon', imageUrl: 'http://google.lt.paveikliukas.jpg' }}],
+      adverts: [{_id: 'tetsId', creator: {_id: '4jh35b23jh5', name: 'Jon', imageUrl: 'http://google.lt.image.jpg' }}],
     }
   );
 
