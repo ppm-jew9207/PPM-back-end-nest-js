@@ -8,6 +8,7 @@ import { PermissionsModelService } from '../models/permissions/permissions.servi
 import { UpdatePermission } from '../domains/permissions/commands/update-permission.command';
 import { Roles } from '@ppm/common/main';
 import { CreatePermission } from '../domains/permissions/commands/create-permission.command';
+import { AdvertPayload } from '../models/adverts/adverts.interface';
 
 @Injectable()
 export class AdvertsSagas {
@@ -35,13 +36,20 @@ export class AdvertsSagas {
           if (!permission.adverts) {
             permission.adverts = [];
           }
-          permission.adverts.push({
-            _id: id,
+
+          const advert:AdvertPayload = {
             title: data.title,
             description: data.description,
             category: data.category,
             imageUrl: data.imageUrl,
-          });
+            advertImageUrl: data.advertImageUrl,
+            creator: {
+              _id: data.creator._id,
+              name: data.creator.name,
+              imageUrl: data.creator.imageUrl
+            }
+          }
+          permission.adverts.push(advert);
           return new UpdatePermission(permission._id.toHexString(), permission);
         } else {
           return new CreatePermission({

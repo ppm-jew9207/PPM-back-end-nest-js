@@ -1,14 +1,14 @@
-import { Injectable, Type } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Types } from 'mongoose';
 
 import { ViewModels } from '../../helpers/constants';
 import {
-  AdvertPayload,
   AdvertsViewModel,
   CreateAdvertPayload,
 } from './adverts.interface';
+import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
 
 @Injectable()
 export class AdvertsModelService {
@@ -39,14 +39,14 @@ export class AdvertsModelService {
     });
   }
 
-  async update(id: string, data: AdvertPayload) {
-    await this._model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
+  async update(data: UpdateAdvertPayloadDto) {
+    await this._model.findOneAndUpdate({ _id: Types.ObjectId(data.id) }, data, {
       upsert: true,
       new: true,
     });
   }
 
-  async remove({ id }) {
+  async remove(id: string) {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
 }
