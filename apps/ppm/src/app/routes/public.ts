@@ -1,6 +1,5 @@
 import { RouterItem, PrivateRoutesPath } from '@ppm/common/main';
 import { FeaturesAuthorization } from '@ppm/features/authorization';
-import { FeaturesAdverts } from '@ppm/features/adverts';
 import { FeaturesRegistration } from '@ppm/features/registration';
 import { FeaturesForgotPassword } from '@ppm/features/forgot-password';
 

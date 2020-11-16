@@ -17,32 +17,33 @@ export const FeaturesAdverts = () => {
 
   useEffect(() => {
     dispatch(advertsActions.getAll());
-  }, [dispatch]);
-  if (loading) return <CircularProgress />;
-
-  if(adverts && !adverts.length) return <div className="no-items">No adverts added...</div>
+  }, []);
+  // if (loading) return <CircularProgress />;
+  // if (adverts && !adverts.length)
+  //   return <div className="no-items">No adverts added...</div>;
 
   return (
     <div className="advert-cards">
       {adverts.map((advert, i) => {
         return (
-          <SharedAdvertCard
-            key={advert._id}
-            title={advert.title}
-            author={{
-              _id: advert.creator._id,
-              firstName: advert.creator.name,
-              lastName: '',
-              img: advert.creator.imageUrl,
-            }}
-            createAt={advert.createdAt}
-            description={advert.description}
-            // TODO add likes to backend
-            like={0}
-            // TODO add shares to backend
-            shared={0}
-            imgUrl={advert.imageUrl}
-          />
+          <div key={advert._id}>
+            <SharedAdvertCard
+              title={advert.title}
+              author={{
+                _id: advert.creator._id,
+                firstName: advert.creator.name,
+                lastName: '',
+                img: advert.creator.imageUrl,
+              }}
+              createAt={advert.createdAt}
+              description={advert.description}
+              // TODO add likes to backend
+              like={0}
+              // TODO add shares to backend
+              shared={0}
+              imgUrl={advert.imageUrl}
+            />
+          </div>
         );
       })}
     </div>
