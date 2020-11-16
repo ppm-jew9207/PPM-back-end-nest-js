@@ -48,6 +48,8 @@ module.exports = {
     '<rootDir>/libs/hooks/use-authorization',
     '<rootDir>/libs/shared/create-new-password-form',
     '<rootDir>/libs/features/lesson-page',
+    '<rootDir>/libs/features/adverts-page',
+    '<rootDir>/libs/features/advert-page',
     '<rootDir>/libs/hooks/use-lesson',
     '<rootDir>/libs/features/private-layout',
     '<rootDir>/libs/hooks/use-adverts',

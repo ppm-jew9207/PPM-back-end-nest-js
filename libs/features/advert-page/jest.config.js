@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'features-advert-page',
-  preset: '../../../jest.config.js',
+  displayName: 'features-advert-page',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
       'babel-jest',
