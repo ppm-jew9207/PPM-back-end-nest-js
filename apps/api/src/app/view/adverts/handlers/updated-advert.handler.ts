@@ -7,7 +7,7 @@ import { Inject } from '@nestjs/common';
 export class AdvertUpdatedHandler implements IEventHandler<AdvertUpdated> {
   @Inject() private readonly _advertsViewService: AdvertsModelService;
 
-  public handle(event: AdvertUpdated) {
-    this._advertsViewService.update(event.advert.id, event.advert);
+  public handle({ data }: AdvertUpdated) {
+    this._advertsViewService.update(data);
   }
 }

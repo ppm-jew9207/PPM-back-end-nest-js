@@ -38,6 +38,7 @@ export interface AdvertPayload {
   advertImageUrl: string;
   lessonDescription?: string;
   lessonsList?: string[];
+  creator: UserRef;
 }
 
 export type AdvertsViewModel = LeanAdvertsView & Document;

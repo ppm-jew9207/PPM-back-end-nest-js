@@ -12,7 +12,7 @@ export class UpdateAdvert {
 export class UpdateAdvertHandler implements ICommandHandler<UpdateAdvert> {
   @Inject() private readonly _publisher: EventPublisher;
 
-  async execute({ data }: UpdateAdvert): Promise<Boolean> {
+  async execute({data}: UpdateAdvert): Promise<Boolean> {
     const aggregate = new AdvertsAggregate();
     aggregate.apply(new AdvertUpdated(data));
 

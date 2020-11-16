@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRef } from '../../../shared/shared.interface';
 import { AdvertPayload } from '../adverts.interface';
 
 export class UpdateAdvertPayloadDto implements AdvertPayload {
@@ -22,4 +23,6 @@ export class UpdateAdvertPayloadDto implements AdvertPayload {
   public readonly lessonDescription?: string;
   @ApiProperty()
   public readonly lessonsList?: string[];
+  @ApiProperty()
+  public readonly creator: UserRef;
 }

@@ -59,8 +59,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             >
               Categories
             </Typography>
-            {props.categories &&
-              props.categories.map((category, i) => {
+            {props.categories.map((category, i) => {
                 return (
                   <Chip
                     className="chip-tag"
