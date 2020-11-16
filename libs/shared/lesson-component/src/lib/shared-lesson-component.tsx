@@ -269,7 +269,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               <InputLabel id="category-label">Categories</InputLabel>
 
 
-              <Select
+              {/* <Select
                 name="category"
                 labelId="category-label"
                 id="category"
@@ -294,7 +294,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                       </MenuItem>
                     );
                   })}
-              </Select>
+              </Select> */}
               <div className="categories__wrapper">
                 {!!categories && props.lesson.categories.map( categoryId => {
                   const category = categories.filter(item => {
@@ -303,7 +303,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                   })[0];
                   
                   return (
-                    category && <Fab className="categories__item"   variant="extended">{category.title}<ClearIcon /></Fab>
+                    category && <Fab className="categories__item"   variant="extended">{category.title}</Fab>
                   );
                 })
                 }

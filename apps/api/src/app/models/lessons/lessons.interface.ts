@@ -11,6 +11,7 @@ export interface LeanLessonsView {
   connectionUrl: string;
   imageUrl?: string;
   creator: UserRef;
+  learnItems?: string[];
 }
 export interface CreateLessonPayload {
   title: string;
@@ -21,6 +22,7 @@ export interface CreateLessonPayload {
   connectionUrl: string;
   imageUrl?: string;
   creator: UserRef;
+  learnItems?: string[];
 }
 
 export interface LessonPayload {
@@ -32,6 +34,7 @@ export interface LessonPayload {
   categories?: string[];
   connectionUrl: string;
   imageUrl?: string;
+  learnItems?: string[];
 }
 
 export type LessonsViewModel = LeanLessonsView & Document;

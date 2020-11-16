@@ -33,6 +33,7 @@ export function useLesson(history: History, id: string) {
   const [ categories, setCategories ] = useState([]);
   const [ lessonsData, setLessonsData ] = useState([]);
   const [ startingDate, setStartingDate ] = useState('');
+  // const [ learnItems, setLearnItems ] = useState([]); 
 
   useEffect(() => {
     if (lesson) {
@@ -42,6 +43,7 @@ export function useLesson(history: History, id: string) {
       setImage(lesson.imageUrl);
       setCategories([{title: lesson.category, value: lesson.category}]);
       setStartingDate(lesson.datetime || '');
+      // setLearnItems(lesson.learnItems);
     }
   }, [lesson]);
 

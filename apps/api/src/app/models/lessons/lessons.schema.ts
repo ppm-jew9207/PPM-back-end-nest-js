@@ -26,6 +26,7 @@ export const LessonsSchema = new Schema(
       name: String,
     },
     categories: [String],
+    learnItems: [String]
   },
   { timestamps: true }
 );

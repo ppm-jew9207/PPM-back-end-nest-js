@@ -1,6 +1,10 @@
 $error: #3F51B5;
 
 .lesson {
+
+  #category-label {
+    top: -30px;
+  }
   .image-container {
     margin-top: 1rem;
     display: flex;
@@ -47,6 +51,8 @@ $error: #3F51B5;
       #file-browser-input {
         opacity: 0;
       }
+
+
 
       &>div>div:before,
       &>div>div:after {

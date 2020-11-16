@@ -18,4 +18,6 @@ export class UpdateLessonPayloadDto implements LessonPayload {
   public readonly imageUrl?: string;
   @ApiProperty({ isArray: true, type: 'string' })
   public readonly categories?: string[];
+  @ApiProperty({ isArray: true, type: 'string' })
+  public readonly learnItems?: string[];
 }
