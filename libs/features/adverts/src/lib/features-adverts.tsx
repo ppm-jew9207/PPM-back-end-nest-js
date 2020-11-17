@@ -24,28 +24,26 @@ export const FeaturesAdverts = () => {
 
   return (
     <div className="advert-cards">
-      {adverts.map((advert, i) => {
-        return (
-          <div key={advert._id}>
-            <SharedAdvertCard
-              title={advert.title}
-              author={{
-                _id: advert.creator._id,
-                firstName: advert.creator.name,
-                lastName: '',
-                img: advert.creator.imageUrl,
-              }}
-              createAt={advert.createdAt}
-              description={advert.description}
-              // TODO add likes to backend
-              like={0}
-              // TODO add shares to backend
-              shared={0}
-              imgUrl={advert.imageUrl}
-            />
-          </div>
-        );
-      })}
+      {adverts.map((advert, i) => (
+        <div key={advert._id}>
+          <SharedAdvertCard
+            title={advert.title}
+            author={{
+              _id: advert.creator._id,
+              firstName: advert.creator.name,
+              lastName: '',
+              img: advert.creator.imageUrl,
+            }}
+            createAt={advert.createdAt}
+            description={advert.description}
+            // TODO add likes to backend
+            like={0}
+            // TODO add shares to backend
+            shared={0}
+            imgUrl={advert.imageUrl}
+          />
+        </div>
+      ))}
     </div>
   );
 };
