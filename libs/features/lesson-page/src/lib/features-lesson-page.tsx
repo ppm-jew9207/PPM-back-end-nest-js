@@ -18,7 +18,7 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
 
-  const {title, description, creator, image, categories, onAction, learnItems,  lessons,  startingDate } = useLesson(props.history, props.match.params.id);
+  const {title, description, creator, image, categories, onAction, learnItems,  lessons,  startingDate, allCategoriesList, allLearnItemsList } = useLesson(props.history, props.match.params.id);
 
   return (
     <div>
@@ -28,12 +28,14 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
         creator={creator}
         image={image}
         categories={categories}
+        allCategoriesList={allCategoriesList}
         getStartedButtonText={actionButtonText}
         onGetStartedClick={onAction}
         startingDate={startingDate}
       />
       <SharedAdvertDetails
         learnItems={learnItems}
+        allLearnItemsList={allLearnItemsList}
       />
       <SharedLessonsAccordion
         lessons={lessons}

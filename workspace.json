@@ -2316,14 +2316,19 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "libs/features/advert-page/tsconfig.lib.json",
-              "libs/features/advert-page/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/features/advert-page/**/*"]
+            "lintFilePatterns": [
+              "libs/features/advert-page/**/*.js",
+              "libs/features/advert-page/**/*.jsx",
+              "libs/features/advert-page/**/*.ts",
+              "libs/features/advert-page/**/*.tsx",
+              "libs/features/advert-page/**/*.spec.ts",
+              "libs/features/advert-page/**/*.spec.tsx",
+              "libs/features/advert-page/**/*.spec.js",
+              "libs/features/advert-page/**/*.spec.jsx",
+              "libs/features/advert-page/**/*.d.ts"
+            ]
           }
         },
         "test": {
@@ -2473,6 +2478,27 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/shared-list-editor-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "data-access-learn-items": {
+      "root": "libs/data-access/learn-items",
+      "sourceRoot": "libs/data-access/learn-items/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access/learn-items/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access/learn-items/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

@@ -110,7 +110,10 @@
       "@ppm/features/private-layout": [
         "libs/features/private-layout/src/index.ts"
       ],
-      "@ppm/shared/list-editor": ["libs/shared/list-editor/src/index.ts"]
+      "@ppm/shared/list-editor": ["libs/shared/list-editor/src/index.ts"],
+      "@ppm/data-access/learn-items": [
+        "libs/data-access/learn-items/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -20,10 +20,16 @@ export const primary = () => {
       'https://c402277.ssl.cf1.rackcdn.com/photos/14875/images/magazine_hero/Medium_WW248926.jpg?1513623521'
     ),
     categories: [
-      { title: 'Programming', value: 'prog' },
-      { title: 'Javascript', value: 'js' },
-      { title: 'React', value: 'react' },
-      { title: 'Web Development', value: 'web' },
+      { _id: 'dfasdf', title: 'Programming', value: 'prog' },
+      { _id: 'sadfdf', title: 'Javascript', value: 'js' },
+      { _id: 'sdfasdf', title: 'React', value: 'react' },
+      { _id:'ddsaf', title: 'Web Development', value: 'web' },
+    ],
+    allCategoriesList: [
+      { _id: 'dfasdf', title: 'Programming', value: 'prog' },
+      { _id: 'sadfdf', title: 'Javascript', value: 'js' },
+      { _id: 'sdfasdf', title: 'React', value: 'react' },
+      { _id:'ddsaf', title: 'Web Development', value: 'web' },
     ],
     onGetStartedClick: () => {
       alert('paspaudei');
@@ -42,6 +48,7 @@ export const primary = () => {
       onGetStartedClick={props.onGetStartedClick}
       getStartedButtonText={props.getStartedButtonText}
       startingDate={props.startingDate}
+      allCategoriesList={props.allCategoriesList}
     />
   );
 };

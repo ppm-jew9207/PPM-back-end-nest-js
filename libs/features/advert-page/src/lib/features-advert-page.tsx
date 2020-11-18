@@ -23,13 +23,15 @@ export const FeaturesAdvertPage = () => {
           description={advert.description}
           creator={advert.creator.name}
           image={advert.imageUrl}
-          categories={[{ title: advert.category, value: advert.category }]}
+          categories={[]}
+          allCategoriesList={[]}
           onGetStartedClick={onGetStartedClick}
           getStartedButtonText="Get Started"
         />
         <SharedAdvertDetails
           learnItems={advert.programmingLanguages}
           preRequisites={advert.preRequisites}
+          allLearnItemsList={advert.allLearnItems}
         />
         <SharedLessonsAccordion
           lessonsDescription={advert.lessonsDescription}

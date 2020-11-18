@@ -9,6 +9,7 @@ import moment from 'moment';
 import './shared-advert-info.scss';
 
 interface Category {
+  _id: string;
   title: string;
   value: string;
 }
@@ -18,7 +19,8 @@ export interface SharedAdvertInfoProps {
   description: string;
   creator: string;
   image: string;
-  categories?: Category[];
+  categories?: string[];
+  allCategoriesList: Category[];
   getStartedButtonText: string;
   onGetStartedClick: () => void;
   startingDate?: string;
@@ -59,15 +61,14 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             >
               Categories
             </Typography>
-            {/* { categories } */}
-            {props.categories &&
-              props.categories.map((category, i) => {
-                return (
+            {props.allCategoriesList.map((category: Category, i) => {
+                return  (
+                  props.categories.includes(category._id) &&
                   <Chip
                     className="chip-tag"
                     variant="outlined"
                     label={category.title}
-                    key={category.value}
+                    key={category._id}
                   />
                 );
               })}

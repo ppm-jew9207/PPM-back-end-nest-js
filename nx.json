@@ -202,6 +202,9 @@
     "shared-list-editor-e2e": {
       "tags": [],
       "implicitDependencies": ["shared-list-editor"]
+    },
+    "data-access-learn-items": {
+      "tags": []
     }
   },
   "affected": {

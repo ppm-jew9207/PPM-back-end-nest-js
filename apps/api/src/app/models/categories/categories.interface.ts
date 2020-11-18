@@ -1,8 +1,8 @@
 import { Document } from 'mongoose';
 export interface CategoryPayload {
   id?: string;
-  title: string;
-  value: string;
+  title?: string;
+  value?: string;
 }
 
 export interface CategoryRef {
