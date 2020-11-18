@@ -9,7 +9,6 @@ import { action } from '@storybook/addon-actions';
 export default {
   component: SharedCreateAdvertForm,
   title: 'SharedCreateAdvertForm',
-  decorators: [withKnobs],
 };
 
 export const primary = () => {
@@ -25,10 +24,35 @@ export const primary = () => {
       categoryInputLabel: 'Category',
     },
     categories: [
-      { title: 'Category A', value: 'category-a', _id: 'as3dg432af' },
-      { title: 'Category B', value: 'category-b', _id: 'as33dg4432af' },
+      { title: 'Category A', value: 'category-a', _id: 'as3dg432af', checked: false, },
+      { title: 'Category B', value: 'category-b', _id: 'as33dg4432af', checked: false, },
     ],
-  };
-
+    lesson: [
+      {
+        title: 'Create React Component',
+        _id: 'gfsgsffa',
+        datetime: '2021-09-22T17:09',
+        checked: false,
+      },
+      {
+        title: 'Create React Library',
+        _id: 'gfsgsffb',
+        datetime: '2021-10-22T17:09',
+        checked: false,
+      },
+      {
+        title: 'Create React Feature',
+        _id: 'gfsgsffc',
+        datetime: '2021-11-22T17:09',
+        checked: false,
+      },
+      {
+        title: 'Create React Beat',
+        _id: 'gfsgsffcd',
+        datetime: '2021-11-22T17:09',
+        checked: false,
+      },
+    ],
+  }
   return <SharedCreateAdvertForm {...props} />;
 };
