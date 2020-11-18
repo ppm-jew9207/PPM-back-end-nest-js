@@ -18,13 +18,13 @@ export const FeaturesAdverts = () => {
   useEffect(() => {
     dispatch(advertsActions.getAll());
   }, []);
-  // if (loading) return <CircularProgress />;
-  // if (adverts && !adverts.length)
-  //   return <div className="no-items">No adverts added...</div>;
+  if (loading) return <CircularProgress />;
+
+  if (!adverts) return <div className="no-items">No adverts added...</div>;
 
   return (
     <div className="advert-cards">
-      {adverts.map((advert, i) => (
+      {adverts.map((advert) => (
         <div key={advert._id}>
           <SharedAdvertCard
             title={advert.title}

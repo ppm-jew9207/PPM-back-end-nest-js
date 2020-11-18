@@ -15,6 +15,7 @@ describe(' FeaturesAdverts', () => {
   storeMock = configureStoreMock({
     adverts: [
       {
+        _id: '1111111111',
         title: 'TitleName',
         description: 'That is wonderful lesson',
         creator: {
@@ -38,10 +39,34 @@ describe(' FeaturesAdverts', () => {
     jest
       .spyOn(redux, 'useDispatch')
       .mockImplementation(() => storeMock.dispatch);
-    component = shallow(<FeaturesAdverts />);
   });
 
-  it('should render successfully', () => {
+  it('render component succesfully', () => {
+    component = shallow(<FeaturesAdverts />);
+    expect(component).toBeTruthy();
+  });
+
+  it('finds loading', () => {
+    storeMock = configureStoreMock({
+      adverts: null,
+      loading: true,
+    });
+    component = shallow(<FeaturesAdverts />);
+    expect(component).toBeTruthy();
+  });
+
+  it('shows that there no adverts', () => {
+    storeMock = configureStoreMock({
+      adverts: [],
+      loading: false,
+    });
+    component = shallow(<FeaturesAdverts />);
+    expect(component).toBeTruthy();
+  });
+
+  it('shows error when adverts are null', () => {
+    storeMock = configureStoreMock({});
+    component = shallow(<FeaturesAdverts />);
     expect(component).toBeTruthy();
   });
 });
