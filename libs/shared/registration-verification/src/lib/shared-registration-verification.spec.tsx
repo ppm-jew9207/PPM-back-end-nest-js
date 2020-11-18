@@ -12,9 +12,9 @@ describe(' SharedRegistrationVerification', () => {
     <SharedRegistrationVerification
       code={code}
       informationTitle={informationTitle}
-      onSubmit={(e) => console.log(e)}
-      onCancel={() => console.log('void')}
-      resendVerification={() => console.log('void')}
+      onSubmit={() => jest.fn()}
+      onCancel={() => jest.fn()}
+      resendVerification={() => jest.fn()}
     />);
     expect(result).toBeTruthy();
   });
