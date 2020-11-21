@@ -17,17 +17,16 @@ export const FeaturesAdverts = () => {
 
   useEffect(() => {
     dispatch(advertsActions.getAll());
-  }, [dispatch]);
+  }, []);
   if (loading) return <CircularProgress />;
 
-  if(adverts && !adverts.length) return <div className="no-items">No adverts added...</div>
+  if (!adverts) return <div className="no-items">No adverts added...</div>;
 
   return (
     <div className="advert-cards">
-      {adverts.map((advert, i) => {
-        return (
+      {adverts.map((advert) => (
+        <div key={advert._id}>
           <SharedAdvertCard
-            key={advert._id}
             title={advert.title}
             author={{
               _id: advert.creator._id,
@@ -43,8 +42,8 @@ export const FeaturesAdverts = () => {
             shared={0}
             imgUrl={advert.imageUrl}
           />
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 };
