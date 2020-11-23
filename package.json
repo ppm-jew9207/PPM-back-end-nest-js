@@ -108,6 +108,7 @@
     "@nrwl/workspace": "10.3.1",
     "@storybook/addon-knobs": "^6.0.21",
     "@storybook/react": "^6.0.21",
+    "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "10.4.1",
     "@types/jest": "26.0.8",
     "@types/mongoose": "^5.7.23",
@@ -135,6 +136,7 @@
     "ts-jest": "26.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "4.0.3"
+    "typescript": "4.0.3",
+    "url-loader": "^3.0.0"
   }
 }

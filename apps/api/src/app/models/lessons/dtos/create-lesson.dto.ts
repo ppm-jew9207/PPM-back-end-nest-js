@@ -13,4 +13,8 @@ export class CreateLessonPayloadDto {
   public readonly connectionUrl: string;
   @ApiProperty()
   public readonly imageUrl?: string;
+  @ApiProperty()
+  public readonly categories?: string[];
+  @ApiProperty()
+  public readonly learnItems?: string[];
 }
