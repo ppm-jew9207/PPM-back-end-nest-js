@@ -267,34 +267,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               margin="normal"
             >
               <InputLabel id="category-label">Categories</InputLabel>
-
-
-              {/* <Select
-                name="category"
-                labelId="category-label"
-                id="category"
-                inputRef={register({
-                  required: 'Required',
-                })}
-                // value={
-                //   (advert && advert.category) ||
-                //   (categories[0] && categories[0].value) ||
-                //   ''
-                // }
-                // onChange={(event: React.ChangeEvent<{ value: string }>) => {
-                //   setValue('category', event.target.value);
-                //   setAdvert({ ...advert, category: event.target.value });
-                // }}
-              >
-                {!!categories &&
-                  categories.map((category) => {
-                    return (
-                      <MenuItem key={category._id} value={category.value}>
-                        {category.title}
-                      </MenuItem>
-                    );
-                  })}
-              </Select> */}
               <div className="categories__wrapper">
                 {!!categories && props.lesson.categories.map( categoryId => {
                   const category = categories.filter(item => {
@@ -308,16 +280,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                 })
                 }
                  <Fab className="categories__item"  variant="extended" style={{ color: '#fff', background: green[600] }} ><AddIcon /></Fab>
-               
-                
-                {/* {props.categories && props.categories.length > 0 && props.lesson.categories.map( categoryId => {
-                  console.log(categoryId, categories);
-                  const category = categories.filter(item => item._id == categoryId)[0];
-                  return (
-                    <Fab className="categories__item" variant="extended">{category.title}<ClearIcon /></Fab>
-                  );
-                })} */}
-                
               </div>
             </FormControl>
           }
