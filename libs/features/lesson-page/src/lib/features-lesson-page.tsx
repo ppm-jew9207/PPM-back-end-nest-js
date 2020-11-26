@@ -38,7 +38,7 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
         allLearnItemsList={allLearnItemsList}
       />
       <SharedLessonsAccordion
-        lessons={lessons}
+        lessons={lessons.filter(lesson => lesson._id !== props.match.params.id)}
         accordionTitle={accordionTitle}
       />
     </div>

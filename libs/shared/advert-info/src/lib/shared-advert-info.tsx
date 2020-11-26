@@ -77,9 +77,9 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             <p className="starting-date" style={{ display: props.startingDate ? 'inherit' : 'none' }}><span>Lesson starts:</span> { props.startingDate && moment(props.startingDate).format('LLLL')}</p>
             <Button
               className="get-started"
-              variant="outlined"
-              color="secondary"
+              variant="contained"
               onClick={props.onGetStartedClick}
+              
             >
               {props.getStartedButtonText}
             </Button>

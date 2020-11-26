@@ -19,12 +19,7 @@ export const primary = () => {
       'image',
       'https://c402277.ssl.cf1.rackcdn.com/photos/14875/images/magazine_hero/Medium_WW248926.jpg?1513623521'
     ),
-    categories: [
-      { _id: 'dfasdf', title: 'Programming', value: 'prog' },
-      { _id: 'sadfdf', title: 'Javascript', value: 'js' },
-      { _id: 'sdfasdf', title: 'React', value: 'react' },
-      { _id:'ddsaf', title: 'Web Development', value: 'web' },
-    ],
+    categories: [ 'fasfw2342fadf', '23423faf23423', 'f234qfasf2342' ],
     allCategoriesList: [
       { _id: 'dfasdf', title: 'Programming', value: 'prog' },
       { _id: 'sadfdf', title: 'Javascript', value: 'js' },
