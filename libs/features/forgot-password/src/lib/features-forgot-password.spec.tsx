@@ -1,11 +1,37 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import configureStore from 'redux-mock-store';
+import * as redux from 'react-redux';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import FeaturesForgotPassword from './features-forgot-password';
 
-describe('FeaturesForgotPassword', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<FeaturesForgotPassword />);
-    expect(baseElement).toBeTruthy();
+Enzyme.configure({ adapter: new Adapter() });
+
+describe(' FeaturesAdverts', () => {
+  let storeMock;
+  let component;
+  const configureStoreMock = configureStore();
+
+  storeMock = configureStoreMock({
+    isLogged: false,
+    loading: false,
+    step: 0,
+    loadingStep: false,
+  });
+
+  const mockHistory = jest.fn();
+
+  beforeEach(() => {
+    jest
+      .spyOn(redux, 'useSelector')
+      .mockImplementation(() => storeMock.getState());
+    jest
+      .spyOn(redux, 'useDispatch')
+      .mockImplementation(() => storeMock.dispatch);
+  });
+
+  it('render successfully', () => {
+    component = shallow(<FeaturesForgotPassword />);
+    expect(component).toBeTruthy();
   });
 });
