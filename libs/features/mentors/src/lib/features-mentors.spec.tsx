@@ -1,11 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import FeaturesMentors from './features-mentors';
 
-describe(' FeaturesMentors', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<FeaturesMentors />);
-    expect(baseElement).toBeTruthy();
+Enzyme.configure({ adapter: new Adapter() });
+
+describe(' FeaturesAdverts', () => {
+  it('render successfully', () => {
+    const component = shallow(<FeaturesMentors />);
+    expect(component).toBeTruthy();
   });
 });
