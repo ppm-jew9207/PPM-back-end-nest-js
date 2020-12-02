@@ -37,7 +37,7 @@ export const SharedModal = (props: SharedModalProps) => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className="modal"
-        open={open}
+        open={open ? open : false}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{ timeout: 500 }}
