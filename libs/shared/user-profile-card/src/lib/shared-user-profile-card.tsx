@@ -77,8 +77,8 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
           </Typography>
         )}
         <CardActions>
-          {props.socialLinks &&
-            props.socialLinks.length > 0 &&
+          {!!props.socialLinks &&
+            !!props.socialLinks.length &&
             props.socialLinks.map((socialLink) => (
               <IconButton
                 key={socialLink.icon}
