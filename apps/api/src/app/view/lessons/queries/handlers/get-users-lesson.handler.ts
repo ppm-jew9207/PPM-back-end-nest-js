@@ -8,7 +8,7 @@ export class GetUsersLessonQuery {
 }
 
 @QueryHandler(GetUsersLessonQuery)
-export class GetLessonHandler implements IQueryHandler<GetUsersLessonQuery> {
+export class GetUsersLessonHandler implements IQueryHandler<GetUsersLessonQuery> {
   @Inject() private readonly _lessonsViewService: LessonsModelService;
 
   async execute({ userId, id }: GetUsersLessonQuery): Promise<LessonsViewModel> {

@@ -28,7 +28,6 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
         creator={creator}
         image={image}
         categories={categories}
-        allCategoriesList={allCategoriesList}
         getStartedButtonText={actionButtonText}
         onGetStartedClick={onAction}
         startingDate={startingDate}

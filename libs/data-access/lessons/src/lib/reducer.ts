@@ -93,7 +93,7 @@ export function lessonsReducer(
     case ActionTypes.LESSON_GET_BY_ID_SUCCESS: 
       return {
         list: state.list,
-        lesson: action.payload.lesson,
+        lesson: action.payload.lesson[0],
         loading: false,
       };
     case ActionTypes.LESSON_GET_BY_ID_FAILED:
