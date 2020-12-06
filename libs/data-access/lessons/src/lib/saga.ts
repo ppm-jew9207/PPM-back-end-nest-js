@@ -103,10 +103,10 @@ export function* getLessonById(actions) {
     if (!result) {
       yield put(getAllFailed(null));
     }
-
+    
     yield put(
       getByIdSuccess({
-        lesson: result,
+        lesson: result[0],
         loading: false,
       })
     );
