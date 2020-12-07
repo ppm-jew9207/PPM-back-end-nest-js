@@ -12,15 +12,17 @@ const data = [
   { _id: 'F', name: 'F' },
 ];
 
-const cities = ['Vilnius','Kaunas', 'Klaipėda'];
+const cities = ['Vilnius', 'Kaunas', 'Klaipėda'];
 
-const countries = ['Lithuania', 'Latvia','Estonia'];
+const countries = ['Lithuania', 'Latvia', 'Estonia'];
+
+const onSubmit = jest.fn();
 
 describe(' SharedProfileForm', () => {
   it('should render successfully', () => {
     const result = render(
       <SharedProfileForm
-        onSubmit={(e) => console.log(e)}
+        onSubmit={onSubmit}
         categories={data}
         cities={cities}
         countries={countries}
