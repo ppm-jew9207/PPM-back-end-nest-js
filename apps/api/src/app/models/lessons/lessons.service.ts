@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Types } from 'mongoose';
 
 import { ViewModels } from '../../helpers/constants';
+
 import {
   LessonsViewModel,
   CreateLessonPayload,
@@ -17,19 +18,115 @@ export class LessonsModelService {
   >;
 
   async getAll(): Promise<LessonsViewModel[]> {
-    return this._model.find().exec();
+    return this._model.aggregate([
+        {
+          $match:  { _id : {$exists: true} },    
+        },
+        {
+          $lookup: {
+            let: {
+              categoriesData: `$categories`
+            },
+            from: "categories",
+            pipeline: [
+              {
+                $match: {
+                  $expr: {$and: [
+                    {$in: [{
+                    $toString: "$_id"
+                  }, {$ifNull :['$$categoriesData',[]]}]}
+                  ]}
+                }
+              }
+            ],
+            as: "categories"
+          }
+        }
+    ]).exec();
   }
 
   async getByUserId(id: string): Promise<LessonsViewModel[]> {
-    return this._model.find({ 'creator._id': id }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": id },    
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      }
+    ]).exec();
   }
 
   async getById(id: string): Promise<LessonsViewModel> {
-    return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id: Types.ObjectId(id)    },    
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      }
+  ]).exec();
   }
 
   async getUsersLessonById(userId: string, id: string): Promise<LessonsViewModel> {
-    return this._model.findOne({ 'creator._id': Types.ObjectId(userId),  _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      }
+    ]).exec();
   }
 
   async create(id: string, data: CreateLessonPayload) {

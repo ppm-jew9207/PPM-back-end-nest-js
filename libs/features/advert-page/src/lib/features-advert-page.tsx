@@ -23,8 +23,7 @@ export const FeaturesAdvertPage = () => {
           description={advert.description}
           creator={advert.creator.name}
           image={advert.imageUrl}
-          categories={['5fb435268c5cd8aed4ee2591', '5fb435488c5cd8aed4ee2592']}
-          allCategoriesList={[]}
+          categories={advert.categories}
           onGetStartedClick={onGetStartedClick}
           getStartedButtonText="Get Started"
         />

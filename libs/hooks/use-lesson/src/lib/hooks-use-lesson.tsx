@@ -58,6 +58,7 @@ export function useLesson(history: History, id: string) {
       for (let i = 0; i < 6; i++) {
         if (lessons[i]) {
           tempArray.push({ 
+            _id: lessons[i]._id,
             title: lessons[i].title, 
             authorName: lessons[i].creator.name, 
             image: lessons[i].imageUrl 
