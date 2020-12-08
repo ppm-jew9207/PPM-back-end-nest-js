@@ -19,7 +19,7 @@ export interface SharedAdvertInfoProps {
   description: string;
   creator: string;
   image: string;
-  categories?: string[];
+  categories: Category[];
   allCategoriesList: Category[];
   getStartedButtonText: string;
   onGetStartedClick: () => void;
@@ -63,7 +63,7 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             </Typography>
             {props.allCategoriesList.map((category: Category, i) => {
                 return  (
-                  props.categories.includes(category._id) &&
+                  // props.categories.includes(category._id) &&
                   <Chip
                     className="chip-tag"
                     variant="outlined"

@@ -3,6 +3,7 @@ import { useHistory, RouteComponentProps, RouteProps } from 'react-router-dom';
 import {
   SharedCreateAdvertForm,
   AdvertData,
+  SharedCreateAdvertFormProps,
 } from '@ppm/shared/create-advert-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -52,48 +53,53 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<RouteInfo>) => {
   };
 
   const createContent = {
-    onSubmit: create,
+    onSubmit: update,
     onCancel: redirect,
     data: {
-      title: 'New advert',
-      submitButtonText: 'Create',
-      descriptionInputLabel: 'Description',
-      titleInputLabel: 'Title',
-      categoryInputLabel: 'Category',
-      cancelButtonText: 'Cancel',
+      id: advert.id,
+      title: advert.string,
+      description: advert.description,
+      advertImage: advert.FileList,
+      category: advert.category,
+      prerequisites: advert.prerequisites,
+      learning: advert.learning,
+      lessons: advert.lessons,
     },
-    categories,
+    categories: categories,
+    advert,
   };
 
   const editContent = {
     onSubmit: update,
     onCancel: redirect,
     data: {
-      title: 'Edit advert',
-      submitButtonText: 'Update',
-      descriptionInputLabel: 'Description',
-      titleInputLabel: 'Title',
-      categoryInputLabel: 'Category',
-      cancelButtonText: 'Cancel',
+      id: advert.id,
+      title: advert.string,
+      description: advert.description,
+      advertImage: advert.FileList,
+      category: advert.category,
+      prerequisites: advert.prerequisites,
+      learning: advert.learning,
+      lessons: advert.lessons,
     },
     categories: categories,
     advert,
   };
 
-  const [content, setContent] = useState(createContent);
+  const [content, setContent] = useState<SharedCreateAdvertFormProps>(createContent);
 
   useEffect(() => {
     props.match.path ===
       `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}/edit` &&
       dispatch(advertsActions.getById(props.match.params.id));
     dispatch(categoriesActions.getAll());
-  }, []);
+  }, [dispatch, props.match.params.id, props.match.path]);
 
   useEffect(() => {
-    advert && !!advert._id
+    advert
       ? setContent(editContent)
       : setContent(createContent);
-  }, [advert, categories]);
+  }, [advert, categories, editContent, createContent]);
 
   if (loading) return <CircularProgress />;
 
