@@ -7,8 +7,6 @@ export class CreateAdvertPayloadDto {
   @ApiProperty()
   public readonly description?: string;
   @ApiProperty()
-  public readonly category: string;
-  @ApiProperty()
   public readonly imageUrl?: string;
   @ApiProperty()
   public readonly programmingLanguages?: string[];
@@ -22,4 +20,8 @@ export class CreateAdvertPayloadDto {
   public readonly lessonsList?: string[];
   @ApiProperty()
   public readonly creator: UserRef;
+  @ApiProperty({ isArray: true, type: 'string' })
+  public readonly categories?: string[];
+  @ApiProperty({ isArray: true, type: 'string' })
+  public readonly learnItems?: string[];
 }

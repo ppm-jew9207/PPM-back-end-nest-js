@@ -28,9 +28,8 @@ export const FeaturesAdvertPage = () => {
           getStartedButtonText="Get Started"
         />
         <SharedAdvertDetails
-          learnItems={advert.programmingLanguages}
+          learnItems={advert.learnItems}
           preRequisites={advert.preRequisites}
-          allLearnItemsList={advert.allLearnItems}
         />
         <SharedLessonsAccordion
           lessonsDescription={advert.lessonsDescription}

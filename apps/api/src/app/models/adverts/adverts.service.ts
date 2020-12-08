@@ -17,19 +17,195 @@ export class AdvertsModelService {
   >;
 
   async getAll(): Promise<AdvertsViewModel[]> {
-    return this._model.find().exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id : {$exists: true}}   
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
+      }
+    ]).exec();
   }
 
   async getById(id: string): Promise<AdvertsViewModel> {
-    return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id: Types.ObjectId(id) },    
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
+      }
+    ]).exec();
   }
 
   async getByUserId(id: string): Promise<AdvertsViewModel[]> {
-    return this._model.find({ 'creator._id': Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": id },    
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
+      }
+    ]).exec();
   }
 
   async getUsersAdvertById(userId: string, id: string): Promise<AdvertsViewModel> {
-    return this._model.findOne({ 'creator._id': Types.ObjectId(userId),  _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
+      },
+      {
+        $lookup: {
+          let: {
+            categoriesData: "$categories"
+          },
+          from: "categories",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$categoriesData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "categories"
+        }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
+      }
+    ]).exec();
   }
 
   async create(id: string, data: CreateAdvertPayload) {

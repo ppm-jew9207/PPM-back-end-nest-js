@@ -41,6 +41,26 @@ export class LessonsModelService {
             ],
             as: "categories"
           }
+        },
+        {
+          $lookup: {
+            let: {
+              learnItemsData: "$learnItems"
+            },
+            from: "learnItems",
+            pipeline: [
+              {
+                $match: {
+                  $expr: {$and: [
+                    {$in: [{
+                     $toString: "$_id"
+                   }, {$ifNull :['$$learnItemsData',[]]}]}
+                  ]}
+                }
+              }
+            ],
+            as: "learnItems"
+          }
         }
     ]).exec();
   }
@@ -69,6 +89,26 @@ export class LessonsModelService {
           ],
           as: "categories"
         }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
       }
     ]).exec();
   }
@@ -76,7 +116,7 @@ export class LessonsModelService {
   async getById(id: string): Promise<LessonsViewModel> {
     return this._model.aggregate([
       {
-        $match:  { _id: Types.ObjectId(id)    },    
+        $match:  { _id: Types.ObjectId(id) },    
       },
       {
         $lookup: {
@@ -97,8 +137,28 @@ export class LessonsModelService {
           ],
           as: "categories"
         }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
+        }
       }
-  ]).exec();
+    ]).exec();
   }
 
   async getUsersLessonById(userId: string, id: string): Promise<LessonsViewModel> {
@@ -124,6 +184,26 @@ export class LessonsModelService {
             }
           ],
           as: "categories"
+        }
+      },
+      {
+        $lookup: {
+          let: {
+            learnItemsData: "$learnItems"
+          },
+          from: "learnItems",
+          pipeline: [
+            {
+              $match: {
+                $expr: {$and: [
+                  {$in: [{
+                   $toString: "$_id"
+                 }, {$ifNull :['$$learnItemsData',[]]}]}
+                ]}
+              }
+            }
+          ],
+          as: "learnItems"
         }
       }
     ]).exec();

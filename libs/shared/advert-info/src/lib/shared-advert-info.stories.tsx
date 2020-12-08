@@ -42,7 +42,6 @@ export const primary = () => {
       onGetStartedClick={props.onGetStartedClick}
       getStartedButtonText={props.getStartedButtonText}
       startingDate={props.startingDate}
-      allCategoriesList={props.allCategoriesList}
     />
   );
 };
