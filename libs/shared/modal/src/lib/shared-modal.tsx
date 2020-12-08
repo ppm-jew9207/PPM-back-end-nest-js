@@ -20,7 +20,11 @@ export interface SharedModalProps {
 }
 
 export const SharedModal = (props: SharedModalProps) => {
-  const [open, setOpen] = useState<boolean>(props.isModal);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(props.isModal);
+  }, []);
 
   useEffect(() => {
     setOpen(props.isModal);
@@ -37,7 +41,7 @@ export const SharedModal = (props: SharedModalProps) => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className="modal"
-        open={open ? open : false}
+        open={open}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{ timeout: 500 }}
