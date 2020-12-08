@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import './shared-list-editor.scss';
-import { Close as CloseIcon, Menu as MenuIcon, Clear as ClearIcon, CheckRounded } from '@material-ui/icons';
-import { Drawer, Typography, IconButton, Fab , Box, Checkbox, TextField, Button} from '@material-ui/core';
+import {
+  Close as CloseIcon,
+  Menu as MenuIcon,
+  Clear as ClearIcon,
+  CheckRounded,
+} from '@material-ui/icons';
+import {
+  Drawer,
+  Typography,
+  IconButton,
+  Fab,
+  Box,
+  Checkbox,
+  TextField,
+  Button,
+} from '@material-ui/core';
 
 /* eslint-disable-next-line */
 export interface SharedListEditorProps {
@@ -11,17 +25,24 @@ export interface SharedListEditorProps {
 }
 
 export interface ListItem {
-  value: string,
-  title: string
-};
+  value: string;
+  title: string;
+}
 
 export const SharedListEditor = (props: SharedListEditorProps) => {
   const [isMenuOpen, setMenuOpen] = useState(true);
-  const fullList:ListItem[] = [{ value: 'belekas', title: 'belekas'}, { value: 'ragas', title: 'ragas'}];
+  const fullList: ListItem[] = [
+    { value: 'belekas', title: 'belekas' },
+    { value: 'ragas', title: 'ragas' },
+  ];
 
-  const [ selectedList, setSelectedList ] = useState([{ value: 'belekas', title: 'belekas'}]);
-  const [ excludedList, setExcludedList ] = useState([{ value: 'ragas', title: 'ragas'}]);
-  const [ newItem, setNewItem ] = useState({ value: '', title: ''});
+  const [selectedList, setSelectedList] = useState([
+    { value: 'belekas', title: 'belekas' },
+  ]);
+  const [excludedList, setExcludedList] = useState([
+    { value: 'ragas', title: 'ragas' },
+  ]);
+  const [newItem, setNewItem] = useState({ value: '', title: '' });
 
   const handleChange = (index: number) => {
     const tempSelectedList = [...selectedList];
@@ -47,13 +68,12 @@ export const SharedListEditor = (props: SharedListEditorProps) => {
 
   const { handleSubmit, register, control, errors, setValue } = useForm();
 
-
   return (
     <div>
       <Drawer
         open={isMenuOpen}
         anchor="right"
-        onClose={ () => toggleDrawer(false) }
+        onClose={() => toggleDrawer(false)}
       >
         <div className="list-menu">
           <IconButton
@@ -64,51 +84,80 @@ export const SharedListEditor = (props: SharedListEditorProps) => {
           </IconButton>
         </div>
         <Box px={3}>
-          <form  autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+          <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
             <div className="input-wrapper">
-              <TextField 
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="title"
-              label="New item"
-              type="text"
-              name="title"
-              autoComplete="title"
-              autoFocus
-              value={newItem && newItem.title}
-              onChange={(event) =>
-                setNewItem({ ...newItem, title: event.target.value, value: event.target.value.replace(/[^a-z0-9]/gi, '_') })
-              }
-              inputRef={register({
-                required: 'Required',
-              })}
-              multiline
-              rows={1}
-              className="item__title"
-            />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              type="submit"
-              className="submit-form"
-            >
-              Add
-            </Button></div>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="title"
+                label="New item"
+                type="text"
+                name="title"
+                autoComplete="title"
+                autoFocus
+                value={newItem && newItem.title}
+                onChange={(event) =>
+                  setNewItem({
+                    ...newItem,
+                    title: event.target.value,
+                    value: event.target.value.replace(/[^a-z0-9]/gi, '_'),
+                  })
+                }
+                inputRef={register({
+                  required: 'Required',
+                })}
+                multiline
+                rows={1}
+                className="item__title"
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+                className="submit-form"
+              >
+                Add
+              </Button>
+            </div>
           </form>
         </Box>
         <Box px={3}>
-        <Typography  variant="h5" component="h3">Selected</Typography>
-          { selectedList.map( (item, index) => <Fab className="list__item"  size="small"  variant="extended">{item.title}<ClearIcon  onClick={() => handleRemove(index)} /></Fab>)}
+          <Typography variant="h5" component="h3">
+            Selected
+          </Typography>
+          {selectedList.map((item, index) => (
+            <Fab
+              key={item.value}
+              className="list__item"
+              size="small"
+              variant="extended"
+            >
+              {item.title}
+              <ClearIcon onClick={() => handleRemove(index)} />
+            </Fab>
+          ))}
         </Box>
         <Box px={3}>
-        <Typography  variant="h5" component="h3">Unselected</Typography>
-          { excludedList.map( (item, index) => <Fab className="list__item"  size="small"  variant="extended">
-            {item.title}<Checkbox
-              checked={false}
-              onChange={() => handleChange(index)}
-              inputProps={{ 'aria-label': 'primary checkbox' }}/></Fab>)}
+          <Typography variant="h5" component="h3">
+            Unselected
+          </Typography>
+          {excludedList.map((item, index) => (
+            <Fab
+              key={item.value}
+              className="list__item"
+              size="small"
+              variant="extended"
+            >
+              {item.title}
+              <Checkbox
+                checked={false}
+                onChange={() => handleChange(index)}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+            </Fab>
+          ))}
         </Box>
       </Drawer>
     </div>

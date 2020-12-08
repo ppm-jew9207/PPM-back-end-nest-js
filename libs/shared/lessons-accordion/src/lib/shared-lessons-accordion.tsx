@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 
 interface Lesson {
+  _id: string;
   title: string;
   authorName: string;
   image: string;

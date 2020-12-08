@@ -19,8 +19,12 @@ export interface SharedAdvertInfoProps {
   description: string;
   creator: string;
   image: string;
+<<<<<<< HEAD
   categories: Category[];
   allCategoriesList: Category[];
+=======
+  categories?: Category[];
+>>>>>>> e1582c4340952f99400aad0270bfce5c7e9566b6
   getStartedButtonText: string;
   onGetStartedClick: () => void;
   startingDate?: string;
@@ -61,9 +65,12 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             >
               Categories
             </Typography>
-            {props.allCategoriesList.map((category: Category, i) => {
+            {props.categories.map((category: Category) => {
                 return  (
+<<<<<<< HEAD
                   // props.categories.includes(category._id) &&
+=======
+>>>>>>> e1582c4340952f99400aad0270bfce5c7e9566b6
                   <Chip
                     className="chip-tag"
                     variant="outlined"
@@ -77,9 +84,9 @@ export const SharedAdvertInfo = (props: SharedAdvertInfoProps) => {
             <p className="starting-date" style={{ display: props.startingDate ? 'inherit' : 'none' }}><span>Lesson starts:</span> { props.startingDate && moment(props.startingDate).format('LLLL')}</p>
             <Button
               className="get-started"
-              variant="outlined"
-              color="secondary"
+              variant="contained"
               onClick={props.onGetStartedClick}
+              
             >
               {props.getStartedButtonText}
             </Button>
