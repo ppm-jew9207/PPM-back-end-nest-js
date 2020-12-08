@@ -20,7 +20,11 @@ export interface SharedModalProps {
 }
 
 export const SharedModal = (props: SharedModalProps) => {
-  const [open, setOpen] = useState<boolean>(props.isModal);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(props.isModal);
+  }, []);
 
   useEffect(() => {
     setOpen(props.isModal);
