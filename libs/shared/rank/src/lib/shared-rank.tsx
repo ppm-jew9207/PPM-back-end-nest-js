@@ -40,7 +40,7 @@ export const SharedRank = (props: SharedRankProps) => {
       <Rating
         disabled={rank.isRanked}
         name="hover-feedback"
-        value={rank.value ? rank.value : null}
+        value={rank.value || null}
         precision={0.5}
         onChange={handleChange}
       />
