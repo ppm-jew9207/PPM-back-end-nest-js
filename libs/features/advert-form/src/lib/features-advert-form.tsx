@@ -53,7 +53,7 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<RouteInfo>) => {
   };
 
   const createContent = {
-    onSubmit: update,
+    onSubmit: create,
     onCancel: redirect,
     data: {
       id: advert.id,
