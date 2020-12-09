@@ -18,7 +18,18 @@ import {
   ArrowRight as ArrowRightIcon,
   SystemUpdateAlt as SystemUpdateAltIcon
 } from '@material-ui/icons';
+import { title } from 'process';
 
+export interface Labels {
+  title: 'New advert',
+  submitButtonText: 'Create',
+  cancelButtonText: 'Cancel',
+  descriptionInputLabel: 'Description',
+  titleInputLabel: 'New Advert',
+  categoryInputLabel: 'Category',
+  prerequisitesInputLabel: 'Pre-requisites',
+  learningInputLabel: 'What to learn',
+}
 export interface Category {
   title: string;
   value: string;
@@ -71,6 +82,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [selectedLessonValue, setSelectedLessonValue] = useState([]);
   const [openCategory, setCategoryOpen] = useState(false);
   const [selectedCategoryValue, setSelectedCategoryValue] = useState([]);
+  const [labels, setLabels] = useState<Labels>();
 
   useEffect(() => {
     !categories.length && setCategories(props.categories);
@@ -202,7 +214,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form">
       <Typography className="header" component="h1" variant="h5">
-        {props.data.title}
+        {labels.title}
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(createAdvertHandler)}>
         <div className="inner-container">
@@ -245,7 +257,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label='Title'
+              label={labels.titleInputLabel}
               type="text"
               className="header"
               onChange={(event) =>
@@ -270,7 +282,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label='Description'
+              label={labels.categoryInputLabel}
               type="text"
               className="description"
               onChange={(event) =>
@@ -297,7 +309,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label='Prerequisites'
+              label={labels.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
               onChange={(event) =>
@@ -324,7 +336,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="What to learn"
+              label={labels.learningInputLabel}
               type="text"
               className="learning"
               onChange={(event) =>
@@ -416,7 +428,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          Submit
+          {labels.submitButtonText}
         </Button>
         <Button
           fullWidth
@@ -426,7 +438,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="cancel-form"
           onClick={props.onCancel}
         >
-          Cancel
+          {labels.cancelButtonText}
         </Button>
       </form>
     </Box>

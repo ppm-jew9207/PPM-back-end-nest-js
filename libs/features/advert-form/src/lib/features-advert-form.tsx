@@ -93,13 +93,13 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<RouteInfo>) => {
       `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}/edit` &&
       dispatch(advertsActions.getById(props.match.params.id));
     dispatch(categoriesActions.getAll());
-  }, [dispatch, props.match.params.id, props.match.path]);
+  }, []);
 
   useEffect(() => {
     advert
       ? setContent(editContent)
       : setContent(createContent);
-  }, [advert, categories, editContent, createContent]);
+  }, [editContent, createContent]);
 
   if (loading) return <CircularProgress />;
 
