@@ -53,7 +53,7 @@ export function useRegistration(history: History) {
           />
         );
       case 2:
-        return <FeaturesAuthorization history={history} />;
+        return <FeaturesAuthorization />;
       default:
         return 'Unknown stepIndex';
     }
