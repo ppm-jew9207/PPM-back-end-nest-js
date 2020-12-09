@@ -16,7 +16,6 @@ import {
 import './shared-login-component.scss';
 import { useForm } from 'react-hook-form';
 
-/* eslint-disable-next-line */
 export interface SharedLoginComponentProps {
   onLogin: (loginData: {
     email: string;
