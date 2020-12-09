@@ -12,6 +12,7 @@ interface Category {
   _id: string;
   title: string;
   value: string;
+  checked: boolean;
 }
 
 export interface SharedAdvertInfoProps {
@@ -19,7 +20,7 @@ export interface SharedAdvertInfoProps {
   description: string;
   creator: string;
   image: string;
-  categories?: Category[];
+  categories: Category[];
   getStartedButtonText: string;
   onGetStartedClick: () => void;
   startingDate?: string;
