@@ -2,6 +2,7 @@ import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Person from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
+import {Link} from 'react-router-dom';
 import { 
   Box, 
   Button, 
@@ -99,6 +100,11 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
                 Forgot Password?
               </Button>
             </Box>
+          </Box>
+          <Box py={0.5}>
+            <Link to="/registry">
+              Ragistration
+            </Link>
           </Box>
           <Grid container justify="center">
             <Button variant="contained" color="primary" type="submit" fullWidth>
