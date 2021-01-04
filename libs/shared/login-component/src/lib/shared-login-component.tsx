@@ -102,7 +102,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
           </Box>
           <Box py={0.5}>
             <Link to="/registry">
-              Ragistration
+              Registration
             </Link>
           </Box>
           <Grid container justify="center">
