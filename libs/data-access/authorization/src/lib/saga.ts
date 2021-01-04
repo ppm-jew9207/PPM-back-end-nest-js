@@ -15,6 +15,7 @@ export function* logIn(actions) {
       removeToken();
       throw new Error('Login failed, check your credentials!');
     }
+    saveToken(result.data.token.token);
 
     yield put(
       logInSuccess({
@@ -24,14 +25,14 @@ export function* logIn(actions) {
       })
     );
 
-    saveToken(result.data.token.token);
     yield put(
       snackbarActions.setMessage({
         variant: MessagesStatus.SUCCESS,
         message: 'Welcome to PPM.'
       })
     );
-    window.location.href = `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_ALL}`;
+
+    window.location.href = `/${PrivateRoutesPath.USER}`;  
   } catch (error) {
     yield put(logInFailed(error));
     yield put(
