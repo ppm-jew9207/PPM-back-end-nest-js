@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SharedProfileForm from './shared-profile-form';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const data = [
   { _id: 'A', name: 'A' },
@@ -12,15 +14,17 @@ const data = [
   { _id: 'F', name: 'F' },
 ];
 
-const cities = ['Vilnius','Kaunas', 'Klaipėda'];
+const cities = ['Vilnius', 'Kaunas', 'Klaipėda'];
 
-const countries = ['Lithuania', 'Latvia','Estonia'];
+const countries = ['Lithuania', 'Latvia', 'Estonia'];
+
+const onSubmit = jest.fn();
 
 describe(' SharedProfileForm', () => {
   it('should render successfully', () => {
-    const result = render(
+    const result = shallow(
       <SharedProfileForm
-        onSubmit={(e) => console.log(e)}
+        onSubmit={onSubmit}
         categories={data}
         cities={cities}
         countries={countries}

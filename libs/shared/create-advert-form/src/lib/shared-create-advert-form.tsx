@@ -18,16 +18,17 @@ import {
   ArrowRight as ArrowRightIcon,
   SystemUpdateAlt as SystemUpdateAltIcon
 } from '@material-ui/icons';
+import { title } from 'process';
 
-export interface AdvertDefaultParams {
-  title: string;
-  titleInputLabel: string;
-  descriptionInputLabel: string;
-  categoryInputLabel: string;
-  submitButtonText: string;
-  cancelButtonText: string;
-  prerequisitesInputLabel: string;
-  learningInputLabel: string;
+export interface Labels {
+  title: 'New advert',
+  submitButtonText: 'Create',
+  cancelButtonText: 'Cancel',
+  descriptionInputLabel: 'Description',
+  titleInputLabel: 'New Advert',
+  categoryInputLabel: 'Category',
+  prerequisitesInputLabel: 'Pre-requisites',
+  learningInputLabel: 'What to learn',
 }
 export interface Category {
   title: string;
@@ -54,7 +55,7 @@ export interface Advert {
 }
 
 export interface AdvertData {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   advertImage: FileList;
@@ -65,38 +66,29 @@ export interface AdvertData {
 }
 
 export interface SharedCreateAdvertFormProps {
-  onSubmit: (advertData: {
-    title: string;
-    description: string;
-    advertImage: FileList;
-    category: string;
-    prerequisites: string;
-    learning: string;
-    lesson: Lesson[];
-  }) => void;
+  onSubmit: (advertData: AdvertData) => void;
   onCancel: () => void;
-  data: AdvertDefaultParams;
+  data: AdvertData;
   categories: Category[];
   advert?: Advert;
-  lesson: Lesson[];
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [advert, setAdvert] = useState<Advert>();
-  const [lesson, setLesson] = useState<Lesson[]>([]);
+  const [lessons, setLesson] = useState<Lesson[]>([]);
   const [openLesson, setLessonOpen] = useState(false);
   const [selectedLessonValue, setSelectedLessonValue] = useState([]);
   const [openCategory, setCategoryOpen] = useState(false);
   const [selectedCategoryValue, setSelectedCategoryValue] = useState([]);
+  const [labels, setLabels] = useState<Labels>();
 
   useEffect(() => {
     !categories.length && setCategories(props.categories);
     !advert && setAdvert(props.advert);
-    !lesson.length && setLesson(props.lesson)
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
-  }, [props]);
+  }, [props, advert, categories.length, uploadedImg]);
 
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
@@ -109,7 +101,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   };
 
   function LessonDialog(props) {
-    const { open, onChange, options } = props;
+    const { open, options } = props;
     const [data, setData] = useState(options);
 
     const toggle = (les) => {
@@ -131,7 +123,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         open={open}
       >
         <List className="dialog-list">
-          {lesson.map((les) => (
+          {lessons.map((les) => (
             <section key={les._id}>
               <Controller
                 name={les.title}
@@ -161,7 +153,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   }
 
   function CategoryDialog(props) {
-    const { open, onChange, options } = props;  
+    const { open, options } = props;  
     const [data, setData] = useState(options);
 
     const toggle = (les) => {
@@ -222,7 +214,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form">
       <Typography className="header" component="h1" variant="h5">
-        {props.data.title}
+        {labels.title}
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(createAdvertHandler)}>
         <div className="inner-container">
@@ -243,6 +235,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               <img
                 className="files-preview-container__image"
                 src={(!!uploadedImg && uploadedImg.toString()) || ''}
+                alt=''
               />
             </div>
             <div className="helper-text">
@@ -264,7 +257,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.titleInputLabel}
+              label={labels.titleInputLabel}
               type="text"
               className="header"
               onChange={(event) =>
@@ -289,7 +282,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.descriptionInputLabel}
+              label={labels.categoryInputLabel}
               type="text"
               className="description"
               onChange={(event) =>
@@ -316,7 +309,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.prerequisitesInputLabel}
+              label={labels.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
               onChange={(event) =>
@@ -343,7 +336,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.learningInputLabel}
+              label={labels.learningInputLabel}
               type="text"
               className="learning"
               onChange={(event) =>
@@ -391,7 +384,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           <LessonDialog
             selectedValue={selectedLessonValue}
             open={openLesson}
-            options={!!lesson && lesson}
+            options={!!lessons && lessons}
             onClose={() => setLessonOpen(false)}
             name="lessons"
           />
@@ -435,7 +428,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          {props.data.submitButtonText}
+          {labels.submitButtonText}
         </Button>
         <Button
           fullWidth
@@ -445,7 +438,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="cancel-form"
           onClick={props.onCancel}
         >
-          {props.data.cancelButtonText}
+          {labels.cancelButtonText}
         </Button>
       </form>
     </Box>

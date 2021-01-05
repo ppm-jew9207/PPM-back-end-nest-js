@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { useForm, Controller, ErrorMessage } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import {
   FormControl,
   TextField,
@@ -13,7 +13,7 @@ import {
   InputLabel,
   FormHelperText,
   Divider,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
@@ -44,8 +44,8 @@ export interface SharedProfileFormProps {
     instagram: string;
   }) => void;
   categories: EntityRef[];
-  cities: Array<string>;
-  countries: Array<string>;
+  cities: string[];
+  countries: string[];
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
@@ -68,7 +68,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const validateCategories = (value) => {
     return value.length > 0;
   };
-  
+
   return (
     <Grid container direction="column" className="profileForm">
       <form autoComplete="nope" onSubmit={handleSubmit(props.onSubmit)}>
@@ -195,6 +195,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         <Box my={3}>
           <Controller
             name="city"
+            defaultValue={[]}
             control={control}
             onChange={([, data]) => data}
             onInputChange={(data) => data}
@@ -203,13 +204,10 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                 id="city"
                 freeSolo
                 autoSelect
+                getOptionLabel={(option) => option}
                 options={props.cities}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    label="City"
-                    variant="outlined"
-                  />
+                renderInput={(params) => (
+                  <TextField {...params} label="City" variant="outlined" />
                 )}
               />
             }
@@ -217,22 +215,20 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <Controller
-          name="country"
-          control={control}
-          onChange={([, data]) => data}
-          onInputChange={(data) => data}
+            name="country"
+            control={control}
+            defaultValue={[]}
+            onChange={([, data]) => data}
+            onInputChange={(data) => data}
             as={
               <Autocomplete
                 id="country"
                 freeSolo
                 autoSelect
                 options={props.countries}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    label="Country"
-                    variant="outlined"
-                  />
+                getOptionLabel={(option) => option}
+                renderInput={(params) => (
+                  <TextField {...params} label="Country" variant="outlined" />
                 )}
               />
             }
@@ -272,7 +268,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Typography variant="overline" display="block" gutterBottom>
-        Social Links
+          Social Links
         </Typography>
         <Divider variant="middle" />
         <Box my={3}>

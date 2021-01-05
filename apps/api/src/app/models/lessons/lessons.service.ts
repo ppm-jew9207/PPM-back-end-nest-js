@@ -11,6 +11,46 @@ import {
   LessonPayload,
 } from './lessons.interface';
 
+const CATEGORIES_JOIN_QUERY = [{
+  $lookup: {
+    let: {
+      categoriesData: "$categories"
+    },
+    from: "categories",
+    pipeline: [
+      {
+        $match: {
+          $expr: {$and: [
+            {$in: [{
+             $toString: "$_id"
+           }, {$ifNull :['$$categoriesData',[]]}]}
+          ]}
+        }
+      }
+    ],
+    as: "categories"
+  }
+},
+{
+  $lookup: {
+    let: {
+      learnItemsData: "$learnItems"
+    },
+    from: "learnItems",
+    pipeline: [
+      {
+        $match: {
+          $expr: {$and: [
+            {$in: [{
+             $toString: "$_id"
+           }, {$ifNull :['$$learnItemsData',[]]}]}
+          ]}
+        }
+      }
+    ],
+    as: "learnItems"
+  }
+}];
 @Injectable()
 export class LessonsModelService {
   @InjectModel(ViewModels.LESSONS_VIEW) private _model!: Model<
@@ -22,46 +62,7 @@ export class LessonsModelService {
         {
           $match:  { _id : {$exists: true} },    
         },
-        {
-          $lookup: {
-            let: {
-              categoriesData: `$categories`
-            },
-            from: "categories",
-            pipeline: [
-              {
-                $match: {
-                  $expr: {$and: [
-                    {$in: [{
-                    $toString: "$_id"
-                  }, {$ifNull :['$$categoriesData',[]]}]}
-                  ]}
-                }
-              }
-            ],
-            as: "categories"
-          }
-        },
-        {
-          $lookup: {
-            let: {
-              learnItemsData: "$learnItems"
-            },
-            from: "learnItems",
-            pipeline: [
-              {
-                $match: {
-                  $expr: {$and: [
-                    {$in: [{
-                     $toString: "$_id"
-                   }, {$ifNull :['$$learnItemsData',[]]}]}
-                  ]}
-                }
-              }
-            ],
-            as: "learnItems"
-          }
-        }
+        ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -70,46 +71,7 @@ export class LessonsModelService {
       {
         $match:  { "creator._id": id },    
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -118,46 +80,7 @@ export class LessonsModelService {
       {
         $match:  { _id: Types.ObjectId(id) },    
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -166,46 +89,7 @@ export class LessonsModelService {
       {
         $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+
     ]).exec();
   }
 
