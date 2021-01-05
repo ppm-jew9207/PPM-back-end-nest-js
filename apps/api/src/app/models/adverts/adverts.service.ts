@@ -10,6 +10,47 @@ import {
 } from './adverts.interface';
 import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
 
+const CATEGORIES_JOIN_QUERY = [{
+  $lookup: {
+    let: {
+      categoriesData: "$categories"
+    },
+    from: "categories",
+    pipeline: [
+      {
+        $match: {
+          $expr: {$and: [
+            {$in: [{
+             $toString: "$_id"
+           }, {$ifNull :['$$categoriesData',[]]}]}
+          ]}
+        }
+      }
+    ],
+    as: "categories"
+  }
+},
+{
+  $lookup: {
+    let: {
+      learnItemsData: "$learnItems"
+    },
+    from: "learnItems",
+    pipeline: [
+      {
+        $match: {
+          $expr: {$and: [
+            {$in: [{
+             $toString: "$_id"
+           }, {$ifNull :['$$learnItemsData',[]]}]}
+          ]}
+        }
+      }
+    ],
+    as: "learnItems"
+  }
+}];
+
 @Injectable()
 export class AdvertsModelService {
   @InjectModel(ViewModels.ADVERTS_VIEW) private _model!: Model<
@@ -21,46 +62,7 @@ export class AdvertsModelService {
       {
         $match:  { _id : {$exists: true}}   
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -69,46 +71,7 @@ export class AdvertsModelService {
       {
         $match:  { _id: Types.ObjectId(id) },    
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -117,46 +80,7 @@ export class AdvertsModelService {
       {
         $match:  { "creator._id": id },    
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
@@ -165,46 +89,7 @@ export class AdvertsModelService {
       {
         $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
       },
-      {
-        $lookup: {
-          let: {
-            categoriesData: "$categories"
-          },
-          from: "categories",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$categoriesData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "categories"
-        }
-      },
-      {
-        $lookup: {
-          let: {
-            learnItemsData: "$learnItems"
-          },
-          from: "learnItems",
-          pipeline: [
-            {
-              $match: {
-                $expr: {$and: [
-                  {$in: [{
-                   $toString: "$_id"
-                 }, {$ifNull :['$$learnItemsData',[]]}]}
-                ]}
-              }
-            }
-          ],
-          as: "learnItems"
-        }
-      }
+      ...CATEGORIES_JOIN_QUERY
     ]).exec();
   }
 
