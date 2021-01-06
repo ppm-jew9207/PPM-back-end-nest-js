@@ -9,7 +9,7 @@ import {
   CreateAdvertPayload,
 } from './adverts.interface';
 import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
-import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-requests';
+import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
 
 @Injectable()
 export class AdvertsModelService {
