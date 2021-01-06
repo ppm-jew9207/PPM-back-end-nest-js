@@ -16,6 +16,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { AdvertsViewModel } from '../../models/adverts/adverts.interface';
+import { GetUsersAdvertsQuery } from './queries/handlers/get-users-adverts.handler';
 
 @Controller(PrivateRoutesPath.ADVERTS)
 @ApiTags(PrivateRoutesPath.ADVERTS)
@@ -39,7 +40,7 @@ export class AdvertsController {
   @Get(PrivateRoutesPath.USER)
   async getByUserId(@Req() request: any): Promise<AdvertsViewModel> {
     const user = request.user;
-    return this.queryBus.execute(new GetAdvertQuery(user.id));
+    return this.queryBus.execute(new GetUsersAdvertsQuery(user.id));
   }
 
   @Get(`${PrivateRoutesPath.GET_BY_ID}`)

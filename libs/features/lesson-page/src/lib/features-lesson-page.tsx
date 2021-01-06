@@ -34,7 +34,6 @@ export const FeaturesLessonPage = (props: {history: History, match: RouteCompone
       />
       <SharedAdvertDetails
         learnItems={learnItems}
-        allLearnItemsList={allLearnItemsList}
       />
       <SharedLessonsAccordion
         lessons={lessons.filter(lesson => lesson._id !== props.match.params.id)}

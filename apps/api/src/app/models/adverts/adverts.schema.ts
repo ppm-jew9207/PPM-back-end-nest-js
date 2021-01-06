@@ -11,9 +11,6 @@ export const AdvertsSchema = new Schema(
     description: {
       type: String,
     },
-    category: {
-      type: String,
-    },
     imageUrl: {
       type: String,
     },
@@ -23,6 +20,8 @@ export const AdvertsSchema = new Schema(
       imageUrl: String,
     },
     programmingLanguages: [String],
+    categories: [String],
+    learnItems: [String],
     preRequisites: {
       type: String,
     },

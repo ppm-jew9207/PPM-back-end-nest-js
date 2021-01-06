@@ -22,6 +22,8 @@ export const primary = () => {
       descriptionInputLabel: 'Description',
       titleInputLabel: 'New Advert',
       categoryInputLabel: 'Category',
+      prerequisitesInputLabel: 'Requirement',
+      learningInputLabel: 'Learning input'
     },
     categories: [
       { title: 'Category A', value: 'category-a', _id: 'as3dg432af', checked: false, },

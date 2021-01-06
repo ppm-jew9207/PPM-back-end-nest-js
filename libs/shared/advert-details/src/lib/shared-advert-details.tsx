@@ -12,9 +12,8 @@ interface LearnItem {
 }
 
 export interface SharedAdvertDetailsProps {
-  learnItems: string[];
+  learnItems: LearnItem[];
   preRequisites?: string;
-  allLearnItemsList: LearnItem[];
 }
 
 export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
@@ -30,9 +29,8 @@ export const SharedAdvertDetails = (props: SharedAdvertDetailsProps) => {
       </Typography>
 
       <Grid container className="learn-list">
-        {props.allLearnItemsList.map((item: LearnItem, i) => {
+        {props.learnItems.map((item: LearnItem, i) => {
           return (
-            props.learnItems.includes(item._id) &&
             <Grid key={item._id} item xs={4}>
               <Typography className="item" variant="body1" component="li">
                 {item.title}

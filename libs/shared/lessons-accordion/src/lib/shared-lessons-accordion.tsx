@@ -51,11 +51,11 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                   <Grid key={i} item xs={3}>
                     <Card>
                       <CardActionArea>
-                        <CardMedia
+                        {lesson.image && <CardMedia
                           className="lesson-image"
                           image={lesson.image}
                           title={lesson.title}
-                        />
+                        />}
                         <CardContent>
                           <Typography variant="body1" gutterBottom>
                             {lesson.title}

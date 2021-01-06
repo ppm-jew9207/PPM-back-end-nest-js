@@ -5,20 +5,20 @@ export interface LeanAdvertsView {
   _id: string;
   title: string;
   description: string;
-  category: string;
   imageUrl: string;
   programmingLanguages?: string[];
   preRequisites?: string;
   advertImageUrl: string;
-  lessonDescription?: string;
+  lessonDescription?: string; 
   lessonsList?: string[];
   creator: UserRef;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export interface CreateAdvertPayload {
   title: string;
   description?: string;
-  category: string;
   imageUrl?: string;
   programmingLanguages?: string[];
   preRequisites?: string;
@@ -26,12 +26,13 @@ export interface CreateAdvertPayload {
   lessonDescription?: string;
   lessonsList?: string[];
   creator: UserRef;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export interface AdvertPayload {
   title: string;
   description?: string;
-  category: string;
   imageUrl?: string;
   programmingLanguages?: string[];
   preRequisites?: string;
@@ -39,6 +40,8 @@ export interface AdvertPayload {
   lessonDescription?: string;
   lessonsList?: string[];
   creator: UserRef;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export type AdvertsViewModel = LeanAdvertsView & Document;

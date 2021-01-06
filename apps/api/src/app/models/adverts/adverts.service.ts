@@ -9,6 +9,7 @@ import {
   CreateAdvertPayload,
 } from './adverts.interface';
 import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
+import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
 
 @Injectable()
 export class AdvertsModelService {
@@ -17,19 +18,39 @@ export class AdvertsModelService {
   >;
 
   async getAll(): Promise<AdvertsViewModel[]> {
-    return this._model.find().exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id : {$exists: true}}   
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async getById(id: string): Promise<AdvertsViewModel> {
-    return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id: Types.ObjectId(id) },    
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async getByUserId(id: string): Promise<AdvertsViewModel[]> {
-    return this._model.find({ 'creator._id': Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": id },    
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async getUsersAdvertById(userId: string, id: string): Promise<AdvertsViewModel> {
-    return this._model.findOne({ 'creator._id': Types.ObjectId(userId),  _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async create(id: string, data: CreateAdvertPayload) {

@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 
 import { ViewModels } from '../../helpers/constants';
 import {
-  LearnItemsViewModel,
+  LearnItemsViewModel, 
   LearnItemPayload,
 } from './learnItems.interface';
 
