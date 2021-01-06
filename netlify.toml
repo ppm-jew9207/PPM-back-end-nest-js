@@ -1,0 +1,8 @@
+[build]
+command = "npm run build"
+functions = "lambda"
+publish = "node ./dist/apps/api/"
+
+[[redirects]]
+from = "/_base"
+to = "./dist/apps/api/main"
