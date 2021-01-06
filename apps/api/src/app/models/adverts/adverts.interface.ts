@@ -5,44 +5,43 @@ export interface LeanAdvertsView {
   _id: string;
   title: string;
   description: string;
-  category: string;
   imageUrl: string;
+  programmingLanguages?: string[];
+  preRequisites?: string;
+  advertImageUrl: string;
+  lessonDescription?: string; 
+  lessonsList?: string[];
   creator: UserRef;
-}
-
-export interface GetAdvertPayload {
-  id: string;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export interface CreateAdvertPayload {
   title: string;
   description?: string;
-  category: string;
-  creator: UserRef;
   imageUrl?: string;
-}
-
-export interface UpdateAdvertPayload extends AdvertPayload {
-  id: string;
-}
-
-export interface RemoveAdvertPayload {
-  id: string;
+  programmingLanguages?: string[];
+  preRequisites?: string;
+  advertImageUrl: string;
+  lessonDescription?: string;
+  lessonsList?: string[];
+  creator: UserRef;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export interface AdvertPayload {
   title: string;
   description?: string;
-  category: string;
   imageUrl?: string;
-}
-
-export interface AdvertRef {
-  _id: string;
-  title: string;
-  category: string;
-  description: string;
-  imageUrl: string;
+  programmingLanguages?: string[];
+  preRequisites?: string;
+  advertImageUrl: string;
+  lessonDescription?: string;
+  lessonsList?: string[];
+  creator: UserRef;
+  categories?: string[];
+  learnItems?: string[];
 }
 
 export type AdvertsViewModel = LeanAdvertsView & Document;

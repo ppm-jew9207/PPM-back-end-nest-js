@@ -14,14 +14,16 @@ import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 
 interface Lesson {
+  _id: string;
   title: string;
   authorName: string;
   image: string;
 }
 
 export interface SharedLessonsAccordionProps {
-  lessonsDescription: string;
+  lessonsDescription?: string;
   lessons: Lesson[];
+  accordionTitle: string;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
@@ -34,7 +36,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           id="lessons"
           className="lessons-title"
         >
-          <Typography className="text">Lessons</Typography>
+          <Typography className="text">{props.accordionTitle}</Typography>
         </AccordionSummary>
         <AccordionDetails className="lessons-accordion">
           <div>
@@ -49,11 +51,11 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                   <Grid key={i} item xs={3}>
                     <Card>
                       <CardActionArea>
-                        <CardMedia
+                        {lesson.image && <CardMedia
                           className="lesson-image"
                           image={lesson.image}
                           title={lesson.title}
-                        />
+                        />}
                         <CardContent>
                           <Typography variant="body1" gutterBottom>
                             {lesson.title}

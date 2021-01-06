@@ -186,6 +186,25 @@
     },
     "features-advert-page": {
       "tags": []
+    },
+    "hooks-use-adverts": {
+      "tags": []
+    },
+    "features-lesson-page": {
+      "tags": []
+    },
+    "hooks-use-lesson": {
+      "tags": []
+    },
+    "shared-list-editor": {
+      "tags": []
+    },
+    "shared-list-editor-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-list-editor"]
+    },
+    "data-access-learn-items": {
+      "tags": []
     }
   },
   "affected": {

@@ -4,7 +4,7 @@ import * as actions from './actions';
 
 export interface CategoryType {
   title: string;
-  description: string;
+  value: string;
 }
 
 interface CategoriesState {

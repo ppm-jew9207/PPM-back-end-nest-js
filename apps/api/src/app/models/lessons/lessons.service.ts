@@ -1,15 +1,16 @@
-import { Injectable, Type } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Types } from 'mongoose';
 
 import { ViewModels } from '../../helpers/constants';
+import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
+
 import {
   LessonsViewModel,
   CreateLessonPayload,
   LessonPayload,
 } from './lessons.interface';
-
 @Injectable()
 export class LessonsModelService {
   @InjectModel(ViewModels.LESSONS_VIEW) private _model!: Model<
@@ -17,15 +18,39 @@ export class LessonsModelService {
   >;
 
   async getAll(): Promise<LessonsViewModel[]> {
-    return this._model.find().exec();
+    return this._model.aggregate([
+        {
+          $match:  { _id : {$exists: true} },    
+        },
+        ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async getByUserId(id: string): Promise<LessonsViewModel[]> {
-    return this._model.find({ 'creator._id': id }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": id },    
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
   }
 
   async getById(id: string): Promise<LessonsViewModel> {
-    return this._model.findOne({ _id: Types.ObjectId(id) }).exec();
+    return this._model.aggregate([
+      {
+        $match:  { _id: Types.ObjectId(id) },    
+      },
+      ...CATEGORIES_JOIN_QUERY
+    ]).exec();
+  }
+
+  async getUsersLessonById(userId: string, id: string): Promise<LessonsViewModel> {
+    return this._model.aggregate([
+      {
+        $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
+      },
+
+    ]).exec();
   }
 
   async create(id: string, data: CreateLessonPayload) {

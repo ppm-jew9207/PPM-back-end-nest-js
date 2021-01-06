@@ -1,3 +1,5 @@
+$error: #3F51B5;
+
 .inner-container {
   margin-top: 1rem;
   display: flex;
@@ -155,52 +157,54 @@
   }
 }
 
-.footer-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.category {
-  width: 100%;
-  & > div > div {
-    padding-left: 20px;
+.advert-form {
+  .submit-form {
+    margin-top: 1rem !important;
+    padding: 0.9rem !important;
   }
 
-  & label {
-    background: white;
-    padding: 0rem 0.5rem !important;
+  .cancel-form {
+    padding: 0.9rem !important;
+    margin-top: 25px !important;
+  }
+
+  .dialog-list {
+    margin: 20px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .chip-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    .chip {
+      width: auto;
+      margin: 5px;
+    }
+  }
+
+  .select-button {
+    margin-bottom: 8.5px;
+  }
+
+  .error {
+    align-items: center;
+    color: $error;
+    display: flex;
+    font-style: inherit;
+    justify-content: center;
+    width: 100%;
+
+    &-icon {
+      color: $error;
+    }
   }
 }
 
-.submit-form {
-  margin-top: 1rem !important;
-  padding: 0.9rem !important;
-}
 
-.cancel-form {
-  padding: 0.9rem !important;
-  margin-top: 25px !important;
-}
 
-.description,
-textarea {
-  & > div {
-    padding-left: 21px !important;
-  }
-  label {
-    padding-left: 7px !important;
-  }
-}
-
-.header {
-  label {
-    padding-left: 7px !important;
-  }
-
-  & > div {
-    padding-left: 22px !important;
-  }
-}

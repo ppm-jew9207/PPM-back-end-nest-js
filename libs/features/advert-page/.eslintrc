@@ -1,4 +1,15 @@
 {
+  "extends": ["../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": { "react": { "version": "detect" } },
+  "plugins": ["import", "jsx-a11y", "react", "react-hooks"],
   "rules": {
     "array-callback-return": "warn",
     "dot-location": ["warn", "property"],
@@ -234,16 +245,5 @@
         "allowTaggedTemplates": true
       }
     ]
-  },
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jest": true,
-    "node": true
-  },
-  "settings": { "react": { "version": "detect" } },
-  "plugins": ["import", "jsx-a11y", "react", "react-hooks"],
-  "extends": ["../../../.eslintrc"],
-  "ignorePatterns": ["!**/*"]
+  }
 }

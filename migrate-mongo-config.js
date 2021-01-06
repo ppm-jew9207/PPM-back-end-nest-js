@@ -4,8 +4,6 @@ const config = {
   mongodb: {
     url: process.env.MONGO_DB,
 
-    // databaseName: process.env.DB_NAME,
-
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
   getAllSuccess,
@@ -97,16 +97,16 @@ export function* removeLesson(actions) {
 export function* getLessonById(actions) {
   try {
     const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.LESSONS}/${PrivateRoutesPath.USER}/${id}`;
+    const path = `/api/${PrivateRoutesPath.LESSONS}/${id}`;
     const result = yield call(get, path);
 
-    if (!result && !Array.isArray(result.data)) {
+    if (!result) {
       yield put(getAllFailed(null));
     }
-
+    
     yield put(
       getByIdSuccess({
-        lesson: result.data,
+        lesson: result[0],
         loading: false,
       })
     );
@@ -152,12 +152,12 @@ export function* getAllByAuthor(actions) {
 }
 
 export function* lessonsSaga() {
-  yield takeEvery(ActionTypes.GET_ALL, getAll);
-  yield takeEvery(ActionTypes.LESSON_CREATE, createLesson);
-  yield takeEvery(ActionTypes.LESSON_UPDATE, updateLesson);
-  yield takeEvery(ActionTypes.LESSON_REMOVE, removeLesson);
-  yield takeEvery(ActionTypes.LESSON_GET_BY_ID, getLessonById);
-  yield takeEvery(ActionTypes.LESSON_GET_ALL_BY_AUTHOR, getAllByAuthor);
+  yield takeLatest(ActionTypes.GET_ALL, getAll);
+  yield takeLatest(ActionTypes.LESSON_CREATE, createLesson);
+  yield takeLatest(ActionTypes.LESSON_UPDATE, updateLesson);
+  yield takeLatest(ActionTypes.LESSON_REMOVE, removeLesson);
+  yield takeLatest(ActionTypes.LESSON_GET_BY_ID, getLessonById);
+  yield takeLatest(ActionTypes.LESSON_GET_ALL_BY_AUTHOR, getAllByAuthor);
 }
 
 export default lessonsSaga;

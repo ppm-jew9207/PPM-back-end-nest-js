@@ -37,37 +37,41 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   const classes = useStyles();
 
   const getSortedTimeNames = (key: string) => {
-    switch(key){
-      case 'months': return 'mo.';
-      case 'days': return 'd.';
-      case 'hours': return 'h';
-      case 'minutes': return 'min.';
-      case 'seconds': return 's';
-      default: return key;
+    switch (key) {
+      case 'months':
+        return 'mo.';
+      case 'days':
+        return 'd.';
+      case 'hours':
+        return 'h';
+      case 'minutes':
+        return 'min.';
+      case 'seconds':
+        return 's';
+      default:
+        return key;
     }
-  }
+  };
 
-  const timeCalculator = (createdAt: string) =>  {
+  const timeCalculator = (createdAt: string) => {
     const dateKeys = ['months', 'days', 'hours', 'minutes', 'seconds'];
     const then = moment(createdAt);
     const now = moment();
     const duration = moment.duration(now.diff(then));
     let string = '';
     for (const key of dateKeys) {
-      
-      const count = duration[key]();      
-      string += `${
-        count > 0
-          ? `${count} ${getSortedTimeNames(key)} `
-          : ''
-      }`;
+      const count = duration[key]();
+      string += `${count > 0 ? `${count} ${getSortedTimeNames(key)} ` : ''}`;
 
-      if(count > 0 && (key === 'months' || key === 'days' || key === 'hours')){
+      if (
+        count > 0 &&
+        (key === 'months' || key === 'days' || key === 'hours')
+      ) {
         break;
       }
     }
     return string;
-  }
+  };
 
   return (
     <div className="advert-card">

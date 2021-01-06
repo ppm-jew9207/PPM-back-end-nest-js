@@ -1,0 +1,29 @@
+.list {
+  &-menu {
+    min-width: 500px;
+  } 
+  &__item {
+    align-self: flex-start;
+    margin: .5rem!important;
+  }
+
+
+}
+
+.input-wrapper {
+  display: grid;
+  column-gap: .4rem;
+  margin-bottom: 1rem;
+
+  .item {
+    &__title {
+      margin-bottom: 0!important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    grid-template-columns: 1fr 80px;
+    align-items: center;
+    justify-content: center;
+  }
+}

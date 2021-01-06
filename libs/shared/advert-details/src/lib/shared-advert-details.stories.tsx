@@ -12,7 +12,12 @@ export default {
 
 export const primary = () => {
   const props: SharedAdvertDetailsProps = {
-    learnItems: ['Javascript', 'React', 'Nx', 'NestJS'],
+    learnItems: [ 
+      { _id: 'dfasdf', title: 'Programming', value: 'prog' },
+      { _id: 'sadfdf', title: 'Javascript', value: 'js' },
+      { _id: 'sdfasdf', title: 'React', value: 'react' },
+      { _id:'ddsaf', title: 'Web Development', value: 'web' }
+    ],
     preRequisites: text('preRequisites', 'Anglu ir Lietuviu kalbos'),
   };
 

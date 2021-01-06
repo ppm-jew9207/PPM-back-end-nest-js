@@ -3,6 +3,7 @@ export enum ViewModels {
   PROJECTS_VIEW = 'Projects',
   ADVERTS_VIEW = 'Adverts',
   LESSONS_VIEW = 'Lessons',
+  LEARN_ITEMS_VIEW = 'LearnItems',
   CATEGORIES_VIEW = 'Categories',
   SETTINGS_VIEW = 'Settings',
   EMAIL_VERIFICATION = 'EmailVerification',

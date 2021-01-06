@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { getToken } from '@ppm/data-access/local-storage';
 import PrivateRouter from './routes/private';
@@ -27,34 +27,31 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export const App = () => {
+
   return (
     <div className="app">
       <BrowserRouter basename="/">
         <Switch>
-          {PublicRouter.map((prop) => (
+          {PublicRouter.map((prop, index) => (
             <Route
               exact
               path={prop.path}
-              key={prop.path}
+              key={index.toString()}
               component={prop.component}
             />
           ))}
           <FeaturesPrivateLayout router={PrivateRouter}>
-
-            {PrivateRouter.map((prop) => (
+            {PrivateRouter.map((prop, index) => (
               <PrivateRoute
                 exact
                 path={prop.path}
-                key={prop.path}
+                key={index.toString()}
                 component={prop.component}
                 isLoggedIn={!!getToken()}
               />
             ))}
           </FeaturesPrivateLayout>
-          <Redirect
-            from='/login'
-            to="/dashboard"
-          />
+          <Redirect from="/login" to="/dashboard" />
         </Switch>
       </BrowserRouter>
       <FeaturesSnackBar />

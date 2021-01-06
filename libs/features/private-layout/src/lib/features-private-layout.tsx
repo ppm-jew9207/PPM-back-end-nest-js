@@ -64,39 +64,37 @@ const buttons = [
 ];
 
 export interface FeaturesPrivateLayoutProps {
-  children: React.ReactNode,
-  router: RouterItem[]
+  children: React.ReactNode;
+  router: RouterItem[];
 }
 
 export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
-  const [menuItems, setMenuItems] = useState<{name: string, path: string, icon: string}[]>();
+  const [menuItems, setMenuItems] = useState<
+    { name: string; path: string; icon: string }[]
+  >();
 
   useEffect(() => {
-    const menu = props.router.map(route => {
-        if(route.onMenu){
-          return {name: route.title, path: route.path, icon: route.icon}
+    const menu = props.router
+      .map((route) => {
+        if (route.onMenu) {
+          return { name: route.title, path: route.path, icon: route.icon };
         }
         return null;
-      }
-    ).filter(val => val);
+      })
+      .filter((val) => val);
     setMenuItems(menu);
 
     return () => {
       setMenuItems(null);
-    }
-  }, [props.router])
-  
+    };
+  }, [props.router]);
+
   return (
     <div className="features-private-layout">
-      <SharedLeftSideMenu 
-        title="" 
-        menuItemsArray={menuItems}
-      />
-      <SharedNavigation  buttons={buttons}/>
-      <div className="content">
-        { props.children }
-      </div>
-      <SharedFooter {...testMenu}/>
+      <SharedLeftSideMenu title="" menuItemsArray={menuItems} />
+      <SharedNavigation buttons={buttons} />
+      <div className="content">{props.children}</div>
+      <SharedFooter {...testMenu} />
     </div>
   );
 };

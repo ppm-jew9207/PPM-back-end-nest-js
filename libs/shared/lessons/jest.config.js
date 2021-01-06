@@ -1,12 +1,10 @@
 module.exports = {
-  name: 'shared-lessons',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   transform: {
-    '^.+\\.[tj]sx?$': [
-      'babel-jest',
-      { cwd: __dirname, configFile: './babel-jest.config.json' },
-    ],
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../../coverage/libs/shared/lessons',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'shared-lessons',
 };

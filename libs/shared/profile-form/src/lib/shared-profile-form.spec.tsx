@@ -1,26 +1,35 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import SharedProfileForm from './shared-profile-form';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 const data = [
-  { id: 'a', name: 'A' },
-  { id: 'b', name: 'B' },
-  { id: 'c', name: 'C' },
-  { id: 'd', name: 'D' },
-  { id: 'e', name: 'E' },
+  { _id: 'A', name: 'A' },
+  { _id: 'B', name: 'B' },
+  { _id: 'C', name: 'C' },
+  { _id: 'D', name: 'D' },
+  { _id: 'E', name: 'E' },
+  { _id: 'F', name: 'F' },
 ];
+
+const cities = ['Vilnius', 'Kaunas', 'Klaipėda'];
+
+const countries = ['Lithuania', 'Latvia', 'Estonia'];
+
+const onSubmit = jest.fn();
 
 describe(' SharedProfileForm', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(
+    const result = shallow(
       <SharedProfileForm
-        onSubmit={(e) => console.log(e)}
+        onSubmit={onSubmit}
         categories={data}
-        cities={data}
-        countries={data}
+        cities={cities}
+        countries={countries}
       />
     );
-    expect(baseElement).toBeTruthy();
+    expect(result).toBeTruthy();
   });
 });

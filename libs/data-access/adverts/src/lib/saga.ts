@@ -6,7 +6,6 @@ import {
   createSuccess,
   createFailed,
   updateSuccess,
-  updateFailed,
   removeSuccess,
   removeFailed,
   getByIdSuccess,
@@ -105,7 +104,7 @@ export function* getAdvertById(actions) {
 
     yield put(
       getByIdSuccess({
-        advert: result,
+        advert: result[0],
         loading: false,
       })
     );

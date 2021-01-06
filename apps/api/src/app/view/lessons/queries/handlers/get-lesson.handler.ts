@@ -11,7 +11,7 @@ export class GetLessonQuery {
 export class GetLessonHandler implements IQueryHandler<GetLessonQuery> {
   @Inject() private readonly _lessonsViewService: LessonsModelService;
 
-  async execute({ id }: GetLessonQuery): Promise<LessonsViewModel[]> {
-    return this._lessonsViewService.getByUserId(id);
+  async execute({ id }: GetLessonQuery): Promise<LessonsViewModel> {
+    return this._lessonsViewService.getById(id);
   }
 }

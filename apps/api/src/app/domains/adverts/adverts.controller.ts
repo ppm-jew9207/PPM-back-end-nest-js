@@ -8,7 +8,6 @@ import {
   UseGuards,
   UseInterceptors,
   Req,
-  BadRequestException,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateAdvert } from './commands/create-advert.command';
@@ -50,6 +49,6 @@ export class AdvertsController {
   @Post(PrivateRoutesPath.POST_DELETE)
   @HttpCode(HttpStatus.OK)
   async remove(@Param('id') id: string) {
-    return this.commandBus.execute(new RemoveAdvert({ id }));
+    return this.commandBus.execute(new RemoveAdvert(id));
   }
 }
