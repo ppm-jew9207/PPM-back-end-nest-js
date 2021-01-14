@@ -25,12 +25,14 @@ const data = {
     title: 'lesson title',
     connectionURL: 'https://placekitten.com/300/300',
     datetime: '2021-09-22T17:09',
+    categories: [],
   },
   mentors: [
     { name: 'John Doe', value: 'John Doe', _id: 'as3dg432zd' },
     { name: 'Dohn Joe', value: 'Dohn Joe', _id: 'as33dg4432dz' },
     { name: 'Gohn Boe', value: 'Gohn Boe', _id: 'as3dg432zdbg' },
-  ]
+  ],
+  categories: [],
 };
 
 describe(' SharedLessonComponent', () => {
