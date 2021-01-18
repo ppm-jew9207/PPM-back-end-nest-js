@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import EditIcon from '@material-ui/icons/Edit';
@@ -6,9 +6,12 @@ import SaveIcon from '@material-ui/icons/Save';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
 
 import './shared-advert-card.scss';
-import { Button } from '@material-ui/core';
 
 export interface SharedAdvertCardProps {
   title: string;
@@ -37,6 +40,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
+  useEffect(() => {
+    setUploadedImg(props.imgUrl);
+  }, [props]);
+
   const classes = useStyles();
 
   const getSortedTimeNames = (key: string) => {
@@ -77,8 +84,22 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   };
 
   const [editing, setEditing] = useState(false);
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
 
-  const saveEdit = () => {
+  const { handleSubmit, register } = useForm();
+
+  const onFileLoad = (e) => {
+    const file = e.currentTarget.files[0];
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
+  const saveEdit = (d: any) => {
+    alert(JSON.stringify(d));
     setEditing(false);
   };
 
@@ -148,7 +169,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   } else {
     return (
       <div className="card">
-        <form noValidate autoComplete="off">
+        <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
           <div className="card-title-wrap flex-wrap">
             <button
               type="button"
@@ -174,27 +195,64 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
                 </span>
               </a>
               <span>
-                posted on <TextField id="title" defaultValue={props.title} />
+                posted on{' '}
+                <TextField
+                  inputRef={register({})}
+                  id="title"
+                  name="title"
+                  defaultValue={props.title}
+                />
               </span>
 
               <p>{`${timeCalculator(props.createAt)}`}</p>
             </div>
             <div className="editing-holder editing">
-              <SaveIcon onClick={() => saveEdit()} />
+              <button type="submit">
+                <SaveIcon onClick={(d) => saveEdit(d)} />
+              </button>
             </div>
           </div>
 
           <div className="card-content">
             <TextField
+              inputRef={register({})}
+              name="description"
               id="description"
               multiline
               fullWidth
               defaultValue={props.description}
             />
-            <div className="image-container">
-              <img src={props.imgUrl} alt="" />
+            <div className="image-container draggable-container">
+              <img
+                className="files-preview-container__image"
+                src={
+                  (!!uploadedImg && uploadedImg.toString()) ||
+                  uploadedImg.toString()
+                }
+                alt=""
+              />
               <div className="middle">
-                <div className="text">Upload</div>
+                <Typography
+                  variant="body1"
+                  component="p"
+                  align="center"
+                  gutterBottom
+                >
+                  Drag and Drop Images Here
+                </Typography>
+                <SystemUpdateAltIcon display="inline" />
+                <TextField
+                  inputRef={register({})}
+                  type="file"
+                  id="file-browser-input"
+                  name="advertImage"
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onDrop={onFileLoad.bind(this)}
+                  onChange={onFileLoad.bind(this)}
+                />
               </div>
             </div>
           </div>
