@@ -13,6 +13,12 @@ import { useForm } from 'react-hook-form';
 
 import './shared-advert-card.scss';
 
+export interface advertFormData {
+  title: string;
+  description: string;
+  advertImage: string;
+  // _id: string;
+}
 export interface SharedAdvertCardProps {
   title: string;
   author?: {
@@ -29,6 +35,7 @@ export interface SharedAdvertCardProps {
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
+  onSaveClick?: (d: advertFormData) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -98,8 +105,9 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
-  const saveEdit = (d: any) => {
-    alert(JSON.stringify(d));
+  const saveEdit = (d: advertFormData) => {
+    // alert(JSON.stringify(d));
+    props.onSaveClick(d);
     setEditing(false);
   };
 
@@ -242,6 +250,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
                 </Typography>
                 <SystemUpdateAltIcon display="inline" />
                 <TextField
+                  className="file-browser-input"
                   inputRef={register({})}
                   type="file"
                   id="file-browser-input"
