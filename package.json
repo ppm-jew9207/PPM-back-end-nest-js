@@ -54,6 +54,7 @@
     "@nestjs/platform-express": "7.3.2",
     "@nestjs/serve-static": "^2.1.4",
     "@nestjs/swagger": "^4.5.10",
+    "@nrwl/nx-cloud": "^11.0.2",
     "@storybook/addon-actions": "^5.3.19",
     "@types/lodash": "^4.14.157",
     "bcryptjs": "^2.4.3",
