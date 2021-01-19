@@ -1,0 +1,30 @@
+[
+  {
+    "_id" : { "$oid": "6000982e9d822649dbab00b1" },
+    "createdAt" : "2021-01-14T19:14:54.029Z",
+    "title" : "Web Development",
+    "updatedAt" : "2021-01-14T19:14:54.029Z",
+    "value" : "web_development"
+  },
+  {
+    "_id" : { "$oid": "600098459d822649dbab00b2" },
+    "createdAt" : "2021-01-14T19:15:17.797Z",
+    "title" : "Programming",
+    "updatedAt" : "2021-01-14T19:15:17.797Z",
+    "value" : "programming"
+  },
+  {
+    "_id" : { "$oid": "600098529d822649dbab00b3" },
+    "createdAt" : "2021-01-14T19:15:30.050Z",
+    "title" : "Javascript",
+    "updatedAt" : "2021-01-14T19:15:30.050Z",
+    "value" : "javascript"
+  },
+  {
+    "_id" : { "$oid": "600098689d822649dbab00b4" },
+    "createdAt" : "2021-01-14T19:15:52.755Z",
+    "title" : "React.js",
+    "updatedAt" : "2021-01-14T19:15:52.755Z",
+    "value" : "react_js"
+  }
+]
