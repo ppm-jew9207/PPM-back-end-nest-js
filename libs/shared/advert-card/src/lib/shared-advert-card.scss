@@ -13,6 +13,9 @@
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   }
 
+  max-width: 694px;
+  margin-bottom: 15px;
+
   background-color: var(--secondary);
   border-radius: 4px;
   padding: 15px;
@@ -129,6 +132,9 @@
         opacity: 1;
       }
     }
+  }
+  .MuiInputBase-multiline {
+    padding: 0;
   }
 }
 
@@ -283,4 +289,8 @@
   & > div {
     height: 100%;
   }
+}
+
+.MuiFormControl-root.hidden {
+  display: none;
 }

@@ -17,9 +17,10 @@ export interface advertFormData {
   title: string;
   description: string;
   advertImage: string;
-  // _id: string;
+  _id: string;
 }
 export interface SharedAdvertCardProps {
+  id: string;
   title: string;
   author?: {
     _id: string;
@@ -106,7 +107,6 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
   };
 
   const saveEdit = (d: advertFormData) => {
-    // alert(JSON.stringify(d));
     props.onSaveClick(d);
     setEditing(false);
   };
@@ -174,122 +174,128 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
         </div>
       </div>
     );
-  } else {
-    return (
-      <div className="card">
-        <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
-          <div className="card-title-wrap flex-wrap">
-            <button
-              type="button"
-              onClick={() => props.onViewClick(props.author._id)}
-            >
-              <img
-                className="card-img"
-                src={props.author.img}
-                alt=""
-                height="40"
-                width="40"
-              />
-            </button>
-
-            <div className="card-title">
-              <a href="url" onClick={() => props.onViewClick(props.author._id)}>
-                <span>
-                  {`
-                    ${props.author.firstName || ''} ${
-                    props.author.lastName || ''
-                  }
-                  `}
-                </span>
-              </a>
-              <span>
-                posted on{' '}
-                <TextField
-                  inputRef={register({})}
-                  id="title"
-                  name="title"
-                  defaultValue={props.title}
-                />
-              </span>
-
-              <p>{`${timeCalculator(props.createAt)}`}</p>
-            </div>
-            <div className="editing-holder editing">
-              <button type="submit">
-                <SaveIcon onClick={(d) => saveEdit(d)} />
-              </button>
-            </div>
-          </div>
-
-          <div className="card-content">
-            <TextField
-              inputRef={register({})}
-              name="description"
-              id="description"
-              multiline
-              fullWidth
-              defaultValue={props.description}
-            />
-            <div className="image-container draggable-container">
-              <img
-                className="files-preview-container__image"
-                src={
-                  (!!uploadedImg && uploadedImg.toString()) ||
-                  uploadedImg.toString()
-                }
-                alt=""
-              />
-              <div className="middle">
-                <Typography
-                  variant="body1"
-                  component="p"
-                  align="center"
-                  gutterBottom
-                >
-                  Drag and Drop Images Here
-                </Typography>
-                <SystemUpdateAltIcon display="inline" />
-                <TextField
-                  className="file-browser-input"
-                  inputRef={register({})}
-                  type="file"
-                  id="file-browser-input"
-                  name="advertImage"
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  onDrop={onFileLoad.bind(this)}
-                  onChange={onFileLoad.bind(this)}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="social-wrapper">
-            <Button
-              variant="outlined"
-              color="secondary"
-              startIcon={<FavoriteIcon />}
-              onClick={props.onLikeClick}
-            >
-              <p>Like</p>
-              <div>{props.like}</div>
-            </Button>
-
-            <Button
-              variant="outlined"
-              color="primary"
-              className={classes.button}
-              startIcon={<ShareIcon />}
-              onClick={props.onLikeClick}
-            >
-              <p>Share</p>
-              <div>{props.shared}</div>
-            </Button>
-          </div>
-        </form>
-      </div>
-    );
   }
+  return (
+    <div className="card">
+      <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
+        <div className="card-title-wrap flex-wrap">
+          <button
+            type="button"
+            onClick={() => props.onViewClick(props.author._id)}
+          >
+            <img
+              className="card-img"
+              src={props.author.img}
+              alt=""
+              height="40"
+              width="40"
+            />
+          </button>
+
+          <div className="card-title">
+            <a href="url" onClick={() => props.onViewClick(props.author._id)}>
+              <span>
+                {`
+                    ${props.author.firstName || ''} ${
+                  props.author.lastName || ''
+                }
+                  `}
+              </span>
+            </a>
+            <span>
+              posted on{' '}
+              <TextField
+                inputRef={register({})}
+                id="title"
+                name="title"
+                defaultValue={props.title}
+              />
+            </span>
+
+            <p>{`${timeCalculator(props.createAt)}`}</p>
+          </div>
+          <div className="editing-holder editing">
+            <button type="submit">
+              <SaveIcon />
+            </button>
+          </div>
+        </div>
+
+        <div className="card-content">
+          <TextField
+            inputRef={register({})}
+            name="description"
+            id="description"
+            multiline
+            fullWidth
+            defaultValue={props.description}
+          />
+          <div className="image-container draggable-container">
+            <img
+              className="files-preview-container__image"
+              src={
+                (!!uploadedImg && uploadedImg.toString()) ||
+                uploadedImg.toString()
+              }
+              alt=""
+            />
+            <div className="middle">
+              <Typography
+                variant="body1"
+                component="p"
+                align="center"
+                gutterBottom
+              >
+                Drag and Drop Images Here
+              </Typography>
+              <SystemUpdateAltIcon display="inline" />
+              <TextField
+                className="file-browser-input"
+                inputRef={register({})}
+                type="file"
+                id="file-browser-input"
+                name="advertImage"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={onFileLoad.bind(this)}
+                onChange={onFileLoad.bind(this)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="social-wrapper">
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<FavoriteIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Like</p>
+            <div>{props.like}</div>
+          </Button>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            startIcon={<ShareIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Share</p>
+            <div>{props.shared}</div>
+          </Button>
+        </div>
+        <TextField
+          inputRef={register({})}
+          id="id"
+          name="id"
+          defaultValue={props.id}
+          className="hidden"
+        />
+      </form>
+    </div>
+  );
 };

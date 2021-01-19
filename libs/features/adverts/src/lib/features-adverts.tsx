@@ -27,6 +27,7 @@ export const FeaturesAdverts = () => {
       {adverts.map((advert) => (
         <div key={advert._id}>
           <SharedAdvertCard
+            id={advert._id}
             title={advert.title}
             author={{
               _id: advert.creator._id,
@@ -41,6 +42,8 @@ export const FeaturesAdverts = () => {
             // TODO add shares to backend
             shared={0}
             imgUrl={advert.imageUrl}
+            // TODO add save to backend
+            onSaveClick={(data) => console.log(data)}
           />
         </div>
       ))}
