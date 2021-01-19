@@ -2,7 +2,7 @@ import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Person from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
-import {Link} from 'react-router-dom';
+import {BrowserRouter as Link} from 'react-router-dom';
 import { 
   Box, 
   Button, 
