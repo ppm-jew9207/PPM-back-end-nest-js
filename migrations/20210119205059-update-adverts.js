@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { 
   async up(db, client) {
     const { Types } = require('mongoose');
 
