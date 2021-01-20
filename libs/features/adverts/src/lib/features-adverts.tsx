@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import './features-adverts.scss';
+import {Link} from 'react-router-dom';
 
 const stateSelector = createStructuredSelector({
   adverts: advertsSelectors.selectAdverts(),
@@ -26,6 +27,8 @@ export const FeaturesAdverts = () => {
     <div className="advert-cards">
       {adverts.map((advert) => (
         <div key={advert._id}>
+          <Link to={`/adverts/${advert._id}`}>
+
           <SharedAdvertCard
             title={advert.title}
             author={{
@@ -41,7 +44,8 @@ export const FeaturesAdverts = () => {
             // TODO add shares to backend
             shared={0}
             imgUrl={advert.imageUrl}
-          />
+            />
+          </Link>
         </div>
       ))}
     </div>
