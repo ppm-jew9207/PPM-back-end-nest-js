@@ -85,10 +85,10 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   const [labels, setLabels] = useState<Labels>();
 
   useEffect(() => {
-    !categories.length && setCategories(props.categories);
+    (!categories && !categories.length) && setCategories(props.categories);
     !advert && setAdvert(props.advert);
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
-  }, [props, advert, categories.length, uploadedImg]);
+  }, [props, advert, categories, uploadedImg]);
 
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];

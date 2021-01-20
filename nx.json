@@ -13,15 +13,17 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
+        "accessToken": "NzJmZGZjN2ItMTgxMC00MzhhLWI5NDEtYTlhOWQ5ZDgwY2YzfHJlYWQtd3JpdGU=",
         "cacheableOperations": [
           "build",
-          "lint",
           "test",
-          "e2e",
-          "build-storybook"
-        ]
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -31,7 +33,9 @@
     },
     "ppm-e2e": {
       "tags": [],
-      "implicitDependencies": ["ppm"]
+      "implicitDependencies": [
+        "ppm"
+      ]
     },
     "api": {
       "tags": []
@@ -119,7 +123,9 @@
     },
     "shared-registration-e2e": {
       "tags": [],
-      "implicitDependencies": ["shared-registration"]
+      "implicitDependencies": [
+        "shared-registration"
+      ]
     },
     "shared-create-advert-form": {
       "tags": []
@@ -201,7 +207,9 @@
     },
     "shared-list-editor-e2e": {
       "tags": [],
-      "implicitDependencies": ["shared-list-editor"]
+      "implicitDependencies": [
+        "shared-list-editor"
+      ]
     },
     "data-access-learn-items": {
       "tags": []

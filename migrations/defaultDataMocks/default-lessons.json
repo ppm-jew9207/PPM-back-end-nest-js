@@ -1,0 +1,117 @@
+[
+  {
+    "_id" : { "$oid": "6005e450178d0c8941349093" },
+    "categories" : [ 
+        "6000906c9d822649dbab00ad", 
+        "6000908f9d822649dbab00ae", 
+        "600090ab9d822649dbab00af", 
+        "600090c69d822649dbab00b0"
+    ],
+    "connectionUrl" : "http://looong-connection-url.com",
+    "createdAt" : "2021-01-18T19:41:04.105Z",
+    "creator" : {
+        "_id" : "60008f1a9d822649dbab00ab",
+        "name" : "gintarazzz@gmail.com"
+    },
+    "datetime" : "2021-01-18T19:37:28.586Z",
+    "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum repudiandae labore suscipit fugiat enim earum, expedita unde facere officia perferendis quisquam atque libero? Impedit doloremque eius excepturi libero nihil recusandae.",
+    "imageUrl" : "https://dentalia.orionthemes.com/demo-1/wp-content/uploads/2016/10/dentalia-demo-deoctor-3-1-750x750.jpg",
+    "learnItems" : [ 
+        "6000982e9d822649dbab00b1", 
+        "600098459d822649dbab00b2", 
+        "600098529d822649dbab00b3", 
+        "600098689d822649dbab00b4"
+    ],
+    "resources" : [ 
+        "Google", 
+        "Books", 
+        "Mom"
+    ],
+    "title" : "Rect.js for beginners",
+    "updatedAt" : "2021-01-18T19:41:04.105Z"
+  },
+  {
+    "_id" : { "$oid": "6005e5c6178d0c8941349094" },
+    "categories" : [ 
+        "6000906c9d822649dbab00ad", 
+        "6000908f9d822649dbab00ae", 
+        "600090ab9d822649dbab00af"
+    ],
+    "connectionUrl" : "http://looong-connection-url.com",
+    "createdAt" : "2021-01-18T19:47:18.393Z",
+    "creator" : {
+        "_id" : "60008f1a9d822649dbab00ab",
+        "name" : "gintarazzz@gmail.com"
+    },
+    "datetime" : "2021-01-18T19:37:28.586Z",
+    "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum repudiandae labore suscipit fugiat enim earum, expedita unde facere officia perferendis quisquam atque libero? Impedit doloremque eius excepturi libero nihil recusandae.",
+    "imageUrl" : "https://dentalia.orionthemes.com/demo-1/wp-content/uploads/2016/10/dentalia-demo-deoctor-3-1-750x750.jpg",
+    "learnItems" : [ 
+        "6000982e9d822649dbab00b1", 
+        "600098529d822649dbab00b3"
+    ],
+    "resources" : [ 
+        "Google", 
+        "Mom", 
+        "Books"
+    ],
+    "title" : "Angular.js for beginners",
+    "updatedAt" : "2021-01-18T19:47:18.393Z"
+  },
+  {
+    "_id" : { "$oid": "6005e5f3178d0c8941349095" },
+    "categories" : [ 
+        "6000908f9d822649dbab00ae", 
+        "600090ab9d822649dbab00af"
+    ],
+    "connectionUrl" : "http://looong-connection-url.com",
+    "createdAt" : "2021-01-18T19:48:03.563Z",
+    "creator" : {
+        "_id" : "60008f1a9d822649dbab00ab",
+        "name" : "gintarazzz@gmail.com"
+    },
+    "datetime" : "2021-01-18T19:37:28.586Z",
+    "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum repudiandae labore suscipit fugiat enim earum, expedita unde facere officia perferendis quisquam atque libero? Impedit doloremque eius excepturi libero nihil recusandae.",
+    "imageUrl" : "https://dentalia.orionthemes.com/demo-1/wp-content/uploads/2016/10/dentalia-demo-deoctor-3-1-750x750.jpg",
+    "learnItems" : [ 
+        "6000982e9d822649dbab00b1", 
+        "600098529d822649dbab00b3"
+    ],
+    "resources" : [ 
+        "Google", 
+        "Mom", 
+        "Books"
+    ],
+    "title" : "Javascript for beginners",
+    "updatedAt" : "2021-01-18T19:48:03.563Z"
+  },
+  {
+    "_id" : { "$oid": "6005e613178d0c8941349096" },
+    "categories" : [ 
+        "6000906c9d822649dbab00ad", 
+        "600090ab9d822649dbab00af", 
+        "600090c69d822649dbab00b0"
+    ],
+    "connectionUrl" : "http://looong-connection-url.com",
+    "createdAt" : "2021-01-18T19:48:35.324Z",
+    "creator" : {
+        "_id" : "60008f1a9d822649dbab00ab",
+        "name" : "gintarazzz@gmail.com"
+    },
+    "datetime" : "2021-01-18T19:37:28.586Z",
+    "description" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum repudiandae labore suscipit fugiat enim earum, expedita unde facere officia perferendis quisquam atque libero? Impedit doloremque eius excepturi libero nihil recusandae.",
+    "imageUrl" : "https://dentalia.orionthemes.com/demo-1/wp-content/uploads/2016/10/dentalia-demo-deoctor-3-1-750x750.jpg",
+    "learnItems" : [ 
+        "600098459d822649dbab00b2", 
+        "600098529d822649dbab00b3", 
+        "600098689d822649dbab00b4"
+    ],
+    "resources" : [ 
+        "Google", 
+        "Books", 
+        "Mom"
+    ],
+    "title" : "HTML5 for beginners",
+    "updatedAt" : "2021-01-18T19:48:35.324Z"
+  }
+]
