@@ -28,7 +28,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
           >
             <Button className="navigation-button">
               <Icon>{button.icon}</Icon>
-              {button.label}
+             <span className='navigation-button-label'> {button.label} </span>
             </Button>
           </Link>
         ))}

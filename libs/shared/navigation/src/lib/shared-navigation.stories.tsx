@@ -19,13 +19,13 @@ const buttons = [
   {
     label: 'About',
     path: '/About',
-    icon: 'apps',
+    icon: 'info',
     onClick: () => callName('home2'),
   },
   {
     label: 'Contacts',
     path: '/contacts',
-    icon: 'homeWork',
+    icon: 'contacts',
     onClick: () => callName('home3'),
   },
 ];
