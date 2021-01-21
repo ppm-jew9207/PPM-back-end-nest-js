@@ -13,6 +13,7 @@ import {
 import './features-profile.scss';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
+import Button from '@material-ui/core/Button';
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
