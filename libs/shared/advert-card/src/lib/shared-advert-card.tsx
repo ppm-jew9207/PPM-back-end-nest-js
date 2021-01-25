@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 
 import './shared-advert-card.scss';
 
-export interface advertFormData {
+export interface AdvertFormData {
   title: string;
   description: string;
   advertImage: string;
@@ -36,7 +36,7 @@ export interface SharedAdvertCardProps {
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
-  onSaveClick?: (d: advertFormData) => void;
+  onSaveClick?: (data: AdvertFormData) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -96,7 +96,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
   const { handleSubmit, register } = useForm();
 
-  const onFileLoad = (e) => {
+  const onFileLoad = (e: any) => {
     const file = e.currentTarget.files[0];
 
     let fileReader = new FileReader();
@@ -106,8 +106,8 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
-  const saveEdit = (d: advertFormData) => {
-    props.onSaveClick(d);
+  const saveEdit = (data: AdvertFormData) => {
+    props.onSaveClick(data);
     setEditing(false);
   };
 
@@ -122,7 +122,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             <img
               className="card-img"
               src={props.author.img}
-              alt=""
+              alt="Advert image"
               height="40"
               width="40"
             />
@@ -138,7 +138,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             </a>
             <span>posted on {props.title}</span>
 
-            <p>{`${timeCalculator(props.createAt)}`}</p>
+            <p>{timeCalculator(props.createAt)}</p>
           </div>
           <div className="editing-holder">
             <EditIcon onClick={() => setEditing(true)} />
@@ -147,7 +147,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
         <div className="card-content">
           <p>{props.description}</p>
-          <img src={props.imgUrl} alt="" />
+          <img src={props.imgUrl} alt="Advert image" />
         </div>
 
         <div className="social-wrapper">
@@ -186,7 +186,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             <img
               className="card-img"
               src={props.author.img}
-              alt=""
+              alt="Advert image"
               height="40"
               width="40"
             />
@@ -205,7 +205,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             <span>
               posted on{' '}
               <TextField
-                inputRef={register({})}
+                inputRef={register()}
                 id="title"
                 name="title"
                 defaultValue={props.title}
@@ -223,7 +223,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
 
         <div className="card-content">
           <TextField
-            inputRef={register({})}
+            inputRef={register()}
             name="description"
             id="description"
             multiline
@@ -233,11 +233,8 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           <div className="image-container draggable-container">
             <img
               className="files-preview-container__image"
-              src={
-                (!!uploadedImg && uploadedImg.toString()) ||
-                uploadedImg.toString()
-              }
-              alt=""
+              src={!!uploadedImg && uploadedImg.toString()}
+              alt="Advert image"
             />
             <div className="middle">
               <Typography
@@ -251,7 +248,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
               <SystemUpdateAltIcon display="inline" />
               <TextField
                 className="file-browser-input"
-                inputRef={register({})}
+                inputRef={register()}
                 type="file"
                 id="file-browser-input"
                 name="advertImage"
@@ -259,8 +256,8 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
                   e.preventDefault();
                   e.stopPropagation();
                 }}
-                onDrop={onFileLoad.bind(this)}
-                onChange={onFileLoad.bind(this)}
+                onDrop={onFileLoad}
+                onChange={onFileLoad}
               />
             </div>
           </div>
@@ -289,7 +286,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           </Button>
         </div>
         <TextField
-          inputRef={register({})}
+          inputRef={register()}
           id="id"
           name="id"
           defaultValue={props.id}
