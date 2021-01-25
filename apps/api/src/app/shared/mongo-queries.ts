@@ -43,7 +43,7 @@ export const CATEGORIES_JOIN_QUERY = [{
     let: {
       lessonsListData: "$lessonsList"
     },
-    from: "lessonsList",
+    from: "lessons",
     pipeline: [
       {
         $match: {
