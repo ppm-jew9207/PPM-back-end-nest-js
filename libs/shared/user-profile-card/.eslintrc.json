@@ -9,6 +9,11 @@
       }
     ]
   },
-  "extends": ["plugin:@nrwl/nx/react", "../../../.eslintrc"],
-  "ignorePatterns": ["!**/*"]
+  "extends": [
+    "plugin:@nrwl/nx/react",
+    "../../../.eslintrc"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ]
 }
