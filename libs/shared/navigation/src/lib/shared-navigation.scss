@@ -1,5 +1,12 @@
 .navigation-bar {
   .navigation-button {
     color: #fff;
+    margin: 5px;
+  }
+  .navigation-button:hover {
+    color: rgb(172, 165, 165);
+  }
+  .navigation-button-label {
+    margin: 5px;
   }
 }

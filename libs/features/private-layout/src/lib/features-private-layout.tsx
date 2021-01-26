@@ -52,13 +52,13 @@ const buttons = [
   {
     label: 'About',
     path: '/About',
-    icon: 'apps',
+    icon: 'info',
     onClick: () => null,
   },
   {
     label: 'Contacts',
     path: '/contacts',
-    icon: 'homeWork',
+    icon: 'contacts',
     onClick: () => null,
   },
 ];

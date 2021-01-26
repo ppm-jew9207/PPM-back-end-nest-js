@@ -40,9 +40,14 @@ export class AdvertsSagas {
           const advert:AdvertPayload = {
             title: data.title,
             description: data.description,
-            // category: data.category,
             imageUrl: data.imageUrl,
+            programmingLanguages: data.programmingLanguages,
+            preRequisites: data.preRequisites,
             advertImageUrl: data.advertImageUrl,
+            lessonDescription: data.lessonDescription,
+            lessonsList: data.lessonsList,
+            categories: data.categories,
+            learnItems: data.learnItems,
             creator: {
               _id: data.creator._id,
               name: data.creator.name,
