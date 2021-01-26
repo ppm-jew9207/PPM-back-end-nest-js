@@ -10,8 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
+import MoreIcon from '@material-ui/icons/More';
 
 import './shared-advert-card.scss';
+import Link from '@material-ui/core/Link/Link';
 
 export interface AdvertFormData {
   title: string;
@@ -171,6 +173,15 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             <p>Share</p>
             <div>{props.shared}</div>
           </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            className="rightButton"
+            startIcon={<MoreIcon />}
+            href={`/adverts/${props.id}`}
+          >
+            <p>Read More</p>
+          </Button>
         </div>
       </div>
     );
@@ -283,6 +294,15 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
           >
             <p>Share</p>
             <div>{props.shared}</div>
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            className="rightButton"
+            startIcon={<MoreIcon />}
+            href={`/adverts/${props.id}`}
+          >
+            <p>Read More</p>
           </Button>
         </div>
         <TextField
