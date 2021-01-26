@@ -37,4 +37,24 @@ export const CATEGORIES_JOIN_QUERY = [{
     ],
     as: "learnItems"
   }
+},
+{
+  $lookup: {
+    let: {
+      lessonsListData: "$lessonsList"
+    },
+    from: "lessons",
+    pipeline: [
+      {
+        $match: {
+          $expr: {$and: [
+            {$in: [{
+             $toString: "$_id"
+           }, {$ifNull :['$$lessonsListData',[]]}]}
+          ]}
+        }
+      }
+    ],
+    as: "lessonsList"
+  }
 }];
