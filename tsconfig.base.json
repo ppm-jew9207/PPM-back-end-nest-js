@@ -113,7 +113,8 @@
       "@ppm/shared/list-editor": ["libs/shared/list-editor/src/index.ts"],
       "@ppm/data-access/learn-items": [
         "libs/data-access/learn-items/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/logout-button": ["libs/shared/logout-button/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

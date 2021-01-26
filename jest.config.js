@@ -55,5 +55,6 @@ module.exports = {
     '<rootDir>/libs/hooks/use-adverts',
     '<rootDir>/libs/shared/list-editor',
     '<rootDir>/libs/data-access/learn-items',
+    '<rootDir>/libs/shared/logout-button',
   ],
 };
