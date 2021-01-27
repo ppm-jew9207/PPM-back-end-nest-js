@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import moment from 'moment';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
+import MoreIcon from '@material-ui/icons/More';
 
 import './shared-advert-card.scss';
-import { Button } from '@material-ui/core';
+import Link from '@material-ui/core/Link/Link';
 
+export interface AdvertFormData {
+  title: string;
+  description: string;
+  advertImage: string;
+  _id: string;
+}
 export interface SharedAdvertCardProps {
+  id: string;
   title: string;
   author?: {
     _id: string;
@@ -23,6 +38,7 @@ export interface SharedAdvertCardProps {
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
+  onSaveClick?: (data: AdvertFormData) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,6 +50,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
+  useEffect(() => {
+    setUploadedImg(props.imgUrl);
+  }, [props]);
+
   const classes = useStyles();
 
   const getSortedTimeNames = (key: string) => {
@@ -73,63 +93,226 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
     return string;
   };
 
-  return (
-    <div className="advert-card">
-      <div className="card-title-wrap flex-wrap">
-        <button
-          type="button"
-          onClick={() => props.onViewClick(props.author._id)}
-        >
-          <img
-            className="card-img"
-            src={props.author.img}
-            alt=""
-            height="40"
-            width="40"
-          />
-        </button>
+  const [editing, setEditing] = useState(false);
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
 
-        <div className="card-title">
-          <a href="url" onClick={() => props.onViewClick(props.author._id)}>
-            <span>
-              {`
-								${props.author.firstName || ''} ${props.author.lastName || ''}
-							`}
-            </span>
-          </a>
+  const { handleSubmit, register } = useForm();
 
-          <span>posted on {props.title}</span>
-          <p>{`${timeCalculator(props.createAt)}`}</p>
+  const onFileLoad = (e: any) => {
+    const file = e.currentTarget.files[0];
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
+  const saveEdit = (data: AdvertFormData) => {
+    props.onSaveClick(data);
+    setEditing(false);
+  };
+
+  if (!editing) {
+    return (
+      <div className="card">
+        <div className="card-title-wrap flex-wrap">
+          <button
+            type="button"
+            onClick={() => props.onViewClick(props.author._id)}
+          >
+            <img
+              className="card-img"
+              src={props.author.img}
+              alt="Advert image"
+              height="40"
+              width="40"
+            />
+          </button>
+
+          <div className="card-title">
+            <a href="url" onClick={() => props.onViewClick(props.author._id)}>
+              <span>
+                {`
+                  ${props.author.firstName || ''} ${props.author.lastName || ''}
+                `}
+              </span>
+            </a>
+            <span>posted on {props.title}</span>
+
+            <p>{timeCalculator(props.createAt)}</p>
+          </div>
+          <div className="editing-holder">
+            <EditIcon onClick={() => setEditing(true)} />
+          </div>
+        </div>
+
+        <div className="card-content">
+          <p>{props.description}</p>
+          <img src={props.imgUrl} alt="Advert image" />
+        </div>
+
+        <div className="social-wrapper">
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<FavoriteIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Like</p>
+            <div>{props.like}</div>
+          </Button>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            startIcon={<ShareIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Share</p>
+            <div>{props.shared}</div>
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            className="rightButton"
+            startIcon={<MoreIcon />}
+            href={`/adverts/${props.id}`}
+          >
+            <p>Read More</p>
+          </Button>
         </div>
       </div>
+    );
+  }
+  return (
+    <div className="card">
+      <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
+        <div className="card-title-wrap flex-wrap">
+          <button
+            type="button"
+            onClick={() => props.onViewClick(props.author._id)}
+          >
+            <img
+              className="card-img"
+              src={props.author.img}
+              alt="Advert image"
+              height="40"
+              width="40"
+            />
+          </button>
 
-      <div className="card-content">
-        <p>{props.description}</p>
-        <img src={props.imgUrl} alt="" />
-      </div>
+          <div className="card-title">
+            <a href="url" onClick={() => props.onViewClick(props.author._id)}>
+              <span>
+                {`
+                    ${props.author.firstName || ''} ${
+                  props.author.lastName || ''
+                }
+                  `}
+              </span>
+            </a>
+            <span>
+              posted on{' '}
+              <TextField
+                inputRef={register()}
+                id="title"
+                name="title"
+                defaultValue={props.title}
+              />
+            </span>
 
-      <div className="social-wrapper">
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<FavoriteIcon />}
-          onClick={props.onLikeClick}
-        >
-          <p>Like</p>
-          <div>{props.like}</div>
-        </Button>
+            <p>{`${timeCalculator(props.createAt)}`}</p>
+          </div>
+          <div className="editing-holder editing">
+            <button type="submit">
+              <SaveIcon />
+            </button>
+          </div>
+        </div>
 
-        <Button
-          variant="outlined"
-          color="primary"
-          className={classes.button}
-          startIcon={<ShareIcon />}
-          onClick={props.onLikeClick}
-        >
-          <p>Share</p>
-          <div>{props.shared}</div>
-        </Button>
-      </div>
+        <div className="card-content">
+          <TextField
+            inputRef={register()}
+            name="description"
+            id="description"
+            multiline
+            fullWidth
+            defaultValue={props.description}
+          />
+          <div className="image-container draggable-container">
+            <img
+              className="files-preview-container__image"
+              src={!!uploadedImg && uploadedImg.toString()}
+              alt="Advert image"
+            />
+            <div className="middle">
+              <Typography
+                variant="body1"
+                component="p"
+                align="center"
+                gutterBottom
+              >
+                Drag and Drop Images Here
+              </Typography>
+              <SystemUpdateAltIcon display="inline" />
+              <TextField
+                className="file-browser-input"
+                inputRef={register()}
+                type="file"
+                id="file-browser-input"
+                name="advertImage"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={onFileLoad}
+                onChange={onFileLoad}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="social-wrapper">
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<FavoriteIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Like</p>
+            <div>{props.like}</div>
+          </Button>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+            startIcon={<ShareIcon />}
+            onClick={props.onLikeClick}
+          >
+            <p>Share</p>
+            <div>{props.shared}</div>
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            className="rightButton"
+            startIcon={<MoreIcon />}
+            href={`/adverts/${props.id}`}
+          >
+            <p>Read More</p>
+          </Button>
+        </div>
+        <TextField
+          inputRef={register()}
+          id="id"
+          name="id"
+          defaultValue={props.id}
+          className="hidden"
+        />
+      </form>
     </div>
   );
 };
