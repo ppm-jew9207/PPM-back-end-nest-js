@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonGroup } from '@material-ui/core';
 import './shared-adverts-add-buttons.module.scss';
 
 /* eslint-disable-next-line */
 export interface SharedAdvertsAddButtonsProps {
+  /*
   disabled: boolean;
   toggleDisabled?: () => void;
+  */
 }
 
 export function SharedAdvertsAddButtons(props: SharedAdvertsAddButtonsProps) {
-  const [disabled, setDisabled] = React.useState(true);
+  const [disabled, setDisabled] = useState(true);
   const toggleDisabled = () => {
     setDisabled((st) => !st);
   };

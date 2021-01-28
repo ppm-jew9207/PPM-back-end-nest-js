@@ -13,6 +13,8 @@ import {
 import './features-profile.scss';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
+import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
+
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -62,6 +64,7 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} />
       </div>
       <div className="content">
+        <SharedAdvertsAddButtons/>
         {adverts.map((advert, i) => 
           <SharedAdvertCard
             key={advert._id}
