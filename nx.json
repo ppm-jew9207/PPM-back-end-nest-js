@@ -205,6 +205,10 @@
     },
     "shared-adverts-add-buttons": {
       "tags": []
+    },
+    "shared-adverts-add-buttons-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shared-adverts-add-buttons"]
     }
   },
   "affected": {

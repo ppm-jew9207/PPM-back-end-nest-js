@@ -2635,6 +2635,34 @@
           }
         }
       }
+    },
+    "shared-adverts-add-buttons-e2e": {
+      "root": "apps/shared-adverts-add-buttons-e2e",
+      "sourceRoot": "apps/shared-adverts-add-buttons-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/shared-adverts-add-buttons-e2e/cypress.json",
+            "tsConfig": "apps/shared-adverts-add-buttons-e2e/tsconfig.e2e.json",
+            "devServerTarget": "shared-adverts-add-buttons:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "shared-adverts-add-buttons:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shared-adverts-add-buttons-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

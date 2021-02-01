@@ -4,10 +4,8 @@ import './shared-adverts-add-buttons.module.scss';
 
 /* eslint-disable-next-line */
 export interface SharedAdvertsAddButtonsProps {
-  /*
   disabled: boolean;
   toggleDisabled?: () => void;
-  */
 }
 
 export function SharedAdvertsAddButtons(props: SharedAdvertsAddButtonsProps) {
