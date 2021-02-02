@@ -13,11 +13,8 @@ import {
 } from '@material-ui/core';
 
 import { Person as PersonIcon, Room as RoomIcon } from '@material-ui/icons';
-import {SharedLogoutButton} from '@ppm/shared/logout-button'
 
-
-
-
+import { SharedLogoutButton } from '@ppm/shared/logout-button';
 
 export interface SharedUserProfileCardProps {
   mentorImage?: string;
@@ -102,7 +99,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
             ))}
         </CardActions>
       </CardContent>
-      <SharedLogoutButton
+      <SharedLogoutButton confirmLogout={console.log}
             />
     </Card>
   );

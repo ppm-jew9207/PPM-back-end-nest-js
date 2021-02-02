@@ -10,7 +10,10 @@ import {
   Button
 } from '@material-ui/core';
 /* eslint-disable-next-line */
-export interface SharedLogoutButtonProps {}
+export interface SharedLogoutButtonProps {
+ 
+  confirmLogout: () => void;
+}
 
 export function SharedLogoutButton(props: SharedLogoutButtonProps) {
   const [open, setOpen] = React.useState(false);
@@ -20,6 +23,11 @@ export function SharedLogoutButton(props: SharedLogoutButtonProps) {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const confirmLogout = () => {
+    props.confirmLogout();
     setOpen(false);
   };
 
@@ -41,11 +49,11 @@ export function SharedLogoutButton(props: SharedLogoutButtonProps) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Agree
+          <Button onClick={confirmLogout} color="primary">
+            Yes
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Disagree
+            No
           </Button>
         </DialogActions>
       </Dialog>

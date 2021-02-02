@@ -15,8 +15,13 @@
             "main": "apps/ppm/src/main.tsx",
             "polyfills": "apps/ppm/src/polyfills.ts",
             "tsConfig": "apps/ppm/tsconfig.app.json",
-            "assets": ["apps/ppm/src/favicon.ico", "apps/ppm/src/assets"],
-            "styles": ["apps/ppm/src/styles.scss"],
+            "assets": [
+              "apps/ppm/src/favicon.ico",
+              "apps/ppm/src/assets"
+            ],
+            "styles": [
+              "apps/ppm/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -44,7 +49,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/web:dev-server",
@@ -80,7 +87,9 @@
             "jestConfig": "apps/ppm/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/ppm"]
+          "outputs": [
+            "coverage/apps/ppm"
+          ]
         }
       }
     },
@@ -126,7 +135,9 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -141,7 +152,9 @@
               ]
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -165,7 +178,9 @@
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/apps/api"]
+          "outputs": [
+            "coverage/apps/api"
+          ]
         }
       }
     },
@@ -197,7 +212,9 @@
             "jestConfig": "libs/shared/storybook/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/storybook"]
+          "outputs": [
+            "coverage/libs/shared/storybook"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -228,7 +245,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -260,7 +279,9 @@
             "jestConfig": "libs/shared/test/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/test"]
+          "outputs": [
+            "coverage/libs/shared/test"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -291,7 +312,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -323,7 +346,9 @@
             "jestConfig": "libs/shared/login-component/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/login-component"]
+          "outputs": [
+            "coverage/libs/shared/login-component"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -354,7 +379,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -386,7 +413,9 @@
             "jestConfig": "libs/shared/profile-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/profile-form"]
+          "outputs": [
+            "coverage/libs/shared/profile-form"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -417,7 +446,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -449,7 +480,9 @@
             "jestConfig": "libs/shared/info-card/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/info-card"]
+          "outputs": [
+            "coverage/libs/shared/info-card"
+          ]
         }
       }
     },
@@ -476,7 +509,9 @@
             "jestConfig": "libs/shared/advert-card/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-card"]
+          "outputs": [
+            "coverage/libs/shared/advert-card"
+          ]
         }
       }
     },
@@ -508,7 +543,9 @@
             "jestConfig": "libs/shared/top-right-bar/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/top-right-bar"]
+          "outputs": [
+            "coverage/libs/shared/top-right-bar"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -539,7 +576,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -571,7 +610,9 @@
             "jestConfig": "libs/shared/top-menu-button/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/top-menu-button"]
+          "outputs": [
+            "coverage/libs/shared/top-menu-button"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -602,7 +643,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -634,7 +677,9 @@
             "jestConfig": "libs/shared/navigation/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/navigation"]
+          "outputs": [
+            "coverage/libs/shared/navigation"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -665,7 +710,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -697,7 +744,9 @@
             "jestConfig": "libs/shared/registration-verification/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/registration-verification"]
+          "outputs": [
+            "coverage/libs/shared/registration-verification"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -728,7 +777,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -760,7 +811,9 @@
             "jestConfig": "libs/shared/forgot-password-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/forgot-password-form"]
+          "outputs": [
+            "coverage/libs/shared/forgot-password-form"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -791,7 +844,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -804,7 +859,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/common/main/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/common/main/**/*.ts"
+            ]
           }
         }
       }
@@ -837,7 +894,9 @@
             "jestConfig": "libs/features/dashboard/mentor/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/dashboard/mentor"]
+          "outputs": [
+            "coverage/libs/features/dashboard/mentor"
+          ]
         }
       }
     },
@@ -869,7 +928,9 @@
             "jestConfig": "libs/features/mentors/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/mentors"]
+          "outputs": [
+            "coverage/libs/features/mentors"
+          ]
         }
       }
     },
@@ -901,7 +962,9 @@
             "jestConfig": "libs/features/mentor/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/mentor"]
+          "outputs": [
+            "coverage/libs/features/mentor"
+          ]
         }
       }
     },
@@ -930,7 +993,9 @@
             "jestConfig": "libs/data-access/redux-configuration/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/redux-configuration"]
+          "outputs": [
+            "coverage/libs/data-access/redux-configuration"
+          ]
         }
       }
     },
@@ -959,7 +1024,9 @@
             "jestConfig": "libs/data-access/authorization/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/authorization"]
+          "outputs": [
+            "coverage/libs/data-access/authorization"
+          ]
         }
       }
     },
@@ -991,7 +1058,9 @@
             "jestConfig": "libs/shared/search-input/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/search-input"]
+          "outputs": [
+            "coverage/libs/shared/search-input"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1022,7 +1091,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1054,7 +1125,9 @@
             "jestConfig": "libs/shared/rank/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/rank"]
+          "outputs": [
+            "coverage/libs/shared/rank"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1085,7 +1158,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1117,7 +1192,9 @@
             "jestConfig": "libs/shared/modal/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/modal"]
+          "outputs": [
+            "coverage/libs/shared/modal"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1148,7 +1225,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1176,7 +1255,9 @@
             "jestConfig": "libs/features/authorization/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/authorization"]
+          "outputs": [
+            "coverage/libs/features/authorization"
+          ]
         }
       }
     },
@@ -1205,7 +1286,9 @@
             "jestConfig": "libs/data-access/local-storage/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/local-storage"]
+          "outputs": [
+            "coverage/libs/data-access/local-storage"
+          ]
         }
       }
     },
@@ -1234,7 +1317,9 @@
             "jestConfig": "libs/data-access/http-requests/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/http-requests"]
+          "outputs": [
+            "coverage/libs/data-access/http-requests"
+          ]
         }
       }
     },
@@ -1266,7 +1351,9 @@
             "jestConfig": "libs/shared/user-profile-card/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/user-profile-card"]
+          "outputs": [
+            "coverage/libs/shared/user-profile-card"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1297,7 +1384,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1329,7 +1418,9 @@
             "jestConfig": "libs/shared/create-advert-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/create-advert-form"]
+          "outputs": [
+            "coverage/libs/shared/create-advert-form"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1360,7 +1451,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1389,7 +1482,9 @@
             "jestConfig": "libs/data-access/adverts/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/adverts"]
+          "outputs": [
+            "coverage/libs/data-access/adverts"
+          ]
         }
       }
     },
@@ -1421,7 +1516,9 @@
             "jestConfig": "libs/shared/registration/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/registration"]
+          "outputs": [
+            "coverage/libs/shared/registration"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1452,7 +1549,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1513,7 +1612,9 @@
             "jestConfig": "libs/shared/footer/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/footer"]
+          "outputs": [
+            "coverage/libs/shared/footer"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1544,7 +1645,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1576,7 +1679,9 @@
             "jestConfig": "libs/features/registration/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/registration"]
+          "outputs": [
+            "coverage/libs/features/registration"
+          ]
         }
       }
     },
@@ -1608,7 +1713,9 @@
             "jestConfig": "libs/shared/left-side-menu/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/left-side-menu"]
+          "outputs": [
+            "coverage/libs/shared/left-side-menu"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1639,7 +1746,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1671,7 +1780,9 @@
             "jestConfig": "libs/features/adverts/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/adverts"]
+          "outputs": [
+            "coverage/libs/features/adverts"
+          ]
         }
       }
     },
@@ -1700,7 +1811,9 @@
             "jestConfig": "libs/data-access/user-profile/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/user-profile"]
+          "outputs": [
+            "coverage/libs/data-access/user-profile"
+          ]
         }
       }
     },
@@ -1729,7 +1842,9 @@
             "jestConfig": "libs/data-access/snack-bar/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/snack-bar"]
+          "outputs": [
+            "coverage/libs/data-access/snack-bar"
+          ]
         }
       }
     },
@@ -1761,7 +1876,9 @@
             "jestConfig": "libs/features/snack-bar/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/snack-bar"]
+          "outputs": [
+            "coverage/libs/features/snack-bar"
+          ]
         }
       }
     },
@@ -1793,7 +1910,9 @@
             "jestConfig": "libs/features/advert-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/advert-form"]
+          "outputs": [
+            "coverage/libs/features/advert-form"
+          ]
         }
       }
     },
@@ -1822,7 +1941,9 @@
             "jestConfig": "libs/data-access/categories/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/categories"]
+          "outputs": [
+            "coverage/libs/data-access/categories"
+          ]
         }
       }
     },
@@ -1854,7 +1975,9 @@
             "jestConfig": "libs/features/profile/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/profile"]
+          "outputs": [
+            "coverage/libs/features/profile"
+          ]
         }
       }
     },
@@ -1883,7 +2006,9 @@
             "jestConfig": "libs/data-access/lessons/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/lessons"]
+          "outputs": [
+            "coverage/libs/data-access/lessons"
+          ]
         }
       }
     },
@@ -1915,7 +2040,9 @@
             "jestConfig": "libs/hooks/use-registration/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/hooks/use-registration"]
+          "outputs": [
+            "coverage/libs/hooks/use-registration"
+          ]
         }
       }
     },
@@ -1947,7 +2074,9 @@
             "jestConfig": "libs/shared/lesson-component/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/lesson-component"]
+          "outputs": [
+            "coverage/libs/shared/lesson-component"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1978,7 +2107,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1997,7 +2128,10 @@
               "libs/shared/lessons/tsconfig.spec.json",
               "libs/shared/lessons/.storybook/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/lessons/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/lessons/**/*"
+            ]
           }
         },
         "test": {
@@ -2006,7 +2140,9 @@
             "jestConfig": "libs/shared/lessons/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/lessons"]
+          "outputs": [
+            "coverage/libs/shared/lessons"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2037,7 +2173,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2070,7 +2208,9 @@
             "jestConfig": "libs/shared/advert-info/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-info"]
+          "outputs": [
+            "coverage/libs/shared/advert-info"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2101,7 +2241,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2134,7 +2276,9 @@
             "jestConfig": "libs/shared/advert-details/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-details"]
+          "outputs": [
+            "coverage/libs/shared/advert-details"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2165,7 +2309,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2198,7 +2344,9 @@
             "jestConfig": "libs/shared/lessons-accordion/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/lessons-accordion"]
+          "outputs": [
+            "coverage/libs/shared/lessons-accordion"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2229,7 +2377,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2261,7 +2411,9 @@
             "jestConfig": "libs/features/forgot-password/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/forgot-password"]
+          "outputs": [
+            "coverage/libs/features/forgot-password"
+          ]
         }
       }
     },
@@ -2290,7 +2442,9 @@
             "jestConfig": "libs/hooks/use-authorization/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/hooks/use-authorization"]
+          "outputs": [
+            "coverage/libs/hooks/use-authorization"
+          ]
         }
       }
     },
@@ -2323,7 +2477,9 @@
             "jestConfig": "libs/shared/create-new-password-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/create-new-password-form"]
+          "outputs": [
+            "coverage/libs/shared/create-new-password-form"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2354,7 +2510,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2378,7 +2536,9 @@
             "jestConfig": "libs/features/private-layout/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/private-layout"]
+          "outputs": [
+            "coverage/libs/features/private-layout"
+          ]
         }
       }
     },
@@ -2410,7 +2570,9 @@
             "jestConfig": "libs/features/advert-page/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/advert-page"]
+          "outputs": [
+            "coverage/libs/features/advert-page"
+          ]
         }
       }
     },
@@ -2423,7 +2585,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/hooks/use-adverts/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/hooks/use-adverts/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -2432,7 +2596,9 @@
             "jestConfig": "libs/hooks/use-adverts/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/hooks/use-adverts"]
+          "outputs": [
+            "coverage/libs/hooks/use-adverts"
+          ]
         }
       }
     },
@@ -2456,7 +2622,9 @@
             "jestConfig": "libs/features/lesson-page/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/lesson-page"]
+          "outputs": [
+            "coverage/libs/features/lesson-page"
+          ]
         }
       }
     },
@@ -2469,7 +2637,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/hooks/use-lesson/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/hooks/use-lesson/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -2478,7 +2648,9 @@
             "jestConfig": "libs/hooks/use-lesson/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/hooks/use-lesson"]
+          "outputs": [
+            "coverage/libs/hooks/use-lesson"
+          ]
         }
       }
     },
@@ -2491,7 +2663,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/shared/list-editor/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/shared/list-editor/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -2500,7 +2674,9 @@
             "jestConfig": "libs/shared/list-editor/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/list-editor"]
+          "outputs": [
+            "coverage/libs/shared/list-editor"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2531,7 +2707,9 @@
               "quiet": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -2556,7 +2734,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/shared-list-editor-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/shared-list-editor-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -2570,7 +2750,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/data-access/learn-items/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/data-access/learn-items/**/*.ts"
+            ]
           }
         },
         "test": {
@@ -2579,7 +2761,9 @@
             "jestConfig": "libs/data-access/learn-items/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/learn-items"]
+          "outputs": [
+            "coverage/libs/data-access/learn-items"
+          ]
         }
       }
     },
@@ -2598,10 +2782,42 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/logout-button"],
+          "outputs": [
+            "coverage/libs/shared/logout-button"
+          ],
           "options": {
             "jestConfig": "libs/shared/logout-button/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/logout-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/shared-logout-button",
+            "config": {
+              "configFolder": "libs/shared/logout-button/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
