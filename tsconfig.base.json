@@ -113,6 +113,9 @@
       "@ppm/shared/list-editor": ["libs/shared/list-editor/src/index.ts"],
       "@ppm/data-access/learn-items": [
         "libs/data-access/learn-items/src/index.ts"
+      ],
+      "@ppm/data-access/countries-api": [
+        "libs/data-access/countries-api/src/index.ts"
       ]
     }
   },

@@ -8,6 +8,8 @@ import { CategoriesModelModule } from "../../models/categories/categories.module
 @Module({
   imports: [CqrsModule, CategoriesModelModule],
   controllers: [CategoriesController],
-  providers: [...EventHandlers, ...QueryHandlers],
+  providers: [
+    ...EventHandlers, ...QueryHandlers
+  ],
 })
 export class CategoriesViewModule {}

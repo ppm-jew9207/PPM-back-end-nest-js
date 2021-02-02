@@ -14,6 +14,12 @@ export enum PrivateRoutesPath {
   AUTH = 'auth',
   GET_BY_ID = '/:id',
   GET_ALL = '/all',
+  COUNTRIES = 'countries',
+  STATES = 'states',
+  CITIES = 'cities',
+  COUNTRY = '/:countryName/states',
+  STATE = '/:stateName/cities',
+  
 
   // TODO only for API
   POST_CREATE = '/create',
