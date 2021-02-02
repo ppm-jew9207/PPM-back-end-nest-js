@@ -187,7 +187,9 @@ export function* updateAdvertFromList(actions : any) {
     } else {
       yield put(getAllByAuthorAction());
     }
-  } catch (error) {}
+  } catch (error) {
+    yield put(smallUpdateFailed());
+  }
 }
 
 export function* advertsSaga() {
