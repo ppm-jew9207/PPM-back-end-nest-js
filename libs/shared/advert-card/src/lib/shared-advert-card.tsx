@@ -11,9 +11,8 @@ import Button from '@material-ui/core/Button';
 import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
 import MoreIcon from '@material-ui/icons/More';
-
+import { Link } from 'react-router-dom';
 import './shared-advert-card.scss';
-import Link from '@material-ui/core/Link/Link';
 
 export interface AdvertFormData {
   title: string;
@@ -35,6 +34,7 @@ export interface SharedAdvertCardProps {
   like: number;
   shared: number;
   imgUrl: string;
+  editable: boolean;
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
@@ -138,18 +138,29 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
                 `}
               </span>
             </a>
-            <span>posted on {props.title}</span>
+            <span>
+              posted on&nbsp;
+              <Link className="title" to={`/adverts/${props.id}`}>
+                {props.title}
+              </Link>
+            </span>
 
             <p>{timeCalculator(props.createAt)}</p>
           </div>
-          <div className="editing-holder">
-            <EditIcon onClick={() => setEditing(true)} />
-          </div>
+          {props.editable ? (
+            <div className="editing-holder">
+              <EditIcon onClick={() => setEditing(true)} />
+            </div>
+          ) : (
+            ''
+          )}
         </div>
 
         <div className="card-content">
           <p>{props.description}</p>
-          <img src={props.imgUrl} alt="Advert image" />
+          <Link to={`/adverts/${props.id}`}>
+            <img src={props.imgUrl} alt="Advert image" />
+          </Link>
         </div>
 
         <div className="social-wrapper">

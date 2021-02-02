@@ -52,6 +52,9 @@
 
       a {
         color: #4b89c4;
+        &.title {
+          color: #000;
+        }
       }
     }
   }
