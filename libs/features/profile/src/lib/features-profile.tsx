@@ -15,7 +15,6 @@ import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
 
-
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
   loading: userProfileSelectors.selectLoading(),
@@ -25,6 +24,11 @@ const stateSelector = createStructuredSelector({
 export const FeaturesProfile = (props) => {
   const dispatch = useDispatch();
   const { profile, loading, adverts } = useSelector(stateSelector);
+
+  const saveClick = (payload: any) => {
+    const data = { callback: 'getAllByAuthor', ...payload };
+    dispatch(advertsActions.smallUpdate(data));
+  };
 
   useEffect(() => {
     dispatch(advertsActions.getAllByAuthor());
@@ -64,9 +68,10 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons/>
-        {adverts.map((advert, i) => 
+        <SharedAdvertsAddButtons disabled={false} />
+        {adverts.map((advert, i) => (
           <SharedAdvertCard
+            id={advert._id}
             key={advert._id}
             title={advert.title}
             author={{
@@ -82,9 +87,10 @@ export const FeaturesProfile = (props) => {
             // TODO add shares to backend
             shared={0}
             imgUrl={advert.imageUrl}
+            onSaveClick={saveClick}
+            editable={profile._id == advert.creator._id}
           />
-          
-        )}
+        ))}
       </div>
     </div>
   );
