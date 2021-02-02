@@ -68,7 +68,7 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons />
+        <SharedAdvertsAddButtons disabled={false} />
         {adverts.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}
