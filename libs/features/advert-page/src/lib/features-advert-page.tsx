@@ -12,7 +12,6 @@ export const FeaturesAdvertPage = () => {
   const { id } = useParams();
 
   const { advert, loading, onGetStartedClick } = useAdverts(id);
-  console.log(advert);
 
   if (loading) return <CircularProgress />;
 

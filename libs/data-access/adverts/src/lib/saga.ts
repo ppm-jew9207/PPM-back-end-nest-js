@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
   getAllSuccess,
@@ -10,6 +10,10 @@ import {
   removeFailed,
   getByIdSuccess,
   getByIdFailed,
+  smallUpdateSuccess,
+  smallUpdateFailed,
+  getAll as getAllAction,
+  getAllByAuthor as getAllByAuthorAction
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
@@ -149,6 +153,43 @@ export function* getAllByAuthor() {
   }
 }
 
+export function* updateAdvertFromList(actions : any) {
+  const data = actions.payload;
+  console.log(data);
+  try {
+    if (data.advertImage.length) {
+      const file = data.advertImage[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      const path = `/api/${PrivateRoutesPath.IMAGES}`;
+      const imageResult = yield call(postFormData, path, formData);
+
+      if (imageResult) {
+        const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+        yield call(post, path, { ...data, imageUrl: imageResult.data });
+        yield put(
+          smallUpdateSuccess({
+            loading: false,
+          })
+        );
+      }
+    } else {
+      const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+      yield call(post, path, data);
+      yield put(
+        smallUpdateSuccess({
+          loading: false,
+        })
+      );
+    }
+    if(data.callback=="getAll") {
+      yield put(getAllAction());
+    } else {
+      yield put(getAllByAuthorAction());
+    }
+  } catch (error) {}
+}
+
 export function* advertsSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
@@ -156,6 +197,7 @@ export function* advertsSaga() {
   yield takeEvery(ActionTypes.ADVERT_REMOVE, removeAdvert);
   yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
   yield takeEvery(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR, getAllByAuthor);
+  yield takeEvery(ActionTypes.ADVERT_SMALL_UPDATE, updateAdvertFromList);
 }
 
 export default advertsSaga;

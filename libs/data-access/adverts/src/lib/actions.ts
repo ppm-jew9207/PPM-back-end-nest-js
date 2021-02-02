@@ -64,3 +64,15 @@ export function getByIdFailed() {
 export function getAllByAuthor() {
   return action(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR);
 }
+
+export function smallUpdate(payload: any) {
+  return action(ActionTypes.ADVERT_SMALL_UPDATE, payload);
+}
+
+export function smallUpdateSuccess(payload: any) {
+  return action(ActionTypes.ADVERT_SMALL_UPDATE_SUCCESS, payload);
+}
+
+export function smallUpdateFailed() {
+  return action(ActionTypes.ADVERT_SMALL_UPDATE_FAILED);
+}
