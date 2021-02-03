@@ -10,6 +10,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 
 import './shared-lessons-accordion.scss';
 
@@ -49,24 +51,26 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
               {props.lessons.map((lesson, i) => {
                 return (
                   <Grid key={i} item xs={3}>
-                    <Card>
-                      <CardActionArea>
-                        {lesson.image && <CardMedia
-                          className="lesson-image"
-                          image={lesson.image}
-                          title={lesson.title}
-                        />}
-                        <CardContent>
-                          <Typography variant="body1" gutterBottom>
-                            {lesson.title}
-                          </Typography>
-                          <Typography variant="body2" gutterBottom>
-                            {lesson.authorName}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </Grid>
+                    <Link component={RouterLink} to={`/lessons/${lesson._id}`}>
+                      <Card>
+                        <CardActionArea>
+                          {lesson.image && <CardMedia
+                            className="lesson-image"
+                            image={lesson.image}
+                            title={lesson.title}
+                          />}
+                          <CardContent>
+                            <Typography variant="body1" gutterBottom>
+                              {lesson.title}
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                              {lesson.authorName}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </Link>
+                  </Grid>     
                 );
               })}
             </Grid>
