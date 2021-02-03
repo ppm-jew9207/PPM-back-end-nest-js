@@ -108,6 +108,24 @@ export function advertsReducer(
         advert: state.advert,
         loading: false,
       };
+    case ActionTypes.ADVERT_SMALL_UPDATE:
+      return {
+        list: state.list,
+        advert: state.advert,
+        loading: true,
+      };
+    case ActionTypes.ADVERT_SMALL_UPDATE_SUCCESS:
+      return {
+        list: state.list,
+        advert: action.payload.advert,
+        loading: false,
+      };
+    case ActionTypes.ADVERT_SMALL_UPDATE_FAILED:
+      return {
+        list: state.list,
+        advert: state.advert,
+        loading: false,
+      };
     default:
       return state;
   }

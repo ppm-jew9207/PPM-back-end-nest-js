@@ -56,5 +56,6 @@ module.exports = {
     '<rootDir>/libs/shared/list-editor',
     '<rootDir>/libs/data-access/learn-items',
     '<rootDir>/libs/shared/logout-button',
+    '<rootDir>/libs/shared/adverts-add-buttons',
   ],
 };
