@@ -48,14 +48,6 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
           >
             <CloseIcon />
           </IconButton>
-          {/* <Typography
-            variant="h4"
-            component="h2"
-            align="center"
-            gutterBottom
-          >
-            {props.title}
-          </Typography> */}
           <LeftSideMenuList menuItemsArray={props.menuItemsArray}/>
         </div>
       </Drawer>

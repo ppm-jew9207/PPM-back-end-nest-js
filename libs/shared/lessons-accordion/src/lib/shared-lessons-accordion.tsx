@@ -10,6 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
+import { Link  } from 'react-router-dom';
 
 import './shared-lessons-accordion.scss';
 
@@ -46,29 +47,29 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           </div>
           <div>
             <Grid container spacing={2}>
-              {props.lessons.map((lesson, i) => {
-                return (
+              {props.lessons.map((lesson, i) => 
                   <Grid key={i} item xs={3}>
-                    <Card>
-                      <CardActionArea>
-                        {lesson.image && <CardMedia
-                          className="lesson-image"
-                          image={lesson.image}
-                          title={lesson.title}
-                        />}
-                        <CardContent>
-                          <Typography variant="body1" gutterBottom>
-                            {lesson.title}
-                          </Typography>
-                          <Typography variant="body2" gutterBottom>
-                            {lesson.authorName}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </Grid>
-                );
-              })}
+                    <a href={`/lessons/${lesson._id}`} className='lesson-link'>
+                      <Card>
+                        <CardActionArea>
+                          {lesson.image && <CardMedia
+                            className="lesson-image"
+                            image={lesson.image}
+                            title={lesson.title}
+                          />}
+                          <CardContent>
+                            <Typography variant="body1" gutterBottom>
+                              {lesson.title}
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                              {lesson.authorName}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </a>
+                  </Grid>     
+              )}
             </Grid>
           </div>
         </AccordionDetails>
