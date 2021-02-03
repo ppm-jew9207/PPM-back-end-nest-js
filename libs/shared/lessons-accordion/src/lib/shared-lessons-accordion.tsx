@@ -51,7 +51,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
               {props.lessons.map((lesson, i) => {
                 return (
                   <Grid key={i} item xs={3}>
-                    <Link component={RouterLink} to={`/lessons/${lesson._id}`}>
+                    <Link component={RouterLink} to={`/lessons/${lesson._id}`} className='lesson-link'>
                       <Card>
                         <CardActionArea>
                           {lesson.image && <CardMedia
