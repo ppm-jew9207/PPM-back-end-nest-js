@@ -10,8 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 
 import './shared-lessons-accordion.scss';
 
@@ -48,10 +47,9 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           </div>
           <div>
             <Grid container spacing={2}>
-              {props.lessons.map((lesson, i) => {
-                return (
+              {props.lessons.map((lesson, i) => 
                   <Grid key={i} item xs={3}>
-                    <Link component={RouterLink} to={`/lessons/${lesson._id}`} className='lesson-link'>
+                    <a href={`/lessons/${lesson._id}`} className='lesson-link'>
                       <Card>
                         <CardActionArea>
                           {lesson.image && <CardMedia
@@ -69,10 +67,9 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                           </CardContent>
                         </CardActionArea>
                       </Card>
-                    </Link>
+                    </a>
                   </Grid>     
-                );
-              })}
+              )}
             </Grid>
           </div>
         </AccordionDetails>

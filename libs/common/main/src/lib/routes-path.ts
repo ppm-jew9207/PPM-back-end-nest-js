@@ -28,4 +28,5 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
+  POST_ADD_ADVERT = "POST_ADD_ADVERT"
 }

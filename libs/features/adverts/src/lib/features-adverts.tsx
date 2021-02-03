@@ -56,8 +56,9 @@ export const FeaturesAdverts = () => {
             shared={0}
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
-            editable={profile._id == advert.creator._id}
+            editable={profile?._id === advert.creator._id}
           />
+          
         </div>
       ))}
     </div>
