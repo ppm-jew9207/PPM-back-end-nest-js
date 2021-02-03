@@ -58,6 +58,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(() => {
     props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
+    console.log(props);
   },[props, uploadedImg]);
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
@@ -262,7 +263,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             }
           />
         </Box> */}
-        {/* <Box my={3}>
+        <Box my={3}>
           <Controller
             name="country"
             control={control}
@@ -282,7 +283,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               />
             }
           />
-        </Box> */}
+        </Box>
         <Box my={3}>
           <TextField
             id="phone"

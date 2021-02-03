@@ -13,9 +13,25 @@ const selectCitiesState = (state: ApplicationRootState) => {
   return state.citiesList || [];
 };
 
+const selectCountries = () =>
+  createSelector(selectCountriesState, (subState) => {
+    return subState.countriesList || [];
+  });
+
+
+const selectStates = () =>
+createSelector(selectStatesState, (subState) => {
+  return subState.statesList || [];
+});
+
+const selectCities = () =>
+createSelector(selectCitiesState, (subState) => {
+  return subState.citiesList || [];
+});
+
 const selectLoading = () =>
   createSelector(selectCountriesState, (subState) => {
     return subState.loading || false;
   });
 
-export { selectCountriesState, selectStatesState, selectCitiesState, selectLoading }; 
+export { selectCountries, selectStates, selectCities, selectLoading }; 

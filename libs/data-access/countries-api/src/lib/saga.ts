@@ -16,7 +16,7 @@ export function* getCountries() {
     const path = `/api/${PrivateRoutesPath.COUNTRIES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getCountriesFailed(null));
-
+    console.log(result);
     yield put(
       getCountriesSuccess({
         list: result,
@@ -28,9 +28,10 @@ export function* getCountries() {
   }
 }
 
-export function* getStates() {
+export function* getStates(actions) {
   try {
-    const path = `/api/${PrivateRoutesPath.CATEGORIES}/`;
+    const countryName = actions.payload;
+    const path = `/api/${countryName}/${PrivateRoutesPath.STATES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getStatesFailed(null));
 
@@ -45,9 +46,10 @@ export function* getStates() {
   }
 }
 
-export function* getCities() {
+export function* getCities(actions) {
   try {
-    const path = `/api/${PrivateRoutesPath.CATEGORIES}/`;
+    const stateName = actions.payload;
+    const path = `/api/${stateName}/${PrivateRoutesPath.CITIES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getCitiesFailed(null));
 
@@ -62,10 +64,10 @@ export function* getCities() {
   }
 }
 
-export function* categoriesSaga() {
+export function* countriesApiSaga() {
   yield takeEvery(ActionTypes.GET_COUNTRIES, getCountries);
   yield takeEvery(ActionTypes.GET_STATES, getStates);
   yield takeEvery(ActionTypes.GET_CITIES, getCities);
 }
 
-export default categoriesSaga;
+export default countriesApiSaga;

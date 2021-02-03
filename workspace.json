@@ -2659,8 +2659,8 @@
           "options": {
             "lintFilePatterns": [
               "apps/shared-adverts-add-buttons-e2e/**/*.{js,ts}"
-            ],
-          "outputs": ["coverage/libs/data-access/learn-items"]
+            ]
+          }
         }
       }
     },
@@ -2755,5 +2755,4 @@
     }
   },
   "defaultProject": "ppm"
-}
 }

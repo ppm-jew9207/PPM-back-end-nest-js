@@ -18,6 +18,7 @@ import {
 import './features-profile.scss';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
+import { countriesApiActions, countriesApiSelectors } from '@ppm/data-access/countries-api';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
 
@@ -27,12 +28,13 @@ const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
   loading: userProfileSelectors.selectLoading(),
   adverts: advertsSelectors.selectAdverts(),
-  categories: categoriesSelectors.selectCategories()
+  categories: categoriesSelectors.selectCategories(),
+  countries: countriesApiSelectors.selectCountries()
 });
 
 export const FeaturesProfile = (props) => {
   const dispatch = useDispatch();
-  const { profile, loading, adverts, categories } = useSelector(stateSelector);
+  const { profile, loading, adverts, categories, countries } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => {
@@ -58,6 +60,10 @@ export const FeaturesProfile = (props) => {
 
   useEffect(() => {
     dispatch(categoriesActions.getAll());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(countriesApiActions.getCountries());
   }, [dispatch]);
 
   const defaultData = {
@@ -133,6 +139,7 @@ export const FeaturesProfile = (props) => {
           <SharedProfileForm 
             profile={profile} 
             categories={categories} 
+            countries={countries}
             onSubmit={(formData: Profile) => {
               console.log(formData);
             }} 
