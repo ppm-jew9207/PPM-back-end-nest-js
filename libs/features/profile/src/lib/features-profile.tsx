@@ -64,6 +64,7 @@ export const FeaturesProfile = (props) => {
       <div className="content">
         {adverts.map((advert, i) => 
           <SharedAdvertCard
+            id={advert._id}
             key={advert._id}
             title={advert.title}
             author={{
