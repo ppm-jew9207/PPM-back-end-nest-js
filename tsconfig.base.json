@@ -116,6 +116,9 @@
       ],
       "@ppm/data-access/countries-api": [
         "libs/data-access/countries-api/src/index.ts"
+      ],
+      "@ppm/shared/adverts-add-buttons": [
+        "libs/shared/adverts-add-buttons/src/index.ts"
       ]
     }
   },

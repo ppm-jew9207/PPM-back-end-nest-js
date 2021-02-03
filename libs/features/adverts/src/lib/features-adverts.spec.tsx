@@ -13,6 +13,7 @@ describe(' FeaturesAdverts', () => {
   const configureStoreMock = configureStore();
 
   storeMock = configureStoreMock({
+    profile: { _id: 'asdadsafdfdffd' },
     adverts: [
       {
         _id: '1111111111',

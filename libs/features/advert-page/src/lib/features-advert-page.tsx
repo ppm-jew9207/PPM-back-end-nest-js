@@ -17,23 +17,26 @@ export const FeaturesAdvertPage = () => {
 
   if (advert) {
     return (
-      <div>
+      <div className="lessons">
         <SharedAdvertInfo
           title={advert.title}
           description={advert.description}
           creator={advert.creator.name}
           image={advert.imageUrl}
-          categories={[ {
-            title: 'Category A',
-            value: 'category-a',
-            _id: 'as3dg432af',
-            checked: false, },
-          { 
-            title: 'Category B',
-            value: 'category-b',
-            _id: 'as33dg4432af',
-            checked: false, 
-          }]}
+          categories={[
+            {
+              title: 'Category A',
+              value: 'category-a',
+              _id: 'as3dg432af',
+              checked: false,
+            },
+            {
+              title: 'Category B',
+              value: 'category-b',
+              _id: 'as33dg4432af',
+              checked: false,
+            },
+          ]}
           onGetStartedClick={onGetStartedClick}
           getStartedButtonText="Get Started"
         />
