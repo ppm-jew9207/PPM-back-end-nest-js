@@ -21,7 +21,22 @@ const data = [
 const cities = ['Vilnius','Kaunas', 'Klaipėda'];
 
 const countries = ['Lithuania', 'Latvia','Estonia'];
-
+const profile = {
+  "categories" : [],
+  "city" : "Vilnius",
+  "company" : "IBM",
+  "country" : "Lithuania",
+  "description" : "looong description",
+  "email" : "gintarazzz@gmail.com",
+  "fieldOfProfession" : "Super programmer",
+  "firstName" : "Gintaras",
+  "lastName" : "Kuskys",
+  "phone" : "098204820837",
+  "photo" : "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+  "socialLinks" : [],
+  "type" : "belekas",
+  "website" : "gardemarin.com"
+};
 
 export const primary = () => {
   const props: SharedProfileFormProps = {
@@ -29,6 +44,7 @@ export const primary = () => {
     categories: data,
     cities: cities,
     countries: countries,
+    profile: profile
   };
 
   return (
@@ -37,6 +53,7 @@ export const primary = () => {
       categories={props.categories}
       cities={props.cities}
       countries={props.countries}
+      profile={props.profile}
     />
   );
 };

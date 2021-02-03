@@ -56,5 +56,6 @@ module.exports = {
     '<rootDir>/libs/shared/list-editor',
     '<rootDir>/libs/data-access/learn-items',
     '<rootDir>/libs/shared/adverts-add-buttons',
+    '<rootDir>/libs/data-access/countries-api'
   ],
 };

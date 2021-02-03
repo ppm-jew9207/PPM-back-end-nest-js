@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   FormControl,
@@ -15,6 +15,11 @@ import {
   Divider,
   Typography,
 } from '@material-ui/core';
+
+import {
+  SystemUpdateAlt as SystemUpdateAltIcon,
+} from '@material-ui/icons';
+
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
 
@@ -23,35 +28,37 @@ interface EntityRef {
   name: string;
 }
 
+export interface Profile {
+  description: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  photo: string;
+  fieldOfProfession: string;
+  company: string;
+  categories: string[];
+  city: string;
+  country: string;
+  phone: string;
+  website: string;
+  type: string;
+  socialLinks: string[];
+}
 export interface SharedProfileFormProps {
-  onSubmit: (submitData: {
-    description: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    photo: FileList;
-    fieldOfProfession: string;
-    company: string;
-    categories: string[];
-    city: string;
-    country: string;
-    phone: string;
-    web: string;
-    type: string;
-    facebook: string;
-    linkedin: string;
-    twitter: string;
-    instagram: string;
-  }) => void;
+  onSubmit: (submitData:Profile) => void;
   categories: EntityRef[];
-  cities: string[];
-  countries: string[];
+  cities?: string[];
+  countries?: string[];
+  profile: Profile
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>();
   const { handleSubmit, register, control, errors } = useForm();
-
   const [categories, setCategories] = useState<string[]>([]);
+  useEffect(() => {
+    props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
+  },[props, uploadedImg]);
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     setCategories(event.target.value);
@@ -69,6 +76,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     return value.length > 0;
   };
 
+  const onFileLoad = (e) => {
+    const file = e.currentTarget.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
   return (
     <Grid container direction="column" className="profileForm">
       <form autoComplete="nope" onSubmit={handleSubmit(props.onSubmit)}>
@@ -76,6 +93,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="firstName"
             name="firstName"
+            defaultValue={props.profile.firstName || ''}
             type="text"
             variant="outlined"
             label="First Name *"
@@ -91,6 +109,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="lastName"
             name="lastName"
+            defaultValue={props.profile.lastName || ''}
             type="text"
             variant="outlined"
             label="Last Name"
@@ -102,6 +121,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="email"
             name="email"
+            defaultValue={props.profile.email || ''}
             type="email"
             variant="outlined"
             label="Email"
@@ -110,20 +130,47 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={3}>
-          <InputLabel id="photoLabel">Photo</InputLabel>
-          <TextField
-            id="photo"
-            name="photo"
-            type="file"
-            variant="outlined"
-            inputRef={register}
-            fullWidth
-          />
+          <InputLabel   id="photoLabel">Photo</InputLabel>
+          <div className="image-container">
+          <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
+            <TextField
+              inputRef={register({})}
+              type="file"
+              id="file-browser-input"
+              name="imageUrl"
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onDrop={onFileLoad.bind(this)}
+              onChange={onFileLoad.bind(this)}
+            />
+            <div className="files-preview-container">
+              <img
+                className="files-preview-container__image"
+                src={(!!uploadedImg && uploadedImg.toString()) || ''}
+                alt="files-preview"
+              />
+            </div>
+            <div className="helper-text">
+              <Typography
+                variant="body1"
+                component="p"
+                align="center"
+                gutterBottom
+              >
+                Drag and Drop Images Here
+              </Typography>
+              <SystemUpdateAltIcon display="inline" />
+            </div>
+          </div>
+        </div>
         </Box>
         <Box my={3}>
           <TextField
             id="description"
             name="description"
+            defaultValue={props.profile.description || ''}
             multiline
             rows={4}
             variant="outlined"
@@ -136,6 +183,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="fieldOfProfession"
             name="fieldOfProfession"
+            defaultValue={props.profile.fieldOfProfession || ''}
             type="text"
             variant="outlined"
             label="Field of Profession"
@@ -147,6 +195,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="company"
             name="company"
+            defaultValue={props.profile.company || ''}
             type="text"
             variant="outlined"
             label="Company"
@@ -192,7 +241,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
-        <Box my={3}>
+        {/* <Box my={3}>
           <Controller
             name="city"
             defaultValue={[]}
@@ -212,8 +261,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               />
             }
           />
-        </Box>
-        <Box my={3}>
+        </Box> */}
+        {/* <Box my={3}>
           <Controller
             name="country"
             control={control}
@@ -233,11 +282,12 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               />
             }
           />
-        </Box>
+        </Box> */}
         <Box my={3}>
           <TextField
             id="phone"
             name="phone"
+            defaultValue={props.profile.phone || ''}
             type="text"
             variant="outlined"
             label="Phone"
@@ -247,8 +297,9 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <TextField
-            id="web"
-            name="web"
+            id="website"
+            name="website"
+            defaultValue={props.profile.website || ''}
             type="text"
             variant="outlined"
             label="Website"
@@ -260,6 +311,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="type"
             name="type"
+            defaultValue={props.profile.type || ''}
             type="text"
             variant="outlined"
             label="Type"

@@ -12,7 +12,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 
-import { Person as PersonIcon, Room as RoomIcon } from '@material-ui/icons';
+import { Person as PersonIcon, Room as RoomIcon, Edit as EditIcon } from '@material-ui/icons';
 
 export interface SharedUserProfileCardProps {
   mentorImage?: string;
@@ -20,6 +20,7 @@ export interface SharedUserProfileCardProps {
   aboutMentor: string;
   mentorLocation?: string;
   socialLinks?: Array<SocialLink>;
+  toggleDrawer: Function;
 }
 export interface SocialLink {
   icon: string;
@@ -31,6 +32,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
   return (
     <Card className="profile-card">
       <CardContent>
+        <EditIcon className="editIcon" onClick={() => props.toggleDrawer(true)} />
         <CardMedia
           className="profile-card-media"
           title="Mentor image"

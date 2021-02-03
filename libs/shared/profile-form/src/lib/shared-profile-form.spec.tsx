@@ -20,10 +20,28 @@ const countries = ['Lithuania', 'Latvia', 'Estonia'];
 
 const onSubmit = jest.fn();
 
+const profile = {
+  "categories" : [],
+  "city" : "Vilnius",
+  "company" : "IBM",
+  "country" : "Lithuania",
+  "description" : "looong description",
+  "email" : "gintarazzz@gmail.com",
+  "fieldOfProfession" : "Super programmer",
+  "firstName" : "Gintaras",
+  "lastName" : "Kuskys",
+  "phone" : "098204820837",
+  "photo" : "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+  "socialLinks" : [],
+  "type" : "belekas",
+  "website" : "gardemarin.com"
+};
+
 describe(' SharedProfileForm', () => {
   it('should render successfully', () => {
     const result = shallow(
       <SharedProfileForm
+        profile={profile}
         onSubmit={onSubmit}
         categories={data}
         cities={cities}
