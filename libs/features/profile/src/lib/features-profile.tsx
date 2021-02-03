@@ -29,12 +29,14 @@ const stateSelector = createStructuredSelector({
   loading: userProfileSelectors.selectLoading(),
   adverts: advertsSelectors.selectAdverts(),
   categories: categoriesSelectors.selectCategories(),
-  countries: countriesApiSelectors.selectCountries()
+  countries: countriesApiSelectors.selectCountries(),
+  states: countriesApiSelectors.selectStates(),
+  cities: countriesApiSelectors.selectCities()
 });
 
 export const FeaturesProfile = (props) => {
   const dispatch = useDispatch();
-  const { profile, loading, adverts, categories, countries } = useSelector(stateSelector);
+  const { profile, loading, adverts, categories, countries, states, cities } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleDrawer = (open: boolean) => {
@@ -140,6 +142,10 @@ export const FeaturesProfile = (props) => {
             profile={profile} 
             categories={categories} 
             countries={countries}
+            cities={cities}
+            states={states}
+            onSelectCountry={(countryName: string) => dispatch(countriesApiActions.getStates(countryName))}
+            onSelectState={(stateName: string) => dispatch(countriesApiActions.getCities(stateName))}
             onSubmit={(formData: Profile) => {
               console.log(formData);
             }} 

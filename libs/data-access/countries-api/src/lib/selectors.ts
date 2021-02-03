@@ -2,15 +2,7 @@ import { createSelector } from 'reselect';
 import { ApplicationRootState } from 'types';
 
 const selectCountriesState = (state: ApplicationRootState) => {
-  return state.countriesList || [];
-};
-
-const selectStatesState = (state: ApplicationRootState) => {
-  return state.statesList || [];
-};
-
-const selectCitiesState = (state: ApplicationRootState) => {
-  return state.citiesList || [];
+  return state.countriesApi || [];
 };
 
 const selectCountries = () =>
@@ -20,12 +12,12 @@ const selectCountries = () =>
 
 
 const selectStates = () =>
-createSelector(selectStatesState, (subState) => {
+createSelector(selectCountriesState, (subState) => {
   return subState.statesList || [];
 });
 
 const selectCities = () =>
-createSelector(selectCitiesState, (subState) => {
+createSelector(selectCountriesState, (subState) => {
   return subState.citiesList || [];
 });
 

@@ -23,9 +23,10 @@ import {
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
 
-interface EntityRef {
+interface Category {
   _id: string;
-  name: string;
+  title: string;
+  value: string;
 }
 
 export interface Profile {
@@ -45,10 +46,13 @@ export interface Profile {
   socialLinks: string[];
 }
 export interface SharedProfileFormProps {
+  onSelectCountry: ( countryName: string ) => void;
+  onSelectState: ( stateName: string ) => void;
   onSubmit: (submitData:Profile) => void;
-  categories: EntityRef[];
+  categories: Category[];
   cities?: string[];
-  countries?: string[];
+  countries: { country_name: string }[];
+  states?: { state_name: string}[];
   profile: Profile
 }
 
@@ -58,20 +62,23 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(() => {
     props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
-    console.log(props);
   },[props, uploadedImg]);
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     setCategories(event.target.value);
   };
 
-  const renderCategoryValue = (selected) => (
-    <div>
-      {selected.map((value: string) => (
-        <Chip key={value} label={value} />
-      ))}
-    </div>
-  );
+  const renderCategoryValue = (selected) => {
+    const categories = {};
+    props.categories.map(category => {
+      categories[category.value] = category;
+    });
+    return <div>
+    {selected.map((value: string) => (
+      <Chip key={value} label={categories[value].title} />
+    ))}
+  </div>
+  };
 
   const validateCategories = (value) => {
     return value.length > 0;
@@ -89,7 +96,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
 
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="nope" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <Box my={3}>
           <TextField
             id="firstName"
@@ -218,19 +225,19 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               as={
                 <Select
                   id="categories"
-                  multiple
                   label="Categories"
                   name="categories"
                   value={categories}
+                  multiple
                   onChange={handleCategoriesChange}
                   input={<Input id="select-multiple-chip" />}
                   inputRef={register}
                   renderValue={renderCategoryValue}
                   error={!!errors.categories}
                 >
-                  {props.categories.map((category: EntityRef) => (
-                    <MenuItem key={category._id} value={category.name}>
-                      {category.name}
+                  {props.categories.map((category: Category) => (
+                    <MenuItem key={category._id} value={category.value}>
+                      {category.title}
                     </MenuItem>
                   ))}
                 </Select>
@@ -242,48 +249,101 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             </FormHelperText>
           </FormControl>
         </Box>
-        {/* <Box my={3}>
-          <Controller
-            name="city"
-            defaultValue={[]}
-            control={control}
-            onChange={([, data]) => data}
-            onInputChange={(data) => data}
-            as={
-              <Autocomplete
-                id="city"
-                freeSolo
-                autoSelect
-                getOptionLabel={(option) => option}
-                options={props.cities}
-                renderInput={(params) => (
-                  <TextField {...params} label="City" variant="outlined" />
-                )}
-              />
-            }
-          />
-        </Box> */}
         <Box my={3}>
           <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.countries}
+              getOptionLabel={option => option.country_name}
+              renderOption={option => (
+                <span>
+                  {option.country_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a country"
+                  variant="outlined"
+                />
+              )}
+              onChange={(e, data) => {
+                data && props.onSelectCountry(data.country_name);
+                return data;
+              }}
+              {...params}
+            />
+            )}
+            onChange={([, data]) => data}
             name="country"
             control={control}
-            defaultValue={[]}
-            onChange={([, data]) => data}
-            onInputChange={(data) => data}
-            as={
-              <Autocomplete
-                id="country"
-                freeSolo
-                autoSelect
-                options={props.countries}
-                getOptionLabel={(option) => option}
-                renderInput={(params) => (
-                  <TextField {...params} label="Country" variant="outlined" />
-                )}
-              />
-            }
           />
         </Box>
+        {props.states.length > 0 &&
+        <Box my={3}>
+          <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.states}
+              getOptionLabel={option => option.state_name}
+              renderOption={option => (
+                <span>
+                  {option.state_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a state"
+                  variant="outlined"
+                />
+              )}
+              onChange={(e, data) => {
+                data && props.onSelectState(data.state_name);
+                return data;
+              }}
+              {...params}
+            />
+            )}
+            onChange={([, data]) => data}
+            defaultValue={props.states[0]}
+            name="state"
+            control={control}
+          />
+        </Box>
+        }
+      {props.cities.length > 0 &&
+        <Box my={3}>
+          <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.cities}
+              getOptionLabel={option => option.city_name}
+              renderOption={option => (
+                <span>
+                  {option.city_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a city"
+                  variant="outlined"
+                />
+              )}
+              onChange={(e, data) => {
+                return data;
+              }}
+              {...params}
+            />
+            )}
+            onChange={([, data]) => data}
+            defaultValue={props.cities[0]}
+            name="city"
+            control={control}
+          />
+        </Box>
+        }
         <Box my={3}>
           <TextField
             id="phone"

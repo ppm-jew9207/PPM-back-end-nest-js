@@ -16,10 +16,9 @@ export function* getCountries() {
     const path = `/api/${PrivateRoutesPath.COUNTRIES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getCountriesFailed(null));
-    console.log(result);
     yield put(
       getCountriesSuccess({
-        list: result,
+        countriesList: result,
         loading: false,
       })
     );
@@ -31,13 +30,13 @@ export function* getCountries() {
 export function* getStates(actions) {
   try {
     const countryName = actions.payload;
-    const path = `/api/${countryName}/${PrivateRoutesPath.STATES}/`;
+    const path = `/api/${PrivateRoutesPath.COUNTRIES}/${countryName}/${PrivateRoutesPath.STATES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getStatesFailed(null));
 
     yield put(
       getStatesSuccess({
-        list: result,
+        statesList: result,
         loading: false,
       })
     );
@@ -49,13 +48,13 @@ export function* getStates(actions) {
 export function* getCities(actions) {
   try {
     const stateName = actions.payload;
-    const path = `/api/${stateName}/${PrivateRoutesPath.CITIES}/`;
+    const path = `/api/${PrivateRoutesPath.COUNTRIES}/${stateName}/${PrivateRoutesPath.CITIES}/`;
     const result = yield call(get, path);
     yield !Array.isArray(result) && put(getCitiesFailed(null));
 
     yield put(
       getCitiesSuccess({
-        list: result,
+        citiesList: result,
         loading: false,
       })
     );

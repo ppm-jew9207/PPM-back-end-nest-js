@@ -23,8 +23,8 @@ export function countriesApiReducer(
     case ActionTypes.GET_COUNTRIES_SUCCESS:
       return {
         countriesList: action.payload.countriesList,
-        statesList: state.statesList,
-        citiesList: state.citiesList,
+        statesList: [],
+        citiesList: [],
         loading: false,
       };
     case ActionTypes.GET_COUNTRIES_FAILED:
@@ -45,7 +45,7 @@ export function countriesApiReducer(
       return {
         countriesList: state.countriesList,
         statesList: action.payload.statesList,
-        citiesList: state.citiesList,
+        citiesList: [], 
         loading: false,
       };
     case ActionTypes.GET_STATES_FAILED:

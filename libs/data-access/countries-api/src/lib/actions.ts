@@ -13,8 +13,8 @@ export function getCountriesFailed(payload: any) {
   return action(ActionTypes.GET_COUNTRIES_FAILED, payload);
 }
 
-export function getStates() {
-  return action(ActionTypes.GET_STATES);
+export function getStates(countryName: string) {
+  return action(ActionTypes.GET_STATES, countryName);
 }
 
 export function getStatesSuccess(payload: any) {
@@ -25,8 +25,8 @@ export function getStatesFailed(payload: any) {
   return action(ActionTypes.GET_STATES_FAILED, payload);
 }
 
-export function getCities() {
-  return action(ActionTypes.GET_CITIES);
+export function getCities(stateName: string) {
+  return action(ActionTypes.GET_CITIES, stateName);
 }
 
 export function getCitiesSuccess(payload: any) {
