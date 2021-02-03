@@ -13,13 +13,13 @@ const buttons = [
   {
     label: 'About',
     path: '/About',
-    icon: 'apps',
+    icon: 'info',
     onClick: () => jest.fn(),
   },
   {
     label: 'Contacts',
     path: '/contacts',
-    icon: 'homeWork',
+    icon: 'contacts',
     onClick: () => jest.fn(),
   },
 ];

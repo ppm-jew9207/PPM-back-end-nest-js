@@ -9,6 +9,7 @@ export default {
 
 export const primary = () => {
   const props: SharedAdvertCardProps = {
+    id: 'sadsadsadsafgghg',
     title: text('title', 'Title'),
     author: object('author', {
       _id: '1',
@@ -28,6 +29,7 @@ export const primary = () => {
 
   return (
     <SharedAdvertCard
+      id={props.id}
       title={props.title}
       author={props.author}
       createAt={props.createAt}

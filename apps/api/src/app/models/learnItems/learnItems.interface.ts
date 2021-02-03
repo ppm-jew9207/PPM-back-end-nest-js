@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 export interface LearnItemPayload {
-  id: string;
+  id?: string;
   title: string;
   value: string;
 }

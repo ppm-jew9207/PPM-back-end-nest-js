@@ -13,4 +13,5 @@ export enum ViewModels {
   STUDENTS = 'Students',
   PERMISSIONS_VIEW = 'Permissions',
   USER_PROFILES = 'UserProfiles',
+  COUNTRIES_API_VIEW = 'CountriesApi'
 }
