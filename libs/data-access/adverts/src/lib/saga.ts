@@ -155,7 +155,6 @@ export function* getAllByAuthor() {
 
 export function* updateAdvertFromList(actions : any) {
   const data = actions.payload;
-  console.log(data);
   try {
     if (data.advertImage.length) {
       const file = data.advertImage[0];
