@@ -146,8 +146,8 @@ export const FeaturesProfile = (props) => {
             states={states}
             onSelectCountry={(countryName: string) => dispatch(countriesApiActions.getStates(countryName))}
             onSelectState={(stateName: string) => dispatch(countriesApiActions.getCities(stateName))}
-            onSubmit={(formData: Profile) => {
-              console.log(formData);
+            onSubmit={(profileData: Profile) => {
+              dispatch(userProfileActions.update(profileData));
             }} 
           />
         </div>

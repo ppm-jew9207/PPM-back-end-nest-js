@@ -10,3 +10,15 @@
     margin-top: 0.5rem;
   }
 }
+
+#categories {
+  max-width: 300px;
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > div {
+      margin: 2px;
+    }
+  }
+}

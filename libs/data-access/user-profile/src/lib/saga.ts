@@ -1,8 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { getUserProfileFailed, getUserProfileSuccess } from './actions';
-import { get } from '@ppm/data-access/http-requests';
+import { getUserProfileFailed, getUserProfileSuccess, updateSuccess } from './actions';
+import { get, post, postFormData } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
+import { Profile } from '@ppm/shared/profile-form';
 
 export function* getUserProfile() {
   try {
@@ -24,8 +25,40 @@ export function* getUserProfile() {
   }
 }
 
+export function* updateUserProfile(actions: { type: string, payload: Profile }) {
+  const data = actions.payload;
+  try {
+    if (typeof(data.photo) !== 'string') {
+      const file = data.photo[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      const path = `/api/${PrivateRoutesPath.IMAGES}`;
+      const imageResult = yield call(postFormData, path, formData);
+
+      if (imageResult) {
+        const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update/${data._id}`;
+        yield call(post, path, { ...data, imageUrl: imageResult.data });
+        yield put(
+          updateSuccess({
+            loading: false,
+          })
+        );
+      }
+    } else {
+      const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update/${data._id}`;
+      yield call(post, path, data);
+      yield put(
+        updateSuccess({
+          loading: false,
+        })
+      );
+    }
+  } catch (error) {}
+}
+
 export function* userProfileSaga() {
   yield takeEvery(ActionTypes.USER_PROFILE_GET, getUserProfile);
+  yield takeEvery(ActionTypes.USER_PROFILE_UPDATE, updateUserProfile);
 }
 
 export default userProfileSaga;

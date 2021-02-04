@@ -23,41 +23,93 @@ import {
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
 
+const SOCIAL_LINKS = [
+  {
+    icon: 'facebook',
+    link: '',
+    color: '#3b5999',
+  },
+  {
+    icon: 'twitter',
+    link: '',
+    color: '#55acee',
+  },
+  {
+    icon: 'linkedin',
+    link: '',
+    color: '#55acee',
+  },
+  {
+    icon: 'instagram',
+    link: '',
+    color: '#55acee',
+  },
+];
+
+interface SocialLink {
+    icon: string;
+    link: string;
+    color: string;
+  };
+
 interface Category {
   _id: string;
   title: string;
   value: string;
 }
 
+interface RawInput {
+  categories: string[];
+  city: { city_name: string };
+  company: string;
+  country: {country_name: string, country_short_name: string, country_phone_code: number };
+  description: string;
+  email: string;
+  facebook: string;
+  fieldOfProfession: string;
+  firstName: string;
+  imageUrl: string | FileList;
+  instagram: string;
+  lastName: string;
+  linkedin: string;
+  phone: string;
+  state: {state_name: string };
+  twitter: string;
+  type: string;
+  website: string;
+}
+
 export interface Profile {
+  _id: string;
   description: string;
   firstName: string;
   lastName: string;
   email: string;
-  photo: string;
+  photo: string | ArrayBuffer | FileList;
   fieldOfProfession: string;
   company: string;
   categories: string[];
+  state: string;
   city: string;
   country: string;
   phone: string;
   website: string;
   type: string;
-  socialLinks: string[];
+  socialLinks: SocialLink[];
 }
 export interface SharedProfileFormProps {
   onSelectCountry: ( countryName: string ) => void;
   onSelectState: ( stateName: string ) => void;
   onSubmit: (submitData:Profile) => void;
   categories: Category[];
-  cities?: string[];
+  cities?: { city_name: string }[];
   countries: { country_name: string }[];
   states?: { state_name: string}[];
   profile: Profile
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
-  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>();
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string | FileList>();
   const { handleSubmit, register, control, errors } = useForm();
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(() => {
@@ -94,9 +146,73 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
+  const onSubmitForm = (formData: RawInput) => {
+    const { 
+      categories,
+      city,
+      company,
+      country,
+      description,
+      email,
+      facebook,
+      fieldOfProfession,
+      firstName,
+      imageUrl,
+      instagram,
+      lastName,
+      linkedin,
+      phone,
+      state,
+      twitter,
+      type,
+      website
+     } = formData;
+
+     SOCIAL_LINKS.map( item => {
+      switch(item.icon) {
+        case 'twitter': {
+          if (twitter.length) item.link = twitter;
+          break;
+        }
+        case 'linkedin': {
+          if (linkedin.length) item.link = linkedin;
+          break;
+        }
+        case 'facebook': {
+          if (facebook.length) item.link = facebook;
+          break;
+        }
+        case 'instagram': {
+          if (instagram.length) item.link = instagram;
+          break;
+        }
+      };
+     });
+
+    const profileData: Profile = {
+      _id: props.profile._id,
+      description,
+      firstName,
+      lastName,
+      email,
+      photo: imageUrl.length ? imageUrl : props.profile.photo,
+      fieldOfProfession,
+      company,
+      categories,
+      state: state.state_name,
+      city: city.city_name,
+      country: country.country_name,
+      phone,
+      website,
+      type,
+      socialLinks: SOCIAL_LINKS
+    };
+    props.onSubmit(profileData);
+  };
+
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmitForm)}>
         <Box my={3}>
           <TextField
             id="firstName"
@@ -265,16 +381,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   {...params}
                   label="Choose a country"
                   variant="outlined"
+                  autoComplete="off"
                 />
               )}
               onChange={(e, data) => {
                 data && props.onSelectCountry(data.country_name);
-                return data;
+                return onChange(data);
               }}
               {...params}
             />
             )}
-            onChange={([, data]) => data}
             name="country"
             control={control}
           />
@@ -296,16 +412,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   {...params}
                   label="Choose a state"
                   variant="outlined"
+                  autoComplete="off"
                 />
               )}
               onChange={(e, data) => {
                 data && props.onSelectState(data.state_name);
-                return data;
+                return onChange(data);
               }}
               {...params}
             />
             )}
-            onChange={([, data]) => data}
             defaultValue={props.states[0]}
             name="state"
             control={control}
@@ -329,15 +445,15 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   {...params}
                   label="Choose a city"
                   variant="outlined"
+                  autoComplete="off"
                 />
               )}
               onChange={(e, data) => {
-                return data;
+                return onChange(data);
               }}
               {...params}
             />
             )}
-            onChange={([, data]) => data}
             defaultValue={props.cities[0]}
             name="city"
             control={control}
