@@ -10,38 +10,45 @@ export default {
   title: 'SharedLessonsAccordion',
 };
 
-let lessons = [
+const lessons = [
   {
+    _id: '65463463',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634631',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634632',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634633',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634634',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634635',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',
   },
   {
+    _id: '654634636',
     title: 'Gecko',
     authorName: 'Donatas',
     image: 'https://www.eurekalert.org/multimedia/pub/web/229622_web.jpg',

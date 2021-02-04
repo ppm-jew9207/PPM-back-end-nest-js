@@ -14,6 +14,12 @@ export enum PrivateRoutesPath {
   AUTH = 'auth',
   GET_BY_ID = '/:id',
   GET_ALL = '/all',
+  COUNTRIES = 'countries',
+  STATES = 'states',
+  CITIES = 'cities',
+  COUNTRY = '/:countryName/states',
+  STATE = '/:stateName/cities',
+  
 
   // TODO only for API
   POST_CREATE = '/create',
@@ -28,4 +34,5 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
+  POST_ADD_ADVERT = "POST_ADD_ADVERT"
 }
