@@ -2663,6 +2663,27 @@
           }
         }
       }
+    },
+    "data-access-countries-api": {
+      "root": "libs/data-access/countries-api",
+      "sourceRoot": "libs/data-access/countries-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access/countries-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access/countries-api"],
+          "options": {
+            "jestConfig": "libs/data-access/countries-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
