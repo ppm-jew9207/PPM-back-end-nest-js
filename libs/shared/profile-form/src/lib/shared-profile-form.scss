@@ -22,3 +22,41 @@
     }
   }
 }
+
+.new-category {
+  &__form {
+    display: flex;
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+    margin-top: 0.5rem !important;
+
+    button {
+      min-width: unset !important;
+      width: 20px;
+    }
+  }
+  &__input {
+    margin-right: 0.25rem !important;
+  }
+
+  &__control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    svg {
+      font-size: 1rem;
+      color: white;
+      margin: 0 !important;
+    }
+  }
+
+  &__add {
+    padding: 0 0px !important;
+    span {
+      margin: 0 !important;
+    }
+  }
+  &__clear {
+    padding: 1px 0px !important;
+  }
+}
