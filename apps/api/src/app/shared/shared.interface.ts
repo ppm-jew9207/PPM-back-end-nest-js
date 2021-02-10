@@ -5,3 +5,7 @@ export class UserRef {
   name: string;
   imageUrl?: string;
 }
+
+export class AdvertRef {
+  _id: Types.ObjectId;
+}
