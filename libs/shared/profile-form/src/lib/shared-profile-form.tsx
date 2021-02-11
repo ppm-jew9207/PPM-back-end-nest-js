@@ -114,13 +114,27 @@ export interface SharedProfileFormProps {
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
 
-  const newCategoryInput = useRef(null);
+  const [newCategory, setNewCategory] = React.useState<Category>({ title: '', value: '' });
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string | FileList>();
   const { handleSubmit, register, control, errors } = useForm();
   const [categories, setCategories] = useState<string[]>([]);
+  
   useEffect(() => {
     props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
   },[props, uploadedImg]);
+
+  const handleNewCategoryInput = (event: ChangeEvent<{ value: string }>) => {
+    const newCategory = {
+      title: event.target.value,
+      value: (event.target.value.toLowerCase()).replace(/[^a-zA-Z0-9]/gi, '_')
+    };
+    setNewCategory(newCategory);
+  }
+
+  const stopImmediatePropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     console.log(event);
@@ -357,51 +371,57 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   inputRef={register}
                   renderValue={renderCategoryValue}
                   error={!!errors.categories}
-             
                 >
                   {props.categories.map((category: Category) => (
                     <MenuItem key={category._id} value={category.value}>
                       {category.title}
                     </MenuItem>
                   ))}
-                  <form className="new-category__form" >
-                    <TextField
+                  <MenuItem 
+                    dense
+                    divider
+                    value={[]}
+                    onClickCapture={stopImmediatePropagation}
+                    onKeyDown={(event) => event.stopPropagation()}
+                    className="new-category__form"
+                  >
+                  <TextField
                     id="new-category"
                     name="new-category"
                     type="text"
                     variant="outlined"
                     size="small"
                     label="Add new"
-                    inputRef={newCategoryInput}
                     className="new-category__input"
+                    value={newCategory.title}
+                    onChange={handleNewCategoryInput}
                     />
+                  </MenuItem>
+                  { newCategory.title.length > 0 && 
                     <div className="new-category__control">
-                    <Button
-                    size="small"
-                    variant="contained"
-                    style={{ color: '#fff', background: green[600] }}
-                    endIcon={<CheckIcon className="new-category__add" display="inline"  />}
-                    className="new-category__add"
-                    type="button"
-                    onClick={() => { 
-                        if (newCategoryInput.current.value.length > 0) {
-                          const newCategory = {
-                            title: newCategoryInput.current.value,
-                            value: newCategoryInput.current.value.toLowerCase().replaceAll(/[^a-zA-Z0-9]/gi, '_')
-                          };
-                          props.onAddCategory(newCategory);
-                          newCategoryInput.current.value = '';
+                      <Button
+                      size="small"
+                      variant="contained"
+                      style={{ color: '#fff', background: green[600] }}
+                      endIcon={<CheckIcon className="new-category__add" display="inline"  />}
+                      className="new-category__add"
+                      type="button"
+                      onClick={() => { 
+                          if (newCategory.value.length > 0) {
+                            props.onAddCategory(newCategory);
+                            setNewCategory({ title: '', value: ''});
+                          }
                         }
                       }
-                    }
-                    ></Button>
-                    <Button  className="new-category__clear" onClick={() => {
-                      newCategoryInput.current.value = ''
-                    }} style={{ color: '#fff', background: red[600] }}>
-                    <ClearIcon display="inline"  />
-                    </Button>
+                      ></Button>
+                      <Button className="new-category__clear" onClick={() => {
+                        console.log(newCategory);
+                        setNewCategory({ title: '', value: ''});
+                      }} style={{ color: '#fff', background: red[600] }}>
+                      <ClearIcon display="inline"  />
+                      </Button>
                     </div>
-                  </form>
+                    }
                 </Select>
               }
               fullWidth

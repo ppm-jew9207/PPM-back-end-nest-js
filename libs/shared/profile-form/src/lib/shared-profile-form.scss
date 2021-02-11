@@ -26,10 +26,6 @@
 .new-category {
   &__form {
     display: flex;
-    margin-right: 1rem !important;
-    margin-left: 1rem !important;
-    margin-top: 0.5rem !important;
-
     button {
       min-width: unset !important;
       width: 20px;
@@ -38,8 +34,13 @@
   &__input {
     margin-right: 0.25rem !important;
   }
+}
 
+.new-category {
   &__control {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,12 +52,17 @@
   }
 
   &__add {
+    min-width: unset !important;
+    width: 20px;
     padding: 0 0px !important;
+    margin-bottom: 5px !important;
     span {
       margin: 0 !important;
     }
   }
   &__clear {
+    min-width: unset !important;
+    width: 20px;
     padding: 1px 0px !important;
   }
 }
