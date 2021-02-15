@@ -12,14 +12,14 @@ import {
   Select,
   InputLabel,
   FormControl,
-  Fab
+  Fab,
 } from '@material-ui/core';
 
 import {
   ArrowRight as ArrowRightIcon,
   SystemUpdateAlt as SystemUpdateAltIcon,
   Clear as ClearIcon,
-  Add as AddIcon
+  Add as AddIcon,
 } from '@material-ui/icons';
 
 import { green, teal } from '@material-ui/core/colors';
@@ -48,14 +48,14 @@ export interface Mentor {
 }
 
 export interface Lesson {
-    title: string;
-    description: string;
-    datetime: string;
-    imageUrl: string;
-    resources: string;
-    mentorName: string;
-    connectionURL: string;
-    categories: string[];
+  title: string;
+  description: string;
+  datetime: string;
+  imageUrl: string;
+  resources: string;
+  mentorName: string;
+  connectionURL: string;
+  categories: string[];
 }
 
 export interface SharedLessonComponentProps {
@@ -79,8 +79,8 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
     !categories.length && setCategories(props.categories);
     props.lesson && !uploadedImg && setUploadedImg(props.lesson.imageUrl);
     !mentors.length && setMentors(props.mentors);
-  },[props, lesson, mentors, uploadedImg]);
-  
+  }, [props, lesson, mentors, uploadedImg]);
+
   const onFileLoad = (e) => {
     const file = e.currentTarget.files[0];
 
@@ -94,9 +94,15 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
   const { handleSubmit, control, register, reset, errors } = useForm();
 
   if (!props.data) return <div>Loading...</div>;
-         
+
   return (
-    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className='lesson'>
+    <Box
+      maxWidth={500}
+      display="flex"
+      flexDirection="column"
+      mx="auto"
+      className="lesson"
+    >
       <Typography component="h1" variant="h5">
         {props.data.title}
       </Typography>
@@ -268,18 +274,28 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             >
               <InputLabel id="category-label">Categories</InputLabel>
               <div className="categories__wrapper">
-                {!!categories && props.lesson.categories.map( categoryId => {
-                  const category = categories.filter(item => {
-                    console.log(item, categoryId);
-                    return item._id == categoryId;
-                  })[0];
-                  
-                  return (
-                    category && <Fab className="categories__item"   variant="extended">{category.title}</Fab>
-                  );
-                })
-                }
-                 <Fab className="categories__item"  variant="extended" style={{ color: '#fff', background: green[600] }} ><AddIcon /></Fab>
+                {!!categories &&
+                  props.lesson.categories.map((categoryId) => {
+                    const category = categories.filter((item) => {
+                      console.log(item, categoryId);
+                      return item._id == categoryId;
+                    })[0];
+
+                    return (
+                      category && (
+                        <Fab className="categories__item" variant="extended">
+                          {category.title}
+                        </Fab>
+                      )
+                    );
+                  })}
+                <Fab
+                  className="categories__item"
+                  variant="extended"
+                  style={{ color: '#fff', background: green[600] }}
+                >
+                  <AddIcon />
+                </Fab>
               </div>
             </FormControl>
           }
