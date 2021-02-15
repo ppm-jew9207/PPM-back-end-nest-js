@@ -6,7 +6,7 @@ import {
 import { 
   Profile,
   SharedProfileForm,
-  SharedProfileFormProps
+  Category
 } from "@ppm/shared/profile-form";
 import { useSelector, useDispatch } from 'react-redux';
 import { Drawer, CircularProgress, IconButton } from '@material-ui/core';
@@ -149,6 +149,10 @@ export const FeaturesProfile = (props) => {
             onSubmit={(profileData: Profile) => {
               dispatch(userProfileActions.update(profileData));
             }} 
+            onAddCategory={(categoryData: Category) => {
+              dispatch(categoriesActions.create(categoryData));
+              dispatch(categoriesActions.getAll());
+            }}
           />
         </div>
       </Drawer>

@@ -13,6 +13,7 @@ const cities = [{city_name: 'Vilnius'}, { city_name: 'Kaunas'}, { city_name: 'Kl
 const onSubmit = jest.fn();
 const onSelectCountry = jest.fn();
 const onSelectState = jest.fn();
+const onAddCategory = jest.fn();
 
 const profile = {
   _id: 'sadfasf234122',
@@ -39,6 +40,7 @@ describe(' SharedProfileForm', () => {
       <SharedProfileForm
         onSelectCountry={onSelectCountry}
         onSelectState={onSelectState}
+        onAddCategory={onAddCategory}
         profile={profile}
         onSubmit={onSubmit}
         categories={categories}

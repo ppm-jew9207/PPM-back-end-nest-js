@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   FormControl,
@@ -15,9 +15,12 @@ import {
   Divider,
   Typography,
 } from '@material-ui/core';
+import { green, red } from '@material-ui/core/colors';
 
 import {
   SystemUpdateAlt as SystemUpdateAltIcon,
+  Clear as ClearIcon,
+  Check as CheckIcon 
 } from '@material-ui/icons';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -52,8 +55,8 @@ interface SocialLink {
     color: string;
   };
 
-interface Category {
-  _id: string;
+export interface Category {
+  _id?: string;
   title: string;
   value: string;
 }
@@ -101,6 +104,7 @@ export interface SharedProfileFormProps {
   onSelectCountry: ( countryName: string ) => void;
   onSelectState: ( stateName: string ) => void;
   onSubmit: (submitData:Profile) => void;
+  onAddCategory: ( submitData: Category) => void;
   categories: Category[];
   cities?: { city_name: string }[];
   countries: { country_name: string }[];
@@ -109,14 +113,31 @@ export interface SharedProfileFormProps {
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
+
+  const [newCategory, setNewCategory] = React.useState<Category>({ title: '', value: '' });
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string | FileList>();
   const { handleSubmit, register, control, errors } = useForm();
   const [categories, setCategories] = useState<string[]>([]);
+  
   useEffect(() => {
     props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
   },[props, uploadedImg]);
 
+  const handleNewCategoryInput = (event: ChangeEvent<{ value: string }>) => {
+    const newCategory = {
+      title: event.target.value,
+      value: (event.target.value.toLowerCase()).replace(/[^a-zA-Z0-9]/gi, '_')
+    };
+    setNewCategory(newCategory);
+  }
+
+  const stopImmediatePropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
+    console.log(event);
     setCategories(event.target.value);
   };
 
@@ -127,7 +148,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
     });
     return <div>
     {selected.map((value: string) => (
-      <Chip key={value} label={categories[value].title} />
+     categories[value] && <Chip key={value} label={categories[value].title} />
     ))}
   </div>
   };
@@ -254,7 +275,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={3}>
-          <InputLabel   id="photoLabel">Photo</InputLabel>
+          <InputLabel id="photoLabel">Photo</InputLabel>
           <div className="image-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
@@ -356,10 +377,56 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                       {category.title}
                     </MenuItem>
                   ))}
+                  <MenuItem 
+                    dense
+                    divider
+                    value={[]}
+                    onClickCapture={stopImmediatePropagation}
+                    onKeyDown={(event) => event.stopPropagation()}
+                    className="new-category__form"
+                  >
+                  <TextField
+                    id="new-category"
+                    name="new-category"
+                    type="text"
+                    variant="outlined"
+                    size="small"
+                    label="Add new"
+                    className="new-category__input"
+                    value={newCategory.title}
+                    onChange={handleNewCategoryInput}
+                    />
+                  </MenuItem>
+                  { newCategory.title.length > 0 && 
+                    <div className="new-category__control">
+                      <Button
+                      size="small"
+                      variant="contained"
+                      style={{ color: '#fff', background: green[600] }}
+                      endIcon={<CheckIcon className="new-category__add" display="inline"  />}
+                      className="new-category__add"
+                      type="button"
+                      onClick={() => { 
+                          if (newCategory.value.length > 0) {
+                            props.onAddCategory(newCategory);
+                            setNewCategory({ title: '', value: ''});
+                          }
+                        }
+                      }
+                      ></Button>
+                      <Button className="new-category__clear" onClick={() => {
+                        console.log(newCategory);
+                        setNewCategory({ title: '', value: ''});
+                      }} style={{ color: '#fff', background: red[600] }}>
+                      <ClearIcon display="inline"  />
+                      </Button>
+                    </div>
+                    }
                 </Select>
               }
               fullWidth
             />
+                              
             <FormHelperText>
               {errors.categories ? 'This field is required' : ''}
             </FormHelperText>

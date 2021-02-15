@@ -39,6 +39,7 @@ export const primary = () => {
     onSubmit: action('onSubmit'),
     onSelectCountry: action('onSelectCountry'),
     onSelectState: action('onSelectState'),
+    onAddCategory: action('onAddCategory'),
     categories: categories,
     cities: cities,
     states: states,
@@ -51,6 +52,7 @@ export const primary = () => {
       onSubmit={props.onSubmit}
       onSelectCountry={props.onSelectCountry}
       onSelectState={props.onSelectState}
+      onAddCategory={props.onAddCategory}
       categories={props.categories}
       cities={props.cities}
       countries={props.countries}
