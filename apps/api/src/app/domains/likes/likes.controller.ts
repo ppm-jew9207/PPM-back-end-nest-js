@@ -28,9 +28,8 @@ export class LikesController {
 
   @Post()
   async create(@Body() dto: CreateLikePayloadDto, @Req() request: any) {
-    console.log('woohooo');
-    const user = request.user;
-    return this.commandBus.execute(new CreateLike(dto, user));
+      const user = request.user;
+      return await this.commandBus.execute(new CreateLike(dto, user));
   }
 
   // @Post(PrivateRoutesPath.POST_UPDATE)

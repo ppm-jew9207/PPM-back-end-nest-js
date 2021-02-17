@@ -5,25 +5,25 @@ import { LikesController } from './likes.controller';
 
 // import { AdvertsModelModule } from '../../models/adverts/adverts.module';
 // import { RemoveAdvertHandler } from './commands/remove-advert.command';
-// import { CreateAdvertHandler } from './commands/create-advert.command';
+import { CreateLikeHandler } from './commands/create-like.command';
 // import { UpdateAdvertHandler } from './commands/update-advert.command';
-// import { UsersModelModule } from '../../models/users/users.module';
+import { UsersModelModule } from '../../models/users/users.module';
 // import { UserProfileModelModule } from '../../models/userProfiles/user-profile.module';
 
-// const commandHandlers = [
-//   CreateAdvertHandler,
-//   RemoveAdvertHandler,
-//   UpdateAdvertHandler,
-// ];
+const commandHandlers = [
+  CreateLikeHandler,
+  // RemoveAdvertHandler,
+  // UpdateAdvertHandler,
+];
 
 @Module({
   imports: [
     CqrsModule,
     // AdvertsModelModule,
-    // UsersModelModule,
+    UsersModelModule,
     // UserProfileModelModule,
   ],
   controllers: [LikesController],
-  // providers: [...commandHandlers],
+  providers: [...commandHandlers],
 })
 export class LikesDomainModule {}

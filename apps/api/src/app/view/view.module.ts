@@ -7,6 +7,7 @@ import { LearnItemsViewModule } from './learnItems/learnItems.module';
 import { CategoriesViewModule } from './categories/categories.module';
 import { PermissionsViewModule } from './permissions/permissions.module';
 import { SettingsViewModule } from './settings/settings.module';
+import { LikesViewModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { SettingsViewModule } from './settings/settings.module';
     PermissionsViewModule,
     AdvertsViewModule,
     LessonsViewModule,
-    LearnItemsViewModule
+    LearnItemsViewModule,
+    LikesViewModule
   ],
   controllers: [],
   providers: [],
