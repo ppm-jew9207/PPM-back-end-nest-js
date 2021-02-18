@@ -16,9 +16,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import {
-  SystemUpdateAlt as SystemUpdateAltIcon,
-} from '@material-ui/icons';
+import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
@@ -47,10 +45,10 @@ const SOCIAL_LINKS = [
 ];
 
 interface SocialLink {
-    icon: string;
-    link: string;
-    color: string;
-  };
+  icon: string;
+  link: string;
+  color: string;
+}
 
 interface Category {
   _id: string;
@@ -62,7 +60,11 @@ interface RawInput {
   categories: string[];
   city: { city_name: string };
   company: string;
-  country: {country_name: string, country_short_name: string, country_phone_code: number };
+  country: {
+    country_name: string;
+    country_short_name: string;
+    country_phone_code: number;
+  };
   description: string;
   email: string;
   facebook: string;
@@ -73,7 +75,7 @@ interface RawInput {
   lastName: string;
   linkedin: string;
   phone: string;
-  state: {state_name: string };
+  state: { state_name: string };
   twitter: string;
   type: string;
   website: string;
@@ -98,23 +100,25 @@ export interface Profile {
   socialLinks: SocialLink[];
 }
 export interface SharedProfileFormProps {
-  onSelectCountry: ( countryName: string ) => void;
-  onSelectState: ( stateName: string ) => void;
-  onSubmit: (submitData:Profile) => void;
+  onSelectCountry: (countryName: string) => void;
+  onSelectState: (stateName: string) => void;
+  onSubmit: (submitData: Profile) => void;
   categories: Category[];
   cities?: { city_name: string }[];
   countries: { country_name: string }[];
-  states?: { state_name: string}[];
-  profile: Profile
+  states?: { state_name: string }[];
+  profile: Profile;
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
-  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string | FileList>();
+  const [uploadedImg, setUploadedImg] = useState<
+    ArrayBuffer | string | FileList
+  >();
   const { handleSubmit, register, control, errors } = useForm();
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(() => {
     props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
-  },[props, uploadedImg]);
+  }, [props, uploadedImg]);
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
     setCategories(event.target.value);
@@ -122,14 +126,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
 
   const renderCategoryValue = (selected) => {
     const categories = {};
-    props.categories.map(category => {
+    props.categories.map((category) => {
       categories[category.value] = category;
     });
-    return <div>
-    {selected.map((value: string) => (
-      <Chip key={value} label={categories[value].title} />
-    ))}
-  </div>
+    return (
+      <div>
+        {selected.map((value: string) => (
+          <Chip key={value} label={categories[value].title} />
+        ))}
+      </div>
+    );
   };
 
   const validateCategories = (value) => {
@@ -147,7 +153,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   };
 
   const onSubmitForm = (formData: RawInput) => {
-    const { 
+    const {
       categories,
       city,
       company,
@@ -165,11 +171,11 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       state,
       twitter,
       type,
-      website
-     } = formData;
+      website,
+    } = formData;
 
-     SOCIAL_LINKS.map( item => {
-      switch(item.icon) {
+    SOCIAL_LINKS.map((item) => {
+      switch (item.icon) {
         case 'twitter': {
           if (twitter.length) item.link = twitter;
           break;
@@ -186,8 +192,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           if (instagram.length) item.link = instagram;
           break;
         }
-      };
-     });
+      }
+    });
 
     const profileData: Profile = {
       _id: props.profile._id,
@@ -205,7 +211,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       phone,
       website,
       type,
-      socialLinks: SOCIAL_LINKS
+      socialLinks: SOCIAL_LINKS,
     };
     props.onSubmit(profileData);
   };
@@ -254,41 +260,43 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           />
         </Box>
         <Box my={3}>
-          <InputLabel   id="photoLabel">Photo</InputLabel>
+          <InputLabel id="photoLabel">Photo</InputLabel>
           <div className="image-container">
-          <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
-            <TextField
-              inputRef={register({})}
-              type="file"
-              id="file-browser-input"
-              name="imageUrl"
-              onDragOver={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onDrop={onFileLoad.bind(this)}
-              onChange={onFileLoad.bind(this)}
-            />
-            <div className="files-preview-container">
-              <img
-                className="files-preview-container__image"
-                src={(!!uploadedImg && uploadedImg.toString()) || ''}
-                alt="files-preview"
+            <div
+              className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}
+            >
+              <TextField
+                inputRef={register({})}
+                type="file"
+                id="file-browser-input"
+                name="imageUrl"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={onFileLoad.bind(this)}
+                onChange={onFileLoad.bind(this)}
               />
-            </div>
-            <div className="helper-text">
-              <Typography
-                variant="body1"
-                component="p"
-                align="center"
-                gutterBottom
-              >
-                Drag and Drop Images Here
-              </Typography>
-              <SystemUpdateAltIcon display="inline" />
+              <div className="files-preview-container">
+                <img
+                  className="files-preview-container__image"
+                  src={(!!uploadedImg && uploadedImg.toString()) || ''}
+                  alt="files-preview"
+                />
+              </div>
+              <div className="helper-text">
+                <Typography
+                  variant="body1"
+                  component="p"
+                  align="center"
+                  gutterBottom
+                >
+                  Drag and Drop Images Here
+                </Typography>
+                <SystemUpdateAltIcon display="inline" />
+              </div>
             </div>
           </div>
-        </div>
         </Box>
         <Box my={3}>
           <TextField
@@ -367,99 +375,87 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <Controller
-          render={({ onChange, ...params }) => (
-            <Autocomplete
-              options={props.countries}
-              getOptionLabel={option => option.country_name}
-              renderOption={option => (
-                <span>
-                  {option.country_name}
-                </span>
-              )}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  label="Choose a country"
-                  variant="outlined"
-                  autoComplete="off"
-                />
-              )}
-              onChange={(e, data) => {
-                data && props.onSelectCountry(data.country_name);
-                return onChange(data);
-              }}
-              {...params}
-            />
+            render={({ onChange, ...params }) => (
+              <Autocomplete
+                options={props.countries}
+                getOptionLabel={(option) => option.country_name}
+                renderOption={(option) => <span>{option.country_name}</span>}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Choose a country"
+                    variant="outlined"
+                    autoComplete="off"
+                  />
+                )}
+                onChange={(e, data) => {
+                  data && props.onSelectCountry(data.country_name);
+                  return onChange(data);
+                }}
+                {...params}
+              />
             )}
             name="country"
             control={control}
           />
         </Box>
-        {props.states.length > 0 &&
-        <Box my={3}>
-          <Controller
-          render={({ onChange, ...params }) => (
-            <Autocomplete
-              options={props.states}
-              getOptionLabel={option => option.state_name}
-              renderOption={option => (
-                <span>
-                  {option.state_name}
-                </span>
-              )}
-              renderInput={params => (
-                <TextField
+        {props.states.length > 0 && (
+          <Box my={3}>
+            <Controller
+              render={({ onChange, ...params }) => (
+                <Autocomplete
+                  options={props.states}
+                  getOptionLabel={(option) => option.state_name}
+                  renderOption={(option) => <span>{option.state_name}</span>}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Choose a state"
+                      variant="outlined"
+                      autoComplete="off"
+                    />
+                  )}
+                  onChange={(e, data) => {
+                    data && props.onSelectState(data.state_name);
+                    return onChange(data);
+                  }}
                   {...params}
-                  label="Choose a state"
-                  variant="outlined"
-                  autoComplete="off"
                 />
               )}
-              onChange={(e, data) => {
-                data && props.onSelectState(data.state_name);
-                return onChange(data);
-              }}
-              {...params}
+              defaultValue={props.states[0]}
+              name="state"
+              control={control}
             />
-            )}
-            defaultValue={props.states[0]}
-            name="state"
-            control={control}
-          />
-        </Box>
-        }
-      {props.cities.length > 0 &&
-        <Box my={3}>
-          <Controller
-          render={({ onChange, ...params }) => (
-            <Autocomplete
-              options={props.cities}
-              getOptionLabel={option => option.city_name}
-              renderOption={option => (
-                <span>
-                  {option.city_name}
-                </span>
-              )}
-              renderInput={params => (
-                <TextField
+          </Box>
+        )}
+        {props.cities.length > 0 && (
+          <Box my={3}>
+            <Controller
+              render={({ onChange, ...params }) => (
+                <Autocomplete
+                  options={props.cities}
+                  getOptionLabel={(option) => option.city_name}
+                  renderOption={(option) => <span>{option.city_name}</span>}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Choose a city"
+                      variant="outlined"
+                      autoComplete="off"
+                    />
+                  )}
+                  onChange={(e, data) => {
+                    return onChange(data);
+                  }}
                   {...params}
-                  label="Choose a city"
-                  variant="outlined"
-                  autoComplete="off"
                 />
               )}
-              onChange={(e, data) => {
-                return onChange(data);
-              }}
-              {...params}
+              defaultValue={props.cities[0]}
+              name="city"
+              control={control}
             />
-            )}
-            defaultValue={props.cities[0]}
-            name="city"
-            control={control}
-          />
-        </Box>
-        }
+          </Box>
+        )}
         <Box my={3}>
           <TextField
             id="phone"

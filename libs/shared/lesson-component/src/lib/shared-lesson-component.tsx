@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import './shared-lesson-component.scss';
 import moment from 'moment';
+import {
+  categoriesSelectors,
+  categoriesActions,
+} from '@ppm/data-access/categories';
 
 import {
   TextField,
@@ -13,6 +17,8 @@ import {
   InputLabel,
   FormControl,
   Fab,
+  Input,
+  Chip,
 } from '@material-ui/core';
 
 import {
@@ -59,12 +65,12 @@ export interface Lesson {
 }
 
 export interface SharedLessonComponentProps {
-  onSubmit: (lesson: Lesson) => void;
-  onCancel: () => void;
-  data: LessonDefaultParams;
-  mentors: Mentor[];
+  onSubmit?: (lesson: Lesson) => void;
+  onCancel?: () => void;
+  // data?: LessonDefaultParams;
+  mentors?: Mentor[];
   lesson?: Lesson;
-  categories: Category[];
+  categories?: Category[];
 }
 
 export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
@@ -76,9 +82,9 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
   !lesson && setLesson(props.lesson);
 
   useEffect(() => {
-    !categories.length && setCategories(props.categories);
+    !categories?.length && setCategories(props.categories);
     props.lesson && !uploadedImg && setUploadedImg(props.lesson.imageUrl);
-    !mentors.length && setMentors(props.mentors);
+    !mentors?.length && setMentors(props.mentors);
   }, [props, lesson, mentors, uploadedImg]);
 
   const onFileLoad = (e) => {
@@ -93,7 +99,33 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   const { handleSubmit, control, register, reset, errors } = useForm();
 
-  if (!props.data) return <div>Loading...</div>;
+  // if (!props.data) return <div>Loading...</div>;
+  const onCancel = () => {
+    reset();
+    props.onCancel();
+  };
+
+  const validateCategories = (value) => {
+    return value.length > 0;
+  };
+
+  const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
+    setCategories(event.target.value);
+  };
+
+  const renderCategoryValue = (selected) => {
+    const categories = {};
+    props.categories.map((category) => {
+      categories[category.value] = category;
+    });
+    return (
+      <div>
+        {selected.map((value: string) => (
+          <Chip key={value} label={categories[value].title} />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <Box
@@ -104,7 +136,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
       className="lesson"
     >
       <Typography component="h1" variant="h5">
-        {props.data.title}
+        Lesson title
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(props.onSubmit)}>
         <Controller
@@ -113,7 +145,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.titleInputLabel}
+              label="Title"
               type="text"
               className="input-field"
             />
@@ -135,7 +167,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.descriptionInputLabel}
+              label="Description"
               type="text"
               className="description"
               multiline
@@ -159,7 +191,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.datetimeInputLabel}
+              label="Date and Time"
               type="datetime-local"
               className="datetime"
               inputRef={register({})}
@@ -189,7 +221,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               <img
                 className="files-preview-container__image"
                 src={(!!uploadedImg && uploadedImg.toString()) || ''}
-                alt="files-preview"
+                alt=""
               />
             </div>
             <div className="helper-text">
@@ -211,7 +243,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.resourcesInputLabel}
+              label="Resources"
               type="text"
               className="resources"
               multiline
@@ -222,22 +254,23 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.resources) || ''}
         />
-        <InputLabel style={{ padding: '8.5px 14px' }}>
-          {props.data.mentorInputLabel}
-        </InputLabel>
+        <InputLabel style={{ padding: '8.5px 14px' }}>Select mentor</InputLabel>
         <Controller
           control={control}
           name="mentor"
           defaultValue={
-            (props.lesson && props.lesson.mentorName) || props.mentors[0]._id
+            (props?.lesson && props?.lesson?.mentorName) ||
+            (props?.mentors?.length && props?.mentors[0]?._id) ||
+            ''
           }
           as={
             <Select variant="outlined" fullWidth ref={register}>
-              {props.mentors.map((mentor) => (
-                <MenuItem key={mentor._id} value={mentor._id}>
-                  {mentor.name}
-                </MenuItem>
-              ))}
+              {!!props?.mentors?.length &&
+                props?.mentors?.map((mentor) => (
+                  <MenuItem key={mentor?._id} value={mentor?._id}>
+                    {mentor.name}
+                  </MenuItem>
+                ))}
             </Select>
           }
         />
@@ -247,7 +280,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label={props.data.connectionURLInputLabel}
+              label="Connection URL"
               type="text"
               className="input-field"
             />
@@ -257,7 +290,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           defaultValue={(lesson && lesson.connectionURL) || ''}
           rules={{ required: true }}
         />
-        {errors.connectionURL && (
+        {!!errors.connectionURL && (
           <div className="error">
             <ArrowRightIcon className="error-icon" />
             Connection URL is required
@@ -266,7 +299,47 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
         <Controller
           control={control}
           name="category"
+          defaultValue=""
           as={
+            /*
+            <FormControl
+              variant="outlined"
+              fullWidth
+              error={!!errors.categories}
+            >
+              <InputLabel id="categoriesLabel">Categories *</InputLabel>
+              <Controller
+                name="categories"
+                defaultValue={[]}
+                control={control}
+                rules={{ validate: (value) => validateCategories(value) }}
+                onChange={([selected]) => {
+                  return selected;
+                }}
+                as={
+                  <Select
+                    id="categories"
+                    label="Categories"
+                    name="categories"
+                    value={categories}
+                    multiple
+                    onChange={handleCategoriesChange}
+                    input={<Input id="select-multiple-chip" />}
+                    inputRef={register}
+                    renderValue={renderCategoryValue}
+                    error={!!errors.categories}
+                  >
+                    {props.categories.map((category: Category) => (
+                      <MenuItem key={category._id} value={category.value}>
+                        {category.title}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                }
+                fullWidth
+              />
+            </FormControl>
+*/
             <FormControl
               className="category"
               variant="outlined"
@@ -275,16 +348,16 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               <InputLabel id="category-label">Categories</InputLabel>
               <div className="categories__wrapper">
                 {!!categories &&
-                  props.lesson.categories.map((categoryId) => {
+                  !!props?.lesson?.categories?.length &&
+                  props?.lesson?.categories.map((categoryId) => {
                     const category = categories.filter((item) => {
-                      console.log(item, categoryId);
                       return item._id == categoryId;
                     })[0];
 
                     return (
                       category && (
                         <Fab className="categories__item" variant="extended">
-                          {category.title}
+                          {category?.title}
                         </Fab>
                       )
                     );
@@ -307,7 +380,8 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           type="submit"
           className="submit-form"
         >
-          {props.data.submitButtonText}
+          Create/Edit
+          {/* {props?.data?.submitButtonText} */}
         </Button>
         <Button
           fullWidth
@@ -315,19 +389,10 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           color="secondary"
           type="button"
           className="cancel-form"
-          onClick={() =>
-            reset({
-              mentorName: '',
-              description: '',
-              resources: '',
-              imageUrl: '',
-              title: '',
-              connectionURL: '',
-              datetime: moment().format('YYYY-MM-DDTHH:MM'),
-            })
-          }
+          onClick={onCancel}
         >
-          {props.data.cancelButtonText}
+          {/* {props?.data?.cancelButtonText} */}
+          Cancel
         </Button>
       </form>
     </Box>

@@ -120,9 +120,7 @@
       "@ppm/shared/adverts-add-buttons": [
         "libs/shared/adverts-add-buttons/src/index.ts"
       ],
-      "@ppm/data-access/countries-api": [
-        "libs/data-access/countries-api/src/index.ts"
-      ]
+      "@ppm/data-access/mentors": ["libs/data-access/mentors/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

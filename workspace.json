@@ -2684,6 +2684,29 @@
           }
         }
       }
+    },
+    "data-access-mentors": {
+      "root": "libs/data-access/mentors",
+      "sourceRoot": "libs/data-access/mentors/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-access/mentors/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access/mentors"],
+          "options": {
+            "jestConfig": "libs/data-access/mentors/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SharedAdvertDetails } from '@ppm/shared/advert-details';
 import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
@@ -6,12 +6,13 @@ import { useLesson } from '@ppm/hooks/use-lesson';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
 import { Drawer } from '@material-ui/core';
 import {
+  Category,
+  Lesson,
+  Mentor,
   SharedLessonComponent,
-  SharedLessonComponentProps,
 } from '@ppm/shared/lesson-component';
-
 import './features-lesson-page.scss';
-import { createLesson } from '@ppm/data-access/lessons';
+//import { createLesson } from '@ppm/data-access/lessons';
 
 interface RouteInfo extends RouteProps {
   params: {
@@ -26,7 +27,7 @@ export const FeaturesLessonPage = (props: {
 }) => {
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
-
+  const [isMenuOpen, setMenuOpen] = useState(true);
   const {
     title,
     description,
@@ -41,6 +42,34 @@ export const FeaturesLessonPage = (props: {
     allLearnItemsList,
     createLesson,
   } = useLesson(props.history, props.match.params.id);
+
+  const defaultLesson = {
+    title: '',
+    description: '',
+    datetime: '',
+    imageUrl: '',
+    resources: '',
+    mentorName: '',
+    connectionURL: '',
+    categories: [],
+  } as Lesson;
+
+  const defaultMentor = {
+    name: '',
+    value: '',
+    _id: '',
+  } as Mentor;
+
+  const defaultCategory = {
+    title: '',
+    value: '',
+    _id: '',
+  } as Category;
+
+  const closeDrawer = () => {
+    setMenuOpen(false);
+    console.log('Close drawer');
+  };
 
   return (
     <div>
@@ -61,13 +90,16 @@ export const FeaturesLessonPage = (props: {
         )}
         accordionTitle={accordionTitle}
       />
-      <Drawer>
+      <Drawer
+        open={isMenuOpen}
+        ModalProps={{ onBackdropClick: () => closeDrawer() }}
+      >
         <SharedLessonComponent
           onSubmit={() => createLesson}
-          onCancel={() => null}
-          data={null}
-          mentors={null}
-          categories={null}
+          lesson={defaultLesson}
+          mentors={[defaultMentor]}
+          categories={[defaultCategory]}
+          onCancel={closeDrawer}
         ></SharedLessonComponent>
       </Drawer>
     </div>
