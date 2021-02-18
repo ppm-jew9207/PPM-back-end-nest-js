@@ -17,18 +17,20 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
   @Inject() private readonly _advertsService: AdvertsModelService;
 
   async execute({ data, user }: CreateLike): Promise<Boolean> {
-    console.log(user);
     if(!Object.values(likeType).includes(data.type)) {
       throw new BadRequestException(`Type has to be either like or share`);
     }
     if(!data.advert) {
       throw new BadRequestException(`There is no advert`);
     }
-    const advert = await this._advertsService.getById(data.advert);
-    if (!advert) {
+    try {
+      const advert = await this._advertsService.getById(data.advert);
+    } catch {
       throw new BadRequestException(`There is no such advert`);
     }
 
+    /*TODO: check if such like or share already exist */ 
+    
     const likeData: CreateLikePayload = {
       ...data,
       user: user._id
@@ -38,8 +40,6 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
     const id = new Types.ObjectId().toHexString();
 
     aggregate.apply(new LikeCreated(id, likeData));
-    console.log(likeData);
-
     
     const like = this._publisher.mergeObjectContext(aggregate);
     like.commit();
