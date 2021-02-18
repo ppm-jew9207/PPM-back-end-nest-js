@@ -9,7 +9,7 @@ import {
   CreateAdvertPayload,
 } from './adverts.interface';
 import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
-import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
+import { CATEGORIES_JOIN_QUERY, LEARN_ITEMS_JOIN_QUERY, LESSONS_JOIN_QUERY } from '../../shared/mongo-queries';
 
 @Injectable()
 export class AdvertsModelService {
@@ -22,7 +22,9 @@ export class AdvertsModelService {
       {
         $match:  { _id : {$exists: true}}   
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY,
+      LESSONS_JOIN_QUERY
     ]).exec();
   }
 
@@ -31,7 +33,9 @@ export class AdvertsModelService {
       {
         $match:  { _id: Types.ObjectId(id) },    
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY,
+      LESSONS_JOIN_QUERY
     ]).exec();
   }
 
@@ -40,7 +44,9 @@ export class AdvertsModelService {
       {
         $match:  { "creator._id": id },    
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY,
+      LESSONS_JOIN_QUERY
     ]).exec();
   }
 
@@ -49,7 +55,9 @@ export class AdvertsModelService {
       {
         $match:  { "creator._id": userId, _id: Types.ObjectId(id) }   
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY,
+      LESSONS_JOIN_QUERY
     ]).exec();
   }
 
