@@ -7,6 +7,7 @@ import { LikeCreated } from '../events/like-created.event';
 import { UserLean } from '../../../models/users/user.interface';
 import { CreateLikePayload, likeType } from '../../../models/likes/likes.interface';
 import { AdvertsModelService } from '../../../models/adverts/adverts.service';
+import { LikesModelService } from '../../../models/likes/likes.service';
 
 export class CreateLike {
   constructor(public data: CreateLikePayloadDto, public user: UserLean) {}
@@ -15,6 +16,7 @@ export class CreateLike {
 export class CreateLikeHandler implements ICommandHandler<CreateLike> {
   @Inject() private readonly _publisher: EventPublisher;
   @Inject() private readonly _advertsService: AdvertsModelService;
+  @Inject() private readonly _likesService: LikesModelService;
 
   async execute({ data, user }: CreateLike): Promise<Boolean> {
     if(!Object.values(likeType).includes(data.type)) {
@@ -27,6 +29,9 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
       const advert = await this._advertsService.getById(data.advert);
     } catch {
       throw new BadRequestException(`There is no such advert`);
+    }
+    if(await this._likesService.doesExist(data.advert, user._id, data.type)) {
+      throw new BadRequestException(`This entry already exist`);
     }
 
     /*TODO: check if such like or share already exist */ 

@@ -4,6 +4,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { LikesController } from './likes.controller';
 
 import { AdvertsModelModule } from '../../models/adverts/adverts.module';
+import { LikesModelModule } from '../../models/likes/likes.module';
 // import { RemoveAdvertHandler } from './commands/remove-advert.command';
 import { CreateLikeHandler } from './commands/create-like.command';
 // import { UpdateAdvertHandler } from './commands/update-advert.command';
@@ -21,6 +22,7 @@ const commandHandlers = [
     CqrsModule,
     AdvertsModelModule,
     UsersModelModule,
+    LikesModelModule
     // UserProfileModelModule,
   ],
   controllers: [LikesController],
