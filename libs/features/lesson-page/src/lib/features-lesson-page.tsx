@@ -40,10 +40,10 @@ export const FeaturesLessonPage = (props: {
     startingDate,
     allCategoriesList,
     allLearnItemsList,
-    createLesson,
+    createLessonHook,
   } = useLesson(props.history, props.match.params.id);
 
-  const defaultLesson = {
+  const defaultLesson: Lesson = {
     title: '',
     description: '',
     datetime: '',
@@ -52,23 +52,46 @@ export const FeaturesLessonPage = (props: {
     mentorName: '',
     connectionURL: '',
     categories: [],
-  } as Lesson;
+  };
 
-  const defaultMentor = {
-    name: '',
-    value: '',
-    _id: '',
-  } as Mentor;
+  const defaultMentors: Array<Mentor> = [
+    {
+      name: 'MMM',
+      value: '123',
+      _id: '1',
+    },
+    {
+      name: 'HHH',
+      value: '888',
+      _id: '2',
+    },
+  ];
 
-  const defaultCategory = {
-    title: '',
-    value: '',
-    _id: '',
-  } as Category;
+  const defaultCategories: Array<Category> = [
+    {
+      title: 'CCC',
+      value: '321',
+      _id: '2',
+    },
+    {
+      title: 'DDD',
+      value: '456',
+      _id: '3',
+    },
+    {
+      title: 'FFF',
+      value: '222',
+      _id: '4',
+    },
+    {
+      title: 'EEE',
+      value: '333',
+      _id: '5',
+    },
+  ];
 
   const closeDrawer = () => {
     setMenuOpen(false);
-    console.log('Close drawer');
   };
 
   return (
@@ -95,10 +118,10 @@ export const FeaturesLessonPage = (props: {
         ModalProps={{ onBackdropClick: () => closeDrawer() }}
       >
         <SharedLessonComponent
-          onSubmit={() => createLesson}
+          onSubmit={(lesson) => createLessonHook(lesson)}
           lesson={defaultLesson}
-          mentors={[defaultMentor]}
-          categories={[defaultCategory]}
+          mentors={defaultMentors}
+          categories={defaultCategories}
           onCancel={closeDrawer}
         ></SharedLessonComponent>
       </Drawer>

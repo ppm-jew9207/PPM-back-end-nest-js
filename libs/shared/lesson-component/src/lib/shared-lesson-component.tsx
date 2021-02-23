@@ -67,7 +67,6 @@ export interface Lesson {
 export interface SharedLessonComponentProps {
   onSubmit?: (lesson: Lesson) => void;
   onCancel?: () => void;
-  // data?: LessonDefaultParams;
   mentors?: Mentor[];
   lesson?: Lesson;
   categories?: Category[];
@@ -301,7 +300,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           name="category"
           defaultValue=""
           as={
-            /*
             <FormControl
               variant="outlined"
               fullWidth
@@ -339,38 +337,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                 fullWidth
               />
             </FormControl>
-*/
-            <FormControl
-              className="category"
-              variant="outlined"
-              margin="normal"
-            >
-              <InputLabel id="category-label">Categories</InputLabel>
-              <div className="categories__wrapper">
-                {!!categories &&
-                  !!props?.lesson?.categories?.length &&
-                  props?.lesson?.categories.map((categoryId) => {
-                    const category = categories.filter((item) => {
-                      return item._id == categoryId;
-                    })[0];
-
-                    return (
-                      category && (
-                        <Fab className="categories__item" variant="extended">
-                          {category?.title}
-                        </Fab>
-                      )
-                    );
-                  })}
-                <Fab
-                  className="categories__item"
-                  variant="extended"
-                  style={{ color: '#fff', background: green[600] }}
-                >
-                  <AddIcon />
-                </Fab>
-              </div>
-            </FormControl>
           }
         ></Controller>
         <Button
@@ -381,7 +347,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           className="submit-form"
         >
           Create/Edit
-          {/* {props?.data?.submitButtonText} */}
         </Button>
         <Button
           fullWidth
@@ -391,7 +356,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           className="cancel-form"
           onClick={onCancel}
         >
-          {/* {props?.data?.cancelButtonText} */}
           Cancel
         </Button>
       </form>
