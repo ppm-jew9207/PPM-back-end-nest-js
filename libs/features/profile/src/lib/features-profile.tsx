@@ -21,6 +21,7 @@ import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categor
 import { countriesApiActions, countriesApiSelectors } from '@ppm/data-access/countries-api';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
+import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
 
@@ -38,6 +39,7 @@ export const FeaturesProfile = (props) => {
   const dispatch = useDispatch();
   const { profile, loading, adverts, categories, countries, states, cities } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [addDrawer, setAddDrawer] = useState(false);
 
   const toggleDrawer = (open: boolean) => {
     setMenuOpen(open);
@@ -74,7 +76,7 @@ export const FeaturesProfile = (props) => {
     aboutMentor: '',
     mentorLocation: '',
     socialLinks: [],
-    toggleDrawer
+    toggleDrawer,
   };
 
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
@@ -87,7 +89,7 @@ export const FeaturesProfile = (props) => {
         aboutMentor: profile.description,
         mentorLocation: profile.city,
         socialLinks: profile.socialLinks,
-        toggleDrawer: toggleDrawer
+        toggleDrawer: toggleDrawer,
       });
     }
   }, [profile]);
@@ -100,7 +102,28 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons disabled={false} />
+        <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
+
+        <Drawer open={addDrawer} onClose={() => setAddDrawer(false)}>
+            <SharedCreateAdvertForm
+              onSubmit={() => console.log('submit')}
+              onCancel={() => console.log('cancel')}
+               categories={[
+          {
+            title: 'Category A',
+            value: 'category-a',
+            _id: 'as3dg432af',
+            checked: false, },
+          { 
+            title: 'Category B',
+            value: 'category-b',
+            _id: 'as33dg4432af',
+            checked: false, 
+          },
+        ]}
+            />
+        </Drawer>
+
         {adverts.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}

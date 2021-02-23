@@ -68,7 +68,7 @@ export interface AdvertData {
 export interface SharedCreateAdvertFormProps {
   onSubmit: (advertData: AdvertData) => void;
   onCancel: () => void;
-  data: AdvertData;
+  data?: AdvertData;
   categories: Category[];
   advert?: Advert;
 }
@@ -205,7 +205,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   }
 
   const { handleSubmit, register, control, errors, setValue } = useForm();
-  if (!props.data) return <div>Loading...</div>;
 
   const createAdvertHandler = (data) => {
     props.onSubmit({ ...data, selectedLessonCheckboxes: {selectedLessonValue}, selectedCategoryCheckboxes: {selectedCategoryValue}});
@@ -214,7 +213,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
   return (
     <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form">
       <Typography className="header" component="h1" variant="h5">
-        {labels.title}
+        New Advert
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(createAdvertHandler)}>
         <div className="inner-container">
@@ -254,10 +253,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Title'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.titleInputLabel}
+              label={labels?.titleInputLabel}
               type="text"
               className="header"
               onChange={(event) =>
@@ -279,10 +279,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Description'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.categoryInputLabel}
+              label={labels?.categoryInputLabel}
               type="text"
               className="description"
               onChange={(event) =>
@@ -306,10 +307,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Prerequisites'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.prerequisitesInputLabel}
+              label={labels?.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
               onChange={(event) =>
@@ -333,10 +335,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='What will you learn?'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.learningInputLabel}
+              label={labels?.learningInputLabel}
               type="text"
               className="learning"
               onChange={(event) =>
@@ -428,7 +431,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          {labels.submitButtonText}
+          Create
         </Button>
         <Button
           fullWidth
@@ -438,7 +441,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           className="cancel-form"
           onClick={props.onCancel}
         >
-          {labels.cancelButtonText}
+          Cancel
         </Button>
       </form>
     </Box>
