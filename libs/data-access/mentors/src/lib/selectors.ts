@@ -17,17 +17,17 @@ const selectMentors = () =>
   //  return subState.list || []; 
     return [
     {
-      name: 'Name1',
-      value: 'Value1',
+      name: 'MentorName1',
+      value: 'MentorName1',
       _id: '1',
     },
     {
-      name: 'Name2',
-      value: 'Value2',
+      name: 'MentorName2',
+      value: 'MentorName2',
       _id: '2',
     },    {
-      name: 'Name3',
-      value: 'Value3',
+      name: 'MentorName3',
+      value: 'MentorName3',
       _id: '3',
     },
 ] || [];

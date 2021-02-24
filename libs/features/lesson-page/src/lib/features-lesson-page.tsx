@@ -40,7 +40,8 @@ export const FeaturesLessonPage = (props: {
     startingDate,
     allCategoriesList,
     allLearnItemsList,
-    createLessonHook,
+    allMentorsList,
+    createNewLesson,
   } = useLesson(props.history, props.match.params.id);
 
   const defaultLesson: Lesson = {
@@ -53,42 +54,6 @@ export const FeaturesLessonPage = (props: {
     connectionURL: '',
     categories: [],
   };
-
-  const defaultMentors: Array<Mentor> = [
-    {
-      name: 'MMM',
-      value: '123',
-      _id: '1',
-    },
-    {
-      name: 'HHH',
-      value: '888',
-      _id: '2',
-    },
-  ];
-
-  const defaultCategories: Array<Category> = [
-    {
-      title: 'CCC',
-      value: '321',
-      _id: '2',
-    },
-    {
-      title: 'DDD',
-      value: '456',
-      _id: '3',
-    },
-    {
-      title: 'FFF',
-      value: '222',
-      _id: '4',
-    },
-    {
-      title: 'EEE',
-      value: '333',
-      _id: '5',
-    },
-  ];
 
   const closeDrawer = () => {
     setMenuOpen(false);
@@ -118,10 +83,10 @@ export const FeaturesLessonPage = (props: {
         ModalProps={{ onBackdropClick: () => closeDrawer() }}
       >
         <SharedLessonComponent
-          onSubmit={(lesson) => createLessonHook(lesson)}
+          onSubmit={(lesson) => createNewLesson(lesson)}
           lesson={defaultLesson}
-          mentors={defaultMentors}
-          categories={defaultCategories}
+          mentors={allMentorsList}
+          categories={allCategoriesList}
           onCancel={closeDrawer}
         ></SharedLessonComponent>
       </Drawer>

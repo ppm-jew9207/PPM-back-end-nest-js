@@ -12,6 +12,7 @@ import {
   learnItemsActions,
   learnItemsSelectors,
 } from '@ppm/data-access/learn-items';
+import { mentorsSelectors } from '@ppm/data-access/mentors';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -20,6 +21,7 @@ const stateSelector = createStructuredSelector({
   lesson: lessonsSelectors.selectLesson(),
   loading: lessonsSelectors.selectLoading(),
   categoriesList: categoriesSelectors.selectCategories(),
+  mentorsList: mentorsSelectors.selectMentors(),
   learnItemsList: learnItemsSelectors.selectLearnItems(),
 });
 
@@ -30,11 +32,14 @@ export function useLesson(history: History, id: string) {
     lesson,
     loading,
     categoriesList,
+    mentorsList,
     learnItemsList,
   } = useSelector(stateSelector);
 
   useEffect(() => {
-    dispatch(lessonsActions.getById(id));
+    if (id) {
+      dispatch(lessonsActions.getById(id));
+    }
     dispatch(lessonsActions.getAll());
     dispatch(categoriesActions.getAll());
     dispatch(learnItemsActions.getAll());
@@ -51,6 +56,7 @@ export function useLesson(history: History, id: string) {
   const [image, setImage] = useState('');
   const [categories, setCategories] = useState([]);
   const [allCategoriesList, setAllCategoriesList] = useState([]);
+  const [allMentorsList, setAllMentorsList] = useState([]);
   const [allLearnItemsList, setAllLearnItemsList] = useState([]);
   const [lessonsData, setLessonsData] = useState([]);
   const [startingDate, setStartingDate] = useState('');
@@ -85,8 +91,8 @@ export function useLesson(history: History, id: string) {
     }
   }, [lessons]);
 
-  const createLesson = (data: any, id: string) => {
-    dispatch(learnItemsActions.create(data));
+  const createNewLesson = (data: any) => {
+    dispatch(lessonsActions.create(data));
   };
 
   useEffect(() => {
@@ -94,6 +100,13 @@ export function useLesson(history: History, id: string) {
       setAllCategoriesList(categoriesList);
     }
   }, [categoriesList]);
+
+  useEffect(() => {
+    console.log(mentorsList);
+    if (mentorsList) {
+      setAllMentorsList(mentorsList);
+    }
+  }, [mentorsList]);
 
   useEffect(() => {
     if (learnItemsList) {
@@ -107,12 +120,13 @@ export function useLesson(history: History, id: string) {
     creator,
     image,
     categories,
-    createLesson,
+    createNewLesson,
     onAction,
     learnItems,
     lessons: lessonsData,
     startingDate,
     allCategoriesList,
     allLearnItemsList,
+    allMentorsList,
   };
 }
