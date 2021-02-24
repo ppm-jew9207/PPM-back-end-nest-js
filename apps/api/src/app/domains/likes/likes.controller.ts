@@ -31,21 +31,4 @@ export class LikesController {
       const user = request.user;
       return await this.commandBus.execute(new CreateLike(dto, user));
   }
-
-  // @Post(PrivateRoutesPath.POST_UPDATE)
-  // @HttpCode(HttpStatus.OK)
-  // async updates(
-  //   @Param('id') id: string,
-  //   @Body() updateAdvertPayload: UpdateAdvertPayloadDto
-  // ): Promise<boolean> {
-  //   return this.commandBus.execute(
-  //     new UpdateAdvert({ ...updateAdvertPayload, id })
-  //   );
-  // }
-
-  // @Post(PrivateRoutesPath.POST_DELETE)
-  // @HttpCode(HttpStatus.OK)
-  // async remove(@Param('id') id: string) {
-  //   return this.commandBus.execute(new RemoveAdvert(id));
-  // }
 }

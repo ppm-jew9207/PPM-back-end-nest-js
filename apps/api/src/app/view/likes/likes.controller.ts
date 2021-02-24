@@ -22,34 +22,4 @@ import { LikesViewModel } from '../../models/Likes/Likes.interface';
 @ApiTags(PrivateRoutesPath.LIKES)
 export class LikesController {
   constructor(private readonly queryBus: QueryBus) {}
-
-
-  // @ApiBearerAuth('JWT')
-  // @UseGuards(AuthGuard('jwt'))
-  // @UseInterceptors(LoggingInterceptor, TransformInterceptor)
-  // @Get(`${PrivateRoutesPath.USER}${PrivateRoutesPath.GET_BY_ID}`)
-  // async getUsersLikeById(@Param('id') id: string, @Req() request: any): Promise<LikesViewModel[]> {
-  //   const user = request.user;
-  //   const userId = user.id;
-  //   return this.queryBus.execute(new GetUsersLikeQuery(userId, id));
-  // }
-
-  // @ApiBearerAuth('JWT')
-  // @UseGuards(AuthGuard('jwt'))
-  // @UseInterceptors(LoggingInterceptor, TransformInterceptor)
-  // @Get(PrivateRoutesPath.USER)
-  // async getByUserId(@Req() request: any): Promise<LikesViewModel> {
-  //   const user = request.user;
-  //   return this.queryBus.execute(new GetUsersLikesQuery(user.id));
-  // }
-
-  // @Get(`${PrivateRoutesPath.GET_BY_ID}`)
-  // async getById(@Param('id') id: string): Promise<LikesViewModel> {
-  //   return this.queryBus.execute(new GetLikeQuery(id));
-  // }
-
-  // @Get()
-  // async findAll(): Promise<LikesViewModel[]> {
-  //   return this.queryBus.execute(new GetLikesQuery());
-  // }
 }

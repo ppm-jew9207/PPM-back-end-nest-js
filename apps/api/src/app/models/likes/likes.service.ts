@@ -8,9 +8,6 @@ import {
   CreateLikePayload,
   likeType,
 } from './likes.interface';
-// import { UpdateAdvertPayloadDto } from './dtos/update-advert.dto';
-import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
-
 @Injectable()
 export class LikesModelService {
   @InjectModel(ViewModels.LIKES_VIEW) private _model!: Model<
@@ -31,7 +28,7 @@ export class LikesModelService {
         user: user, 
         type: type
       });
-    if (result.length === 0) {
+    if (!result.length) {
       return false;
     }
     return true;
