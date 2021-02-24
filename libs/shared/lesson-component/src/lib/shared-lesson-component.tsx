@@ -2,10 +2,6 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import './shared-lesson-component.scss';
 import moment from 'moment';
-import {
-  categoriesSelectors,
-  categoriesActions,
-} from '@ppm/data-access/categories';
 
 import {
   TextField,

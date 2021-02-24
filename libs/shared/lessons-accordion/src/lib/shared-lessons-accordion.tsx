@@ -10,9 +10,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { Link  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './shared-lessons-accordion.scss';
+import { Button } from '@material-ui/core';
 
 interface Lesson {
   _id: string;
@@ -28,6 +29,9 @@ export interface SharedLessonsAccordionProps {
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
+  const openNewLesson = (open: boolean) => {
+    console.log(open);
+  };
   return (
     <Container fixed>
       <Accordion className="lessons-accordion" defaultExpanded>
@@ -47,29 +51,41 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
           </div>
           <div>
             <Grid container spacing={2}>
-              {props.lessons.map((lesson, i) => 
-                  <Grid key={i} item xs={3}>
-                    <a href={`/lessons/${lesson._id}`} className='lesson-link'>
-                      <Card>
-                        <CardActionArea>
-                          {lesson.image && <CardMedia
+              {props.lessons.map((lesson, i) => (
+                <Grid key={i} item xs={3}>
+                  <a href={`/lessons/${lesson._id}`} className="lesson-link">
+                    <Card>
+                      <CardActionArea>
+                        {lesson.image && (
+                          <CardMedia
                             className="lesson-image"
                             image={lesson.image}
                             title={lesson.title}
-                          />}
-                          <CardContent>
-                            <Typography variant="body1" gutterBottom>
-                              {lesson.title}
-                            </Typography>
-                            <Typography variant="body2" gutterBottom>
-                              {lesson.authorName}
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </a>
-                  </Grid>     
-              )}
+                          />
+                        )}
+                        <CardContent>
+                          <Typography variant="body1" gutterBottom>
+                            {lesson.title}
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            {lesson.authorName}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </a>
+                </Grid>
+              ))}
+              <div>
+                <Button
+                  className="margin-example"
+                  variant="contained"
+                  color="primary"
+                  onClick={() => openNewLesson(true)}
+                >
+                  Add Lesson
+                </Button>
+              </div>
             </Grid>
           </div>
         </AccordionDetails>

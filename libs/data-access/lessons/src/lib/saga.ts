@@ -16,21 +16,18 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createLesson(actions) {
   const data = actions.payload;
-  console.log(actions.payload);
   try {
-    if (data.imageUrl.length==1) {
-      const file = data.imageUrl[0];
+    if (data.lessonImage.length) {
+      const file = data.lessonImage[0];
       const formData = new FormData();
       formData.append('file', file);
       const path = `/api/${PrivateRoutesPath.IMAGES}`;
       const imageResult = yield call(postFormData, path, formData);
-      
+
       if (imageResult) {
         const path = `/api/${PrivateRoutesPath.LESSONS}`;
-        const res = yield call(post, path, data);
-        console.log(res);
-    
-       // yield call(post, path, data);
+        const data = actions.payload;
+        yield call(post, path, data);
         yield put(
           createSuccess({
             loading: false,
@@ -38,13 +35,9 @@ export function* createLesson(actions) {
         );
       }
     } else {
-      data.imageUrl = '';
       const path = `/api/${PrivateRoutesPath.LESSONS}`;
-      
-      const res = yield call(post, path, data);
-    console.log(res);
-    
-   // yield call(post, path, data);
+      const data = actions.payload;
+      yield call(post, path, data);
       yield put(
         createSuccess({
           loading: false,
