@@ -12,7 +12,7 @@ import {
   learnItemsActions,
   learnItemsSelectors,
 } from '@ppm/data-access/learn-items';
-import { mentorsSelectors } from '@ppm/data-access/mentors';
+import { mentorsSelectors } from 'libs/data-access/mentors/src';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
