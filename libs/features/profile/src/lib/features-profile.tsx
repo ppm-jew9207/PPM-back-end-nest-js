@@ -94,7 +94,9 @@ export const FeaturesProfile = (props) => {
     }
   }, [profile]);
 
-  if (loading) return <CircularProgress />;
+  const addAdvert = (data: AdvertData) => {
+    console.log(data)
+  }
 
   return (
     <div className="features-profile">
@@ -104,9 +106,9 @@ export const FeaturesProfile = (props) => {
       <div className="content">
         <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
 
-        <Drawer open={addDrawer} onClose={() => setAddDrawer(false)}>
+        <Drawer anchor="left" open={addDrawer} onClose={() => setAddDrawer(false)}>
             <SharedCreateAdvertForm
-              onSubmit={() => console.log('submit')}
+              onSubmit={addAdvert}
               onCancel={() => console.log('cancel')}
                categories={[
           {
