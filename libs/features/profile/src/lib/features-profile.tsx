@@ -25,8 +25,6 @@ import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
 
-import AdvertData from '@ppm/shared/create-advert-form';
-
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
   loading: userProfileSelectors.selectLoading(),
