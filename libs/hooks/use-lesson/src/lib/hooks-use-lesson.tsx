@@ -95,10 +95,6 @@ export function useLesson(history: History, id: string) {
     dispatch(lessonsActions.create(data));
   };
 
-  const editLesson = (data: any) => {
-    dispatch(lessonsActions.update(data));
-  };
-
   useEffect(() => {
     if (categoriesList) {
       setAllCategoriesList(categoriesList);
@@ -124,7 +120,6 @@ export function useLesson(history: History, id: string) {
     image,
     categories,
     createNewLesson,
-    editLesson,
     onAction,
     learnItems,
     lessons: lessonsData,

@@ -59,20 +59,11 @@ export const FeaturesAdvertPage = (props: {
     connectionURL: '',
     categories: [],
   };
-  const fakeLesson: Lesson = {
-    title: 'Fake Title',
-    description: 'Fake',
-    datetime: '',
-    imageUrl: '',
-    resources: 'Fake',
-    mentorName: '1',
-    connectionURL: 'Fake',
-    categories: ['Fake'],
-  };
 
   const { id } = useParams();
 
   const { advert, loading, onGetStartedClick } = useAdverts(id);
+
   const closeDrawer = () => {
     setMenuOpen(false);
   };
@@ -124,12 +115,8 @@ export const FeaturesAdvertPage = (props: {
           ModalProps={{ onBackdropClick: () => closeDrawer() }}
         >
           <SharedLessonComponent
-            onSubmit={
-              isNewLesson
-                ? (lesson) => createNewLesson(lesson)
-                : (lesson) => editLesson(lesson)
-            }
-            lesson={isNewLesson ? defaultLesson : fakeLesson}
+            onSubmit={(lesson) => createNewLesson(lesson)}
+            lesson={defaultLesson}
             mentors={allMentorsList}
             categories={allCategoriesList}
             onCancel={closeDrawer}

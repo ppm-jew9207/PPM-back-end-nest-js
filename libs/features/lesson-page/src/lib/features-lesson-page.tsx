@@ -42,7 +42,6 @@ export const FeaturesLessonPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
-    editLesson,
   } = useLesson(props.history, props.match.params.id);
 
   const defaultLesson: Lesson = {
@@ -55,27 +54,9 @@ export const FeaturesLessonPage = (props: {
     connectionURL: '',
     categories: [],
   };
-  const fakeLesson: Lesson = {
-    title: 'Fake Title',
-    description: 'Fake',
-    datetime: '',
-    imageUrl: '',
-    resources: 'Fake',
-    mentorName: '1',
-    connectionURL: 'Fake',
-    categories: ['Fake'],
-  };
 
   const closeDrawer = () => {
     setMenuOpen(false);
-  };
-
-  const openDrawer = () => {
-    setMenuOpen(true);
-  };
-
-  const newLesson = (b: boolean) => {
-    setNewLesson(b);
   };
 
   return (
@@ -102,12 +83,8 @@ export const FeaturesLessonPage = (props: {
         ModalProps={{ onBackdropClick: () => closeDrawer() }}
       >
         <SharedLessonComponent
-          onSubmit={
-            isNewLesson
-              ? (lesson) => createNewLesson(lesson)
-              : (lesson) => editLesson(lesson)
-          }
-          lesson={isNewLesson ? defaultLesson : fakeLesson}
+          onSubmit={(lesson) => createNewLesson(lesson)}
+          lesson={defaultLesson}
           mentors={allMentorsList}
           categories={allCategoriesList}
           onCancel={closeDrawer}

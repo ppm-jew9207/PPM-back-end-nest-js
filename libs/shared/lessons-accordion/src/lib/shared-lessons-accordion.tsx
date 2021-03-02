@@ -11,7 +11,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
-
 import './shared-lessons-accordion.scss';
 import { Button } from '@material-ui/core';
 
@@ -27,7 +26,7 @@ export interface SharedLessonsAccordionProps {
   lessonsDescription?: string;
   lessons: Lesson[];
   accordionTitle: string;
-  showAddButton: true;
+  showAddButton?: boolean;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
@@ -35,7 +34,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
     props.onClick();
   };
 
-  const showButton = props.showAddButton || false;
+  const showButton = props.showAddButton;
 
   return (
     <Container fixed>
@@ -58,7 +57,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
             <Grid container spacing={2}>
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
-                  <div>
+                  <a href={`/lessons/${lesson._id}`} className="lesson-link">
                     <Card>
                       <CardActionArea>
                         {lesson.image && (
@@ -76,24 +75,15 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                           <Typography variant="body2" gutterBottom>
                             {lesson.authorName}
                           </Typography>
-                          <a
-                            href={`/lessons/${lesson._id}`}
-                            className="lesson-link"
-                          >
-                            <Typography variant="body2" gutterBottom>
-                              Edit
-                            </Typography>
-                          </a>
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                  </div>
+                  </a>
                 </Grid>
               ))}
               <div>
                 {showButton && (
                   <Button
-                    className="margin-example"
                     variant="contained"
                     color="primary"
                     type="button"
