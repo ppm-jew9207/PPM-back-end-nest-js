@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -27,12 +27,15 @@ export interface SharedLessonsAccordionProps {
   lessonsDescription?: string;
   lessons: Lesson[];
   accordionTitle: string;
+  showAddButton: true;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
   const onClick = () => {
     props.onClick();
   };
+
+  const showButton = props.showAddButton || false;
 
   return (
     <Container fixed>
@@ -55,12 +58,13 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
             <Grid container spacing={2}>
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
-                  <a href={`/lessons/${lesson._id}`} className="lesson-link">
+                  <div>
                     <Card>
                       <CardActionArea>
                         {lesson.image && (
                           <CardMedia
                             className="lesson-image"
+                            id={lesson._id}
                             image={lesson.image}
                             title={lesson.title}
                           />
@@ -72,22 +76,32 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                           <Typography variant="body2" gutterBottom>
                             {lesson.authorName}
                           </Typography>
+                          <a
+                            href={`/lessons/${lesson._id}`}
+                            className="lesson-link"
+                          >
+                            <Typography variant="body2" gutterBottom>
+                              Edit
+                            </Typography>
+                          </a>
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                  </a>
+                  </div>
                 </Grid>
               ))}
               <div>
-                <Button
-                  className="margin-example"
-                  variant="contained"
-                  color="primary"
-                  type="button"
-                  onClick={onClick}
-                >
-                  Add Lesson
-                </Button>
+                {showButton && (
+                  <Button
+                    className="margin-example"
+                    variant="contained"
+                    color="primary"
+                    type="button"
+                    onClick={onClick}
+                  >
+                    Add Lesson
+                  </Button>
+                )}
               </div>
             </Grid>
           </div>

@@ -12,7 +12,6 @@ import {
   SharedLessonComponent,
 } from '@ppm/shared/lesson-component';
 import './features-lesson-page.scss';
-//import { createLesson } from '@ppm/data-access/lessons';
 
 interface RouteInfo extends RouteProps {
   params: {
@@ -27,7 +26,8 @@ export const FeaturesLessonPage = (props: {
 }) => {
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
-  const [isMenuOpen, setMenuOpen] = useState(true);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isNewLesson, setNewLesson] = useState(true);
   const {
     title,
     description,
@@ -42,6 +42,7 @@ export const FeaturesLessonPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
+    editLesson,
   } = useLesson(props.history, props.match.params.id);
 
   const defaultLesson: Lesson = {
@@ -54,6 +55,16 @@ export const FeaturesLessonPage = (props: {
     connectionURL: '',
     categories: [],
   };
+  const fakeLesson: Lesson = {
+    title: 'Fake Title',
+    description: 'Fake',
+    datetime: '',
+    imageUrl: '',
+    resources: 'Fake',
+    mentorName: '1',
+    connectionURL: 'Fake',
+    categories: ['Fake'],
+  };
 
   const closeDrawer = () => {
     setMenuOpen(false);
@@ -62,7 +73,10 @@ export const FeaturesLessonPage = (props: {
   const openDrawer = () => {
     setMenuOpen(true);
   };
-  console.log(props);
+
+  const newLesson = (b: boolean) => {
+    setNewLesson(b);
+  };
 
   return (
     <div>
@@ -82,15 +96,18 @@ export const FeaturesLessonPage = (props: {
           (lesson) => lesson._id !== props.match.params.id
         )}
         accordionTitle={accordionTitle}
-        onClick={openDrawer}
       />
       <Drawer
         open={isMenuOpen}
         ModalProps={{ onBackdropClick: () => closeDrawer() }}
       >
         <SharedLessonComponent
-          onSubmit={(lesson) => createNewLesson(lesson)}
-          lesson={defaultLesson}
+          onSubmit={
+            isNewLesson
+              ? (lesson) => createNewLesson(lesson)
+              : (lesson) => editLesson(lesson)
+          }
+          lesson={isNewLesson ? defaultLesson : fakeLesson}
           mentors={allMentorsList}
           categories={allCategoriesList}
           onCancel={closeDrawer}

@@ -94,14 +94,13 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   const { handleSubmit, control, register, reset, errors } = useForm();
 
-  // if (!props.data) return <div>Loading...</div>;
   const onCancel = () => {
     reset();
     props.onCancel();
   };
 
   const validateCategories = (value) => {
-    return value.length > 0;
+    return !!value.length;
   };
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
