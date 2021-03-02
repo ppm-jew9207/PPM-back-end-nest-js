@@ -2,7 +2,7 @@ import { LikesAggregate } from '../likes.aggregate';
 import { Types } from 'mongoose';
 import { ICommandHandler, EventPublisher, CommandHandler } from '@nestjs/cqrs';
 import { CreateLikePayloadDto } from '../../../models/likes/dto/create-like.dto';
-import { Inject, BadRequestException } from '@nestjs/common';
+import { Inject, BadRequestException, HttpException, HttpStatus } from '@nestjs/common';
 import { LikeCreated } from '../events/like-created.event';
 import { UserLean } from '../../../models/users/user.interface';
 import { CreateLikePayload, likeType } from '../../../models/likes/likes.interface';
@@ -20,18 +20,30 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
 
   async execute({ data, user }: CreateLike): Promise<Boolean> {
     if(!Object.values(likeType).includes(data.type)) {
-      throw new BadRequestException(`Type has to be either like or share`);
+      throw new HttpException(
+        'Type of this entry must be either like or share',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );    
     }
     if(!data.advert) {
-      throw new BadRequestException(`There is no advert`);
+      throw new HttpException(
+        'Advert not found',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );    
     }
     try {
       const advert = await this._advertsService.getById(data.advert);
     } catch {
-      throw new BadRequestException(`There is no such advert`);
+      throw new HttpException(
+        'Incorrect advert',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );    
     }
     if(await this._likesService.doesExist(data.advert, user._id, data.type)) {
-      throw new BadRequestException(`This entry already exist`);
+      throw new HttpException(
+        'This entry already exists',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );    
     }
 
     /*TODO: check if such like or share already exist */ 

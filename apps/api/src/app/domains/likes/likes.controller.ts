@@ -17,6 +17,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath, Roles } from '@ppm/common/main';
+import { ResponseError } from '../../common/dto/response.dto';
 
 @Controller(PrivateRoutesPath.LIKES)
 @ApiTags(PrivateRoutesPath.LIKES)
@@ -28,7 +29,12 @@ export class LikesController {
 
   @Post()
   async create(@Body() dto: CreateLikePayloadDto, @Req() request: any) {
+    try {
       const user = request.user;
       return await this.commandBus.execute(new CreateLike(dto, user));
+    } catch (error) {
+      return new ResponseError('LIKE.ERROR', error);
+    }
+      
   }
 }
