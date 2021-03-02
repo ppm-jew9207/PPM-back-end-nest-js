@@ -31,7 +31,6 @@ export const FeaturesAdvertPage = (props: {
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isNewLesson, setNewLesson] = useState(true);
   const {
     title,
     description,
@@ -46,8 +45,7 @@ export const FeaturesAdvertPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
-    editLesson,
-  } = useLesson(props.history, props.match.params.id);
+  } = useLesson(props.history, props.match);
 
   const defaultLesson: Lesson = {
     title: '',
