@@ -77,7 +77,7 @@ export function useLesson(history: History, id: string) {
   useEffect(() => {
     if (lessons && lessons.length) {
       let tempArray = [];
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < lessons.length; i++) {
         if (lessons[i]) {
           tempArray.push({
             _id: lessons[i]._id,
