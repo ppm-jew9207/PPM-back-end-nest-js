@@ -54,6 +54,27 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
             </Typography>
           </div>
           <div>
+            {(showButton && (
+              <Button
+                variant="contained"
+                color="primary"
+                type="button"
+                onClick={onClick}
+              >
+                Add Lesson
+              </Button>
+            )) || (
+              <Button
+                variant="contained"
+                color="primary"
+                type="button"
+                onClick={onClick}
+              >
+                Edit Lesson
+              </Button>
+            )}
+          </div>
+          <div>
             <Grid container spacing={2}>
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
@@ -81,18 +102,6 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                   </a>
                 </Grid>
               ))}
-              <div>
-                {showButton && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="button"
-                    onClick={onClick}
-                  >
-                    Add Lesson
-                  </Button>
-                )}
-              </div>
             </Grid>
           </div>
         </AccordionDetails>
