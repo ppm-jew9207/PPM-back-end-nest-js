@@ -58,6 +58,7 @@ export interface Lesson {
   mentorName: string;
   connectionURL: string;
   categories: string[];
+  _id: string;
 }
 
 export interface SharedLessonComponentProps {
@@ -334,6 +335,12 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             </FormControl>
           }
         ></Controller>
+        <Controller
+          as={<Input type="hidden" />}
+          control={control}
+          name="id"
+          defaultValue={(lesson && lesson._id) || ''}
+        />
         <Button
           fullWidth
           variant="contained"

@@ -47,10 +47,6 @@ export const FeaturesLessonPage = (props: {
     allLessonsList,
   } = useLesson(props.history, props.match.params.id);
 
-  const { advert, loading, onGetStartedClick } = useAdverts(
-    props.match.params.id
-  );
-
   const defaultLesson: Lesson = {
     title: '',
     description: '',
@@ -60,6 +56,7 @@ export const FeaturesLessonPage = (props: {
     mentorName: '',
     connectionURL: '',
     categories: [],
+    _id: '',
   };
 
   const closeDrawer = () => {

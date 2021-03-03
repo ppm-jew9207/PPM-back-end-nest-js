@@ -56,6 +56,7 @@ export const FeaturesAdvertPage = (props: {
     mentorName: '',
     connectionURL: '',
     categories: [],
+    _id: '',
   };
 
   const { id } = useParams();
