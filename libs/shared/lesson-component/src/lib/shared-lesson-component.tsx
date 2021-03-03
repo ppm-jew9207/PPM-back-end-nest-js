@@ -304,7 +304,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               <InputLabel id="categoriesLabel">Categories *</InputLabel>
               <Controller
                 name="categories"
-                defaultValue={lesson && lesson.categories}
+                defaultValue={categories}
                 control={control}
                 rules={{ validate: (value) => validateCategories(value) }}
                 onChange={([selected]) => {
