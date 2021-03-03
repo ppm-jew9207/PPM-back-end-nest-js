@@ -45,7 +45,7 @@ export const FeaturesAdvertPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
-  } = useLesson(props.history, props?.match?.params?.id);
+  } = useLesson(props.history, props.match);
 
   const defaultLesson: Lesson = {
     title: '',
