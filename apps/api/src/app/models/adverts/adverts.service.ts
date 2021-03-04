@@ -28,7 +28,7 @@ export class AdvertsModelService {
     ]).exec();
   }
 
-  async getById(id: string): Promise<AdvertsViewModel> {
+  async getById(id: string): Promise<AdvertsViewModel[]> {
     return this._model.aggregate([
       {
         $match:  { _id: Types.ObjectId(id) },    

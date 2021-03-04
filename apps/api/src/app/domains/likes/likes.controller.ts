@@ -18,6 +18,7 @@ import { LoggingInterceptor } from '../../common/interceptors/logging.intercepto
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath, Roles } from '@ppm/common/main';
 import { ResponseError } from '../../common/dto/response.dto';
+import { isValidObjectId } from 'mongoose';
 
 @Controller(PrivateRoutesPath.LIKES)
 @ApiTags(PrivateRoutesPath.LIKES)
@@ -29,8 +30,12 @@ export class LikesController {
 
   @Post()
   async create(@Body() dto: CreateLikePayloadDto, @Req() request: any) {
+    if (!isValidObjectId(dto.advert)) {
+      return new ResponseError('LIKE.ERROR', 'Incorrect advert ID');
+    }
     try {
       const user = request.user;
+
       return await this.commandBus.execute(new CreateLike(dto, user));
     } catch (error) {
       return new ResponseError('LIKE.ERROR', error);

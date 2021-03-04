@@ -31,11 +31,10 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    try {
-      const advert = await this._advertsService.getById(data.advert);
-    } catch {
+    const advert = await this._advertsService.getById(data.advert);
+    if(!advert.length) {
       throw new HttpException(
-        'Incorrect advert',
+        'Advert with provided ID is not found',
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
