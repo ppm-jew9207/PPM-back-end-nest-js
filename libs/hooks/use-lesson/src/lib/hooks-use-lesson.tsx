@@ -13,7 +13,7 @@ import {
   learnItemsSelectors,
 } from '@ppm/data-access/learn-items';
 import { mentorsSelectors } from 'libs/data-access/mentors/src';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const stateSelector = createStructuredSelector({
@@ -23,6 +23,7 @@ const stateSelector = createStructuredSelector({
   categoriesList: categoriesSelectors.selectCategories(),
   mentorsList: mentorsSelectors.selectMentors(),
   learnItemsList: learnItemsSelectors.selectLearnItems(),
+  lessonsList: lessonsSelectors.selectLessons(),
 });
 
 export function useLesson(history: History, id: string) {
@@ -34,6 +35,7 @@ export function useLesson(history: History, id: string) {
     categoriesList,
     mentorsList,
     learnItemsList,
+    lessonsList,
   } = useSelector(stateSelector);
 
   useEffect(() => {
@@ -61,6 +63,7 @@ export function useLesson(history: History, id: string) {
   const [lessonsData, setLessonsData] = useState([]);
   const [startingDate, setStartingDate] = useState('');
   const [learnItems, setLearnItems] = useState([]);
+  const [allLessonsList, setAllLessonsList] = useState([]);
 
   useEffect(() => {
     if (lesson) {
@@ -95,11 +98,21 @@ export function useLesson(history: History, id: string) {
     dispatch(lessonsActions.create(data));
   };
 
+  const editLesson = (data: any) => {
+    dispatch(lessonsActions.update(data));
+  };
+
   useEffect(() => {
     if (categoriesList) {
       setAllCategoriesList(categoriesList);
     }
   }, [categoriesList]);
+
+  useEffect(() => {
+    if (lessonsList) {
+      setAllLessonsList(lessonsList);
+    }
+  }, [lessonsList]);
 
   useEffect(() => {
     if (mentorsList) {
@@ -120,6 +133,7 @@ export function useLesson(history: History, id: string) {
     image,
     categories,
     createNewLesson,
+    editLesson,
     onAction,
     learnItems,
     lessons: lessonsData,
@@ -127,5 +141,6 @@ export function useLesson(history: History, id: string) {
     allCategoriesList,
     allLearnItemsList,
     allMentorsList,
+    allLessonsList,
   };
 }

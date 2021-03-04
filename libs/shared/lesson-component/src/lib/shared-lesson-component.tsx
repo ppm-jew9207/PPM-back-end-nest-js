@@ -58,6 +58,7 @@ export interface Lesson {
   mentorName: string;
   connectionURL: string;
   categories: string[];
+  _id: string;
 }
 
 export interface SharedLessonComponentProps {
@@ -303,7 +304,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               <InputLabel id="categoriesLabel">Categories *</InputLabel>
               <Controller
                 name="categories"
-                defaultValue={lesson && lesson.categories}
+                defaultValue={categories}
                 control={control}
                 rules={{ validate: (value) => validateCategories(value) }}
                 onChange={([selected]) => {
@@ -334,6 +335,12 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             </FormControl>
           }
         ></Controller>
+        <Controller
+          as={<Input type="hidden" />}
+          control={control}
+          name="id"
+          defaultValue={(lesson && lesson._id) || ''}
+        />
         <Button
           fullWidth
           variant="contained"

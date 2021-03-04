@@ -4,7 +4,7 @@ import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 import { useLesson } from '@ppm/hooks/use-lesson';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
-import { Drawer } from '@material-ui/core';
+import { Button, Drawer } from '@material-ui/core';
 import {
   Category,
   Lesson,
@@ -12,6 +12,7 @@ import {
   SharedLessonComponent,
 } from '@ppm/shared/lesson-component';
 import './features-lesson-page.scss';
+import { useAdverts } from '@ppm/hooks/use-adverts';
 
 interface RouteInfo extends RouteProps {
   params: {
@@ -42,6 +43,8 @@ export const FeaturesLessonPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
+    editLesson,
+    allLessonsList,
   } = useLesson(props.history, props.match.params.id);
 
   const defaultLesson: Lesson = {
@@ -53,10 +56,16 @@ export const FeaturesLessonPage = (props: {
     mentorName: '',
     connectionURL: '',
     categories: [],
+    _id: '',
   };
 
   const closeDrawer = () => {
     setMenuOpen(false);
+  };
+
+  const openDrawer = () => {
+    setNewLesson(false);
+    setMenuOpen(true);
   };
 
   return (
@@ -77,14 +86,26 @@ export const FeaturesLessonPage = (props: {
           (lesson) => lesson._id !== props.match.params.id
         )}
         accordionTitle={accordionTitle}
+        lessonsDescription={
+          allLessonsList.find(({ _id }) => _id === props.match.params.id)?.title
+        }
+        onClick={openDrawer}
       />
       <Drawer
         open={isMenuOpen}
         ModalProps={{ onBackdropClick: () => closeDrawer() }}
       >
         <SharedLessonComponent
-          onSubmit={(lesson) => createNewLesson(lesson)}
-          lesson={defaultLesson}
+          onSubmit={
+            isNewLesson
+              ? (lesson) => createNewLesson(lesson)
+              : (lesson) => editLesson(lesson)
+          }
+          lesson={
+            isNewLesson
+              ? defaultLesson
+              : allLessonsList.find(({ _id }) => _id === props.match.params.id)
+          }
           mentors={allMentorsList}
           categories={allCategoriesList}
           onCancel={closeDrawer}
