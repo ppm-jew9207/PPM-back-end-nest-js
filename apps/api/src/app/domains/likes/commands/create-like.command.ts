@@ -44,8 +44,6 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-
-    /*TODO: check if such like or share already exist */ 
     
     const likeData: CreateLikePayload = {
       ...data,
