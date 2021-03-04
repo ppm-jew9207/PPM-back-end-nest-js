@@ -3,8 +3,9 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
 export interface MentorType {
+  _id: number;
   title: string;
-  value: string;
+  name: string;
 }
 
 interface MentorsState {

@@ -26,7 +26,7 @@ export function* createMentor(actions) {
       })
     );
   } catch (error) {
-    yield put(createFailed());
+    yield put(createFailed(error));
   }
 }
 
@@ -41,7 +41,7 @@ export function* updateMentor(actions) {
       })
     );
   } catch (error) {
-    yield put(updateFailed());
+    yield put(updateFailed(error));
   }
 }
 
@@ -50,10 +50,10 @@ export function* removeMentor(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.MENTOR}/delete/${id}`;
     const result = yield call(post, path);
-    yield result && put(removeFailed());
+    yield result && put(removeFailed(null));
     yield put(removeSuccess());
   } catch (error) {
-    yield put(removeFailed());
+    yield put(removeFailed(error));
   }
 }
 
@@ -62,15 +62,15 @@ export function* getMentorById(actions) {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.MENTOR}/${id}`;
     const result = yield call(get, path);
-    yield result && put(getByIdFailed());
+    yield result && put(getByIdFailed(null));
     yield put(
       getByIdSuccess({
-        Mentor: {},
+        Mentor: result,
         loading: false,
       })
     );
   } catch (error) {
-    yield put(getByIdFailed());
+    yield put(getByIdFailed(error));
   }
 }
 
@@ -81,12 +81,12 @@ export function* getAll() {
     yield !Array.isArray(result) && put(getAllFailed(null));
     yield put(
       getAllSuccess({
-        list: result,
+        Mentor: result,
         loading: false,
       })
     );
   } catch (error) {
-    yield put(getAllFailed(null));
+    yield put(getAllFailed(error));
   }
 }
 

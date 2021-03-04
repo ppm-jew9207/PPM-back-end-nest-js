@@ -18,16 +18,16 @@ const selectMentors = () =>
     return [
     {
       name: 'MentorName1',
-      value: 'MentorName1',
+      title: 'MentorName1',
       _id: '1',
     },
     {
       name: 'MentorName2',
-      value: 'MentorName2',
+      title: 'MentorName2',
       _id: '2',
     },    {
       name: 'MentorName3',
-      value: 'MentorName3',
+      title: 'MentorName3',
       _id: '3',
     },
 ] || [];
