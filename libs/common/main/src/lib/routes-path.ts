@@ -10,6 +10,7 @@ export enum PrivateRoutesPath {
   CATEGORIES = 'categories',
   SETTINGS = 'settings',
   IMAGES = 'images',
+  LIKES = 'likes',
   USER_PROFILES = 'user-profiles',
   AUTH = 'auth',
   GET_BY_ID = '/:id',
