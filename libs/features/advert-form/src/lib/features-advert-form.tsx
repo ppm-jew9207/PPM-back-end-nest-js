@@ -37,17 +37,17 @@ export const FeaturesAdvertForm = (props: RouteComponentProps<RouteInfo>) => {
   const history = useHistory();
 
   const create = (data: AdvertData) => {
-    dispatch(advertsActions.update(data));
+    dispatch(advertsActions.update({ ...data, _id: advert._id, advertImageUrl: advert.advertImage}));
     redirect();
   };
 
   const update = (data: AdvertData) => {
-    data.id = advert._id;
     if (data.advertImage.length) {
-      dispatch(advertsActions.update(data));
+      data.id = advert._id;
+      dispatch(advertsActions.update({ ...data, _id: advert._id, advertImageUrl: data.advertImage}));
       redirect();
     } else {
-      dispatch(advertsActions.update({ ...data, imageUrl: advert.imageUrl }));
+      dispatch(advertsActions.update({ ...data, _id: advert._id, advertImageUrl: advert.advertImageUrl }));
       redirect();
     }
   };
