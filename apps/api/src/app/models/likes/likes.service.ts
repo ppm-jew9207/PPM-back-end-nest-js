@@ -33,4 +33,8 @@ export class LikesModelService {
     }
     return true;
   }
+
+  async remove(id: string) {
+    await this._model.deleteOne({ _id: Types.ObjectId(id) });
+  }
 }

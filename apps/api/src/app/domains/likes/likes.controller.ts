@@ -18,6 +18,7 @@ import { LoggingInterceptor } from '../../common/interceptors/logging.intercepto
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath, Roles } from '@ppm/common/main';
 import { ResponseError } from '../../common/dto/response.dto';
+import { RemoveLike } from './commands/remove-like.command';
 import { isValidObjectId } from 'mongoose';
 
 @Controller(PrivateRoutesPath.LIKES)
@@ -40,6 +41,11 @@ export class LikesController {
     } catch (error) {
       return new ResponseError('LIKE.ERROR', error);
     }
-      
+  }
+
+  @Post(PrivateRoutesPath.POST_DELETE)
+  @HttpCode(HttpStatus.OK)
+  async remove(@Param('id') id: string) {
+    return this.commandBus.execute(new RemoveLike(id));
   }
 }

@@ -18,7 +18,7 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
   @Inject() private readonly _advertsService: AdvertsModelService;
   @Inject() private readonly _likesService: LikesModelService;
 
-  async execute({ data, user }: CreateLike): Promise<Boolean> {
+  async execute({ data, user }: CreateLike): Promise<boolean> {
     if(!Object.values(likeType).includes(data.type)) {
       throw new HttpException(
         'Type of this entry must be either like or share',
