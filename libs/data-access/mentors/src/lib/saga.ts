@@ -84,7 +84,6 @@ export function* getAll() {
     const result:{data : MentorType}  = yield call(get, path);
     if (!Array.isArray(result)) {
       throw new Error('Failed load mentors');
-      return;
     }  
     yield put(
       getAllSuccess({ list: result })

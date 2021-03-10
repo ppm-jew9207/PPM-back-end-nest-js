@@ -56,7 +56,6 @@ export function mentorsReducer(
     case ActionTypes.MENTOR_UPDATE_SUCCESS:
       return {
         list: state.list,
-        mentor: action.payload,
         loading: false,
       };
     case ActionTypes.MENTOR_UPDATE_FAILED:
@@ -81,7 +80,6 @@ export function mentorsReducer(
     case ActionTypes.MENTOR_REMOVE_FAILED:
       return {
         list: state.list,
-        mentor: state.mentor,
         loading: false,
       };
 
@@ -94,13 +92,11 @@ export function mentorsReducer(
     case ActionTypes.MENTOR_GET_BY_ID_SUCCESS:
       return {
         list: state.list,
-        mentor: action.payload,
         loading: false,
       };
     case ActionTypes.MENTOR_GET_BY_ID_FAILED:
       return {
         list: state.list,
-        mentor: state.mentor,
         loading: false,
       };
     default:
