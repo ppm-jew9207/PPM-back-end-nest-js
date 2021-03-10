@@ -18,6 +18,8 @@ export function mentorsReducer(
         loading: true,
       };
     case ActionTypes.GET_ALL_SUCCESS:
+      console.log(action);
+      console.log(state);
       return {
         list: state.list,
         mentor: state.mentor,
