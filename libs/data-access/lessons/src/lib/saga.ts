@@ -16,9 +16,10 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 
 export function* createLesson(actions) {
   const data = actions.payload;
+
   try {
-    if (data.lessonImage.length) {
-      const file = data.lessonImage[0];
+    if (data.imageUrl.length) {
+      const file = data.imageUrl[0];
       const formData = new FormData();
       formData.append('file', file);
       const path = `/api/${PrivateRoutesPath.IMAGES}`;
@@ -27,7 +28,7 @@ export function* createLesson(actions) {
       if (imageResult) {
         const path = `/api/${PrivateRoutesPath.LESSONS}`;
         const data = actions.payload;
-        yield call(post, path, data);
+        yield call(post, path, { ...data, imageUrl: imageResult.data });
         yield put(
           createSuccess({
             loading: false,
