@@ -14,19 +14,22 @@ import {
 } from './actions';
 import { post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
+import { MentorType } from './types';
 
 export function* createMentor(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.MENTOR}`;
     const data = actions.payload;
-    yield call(post, path, data);
+    const result: { data: MentorType } = yield call(post, path, data);
+    if (!Array.isArray(result)) {
+      yield put(createFailed(null));
+      return;
+    }
     yield put(
-      createSuccess({
-        loading: false,
-      })
+      createSuccess(result.data)
     );
   } catch (error) {
-    yield put(createFailed());
+    yield put(createFailed(error));
   }
 }
 
@@ -34,14 +37,16 @@ export function* updateMentor(actions) {
   try {
     const data = actions.payload;
     const path = `/api/${PrivateRoutesPath.MENTOR}/update/${data.id}`;
-    yield call(post, path, data);
+    const result: { data: MentorType } = yield call(post, path, data);
+    if (!Array.isArray(result)) {
+      yield put(updateFailed(null));
+      return;
+    }
     yield put(
-      updateSuccess({
-        loading: false,
-      })
+      updateSuccess(result.data)
     );
   } catch (error) {
-    yield put(updateFailed());
+    yield put(updateFailed(error));
   }
 }
 
@@ -49,44 +54,47 @@ export function* removeMentor(actions) {
   try {
     const id = actions.payload;
     const path = `/api/${PrivateRoutesPath.MENTOR}/delete/${id}`;
-    const result = yield call(post, path);
-    yield result && put(removeFailed());
+    const result: { data: MentorType } = yield call(post, path);
+    if (!Array.isArray(result)) {
+      put(removeFailed(null));
+      return;
+    }
     yield put(removeSuccess());
   } catch (error) {
-    yield put(removeFailed());
+    yield put(removeFailed(error));
   }
 }
 
 export function* getMentorById(actions) {
     try {
-    const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.MENTOR}/${id}`;
-    const result = yield call(get, path);
-    yield result && put(getByIdFailed());
-    yield put(
-      getByIdSuccess({
-        Mentor: {},
-        loading: false,
-      })
+      const id = actions.payload;
+      const path = `/api/${PrivateRoutesPath.MENTOR}/${id}`;
+      const result:{data : MentorType}  = yield call(get, path);
+      if (!Array.isArray(result)) {
+        put(getByIdFailed(null));
+        return;
+      }
+      yield put(
+      getByIdSuccess(result.data)
     );
   } catch (error) {
-    yield put(getByIdFailed());
+    yield put(getByIdFailed(error));
   }
 }
 
 export function* getAll() {
   try {
     const path = `/api/${PrivateRoutesPath.MENTOR}/`;
-    const result = yield call(get, path);
-    yield !Array.isArray(result) && put(getAllFailed(null));
+    const result:{data : MentorType}  = yield call(get, path);
+    if (!Array.isArray(result)) {
+      put(getAllFailed(null));
+      return;
+    }  
     yield put(
-      getAllSuccess({
-        list: result,
-        loading: false,
-      })
+      getAllSuccess(result.data)
     );
   } catch (error) {
-    yield put(getAllFailed(null));
+    yield put(getAllFailed(error));
   }
 }
 

@@ -1,5 +1,5 @@
 import { ActionTypes } from './constants';
-import { ContainerState, ContainerActions } from './types';
+import { ContainerState, ContainerActions, MentorType } from './types';
 
 export const initialState: ContainerState = {
   list: [],
@@ -19,8 +19,9 @@ export function mentorsReducer(
       };
     case ActionTypes.GET_ALL_SUCCESS:
       return {
-        list: action.payload.list,
-        loading: false,
+        list: state.list,
+        mentor: state.mentor,
+        loading: true,
       };
     case ActionTypes.GET_ALL_FAILED:
       return {
@@ -55,7 +56,7 @@ export function mentorsReducer(
     case ActionTypes.MENTOR_UPDATE_SUCCESS:
       return {
         list: state.list,
-        mentor: action.payload.mentor,
+        mentor: action.payload,
         loading: false,
       };
     case ActionTypes.MENTOR_UPDATE_FAILED:
@@ -93,7 +94,7 @@ export function mentorsReducer(
     case ActionTypes.MENTOR_GET_BY_ID_SUCCESS:
       return {
         list: state.list,
-        mentor: action.payload.mentor,
+        mentor: action.payload,
         loading: false,
       };
     case ActionTypes.MENTOR_GET_BY_ID_FAILED:

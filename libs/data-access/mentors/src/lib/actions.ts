@@ -1,41 +1,41 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
-import { ContainerState } from './types';
+import { MentorType } from './types';
 
 export function getAll() {
   return action(ActionTypes.GET_ALL);
 }
 
-export function getAllSuccess(payload: ContainerState) {
+export function getAllSuccess(payload: MentorType) {
   return action(ActionTypes.GET_ALL_SUCCESS, payload);
 }
 
-export function getAllFailed(payload: ContainerState) {
-  return action(ActionTypes.GET_ALL_FAILED, payload);
+export function getAllFailed(error: Error) {
+  return action(ActionTypes.GET_ALL_FAILED, error);
 }
 
-export function create(payload: ContainerState) {
+export function create(payload: MentorType) {
   return action(ActionTypes.MENTOR_CREATE, payload);
 }
 
-export function createSuccess(payload: ContainerState) {
+export function createSuccess(payload: MentorType) {
   return action(ActionTypes.MENTOR_CREATE_SUCCESS, payload);
 }
 
-export function createFailed() {
-  return action(ActionTypes.MENTOR_CREATE_FAILED);
+export function createFailed(error: Error) {
+  return action(ActionTypes.MENTOR_CREATE_FAILED, error);
 }
 
-export function update(payload: ContainerState) {
+export function update(payload: MentorType) {
   return action(ActionTypes.MENTOR_UPDATE, payload);
 }
 
-export function updateSuccess(payload: ContainerState) {
+export function updateSuccess(payload: MentorType) {
   return action(ActionTypes.MENTOR_UPDATE_SUCCESS, payload);
 }
 
-export function updateFailed() {
-  return action(ActionTypes.MENTOR_UPDATE_FAILED);
+export function updateFailed(error: Error) {
+  return action(ActionTypes.MENTOR_UPDATE_FAILED, error);
 }
 
 export function remove(id: string) {
@@ -46,18 +46,18 @@ export function removeSuccess() {
   return action(ActionTypes.MENTOR_REMOVE_SUCCESS);
 }
 
-export function removeFailed() {
-  return action(ActionTypes.MENTOR_REMOVE_FAILED);
+export function removeFailed(error: Error) {
+  return action(ActionTypes.MENTOR_REMOVE_FAILED, error);
 }
 
 export function getById(id: string) {
   return action(ActionTypes.MENTOR_GET_BY_ID, id);
 }
 
-export function getByIdSuccess(payload: ContainerState) {
+export function getByIdSuccess(payload: MentorType) {
   return action(ActionTypes.MENTOR_GET_BY_ID_SUCCESS, payload);
 }
 
-export function getByIdFailed() {
-  return action(ActionTypes.MENTOR_GET_BY_ID_FAILED);
+export function getByIdFailed(error: Error) {
+  return action(ActionTypes.MENTOR_GET_BY_ID_FAILED, error);
 }
