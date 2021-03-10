@@ -31,7 +31,7 @@ export class LikesModelService {
     if (!result.length) {
       return false;
     }
-    return true;
+    return result;
   }
 
   async remove(id: string) {

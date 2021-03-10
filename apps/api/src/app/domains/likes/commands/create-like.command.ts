@@ -8,6 +8,7 @@ import { UserLean } from '../../../models/users/user.interface';
 import { CreateLikePayload, likeType } from '../../../models/likes/likes.interface';
 import { AdvertsModelService } from '../../../models/adverts/adverts.service';
 import { LikesModelService } from '../../../models/likes/likes.service';
+import { forEach } from 'lodash';
 
 export class CreateLike {
   constructor(public data: CreateLikePayloadDto, public user: UserLean) {}
@@ -38,14 +39,16 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    if(await this._likesService.doesExist(data.advert, user._id, data.type)) {
+    const likesArray = await this._likesService.doesExist(data.advert, user._id, data.type);
+    if(likesArray) {
+      likesArray.forEach((likeObject) => {
+        this._likesService.remove(likeObject._id);
+      });
       throw new HttpException(
-        'This entry already exists',
+        'This entry already exists, deleted existing record',
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-
-    /*TODO: check if such like or share already exist */ 
     
     const likeData: CreateLikePayload = {
       ...data,
