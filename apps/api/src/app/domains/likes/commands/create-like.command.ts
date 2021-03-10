@@ -44,10 +44,7 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
       likesArray.forEach((likeObject) => {
         this._likesService.remove(likeObject._id);
       });
-      throw new HttpException(
-        'This entry already exists, deleted existing record',
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );    
+      return false;
     }
     
     const likeData: CreateLikePayload = {
