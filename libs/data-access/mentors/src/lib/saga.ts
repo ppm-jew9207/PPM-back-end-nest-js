@@ -22,11 +22,10 @@ export function* createMentor(actions) {
     const data = actions.payload;
     const result: { data: MentorType } = yield call(post, path, data);
     if (!Array.isArray(result)) {
-      yield put(createFailed(null));
-      return;
+      throw new Error('Failed to create mentor');
     }
     yield put(
-      createSuccess(result.data)
+      createSuccess()
     );
   } catch (error) {
     yield put(createFailed(error));
@@ -39,11 +38,10 @@ export function* updateMentor(actions) {
     const path = `/api/${PrivateRoutesPath.MENTOR}/update/${data.id}`;
     const result: { data: MentorType } = yield call(post, path, data);
     if (!Array.isArray(result)) {
-      yield put(updateFailed(null));
-      return;
+      throw new Error('Failed to update mentor');
     }
     yield put(
-      updateSuccess(result.data)
+      updateSuccess()
     );
   } catch (error) {
     yield put(updateFailed(error));
@@ -56,8 +54,7 @@ export function* removeMentor(actions) {
     const path = `/api/${PrivateRoutesPath.MENTOR}/delete/${id}`;
     const result: { data: MentorType } = yield call(post, path);
     if (!Array.isArray(result)) {
-      put(removeFailed(null));
-      return;
+      throw new Error('Failed to delete mentor');
     }
     yield put(removeSuccess());
   } catch (error) {
@@ -71,11 +68,10 @@ export function* getMentorById(actions) {
       const path = `/api/${PrivateRoutesPath.MENTOR}/${id}`;
       const result:{data : MentorType}  = yield call(get, path);
       if (!Array.isArray(result)) {
-        put(getByIdFailed(null));
-        return;
+        throw new Error('Failed load mentors');
       }
       yield put(
-      getByIdSuccess(result.data)
+      getByIdSuccess()
     );
   } catch (error) {
     yield put(getByIdFailed(error));
@@ -87,11 +83,11 @@ export function* getAll() {
     const path = `/api/${PrivateRoutesPath.MENTOR}/`;
     const result:{data : MentorType}  = yield call(get, path);
     if (!Array.isArray(result)) {
-      put(getAllFailed(null));
+      throw new Error('Failed load mentors');
       return;
     }  
     yield put(
-      getAllSuccess(result.data)
+      getAllSuccess({ list: result })
     );
   } catch (error) {
     yield put(getAllFailed(error));
