@@ -38,7 +38,7 @@ export function* createLesson(actions) {
     } else {
       const path = `/api/${PrivateRoutesPath.LESSONS}`;
       const data = actions.payload;
-      yield call(post, path, data);
+      yield call(post, path, { ...data, imageUrl: '' });
       yield put(
         createSuccess({
           loading: false,
@@ -53,8 +53,8 @@ export function* createLesson(actions) {
 export function* updateLesson(actions) {
   const data = actions.payload;
   try {
-    if (data.lessonImage.length) {
-      const file = data.lessonImage[0];
+    if (data.imageUrl.length) {
+      const file = data.imageUrl[0];
       const formData = new FormData();
       formData.append('file', file);
       const path = `/api/${PrivateRoutesPath.IMAGES}`;
@@ -71,7 +71,7 @@ export function* updateLesson(actions) {
       }
     } else {
       const path = `/api/${PrivateRoutesPath.LESSONS}/update/${data.id}`;
-      yield call(post, path, data);
+      yield call(post, path, { ...data, imageUrl: '' });
       yield put(
         updateSuccess({
           loading: false,
