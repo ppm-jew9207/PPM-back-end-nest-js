@@ -8,6 +8,7 @@ import { UserLean } from '../../../models/users/user.interface';
 import { CreateLikePayload, likeType } from '../../../models/likes/likes.interface';
 import { AdvertsModelService } from '../../../models/adverts/adverts.service';
 import { LikesModelService } from '../../../models/likes/likes.service';
+import { forEach } from 'lodash';
 
 export class CreateLike {
   constructor(public data: CreateLikePayloadDto, public user: UserLean) {}
@@ -18,7 +19,7 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
   @Inject() private readonly _advertsService: AdvertsModelService;
   @Inject() private readonly _likesService: LikesModelService;
 
-  async execute({ data, user }: CreateLike): Promise<Boolean> {
+  async execute({ data, user }: CreateLike): Promise<boolean> {
     if(!Object.values(likeType).includes(data.type)) {
       throw new HttpException(
         'Type of this entry must be either like or share',
@@ -38,11 +39,12 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    if(await this._likesService.doesExist(data.advert, user._id, data.type)) {
-      throw new HttpException(
-        'This entry already exists',
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );    
+    const likesArray = await this._likesService.doesExist(data.advert, user._id, data.type);
+    if(likesArray) {
+      likesArray.forEach((likeObject) => {
+        this._likesService.remove(likeObject._id);
+      });
+      return false;
     }
     
     const likeData: CreateLikePayload = {
