@@ -35,27 +35,27 @@ export class LikesModelService {
   }
 
   
-  async getAllByAdvert(advert: string): Promise<LikesViewModel[]> {
+  async getAllByAdvert(advertId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advert
+        advert: advertId
       });
     return result;
   }
 
-  async getAllLikesByAdvert(advert: string): Promise<LikesViewModel[]> {
+  async getAllLikesByAdvert(advertId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advert,
+        advert: advertId,
         type: "like" as unknown as likeType
       });
     return result;
   }
 
-  async getAllSharesByAdvert(advert: string): Promise<LikesViewModel[]> {
+  async getAllSharesByAdvert(advertId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advert,
+        advert: advertId,
         type: "share" as unknown as likeType
       });
     return result;
