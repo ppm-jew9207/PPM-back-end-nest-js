@@ -12,7 +12,8 @@ import {
   getByIdFailed,
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* createLesson(actions) {
   const data = actions.payload;
@@ -38,23 +39,35 @@ export function* createLesson(actions) {
     } else {
       const path = `/api/${PrivateRoutesPath.LESSONS}`;
       const data = actions.payload;
-      yield call(post, path, data);
+      yield call(post, path, { ...data, imageUrl: '' });
       yield put(
         createSuccess({
           loading: false,
         })
       );
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Lesson was created successfully.'
+        })
+      );
     }
   } catch (error) {
     yield put(createFailed());
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message
+      })
+    );
   }
 }
 
 export function* updateLesson(actions) {
   const data = actions.payload;
   try {
-    if (data.lessonImage.length) {
-      const file = data.lessonImage[0];
+    if (data.imageUrl.length) {
+      const file = data.imageUrl[0];
       const formData = new FormData();
       formData.append('file', file);
       const path = `/api/${PrivateRoutesPath.IMAGES}`;
@@ -71,14 +84,27 @@ export function* updateLesson(actions) {
       }
     } else {
       const path = `/api/${PrivateRoutesPath.LESSONS}/update/${data.id}`;
-      yield call(post, path, data);
+      yield call(post, path, { ...data, imageUrl: '' });
       yield put(
         updateSuccess({
           loading: false,
         })
       );
     }
-  } catch (error) {}
+    yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Lesson was updated successfully.'
+        })
+      );
+  } catch (error) {
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message
+      })
+    );
+  }
 }
 
 export function* removeLesson(actions) {
