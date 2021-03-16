@@ -12,7 +12,8 @@ import {
   getByIdFailed,
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* createLesson(actions) {
   const data = actions.payload;
@@ -44,9 +45,21 @@ export function* createLesson(actions) {
           loading: false,
         })
       );
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Lesson was created successfully.'
+        })
+      );
     }
   } catch (error) {
     yield put(createFailed());
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message
+      })
+    );
   }
 }
 
@@ -78,7 +91,20 @@ export function* updateLesson(actions) {
         })
       );
     }
-  } catch (error) {}
+    yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Lesson was updated successfully.'
+        })
+      );
+  } catch (error) {
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message
+      })
+    );
+  }
 }
 
 export function* removeLesson(actions) {
