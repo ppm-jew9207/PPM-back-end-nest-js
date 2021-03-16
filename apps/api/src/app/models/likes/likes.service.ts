@@ -37,4 +37,33 @@ export class LikesModelService {
   async remove(id: string) {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
+
+  
+  async getAllByAdvert(advertId: string): Promise<LikesViewModel[]> {
+    const result = await this._model.find(
+      {
+        advert: advertId
+      });
+    return result;
+  }
+
+  async getAllLikesByAdvert(advertId: string): Promise<LikesViewModel[]> {
+    const result = await this._model.find(
+      {
+        advert: advertId,
+        type: "like" as unknown as likeType
+      });
+    return result;
+  }
+
+  async getAllSharesByAdvert(advertId: string): Promise<LikesViewModel[]> {
+    const result = await this._model.find(
+      {
+        advert: advertId,
+        type: "share" as unknown as likeType
+      });
+    return result;
+  }
+
+
 }
