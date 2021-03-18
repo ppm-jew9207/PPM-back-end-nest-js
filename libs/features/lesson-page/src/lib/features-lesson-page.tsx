@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SharedAdvertDetails } from '@ppm/shared/advert-details';
 import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 import { useLesson } from '@ppm/hooks/use-lesson';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
-import { Button, Drawer } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 import {
   Category,
   Lesson,
@@ -45,6 +45,7 @@ export const FeaturesLessonPage = (props: {
     createNewLesson,
     editLesson,
     allLessonsList,
+    loading,
   } = useLesson(props.history, props.match.params.id);
 
   const defaultLesson: Lesson = {
@@ -58,6 +59,12 @@ export const FeaturesLessonPage = (props: {
     categories: [],
     _id: '',
   };
+
+  useEffect(() => {
+    if (!loading && isMenuOpen) {
+      setMenuOpen(false);
+    }
+  }, [lessons]);
 
   const closeDrawer = () => {
     setMenuOpen(false);
