@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SharedAdvertDetails } from '@ppm/shared/advert-details';
 import { SharedAdvertInfo } from '@ppm/shared/advert-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
@@ -62,6 +62,12 @@ export const FeaturesAdvertPage = (props: {
   const { id } = useParams();
 
   const { advert, loading, onGetStartedClick } = useAdverts(id);
+
+  useEffect(() => {
+    if (!loading && isMenuOpen) {
+      setMenuOpen(false);
+    }
+  }, [lessons]);
 
   const closeDrawer = () => {
     setMenuOpen(false);

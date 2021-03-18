@@ -95,11 +95,6 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   const { handleSubmit, control, register, reset, errors } = useForm();
 
-  const onCancel = () => {
-    reset();
-    props.onCancel();
-  };
-
   const validateCategories = (value) => {
     return !!value.length;
   };
@@ -195,7 +190,8 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           name="datetime"
           control={control}
           defaultValue={
-            (lesson && lesson.datetime) || moment().format('YYYY-MM-DDTHH:MM')
+            (lesson && lesson.datetime.substr(0, 16)) ||
+            moment().format('YYYY-MM-DDTHH:MM')
           }
         />
         <div className="image-container">
@@ -356,7 +352,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           color="secondary"
           type="button"
           className="cancel-form"
-          onClick={onCancel}
+          onClick={props.onCancel}
         >
           Cancel
         </Button>

@@ -45,6 +45,8 @@ export function* createLesson(actions) {
           loading: false,
         })
       );
+      yield put( {type: ActionTypes.GET_ALL }       
+      );
       yield put(
         snackbarActions.setMessage({
           variant: MessagesStatus.SUCCESS,
@@ -91,6 +93,8 @@ export function* updateLesson(actions) {
         })
       );
     }
+    yield put( {type: ActionTypes.GET_ALL }       
+      );
     yield put(
         snackbarActions.setMessage({
           variant: MessagesStatus.SUCCESS,

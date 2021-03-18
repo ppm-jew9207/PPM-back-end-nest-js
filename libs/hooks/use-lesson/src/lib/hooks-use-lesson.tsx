@@ -142,5 +142,6 @@ export function useLesson(history: History, id: string) {
     allLearnItemsList,
     allMentorsList,
     allLessonsList,
+    loading,
   };
 }
