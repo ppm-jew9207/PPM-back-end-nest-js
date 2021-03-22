@@ -38,7 +38,7 @@ export interface LessonDefaultParams {
   descriptionInputLabel: string;
   resourcesInputLabel: string;
   mentorInputLabel: string;
-  connectionURLInputLabel: string;
+  connectionUrlInputLabel: string;
   datetimeInputLabel: string;
   submitButtonText: string;
   cancelButtonText: string;
@@ -56,7 +56,7 @@ export interface Lesson {
   imageUrl: string;
   resources: string;
   mentorName: string;
-  connectionURL: string;
+  connectionUrl: string;
   categories: string[];
   _id: string;
 }
@@ -67,6 +67,7 @@ export interface SharedLessonComponentProps {
   mentors?: Mentor[];
   lesson?: Lesson;
   categories?: Category[];
+  data?: LessonDefaultParams;
 }
 
 export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
@@ -135,7 +136,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Title"
+              label="Title *"
               type="text"
               className="input-field"
             />
@@ -157,7 +158,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Description"
+              label="Description *"
               type="text"
               className="description"
               multiline
@@ -234,7 +235,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Resources"
+              label="Resources, comma separated"
               type="text"
               className="resources"
               multiline
@@ -245,7 +246,9 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.resources) || ''}
         />
-        <InputLabel style={{ padding: '8.5px 14px' }}>Select mentor</InputLabel>
+        <InputLabel style={{ padding: '8.5px 14px' }}>
+          Select mentor *
+        </InputLabel>
         <Controller
           control={control}
           name="mentor"
@@ -271,17 +274,17 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Connection URL"
+              label="Connection URL *"
               type="text"
               className="input-field"
             />
           }
-          name="connectionURL"
+          name="connectionUrl"
           control={control}
-          defaultValue={(lesson && lesson.connectionURL) || ''}
+          defaultValue={(lesson && lesson.connectionUrl) || ''}
           rules={{ required: true }}
         />
-        {!!errors.connectionURL && (
+        {!!errors.connectionUrl && (
           <div className="error">
             <ArrowRightIcon className="error-icon" />
             Connection URL is required
@@ -328,6 +331,12 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
                 }
                 fullWidth
               />
+              {!!errors.categories && (
+                <div className="error">
+                  <ArrowRightIcon className="error-icon" />
+                  At least one category is required
+                </div>
+              )}
             </FormControl>
           }
         ></Controller>
@@ -344,7 +353,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           type="submit"
           className="submit-form"
         >
-          Create/Edit
+          {lesson && lesson._id ? 'Edit' : 'Create'}
         </Button>
         <Button
           fullWidth
