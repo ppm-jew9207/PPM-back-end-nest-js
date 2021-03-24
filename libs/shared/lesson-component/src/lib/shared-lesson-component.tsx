@@ -196,7 +196,14 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             (lesson && lesson.datetime.substr(0, 16)) ||
             moment().format('YYYY-MM-DDTHH:MM')
           }
+          error={!!errors.datetime}
         />
+        {!!errors.datetime && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            Date and time is required
+          </div>
+        )}
         <div className="image-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
@@ -246,7 +253,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           }
           name="resources"
           control={control}
-          defaultValue={(lesson && lesson.resources) || ''}
+          defaultValue={(lesson && lesson?.resources) || ''}
         />
         <InputLabel style={{ padding: '8.5px 14px' }}>
           Select mentor *
