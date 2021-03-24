@@ -55,7 +55,7 @@ export const FeaturesLessonPage = (props: {
     imageUrl: '',
     resources: '',
     mentorName: '',
-    connectionURL: '',
+    connectionUrl: '',
     categories: [],
     _id: '',
   };
