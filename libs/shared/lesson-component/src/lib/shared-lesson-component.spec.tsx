@@ -11,7 +11,7 @@ const data = {
     submitButtonText: 'Create/Edit',
     cancelButtonText: 'Cancel',
     resourcesInputLabel: 'Resources',
-    connectionURLInputLabel: 'Connection URL',
+    connectionUrlInputLabel: 'Connection URL',
     descriptionInputLabel: 'Description',
     datetimeInputLabel: 'Date and Time',
     titleInputLabel: 'New Lesson Title',

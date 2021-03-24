@@ -145,6 +145,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.title) || ''}
           rules={{ required: true }}
+          error={!!errors.title}
         />
         {errors.title && (
           <div className="error">
@@ -169,6 +170,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.description) || ''}
           rules={{ required: true }}
+          error={!!errors.description}
         />
         {errors.description && (
           <div className="error">
@@ -235,7 +237,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Resources, comma separated"
+              label="Resources"
               type="text"
               className="resources"
               multiline
@@ -257,6 +259,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             (props?.mentors?.length && props?.mentors[0]?._id) ||
             ''
           }
+          error={!!errors.mentor}
           as={
             <Select variant="outlined" fullWidth ref={register}>
               {!!props?.mentors?.length &&
@@ -283,6 +286,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.connectionUrl) || ''}
           rules={{ required: true }}
+          error={!!errors.connectionUrl}
         />
         {!!errors.connectionUrl && (
           <div className="error">
@@ -353,7 +357,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           type="submit"
           className="submit-form"
         >
-          {lesson && lesson._id ? 'Edit' : 'Create'}
+          {lesson && lesson._id ? 'Update' : 'Create'}
         </Button>
         <Button
           fullWidth
