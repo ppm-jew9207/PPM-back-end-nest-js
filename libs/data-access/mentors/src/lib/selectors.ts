@@ -16,6 +16,10 @@ const selectMentors = () =>
     //TODO remove it when mentors will be realized in BE
   //  return subState.list || []; 
     return [
+      {
+        name: '',
+        value: '',
+      _id:''},
     {
       name: 'MentorName1',
       value: 'MentorName1',
