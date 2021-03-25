@@ -120,6 +120,8 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   return (
     <Box
+      style={{ overflowX: 'hidden' }}
+      width={450}
       maxWidth={500}
       display="flex"
       flexDirection="column"
