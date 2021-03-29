@@ -131,11 +131,12 @@ export const FeaturesProfile = (props) => {
             createAt={advert.createdAt}
             description={advert.description}
             like={
-              advert.likesList.filter((like: any) => like.type == 'like').length
+              advert.likesList.filter((like: any) => like.type == 'like')
+                .length || 0
             }
             shared={
               advert.likesList.filter((like: any) => like.type == 'share')
-                .length
+                .length || 0
             }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
