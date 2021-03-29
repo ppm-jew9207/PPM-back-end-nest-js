@@ -40,7 +40,6 @@ export const FeaturesAdverts = () => {
   if (loading) return <CircularProgress />;
 
   if (!adverts) return <div className="no-items">No adverts added...</div>;
-  console.log(adverts);
   return (
     <div className="advert-cards">
       {adverts.map((advert) => (
@@ -57,12 +56,16 @@ export const FeaturesAdverts = () => {
             createAt={advert.createdAt}
             description={advert.description}
             like={
-              advert.likesList.filter((like: any) => like.type == 'like')
-                .length || 0
+              advert
+                ? advert.likesList.filter((like: any) => like.type == 'like')
+                    .length
+                : 0
             }
             shared={
-              advert.likesList.filter((like: any) => like.type == 'share')
-                .length || 0
+              advert
+                ? advert.likesList.filter((like: any) => like.type == 'share')
+                    .length
+                : 0
             }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
