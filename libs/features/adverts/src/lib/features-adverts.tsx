@@ -56,13 +56,13 @@ export const FeaturesAdverts = () => {
             createAt={advert.createdAt}
             description={advert.description}
             like={
-              advert
+              advert.likesList
                 ? advert.likesList.filter((like: any) => like.type == 'like')
                     .length
                 : 0
             }
             shared={
-              advert
+              advert.likesList
                 ? advert.likesList.filter((like: any) => like.type == 'share')
                     .length
                 : 0
