@@ -31,14 +31,12 @@ export function* getLikesById(actions) {
   try {
     const advertId = actions.payload;
     const path = `/api/${PrivateRoutesPath.LIKES}/${PrivateRoutesPath.LIKES}/${advertId}`;
-    console.log(`/api/${PrivateRoutesPath.LIKES}/${PrivateRoutesPath.LIKES}/${advertId}`);
     const result = yield call(get, path);
-    console.log(result);
     yield result && put(getLikesByAdvertIdFailed());
-
+    console.log(result.data);
     yield put(
       getLikesByAdvertIdSuccess({
-        likes: result
+        likes: result.data
       })
     );
   } catch (error) {
@@ -51,6 +49,7 @@ export function* getSharesById(actions) {
     const advertId = actions.payload.advertId;
     const path = `/api/${PrivateRoutesPath.LIKES}/${advertId}`;
     const result = yield call(get, path);
+    // console.log(result);
     yield result && put(getSharesByAdvertIdFailed());
 
     yield put(
