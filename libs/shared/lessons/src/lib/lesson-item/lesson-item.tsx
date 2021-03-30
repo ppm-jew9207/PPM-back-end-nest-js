@@ -80,8 +80,8 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
         >
           {props.actions.map((item, index) => (
             <Button
+              key={index};
               onClick={() => {
-                key={index};
                 item.onAction(props.lesson);
               }}
             >
