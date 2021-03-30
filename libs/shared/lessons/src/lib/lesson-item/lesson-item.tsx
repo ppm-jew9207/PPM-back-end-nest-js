@@ -78,9 +78,10 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
           aria-label="vertical contained primary button group"
           variant="contained"
         >
-          {props.actions.map((item) => (
+          {props.actions.map((item, index) => (
             <Button
               onClick={() => {
+                key={index};
                 item.onAction(props.lesson);
               }}
             >
