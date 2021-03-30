@@ -26,6 +26,7 @@ import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
 
 import { Close as CloseIcon } from '@material-ui/icons';
+import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -38,6 +39,7 @@ const stateSelector = createStructuredSelector({
 });
 
 export const FeaturesProfile = (props) => {
+  const [advertsState, setAdvertsState] = useState([]);
   const dispatch = useDispatch();
   const {
     profile,
@@ -61,26 +63,30 @@ export const FeaturesProfile = (props) => {
 
   const likeClick = (advertId: string, type: string) => {
     dispatch(likesActions.create({ advert: advertId, type: type }));
-    dispatch(advertsActions.getAllByAuthor());
+    const clickedAdvert = advertsState.find((item) => item._id === advertId);
+    const foundItem = clickedAdvert.likesList.findIndex(
+      (item) => item.type === type && item.user === profile._id
+    );
+    if (foundItem !== -1) {
+      clickedAdvert.likesList.splice(foundItem, 1);
+    } else {
+      clickedAdvert.likesList.push({
+        advert: advertId,
+        type: type,
+        user: profile._id,
+      });
+    }
+    setAdvertsState([...adverts]);
   };
 
   useEffect(() => {
-    dispatch(advertsActions.getAllByAuthor());
-  }, [dispatch]);
+    setAdvertsState(adverts);
+  }, [adverts]);
 
   useEffect(() => {
+    dispatch(advertsActions.getAllByAuthor());
     dispatch(userProfileActions.getUserProfile());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(advertsActions.getAllByAuthor());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(categoriesActions.getAll());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(countriesApiActions.getCountries());
   }, [dispatch]);
 
@@ -117,7 +123,7 @@ export const FeaturesProfile = (props) => {
       </div>
       <div className="content">
         <SharedAdvertsAddButtons disabled={false} />
-        {adverts.map((advert, i) => (
+        {advertsState.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}
             key={advert._id}
@@ -132,21 +138,23 @@ export const FeaturesProfile = (props) => {
             description={advert.description}
             like={
               advert.likesList
-                ? advert.likesList.filter((like: any) => like.type == 'like')
-                    .length
+                ? advert.likesList.filter(
+                    (like: any) => like.type === LikeEnum.Like
+                  ).length
                 : 0
             }
             shared={
               advert.likesList
-                ? advert.likesList.filter((like: any) => like.type == 'share')
-                    .length
+                ? advert.likesList.filter(
+                    (like: any) => like.type === LikeEnum.Share
+                  ).length
                 : 0
             }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
             editable={profile._id == advert.creator._id}
-            onLikeClick={() => likeClick(advert._id, 'like')}
-            onSharedClick={() => likeClick(advert._id, 'share')}
+            onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
+            onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
           />
         ))}
       </div>

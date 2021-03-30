@@ -11,6 +11,7 @@ import {
 } from '@ppm/data-access/user-profile';
 // import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-adverts.scss';
+import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 
 const stateSelector = createStructuredSelector({
   adverts: advertsSelectors.selectAdverts(),
@@ -21,6 +22,7 @@ const stateSelector = createStructuredSelector({
 export const FeaturesAdverts = () => {
   const dispatch = useDispatch();
   const { adverts, loading } = useSelector(stateSelector);
+  const [advertsState, setAdvertsState] = useState([]);
   const { profile } = useSelector(stateSelector);
 
   const saveClick = (payload: any) => {
@@ -30,7 +32,25 @@ export const FeaturesAdverts = () => {
 
   const likeClick = (advertId: string, type: string) => {
     dispatch(likesActions.create({ advert: advertId, type: type }));
+    const clickedAdvert = advertsState.find((item) => item._id === advertId);
+    const foundItem = clickedAdvert.likesList.findIndex(
+      (item) => item.type === type && item.user === profile._id
+    );
+    if (foundItem !== -1) {
+      clickedAdvert.likesList.splice(foundItem, 1);
+    } else {
+      clickedAdvert.likesList.push({
+        advert: advertId,
+        type: type,
+        user: profile._id,
+      });
+    }
+    setAdvertsState([...adverts]);
   };
+
+  useEffect(() => {
+    setAdvertsState(adverts);
+  }, [adverts]);
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
@@ -39,42 +59,45 @@ export const FeaturesAdverts = () => {
 
   if (loading) return <CircularProgress />;
 
-  if (!adverts) return <div className="no-items">No adverts added...</div>;
+  if (!advertsState) return <div className="no-items">No adverts added...</div>;
   return (
     <div className="advert-cards">
-      {adverts.map((advert) => (
-        <div key={advert._id}>
-          <SharedAdvertCard
-            id={advert._id}
-            title={advert.title}
-            author={{
-              _id: advert.creator._id,
-              firstName: advert.creator.name,
-              lastName: '',
-              img: advert.creator.imageUrl,
-            }}
-            createAt={advert.createdAt}
-            description={advert.description}
-            like={
-              advert.likesList
-                ? advert.likesList.filter((like: any) => like.type == 'like')
-                    .length
-                : 0
-            }
-            shared={
-              advert.likesList
-                ? advert.likesList.filter((like: any) => like.type == 'share')
-                    .length
-                : 0
-            }
-            imgUrl={advert.imageUrl}
-            onSaveClick={saveClick}
-            editable={profile?._id === advert.creator._id}
-            onLikeClick={() => likeClick(advert._id, 'like')}
-            onSharedClick={() => likeClick(advert._id, 'share')}
-          />
-        </div>
-      ))}
+      {advertsState.length &&
+        advertsState.map((advert, index) => (
+          <div key={advert._id}>
+            <SharedAdvertCard
+              id={advert._id}
+              title={advert.title}
+              author={{
+                _id: advert.creator._id,
+                firstName: advert.creator.name,
+                lastName: '',
+                img: advert.creator.imageUrl,
+              }}
+              createAt={advert.createdAt}
+              description={advert.description}
+              like={
+                advert.likesList
+                  ? advert.likesList.filter(
+                      (like: any) => like.type === LikeEnum.Like
+                    ).length
+                  : 0
+              }
+              shared={
+                advert.likesList
+                  ? advert.likesList.filter(
+                      (like: any) => like.type === LikeEnum.Share
+                    ).length
+                  : 0
+              }
+              imgUrl={advert.imageUrl}
+              onSaveClick={saveClick}
+              editable={profile?._id === advert.creator._id}
+              onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
+              onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
+            />
+          </div>
+        ))}
     </div>
   );
 };
