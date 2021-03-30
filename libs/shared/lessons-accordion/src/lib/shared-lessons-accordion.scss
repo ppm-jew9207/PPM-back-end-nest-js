@@ -1,29 +1,28 @@
 div.lessons-accordion {
-  display: block;
-  border-bottom: 0px;
-  border: 0px;
-  box-shadow: none;
-  padding: 0px;
-
-  .lessons-description {
-    padding: 15px 0;
-  }
-
-  .lessons-title {
+    display: block;
+    border-bottom: 0px;
+    border: 0px;
+    box-shadow: none;
     padding: 0px;
-    border-top: 1px solid grey;
-
-    .text {
-      font-size: 18px;
+    .lessons-description {
+        padding: 15px 0;
     }
-  }
-
-  .lesson-link {
-    text-decoration: none;
-  }
+    .lessons-title {
+        padding: 0px;
+        border-top: 1px solid grey;
+        .text {
+            font-size: 18px;
+        }
+    }
+    .lesson-link {
+        text-decoration: none;
+    }
 }
 
-
 .lesson-image {
-  height: 100px;
+    height: 100px;
+}
+
+.editIcon {
+    cursor: pointer;
 }

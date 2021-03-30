@@ -75,6 +75,14 @@ export const FeaturesLessonPage = (props: {
     setMenuOpen(true);
   };
 
+  const checkIsEditable = () => {
+    return !!allLessonsList.filter(
+      (lesson) =>
+        lesson._id === props.match.params.id &&
+        lesson.creator._id === '60008f1a9d822649dbab00ab'
+    ).length;
+  };
+
   return (
     <div>
       <SharedAdvertInfo
@@ -97,6 +105,7 @@ export const FeaturesLessonPage = (props: {
           allLessonsList.find(({ _id }) => _id === props.match.params.id)?.title
         }
         onClick={openDrawer}
+        isEditable={checkIsEditable()}
       />
       <Drawer
         open={isMenuOpen}
