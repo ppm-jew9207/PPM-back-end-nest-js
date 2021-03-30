@@ -80,14 +80,16 @@ export const LessonItem = (props: { lesson: Lesson; actions: Action[] }) => {
         >
           {props.actions.map((item, index) => (
             <Button
-              key={index};
               onClick={() => {
                 item.onAction(props.lesson);
               }}
+              key={index}
             >
               {item.title}
             </Button>
-          ))}
+          )
+            
+          )}
         </ButtonGroup>
       </Popover>
     </ListItem>
