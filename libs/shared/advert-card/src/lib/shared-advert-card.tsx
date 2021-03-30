@@ -179,7 +179,7 @@ export const SharedAdvertCard = (props: SharedAdvertCardProps) => {
             color="primary"
             className={classes.button}
             startIcon={<ShareIcon />}
-            onClick={props.onLikeClick}
+            onClick={props.onSharedClick}
           >
             <p>Share</p>
             <div>{props.shared}</div>
