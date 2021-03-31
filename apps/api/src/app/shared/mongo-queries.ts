@@ -60,3 +60,16 @@ export const LESSONS_JOIN_QUERY = {
     as: "lessonsList"
   }
 };
+
+export const LIKES_JOIN_QUERY = {
+  $lookup: {
+    from: "likes",
+    localField: "advert_id",
+    foreignField: "advert",
+    as: "likesList"
+  }
+};
+
+export const ADVERTS_ID_QUERY = {
+  "$addFields": { "advert_id": { "$toString": "$_id" }},
+};

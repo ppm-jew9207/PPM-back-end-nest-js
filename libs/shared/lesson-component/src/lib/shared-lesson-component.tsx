@@ -120,6 +120,8 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   return (
     <Box
+      style={{ overflowX: 'hidden' }}
+      width={450}
       maxWidth={500}
       display="flex"
       flexDirection="column"
@@ -145,6 +147,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.title) || ''}
           rules={{ required: true }}
+          error={!!errors.title}
         />
         {errors.title && (
           <div className="error">
@@ -169,6 +172,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.description) || ''}
           rules={{ required: true }}
+          error={!!errors.description}
         />
         {errors.description && (
           <div className="error">
@@ -194,7 +198,14 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             (lesson && lesson.datetime.substr(0, 16)) ||
             moment().format('YYYY-MM-DDTHH:MM')
           }
+          error={!!errors.datetime}
         />
+        {!!errors.datetime && (
+          <div className="error">
+            <ArrowRightIcon className="error-icon" />
+            Date and time is required
+          </div>
+        )}
         <div className="image-container">
           <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
             <TextField
@@ -235,7 +246,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               variant="outlined"
               margin="normal"
               fullWidth
-              label="Resources, comma separated"
+              label="Resources"
               type="text"
               className="resources"
               multiline
@@ -244,7 +255,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           }
           name="resources"
           control={control}
-          defaultValue={(lesson && lesson.resources) || ''}
+          defaultValue={(lesson && lesson?.resources) || ''}
         />
         <InputLabel style={{ padding: '8.5px 14px' }}>
           Select mentor *
@@ -257,6 +268,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
             (props?.mentors?.length && props?.mentors[0]?._id) ||
             ''
           }
+          error={!!errors.mentor}
           as={
             <Select variant="outlined" fullWidth ref={register}>
               {!!props?.mentors?.length &&
@@ -283,6 +295,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           defaultValue={(lesson && lesson.connectionUrl) || ''}
           rules={{ required: true }}
+          error={!!errors.connectionUrl}
         />
         {!!errors.connectionUrl && (
           <div className="error">
@@ -353,7 +366,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           type="submit"
           className="submit-form"
         >
-          {lesson && lesson._id ? 'Edit' : 'Create'}
+          {lesson && lesson._id ? 'Update' : 'Create'}
         </Button>
         <Button
           fullWidth

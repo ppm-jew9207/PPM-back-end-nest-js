@@ -13,13 +13,21 @@ import {
 } from '@ppm/shared/lesson-component';
 import './features-lesson-page.scss';
 import { useAdverts } from '@ppm/hooks/use-adverts';
-
+import {
+  userProfileActions,
+  userProfileSelectors,
+} from '@ppm/data-access/user-profile';
+import { useSelector, useDispatch } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 interface RouteInfo extends RouteProps {
   params: {
     id: string;
   };
   path?: string | string[];
 }
+const stateSelector = createStructuredSelector({
+  profile: userProfileSelectors.selectUserProfile(),
+});
 
 export const FeaturesLessonPage = (props: {
   history: History;
@@ -47,6 +55,8 @@ export const FeaturesLessonPage = (props: {
     allLessonsList,
     loading,
   } = useLesson(props.history, props.match.params.id);
+  const dispatch = useDispatch();
+  const { profile } = useSelector(stateSelector);
 
   const defaultLesson: Lesson = {
     title: '',
@@ -66,6 +76,10 @@ export const FeaturesLessonPage = (props: {
     }
   }, [lessons]);
 
+  useEffect(() => {
+    dispatch(userProfileActions.getUserProfile());
+  }, []);
+
   const closeDrawer = () => {
     setMenuOpen(false);
   };
@@ -73,6 +87,14 @@ export const FeaturesLessonPage = (props: {
   const openDrawer = () => {
     setNewLesson(false);
     setMenuOpen(true);
+  };
+
+  const checkIsEditable = () => {
+    return !!allLessonsList.filter(
+      (lesson) =>
+        lesson._id === props.match.params.id &&
+        lesson.creator._id === profile?._id
+    ).length;
   };
 
   return (
@@ -97,6 +119,7 @@ export const FeaturesLessonPage = (props: {
           allLessonsList.find(({ _id }) => _id === props.match.params.id)?.title
         }
         onClick={openDrawer}
+        isEditable={checkIsEditable()}
       />
       <Drawer
         open={isMenuOpen}
