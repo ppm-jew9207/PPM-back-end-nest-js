@@ -58,7 +58,7 @@ export const FeaturesProfile = (props) => {
     dispatch(categoriesActions.getAll());
     dispatch(countriesApiActions.getCountries());
     dispatch(lessonsActions.getAll());
-  }, []);
+  }, [dispatch]);
 
   const defaultData = {
     mentorImage: '',
