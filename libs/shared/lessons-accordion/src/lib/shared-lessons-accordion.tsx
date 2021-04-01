@@ -10,9 +10,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
 import './shared-lessons-accordion.scss';
-import { Button } from '@material-ui/core';
+import { Edit as EditIcon } from '@material-ui/icons';
 
 interface Lesson {
   _id: string;
@@ -23,6 +22,7 @@ interface Lesson {
 
 export interface SharedLessonsAccordionProps {
   onClick?: () => void;
+  isEditable?: boolean;
   lessonsDescription?: string;
   lessons: Lesson[];
   accordionTitle: string;
@@ -34,10 +34,16 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
     props.onClick();
   };
 
-  const showButton = props.showAddButton;
-
   return (
     <Container fixed>
+      <div>
+        <Typography className="lessons-description">
+          {props.lessonsDescription}
+          {!props.showAddButton && props.isEditable && (
+            <EditIcon className="editIcon" onClick={onClick} />
+          )}
+        </Typography>
+      </div>
       <Accordion className="lessons-accordion" defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -49,33 +55,24 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
         </AccordionSummary>
         <AccordionDetails className="lessons-accordion">
           <div>
-            <Typography className="lessons-description">
-              {props.lessonsDescription}
-            </Typography>
-          </div>
-          <div>
-            {(showButton && (
-              <Button
-                variant="contained"
-                color="primary"
-                type="button"
-                onClick={onClick}
-              >
-                Add Lesson
-              </Button>
-            )) || (
-              <Button
-                variant="contained"
-                color="primary"
-                type="button"
-                onClick={onClick}
-              >
-                Edit Lesson
-              </Button>
-            )}
-          </div>
-          <div>
             <Grid container spacing={2}>
+              {props.showAddButton && (
+                <Grid key={1} item xs={3} onClick={onClick}>
+                  <Card>
+                    <CardActionArea>
+                      <CardContent>
+                        <Typography
+                          variant="body1"
+                          gutterBottom
+                          color="primary"
+                        >
+                          Add Lesson
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              )}
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
                   <a href={`/lessons/${lesson._id}`} className="lesson-link">

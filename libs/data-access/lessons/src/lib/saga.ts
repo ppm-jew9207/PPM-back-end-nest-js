@@ -19,6 +19,9 @@ export function* createLesson(actions) {
   const data = actions.payload;
 
   try {
+    if (data.resources.length) {
+      data.resources = (data.resources + '').split(/[,;\t\n]+/);
+    }
     if (data.imageUrl.length) {
       const file = data.imageUrl[0];
       const formData = new FormData();
@@ -66,8 +69,11 @@ export function* createLesson(actions) {
 }
 
 export function* updateLesson(actions) {
-  const data = actions.payload;
+  var data = actions.payload;
   try {
+    if (data.resources.length) {
+      data.resources = (data.resources + '').split(/[,;\t\n]+/);
+    }
     if (data.imageUrl.length) {
       const file = data.imageUrl[0];
       const formData = new FormData();

@@ -3,11 +3,7 @@ import {
   SharedUserProfileCard,
   SharedUserProfileCardProps,
 } from '@ppm/shared/user-profile-card';
-import { 
-  Profile,
-  SharedProfileForm,
-  Category
-} from "@ppm/shared/profile-form";
+import { Profile, SharedProfileForm, Category } from '@ppm/shared/profile-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { Drawer,  IconButton } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
@@ -19,12 +15,17 @@ import './features-profile.scss';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
 import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
 import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
-import { countriesApiActions, countriesApiSelectors } from '@ppm/data-access/countries-api';
+import { LikeEnum, likesActions } from '@ppm/data-access/likes';
+import {
+  countriesApiActions,
+  countriesApiSelectors,
+} from '@ppm/data-access/countries-api';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
 import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
+
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -38,6 +39,7 @@ const stateSelector = createStructuredSelector({
 });
 
 export const FeaturesProfile = (props) => {
+  const [advertsState, setAdvertsState] = useState([]);
   const dispatch = useDispatch();
   const { profile, loading, adverts, categories, countries, states, cities, lessons } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -51,6 +53,28 @@ export const FeaturesProfile = (props) => {
     const data = { callback: 'getAllByAuthor', ...payload };
     dispatch(advertsActions.smallUpdate(data));
   };
+
+  const likeClick = (advertId: string, type: string) => {
+    dispatch(likesActions.create({ advert: advertId, type: type }));
+    const clickedAdvert = advertsState.find((item) => item._id === advertId);
+    const foundItem = clickedAdvert.likesList.findIndex(
+      (item) => item.type === type && item.user === profile._id
+    );
+    if (foundItem !== -1) {
+      clickedAdvert.likesList.splice(foundItem, 1);
+    } else {
+      clickedAdvert.likesList.push({
+        advert: advertId,
+        type: type,
+        user: profile._id,
+      });
+    }
+    setAdvertsState([...adverts]);
+  };
+
+  useEffect(() => {
+    setAdvertsState(adverts);
+  }, [adverts]);
 
   useEffect(() => {
     dispatch(advertsActions.getAllByAuthor());
@@ -106,11 +130,11 @@ export const FeaturesProfile = (props) => {
             />
         </Drawer>
 
-        {adverts.map((advert, i) => (
+        <SharedAdvertsAddButtons disabled={false} />
+        {advertsState.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}
             key={advert._id}
-
             title={advert.title}
             author={{
               _id: advert.creator._id,
@@ -120,13 +144,25 @@ export const FeaturesProfile = (props) => {
             }}
             createAt={advert.createdAt}
             description={advert.description}
-            // TODO add likes to backend
-            like={0}
-            // TODO add shares to backend
-            shared={0}
+            like={
+              advert.likesList
+                ? advert.likesList.filter(
+                    (like: any) => like.type === LikeEnum.Like
+                  ).length
+                : 0
+            }
+            shared={
+              advert.likesList
+                ? advert.likesList.filter(
+                    (like: any) => like.type === LikeEnum.Share
+                  ).length
+                : 0
+            }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
             editable={profile._id == advert.creator._id}
+            onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
+            onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
           />
         ))}
       </div>
@@ -149,11 +185,15 @@ export const FeaturesProfile = (props) => {
             countries={countries}
             cities={cities}
             states={states}
-            onSelectCountry={(countryName: string) => dispatch(countriesApiActions.getStates(countryName))}
-            onSelectState={(stateName: string) => dispatch(countriesApiActions.getCities(stateName))}
+            onSelectCountry={(countryName: string) =>
+              dispatch(countriesApiActions.getStates(countryName))
+            }
+            onSelectState={(stateName: string) =>
+              dispatch(countriesApiActions.getCities(stateName))
+            }
             onSubmit={(profileData: Profile) => {
               dispatch(userProfileActions.update(profileData));
-            }} 
+            }}
             onAddCategory={(categoryData: Category) => {
               dispatch(categoriesActions.create(categoryData));
               dispatch(categoriesActions.getAll());

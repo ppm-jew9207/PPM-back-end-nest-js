@@ -54,7 +54,7 @@ export const FeaturesAdvertPage = (props: {
     imageUrl: '',
     resources: '',
     mentorName: '',
-    connectionURL: '',
+    connectionUrl: '',
     categories: [],
     _id: '',
   };

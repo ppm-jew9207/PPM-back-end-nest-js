@@ -22,21 +22,22 @@ export const primary = () => {
       submitButtonText: 'Create/Edit',
       cancelButtonText: 'Cancel',
       resourcesInputLabel: 'Resources',
-      connectionURLInputLabel: 'Connection URL',
+      connectionUrlInputLabel: 'Connection URL',
       descriptionInputLabel: 'Description',
       datetimeInputLabel: 'Date and Time',
       titleInputLabel: 'New Lesson Title',
       mentorInputLabel: 'Select Mentor',
     },
     lesson: {
+      _id: 'e21omfekwm32momfwffwsd',
       mentorName: 'as3dg432zd',
       description: 'big description',
       resources: 'so much resources',
       imageUrl: 'https://placekitten.com/300/300',
       title: 'lesson title',
-      connectionURL: 'https://placekitten.com/300/300',
+      connectionUrl: 'https://placekitten.com/300/300',
       datetime: '2021-09-22T17:09',
-      categories: ['as3dg432af', 'as33dg4432af']
+      categories: ['as3dg432af', 'as33dg4432af'],
     },
     mentors: [
       { name: 'John Doe', value: 'John Doe', _id: 'as3dg432zd' },
@@ -49,5 +50,5 @@ export const primary = () => {
     ],
   };
 
-  return <SharedLessonComponent {...props}/>;
+  return <SharedLessonComponent {...props} />;
 };

@@ -2684,6 +2684,27 @@
           }
         }
       }
+    },
+    "data-access-likes": {
+      "root": "libs/data-access/likes",
+      "sourceRoot": "libs/data-access/likes/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/data-access/likes/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access/likes"],
+          "options": {
+            "jestConfig": "libs/data-access/likes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
