@@ -5,7 +5,7 @@ import {
 } from '@ppm/shared/user-profile-card';
 import { Profile, SharedProfileForm, Category } from '@ppm/shared/profile-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { Drawer, CircularProgress, IconButton } from '@material-ui/core';
+import { Drawer,  IconButton } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
   userProfileActions,
@@ -13,20 +13,19 @@ import {
 } from '@ppm/data-access/user-profile';
 import './features-profile.scss';
 import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
-import { likesActions } from '@ppm/data-access/likes';
-import {
-  categoriesActions,
-  categoriesSelectors,
-} from '@ppm/data-access/categories';
+import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
+import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
+import { LikeEnum, likesActions } from '@ppm/data-access/likes';
 import {
   countriesApiActions,
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
+import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
-import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
+
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -36,21 +35,15 @@ const stateSelector = createStructuredSelector({
   countries: countriesApiSelectors.selectCountries(),
   states: countriesApiSelectors.selectStates(),
   cities: countriesApiSelectors.selectCities(),
+  lessons: lessonsSelectors.selectLessons()
 });
 
 export const FeaturesProfile = (props) => {
   const [advertsState, setAdvertsState] = useState([]);
   const dispatch = useDispatch();
-  const {
-    profile,
-    loading,
-    adverts,
-    categories,
-    countries,
-    states,
-    cities,
-  } = useSelector(stateSelector);
+  const { profile, loading, adverts, categories, countries, states, cities, lessons } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [addDrawer, setAddDrawer] = useState(false);
 
   const toggleDrawer = (open: boolean) => {
     setMenuOpen(open);
@@ -88,6 +81,7 @@ export const FeaturesProfile = (props) => {
     dispatch(userProfileActions.getUserProfile());
     dispatch(categoriesActions.getAll());
     dispatch(countriesApiActions.getCountries());
+    dispatch(lessonsActions.getAll());
   }, [dispatch]);
 
   const defaultData = {
@@ -114,7 +108,9 @@ export const FeaturesProfile = (props) => {
     }
   }, [profile]);
 
-  if (loading) return <CircularProgress />;
+  const addAdvert = () => {
+    setAddDrawer(false);
+  }
 
   return (
     <div className="features-profile">
@@ -122,6 +118,18 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
       </div>
       <div className="content">
+        <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
+
+        <Drawer anchor="right" open={addDrawer} onClose={() => setAddDrawer(false)}>
+            <SharedCreateAdvertForm
+              onSubmit={addAdvert}
+              onCancel={() => {}}
+              categories={categories}
+              lessons={lessons}
+              toggleAddDrawer={() => setAddDrawer(false)}
+            />
+        </Drawer>
+
         <SharedAdvertsAddButtons disabled={false} />
         {advertsState.map((advert, i) => (
           <SharedAdvertCard
@@ -172,8 +180,8 @@ export const FeaturesProfile = (props) => {
             <CloseIcon />
           </IconButton>
           <SharedProfileForm
-            profile={profile}
-            categories={categories}
+            profile={profile} 
+            categories={categories} 
             countries={countries}
             cities={cities}
             states={states}

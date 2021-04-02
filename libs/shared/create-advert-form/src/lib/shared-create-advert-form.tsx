@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import {
+  FormControl,
+  InputLabel,
+  Select,
+  Input,
+  MenuItem,
   TextField,
   Button,
   Box,
   Typography,
   Dialog,
   List,
-  DialogActions,
   Checkbox,
-  Chip
+  Chip,
+  FormHelperText,
+  DialogActions,
 } from '@material-ui/core';
 import './shared-create-advert-form.scss';
 
 import {
+  Check as CheckIcon,
+  Clear as ClearIcon,
   ArrowRight as ArrowRightIcon,
   SystemUpdateAlt as SystemUpdateAltIcon
 } from '@material-ui/icons';
@@ -33,15 +41,20 @@ export interface Labels {
 export interface Category {
   title: string;
   value: string;
-  _id: string;
-  checked: boolean;
+  _id?: string;
+  checked?: boolean;
 }
 
 export interface Lesson {
   title: string;
+  description: string;
   datetime: string;
-  _id: string;
-  checked: boolean;
+  imageUrl: string;
+  resources: string;
+  mentorName: string;
+  connectionURL: string;
+  categories: string[];
+  _id?: string;
 }
 
 export interface Advert {
@@ -56,36 +69,71 @@ export interface Advert {
 
 export interface AdvertData {
   id?: string;
-  title: string;
-  description: string;
-  advertImage: FileList;
-  category: string;
-  prerequisites: string;
-  learning: string;
-  lessons: Lesson[];
+  title?: string;
+  description?: string;
+  advertImage?: FileList;
+  category?: Category[];
+  prerequisites?: string;
+  learning?: string;
+  lessons?: Lesson[];
 }
 
 export interface SharedCreateAdvertFormProps {
-  onSubmit: (advertData: AdvertData) => void;
-  onCancel: () => void;
-  data: AdvertData;
+  onSubmit?: (advertData: AdvertData) => void;
+  onCancel?: () => void;
+  data?: AdvertData;
   categories: Category[];
+  lessons?: Lesson[];
   advert?: Advert;
+  toggleAddDrawer?: () => void;
 }
 
 export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
+
   const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [advert, setAdvert] = useState<Advert>();
-  const [lessons, setLesson] = useState<Lesson[]>([]);
-  const [openLesson, setLessonOpen] = useState(false);
-  const [selectedLessonValue, setSelectedLessonValue] = useState([]);
-  const [openCategory, setCategoryOpen] = useState(false);
-  const [selectedCategoryValue, setSelectedCategoryValue] = useState([]);
+  const [lessons, setLessons] = useState<string[]>([]);
   const [labels, setLabels] = useState<Labels>();
+  const [categories, setCategories] = useState<string[]>([]);
+
+  const stopImmediatePropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
+  const renderCategoryValue = (selected) => {
+    const categories = {};
+    props.categories.map(category => {
+      categories[category.value] = category;
+    });
+    return <div>
+    {selected.map((value: string) => (
+     categories[value] && <Chip key={value} label={categories[value].title} />
+    ))}
+  </div>
+  };
+
+  const renderLessonsValue = (selected) => {
+    const lessons = {};
+    props.lessons.map(lesson => {
+      lessons[lesson._id] = lesson;
+    });
+    return <div>
+    {selected.map((title: string) => (
+     lessons[title] && <Chip key={title} label={lessons[title].title} />
+    ))}
+  </div>
+  };
+
+  const validateCategories = (value) => {
+    return value.length > 0;
+  };
+
+  const validateLessons = (value) => {
+    return value.length > 0;
+  };
 
   useEffect(() => {
-    (!categories && !categories.length) && setCategories(props.categories);
     !advert && setAdvert(props.advert);
     props.advert && !uploadedImg && setUploadedImg(props.advert.imageUrl);
   }, [props, advert, categories, uploadedImg]);
@@ -100,121 +148,16 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
     if (file) fileReader.readAsDataURL(file);
   };
 
-  function LessonDialog(props) {
-    const { open, options } = props;
-    const [data, setData] = useState(options);
-
-    const toggle = (les) => {
-      data.forEach((_, key) => {
-        if (data[key].title === les.title) data[key].checked = !les.checked;
-      });
-      setData([...data]);
-    };
-
-    const sendData = () => {
-      setSelectedLessonValue([data]);
-      setLessonOpen(false);
-    }
-
-    return (
-      <Dialog
-        onClose={() => setLessonOpen(false)}
-        aria-labelledby="simple-dialog-title"
-        open={open}
-      >
-        <List className="dialog-list">
-          {lessons.map((les) => (
-            <section key={les._id}>
-              <Controller
-                name={les.title}
-                control={control}
-                as={() => (
-                  <Checkbox
-                    key={les._id}
-                    onClick={() => toggle(les)}
-                    checked={les.checked || false}
-                  />
-                )}
-              />
-              <label>{les.title}</label>
-            </section>
-          ))}
-        </List>
-        <DialogActions>
-          <Button onClick={() => setLessonOpen(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={sendData} color="primary" type="submit">
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-
-  function CategoryDialog(props) {
-    const { open, options } = props;  
-    const [data, setData] = useState(options);
-
-    const toggle = (les) => {
-      data.forEach((_, key) => {
-        if (data[key].title === les.title) data[key].checked = !les.checked;
-      });
-      setData([...data]);
-    };
-
-    const sendData = () => {
-      setSelectedCategoryValue([data]);
-      setCategoryOpen(false);
-    }
-
-    return (
-      <Dialog
-        onClose={() => setCategoryOpen(false)}
-        aria-labelledby="simple-dialog-title"
-        open={open}
-      >
-        <List className="dialog-list">
-          {categories.map((les) => (
-            <section key={les._id}>
-              <Controller
-                name={les.title}
-                control={control}
-                as={() => (
-                  <Checkbox
-                    key={les._id}
-                    onClick={() => toggle(les)}
-                    checked={les.checked || false}
-                  />
-                )}
-              />
-              <label>{les.title}</label>
-            </section>
-          ))}
-        </List>
-        <DialogActions>
-          <Button onClick={() => setCategoryOpen(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={sendData} color="primary" type="submit">
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-
   const { handleSubmit, register, control, errors, setValue } = useForm();
-  if (!props.data) return <div>Loading...</div>;
 
-  const createAdvertHandler = (data) => {
-    props.onSubmit({ ...data, selectedLessonCheckboxes: {selectedLessonValue}, selectedCategoryCheckboxes: {selectedCategoryValue}});
+  const createAdvertHandler = (data: AdvertData) => {
+    props.onSubmit(data);
   };
 
   return (
-    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form">
+    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto" className="advert-form" >
       <Typography className="header" component="h1" variant="h5">
-        {labels.title}
+        New Advert
       </Typography>
       <form autoComplete="off" onSubmit={handleSubmit(createAdvertHandler)}>
         <div className="inner-container">
@@ -254,10 +197,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Title'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.titleInputLabel}
+              label={labels?.titleInputLabel}
               type="text"
               className="header"
               onChange={(event) =>
@@ -279,10 +223,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Description'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.categoryInputLabel}
+              label={labels?.categoryInputLabel}
               type="text"
               className="description"
               onChange={(event) =>
@@ -306,10 +251,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='Prerequisites'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.prerequisitesInputLabel}
+              label={labels?.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
               onChange={(event) =>
@@ -333,10 +279,11 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
         <Controller
           as={
             <TextField
+              placeholder='What will you learn?'
               variant="outlined"
               margin="normal"
               fullWidth
-              label={labels.learningInputLabel}
+              label={labels?.learningInputLabel}
               type="text"
               className="learning"
               onChange={(event) =>
@@ -357,70 +304,81 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             What to learn is required
           </div>
         )}
+        <Box my={3}>
+          <FormControl variant="outlined" fullWidth error={!!errors.categories}>
+            <InputLabel id="categoriesLabel">Categories *</InputLabel>
+            <Controller
+              name="categories"
+              defaultValue={[]}
+              control={control}
+              rules={{ validate: (value) => validateCategories(value) }}
+              onChange={([selected]) => {
+                return selected;
+              }}
+              as={
+                <Select
+                  id="categories"
+                  label="Categories"
+                  name="categories"
+                  value={categories}
+                  multiple
+                  input={<Input id="select-multiple-chip" />}
+                  inputRef={register}
+                  renderValue={renderCategoryValue}
+                  error={!!errors.categories}
+                >
+                  {props.categories && props.categories.map((category: Category) => (
+                    <MenuItem key={category._id} value={category.value}>
+                      {category.title}
+                    </MenuItem>
+                  ))}
+                </Select>
+              }
+              fullWidth
+            />                 
+            <FormHelperText>
+              {errors.categories ? 'This field is required' : ''}
+            </FormHelperText>
+          </FormControl>
+        </Box>
+        <Box my={3}>
+          <FormControl variant="outlined" fullWidth error={!!errors.lessons}>
+            <InputLabel id="lessonsLabel">Lessons *</InputLabel>
+            <Controller
+              name="lessons"
+              defaultValue={[]}
+              control={control}
+              rules={{ validate: (value) => validateLessons(value) }}
+              onChange={([selected]) => {
+                return selected;
+              }}
+              as={
+                <Select
+                  id="lessons"
+                  label="Lessons"
+                  name="lessons"
+                  value={lessons}
+                  multiple
+                  input={<Input id="select-multiple-chip" />}
+                  inputRef={register}
+                  renderValue={renderLessonsValue}
+                  error={!!errors.lessons}
+                >
+                  {props.lessons && props.lessons.map((lesson: Lesson) => (
+                    <MenuItem key={lesson._id} value={lesson._id}>
+                      {lesson.title}
+                    </MenuItem>
+                  ))}
+                </Select>
+              }
+              fullWidth
+            />              
+            <FormHelperText>
+              {errors.lessons ? 'This field is required' : ''}
+            </FormHelperText>
+          </FormControl>
+        </Box>
         <div className='select-button'>
-          <Button
-            fullWidth
-            variant="outlined"
-            color="primary"
-            onClick={() => setLessonOpen(true)}
-          >
-            Choose Lessons to add
-          </Button>
-          <div className="chip-container">
-            {!!selectedLessonValue[0] &&
-              selectedLessonValue[0].map(
-                (value) =>
-                  !!value.checked && (
-                    <div key={value._id} className="chip">
-                      <Chip
-                        variant="outlined"
-                        color="primary"
-                        label={value.title}
-                      />
-                    </div>
-                  )
-              )}
-          </div>
-          <LessonDialog
-            selectedValue={selectedLessonValue}
-            open={openLesson}
-            options={!!lessons && lessons}
-            onClose={() => setLessonOpen(false)}
-            name="lessons"
-          />
-        </div>
-        <div className='select-button'>
-          <Button
-            fullWidth
-            variant="outlined"
-            color="primary"
-            onClick={() => setCategoryOpen(true)}
-          >
-            Choose Categories to add
-          </Button>
-          <div className="chip-container">
-            {!!selectedCategoryValue[0] &&
-              selectedCategoryValue[0].map(
-                (value) =>
-                  !!value.checked && (
-                    <div key={value._id} className="chip">
-                      <Chip
-                        variant="outlined"
-                        color="primary"
-                        label={value.title}
-                      />
-                    </div>
-                  )
-              )}
-          </div>
-          <CategoryDialog
-            selectedValue={selectedCategoryValue}
-            open={openCategory}
-            options={!!categories && categories}
-            onClose={() => setCategoryOpen(false)}
-            name="category"
-          />
-        </div>
         <Button
           fullWidth
           variant="contained"
@@ -428,7 +386,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           type="submit"
           className="submit-form"
         >
-          {labels.submitButtonText}
+          Create
         </Button>
         <Button
           fullWidth
@@ -436,10 +394,14 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
           color="secondary"
           type="reset"
           className="cancel-form"
-          onClick={props.onCancel}
+          onClick={() => {
+            props.onCancel();
+            props.toggleAddDrawer();
+          }}
         >
-          {labels.cancelButtonText}
+          Cancel
         </Button>
+        </div>
       </form>
     </Box>
   );
