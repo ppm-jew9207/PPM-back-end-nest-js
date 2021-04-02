@@ -8,13 +8,13 @@ export class UserRef {
   imageUrl?: string;
 }
 export interface AdvertType {
-  _id: string;
-  title: string;
+  _id?: string;
+  title?: string;
   description?: string;
   imageUrl?: string | FileList;
   programmingLanguages?: string[];
   preRequisites?: string;
-  advertImageUrl: string | FileList;
+  advertImageUrl?: string | FileList;
   lessonDescription?: string;
   lessonsList?: string[];
   creator?: UserRef;
