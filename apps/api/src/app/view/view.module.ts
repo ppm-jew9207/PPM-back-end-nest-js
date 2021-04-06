@@ -8,6 +8,7 @@ import { CategoriesViewModule } from './categories/categories.module';
 import { CountriesApiViewModule } from './countriesApi/countriesApi.module';
 import { PermissionsViewModule } from './permissions/permissions.module';
 import { SettingsViewModule } from './settings/settings.module';
+import { LikesViewModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { SettingsViewModule } from './settings/settings.module';
     AdvertsViewModule,
     LessonsViewModule,
     LearnItemsViewModule,
+    LikesViewModule,
     CountriesApiViewModule
   ],
   controllers: [],

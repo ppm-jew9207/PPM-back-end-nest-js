@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { Types } from 'mongoose';
 
 import { ViewModels } from '../../helpers/constants';
-import { CATEGORIES_JOIN_QUERY } from '../../shared/mongo-queries';
+import { CATEGORIES_AND_LEAR_ITEMS_JOIN_QUERY, CATEGORIES_JOIN_QUERY, LEARN_ITEMS_JOIN_QUERY } from '../../shared/mongo-queries';
 
 import {
   LessonsViewModel,
@@ -22,7 +22,8 @@ export class LessonsModelService {
         {
           $match:  { _id : {$exists: true} },    
         },
-        ...CATEGORIES_JOIN_QUERY
+        CATEGORIES_JOIN_QUERY,
+        LEARN_ITEMS_JOIN_QUERY
     ]).exec();
   }
 
@@ -31,7 +32,8 @@ export class LessonsModelService {
       {
         $match:  { "creator._id": id },    
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY
     ]).exec();
   }
 
@@ -40,7 +42,8 @@ export class LessonsModelService {
       {
         $match:  { _id: Types.ObjectId(id) },    
       },
-      ...CATEGORIES_JOIN_QUERY
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY
     ]).exec();
   }
 

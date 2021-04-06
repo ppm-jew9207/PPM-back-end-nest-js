@@ -209,6 +209,12 @@
     "shared-adverts-add-buttons-e2e": {
       "tags": [],
       "implicitDependencies": ["shared-adverts-add-buttons"]
+    },
+    "data-access-countries-api": {
+      "tags": []
+    },
+    "data-access-likes": {
+      "tags": []
     }
   },
   "affected": {

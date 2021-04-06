@@ -119,7 +119,8 @@
       ],
       "@ppm/shared/adverts-add-buttons": [
         "libs/shared/adverts-add-buttons/src/index.ts"
-      ]
+      ],
+      "@ppm/data-access/likes": ["libs/data-access/likes/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

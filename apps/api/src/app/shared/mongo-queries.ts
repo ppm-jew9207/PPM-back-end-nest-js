@@ -1,4 +1,4 @@
-export const CATEGORIES_JOIN_QUERY = [{
+export const CATEGORIES_JOIN_QUERY = {
   $lookup: {
     let: {
       categoriesData: "$categories"
@@ -17,13 +17,14 @@ export const CATEGORIES_JOIN_QUERY = [{
     ],
     as: "categories"
   }
-},
-{
+};
+
+export const LEARN_ITEMS_JOIN_QUERY = {
   $lookup: {
     let: {
       learnItemsData: "$learnItems"
     },
-    from: "learnItems",
+    from: "learnitems",
     pipeline: [
       {
         $match: {
@@ -37,8 +38,9 @@ export const CATEGORIES_JOIN_QUERY = [{
     ],
     as: "learnItems"
   }
-},
-{
+};
+
+export const LESSONS_JOIN_QUERY = {
   $lookup: {
     let: {
       lessonsListData: "$lessonsList"
@@ -57,4 +59,17 @@ export const CATEGORIES_JOIN_QUERY = [{
     ],
     as: "lessonsList"
   }
-}];
+};
+
+export const LIKES_JOIN_QUERY = {
+  $lookup: {
+    from: "likes",
+    localField: "advert_id",
+    foreignField: "advert",
+    as: "likesList"
+  }
+};
+
+export const ADVERTS_ID_QUERY = {
+  "$addFields": { "advert_id": { "$toString": "$_id" }},
+};

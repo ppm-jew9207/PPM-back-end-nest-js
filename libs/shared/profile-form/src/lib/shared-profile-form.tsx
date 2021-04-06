@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   FormControl,
@@ -15,67 +15,230 @@ import {
   Divider,
   Typography,
 } from '@material-ui/core';
+import { green, red } from '@material-ui/core/colors';
+
+import {
+  SystemUpdateAlt as SystemUpdateAltIcon,
+  Clear as ClearIcon,
+  Check as CheckIcon 
+} from '@material-ui/icons';
+
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
 
-interface EntityRef {
-  _id: string;
-  name: string;
+const SOCIAL_LINKS = [
+  {
+    icon: 'facebook',
+    link: '',
+    color: '#3b5999',
+  },
+  {
+    icon: 'twitter',
+    link: '',
+    color: '#55acee',
+  },
+  {
+    icon: 'linkedin',
+    link: '',
+    color: '#55acee',
+  },
+  {
+    icon: 'instagram',
+    link: '',
+    color: '#55acee',
+  },
+];
+
+interface SocialLink {
+    icon: string;
+    link: string;
+    color: string;
+  };
+
+export interface Category {
+  _id?: string;
+  title: string;
+  value: string;
 }
 
+interface RawInput {
+  categories: string[];
+  city: { city_name: string };
+  company: string;
+  country: {country_name: string, country_short_name: string, country_phone_code: number };
+  description: string;
+  email: string;
+  facebook: string;
+  fieldOfProfession: string;
+  firstName: string;
+  imageUrl: string | FileList;
+  instagram: string;
+  lastName: string;
+  linkedin: string;
+  phone: string;
+  state: {state_name: string };
+  twitter: string;
+  type: string;
+  website: string;
+}
+
+export interface Profile {
+  _id: string;
+  description: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  photo: string | ArrayBuffer | FileList;
+  fieldOfProfession: string;
+  company: string;
+  categories: string[];
+  state: string;
+  city: string;
+  country: string;
+  phone: string;
+  website: string;
+  type: string;
+  socialLinks: SocialLink[];
+}
 export interface SharedProfileFormProps {
-  onSubmit: (submitData: {
-    description: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    photo: FileList;
-    fieldOfProfession: string;
-    company: string;
-    categories: string[];
-    city: string;
-    country: string;
-    phone: string;
-    web: string;
-    type: string;
-    facebook: string;
-    linkedin: string;
-    twitter: string;
-    instagram: string;
-  }) => void;
-  categories: EntityRef[];
-  cities: string[];
-  countries: string[];
+  onSelectCountry: ( countryName: string ) => void;
+  onSelectState: ( stateName: string ) => void;
+  onSubmit: (submitData:Profile) => void;
+  onAddCategory: ( submitData: Category) => void;
+  categories: Category[];
+  cities?: { city_name: string }[];
+  countries: { country_name: string }[];
+  states?: { state_name: string}[];
+  profile: Profile
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
-  const { handleSubmit, register, control, errors } = useForm();
 
+  const [newCategory, setNewCategory] = React.useState<Category>({ title: '', value: '' });
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string | FileList>();
+  const { handleSubmit, register, control, errors } = useForm();
   const [categories, setCategories] = useState<string[]>([]);
+  
+  useEffect(() => {
+    props.profile && !uploadedImg && setUploadedImg(props.profile.photo);
+  },[props, uploadedImg]);
+
+  const handleNewCategoryInput = (event: ChangeEvent<{ value: string }>) => {
+    const newCategory = {
+      title: event.target.value,
+      value: (event.target.value.toLowerCase()).replace(/[^a-zA-Z0-9]/gi, '_')
+    };
+    setNewCategory(newCategory);
+  }
+
+  const stopImmediatePropagation = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
+    console.log(event);
     setCategories(event.target.value);
   };
 
-  const renderCategoryValue = (selected) => (
-    <div>
-      {selected.map((value: string) => (
-        <Chip key={value} label={value} />
-      ))}
-    </div>
-  );
+  const renderCategoryValue = (selected) => {
+    const categories = {};
+    props.categories.map(category => {
+      categories[category.value] = category;
+    });
+    return <div>
+    {selected.map((value: string) => (
+     categories[value] && <Chip key={value} label={categories[value].title} />
+    ))}
+  </div>
+  };
 
   const validateCategories = (value) => {
     return value.length > 0;
   };
 
+  const onFileLoad = (e) => {
+    const file = e.currentTarget.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
+  const onSubmitForm = (formData: RawInput) => {
+    const { 
+      categories,
+      city,
+      company,
+      country,
+      description,
+      email,
+      facebook,
+      fieldOfProfession,
+      firstName,
+      imageUrl,
+      instagram,
+      lastName,
+      linkedin,
+      phone,
+      state,
+      twitter,
+      type,
+      website
+     } = formData;
+
+     SOCIAL_LINKS.map( item => {
+      switch(item.icon) {
+        case 'twitter': {
+          if (twitter.length) item.link = twitter;
+          break;
+        }
+        case 'linkedin': {
+          if (linkedin.length) item.link = linkedin;
+          break;
+        }
+        case 'facebook': {
+          if (facebook.length) item.link = facebook;
+          break;
+        }
+        case 'instagram': {
+          if (instagram.length) item.link = instagram;
+          break;
+        }
+      };
+     });
+
+    const profileData: Profile = {
+      _id: props.profile._id,
+      description,
+      firstName,
+      lastName,
+      email,
+      photo: imageUrl.length ? imageUrl : props.profile.photo,
+      fieldOfProfession,
+      company,
+      categories,
+      state: state.state_name,
+      city: city.city_name,
+      country: country.country_name,
+      phone,
+      website,
+      type,
+      socialLinks: SOCIAL_LINKS
+    };
+    props.onSubmit(profileData);
+  };
+
   return (
     <Grid container direction="column" className="profileForm">
-      <form autoComplete="nope" onSubmit={handleSubmit(props.onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmitForm)}>
         <Box my={3}>
           <TextField
             id="firstName"
             name="firstName"
+            defaultValue={props.profile.firstName || ''}
             type="text"
             variant="outlined"
             label="First Name *"
@@ -91,6 +254,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="lastName"
             name="lastName"
+            defaultValue={props.profile.lastName || ''}
             type="text"
             variant="outlined"
             label="Last Name"
@@ -102,6 +266,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="email"
             name="email"
+            defaultValue={props.profile.email || ''}
             type="email"
             variant="outlined"
             label="Email"
@@ -111,19 +276,46 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <InputLabel id="photoLabel">Photo</InputLabel>
-          <TextField
-            id="photo"
-            name="photo"
-            type="file"
-            variant="outlined"
-            inputRef={register}
-            fullWidth
-          />
+          <div className="image-container">
+          <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
+            <TextField
+              inputRef={register({})}
+              type="file"
+              id="file-browser-input"
+              name="imageUrl"
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onDrop={onFileLoad.bind(this)}
+              onChange={onFileLoad.bind(this)}
+            />
+            <div className="files-preview-container">
+              <img
+                className="files-preview-container__image"
+                src={(!!uploadedImg && uploadedImg.toString()) || ''}
+                alt="files-preview"
+              />
+            </div>
+            <div className="helper-text">
+              <Typography
+                variant="body1"
+                component="p"
+                align="center"
+                gutterBottom
+              >
+                Drag and Drop Images Here
+              </Typography>
+              <SystemUpdateAltIcon display="inline" />
+            </div>
+          </div>
+        </div>
         </Box>
         <Box my={3}>
           <TextField
             id="description"
             name="description"
+            defaultValue={props.profile.description || ''}
             multiline
             rows={4}
             variant="outlined"
@@ -136,6 +328,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="fieldOfProfession"
             name="fieldOfProfession"
+            defaultValue={props.profile.fieldOfProfession || ''}
             type="text"
             variant="outlined"
             label="Field of Profession"
@@ -147,6 +340,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="company"
             name="company"
+            defaultValue={props.profile.company || ''}
             type="text"
             variant="outlined"
             label="Company"
@@ -168,25 +362,71 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               as={
                 <Select
                   id="categories"
-                  multiple
                   label="Categories"
                   name="categories"
                   value={categories}
+                  multiple
                   onChange={handleCategoriesChange}
                   input={<Input id="select-multiple-chip" />}
                   inputRef={register}
                   renderValue={renderCategoryValue}
                   error={!!errors.categories}
                 >
-                  {props.categories.map((category: EntityRef) => (
-                    <MenuItem key={category._id} value={category.name}>
-                      {category.name}
+                  {props.categories.map((category: Category) => (
+                    <MenuItem key={category._id} value={category.value}>
+                      {category.title}
                     </MenuItem>
                   ))}
+                  <MenuItem 
+                    dense
+                    divider
+                    value={[]}
+                    onClickCapture={stopImmediatePropagation}
+                    onKeyDown={(event) => event.stopPropagation()}
+                    className="new-category__form"
+                  >
+                  <TextField
+                    id="new-category"
+                    name="new-category"
+                    type="text"
+                    variant="outlined"
+                    size="small"
+                    label="Add new"
+                    className="new-category__input"
+                    value={newCategory.title}
+                    onChange={handleNewCategoryInput}
+                    />
+                  </MenuItem>
+                  { newCategory.title.length > 0 && 
+                    <div className="new-category__control">
+                      <Button
+                      size="small"
+                      variant="contained"
+                      style={{ color: '#fff', background: green[600] }}
+                      endIcon={<CheckIcon className="new-category__add" display="inline"  />}
+                      className="new-category__add"
+                      type="button"
+                      onClick={() => { 
+                          if (newCategory.value.length > 0) {
+                            props.onAddCategory(newCategory);
+                            setNewCategory({ title: '', value: ''});
+                          }
+                        }
+                      }
+                      ></Button>
+                      <Button className="new-category__clear" onClick={() => {
+                        console.log(newCategory);
+                        setNewCategory({ title: '', value: ''});
+                      }} style={{ color: '#fff', background: red[600] }}>
+                      <ClearIcon display="inline"  />
+                      </Button>
+                    </div>
+                    }
                 </Select>
               }
               fullWidth
             />
+                              
             <FormHelperText>
               {errors.categories ? 'This field is required' : ''}
             </FormHelperText>
@@ -194,50 +434,104 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <Controller
-            name="city"
-            defaultValue={[]}
-            control={control}
-            onChange={([, data]) => data}
-            onInputChange={(data) => data}
-            as={
-              <Autocomplete
-                id="city"
-                freeSolo
-                autoSelect
-                getOptionLabel={(option) => option}
-                options={props.cities}
-                renderInput={(params) => (
-                  <TextField {...params} label="City" variant="outlined" />
-                )}
-              />
-            }
-          />
-        </Box>
-        <Box my={3}>
-          <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.countries}
+              getOptionLabel={option => option.country_name}
+              renderOption={option => (
+                <span>
+                  {option.country_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a country"
+                  variant="outlined"
+                  autoComplete="off"
+                />
+              )}
+              onChange={(e, data) => {
+                data && props.onSelectCountry(data.country_name);
+                return onChange(data);
+              }}
+              {...params}
+            />
+            )}
             name="country"
             control={control}
-            defaultValue={[]}
-            onChange={([, data]) => data}
-            onInputChange={(data) => data}
-            as={
-              <Autocomplete
-                id="country"
-                freeSolo
-                autoSelect
-                options={props.countries}
-                getOptionLabel={(option) => option}
-                renderInput={(params) => (
-                  <TextField {...params} label="Country" variant="outlined" />
-                )}
-              />
-            }
           />
         </Box>
+        {props.states.length > 0 &&
+        <Box my={3}>
+          <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.states}
+              getOptionLabel={option => option.state_name}
+              renderOption={option => (
+                <span>
+                  {option.state_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a state"
+                  variant="outlined"
+                  autoComplete="off"
+                />
+              )}
+              onChange={(e, data) => {
+                data && props.onSelectState(data.state_name);
+                return onChange(data);
+              }}
+              {...params}
+            />
+            )}
+            defaultValue={props.states[0]}
+            name="state"
+            control={control}
+          />
+        </Box>
+        }
+      {props.cities.length > 0 &&
+        <Box my={3}>
+          <Controller
+          render={({ onChange, ...params }) => (
+            <Autocomplete
+              options={props.cities}
+              getOptionLabel={option => option.city_name}
+              renderOption={option => (
+                <span>
+                  {option.city_name}
+                </span>
+              )}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Choose a city"
+                  variant="outlined"
+                  autoComplete="off"
+                />
+              )}
+              onChange={(e, data) => {
+                return onChange(data);
+              }}
+              {...params}
+            />
+            )}
+            defaultValue={props.cities[0]}
+            name="city"
+            control={control}
+          />
+        </Box>
+        }
         <Box my={3}>
           <TextField
             id="phone"
             name="phone"
+            defaultValue={props.profile.phone || ''}
             type="text"
             variant="outlined"
             label="Phone"
@@ -247,8 +541,9 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         </Box>
         <Box my={3}>
           <TextField
-            id="web"
-            name="web"
+            id="website"
+            name="website"
+            defaultValue={props.profile.website || ''}
             type="text"
             variant="outlined"
             label="Website"
@@ -260,6 +555,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="type"
             name="type"
+            defaultValue={props.profile.type || ''}
             type="text"
             variant="outlined"
             label="Type"

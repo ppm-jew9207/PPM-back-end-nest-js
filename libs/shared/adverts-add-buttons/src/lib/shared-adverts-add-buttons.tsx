@@ -6,20 +6,23 @@ import './shared-adverts-add-buttons.module.scss';
 export interface SharedAdvertsAddButtonsProps {
   disabled: boolean;
   toggleDisabled?: () => void;
+  toggleAddDrawer?: () => void;
 }
 
-export function SharedAdvertsAddButtons(props: SharedAdvertsAddButtonsProps) {
+export function SharedAdvertsAddButtons( props: SharedAdvertsAddButtonsProps) {
   const [disabled, setDisabled] = useState(true);
+  
   const toggleDisabled = () => {
     setDisabled((st) => !st);
   };
+
   return (
     <div className="inner-container">
       <ButtonGroup color="primary" aria-label="outlined primary button group">
         <Button
           className="margin-example"
           disabled={!disabled}
-          onClick={toggleDisabled}
+          onClick={() => props.toggleAddDrawer()}
           variant="contained"
           color="primary"
         >

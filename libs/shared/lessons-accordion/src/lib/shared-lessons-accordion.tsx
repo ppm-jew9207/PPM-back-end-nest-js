@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -10,9 +10,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import { Link  } from 'react-router-dom';
-
 import './shared-lessons-accordion.scss';
+import { Edit as EditIcon } from '@material-ui/icons';
 
 interface Lesson {
   _id: string;
@@ -22,14 +21,29 @@ interface Lesson {
 }
 
 export interface SharedLessonsAccordionProps {
+  onClick?: () => void;
+  isEditable?: boolean;
   lessonsDescription?: string;
   lessons: Lesson[];
   accordionTitle: string;
+  showAddButton?: boolean;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
+  const onClick = () => {
+    props.onClick();
+  };
+
   return (
     <Container fixed>
+      <div>
+        <Typography className="lessons-description">
+          {props.lessonsDescription}
+          {!props.showAddButton && props.isEditable && (
+            <EditIcon className="editIcon" onClick={onClick} />
+          )}
+        </Typography>
+      </div>
       <Accordion className="lessons-accordion" defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -41,35 +55,50 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
         </AccordionSummary>
         <AccordionDetails className="lessons-accordion">
           <div>
-            <Typography className="lessons-description">
-              {props.lessonsDescription}
-            </Typography>
-          </div>
-          <div>
             <Grid container spacing={2}>
-              {props.lessons.map((lesson, i) => 
-                  <Grid key={i} item xs={3}>
-                    <a href={`/lessons/${lesson._id}`} className='lesson-link'>
-                      <Card>
-                        <CardActionArea>
-                          {lesson.image && <CardMedia
+              {props.showAddButton && (
+                <Grid key={1} item xs={3} onClick={onClick}>
+                  <Card>
+                    <CardActionArea>
+                      <CardContent>
+                        <Typography
+                          variant="body1"
+                          gutterBottom
+                          color="primary"
+                        >
+                          Add Lesson
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              )}
+              {props.lessons.map((lesson, i) => (
+                <Grid key={i} item xs={3}>
+                  <a href={`/lessons/${lesson._id}`} className="lesson-link">
+                    <Card>
+                      <CardActionArea>
+                        {lesson.image && (
+                          <CardMedia
                             className="lesson-image"
+                            id={lesson._id}
                             image={lesson.image}
                             title={lesson.title}
-                          />}
-                          <CardContent>
-                            <Typography variant="body1" gutterBottom>
-                              {lesson.title}
-                            </Typography>
-                            <Typography variant="body2" gutterBottom>
-                              {lesson.authorName}
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </a>
-                  </Grid>     
-              )}
+                          />
+                        )}
+                        <CardContent>
+                          <Typography variant="body1" gutterBottom>
+                            {lesson.title}
+                          </Typography>
+                          <Typography variant="body2" gutterBottom>
+                            {lesson.authorName}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </a>
+                </Grid>
+              ))}
             </Grid>
           </div>
         </AccordionDetails>

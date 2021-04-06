@@ -10,6 +10,8 @@ export enum PrivateRoutesPath {
   CATEGORIES = 'categories',
   SETTINGS = 'settings',
   IMAGES = 'images',
+  LIKES = 'likes',
+  SHARES = 'shares',
   USER_PROFILES = 'user-profiles',
   AUTH = 'auth',
   GET_BY_ID = '/:id',
@@ -19,7 +21,8 @@ export enum PrivateRoutesPath {
   CITIES = 'cities',
   COUNTRY = '/:countryName/states',
   STATE = '/:stateName/cities',
-  
+  GET_BY_ADVERT_ID = '/:advertid',
+
 
   // TODO only for API
   POST_CREATE = '/create',

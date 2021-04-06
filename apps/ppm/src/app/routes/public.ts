@@ -2,6 +2,7 @@ import { RouterItem, PrivateRoutesPath } from '@ppm/common/main';
 import { FeaturesAuthorization } from '@ppm/features/authorization';
 import { FeaturesRegistration } from '@ppm/features/registration';
 import { FeaturesForgotPassword } from '@ppm/features/forgot-password';
+import { FeaturesProfile } from '@ppm/features/profile';
 
 const PublicRouter: RouterItem[] = [
   {
@@ -30,6 +31,13 @@ const PublicRouter: RouterItem[] = [
     title: '',
     icon: '',
     component: FeaturesForgotPassword,
+    onMenu: false
+  },
+  {
+    path: PrivateRoutesPath.POST_ADD_ADVERT,
+    title: '',
+    icon: '',
+    component: FeaturesProfile,
     onMenu: false
   },
 ];

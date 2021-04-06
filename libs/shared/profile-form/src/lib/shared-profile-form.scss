@@ -1,8 +1,64 @@
 .profileForm {
-  width: auto;
-  max-width: 900px;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
+    width: auto;
+    max-width: 900px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    .image-container {
+        margin-top: 0.5rem;
+    }
+}
+
+#categories {
+    &>div {
+        display: flex;
+        flex-wrap: wrap;
+        &>div {
+            margin: 2px;
+        }
+    }
+}
+
+.new-category {
+    &__form {
+        display: flex;
+        button {
+            min-width: unset !important;
+            width: 20px;
+        }
+    }
+    &__input {
+        margin-right: 0.25rem !important;
+    }
+}
+
+.new-category {
+    &__control {
+        position: absolute;
+        bottom: 15px;
+        right: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        svg {
+            font-size: 1rem;
+            color: white;
+            margin: 0 !important;
+        }
+    }
+    &__add {
+        min-width: unset !important;
+        width: 20px;
+        padding: 0 0px !important;
+        margin-bottom: 5px !important;
+        span {
+            margin: 0 !important;
+        }
+    }
+    &__clear {
+        min-width: unset !important;
+        width: 20px;
+        padding: 1px 0px !important;
+    }
 }
