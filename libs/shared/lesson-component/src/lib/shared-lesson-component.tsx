@@ -68,6 +68,7 @@ export interface SharedLessonComponentProps {
   lesson?: Lesson;
   categories?: Category[];
   data?: LessonDefaultParams;
+  advertId?: string;
 }
 
 export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
@@ -359,6 +360,12 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           control={control}
           name="id"
           defaultValue={(lesson && lesson._id) || ''}
+        />
+        <Controller
+          as={<Input type="hidden" />}
+          control={control}
+          name="advertId"
+          defaultValue={props?.advertId}
         />
         <div className="two-buttons">
           <Button
