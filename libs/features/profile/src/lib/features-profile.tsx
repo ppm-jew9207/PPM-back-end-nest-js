@@ -130,7 +130,7 @@ export const FeaturesProfile = (props) => {
             />
         </Drawer>
 
-        <SharedAdvertsAddButtons disabled={false} />
+        {/* <SharedAdvertsAddButtons disabled={false} /> */}
         {advertsState.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}
@@ -160,7 +160,7 @@ export const FeaturesProfile = (props) => {
             }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
-            editable={profile._id == advert.creator._id}
+            editable={profile._id === advert.creator._id}
             onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
             onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
           />
