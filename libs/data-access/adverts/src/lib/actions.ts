@@ -77,3 +77,15 @@ export function smallUpdateSuccess() {
 export function smallUpdateFailed(error: Error) {
   return action(ActionTypes.ADVERT_SMALL_UPDATE_FAILED, error);
 }
+
+export function addAdvert(advert: AdvertType) {
+  return action(ActionTypes.ADVERT_ADD, advert);
+}
+
+export function addAdvertSuccess() {
+  return action(ActionTypes.ADVERT_ADD_SUCCESS);
+}
+
+export function addAdvertFailed(error: Error) {
+  return action(ActionTypes.ADVERT_ADD_FAILED, error);
+}
