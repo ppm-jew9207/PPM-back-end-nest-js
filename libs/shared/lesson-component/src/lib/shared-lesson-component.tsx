@@ -120,6 +120,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
 
   return (
     <Box
+      p={2}
       style={{ overflowX: 'hidden' }}
       width={450}
       maxWidth={500}
@@ -165,7 +166,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               type="text"
               className="description"
               multiline
-              rows={8}
+              rows={2}
             />
           }
           name="description"
@@ -250,7 +251,7 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
               type="text"
               className="resources"
               multiline
-              rows={8}
+              rows={2}
             />
           }
           name="resources"
@@ -359,25 +360,25 @@ export const SharedLessonComponent = (props: SharedLessonComponentProps) => {
           name="id"
           defaultValue={(lesson && lesson._id) || ''}
         />
-        <Button
-          fullWidth
-          variant="contained"
-          color="primary"
-          type="submit"
-          className="submit-form"
-        >
-          {lesson && lesson._id ? 'Update' : 'Create'}
-        </Button>
-        <Button
-          fullWidth
-          variant="contained"
-          color="secondary"
-          type="button"
-          className="cancel-form"
-          onClick={props.onCancel}
-        >
-          Cancel
-        </Button>
+        <div className="two-buttons">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className="submit-form"
+          >
+            {lesson && lesson._id ? 'Update' : 'Create'}
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            type="button"
+            className="cancel-form"
+            onClick={props.onCancel}
+          >
+            Cancel
+          </Button>
+        </div>
       </form>
     </Box>
   );
