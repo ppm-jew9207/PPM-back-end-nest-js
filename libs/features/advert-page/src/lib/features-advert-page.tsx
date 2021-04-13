@@ -125,6 +125,7 @@ export const FeaturesAdvertPage = (props: {
             mentors={allMentorsList}
             categories={allCategoriesList}
             onCancel={closeDrawer}
+            advertId={props?.match?.params?.id}
           ></SharedLessonComponent>
         </Drawer>
       </div>
