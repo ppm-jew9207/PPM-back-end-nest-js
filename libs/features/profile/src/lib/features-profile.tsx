@@ -22,7 +22,7 @@ import {
 } from '@ppm/data-access/countries-api';
 import { SharedAdvertCard } from '@ppm/shared/advert-card';
 import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
-import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
+import { AdvertData, SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
 
@@ -108,8 +108,9 @@ export const FeaturesProfile = (props) => {
     }
   }, [profile]);
 
-  const addAdvert = () => {
+  const addAdvert = (data: AdvertData) => {
     setAddDrawer(false);
+    dispatch(advertsActions.addAdvert(data));
   }
 
   return (
@@ -160,7 +161,7 @@ export const FeaturesProfile = (props) => {
             }
             imgUrl={advert.imageUrl}
             onSaveClick={saveClick}
-            editable={profile._id === advert.creator._id}
+            editable={profile?._id === advert?.creator?._id}
             onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
             onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
           />

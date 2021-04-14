@@ -1,6 +1,8 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
+  addAdvertFailed,
+  addAdvertSuccess,
   getAllSuccess,
   getAllFailed,
   createSuccess,
@@ -163,6 +165,25 @@ export function* updateAdvertFromList(actions : any) {
   }
 }
 
+export function* addAdverts(actions) {
+  try {
+    const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+    const data = actions.payload;
+    const result = yield call(post, path, data);
+
+    if (!result.success) {
+      throw new Error('Failed to add advert. Please try again.');
+    }
+
+    yield put(addAdvertSuccess());
+
+    yield put({type: ActionTypes.ADVERT_GET_ALL_BY_AUTHOR});
+
+  } catch (error) {
+     yield put(addAdvertFailed(error));
+  }
+}
+
 export function* advertsSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.ADVERT_CREATE, createAdvert);
@@ -171,6 +192,7 @@ export function* advertsSaga() {
   yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getAdvertById);
   yield takeEvery(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR, getAllByAuthor);
   yield takeEvery(ActionTypes.ADVERT_SMALL_UPDATE, updateAdvertFromList);
+  yield takeEvery(ActionTypes.ADVERT_ADD, addAdverts);
 }
 
 export default advertsSaga;
