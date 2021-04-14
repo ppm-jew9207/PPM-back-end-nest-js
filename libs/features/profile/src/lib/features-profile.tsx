@@ -131,7 +131,6 @@ export const FeaturesProfile = (props) => {
             />
         </Drawer>
 
-        {/* <SharedAdvertsAddButtons disabled={false} /> */}
         {advertsState.map((advert, i) => (
           <SharedAdvertCard
             id={advert._id}
