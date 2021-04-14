@@ -12,10 +12,15 @@ import {
   SharedLessonComponent,
 } from '@ppm/shared/lesson-component';
 import { useLesson } from '@ppm/hooks/use-lesson';
-
+import { useSelector, useDispatch } from 'react-redux';
 import './features-advert-page.scss';
 import { Drawer } from '@material-ui/core';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
+import {
+  userProfileActions,
+  userProfileSelectors,
+} from '@ppm/data-access/user-profile';
+import { createStructuredSelector } from 'reselect';
 
 interface RouteInfo extends RouteProps {
   params: {
@@ -23,6 +28,10 @@ interface RouteInfo extends RouteProps {
   };
   path?: string | string[];
 }
+
+const stateSelector = createStructuredSelector({
+  profile: userProfileSelectors.selectUserProfile(),
+});
 
 export const FeaturesAdvertPage = (props: {
   history: History;
@@ -45,7 +54,7 @@ export const FeaturesAdvertPage = (props: {
     allLearnItemsList,
     allMentorsList,
     createNewLesson,
-  } = useLesson(props.history, props?.match?.params?.id);
+  } = useLesson(props.history, props.match?.params?.id);
 
   const defaultLesson: Lesson = {
     title: '',
@@ -60,8 +69,9 @@ export const FeaturesAdvertPage = (props: {
   };
 
   const { id } = useParams();
-
+  const { profile } = useSelector(stateSelector);
   const { advert, loading, onGetStartedClick } = useAdverts(id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loading && isMenuOpen) {
@@ -69,12 +79,20 @@ export const FeaturesAdvertPage = (props: {
     }
   }, [lessons]);
 
+  useEffect(() => {
+    dispatch(userProfileActions.getUserProfile());
+  }, []);
+
   const closeDrawer = () => {
     setMenuOpen(false);
   };
 
   const openDrawer = () => {
     setMenuOpen(true);
+  };
+
+  const showAddLessonBtn = () => {
+    return profile?._id === advert.creator._id;
   };
 
   if (loading) return <CircularProgress />;
@@ -113,7 +131,7 @@ export const FeaturesAdvertPage = (props: {
           lessons={advert.lessonsList}
           accordionTitle="Lessons"
           onClick={openDrawer}
-          showAddButton={true}
+          showAddButton={showAddLessonBtn()}
         />
         <Drawer
           open={isMenuOpen}
@@ -125,7 +143,7 @@ export const FeaturesAdvertPage = (props: {
             mentors={allMentorsList}
             categories={allCategoriesList}
             onCancel={closeDrawer}
-            advertId={props?.match?.params?.id}
+            advertId={props.match?.params?.id}
           ></SharedLessonComponent>
         </Drawer>
       </div>
