@@ -105,6 +105,12 @@ export const FeaturesProfile = (props) => {
         socialLinks: profile.socialLinks,
         toggleDrawer: toggleDrawer,
       });
+      if (profile.country) {
+        dispatch(countriesApiActions.getStates(profile.country))
+      }
+      if (profile.state) {
+        dispatch(countriesApiActions.getCities(profile.state))
+      }
     }
   }, [profile]);
 

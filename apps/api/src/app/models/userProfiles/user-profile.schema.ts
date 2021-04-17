@@ -11,6 +11,7 @@ export const UserProfileSchema = new Schema({
   categories: [String],
   city: String,
   country: String,
+  state: String,
   phone: String,
   email: String,
   socialLinks: [{ link: String, icon: String, color: String }],
