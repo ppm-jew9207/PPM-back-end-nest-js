@@ -25,6 +25,7 @@ import {
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import './shared-profile-form.scss';
+import { profile } from 'console';
 
 const SOCIAL_LINKS = [
   {
@@ -83,7 +84,7 @@ interface RawInput {
 }
 
 export interface Profile {
-  _id: string;
+  _id?: string;
   description: string;
   firstName: string;
   lastName: string;
@@ -137,7 +138,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   };
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
-    console.log(event);
     setCategories(event.target.value);
   };
 
@@ -211,7 +211,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
      });
 
     const profileData: Profile = {
-      _id: props.profile._id,
       description,
       firstName,
       lastName,
@@ -228,6 +227,8 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       type,
       socialLinks: SOCIAL_LINKS
     };
+    if (props.profile && props.profile._id) profileData._id = props.profile._id;
+
     props.onSubmit(profileData);
   };
 
@@ -238,7 +239,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="firstName"
             name="firstName"
-            defaultValue={props.profile.firstName || ''}
+            defaultValue={props.profile && props.profile.firstName || ''}
             type="text"
             variant="outlined"
             label="First Name *"
@@ -254,7 +255,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="lastName"
             name="lastName"
-            defaultValue={props.profile.lastName || ''}
+            defaultValue={props.profile && props.profile.lastName || ''}
             type="text"
             variant="outlined"
             label="Last Name"
@@ -266,7 +267,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="email"
             name="email"
-            defaultValue={props.profile.email || ''}
+            defaultValue={props.profile && props.profile.email || ''}
             type="email"
             variant="outlined"
             label="Email"
@@ -315,7 +316,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="description"
             name="description"
-            defaultValue={props.profile.description || ''}
+            defaultValue={props.profile && props.profile.description || ''}
             multiline
             rows={4}
             variant="outlined"
@@ -328,7 +329,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="fieldOfProfession"
             name="fieldOfProfession"
-            defaultValue={props.profile.fieldOfProfession || ''}
+            defaultValue={props.profile && props.profile.fieldOfProfession || ''}
             type="text"
             variant="outlined"
             label="Field of Profession"
@@ -340,7 +341,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="company"
             name="company"
-            defaultValue={props.profile.company || ''}
+            defaultValue={ props.profile && props.profile.company || ''}
             type="text"
             variant="outlined"
             label="Company"
@@ -353,7 +354,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             <InputLabel id="categoriesLabel">Categories *</InputLabel>
             <Controller
               name="categories"
-              defaultValue={[]}
+              defaultValue={props.profile && props.profile.categories ? props.profile.categories : []}
               control={control}
               rules={{ validate: (value) => validateCategories(value) }}
               onChange={([selected]) => {
@@ -415,7 +416,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                       }
                       ></Button>
                       <Button className="new-category__clear" onClick={() => {
-                        console.log(newCategory);
                         setNewCategory({ title: '', value: ''});
                       }} style={{ color: '#fff', background: red[600] }}>
                       <ClearIcon display="inline"  />
@@ -436,6 +436,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <Controller
           render={({ onChange, ...params }) => (
             <Autocomplete
+              defaultValue={props.profile && props.countries && props.profile.country ? props.countries.filter((item) => item.country_name === props.profile.country)[0] : props.countries[0]}
               options={props.countries}
               getOptionLabel={option => option.country_name}
               renderOption={option => (
@@ -467,6 +468,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <Controller
           render={({ onChange, ...params }) => (
             <Autocomplete
+              defaultValue={props.states && props.profile && props.profile.state ? props.states.filter((item) => item.state_name === props.profile.state)[0] : []}
               options={props.states}
               getOptionLabel={option => option.state_name}
               renderOption={option => (
@@ -500,6 +502,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <Controller
           render={({ onChange, ...params }) => (
             <Autocomplete
+              defaultValue={props.cities && props.profile && props.profile.city ? props.cities.filter((item) => item.city_name === props.profile.city)[0] : props.cities[0]}
               options={props.cities}
               getOptionLabel={option => option.city_name}
               renderOption={option => (
@@ -521,7 +524,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               {...params}
             />
             )}
-            defaultValue={props.cities[0]}
             name="city"
             control={control}
           />
@@ -531,7 +533,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="phone"
             name="phone"
-            defaultValue={props.profile.phone || ''}
+            defaultValue={ props.profile && props.profile.phone || ''}
             type="text"
             variant="outlined"
             label="Phone"
@@ -543,7 +545,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="website"
             name="website"
-            defaultValue={props.profile.website || ''}
+            defaultValue={props.profile && props.profile.website || ''}
             type="text"
             variant="outlined"
             label="Website"
@@ -555,7 +557,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <TextField
             id="type"
             name="type"
-            defaultValue={props.profile.type || ''}
+            defaultValue={props.profile && props.profile.type || ''}
             type="text"
             variant="outlined"
             label="Type"
@@ -576,6 +578,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             label="Facebook"
             inputRef={register}
             fullWidth
+            defaultValue={props.profile && props.profile.socialLinks[0] && props.profile.socialLinks[0].link ? props.profile.socialLinks[0].link : ''}
           />
         </Box>
         <Box my={3}>
@@ -587,6 +590,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             label="LinkedIn"
             inputRef={register}
             fullWidth
+            defaultValue={props.profile && props.profile.socialLinks[1] && props.profile.socialLinks[1].link ? props.profile.socialLinks[1].link : ''}
           />
         </Box>
         <Box my={3}>
@@ -598,6 +602,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             label="Twitter"
             inputRef={register}
             fullWidth
+            defaultValue={props.profile && props.profile.socialLinks[2] && props.profile.socialLinks[2].link ? props.profile.socialLinks[2].link : ''}
           />
         </Box>
         <Box my={3}>
@@ -609,6 +614,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             label="Instagram"
             inputRef={register}
             fullWidth
+            defaultValue={props.profile && props.profile.socialLinks[3] && props.profile.socialLinks[3].link ? props.profile.socialLinks[3].link : ''}
           />
         </Box>
         <Button name="submit" variant="contained" color="primary" type="submit">

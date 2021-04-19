@@ -26,6 +26,8 @@ export class UserProfilePayloadDto implements UserProfile {
   @ApiProperty()
   public readonly country: string;
   @ApiProperty()
+  public readonly state: string;
+  @ApiProperty()
   public readonly phone: string;
   @ApiProperty()
   public readonly email: string;

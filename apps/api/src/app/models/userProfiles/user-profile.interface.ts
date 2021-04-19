@@ -16,6 +16,7 @@ export interface CreateUserProfile {
   company?: string;
   categories: string[];
   city: string;
+  state: string;
   country:string;
   phone: string;
   email: string;
@@ -32,6 +33,7 @@ export interface UserProfile {
   company: string;
   categories: string[];
   city: string;
+  state: string;
   country:string;
   phone: string;
   email: string;
