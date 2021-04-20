@@ -5,7 +5,7 @@ import FeaturesDashboardMentor from './features-dashboard-mentor';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   it('render successfully', () => {
     const component = shallow(<FeaturesDashboardMentor />);
     expect(component).toBeTruthy();

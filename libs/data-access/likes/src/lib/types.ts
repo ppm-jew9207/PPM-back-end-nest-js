@@ -7,7 +7,7 @@ export enum LikeEnum {
   Share = "share"
 }
 export interface LikeType {
-  advert_id: string;
+  course_id: string;
   user_id: string;
   type: LikeEnum;
 }

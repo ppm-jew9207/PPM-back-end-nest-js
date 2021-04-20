@@ -9,4 +9,4 @@ module.exports = {
     db.collection('courses').rename('adverts');
     db.collection('likes').updateMany( {}, { $rename: { "course": "advert" } } )
   }
-};
+}; 

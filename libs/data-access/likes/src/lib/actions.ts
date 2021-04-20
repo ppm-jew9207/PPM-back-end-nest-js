@@ -13,26 +13,26 @@ export function createFailed() {
   return action(ActionTypes.LIKE_CREATE_FAILED);
 }
 
-export function getLikesByAdvertId(advertId: string) {
-  return action(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID, advertId);
+export function getLikesByCourseId(courseId: string) {
+  return action(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID, courseId);
 }
 
-export function getLikesByAdvertIdSuccess(payload: any) {
+export function getLikesByCourseIdSuccess(payload: any) {
   return action(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID_SUCCESS, payload);
 }
 
-export function getLikesByAdvertIdFailed() {
+export function getLikesByCourseIdFailed() {
   return action(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID_FAILED);
 }
 
-export function getSharesByAdvertId(advertId: string) {
-  return action(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID, advertId);
+export function getSharesByCourseId(courseId: string) {
+  return action(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID, courseId);
 }
 
-export function getSharesByAdvertIdSuccess(payload: any) {
+export function getSharesByCourseIdSuccess(payload: any) {
   return action(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID_SUCCESS, payload);
 }
 
-export function getSharesByAdvertIdFailed() {
+export function getSharesByCourseIdFailed() {
   return action(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID_FAILED);
 }

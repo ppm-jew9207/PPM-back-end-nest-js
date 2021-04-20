@@ -4,7 +4,7 @@ import { likeType } from '../likes.interface'
 
 export class CreateLikePayloadDto {
   @ApiProperty()
-  public readonly advert: string;
+  public readonly course: string;
   @ApiProperty()
   public readonly type: likeType;
 }
