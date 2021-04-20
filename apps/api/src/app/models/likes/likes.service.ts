@@ -21,10 +21,10 @@ export class LikesModelService {
     });
   }
 
-  async doesExist(advert: string, user: string, type: likeType) {
+  async doesExist(course: string, user: string, type: likeType) {
     const result = await this._model.find(
       {
-        advert: advert, 
+        course: course, 
         user: user, 
         type: type
       });
@@ -39,27 +39,27 @@ export class LikesModelService {
   }
 
   
-  async getAllByAdvert(advertId: string): Promise<LikesViewModel[]> {
+  async getAllByCourse(courseId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advertId
+        course: courseId
       });
     return result;
   }
 
-  async getAllLikesByAdvert(advertId: string): Promise<LikesViewModel[]> {
+  async getAllLikesByCourse(courseId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advertId,
+        course: courseId,
         type: "like" as unknown as likeType
       });
     return result;
   }
 
-  async getAllSharesByAdvert(advertId: string): Promise<LikesViewModel[]> {
+  async getAllSharesByCourse(courseId: string): Promise<LikesViewModel[]> {
     const result = await this._model.find(
       {
-        advert: advertId,
+        course: courseId,
         type: "share" as unknown as likeType
       });
     return result;

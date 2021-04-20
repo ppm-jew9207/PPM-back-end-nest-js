@@ -5,43 +5,54 @@ import {
 } from '@ppm/shared/user-profile-card';
 import { Profile, SharedProfileForm, Category } from '@ppm/shared/profile-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { Drawer,  IconButton } from '@material-ui/core';
+import { Drawer, IconButton } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
 import './features-profile.scss';
-import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
-import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
+import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
+import {
+  categoriesActions,
+  categoriesSelectors,
+} from '@ppm/data-access/categories';
 import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
 import { LikeEnum, likesActions } from '@ppm/data-access/likes';
 import {
   countriesApiActions,
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
-import { SharedAdvertCard } from '@ppm/shared/advert-card';
-import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
-import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
+import { SharedCourseCard } from '@ppm/shared/course-card';
+import { SharedCoursesAddButtons } from '@ppm/shared/courses-add-buttons';
+import { SharedCreateCourseForm } from '@ppm/shared/create-course-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
-
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
   loading: userProfileSelectors.selectLoading(),
-  adverts: advertsSelectors.selectAdverts(),
+  courses: coursesSelectors.selectCourses(),
   categories: categoriesSelectors.selectCategories(),
   countries: countriesApiSelectors.selectCountries(),
   states: countriesApiSelectors.selectStates(),
   cities: countriesApiSelectors.selectCities(),
-  lessons: lessonsSelectors.selectLessons()
+  lessons: lessonsSelectors.selectLessons(),
 });
 
 export const FeaturesProfile = (props) => {
-  const [advertsState, setAdvertsState] = useState([]);
+  const [coursesState, setCoursesState] = useState([]);
   const dispatch = useDispatch();
-  const { profile, loading, adverts, categories, countries, states, cities, lessons } = useSelector(stateSelector);
+  const {
+    profile,
+    loading,
+    courses,
+    categories,
+    countries,
+    states,
+    cities,
+    lessons,
+  } = useSelector(stateSelector);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [addDrawer, setAddDrawer] = useState(false);
 
@@ -51,33 +62,33 @@ export const FeaturesProfile = (props) => {
 
   const saveClick = (payload: any) => {
     const data = { callback: 'getAllByAuthor', ...payload };
-    dispatch(advertsActions.smallUpdate(data));
+    dispatch(coursesActions.smallUpdate(data));
   };
 
-  const likeClick = (advertId: string, type: string) => {
-    dispatch(likesActions.create({ advert: advertId, type: type }));
-    const clickedAdvert = advertsState.find((item) => item._id === advertId);
-    const foundItem = clickedAdvert.likesList.findIndex(
+  const likeClick = (courseId: string, type: string) => {
+    dispatch(likesActions.create({ course: courseId, type: type }));
+    const clickedCourse = coursesState.find((item) => item._id === courseId);
+    const foundItem = clickedCourse.likesList.findIndex(
       (item) => item.type === type && item.user === profile._id
     );
     if (foundItem !== -1) {
-      clickedAdvert.likesList.splice(foundItem, 1);
+      clickedCourse.likesList.splice(foundItem, 1);
     } else {
-      clickedAdvert.likesList.push({
-        advert: advertId,
+      clickedCourse.likesList.push({
+        course: courseId,
         type: type,
         user: profile._id,
       });
     }
-    setAdvertsState([...adverts]);
+    setCoursesState([...courses]);
   };
 
   useEffect(() => {
-    setAdvertsState(adverts);
-  }, [adverts]);
+    setCoursesState(courses);
+  }, [courses]);
 
   useEffect(() => {
-    dispatch(advertsActions.getAllByAuthor());
+    dispatch(coursesActions.getAllByAuthor());
     dispatch(userProfileActions.getUserProfile());
     dispatch(categoriesActions.getAll());
     dispatch(countriesApiActions.getCountries());
@@ -106,17 +117,17 @@ export const FeaturesProfile = (props) => {
         toggleDrawer: toggleDrawer,
       });
       if (profile.country) {
-        dispatch(countriesApiActions.getStates(profile.country))
+        dispatch(countriesApiActions.getStates(profile.country));
       }
       if (profile.state) {
-        dispatch(countriesApiActions.getCities(profile.state))
+        dispatch(countriesApiActions.getCities(profile.state));
       }
     }
   }, [profile]);
 
-  const addAdvert = () => {
+  const addCourse = () => {
     setAddDrawer(false);
-  }
+  };
 
   return (
     <div className="features-profile">
@@ -124,51 +135,58 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
+        <SharedCoursesAddButtons
+          disabled={false}
+          toggleAddDrawer={() => setAddDrawer(true)}
+        />
 
-        <Drawer anchor="right" open={addDrawer} onClose={() => setAddDrawer(false)}>
-            <SharedCreateAdvertForm
-              onSubmit={addAdvert}
-              onCancel={() => {}}
-              categories={categories}
-              lessons={lessons}
-              toggleAddDrawer={() => setAddDrawer(false)}
-            />
+        <Drawer
+          anchor="right"
+          open={addDrawer}
+          onClose={() => setAddDrawer(false)}
+        >
+          <SharedCreateCourseForm
+            onSubmit={addCourse}
+            onCancel={() => {}}
+            categories={categories}
+            lessons={lessons}
+            toggleAddDrawer={() => setAddDrawer(false)}
+          />
         </Drawer>
 
-        <SharedAdvertsAddButtons disabled={false} />
-        {advertsState.map((advert, i) => (
-          <SharedAdvertCard
-            id={advert._id}
-            key={advert._id}
-            title={advert.title}
+        <SharedCoursesAddButtons disabled={false} />
+        {coursesState.map((course, i) => (
+          <SharedCourseCard
+            id={course._id}
+            key={course._id}
+            title={course.title}
             author={{
-              _id: advert.creator._id,
-              firstName: advert.creator.name,
+              _id: course.creator._id,
+              firstName: course.creator.name,
               lastName: '',
-              img: advert.creator.imageUrl,
+              img: course.creator.imageUrl,
             }}
-            createAt={advert.createdAt}
-            description={advert.description}
+            createAt={course.createdAt}
+            description={course.description}
             like={
-              advert.likesList
-                ? advert.likesList.filter(
+              course.likesList
+                ? course.likesList.filter(
                     (like: any) => like.type === LikeEnum.Like
                   ).length
                 : 0
             }
             shared={
-              advert.likesList
-                ? advert.likesList.filter(
+              course.likesList
+                ? course.likesList.filter(
                     (like: any) => like.type === LikeEnum.Share
                   ).length
                 : 0
             }
-            imgUrl={advert.imageUrl}
+            imgUrl={course.imageUrl}
             onSaveClick={saveClick}
-            editable={profile._id == advert.creator._id}
-            onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
-            onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
+            editable={profile._id == course.creator._id}
+            onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+            onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
           />
         ))}
       </div>
@@ -186,8 +204,8 @@ export const FeaturesProfile = (props) => {
             <CloseIcon />
           </IconButton>
           <SharedProfileForm
-            profile={profile} 
-            categories={categories} 
+            profile={profile}
+            categories={categories}
             countries={countries}
             cities={cities}
             states={states}

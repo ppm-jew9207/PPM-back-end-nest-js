@@ -453,9 +453,9 @@
         }
       }
     },
-    "shared-advert-card": {
-      "root": "libs/shared/advert-card",
-      "sourceRoot": "libs/shared/advert-card/src",
+    "shared-course-card": {
+      "root": "libs/shared/course-card",
+      "sourceRoot": "libs/shared/course-card/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -463,20 +463,20 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/advert-card/**/*.js",
-              "libs/shared/advert-card/**/*.jsx",
-              "libs/shared/advert-card/**/*.ts",
-              "libs/shared/advert-card/**/*.tsx"
+              "libs/shared/course-card/**/*.js",
+              "libs/shared/course-card/**/*.jsx",
+              "libs/shared/course-card/**/*.ts",
+              "libs/shared/course-card/**/*.tsx"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/advert-card/jest.config.js",
+            "jestConfig": "libs/shared/course-card/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-card"]
+          "outputs": ["coverage/libs/shared/course-card"]
         }
       }
     },
@@ -1301,9 +1301,9 @@
         }
       }
     },
-    "shared-create-advert-form": {
-      "root": "libs/shared/create-advert-form",
-      "sourceRoot": "libs/shared/create-advert-form/src",
+    "shared-create-course-form": {
+      "root": "libs/shared/create-course-form",
+      "sourceRoot": "libs/shared/create-course-form/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1311,25 +1311,25 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/create-advert-form/**/*.js",
-              "libs/shared/create-advert-form/**/*.jsx",
-              "libs/shared/create-advert-form/**/*.ts",
-              "libs/shared/create-advert-form/**/*.tsx",
-              "libs/shared/create-advert-form/**/*.spec.ts",
-              "libs/shared/create-advert-form/**/*.spec.tsx",
-              "libs/shared/create-advert-form/**/*.spec.js",
-              "libs/shared/create-advert-form/**/*.spec.jsx",
-              "libs/shared/create-advert-form/**/*.d.ts"
+              "libs/shared/create-course-form/**/*.js",
+              "libs/shared/create-course-form/**/*.jsx",
+              "libs/shared/create-course-form/**/*.ts",
+              "libs/shared/create-course-form/**/*.tsx",
+              "libs/shared/create-course-form/**/*.spec.ts",
+              "libs/shared/create-course-form/**/*.spec.tsx",
+              "libs/shared/create-course-form/**/*.spec.js",
+              "libs/shared/create-course-form/**/*.spec.jsx",
+              "libs/shared/create-course-form/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/create-advert-form/jest.config.js",
+            "jestConfig": "libs/shared/create-course-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/create-advert-form"]
+          "outputs": ["coverage/libs/shared/create-course-form"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1337,7 +1337,7 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/create-advert-form/.storybook"
+              "configFolder": "libs/shared/create-course-form/.storybook"
             }
           },
           "configurations": {
@@ -1350,9 +1350,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-create-advert-form",
+            "outputPath": "dist/storybook/shared-create-course-form",
             "config": {
-              "configFolder": "libs/shared/create-advert-form/.storybook"
+              "configFolder": "libs/shared/create-course-form/.storybook"
             }
           },
           "configurations": {
@@ -1364,9 +1364,9 @@
         }
       }
     },
-    "data-access-adverts": {
-      "root": "libs/data-access/adverts",
-      "sourceRoot": "libs/data-access/adverts/src",
+    "data-access-courses": {
+      "root": "libs/data-access/courses",
+      "sourceRoot": "libs/data-access/courses/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1374,22 +1374,22 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/data-access/adverts/**/*.ts",
-              "libs/data-access/adverts/**/*.spec.ts",
-              "libs/data-access/adverts/**/*.spec.tsx",
-              "libs/data-access/adverts/**/*.spec.js",
-              "libs/data-access/adverts/**/*.spec.jsx",
-              "libs/data-access/adverts/**/*.d.ts"
+              "libs/data-access/courses/**/*.ts",
+              "libs/data-access/courses/**/*.spec.ts",
+              "libs/data-access/courses/**/*.spec.tsx",
+              "libs/data-access/courses/**/*.spec.js",
+              "libs/data-access/courses/**/*.spec.jsx",
+              "libs/data-access/courses/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/data-access/adverts/jest.config.js",
+            "jestConfig": "libs/data-access/courses/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/data-access/adverts"]
+          "outputs": ["coverage/libs/data-access/courses"]
         }
       }
     },
@@ -1643,9 +1643,9 @@
         }
       }
     },
-    "features-adverts": {
-      "root": "libs/features/adverts",
-      "sourceRoot": "libs/features/adverts/src",
+    "features-courses": {
+      "root": "libs/features/courses",
+      "sourceRoot": "libs/features/courses/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1653,25 +1653,25 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/features/adverts/**/*.js",
-              "libs/features/adverts/**/*.jsx",
-              "libs/features/adverts/**/*.ts",
-              "libs/features/adverts/**/*.tsx",
-              "libs/features/adverts/**/*.spec.ts",
-              "libs/features/adverts/**/*.spec.tsx",
-              "libs/features/adverts/**/*.spec.js",
-              "libs/features/adverts/**/*.spec.jsx",
-              "libs/features/adverts/**/*.d.ts"
+              "libs/features/courses/**/*.js",
+              "libs/features/courses/**/*.jsx",
+              "libs/features/courses/**/*.ts",
+              "libs/features/courses/**/*.tsx",
+              "libs/features/courses/**/*.spec.ts",
+              "libs/features/courses/**/*.spec.tsx",
+              "libs/features/courses/**/*.spec.js",
+              "libs/features/courses/**/*.spec.jsx",
+              "libs/features/courses/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/features/adverts/jest.config.js",
+            "jestConfig": "libs/features/courses/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/adverts"]
+          "outputs": ["coverage/libs/features/courses"]
         }
       }
     },
@@ -1765,9 +1765,9 @@
         }
       }
     },
-    "features-advert-form": {
-      "root": "libs/features/advert-form",
-      "sourceRoot": "libs/features/advert-form/src",
+    "features-course-form": {
+      "root": "libs/features/course-form",
+      "sourceRoot": "libs/features/course-form/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -1775,25 +1775,25 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/features/advert-form/**/*.js",
-              "libs/features/advert-form/**/*.jsx",
-              "libs/features/advert-form/**/*.ts",
-              "libs/features/advert-form/**/*.tsx",
-              "libs/features/advert-form/**/*.spec.ts",
-              "libs/features/advert-form/**/*.spec.tsx",
-              "libs/features/advert-form/**/*.spec.js",
-              "libs/features/advert-form/**/*.spec.jsx",
-              "libs/features/advert-form/**/*.d.ts"
+              "libs/features/course-form/**/*.js",
+              "libs/features/course-form/**/*.jsx",
+              "libs/features/course-form/**/*.ts",
+              "libs/features/course-form/**/*.tsx",
+              "libs/features/course-form/**/*.spec.ts",
+              "libs/features/course-form/**/*.spec.tsx",
+              "libs/features/course-form/**/*.spec.js",
+              "libs/features/course-form/**/*.spec.jsx",
+              "libs/features/course-form/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/features/advert-form/jest.config.js",
+            "jestConfig": "libs/features/course-form/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/advert-form"]
+          "outputs": ["coverage/libs/features/course-form"]
         }
       }
     },
@@ -2041,9 +2041,9 @@
         }
       }
     },
-    "shared-advert-info": {
-      "root": "libs/shared/advert-info",
-      "sourceRoot": "libs/shared/advert-info/src",
+    "shared-course-info": {
+      "root": "libs/shared/course-info",
+      "sourceRoot": "libs/shared/course-info/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -2051,15 +2051,15 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/advert-info/**/*.js",
-              "libs/shared/advert-info/**/*.jsx",
-              "libs/shared/advert-info/**/*.ts",
-              "libs/shared/advert-info/**/*.tsx",
-              "libs/shared/advert-info/**/*.spec.ts",
-              "libs/shared/advert-info/**/*.spec.tsx",
-              "libs/shared/advert-info/**/*.spec.js",
-              "libs/shared/advert-info/**/*.spec.jsx",
-              "libs/shared/advert-info/**/*.d.ts",
+              "libs/shared/course-info/**/*.js",
+              "libs/shared/course-info/**/*.jsx",
+              "libs/shared/course-info/**/*.ts",
+              "libs/shared/course-info/**/*.tsx",
+              "libs/shared/course-info/**/*.spec.ts",
+              "libs/shared/course-info/**/*.spec.tsx",
+              "libs/shared/course-info/**/*.spec.js",
+              "libs/shared/course-info/**/*.spec.jsx",
+              "libs/shared/course-info/**/*.d.ts",
               "libs/shared/src/**/*"
             ]
           }
@@ -2067,10 +2067,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/advert-info/jest.config.js",
+            "jestConfig": "libs/shared/course-info/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-info"]
+          "outputs": ["coverage/libs/shared/course-info"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2078,7 +2078,7 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/advert-info/.storybook"
+              "configFolder": "libs/shared/course-info/.storybook"
             }
           },
           "configurations": {
@@ -2091,9 +2091,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-advert-info",
+            "outputPath": "dist/storybook/shared-course-info",
             "config": {
-              "configFolder": "libs/shared/advert-info/.storybook"
+              "configFolder": "libs/shared/course-info/.storybook"
             }
           },
           "configurations": {
@@ -2105,9 +2105,9 @@
         }
       }
     },
-    "shared-advert-details": {
-      "root": "libs/shared/advert-details",
-      "sourceRoot": "libs/shared/advert-details/src",
+    "shared-course-details": {
+      "root": "libs/shared/course-details",
+      "sourceRoot": "libs/shared/course-details/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -2115,15 +2115,15 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/advert-details/**/*.js",
-              "libs/shared/advert-details/**/*.jsx",
-              "libs/shared/advert-details/**/*.ts",
-              "libs/shared/advert-details/**/*.tsx",
-              "libs/shared/advert-details/**/*.spec.ts",
-              "libs/shared/advert-details/**/*.spec.tsx",
-              "libs/shared/advert-details/**/*.spec.js",
-              "libs/shared/advert-details/**/*.spec.jsx",
-              "libs/shared/advert-details/**/*.d.ts",
+              "libs/shared/course-details/**/*.js",
+              "libs/shared/course-details/**/*.jsx",
+              "libs/shared/course-details/**/*.ts",
+              "libs/shared/course-details/**/*.tsx",
+              "libs/shared/course-details/**/*.spec.ts",
+              "libs/shared/course-details/**/*.spec.tsx",
+              "libs/shared/course-details/**/*.spec.js",
+              "libs/shared/course-details/**/*.spec.jsx",
+              "libs/shared/course-details/**/*.d.ts",
               "libs/shared/src/**/*"
             ]
           }
@@ -2131,10 +2131,10 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/advert-details/jest.config.js",
+            "jestConfig": "libs/shared/course-details/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/shared/advert-details"]
+          "outputs": ["coverage/libs/shared/course-details"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -2142,7 +2142,7 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/advert-details/.storybook"
+              "configFolder": "libs/shared/course-details/.storybook"
             }
           },
           "configurations": {
@@ -2155,9 +2155,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-advert-details",
+            "outputPath": "dist/storybook/shared-course-details",
             "config": {
-              "configFolder": "libs/shared/advert-details/.storybook"
+              "configFolder": "libs/shared/course-details/.storybook"
             }
           },
           "configurations": {
@@ -2382,9 +2382,9 @@
         }
       }
     },
-    "features-advert-page": {
-      "root": "libs/features/advert-page",
-      "sourceRoot": "libs/features/advert-page/src",
+    "features-course-page": {
+      "root": "libs/features/course-page",
+      "sourceRoot": "libs/features/course-page/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -2392,47 +2392,47 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/features/advert-page/**/*.js",
-              "libs/features/advert-page/**/*.jsx",
-              "libs/features/advert-page/**/*.ts",
-              "libs/features/advert-page/**/*.tsx",
-              "libs/features/advert-page/**/*.spec.ts",
-              "libs/features/advert-page/**/*.spec.tsx",
-              "libs/features/advert-page/**/*.spec.js",
-              "libs/features/advert-page/**/*.spec.jsx",
-              "libs/features/advert-page/**/*.d.ts"
+              "libs/features/course-page/**/*.js",
+              "libs/features/course-page/**/*.jsx",
+              "libs/features/course-page/**/*.ts",
+              "libs/features/course-page/**/*.tsx",
+              "libs/features/course-page/**/*.spec.ts",
+              "libs/features/course-page/**/*.spec.tsx",
+              "libs/features/course-page/**/*.spec.js",
+              "libs/features/course-page/**/*.spec.jsx",
+              "libs/features/course-page/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/features/advert-page/jest.config.js",
+            "jestConfig": "libs/features/course-page/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/advert-page"]
+          "outputs": ["coverage/libs/features/course-page"]
         }
       }
     },
-    "hooks-use-adverts": {
-      "root": "libs/hooks/use-adverts",
-      "sourceRoot": "libs/hooks/use-adverts/src",
+    "hooks-use-courses": {
+      "root": "libs/hooks/use-courses",
+      "sourceRoot": "libs/hooks/use-courses/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/hooks/use-adverts/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/hooks/use-courses/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/hooks/use-adverts/jest.config.js",
+            "jestConfig": "libs/hooks/use-courses/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/hooks/use-adverts"]
+          "outputs": ["coverage/libs/hooks/use-courses"]
         }
       }
     },
@@ -2583,24 +2583,24 @@
         }
       }
     },
-    "shared-adverts-add-buttons": {
-      "root": "libs/shared/adverts-add-buttons",
-      "sourceRoot": "libs/shared/adverts-add-buttons/src",
+    "shared-courses-add-buttons": {
+      "root": "libs/shared/courses-add-buttons",
+      "sourceRoot": "libs/shared/courses-add-buttons/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/adverts-add-buttons/**/*.{ts,tsx,js,jsx}"
+              "libs/shared/courses-add-buttons/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/adverts-add-buttons"],
+          "outputs": ["coverage/libs/shared/courses-add-buttons"],
           "options": {
-            "jestConfig": "libs/shared/adverts-add-buttons/jest.config.js",
+            "jestConfig": "libs/shared/courses-add-buttons/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -2610,7 +2610,7 @@
             "uiFramework": "@storybook/react",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/adverts-add-buttons/.storybook"
+              "configFolder": "libs/shared/courses-add-buttons/.storybook"
             }
           },
           "configurations": {
@@ -2623,9 +2623,9 @@
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/shared-adverts-add-buttons",
+            "outputPath": "dist/storybook/shared-courses-add-buttons",
             "config": {
-              "configFolder": "libs/shared/adverts-add-buttons/.storybook"
+              "configFolder": "libs/shared/courses-add-buttons/.storybook"
             }
           },
           "configurations": {
@@ -2636,21 +2636,21 @@
         }
       }
     },
-    "shared-adverts-add-buttons-e2e": {
-      "root": "apps/shared-adverts-add-buttons-e2e",
-      "sourceRoot": "apps/shared-adverts-add-buttons-e2e/src",
+    "shared-courses-add-buttons-e2e": {
+      "root": "apps/shared-courses-add-buttons-e2e",
+      "sourceRoot": "apps/shared-courses-add-buttons-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/shared-adverts-add-buttons-e2e/cypress.json",
-            "tsConfig": "apps/shared-adverts-add-buttons-e2e/tsconfig.e2e.json",
-            "devServerTarget": "shared-adverts-add-buttons:storybook"
+            "cypressConfig": "apps/shared-courses-add-buttons-e2e/cypress.json",
+            "tsConfig": "apps/shared-courses-add-buttons-e2e/tsconfig.e2e.json",
+            "devServerTarget": "shared-courses-add-buttons:storybook"
           },
           "configurations": {
             "ci": {
-              "devServerTarget": "shared-adverts-add-buttons:storybook:ci"
+              "devServerTarget": "shared-courses-add-buttons:storybook:ci"
             }
           }
         },
@@ -2658,7 +2658,7 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/shared-adverts-add-buttons-e2e/**/*.{js,ts}"
+              "apps/shared-courses-add-buttons-e2e/**/*.{js,ts}"
             ]
           }
         }

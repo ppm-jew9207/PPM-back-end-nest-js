@@ -5,7 +5,7 @@ import FeaturesMentors from './features-mentors';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   it('render successfully', () => {
     const component = shallow(<FeaturesMentors />);
     expect(component).toBeTruthy();

@@ -6,7 +6,7 @@ import { Inject, BadRequestException, HttpException, HttpStatus } from '@nestjs/
 import { LikeCreated } from '../events/like-created.event';
 import { UserLean } from '../../../models/users/user.interface';
 import { CreateLikePayload, likeType } from '../../../models/likes/likes.interface';
-import { AdvertsModelService } from '../../../models/adverts/adverts.service';
+import { CoursesModelService } from '../../../models/courses/courses.service';
 import { LikesModelService } from '../../../models/likes/likes.service';
 import { forEach } from 'lodash';
 
@@ -16,7 +16,7 @@ export class CreateLike {
 @CommandHandler(CreateLike)
 export class CreateLikeHandler implements ICommandHandler<CreateLike> {
   @Inject() private readonly _publisher: EventPublisher;
-  @Inject() private readonly _advertsService: AdvertsModelService;
+  @Inject() private readonly _coursesService: CoursesModelService;
   @Inject() private readonly _likesService: LikesModelService;
 
   async execute({ data, user }: CreateLike): Promise<boolean> {
@@ -26,20 +26,20 @@ export class CreateLikeHandler implements ICommandHandler<CreateLike> {
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    if(!data.advert) {
+    if(!data.course) {
       throw new HttpException(
-        'Advert not found',
+        'Course not found',
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    const advert = await this._advertsService.getById(data.advert);
-    if(!advert.length) {
+    const course = await this._coursesService.getById(data.course);
+    if(!course.length) {
       throw new HttpException(
-        'Advert with provided ID is not found',
+        'Course with provided ID is not found',
         HttpStatus.INTERNAL_SERVER_ERROR
       );    
     }
-    const likesArray = await this._likesService.doesExist(data.advert, user._id, data.type);
+    const likesArray = await this._likesService.doesExist(data.course, user._id, data.type);
     if(likesArray) {
       likesArray.forEach((likeObject) => {
         this._likesService.remove(likeObject._id);

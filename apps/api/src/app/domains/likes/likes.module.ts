@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { LikesController } from './likes.controller';
-import { AdvertsModelModule } from '../../models/adverts/adverts.module';
+import { CoursesModelModule } from '../../models/courses/courses.module';
 import { LikesModelModule } from '../../models/likes/likes.module';
 import { CreateLikeHandler } from './commands/create-like.command';
 import { RemoveLikeHandler } from './commands/remove-like.command';
@@ -15,7 +15,7 @@ const commandHandlers = [
 @Module({
   imports: [
     CqrsModule,
-    AdvertsModelModule,
+    CoursesModelModule,
     UsersModelModule,
     LikesModelModule
   ],
