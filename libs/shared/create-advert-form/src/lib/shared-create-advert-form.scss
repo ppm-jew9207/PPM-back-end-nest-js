@@ -13,7 +13,7 @@ $error: #3F51B5;
   }
 
   .draggable-container.empty {
-    min-height: 20em;
+    min-height: 7em;
   }
   .draggable-container {
     min-width: 100%;
@@ -162,13 +162,15 @@ $error: #3F51B5;
   min-width: 700px;
   
   .submit-form {
-    margin-top: 1rem !important;
-    padding: 0.9rem !important;
+    margin-top: 0.5rem !important;
+    padding: 0.5rem !important;
+    width: 48%;
   }
 
   .cancel-form {
-    padding: 0.9rem !important;
-    margin-top: 25px !important;
+    padding: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    width: 48%;
   }
 
   .dialog-list {
@@ -192,7 +194,10 @@ $error: #3F51B5;
   }
 
   .select-button {
-    margin-bottom: 8.5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // margin-bottom: 8.5px;
   }
 
   .error {
@@ -207,4 +212,13 @@ $error: #3F51B5;
       color: $error;
     }
   }
+  
+  .text-row {
+    display: flex;
+    justify-content: space-between;
+    .prerequisites, .learning {
+    width: 48%;
+  }
+  }
+  
 }

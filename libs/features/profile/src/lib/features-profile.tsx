@@ -25,6 +25,9 @@ import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
 import { AdvertData, SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
+import {
+  Button
+} from '@material-ui/core';
 
 
 const stateSelector = createStructuredSelector({
@@ -119,7 +122,12 @@ export const FeaturesProfile = (props) => {
         <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
+        {/* <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/> */}
+        <div className='advert-button'>
+        <Button variant="contained" color="primary" onClick={() => setAddDrawer(true)}>
+          Add Advert
+        </Button>
+        </div>
 
         <Drawer anchor="right" open={addDrawer} onClose={() => setAddDrawer(false)}>
             <SharedCreateAdvertForm

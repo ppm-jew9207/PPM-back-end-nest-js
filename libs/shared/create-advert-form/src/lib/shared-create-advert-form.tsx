@@ -234,7 +234,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                 setAdvert({ ...advert, description: event.target.value })
               }
               multiline
-              rows={8}
+              rows={2}
             />
           }
           name="description"
@@ -248,13 +248,14 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             Description is required
           </div>
         )}
+        <div className='text-row'>
         <Controller
           as={
             <TextField
               placeholder='Prerequisites'
               variant="outlined"
               margin="normal"
-              fullWidth
+              // fullWidth
               label={labels?.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
@@ -262,7 +263,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                 setAdvert({ ...advert, prerequisites: event.target.value })
               }
               multiline
-              rows={2}
             />
           }
           name="prerequisites"
@@ -282,7 +282,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
               placeholder='What will you learn?'
               variant="outlined"
               margin="normal"
-              fullWidth
+              // fullWidth
               label={labels?.learningInputLabel}
               type="text"
               className="learning"
@@ -290,7 +290,6 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
                 setAdvert({ ...advert, learning: event.target.value })
               }
               multiline
-              rows={2}
             />
           }
           name="learning"
@@ -304,6 +303,7 @@ export const SharedCreateAdvertForm = (props: SharedCreateAdvertFormProps) => {
             What to learn is required
           </div>
         )}
+        </div>
         <Box my={3}>
           <FormControl variant="outlined" fullWidth error={!!errors.categories}>
             <InputLabel id="categoriesLabel">Categories *</InputLabel>

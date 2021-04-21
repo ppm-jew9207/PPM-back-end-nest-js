@@ -8,6 +8,7 @@ import { UserLean } from '../../../models/users/user.interface';
 import { CreateAdvertPayload } from '../../../models/adverts/adverts.interface';
 import { UsersService } from '../../../models/users/users.service';
 import { UserProfileModelService } from '../../../models/userProfiles/user-profile.service';
+import { ResponseSuccess } from '../../../common/dto/response.dto';
 
 export class CreateAdvert {
   constructor(public data: CreateAdvertPayloadDto, public user: UserLean) {}
@@ -18,16 +19,16 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
   @Inject() private readonly _usersService: UsersService;
   @Inject() private readonly _userProfileService: UserProfileModelService;
 
-  async execute({ data, user }: CreateAdvert): Promise<Boolean> {
+  async execute({ data, user }: CreateAdvert): Promise<any> {
     const userFromDB = await this._usersService.getById(user._id);
     const userProfile = await this._userProfileService.getById(user._id);
 
     if (!userFromDB) {
-      throw new BadRequestException(`This user doesn't exist`);
+      return new BadRequestException(`This user doesn't exist`);
     }
 
     if (!data.title) {
-      throw new BadRequestException('Title is required!');
+      return new BadRequestException('Title is required!');
     }
 
     const advertData: CreateAdvertPayload = {
@@ -44,6 +45,6 @@ export class CreateAdvertHandler implements ICommandHandler<CreateAdvert> {
     const advert = this._publisher.mergeObjectContext(aggregate);
     advert.commit();
 
-    return true;
+    return new ResponseSuccess('Advert created');
   }
 }

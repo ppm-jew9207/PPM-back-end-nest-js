@@ -19,7 +19,8 @@ import {
   updateFailed
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* createAdvert(actions) {
   const data = actions.payload;
@@ -169,18 +170,33 @@ export function* addAdverts(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.ADVERTS}`;
     const data = actions.payload;
+    console.log(data);
     const result = yield call(post, path, data);
 
-    if (!result.success) {
+    
+
+    if (!result.data.success) {
       throw new Error('Failed to add advert. Please try again.');
-    }
+    } 
+      yield put(addAdvertSuccess());
 
-    yield put(addAdvertSuccess());
+      yield put({type: ActionTypes.ADVERT_GET_ALL_BY_AUTHOR});
 
-    yield put({type: ActionTypes.ADVERT_GET_ALL_BY_AUTHOR});
-
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Advert was created successfully.'
+        })
+      );
+    
   } catch (error) {
      yield put(addAdvertFailed(error));
+     yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.ERROR,
+          message: error.message
+        })
+      );
   }
 }
 
