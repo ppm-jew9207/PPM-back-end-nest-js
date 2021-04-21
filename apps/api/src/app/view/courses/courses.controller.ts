@@ -18,8 +18,8 @@ import { TransformInterceptor } from '../../common/interceptors/transform.interc
 import { CoursesViewModel } from '../../models/courses/courses.interface';
 import { GetUsersCoursesQuery } from './queries/handlers/get-users-courses.handler';
 
-@Controller(PrivateRoutesPath.ADVERTS)
-@ApiTags(PrivateRoutesPath.ADVERTS)
+@Controller(PrivateRoutesPath.COURSES)
+@ApiTags(PrivateRoutesPath.COURSES)
 export class CoursesController {
   constructor(private readonly queryBus: QueryBus) {}
 

@@ -27,101 +27,101 @@ export function coursesReducer(
         list: state.list,
         loading: false,
       };
-    case ActionTypes.ADVERT_CREATE:
+    case ActionTypes.COURSE_CREATE:
       return {
         list: state.list,
         course: action.payload,
         loading: true,
       };
-    case ActionTypes.ADVERT_CREATE_SUCCESS:
+    case ActionTypes.COURSE_CREATE_SUCCESS:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_CREATE_FAILED:
+    case ActionTypes.COURSE_CREATE_FAILED:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
 
-    case ActionTypes.ADVERT_UPDATE:
+    case ActionTypes.COURSE_UPDATE:
       return {
         list: state.list,
         course: action.payload,
         loading: true,
       };
-    case ActionTypes.ADVERT_UPDATE_SUCCESS:
+    case ActionTypes.COURSE_UPDATE_SUCCESS:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_UPDATE_FAILED:
+    case ActionTypes.COURSE_UPDATE_FAILED:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
 
-    case ActionTypes.ADVERT_REMOVE:
+    case ActionTypes.COURSE_REMOVE:
       return {
         list: state.list,
         course: state.course,
         loading: true,
       };
-    case ActionTypes.ADVERT_REMOVE_SUCCESS:
+    case ActionTypes.COURSE_REMOVE_SUCCESS:
       return {
         list: state.list,
         course: null,
         loading: false,
       };
-    case ActionTypes.ADVERT_REMOVE_FAILED:
+    case ActionTypes.COURSE_REMOVE_FAILED:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
 
-    case ActionTypes.ADVERT_GET_BY_ID:
+    case ActionTypes.COURSE_GET_BY_ID:
       return {
         list: state.list,
         course: state.course,
         loading: true,
       };
-    case ActionTypes.ADVERT_GET_BY_ID_SUCCESS:
+    case ActionTypes.COURSE_GET_BY_ID_SUCCESS:
       return {
         list: state.list,
         course: action.payload.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_GET_BY_ID_FAILED:
+    case ActionTypes.COURSE_GET_BY_ID_FAILED:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_GET_ALL_BY_AUTHOR:
+    case ActionTypes.COURSE_GET_ALL_BY_AUTHOR:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_SMALL_UPDATE:
+    case ActionTypes.COURSE_SMALL_UPDATE:
       return {
         list: state.list,
         course: action.payload,
 
         loading: true,
       };
-    case ActionTypes.ADVERT_SMALL_UPDATE_SUCCESS:
+    case ActionTypes.COURSE_SMALL_UPDATE_SUCCESS:
       return {
         list: state.list,
         course: state.course,
         loading: false,
       };
-    case ActionTypes.ADVERT_SMALL_UPDATE_FAILED:
+    case ActionTypes.COURSE_SMALL_UPDATE_FAILED:
       return {
         list: state.list,
         course: state.course,

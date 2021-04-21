@@ -5,7 +5,7 @@ import { CoursesSchema } from './courses.schema';
 import { ViewModels } from '../../helpers/constants';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: ViewModels.ADVERTS_VIEW, schema: CoursesSchema }])],
+  imports: [MongooseModule.forFeature([{ name: ViewModels.COURSES_VIEW, schema: CoursesSchema }])],
   providers: [CoursesModelService],
   exports: [CoursesModelService]
 })

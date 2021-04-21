@@ -70,6 +70,6 @@ export const LIKES_JOIN_QUERY = {
   }
 };
 
-export const ADVERTS_ID_QUERY = {
+export const COURSES_ID_QUERY = {
   "$addFields": { "course_id": { "$toString": "$_id" }},
 };
