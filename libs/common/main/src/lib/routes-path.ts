@@ -3,7 +3,7 @@ export enum PrivateRoutesPath {
   DASHBOARD_MENTOR = '/mentor/:id',
   MENTOR = 'mentor',
   STUDENT = 'student',
-  ADVERTS = 'adverts',
+  ADVERTS = 'courses',
   LESSONS = 'lessons',
   LEARN_ITEMS = 'learn-items',
   USER = 'user',
@@ -21,7 +21,7 @@ export enum PrivateRoutesPath {
   CITIES = 'cities',
   COUNTRY = '/:countryName/states',
   STATE = '/:stateName/cities',
-  GET_BY_ADVERT_ID = '/:advertid',
+  GET_BY_ADVERT_ID = '/:courseid',
 
 
   // TODO only for API

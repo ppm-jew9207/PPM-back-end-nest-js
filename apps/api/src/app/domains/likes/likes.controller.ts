@@ -31,8 +31,8 @@ export class LikesController {
 
   @Post()
   async create(@Body() dto: CreateLikePayloadDto, @Req() request: any) {
-    if (!isValidObjectId(dto.advert)) {
-      return new ResponseError('LIKE.ERROR', 'Incorrect advert ID');
+    if (!isValidObjectId(dto.course)) {
+      return new ResponseError('LIKE.ERROR', 'Incorrect course ID');
     }
     try {
       const user = request.user;

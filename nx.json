@@ -45,7 +45,7 @@
     "shared-profile-form": {
       "tags": []
     },
-    "shared-advert-card": {
+    "shared-course-card": {
       "tags": []
     },
     "shared-top-right-bar": {
@@ -90,7 +90,7 @@
     "shared-footer": {
       "tags": []
     },
-    "data-access-adverts": {
+    "data-access-courses": {
       "tags": []
     },
     "shared-user-profile-card": {
@@ -118,13 +118,13 @@
       "tags": [],
       "implicitDependencies": ["shared-registration"]
     },
-    "shared-create-advert-form": {
+    "shared-create-course-form": {
       "tags": []
     },
     "shared-left-side-menu": {
       "tags": []
     },
-    "features-adverts": {
+    "features-courses": {
       "tags": []
     },
     "features-registration": {
@@ -142,7 +142,7 @@
     "features-profile": {
       "tags": []
     },
-    "features-advert-form": {
+    "features-course-form": {
       "tags": []
     },
     "data-access-categories": {
@@ -151,10 +151,10 @@
     "shared-lesson-component": {
       "tags": []
     },
-    "shared-advert-info": {
+    "shared-course-info": {
       "tags": []
     },
-    "shared-advert-details": {
+    "shared-course-details": {
       "tags": []
     },
     "shared-lessons-accordion": {
@@ -181,10 +181,10 @@
     "features-private-layout": {
       "tags": []
     },
-    "features-advert-page": {
+    "features-course-page": {
       "tags": []
     },
-    "hooks-use-adverts": {
+    "hooks-use-courses": {
       "tags": []
     },
     "features-lesson-page": {
@@ -203,12 +203,12 @@
     "data-access-learn-items": {
       "tags": []
     },
-    "shared-adverts-add-buttons": {
+    "shared-courses-add-buttons": {
       "tags": []
     },
-    "shared-adverts-add-buttons-e2e": {
+    "shared-courses-add-buttons-e2e": {
       "tags": [],
-      "implicitDependencies": ["shared-adverts-add-buttons"]
+      "implicitDependencies": ["shared-courses-add-buttons"]
     },
     "data-access-countries-api": {
       "tags": []

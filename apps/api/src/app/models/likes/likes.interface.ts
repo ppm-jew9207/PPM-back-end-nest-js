@@ -7,14 +7,14 @@ export enum likeType {
 }
 
 export interface CreateLikePayload {
-  advert: string;
+  course: string;
   user: string;
   type: likeType;
 }
 
 export interface LikePayload {
   _id: string;
-  advert: string;
+  course: string;
   user: string;
   type: likeType;
 }

@@ -18,7 +18,7 @@
     "paths": {
       "@ppm/shared/storybook": ["libs/shared/storybook/src/index.ts"],
       "@ppm/shared/test": ["libs/shared/test/src/index.ts"],
-      "@ppm/shared/advert-card": ["libs/shared/advert-card/src/index.ts"],
+      "@ppm/shared/course-card": ["libs/shared/course-card/src/index.ts"],
       "@ppm/shared/top-right-bar": ["libs/shared/top-right-bar/src/index.ts"],
       "@ppm/shared/navigation": ["libs/shared/navigation/src/index.ts"],
       "@ppm/shared/info-card": ["libs/shared/info-card/src/index.ts"],
@@ -64,12 +64,12 @@
       "@ppm/data-access/http-requests": [
         "libs/data-access/http-requests/src/index.ts"
       ],
-      "@ppm/shared/create-advert-form": [
-        "libs/shared/create-advert-form/src/index.ts"
+      "@ppm/shared/create-course-form": [
+        "libs/shared/create-course-form/src/index.ts"
       ],
       "@ppm/shared/left-side-menu": ["libs/shared/left-side-menu/src/index.ts"],
-      "@ppm/data-access/adverts": ["libs/data-access/adverts/src/index.ts"],
-      "@ppm/features/adverts": ["libs/features/adverts/src/index.ts"],
+      "@ppm/data-access/courses": ["libs/data-access/courses/src/index.ts"],
+      "@ppm/features/courses": ["libs/features/courses/src/index.ts"],
       "@ppm/features/registration": ["libs/features/registration/src/index.ts"],
       "@ppm/data-access/snack-bar": ["libs/data-access/snack-bar/src/index.ts"],
       "@ppm/features/snack-bar": ["libs/features/snack-bar/src/index.ts"],
@@ -77,7 +77,7 @@
         "libs/data-access/user-profile/src/index.ts"
       ],
       "@ppm/features/profile": ["libs/features/profile/src/index.ts"],
-      "@ppm/features/advert-form": ["libs/features/advert-form/src/index.ts"],
+      "@ppm/features/course-form": ["libs/features/course-form/src/index.ts"],
       "@ppm/data-access/categories": [
         "libs/data-access/categories/src/index.ts"
       ],
@@ -98,13 +98,13 @@
       "@ppm/shared/create-new-password-form": [
         "libs/shared/create-new-password-form/src/index.ts"
       ],
-      "@ppm/shared/advert-info": ["libs/shared/advert-info/src/index.ts"],
-      "@ppm/shared/advert-details": ["libs/shared/advert-details/src/index.ts"],
+      "@ppm/shared/course-info": ["libs/shared/course-info/src/index.ts"],
+      "@ppm/shared/course-details": ["libs/shared/course-details/src/index.ts"],
       "@ppm/shared/lessons-accordion": [
         "libs/shared/lessons-accordion/src/index.ts"
       ],
-      "@ppm/features/advert-page": ["libs/features/advert-page/src/index.ts"],
-      "@ppm/hooks/use-adverts": ["libs/hooks/use-adverts/src/index.ts"],
+      "@ppm/features/course-page": ["libs/features/course-page/src/index.ts"],
+      "@ppm/hooks/use-courses": ["libs/hooks/use-courses/src/index.ts"],
       "@ppm/features/lesson-page": ["libs/features/lesson-page/src/index.ts"],
       "@ppm/hooks/use-lesson": ["libs/hooks/use-lesson/src/index.ts"],
       "@ppm/features/private-layout": [
@@ -117,8 +117,8 @@
       "@ppm/data-access/countries-api": [
         "libs/data-access/countries-api/src/index.ts"
       ],
-      "@ppm/shared/adverts-add-buttons": [
-        "libs/shared/adverts-add-buttons/src/index.ts"
+      "@ppm/shared/courses-add-buttons": [
+        "libs/shared/courses-add-buttons/src/index.ts"
       ],
       "@ppm/data-access/likes": ["libs/data-access/likes/src/index.ts"]
     }

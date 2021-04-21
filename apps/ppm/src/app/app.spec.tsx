@@ -5,7 +5,7 @@ import App from './app';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   it('render component succesfully', () => {
     const component = shallow(<App />);
     expect(component).toBeTruthy();

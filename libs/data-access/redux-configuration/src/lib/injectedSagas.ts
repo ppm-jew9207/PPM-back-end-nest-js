@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
 import { authorizationSaga } from '@ppm/data-access/authorization';
-import { advertsSaga } from '@ppm/data-access/adverts';
+import { coursesSaga } from '@ppm/data-access/courses';
 import { lessonsSaga } from '@ppm/data-access/lessons';
 import { categoriesSaga } from '@ppm/data-access/categories';
 import { learnItemsSaga } from '@ppm/data-access/learn-items';
@@ -11,7 +11,7 @@ import { likesSaga } from '@ppm/data-access/likes';
 export default function* rootSaga() {
   yield all([
     fork(authorizationSaga),
-    fork(advertsSaga),
+    fork(coursesSaga),
     fork(lessonsSaga),
     fork(userProfileSaga),
     fork(categoriesSaga),

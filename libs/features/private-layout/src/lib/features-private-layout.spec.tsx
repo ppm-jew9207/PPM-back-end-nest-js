@@ -5,7 +5,7 @@ import FeaturesPrivateLayout from './features-private-layout';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   let component;
 
   it('render successfully', () => {
