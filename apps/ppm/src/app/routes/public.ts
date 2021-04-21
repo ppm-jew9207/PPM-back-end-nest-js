@@ -34,7 +34,7 @@ const PublicRouter: RouterItem[] = [
     onMenu: false
   },
   {
-    path: PrivateRoutesPath.POST_ADD_ADVERT,
+    path: PrivateRoutesPath.POST_ADD_COURSE,
     title: '',
     icon: '',
     component: FeaturesProfile,

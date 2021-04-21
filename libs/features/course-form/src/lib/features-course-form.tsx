@@ -32,7 +32,7 @@ const stateSelector = createStructuredSelector({
 export const FeaturesCourseForm = (props: RouteComponentProps<RouteInfo>) => {
   const dispatch = useDispatch();
   const { categories, course, loading } = useSelector(stateSelector);
-  const redirect = () => history.push(`/${PrivateRoutesPath.ADVERTS}`);
+  const redirect = () => history.push(`/${PrivateRoutesPath.COURSES}`);
 
   const history = useHistory();
 
@@ -98,7 +98,7 @@ export const FeaturesCourseForm = (props: RouteComponentProps<RouteInfo>) => {
 
   useEffect(() => {
     props.match.path ===
-      `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}/edit` &&
+      `/${PrivateRoutesPath.COURSES}${PrivateRoutesPath.GET_BY_ID}/edit` &&
       dispatch(coursesActions.getById(props.match.params.id));
     dispatch(categoriesActions.getAll());
   }, []);
