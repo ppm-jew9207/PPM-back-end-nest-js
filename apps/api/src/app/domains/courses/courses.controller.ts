@@ -21,8 +21,8 @@ import { LoggingInterceptor } from '../../common/interceptors/logging.intercepto
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { PrivateRoutesPath, Roles } from '@ppm/common/main';
 
-@Controller(PrivateRoutesPath.ADVERTS)
-@ApiTags(PrivateRoutesPath.ADVERTS)
+@Controller(PrivateRoutesPath.COURSES)
+@ApiTags(PrivateRoutesPath.COURSES)
 @ApiBearerAuth('JWT')
 @UseGuards(AuthGuard('jwt'))
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)

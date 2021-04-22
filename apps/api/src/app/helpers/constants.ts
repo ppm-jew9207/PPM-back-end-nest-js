@@ -1,7 +1,7 @@
 export enum ViewModels {
   USERS_VIEW = 'Users',
   PROJECTS_VIEW = 'Projects',
-  ADVERTS_VIEW = 'Courses',
+  COURSES_VIEW = 'Courses',
   LESSONS_VIEW = 'Lessons',
   LEARN_ITEMS_VIEW = 'LearnItems',
   LIKES_VIEW = 'Likes',

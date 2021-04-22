@@ -20,7 +20,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}`,
+    path: `/${PrivateRoutesPath.COURSES}`,
     title: 'Courses',
     icon: 'list',
     component: FeaturesCourses,
@@ -41,14 +41,14 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}/create`,
+    path: `/${PrivateRoutesPath.COURSES}/create`,
     title: 'Courses',
     icon: RouterMenuIcons.MENTOR,
     component: FeaturesCourseForm,
     onMenu: false,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}/edit`,
+    path: `/${PrivateRoutesPath.COURSES}${PrivateRoutesPath.GET_BY_ID}/edit`,
     title: 'Courses',
     icon: RouterMenuIcons.MENTOR,
     component: FeaturesCourseForm,
@@ -62,7 +62,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: false
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}`,
+    path: `/${PrivateRoutesPath.COURSES}${PrivateRoutesPath.GET_BY_ID}`,
     title: 'Courses',
     icon: null,
     component: FeaturesCoursePage,

@@ -9,11 +9,11 @@ import {
   CreateCoursePayload,
 } from './courses.interface';
 import { UpdateCoursePayloadDto } from './dtos/update-course.dto';
-import { CATEGORIES_JOIN_QUERY, LEARN_ITEMS_JOIN_QUERY, LESSONS_JOIN_QUERY, LIKES_JOIN_QUERY, ADVERTS_ID_QUERY } from '../../shared/mongo-queries';
+import { CATEGORIES_JOIN_QUERY, LEARN_ITEMS_JOIN_QUERY, LESSONS_JOIN_QUERY, LIKES_JOIN_QUERY, COURSES_ID_QUERY } from '../../shared/mongo-queries';
 
 @Injectable()
 export class CoursesModelService {
-  @InjectModel(ViewModels.ADVERTS_VIEW) private _model!: Model<
+  @InjectModel(ViewModels.COURSES_VIEW) private _model!: Model<
     CoursesViewModel
   >;
 
@@ -25,7 +25,7 @@ export class CoursesModelService {
       CATEGORIES_JOIN_QUERY,
       LEARN_ITEMS_JOIN_QUERY,
       LESSONS_JOIN_QUERY,
-      ADVERTS_ID_QUERY,
+      COURSES_ID_QUERY,
       LIKES_JOIN_QUERY
     ]).exec();
   }
@@ -38,7 +38,7 @@ export class CoursesModelService {
       CATEGORIES_JOIN_QUERY,
       LEARN_ITEMS_JOIN_QUERY,
       LESSONS_JOIN_QUERY,
-      ADVERTS_ID_QUERY,
+      COURSES_ID_QUERY,
       LIKES_JOIN_QUERY
     ]).exec();
   }
@@ -51,7 +51,7 @@ export class CoursesModelService {
       CATEGORIES_JOIN_QUERY,
       LEARN_ITEMS_JOIN_QUERY,
       LESSONS_JOIN_QUERY,
-      ADVERTS_ID_QUERY,
+      COURSES_ID_QUERY,
       LIKES_JOIN_QUERY
     ]).exec();
   }
@@ -64,7 +64,7 @@ export class CoursesModelService {
       CATEGORIES_JOIN_QUERY,
       LEARN_ITEMS_JOIN_QUERY,
       LESSONS_JOIN_QUERY,
-      ADVERTS_ID_QUERY,
+      COURSES_ID_QUERY,
       LIKES_JOIN_QUERY
     ]).exec();
   }

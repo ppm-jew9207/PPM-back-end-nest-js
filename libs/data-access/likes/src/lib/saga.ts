@@ -62,8 +62,8 @@ export function* getSharesById(actions) {
 
 export function* likesSaga() {
   yield takeEvery(ActionTypes.LIKE_CREATE, createLike);
-  yield takeEvery(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID, getLikesById);
-  yield takeEvery(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID, getSharesById);
+  yield takeEvery(ActionTypes.LIKE_GET_LIKE_BY_COURSE_ID, getLikesById);
+  yield takeEvery(ActionTypes.LIKE_GET_SHARE_BY_COURSE_ID, getSharesById);
 }
 
 export default likesSaga;

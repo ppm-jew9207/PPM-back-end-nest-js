@@ -20,7 +20,7 @@ export class LikesController {
   @ApiBearerAuth("JWT")
   @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(LoggingInterceptor, TransformInterceptor)
-  @Get(`${PrivateRoutesPath.GET_BY_ADVERT_ID}`)
+  @Get(`${PrivateRoutesPath.GET_BY_COURSE_ID}`)
   async getAllByCourseId(@Param('courseid') courseId: string): Promise<LikesViewModel[]> {
     return this.queryBus.execute(new GetLikesQuery(courseId));
   }
@@ -28,7 +28,7 @@ export class LikesController {
   @ApiBearerAuth("JWT")
   @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(LoggingInterceptor, TransformInterceptor)
-  @Get(`${PrivateRoutesPath.LIKES}${PrivateRoutesPath.GET_BY_ADVERT_ID}`)
+  @Get(`${PrivateRoutesPath.LIKES}${PrivateRoutesPath.GET_BY_COURSE_ID}`)
   async getLikesByCourseId(@Param('courseid') courseId: string): Promise<LikesViewModel[]> {
     return this.queryBus.execute(new GetLikesLikeQuery(courseId));
   }
@@ -37,7 +37,7 @@ export class LikesController {
   @ApiBearerAuth("JWT")
   @UseGuards(AuthGuard("jwt"))
   @UseInterceptors(LoggingInterceptor, TransformInterceptor)
-  @Get(`${PrivateRoutesPath.SHARES}${PrivateRoutesPath.GET_BY_ADVERT_ID}`)
+  @Get(`${PrivateRoutesPath.SHARES}${PrivateRoutesPath.GET_BY_COURSE_ID}`)
   async getSharesByCourseId(@Param('courseid') courseId: string): Promise<LikesViewModel[]> {
     return this.queryBus.execute(new GetLikesShareQuery(courseId));
   }

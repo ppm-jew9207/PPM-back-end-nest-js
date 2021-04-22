@@ -30,13 +30,13 @@ export function* createCourse(actions) {
       const imageResult = yield call(postFormData, path, formData);
 
       if (imageResult) {
-        const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+        const path = `/api/${PrivateRoutesPath.COURSES}`;
         const data = actions.payload;
         yield call(post, path, data);
         yield put(createSuccess());
       }
     } else {
-      const path = `/api/${PrivateRoutesPath.ADVERTS}`;
+      const path = `/api/${PrivateRoutesPath.COURSES}`;
       const data = actions.payload;
       yield call(post, path, data);
       yield put(createSuccess());
@@ -57,12 +57,12 @@ export function* updateCourse(actions) {
       const imageResult = yield call(postFormData, path, formData);
 
       if (imageResult) {
-        const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data._id}`;
+        const path = `/api/${PrivateRoutesPath.COURSES}/update/${data._id}`;
         yield call(post, path, { ...data, imageUrl: imageResult.data });
         yield put(updateSuccess());
       }
     } else {
-      const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data._id}`;
+      const path = `/api/${PrivateRoutesPath.COURSES}/update/${data._id}`;
       yield call(post, path, data);
       yield put(updateSuccess());
     }
@@ -74,7 +74,7 @@ export function* updateCourse(actions) {
 export function* removeCourse(actions) {
   try {
     const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/delete/${id}`;
+    const path = `/api/${PrivateRoutesPath.COURSES}/delete/${id}`;
     const result = yield call(post, path);
     if (result) {
       throw new Error('Remove course failed');
@@ -88,7 +88,7 @@ export function* removeCourse(actions) {
 export function* getCourseById(actions) {
   try {
     const id = actions.payload;
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/${id}`;
+    const path = `/api/${PrivateRoutesPath.COURSES}/${id}`;
     const result = yield call(get, path);
 
     if (!result) {
@@ -103,7 +103,7 @@ export function* getCourseById(actions) {
 
 export function* getAll() {
   try {
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/`;
+    const path = `/api/${PrivateRoutesPath.COURSES}/`;
     const result = yield call(get, path);
     if (!Array.isArray(result)) {
       throw new Error('Failed load courses');
@@ -118,7 +118,7 @@ export function* getAll() {
 
 export function* getAllByAuthor() {
   try {
-    const path = `/api/${PrivateRoutesPath.ADVERTS}/${PrivateRoutesPath.USER}`;
+    const path = `/api/${PrivateRoutesPath.COURSES}/${PrivateRoutesPath.USER}`;
     const result = yield call(get, path);
     if (result && !Array.isArray(result.data)) {
       throw new Error('Failed load user courses');
@@ -142,12 +142,12 @@ export function* updateCourseFromList(actions : any) {
       const imageResult = yield call(postFormData, path, formData);
 
       if (imageResult) {
-        const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+        const path = `/api/${PrivateRoutesPath.COURSES}/update/${data.id}`;
         yield call(post, path, { ...data, imageUrl: imageResult.data });
         yield put( smallUpdateSuccess());
       }
     } else {
-      const path = `/api/${PrivateRoutesPath.ADVERTS}/update/${data.id}`;
+      const path = `/api/${PrivateRoutesPath.COURSES}/update/${data.id}`;
       yield call(post, path, data);
       yield put(
         smallUpdateSuccess()
@@ -165,12 +165,12 @@ export function* updateCourseFromList(actions : any) {
 
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
-  yield takeEvery(ActionTypes.ADVERT_CREATE, createCourse);
-  yield takeEvery(ActionTypes.ADVERT_UPDATE, updateCourse);
-  yield takeEvery(ActionTypes.ADVERT_REMOVE, removeCourse);
-  yield takeEvery(ActionTypes.ADVERT_GET_BY_ID, getCourseById);
-  yield takeEvery(ActionTypes.ADVERT_GET_ALL_BY_AUTHOR, getAllByAuthor);
-  yield takeEvery(ActionTypes.ADVERT_SMALL_UPDATE, updateCourseFromList);
+  yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
+  yield takeEvery(ActionTypes.COURSE_UPDATE, updateCourse);
+  yield takeEvery(ActionTypes.COURSE_REMOVE, removeCourse);
+  yield takeEvery(ActionTypes.COURSE_GET_BY_ID, getCourseById);
+  yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR, getAllByAuthor);
+  yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
 }
 
 export default coursesSaga;

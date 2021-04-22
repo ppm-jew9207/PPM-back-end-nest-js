@@ -13,7 +13,7 @@ export const PermissionsSchema = new Schema(
       required: true,
     },
     courses: [
-      { _id: { type: String, ref: ViewModels.ADVERTS_VIEW }, title: String },
+      { _id: { type: String, ref: ViewModels.COURSES_VIEW }, title: String },
     ],
   },
   { timestamps: true }

@@ -26,17 +26,17 @@ export function likesReducer(
         likes: state.likes,
         loading: false
       };
-    case ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID:
+    case ActionTypes.LIKE_GET_LIKE_BY_COURSE_ID:
       return {
         likes: state.likes,
         loading: true,
       };
-    case ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID_SUCCESS:
+    case ActionTypes.LIKE_GET_LIKE_BY_COURSE_ID_SUCCESS:
       return {
         likes: action.payload.likes,
         loading: false,
       };
-    case ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID_FAILED:
+    case ActionTypes.LIKE_GET_LIKE_BY_COURSE_ID_FAILED:
       return {
         likes: state.likes,
         loading: false,

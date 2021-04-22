@@ -6,7 +6,7 @@ export const LikesSchema = new Schema(
     course: {
       type: String,
       required: true,
-      ref: ViewModels.ADVERTS_VIEW
+      ref: ViewModels.COURSES_VIEW
     },
     user: {
       type: String,
