@@ -20,9 +20,6 @@ export function useCourses(id) {
     getCourseById(id);
   }, []);
 
-  /*
-  TODO: add functionality
-  */
   const onGetStartedClick = (studentId: string) => {
     coursesActions.addStudentToCourse(studentId, id);
   };
