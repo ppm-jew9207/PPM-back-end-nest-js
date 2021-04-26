@@ -39,4 +39,22 @@ export class UserProfileModelService {
   async getByEmail(email: string) {
     return this.model.find({ email: email }).exec();
   }
+  async addStudentToCourse(id: string,courseID: string): Promise<void> {
+    await this.model.findOneAndUpdate(
+      { _id: Types.ObjectId(id) },
+       { $push: { adverts: {courseID}  } },
+      { upsert: true }
+    );
+  }
+
+/* 
+var query = {'username': req.user.username};
+req.newData.username = req.user.username;
+
+MyModel.findOneAndUpdate(query, req.newData, {upsert: true}, function(err, doc) {
+    if (err) return res.send(500, {error: err});
+    return res.send('Succesfully saved.');
+});
+*/
+
 }

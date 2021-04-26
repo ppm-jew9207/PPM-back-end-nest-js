@@ -119,7 +119,7 @@ export const FeaturesCoursePage = (props: {
               checked: false,
             },
           ]}
-          onGetStartedClick={onGetStartedClick}
+          onGetStartedClick={() => onGetStartedClick(profile?._id)}
           getStartedButtonText="Get Started"
         />
         <SharedCourseDetails
