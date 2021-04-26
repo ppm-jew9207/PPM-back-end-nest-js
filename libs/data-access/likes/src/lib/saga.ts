@@ -3,10 +3,10 @@ import { ActionTypes } from './constants';
 import {
   createSuccess,
   createFailed,
-  getLikesByAdvertIdSuccess,
-  getLikesByAdvertIdFailed,
-  getSharesByAdvertIdFailed,
-  getSharesByAdvertIdSuccess
+  getLikesByCourseIdSuccess,
+  getLikesByCourseIdFailed,
+  getSharesByCourseIdFailed,
+  getSharesByCourseIdSuccess
 } from './actions';
 import { post, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
@@ -29,41 +29,41 @@ export function* createLike(actions) {
 
 export function* getLikesById(actions) {
   try {
-    const advertId = actions.payload;
-    const path = `/api/${PrivateRoutesPath.LIKES}/${PrivateRoutesPath.LIKES}/${advertId}`;
+    const courseId = actions.payload;
+    const path = `/api/${PrivateRoutesPath.LIKES}/${PrivateRoutesPath.LIKES}/${courseId}`;
     const result = yield call(get, path);
-    yield result && put(getLikesByAdvertIdFailed());
+    yield result && put(getLikesByCourseIdFailed());
     yield put(
-      getLikesByAdvertIdSuccess({
+      getLikesByCourseIdSuccess({
         likes: result.data
       })
     );
   } catch (error) {
-    yield put(getLikesByAdvertIdFailed());
+    yield put(getLikesByCourseIdFailed());
   }
 }
 
 export function* getSharesById(actions) {
   try {
-    const advertId = actions.payload.advertId;
-    const path = `/api/${PrivateRoutesPath.LIKES}/${advertId}`;
+    const courseId = actions.payload.courseId;
+    const path = `/api/${PrivateRoutesPath.LIKES}/${courseId}`;
     const result = yield call(get, path);
-    yield result && put(getSharesByAdvertIdFailed());
+    yield result && put(getSharesByCourseIdFailed());
 
     yield put(
-      getSharesByAdvertIdSuccess({
+      getSharesByCourseIdSuccess({
         likes: result
       })
     );
   } catch (error) {
-    yield put(getSharesByAdvertIdFailed());
+    yield put(getSharesByCourseIdFailed());
   }
 }
 
 export function* likesSaga() {
   yield takeEvery(ActionTypes.LIKE_CREATE, createLike);
-  yield takeEvery(ActionTypes.LIKE_GET_LIKE_BY_ADVERT_ID, getLikesById);
-  yield takeEvery(ActionTypes.LIKE_GET_SHARE_BY_ADVERT_ID, getSharesById);
+  yield takeEvery(ActionTypes.LIKE_GET_LIKE_BY_COURSE_ID, getLikesById);
+  yield takeEvery(ActionTypes.LIKE_GET_SHARE_BY_COURSE_ID, getSharesById);
 }
 
 export default likesSaga;

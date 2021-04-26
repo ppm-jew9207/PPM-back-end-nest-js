@@ -3,10 +3,10 @@ import { ViewModels } from '../../helpers/constants';
 
 export const LikesSchema = new Schema(
   {
-    advert: {
+    course: {
       type: String,
       required: true,
-      ref: ViewModels.ADVERTS_VIEW
+      ref: ViewModels.COURSES_VIEW
     },
     user: {
       type: String,

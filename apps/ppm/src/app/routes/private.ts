@@ -6,10 +6,10 @@ import {
 import { FeaturesDashboardMentor } from '@ppm/features/dashboard/mentor';
 import { FeaturesMentors } from '@ppm/features/mentors';
 import { FeaturesProfile } from '@ppm/features/profile';
-import { FeaturesAdvertForm } from '@ppm/features/advert-form';
-import { FeaturesAdvertPage } from '@ppm/features/advert-page';
+import { FeaturesCourseForm } from '@ppm/features/course-form';
+import { FeaturesCoursePage } from '@ppm/features/course-page';
 import { FeaturesLessonPage } from '@ppm/features/lesson-page';
-import { FeaturesAdverts } from '@ppm/features/adverts';
+import { FeaturesCourses } from '@ppm/features/courses';
 
 const PrivateRouter: RouterItem[] = [
   {
@@ -20,10 +20,10 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}`,
-    title: 'Adverts',
+    path: `/${PrivateRoutesPath.COURSES}`,
+    title: 'Courses',
     icon: 'list',
-    component: FeaturesAdverts,
+    component: FeaturesCourses,
     onMenu: true,
   },
   {
@@ -41,17 +41,17 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}/create`,
-    title: 'Adverts',
+    path: `/${PrivateRoutesPath.COURSES}/create`,
+    title: 'Courses',
     icon: RouterMenuIcons.MENTOR,
-    component: FeaturesAdvertForm,
+    component: FeaturesCourseForm,
     onMenu: false,
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}/edit`,
-    title: 'Adverts',
+    path: `/${PrivateRoutesPath.COURSES}${PrivateRoutesPath.GET_BY_ID}/edit`,
+    title: 'Courses',
     icon: RouterMenuIcons.MENTOR,
-    component: FeaturesAdvertForm,
+    component: FeaturesCourseForm,
     onMenu: false,
   },
   {
@@ -62,10 +62,10 @@ const PrivateRouter: RouterItem[] = [
     onMenu: false
   },
   {
-    path: `/${PrivateRoutesPath.ADVERTS}${PrivateRoutesPath.GET_BY_ID}`,
-    title: 'Adverts',
+    path: `/${PrivateRoutesPath.COURSES}${PrivateRoutesPath.GET_BY_ID}`,
+    title: 'Courses',
     icon: null,
-    component: FeaturesAdvertPage,
+    component: FeaturesCoursePage,
     onMenu: false,
   },
 ];

@@ -3,7 +3,7 @@ export enum PrivateRoutesPath {
   DASHBOARD_MENTOR = '/mentor/:id',
   MENTOR = 'mentor',
   STUDENT = 'student',
-  ADVERTS = 'adverts',
+  COURSES = 'courses',
   LESSONS = 'lessons',
   LEARN_ITEMS = 'learn-items',
   USER = 'user',
@@ -21,7 +21,7 @@ export enum PrivateRoutesPath {
   CITIES = 'cities',
   COUNTRY = '/:countryName/states',
   STATE = '/:stateName/cities',
-  GET_BY_ADVERT_ID = '/:advertid',
+  GET_BY_COURSE_ID = '/:courseid',
 
 
   // TODO only for API
@@ -37,5 +37,5 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
-  POST_ADD_ADVERT = "POST_ADD_ADVERT"
+  POST_ADD_COURSE = "POST_ADD_COURSE"
 }
