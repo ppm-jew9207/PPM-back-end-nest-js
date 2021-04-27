@@ -20,11 +20,8 @@ export function useCourses(id) {
     getCourseById(id);
   }, []);
 
-  /*
-  TODO: add functionality
-  */
   const onGetStartedClick = () => {
-    alert('paspaudei');
+    dispatch(coursesActions.addStudentToCourse(id));
   };
 
   return { getCourseById, course, loading, onGetStartedClick };
