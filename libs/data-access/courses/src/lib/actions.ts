@@ -78,7 +78,6 @@ export function smallUpdateFailed(error: Error) {
   return action(ActionTypes.COURSE_SMALL_UPDATE_FAILED, error);
 }
 
-<<<<<<< HEAD
 export function addCourse(course: CourseType) {
   return action(ActionTypes.COURSE_ADD, course);
 }
@@ -90,7 +89,7 @@ export function addCourseSuccess() {
 export function addCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_ADD_FAILED, error);
 } 
-=======
+
 export function addStudentToCourse(courseId:string) {
   return action(ActionTypes.COURSE_ADDSTUDENT, courseId);
 }
@@ -102,4 +101,3 @@ export function addStudentToCourseSuccess() {
 export function addStudentToCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_ADDSTUDENT_FAILED, error);
 }
->>>>>>> d918bed07c09aa9e27ef5cb2e901fdc389c0374f
