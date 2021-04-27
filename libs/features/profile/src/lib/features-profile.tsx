@@ -21,7 +21,6 @@ import {
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
 import { SharedCourseCard } from '@ppm/shared/course-card';
-import { SharedCoursesAddButtons } from '@ppm/shared/courses-add-buttons';
 import { CourseData, SharedCreateCourseForm } from '@ppm/shared/create-course-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
@@ -85,7 +84,7 @@ export const FeaturesProfile = (props) => {
     dispatch(categoriesActions.getAll());
     dispatch(countriesApiActions.getCountries());
     dispatch(lessonsActions.getAll());
-  }, [dispatch]);
+  }, []);
 
   const defaultData = {
     mentorImage: '',

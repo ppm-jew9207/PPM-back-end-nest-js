@@ -207,6 +207,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_GET_BY_ID, getCourseById);
   yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR, getAllByAuthor);
   yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
+  yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
 }
 
 export default coursesSaga;

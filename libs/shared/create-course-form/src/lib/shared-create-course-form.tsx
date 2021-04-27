@@ -268,7 +268,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               placeholder="Prerequisites"
               variant="outlined"
               margin="normal"
-              // fullWidth
               label={labels?.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
@@ -295,7 +294,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               placeholder="What will you learn?"
               variant="outlined"
               margin="normal"
-              // fullWidth
               label={labels?.learningInputLabel}
               type="text"
               className="learning"

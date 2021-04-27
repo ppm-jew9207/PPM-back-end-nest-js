@@ -19,7 +19,7 @@ export class CreateCourseHandler implements ICommandHandler<CreateCourse> {
   @Inject() private readonly _usersService: UsersService;
   @Inject() private readonly _userProfileService: UserProfileModelService;
 
-  async execute({ data, user }: CreateCourse): Promise<Boolean> {
+  async execute({ data, user }: CreateCourse): Promise<any> {
     const userFromDB = await this._usersService.getById(user._id);
     const userProfile = await this._userProfileService.getById(user._id);
 
