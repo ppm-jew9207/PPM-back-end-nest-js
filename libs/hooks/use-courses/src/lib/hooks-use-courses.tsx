@@ -20,8 +20,8 @@ export function useCourses(id) {
     getCourseById(id);
   }, []);
 
-  const onGetStartedClick = (studentId: string) => {
-    coursesActions.addStudentToCourse(studentId, id);
+  const onGetStartedClick = () => {
+    dispatch(coursesActions.addStudentToCourse(id));
   };
 
   return { getCourseById, course, loading, onGetStartedClick };

@@ -78,8 +78,8 @@ export function smallUpdateFailed(error: Error) {
   return action(ActionTypes.COURSE_SMALL_UPDATE_FAILED, error);
 }
 
-export function addStudentToCourse(studentId: string, courseId:string) {
-  return action(ActionTypes.COURSE_ADDSTUDENT, studentId,courseId);
+export function addStudentToCourse(courseId:string) {
+  return action(ActionTypes.COURSE_ADDSTUDENT, courseId);
 }
 
 export function addStudentToCourseSuccess() {
