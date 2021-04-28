@@ -1,6 +1,8 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all, takeLatest } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import {
+  addCourseFailed,
+  addCourseSuccess,
   getAllSuccess,
   getAllFailed,
   createSuccess,
@@ -17,7 +19,8 @@ import {
   updateFailed
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
+import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* createCourse(actions) {
   const data = actions.payload;
@@ -163,6 +166,38 @@ export function* updateCourseFromList(actions : any) {
   }
 }
 
+export function* addCourses(actions) {
+  try {
+    const path = `/api/${PrivateRoutesPath.COURSES}`;
+    const data = actions.payload;
+    const result = yield call(post, path, data);
+
+    
+    if (!result.data.success) {
+      throw new Error('Failed to add course. Please try again.');
+    } 
+      yield put(addCourseSuccess());
+
+      yield put({type: ActionTypes.COURSE_GET_ALL_BY_AUTHOR});
+
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'The Course was created successfully.'
+        })
+      );
+    
+  } catch (error) {
+     yield put(addCourseFailed(error));
+     yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.ERROR,
+          message: error.message
+        })
+      );
+  }
+}
+
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
@@ -171,6 +206,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_GET_BY_ID, getCourseById);
   yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR, getAllByAuthor);
   yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
+  yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
 }
 
 export default coursesSaga;

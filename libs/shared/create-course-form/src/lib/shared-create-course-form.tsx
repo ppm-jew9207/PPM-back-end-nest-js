@@ -247,7 +247,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                 setCourse({ ...course, description: event.target.value })
               }
               multiline
-              rows={8}
+              rows={2}
             />
           }
           name="description"
@@ -261,13 +261,13 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             Description is required
           </div>
         )}
+        <div className='text-row'>
         <Controller
           as={
             <TextField
               placeholder="Prerequisites"
               variant="outlined"
               margin="normal"
-              fullWidth
               label={labels?.prerequisitesInputLabel}
               type="text"
               className="prerequisites"
@@ -275,7 +275,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                 setCourse({ ...course, prerequisites: event.target.value })
               }
               multiline
-              rows={2}
             />
           }
           name="prerequisites"
@@ -295,7 +294,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               placeholder="What will you learn?"
               variant="outlined"
               margin="normal"
-              fullWidth
               label={labels?.learningInputLabel}
               type="text"
               className="learning"
@@ -303,7 +301,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                 setCourse({ ...course, learning: event.target.value })
               }
               multiline
-              rows={2}
             />
           }
           name="learning"
@@ -317,6 +314,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             What to learn is required
           </div>
         )}
+        </div>
         <Box my={3}>
           <FormControl variant="outlined" fullWidth error={!!errors.categories}>
             <InputLabel id="categoriesLabel">Categories *</InputLabel>

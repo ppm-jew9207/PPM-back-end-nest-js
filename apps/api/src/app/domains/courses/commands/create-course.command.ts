@@ -8,6 +8,7 @@ import { UserLean } from '../../../models/users/user.interface';
 import { CreateCoursePayload } from '../../../models/courses/courses.interface';
 import { UsersService } from '../../../models/users/users.service';
 import { UserProfileModelService } from '../../../models/userProfiles/user-profile.service';
+import { ResponseSuccess } from '../../../common/dto/response.dto';
 
 export class CreateCourse {
   constructor(public data: CreateCoursePayloadDto, public user: UserLean) {}
@@ -18,16 +19,16 @@ export class CreateCourseHandler implements ICommandHandler<CreateCourse> {
   @Inject() private readonly _usersService: UsersService;
   @Inject() private readonly _userProfileService: UserProfileModelService;
 
-  async execute({ data, user }: CreateCourse): Promise<Boolean> {
+  async execute({ data, user }: CreateCourse): Promise<boolean> {
     const userFromDB = await this._usersService.getById(user._id);
     const userProfile = await this._userProfileService.getById(user._id);
 
     if (!userFromDB) {
-      throw new BadRequestException(`This user doesn't exist`);
+      return new BadRequestException(`This user doesn't exist`);
     }
 
     if (!data.title) {
-      throw new BadRequestException('Title is required!');
+      return new BadRequestException('Title is required!');
     }
 
     const courseData: CreateCoursePayload = {
@@ -44,6 +45,6 @@ export class CreateCourseHandler implements ICommandHandler<CreateCourse> {
     const course = this._publisher.mergeObjectContext(aggregate);
     course.commit();
 
-    return true;
+    return new ResponseSuccess('Course created');
   }
 }
