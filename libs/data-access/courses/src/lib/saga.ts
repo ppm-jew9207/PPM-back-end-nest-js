@@ -170,7 +170,6 @@ export function* addCourses(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.COURSES}`;
     const data = actions.payload;
-    console.log(data);
     const result = yield call(post, path, data);
 
     
