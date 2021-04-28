@@ -2705,6 +2705,27 @@
           }
         }
       }
+    },
+    "shared-mentor-card": {
+      "root": "libs/shared/mentor-card",
+      "sourceRoot": "libs/shared/mentor-card/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/mentor-card/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/mentor-card"],
+          "options": {
+            "jestConfig": "libs/shared/mentor-card/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

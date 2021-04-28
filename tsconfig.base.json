@@ -120,7 +120,8 @@
       "@ppm/shared/courses-add-buttons": [
         "libs/shared/courses-add-buttons/src/index.ts"
       ],
-      "@ppm/data-access/likes": ["libs/data-access/likes/src/index.ts"]
+      "@ppm/data-access/likes": ["libs/data-access/likes/src/index.ts"],
+      "@ppm/shared/mentor-card": ["libs/shared/mentor-card/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
