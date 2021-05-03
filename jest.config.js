@@ -58,5 +58,6 @@ module.exports = {
     '<rootDir>/libs/shared/courses-add-buttons',
     '<rootDir>/libs/data-access/countries-api',
     '<rootDir>/libs/data-access/likes',
+    '<rootDir>/libs/shared/mentor-card',
   ],
 };
