@@ -10,7 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { Person as PersonIcon, Room as RoomIcon } from '@material-ui/icons';
 import './shared-mentor-card.scss';
 
-/* eslint-disable-next-line */
 export interface MentorCardProps {
   mentorImage: string;
   fullName: string;
@@ -60,7 +59,7 @@ export function MentorCard(props: MentorCardProps) {
                   className="profile-card-location-icon"
                 >
                   <RoomIcon />
-                </Icon>{' '}
+                </Icon>
                 {props.location}
               </Typography>
             )}
