@@ -8,7 +8,7 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
 });
 
-export function useCourses(id) {
+export function useCourses(courseId) {
   const dispatch = useDispatch();
   const { course, loading } = useSelector(stateSelector);
 
@@ -17,11 +17,11 @@ export function useCourses(id) {
   };
 
   useEffect(() => {
-    getCourseById(id);
+    getCourseById(courseId);
   }, []);
 
   const onGetStartedClick = () => {
-    dispatch(coursesActions.addStudentToCourse(id));
+    dispatch(coursesActions.addStudentToCourse(courseId));
   };
 
   return { getCourseById, course, loading, onGetStartedClick };
