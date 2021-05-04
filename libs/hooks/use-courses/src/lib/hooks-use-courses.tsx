@@ -8,7 +8,7 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
 });
 
-export function useCourses(courseId) {
+export function useCourses(courseId: string) {
   const dispatch = useDispatch();
   const { course, loading } = useSelector(stateSelector);
 
