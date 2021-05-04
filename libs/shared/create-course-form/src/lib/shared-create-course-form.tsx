@@ -210,6 +210,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
         <Controller
           as={
             <TextField
+              error={!!errors.title}
               placeholder="Title"
               variant="outlined"
               margin="normal"
@@ -227,15 +228,13 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.title) || ''}
           rules={{ required: true }}
         />
-        {errors.title && (
-          <div className="error">
-            <ArrowRightIcon className="error-icon" />
-            Title is required
-          </div>
-        )}
+        <FormHelperText style={{color: '#f44336'}}>
+          {errors.title ? 'This field is required' : ''}
+        </FormHelperText>
         <Controller
           as={
             <TextField
+              error={!!errors.description}
               placeholder="Description"
               variant="outlined"
               margin="normal"
@@ -255,16 +254,15 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.description) || ''}
           rules={{ required: true }}
         />
-        {errors.description && (
-          <div className="error">
-            <ArrowRightIcon className="error-icon" />
-            Description is required
-          </div>
-        )}
+        <FormHelperText style={{color: '#f44336',}}>
+          {errors.description ? 'This field is required' : ''}
+        </FormHelperText>
         <div className='text-row'>
+          <div className='text-column'>
         <Controller
           as={
             <TextField
+              error={!!errors.prerequisites}
               placeholder="Prerequisites"
               variant="outlined"
               margin="normal"
@@ -282,15 +280,15 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.prerequisites) || ''}
           rules={{ required: true }}
         />
-        {errors.prerequisites && (
-          <div className="error">
-            <ArrowRightIcon className="error-icon" />
-            Prerequisites is required
-          </div>
-        )}
+        <FormHelperText style={{color: '#f44336',}}>
+          {errors.prerequisites ? 'This field is required' : ''}
+        </FormHelperText>
+        </div>
+        <div className='text-column'>
         <Controller
           as={
             <TextField
+              error={!!errors.learning}
               placeholder="What will you learn?"
               variant="outlined"
               margin="normal"
@@ -308,12 +306,10 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.learning) || ''}
           rules={{ required: true }}
         />
-        {errors.learning && (
-          <div className="error">
-            <ArrowRightIcon className="error-icon" />
-            What to learn is required
-          </div>
-        )}
+        <FormHelperText style={{color: '#f44336',}}>
+          {errors.learning ? 'This field is required' : ''}
+        </FormHelperText>
+        </div>
         </div>
         <Box my={3}>
           <FormControl variant="outlined" fullWidth error={!!errors.categories}>

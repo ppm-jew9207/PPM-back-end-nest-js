@@ -217,8 +217,13 @@ $error: #3f51b5;
     display: flex;
     justify-content: space-between;
     .prerequisites, .learning {
+    width: 100%;
+  }
+  }
+
+  .text-column {
     width: 48%;
+    display: flex;
+    flex-direction: column;
   }
-  }
-  
 }
