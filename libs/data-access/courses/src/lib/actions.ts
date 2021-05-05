@@ -91,13 +91,13 @@ export function addCourseFailed(error: Error) {
 } 
 
 export function addStudentToCourse(courseId:string) {
-  return action(ActionTypes.COURSE_ADDSTUDENT, courseId);
+  return action(ActionTypes.COURSE_ADD_STUDENT, courseId);
 }
 
 export function addStudentToCourseSuccess() {
-  return action(ActionTypes.COURSE_ADDSTUDENT_SUCCESS);
+  return action(ActionTypes.COURSE_ADD_STUDENT_SUCCESS);
 }
 
 export function addStudentToCourseFailed(error: Error) {
-  return action(ActionTypes.COURSE_ADDSTUDENT_FAILED, error);
+  return action(ActionTypes.COURSE_ADD_STUDENT_FAILED, error);
 }

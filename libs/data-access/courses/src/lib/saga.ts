@@ -16,11 +16,13 @@ import {
   smallUpdateFailed,
   getAll as getAllAction,
   getAllByAuthor as getAllByAuthorAction,
-  updateFailed
+  updateFailed,
+  addStudentToCourseFailed
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
 import { snackbarActions } from '@ppm/data-access/snack-bar';
+import { ContainerActions } from './types';
 
 export function* createCourse(actions) {
   const data = actions.payload;
@@ -198,6 +200,31 @@ export function* addCourses(actions) {
   }
 }
 
+export function* addStudentToCourse(actions) {
+  try {
+    //TODO add here the function call 
+    if(!!actions.payload)
+    {
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'You are successfully signed to the course!'
+        })
+      );
+    }else {
+      throw new Error('Failed to sign to the course. Please try again.');
+    }
+  } catch (error) {
+    yield put(addStudentToCourseFailed(error));
+     yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.ERROR,
+          message: error.message
+        })
+      );
+  }
+}
+
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
@@ -207,6 +234,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR, getAllByAuthor);
   yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
   yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
+  yield takeEvery(ActionTypes.COURSE_ADDSTUDENT, addStudentToCourse);
 }
 
 export default coursesSaga;
