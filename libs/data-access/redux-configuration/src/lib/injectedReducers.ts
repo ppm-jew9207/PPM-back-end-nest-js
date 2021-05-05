@@ -6,6 +6,7 @@ import { learnItemsReducer } from '@ppm/data-access/learn-items';
 import { snackBarReducer } from '@ppm/data-access/snack-bar';
 import { userProfileReducer } from '@ppm/data-access/user-profile';
 import { countriesApiReducer } from '@ppm/data-access/countries-api';
+import { mentorsReducer } from '@ppm/data-access/mentors';
 
 export const allReducers = {
   authorization: authorizeReducer,
@@ -16,5 +17,6 @@ export const allReducers = {
   snackBar: snackBarReducer,
   userProfile: userProfileReducer,
   forgotPassword: forgotPasswordReducer,
-  countriesApi: countriesApiReducer
+  countriesApi: countriesApiReducer,
+  mentors: mentorsReducer,
 };

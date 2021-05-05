@@ -2,6 +2,7 @@ export enum PrivateRoutesPath {
   DASHBOARD = 'dashboard',
   DASHBOARD_MENTOR = '/mentor/:id',
   MENTOR = 'mentor',
+  MENTORS = 'mentors',
   STUDENT = 'student',
   COURSES = 'courses',
   LESSONS = 'lessons',
