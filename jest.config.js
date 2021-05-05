@@ -59,5 +59,6 @@ module.exports = {
     '<rootDir>/libs/data-access/countries-api',
     '<rootDir>/libs/data-access/likes',
     '<rootDir>/libs/shared/mentor-card',
+    '<rootDir>/libs/data-access/mentors',
   ],
 };

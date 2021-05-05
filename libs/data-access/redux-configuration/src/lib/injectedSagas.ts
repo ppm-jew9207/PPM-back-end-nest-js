@@ -7,6 +7,7 @@ import { learnItemsSaga } from '@ppm/data-access/learn-items';
 import { userProfileSaga } from '@ppm/data-access/user-profile';
 import { countriesApiSaga } from '@ppm/data-access/countries-api';
 import { likesSaga } from '@ppm/data-access/likes';
+import { mentorsSaga } from '@ppm/data-access/mentors';
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     fork(categoriesSaga),
     fork(learnItemsSaga),
     fork(countriesApiSaga),
-    fork(likesSaga)
+    fork(likesSaga),
+    fork(mentorsSaga)
   ]);
 }
