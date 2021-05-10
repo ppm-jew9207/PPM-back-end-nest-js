@@ -13,7 +13,7 @@ export function* getAllMentors() {
     yield !Array.isArray(result) && put(getAllFailed(null));
     yield put(
       getAllSuccess({
-        list: result,
+        list: result.data,
         loading: false,
       })
     );
