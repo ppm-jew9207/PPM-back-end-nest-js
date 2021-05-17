@@ -26,8 +26,9 @@ export const FeaturesMentors = (props: FeaturesMentorsProps) => {
   }, []);
 
   if (loading) return <CircularProgress />;
-
   if (!mentors.list) return <div className="no-items">No mentors...</div>;
+  if (!mentors.list.length)
+    return <div className="no-items">No mentors...</div>;
 
   return (
     <Container maxWidth="md" className="mentors-container">
