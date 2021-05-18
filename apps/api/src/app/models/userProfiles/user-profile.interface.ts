@@ -21,7 +21,8 @@ export interface CreateUserProfile {
   phone: string;
   email: string;
   socialLinks?: SocialLink[];
-  website?:string;
+  website?: string;
+  courseId?: string;
 }
 export interface UserProfile {
   type: string;
@@ -38,7 +39,8 @@ export interface UserProfile {
   phone: string;
   email: string;
   socialLinks?: SocialLink[];
-  website?:string;
+  website?: string;
+  courseId?: string;
 }
 
 export type UserProfileViewModel = UserProfile & Document;
