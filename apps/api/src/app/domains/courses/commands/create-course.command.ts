@@ -24,11 +24,11 @@ export class CreateCourseHandler implements ICommandHandler<CreateCourse> {
     const userProfile = await this._userProfileService.getById(user._id);
 
     if (!userFromDB) {
-      return new BadRequestException(`This user doesn't exist`);
+      throw new BadRequestException(`This user doesn't exist`);
     }
 
     if (!data.title) {
-      return new BadRequestException('Title is required!');
+      throw new BadRequestException('Title is required!');
     }
 
     const courseData: CreateCoursePayload = {
@@ -45,6 +45,6 @@ export class CreateCourseHandler implements ICommandHandler<CreateCourse> {
     const course = this._publisher.mergeObjectContext(aggregate);
     course.commit();
 
-    return new ResponseSuccess('Course created');
+    throw new ResponseSuccess('Course created');
   }
 }
