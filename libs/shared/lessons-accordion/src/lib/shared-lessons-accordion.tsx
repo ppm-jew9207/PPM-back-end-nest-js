@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 import { Edit as EditIcon } from '@material-ui/icons';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 interface Lesson {
   _id: string;
@@ -65,7 +66,14 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                           variant="body1"
                           gutterBottom
                           color="primary"
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            fontSize: '20px',
+                        }}
                         >
+                          <AddCircleIcon fontSize="large"	/>
                           Add Lesson
                         </Typography>
                       </CardContent>
