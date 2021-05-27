@@ -31,10 +31,10 @@ div.lessons-accordion {
   margin-right: 6px;
 }
 
-.editIcon {
+.addCircleIcon {
   cursor: pointer;
 }
 
-.addCircleIcon {
-  cursor: pointer;
+.addCircleIcon:hover {
+  opacity: 85%;
 }
