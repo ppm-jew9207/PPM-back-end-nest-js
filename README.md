@@ -26,6 +26,9 @@ $ nx serve api
 # Front-end run
 $ nx serve
 
+# Migrate mongo db up
+$ npm start migration:up
+
 # Swager
 $ http://localhost:3333/api/
 # Front-end
