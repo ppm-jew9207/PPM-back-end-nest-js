@@ -64,12 +64,12 @@ export interface Category {
 
 interface RawInput {
   categories: string[];
-  city: { city_name: string };
+  city: { cityName: string };
   company: string;
   country: {
-    country_name: string;
-    country_short_name: string;
-    country_phone_code: number;
+    countryName: string;
+    countryShortName: string;
+    countryPhoneCode: number;
   };
   description: string;
   email: string;
@@ -81,7 +81,7 @@ interface RawInput {
   lastName: string;
   linkedin: string;
   phone: string;
-  state: { state_name: string };
+  state: { stateName: string };
   twitter: string;
   type: string;
   website: string;
@@ -112,9 +112,9 @@ export interface SharedProfileFormProps {
   onSubmit: (submitData: Profile) => void;
   onAddCategory: (submitData: Category) => void;
   categories: Category[];
-  cities?: { city_name: string }[];
-  countries: { country_name: string }[];
-  states?: { state_name: string }[];
+  cities?: { cityName: string }[];
+  countries: { countryName: string }[];
+  states?: { stateName: string }[];
   profile: Profile;
 }
 
@@ -233,9 +233,9 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       fieldOfProfession,
       company,
       categories,
-      state: state.state_name,
-      city: city.city_name,
-      country: country.country_name,
+      state: state.stateName,
+      city: city.cityName,
+      country: country.countryName,
       phone,
       website,
       type,
@@ -469,13 +469,13 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                 defaultValue={
                   props.profile && props.countries && props.profile.country
                     ? props.countries.filter(
-                        (item) => item.country_name === props.profile.country
+                        (item) => item.countryName === props.profile.country
                       )[0]
                     : props.countries[0]
                 }
                 options={props.countries}
-                getOptionLabel={(option) => option.country_name}
-                renderOption={(option) => <span>{option.country_name}</span>}
+                getOptionLabel={(option) => option.countryName}
+                renderOption={(option) => <span>{option.countryName}</span>}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -485,7 +485,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   />
                 )}
                 onChange={(e, data) => {
-                  data && props.onSelectCountry(data.country_name);
+                  data && props.onSelectCountry(data.countryName);
                   return onChange(data);
                 }}
                 {...params}
@@ -503,13 +503,13 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   defaultValue={
                     props.states && props.profile && props.profile.state
                       ? props.states.filter(
-                          (item) => item.state_name === props.profile.state
+                          (item) => item.stateName === props.profile.state
                         )[0]
                       : []
                   }
                   options={props.states}
-                  getOptionLabel={(option) => option.state_name}
-                  renderOption={(option) => <span>{option.state_name}</span>}
+                  getOptionLabel={(option) => option.stateName}
+                  renderOption={(option) => <span>{option.stateName}</span>}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -519,7 +519,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                     />
                   )}
                   onChange={(e, data) => {
-                    data && props.onSelectState(data.state_name);
+                    data && props.onSelectState(data.stateName);
                     return onChange(data);
                   }}
                   {...params}
@@ -539,13 +539,13 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                   defaultValue={
                     props.cities && props.profile && props.profile.city
                       ? props.cities.filter(
-                          (item) => item.city_name === props.profile.city
+                          (item) => item.cityName === props.profile.city
                         )[0]
                       : props.cities[0]
                   }
                   options={props.cities}
-                  getOptionLabel={(option) => option.city_name}
-                  renderOption={(option) => <span>{option.city_name}</span>}
+                  getOptionLabel={(option) => option.cityName}
+                  renderOption={(option) => <span>{option.cityName}</span>}
                   renderInput={(params) => (
                     <TextField
                       {...params}

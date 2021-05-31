@@ -27,8 +27,6 @@ export function useCourses(courseId: string) {
 
   const onGetStartedClick = () => {
     dispatch(coursesActions.addStudentToCourse(courseId));
-    dispatch(userProfileActions.getUserProfile());
-    dispatch(userProfileActions.update({ ...profile, courseId: courseId }));
   };
 
   return { getCourseById, course, loading, onGetStartedClick };

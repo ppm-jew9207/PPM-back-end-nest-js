@@ -3,7 +3,7 @@ import { ActionTypes } from './constants';
 import { getUserProfileFailed, getUserProfileSuccess, updateSuccess } from './actions';
 import { get, post, postFormData } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath } from '@ppm/common/main';
-import { Profile } from '@ppm/shared/profile-form';
+import { Profile } from './types';
 
 export function* getUserProfile() {
   try {

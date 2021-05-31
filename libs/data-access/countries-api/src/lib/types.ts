@@ -3,17 +3,17 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
 export interface CountryType {
-  country_name: string,
-  country_short_name: string,
-  country_phone_code: number
+  countryName: string,
+  countryShortName: string,
+  countryPhoneCode: number
 }
 
 export interface StateType {
-  state_name: string
+  stateName: string
 }
 
 export interface CityType {
-  city_name: string
+  cityName: string
 }
 
 interface CountriesApiState {
