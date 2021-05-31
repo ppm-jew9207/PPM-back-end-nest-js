@@ -65,7 +65,6 @@ export const FeaturesMentorCourses = (props: {
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
-    console.log(props.match?.params?.id);
     dispatch(coursesActions.getAllByAuthorId(props.match?.params?.id));
   }, []);
 
