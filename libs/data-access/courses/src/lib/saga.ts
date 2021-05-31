@@ -136,6 +136,22 @@ export function* getAllByAuthor() {
   }
 }
 
+export function* getAllByAuthorId(actions) {
+  try {
+    const mentorId = actions.payload;
+    const path = `/api/${PrivateRoutesPath.COURSES}/${PrivateRoutesPath.USER}/${mentorId}`;
+    const result = yield call(get, path);
+    if (result && !Array.isArray(result.data)) {
+      throw new Error('Failed load user courses');
+    }
+    yield put(
+      getAllSuccess({ list: result.data })
+    );
+  } catch (error) {
+    yield put(getAllFailed(error));
+  }
+}
+
 export function* updateCourseFromList(actions : any) {
   const data = actions.payload;
   try {
@@ -232,6 +248,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_REMOVE, removeCourse);
   yield takeEvery(ActionTypes.COURSE_GET_BY_ID, getCourseById);
   yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR, getAllByAuthor);
+  yield takeEvery(ActionTypes.COURSE_GET_ALL_BY_AUTHOR_ID, getAllByAuthorId);
   yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
   yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
   yield takeEvery(ActionTypes.COURSE_ADD_STUDENT, addStudentToCourse);

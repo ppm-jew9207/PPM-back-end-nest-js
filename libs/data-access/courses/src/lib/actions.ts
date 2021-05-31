@@ -66,6 +66,10 @@ export function getAllByAuthor() {
   return action(ActionTypes.COURSE_GET_ALL_BY_AUTHOR);
 }
 
+export function getAllByAuthorId(id: String) {
+  return action(ActionTypes.COURSE_GET_ALL_BY_AUTHOR_ID, id);
+}
+
 export function smallUpdate(course: CourseType) {
   return action(ActionTypes.COURSE_SMALL_UPDATE, course);
 }

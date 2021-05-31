@@ -108,6 +108,12 @@ export function coursesReducer(
         course: state.course,
         loading: false,
       };
+    case ActionTypes.COURSE_GET_ALL_BY_AUTHOR_ID:
+      return {
+        list: state.list,
+        course: state.course,
+        loading: false,
+      };
     case ActionTypes.COURSE_SMALL_UPDATE:
       return {
         list: state.list,

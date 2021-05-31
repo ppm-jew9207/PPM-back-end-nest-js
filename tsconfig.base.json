@@ -122,7 +122,10 @@
       ],
       "@ppm/data-access/likes": ["libs/data-access/likes/src/index.ts"],
       "@ppm/shared/mentor-card": ["libs/shared/mentor-card/src/index.ts"],
-      "@ppm/data-access/mentors": ["libs/data-access/mentors/src/index.ts"]
+      "@ppm/data-access/mentors": ["libs/data-access/mentors/src/index.ts"],
+      "@ppm/features/mentor-courses": [
+        "libs/features/mentor-courses/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
