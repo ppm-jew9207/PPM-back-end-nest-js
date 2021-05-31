@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
-import { Profile  } from '@ppm/shared/profile-form';
+import { Profile } from './types';
 
 export function getUserProfile() {
   return action(ActionTypes.USER_PROFILE_GET);

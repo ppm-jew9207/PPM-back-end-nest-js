@@ -57,11 +57,4 @@ export class UserProfileModelService {
       }
   ]);
   }
-  async addCourse(data: UserProfileUpdated) {
-    await this.model.findOneAndUpdate(
-      { _id: Types.ObjectId(data.id) },
-      { $set: { "courseId": data.userProfile.courseId } },
-      {upsert: true}
-    );
-  }
 }

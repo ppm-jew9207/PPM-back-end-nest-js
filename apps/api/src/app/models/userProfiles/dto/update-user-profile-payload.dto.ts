@@ -35,4 +35,6 @@ export class UpdateUserProfilePayloadDto implements UserProfile {
   public readonly socialLinks?: SocialLink[];
   @ApiProperty()
   public readonly website?: string;
+  @ApiProperty()
+  public readonly courseIds?: string[];
 }
