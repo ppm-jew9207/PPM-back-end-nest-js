@@ -24,7 +24,7 @@ export interface Profile {
   email: string;
   photo: string | ArrayBuffer | FileList;
   fieldOfProfession: string;
-  company: string;
+  company?: string;
   categories: string[];
   state: string;
   city: string;
@@ -33,7 +33,7 @@ export interface Profile {
   website: string;
   type: string;
   socialLinks: SocialLink[];
-  courseIds?: string[];
+  coursesIds?: string[];
 }
 
 interface UserProfileState {

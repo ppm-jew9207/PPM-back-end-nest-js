@@ -202,8 +202,9 @@ export function* addCourses(actions) {
 
 export function* addStudentToCourse(actions) {
   try {
-    //TODO add here the function call 
-    if(!!actions.payload)
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/addToCourse/${actions.payload}`;
+    const result = yield call(post, path);
+    if(!!actions.payload && result)
     {
       yield put(
         snackbarActions.setMessage({

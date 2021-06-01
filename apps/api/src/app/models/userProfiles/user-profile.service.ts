@@ -25,9 +25,10 @@ export class UserProfileModelService {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: UserProfileUpdated) {
-    await this.model.findOneAndUpdate(
+    const test= await this.model.update(
       { _id: Types.ObjectId(data.id) },
-      { $set: data.userProfile }
+      { $set: data.userProfile },
+      {upsert: true}
     );
   }
   async getAll(): Promise<UserProfilePayloadDto[]> {
