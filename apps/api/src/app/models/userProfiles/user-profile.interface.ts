@@ -22,7 +22,7 @@ export interface CreateUserProfile {
   email: string;
   socialLinks?: SocialLink[];
   website?: string;
-  courseIds?: string[];
+  coursesIds?: string[];
 }
 export interface UserProfile {
   type: string;
@@ -31,7 +31,7 @@ export interface UserProfile {
   lastName: string;
   photo: string;
   fieldOfProfession: string;
-  company: string;
+  company?: string;
   categories: string[];
   city: string;
   state: string;
@@ -40,7 +40,7 @@ export interface UserProfile {
   email: string;
   socialLinks?: SocialLink[];
   website?: string;
-  courseIds?: string[];
+  coursesIds?: string[];
 }
 
 export type UserProfileViewModel = UserProfile & Document;

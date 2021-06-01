@@ -18,7 +18,7 @@ export class UserProfilePayloadDto implements UserProfile {
   @ApiProperty()
   public readonly fieldOfProfession: string;
   @ApiProperty()
-  public readonly company: string;
+  public readonly company?: string;
   @ApiProperty({ isArray: true, type: 'string' })
   public readonly categories: string[];
   @ApiProperty()

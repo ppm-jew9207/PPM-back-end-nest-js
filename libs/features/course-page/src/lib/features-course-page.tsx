@@ -70,7 +70,8 @@ export const FeaturesCoursePage = (props: {
 
   const { id } = useParams();
   const { profile } = useSelector(stateSelector);
-  const { course, loading, onGetStartedClick } = useCourses(id);
+  const { course, loading } = useCourses(id);
+  const { onGetStartedClick } = useCourses(props.match?.params?.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -120,7 +121,7 @@ export const FeaturesCoursePage = (props: {
             },
           ]}
           onGetStartedClick={onGetStartedClick}
-          getStartedButtonText="Get Started"
+          getStartedButtonText="Start the Course"
         />
         <SharedCourseDetails
           learnItems={course.learnItems}
