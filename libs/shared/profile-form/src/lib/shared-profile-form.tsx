@@ -233,16 +233,16 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       fieldOfProfession,
       company,
       categories,
-      state: state.stateName,
-      city: city.cityName,
-      country: country.countryName,
+      state: state?.stateName,
+      city: city?.cityName,
+      country: country?.countryName,
       phone,
       website,
       type,
       socialLinks: SOCIAL_LINKS,
     };
     if (props.profile && props.profile._id) profileData._id = props.profile._id;
-
+    
     props.onSubmit(profileData);
   };
 

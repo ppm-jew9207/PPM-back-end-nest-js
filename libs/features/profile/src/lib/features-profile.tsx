@@ -198,6 +198,8 @@ export const FeaturesProfile = (props) => {
               dispatch(countriesApiActions.getCities(stateName))
             }
             onSubmit={(profileData: Profile) => {
+              setMenuOpen(false);
+
               dispatch(userProfileActions.update(profileData));
             }}
             onAddCategory={(categoryData: Category) => {
