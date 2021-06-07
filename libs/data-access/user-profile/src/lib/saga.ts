@@ -28,7 +28,7 @@ export function* getUserProfile() {
 
 export function* updateUserProfile(actions: { type: string, payload: Profile }) {
   const data = actions.payload;
-  try {
+  try {    
     if (typeof(data.photo) !== 'string') {
       const file = data.photo[0];
       const formData = new FormData();

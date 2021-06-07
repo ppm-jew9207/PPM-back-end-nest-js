@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 import { Edit as EditIcon } from '@material-ui/icons';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 interface Lesson {
   _id: string;
@@ -58,19 +59,21 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
             <Grid container spacing={2}>
               {props.showAddButton && (
                 <Grid key={1} item xs={3} onClick={onClick}>
-                  <Card>
-                    <CardActionArea>
-                      <CardContent>
-                        <Typography
-                          variant="body1"
-                          gutterBottom
-                          color="primary"
-                        >
-                          Add Lesson
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    color="primary"
+                    className="addCircleIcon"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      fontSize: '20px',
+                    }}
+                  >
+                    <AddCircleIcon fontSize="large"	/>
+                    Add Lesson
+                  </Typography>
                 </Grid>
               )}
               {props.lessons.map((lesson, i) => (

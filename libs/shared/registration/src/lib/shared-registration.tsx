@@ -7,6 +7,7 @@ import {
   Typography,
   InputAdornment,
   Button,
+  makeStyles,
 } from '@material-ui/core';
 import {
   Person,
@@ -15,6 +16,19 @@ import {
   } from '@material-ui/icons';
 import './shared-registration.scss';
 import { RegistrationInterface } from '@ppm/common/main';
+
+const useStyles = makeStyles({
+  link: {
+    textTransform: "none", 
+    '&:hover': {
+      backgroundColor: "transparent",
+      textDecoration: "underline",
+    }
+  },
+  button: {
+    textTransform: "none"
+  },
+});
 
 interface RegistrationFormData {
   email: string;
@@ -29,6 +43,7 @@ export interface SharedRegistrationProps {
 
 export const SharedRegistration = (props: SharedRegistrationProps) => {
   const { handleSubmit, register, errors, watch } = useForm();
+  const classes = useStyles();
 
   const submit = (data: RegistrationFormData) => {
     props.onSubmit({
@@ -40,7 +55,7 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
 
   return (
     <div className="shared-registration">
-      <Grid className="card" container direction="column" justify="center">
+      <Grid className="registration-card" container direction="column" justify="center">
         <form autoComplete="off" onSubmit={handleSubmit(submit)}>
           <Box my={1} className="form-field">
             <TextField
@@ -142,14 +157,16 @@ export const SharedRegistration = (props: SharedRegistrationProps) => {
           </Box>
 
           <Grid container justify="center">
-            <Button variant="contained" color="primary" type="submit">
-              Registration
+            <Button variant="contained" color="primary" type="submit" fullWidth className={classes.button}>
+              Register
             </Button>
           </Grid>
         </form>
-        <Typography variant="caption" display="block" gutterBottom>
-          * required fields
-        </Typography>
+        <Box display="flex" justifyContent="center" py={1}>
+            <Button href="/login" disableTouchRipple disableFocusRipple className={classes.link}>
+              Log In
+            </Button>
+        </Box>
       </Grid>
     </div>
   );

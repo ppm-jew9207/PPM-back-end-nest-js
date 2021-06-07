@@ -1,6 +1,15 @@
+.features-private-layout .navigation-bar {
+  position: sticky;
+}
+
+header.navigation-bar {
+  background-color: #fff;
+  border-color: rgba(52, 64, 85, 0.3);
+  text-transform: none;
+}
 .navigation-bar {
   .navigation-button {
-    color: #fff;
+    color: #344055;
     margin: 5px;
   }
   .navigation-button:hover {

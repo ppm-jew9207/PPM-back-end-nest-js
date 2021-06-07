@@ -242,7 +242,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       socialLinks: SOCIAL_LINKS,
     };
     if (props.profile && props.profile._id) profileData._id = props.profile._id;
-
+    
     props.onSubmit(profileData);
   };
 
