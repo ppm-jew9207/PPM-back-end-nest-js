@@ -219,7 +219,6 @@ export const FeaturesProfile = (props) => {
             }
             onSubmit={(profileData: Profile) => {
               setMenuOpen(false);
-
               dispatch(userProfileActions.update(profileData));
             }}
             onAddCategory={(categoryData: Category) => {
