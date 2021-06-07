@@ -3,7 +3,6 @@ import { BadRequestException, Inject } from '@nestjs/common';
 import { UserProfileAggregate } from '../user-profiles.aggregate';
 import { UserProfileUpdated } from '../events/user-profile-updated.event';
 import { UserProfileModelService } from '../../../models/userProfiles/user-profile.service';
-import { CreateUserProfilePayloadDto } from '../../../models/userProfiles/dto/create-user-profile-payload.dto';
 import { UserProfile } from '../../../models/userProfiles/user-profile.interface';
 
 export class AddToCourseUserProfileCommand {
@@ -21,7 +20,6 @@ export class AddToCourseUserProfileHandler
             return new BadRequestException('You are already subscibed to that course.');
         }
     coursesIdsEmpty.push(courseId);
-  //  currentUserProfile['coursesIds'] = coursesIdsEmpty;
     const updatedUserProfile = {coursesIds:coursesIdsEmpty} as UserProfile;
     const aggregate = new UserProfileAggregate();
     aggregate.apply(new UserProfileUpdated(userId, updatedUserProfile));

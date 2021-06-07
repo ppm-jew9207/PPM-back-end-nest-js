@@ -25,9 +25,9 @@ export class UserProfileModelService {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: UserProfileUpdated) {
-    const test= await this.model.update(
+    await this.model.updateOne(
       { _id: Types.ObjectId(data.id) },
-      { $set: data.userProfile },
+     data.userProfile,
       {upsert: true}
     );
   }
