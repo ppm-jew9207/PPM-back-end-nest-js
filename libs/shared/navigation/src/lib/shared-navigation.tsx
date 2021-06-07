@@ -18,7 +18,7 @@ export interface SharedNavigationProps {
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
   return (
-    <AppBar  className="navigation-bar" elevation={2}  position="sticky">
+    <AppBar  className="navigation-bar" elevation={2} position="sticky">
       <Toolbar>
         {props.buttons.map((button) => (
           <Link
