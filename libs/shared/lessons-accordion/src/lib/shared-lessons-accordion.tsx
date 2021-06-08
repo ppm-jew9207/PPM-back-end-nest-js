@@ -13,12 +13,16 @@ import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 import { Edit as EditIcon } from '@material-ui/icons';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Box from '@material-ui/core/Box';
 
 interface Lesson {
   _id: string;
   title: string;
+  image:string;
   authorName: string;
-  image: string;
+  imageUrl: string;
+  description: string;
+  type: string;
 }
 
 export interface SharedLessonsAccordionProps {
@@ -80,21 +84,25 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                 <Grid key={i} item xs={3}>
                   <a href={`/lessons/${lesson._id}`} className="lesson-link">
                     <Card>
+                      {console.log(lesson)}
                       <CardActionArea>
-                        {lesson.image && (
+                        {lesson.imageUrl && (
                           <CardMedia
                             className="lesson-image"
                             id={lesson._id}
-                            image={lesson.image}
+                            image={lesson.imageUrl}
                             title={lesson.title}
                           />
                         )}
                         <CardContent>
-                          <Typography variant="body1" gutterBottom>
+                          <Typography variant="h6" >
                             {lesson.title}
                           </Typography>
-                          <Typography variant="body2" gutterBottom>
-                            {lesson.authorName}
+                          <Typography variant="body1" gutterBottom={true} className="short-desc">
+                            {lesson.description?.slice(0,35)}
+                          </Typography>
+                          <Typography variant="body1" gutterBottom className="lesson-type">
+                              {lesson.type}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
