@@ -27,7 +27,7 @@ $ nx serve api
 $ nx serve
 
 # Migrate mongo db up
-$ npm start migration:up
+$ npm run migration:up
 
 # Swager
 $ http://localhost:3333/api/
