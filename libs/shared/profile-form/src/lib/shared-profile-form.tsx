@@ -116,7 +116,7 @@ export interface SharedProfileFormProps {
   countries: { countryName: string }[];
   states?: { stateName: string }[];
   profile: Profile;
-  onCancel: () => void;
+  onCancel?: Function;
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
