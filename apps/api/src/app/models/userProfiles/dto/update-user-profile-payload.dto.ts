@@ -36,5 +36,5 @@ export class UpdateUserProfilePayloadDto implements UserProfile {
   @ApiProperty()
   public readonly website?: string;
   @ApiProperty()
-  public readonly coursesIds?: string[];
+  public coursesIds?: string[];
 }

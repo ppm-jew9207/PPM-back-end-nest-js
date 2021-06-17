@@ -25,11 +25,12 @@ export class UserProfileModelService {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: UserProfileUpdated) {
-    await this.model.updateOne(
-      { _id: Types.ObjectId(data.id) },
-     data.userProfile,
-      {upsert: true}
+    console.log(data, 'DATA'); //TODO remove
+    const rez = await this.model.updateOne(
+      { _id: new Types.ObjectId(data.id) },
+      { $set: data.userProfile }
     );
+    console.log(rez, 'REZ'); //TODO remove
   }
   async getAll(): Promise<UserProfilePayloadDto[]> {
     return this.model.find().exec();
@@ -42,20 +43,20 @@ export class UserProfileModelService {
   }
   async getMentors(): Promise<UserProfilePayloadDto[]> {
     return this.model.aggregate([
-      { $addFields: { "userId": { "$toString": "$_id" }}},
+      { $addFields: { userId: { $toString: '$_id' } } },
       {
         $lookup: {
-          "from": "courses",
-          "localField": "userId",
-          "foreignField": "creator._id",
-          "as": "courses"
-        }
+          from: 'courses',
+          localField: 'userId',
+          foreignField: 'creator._id',
+          as: 'courses',
+        },
       },
       {
         $match: {
-          "courses": {$ne: []}
-        }
-      }
-  ]);
+          courses: { $ne: [] },
+        },
+      },
+    ]);
   }
 }
