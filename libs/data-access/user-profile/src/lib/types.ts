@@ -14,6 +14,7 @@ export interface UserProfileType {
 interface UserProfileState {
   readonly profile: UserProfileType;
   readonly loading: boolean;
+  readonly loadedProfile: UserProfileType;
 }
 
 type AppActions = ActionType<typeof actions>;

@@ -16,7 +16,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { CoursesViewModel } from '../../models/courses/courses.interface';
-import { GetUsersCoursesQuery } from './queries/handlers/get-users-courses.handler';
 
 @Controller(PrivateRoutesPath.COURSES)
 @ApiTags(PrivateRoutesPath.COURSES)
@@ -40,7 +39,7 @@ export class CoursesController {
   @Get(PrivateRoutesPath.USER)
   async getByUserId(@Req() request: any): Promise<CoursesViewModel> {
     const user = request.user;
-    return this.queryBus.execute(new GetUsersCoursesQuery(user.id));
+    return this.queryBus.execute(new GetUsersCourseQuery(user.id, user.id));
   }
 
   @Get(`${PrivateRoutesPath.GET_BY_ID}`)
