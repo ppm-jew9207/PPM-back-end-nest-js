@@ -15,5 +15,6 @@ export const UserProfileSchema = new Schema({
   phone: String,
   email: String,
   socialLinks: [{ link: String, icon: String, color: String }],
-  website: String
+  website: String,
+  coursesIds: [String],
 });
