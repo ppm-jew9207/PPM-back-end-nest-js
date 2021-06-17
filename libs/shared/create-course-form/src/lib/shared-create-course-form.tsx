@@ -11,12 +11,10 @@ import {
   Button,
   Box,
   Typography,
-  Dialog,
   List,
   Checkbox,
   Chip,
   FormHelperText,
-  DialogActions,
 } from '@material-ui/core';
 import './shared-create-course-form.scss';
 
@@ -80,12 +78,11 @@ export interface CourseData {
 
 export interface SharedCreateCourseFormProps {
   onSubmit?: (courseData: CourseData) => void;
-  onCancel?: () => void;
   data?: CourseData;
   categories: Category[];
   lessons?: Lesson[];
   course?: Course;
-  toggleAddDrawer?: () => void;
+  onCancel?: Function;
 }
 
 export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
@@ -228,7 +225,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.title) || ''}
           rules={{ required: true }}
         />
-        <FormHelperText style={{color: '#f44336'}}>
+        <FormHelperText style={{ color: '#f44336' }}>
           {errors.title ? 'This field is required' : ''}
         </FormHelperText>
         <Controller
@@ -254,62 +251,62 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           defaultValue={(course && course.description) || ''}
           rules={{ required: true }}
         />
-        <FormHelperText style={{color: '#f44336',}}>
+        <FormHelperText style={{ color: '#f44336' }}>
           {errors.description ? 'This field is required' : ''}
         </FormHelperText>
-        <div className='text-row'>
-          <div className='text-column'>
-        <Controller
-          as={
-            <TextField
-              error={!!errors.prerequisites}
-              placeholder="Prerequisites"
-              variant="outlined"
-              margin="normal"
-              label={labels?.prerequisitesInputLabel}
-              type="text"
-              className="prerequisites"
-              onChange={(event) =>
-                setCourse({ ...course, prerequisites: event.target.value })
+        <div className="text-row">
+          <div className="text-column">
+            <Controller
+              as={
+                <TextField
+                  error={!!errors.prerequisites}
+                  placeholder="Prerequisites"
+                  variant="outlined"
+                  margin="normal"
+                  label={labels?.prerequisitesInputLabel}
+                  type="text"
+                  className="prerequisites"
+                  onChange={(event) =>
+                    setCourse({ ...course, prerequisites: event.target.value })
+                  }
+                  multiline
+                />
               }
-              multiline
+              name="prerequisites"
+              control={control}
+              defaultValue={(course && course.prerequisites) || ''}
+              rules={{ required: true }}
             />
-          }
-          name="prerequisites"
-          control={control}
-          defaultValue={(course && course.prerequisites) || ''}
-          rules={{ required: true }}
-        />
-        <FormHelperText style={{color: '#f44336',}}>
-          {errors.prerequisites ? 'This field is required' : ''}
-        </FormHelperText>
-        </div>
-        <div className='text-column'>
-        <Controller
-          as={
-            <TextField
-              error={!!errors.learning}
-              placeholder="What will you learn?"
-              variant="outlined"
-              margin="normal"
-              label={labels?.learningInputLabel}
-              type="text"
-              className="learning"
-              onChange={(event) =>
-                setCourse({ ...course, learning: event.target.value })
+            <FormHelperText style={{ color: '#f44336' }}>
+              {errors.prerequisites ? 'This field is required' : ''}
+            </FormHelperText>
+          </div>
+          <div className="text-column">
+            <Controller
+              as={
+                <TextField
+                  error={!!errors.learning}
+                  placeholder="What will you learn?"
+                  variant="outlined"
+                  margin="normal"
+                  label={labels?.learningInputLabel}
+                  type="text"
+                  className="learning"
+                  onChange={(event) =>
+                    setCourse({ ...course, learning: event.target.value })
+                  }
+                  multiline
+                />
               }
-              multiline
+              name="learning"
+              control={control}
+              defaultValue={(course && course.learning) || ''}
+              rules={{ required: true }}
             />
-          }
-          name="learning"
-          control={control}
-          defaultValue={(course && course.learning) || ''}
-          rules={{ required: true }}
-        />
-        <FormHelperText style={{color: '#f44336',}}>
-          {errors.learning ? 'This field is required' : ''}
-        </FormHelperText>
-        </div>
+            <FormHelperText style={{ color: '#f44336' }}>
+              {errors.learning ? 'This field is required' : ''}
+            </FormHelperText>
+          </div>
         </div>
         <Box my={3}>
           <FormControl variant="outlined" fullWidth error={!!errors.categories}>
@@ -405,7 +402,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             className="cancel-form"
             onClick={() => {
               props.onCancel();
-              props.toggleAddDrawer();
             }}
           >
             Cancel

@@ -116,6 +116,7 @@ export interface SharedProfileFormProps {
   countries: { countryName: string }[];
   states?: { stateName: string }[];
   profile: Profile;
+  onCancel: Function;
 }
 
 export const SharedProfileForm = (props: SharedProfileFormProps) => {
@@ -242,56 +243,71 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       socialLinks: SOCIAL_LINKS,
     };
     if (props.profile && props.profile._id) profileData._id = props.profile._id;
-    
+
     props.onSubmit(profileData);
   };
 
   return (
-    <Grid container direction="column" className="profileForm">
-      <form autoComplete="off" onSubmit={handleSubmit(onSubmitForm)}>
-        <Box my={3}>
-          <TextField
-            id="firstName"
-            name="firstName"
-            defaultValue={(props.profile && props.profile.firstName) || ''}
-            type="text"
-            variant="outlined"
-            label="First Name *"
-            inputRef={register({
-              required: 'Required',
-            })}
-            error={!!errors.firstName}
-            helperText={errors.firstName ? 'This field is required' : ''}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="lastName"
-            name="lastName"
-            defaultValue={(props.profile && props.profile.lastName) || ''}
-            type="text"
-            variant="outlined"
-            label="Last Name"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="email"
-            name="email"
-            defaultValue={(props.profile && props.profile.email) || ''}
-            type="email"
-            variant="outlined"
-            label="Email"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
+    <Grid container direction="column">
+      <form
+        className="profileForm"
+        autoComplete="off"
+        onSubmit={handleSubmit(onSubmitForm)}
+      >
+        <div className="text-row">
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="firstName"
+                id="firstName"
+                name="firstName"
+                defaultValue={(props.profile && props.profile.firstName) || ''}
+                type="text"
+                variant="outlined"
+                label="First Name *"
+                inputRef={register({
+                  required: 'Required',
+                })}
+                error={!!errors.firstName}
+                helperText={errors.firstName ? 'This field is required' : ''}
+                fullWidth
+              />
+            </Box>
+          </div>
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="lastName"
+                id="lastName"
+                name="lastName"
+                defaultValue={(props.profile && props.profile.lastName) || ''}
+                type="text"
+                variant="outlined"
+                label="Last Name"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="email"
+                id="email"
+                name="email"
+                defaultValue={(props.profile && props.profile.email) || ''}
+                type="email"
+                variant="outlined"
+                label="Email"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+        </div>
         <Box my={3}>
           <InputLabel id="photoLabel">Photo</InputLabel>
-          <div className="image-container">
+          <div className="inner-container">
             <div
               className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}
             >
@@ -341,160 +357,176 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             fullWidth
           />
         </Box>
-        <Box my={3}>
-          <TextField
-            id="fieldOfProfession"
-            name="fieldOfProfession"
-            defaultValue={
-              (props.profile && props.profile.fieldOfProfession) || ''
-            }
-            type="text"
-            variant="outlined"
-            label="Field of Profession"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="company"
-            name="company"
-            defaultValue={(props.profile && props.profile.company) || ''}
-            type="text"
-            variant="outlined"
-            label="Company"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <FormControl variant="outlined" fullWidth error={!!errors.categories}>
-            <InputLabel id="categoriesLabel">Categories *</InputLabel>
-            <Controller
-              name="categories"
-              defaultValue={
-                props.profile && props.profile.categories
-                  ? props.profile.categories
-                  : []
-              }
-              control={control}
-              rules={{ validate: (value) => validateCategories(value) }}
-              onChange={([selected]) => {
-                return selected;
-              }}
-              as={
-                <Select
-                  id="categories"
-                  label="Categories"
-                  name="categories"
-                  value={categories}
-                  multiple
-                  onChange={handleCategoriesChange}
-                  input={<Input id="select-multiple-chip" />}
-                  inputRef={register}
-                  renderValue={renderCategoryValue}
-                  error={!!errors.categories}
-                >
-                  {props.categories.map((category: Category) => (
-                    <MenuItem key={category._id} value={category.value}>
-                      {category.title}
-                    </MenuItem>
-                  ))}
-                  <MenuItem
-                    dense
-                    divider
-                    value={[]}
-                    onClickCapture={stopImmediatePropagation}
-                    onKeyDown={(event) => event.stopPropagation()}
-                    className="new-category__form"
-                  >
-                    <TextField
-                      id="new-category"
-                      name="new-category"
-                      type="text"
-                      variant="outlined"
-                      size="small"
-                      label="Add new"
-                      className="new-category__input"
-                      value={newCategory.title}
-                      onChange={handleNewCategoryInput}
-                    />
-                  </MenuItem>
-                  {newCategory.title.length > 0 && (
-                    <div className="new-category__control">
-                      <Button
-                        size="small"
-                        variant="contained"
-                        style={{ color: '#fff', background: green[600] }}
-                        endIcon={
-                          <CheckIcon
-                            className="new-category__add"
-                            display="inline"
-                          />
-                        }
-                        className="new-category__add"
-                        type="button"
-                        onClick={() => {
-                          if (newCategory.value.length > 0) {
-                            props.onAddCategory(newCategory);
-                            setNewCategory({ title: '', value: '' });
-                          }
-                        }}
-                      ></Button>
-                      <Button
-                        className="new-category__clear"
-                        onClick={() => {
-                          setNewCategory({ title: '', value: '' });
-                        }}
-                        style={{ color: '#fff', background: red[600] }}
-                      >
-                        <ClearIcon display="inline" />
-                      </Button>
-                    </div>
-                  )}
-                </Select>
-              }
-              fullWidth
-            />
-
-            <FormHelperText>
-              {errors.categories ? 'This field is required' : ''}
-            </FormHelperText>
-          </FormControl>
-        </Box>
-        <Box my={3}>
-          <Controller
-            render={({ onChange, ...params }) => (
-              <Autocomplete
+        <div className="text-row">
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                id="fieldOfProfession"
+                name="fieldOfProfession"
                 defaultValue={
-                  props.profile && props.countries && props.profile.country
-                    ? props.countries.filter(
-                        (item) => item.countryName === props.profile.country
-                      )[0]
-                    : props.countries[0]
+                  (props.profile && props.profile.fieldOfProfession) || ''
                 }
-                options={props.countries}
-                getOptionLabel={(option) => option.countryName}
-                renderOption={(option) => <span>{option.countryName}</span>}
-                renderInput={(params) => (
-                  <TextField
+                type="text"
+                variant="outlined"
+                label="Field of Profession"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                id="company"
+                name="company"
+                defaultValue={(props.profile && props.profile.company) || ''}
+                type="text"
+                variant="outlined"
+                label="Company"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+        </div>
+        <div className="text-row">
+          <div className="text-column">
+            <Box my={3}>
+              <FormControl
+                variant="outlined"
+                fullWidth
+                error={!!errors.categories}
+              >
+                <InputLabel id="categoriesLabel">Categories *</InputLabel>
+                <Controller
+                  name="categories"
+                  defaultValue={
+                    props.profile && props.profile.categories
+                      ? props.profile.categories
+                      : []
+                  }
+                  control={control}
+                  rules={{ validate: (value) => validateCategories(value) }}
+                  onChange={([selected]) => {
+                    return selected;
+                  }}
+                  as={
+                    <Select
+                      id="categories"
+                      label="Categories"
+                      name="categories"
+                      value={categories}
+                      multiple
+                      onChange={handleCategoriesChange}
+                      input={<Input id="select-multiple-chip" />}
+                      inputRef={register}
+                      renderValue={renderCategoryValue}
+                      error={!!errors.categories}
+                    >
+                      {props.categories.map((category: Category) => (
+                        <MenuItem key={category._id} value={category.value}>
+                          {category.title}
+                        </MenuItem>
+                      ))}
+                      <MenuItem
+                        dense
+                        divider
+                        value={[]}
+                        onClickCapture={stopImmediatePropagation}
+                        onKeyDown={(event) => event.stopPropagation()}
+                        className="new-category__form"
+                      >
+                        <TextField
+                          id="new-category"
+                          name="new-category"
+                          type="text"
+                          variant="outlined"
+                          size="small"
+                          label="Add new"
+                          className="new-category__input"
+                          value={newCategory.title}
+                          onChange={handleNewCategoryInput}
+                        />
+                      </MenuItem>
+                      {newCategory.title.length > 0 && (
+                        <div className="new-category__control">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            style={{ color: '#fff', background: green[600] }}
+                            endIcon={
+                              <CheckIcon
+                                className="new-category__add"
+                                display="inline"
+                              />
+                            }
+                            className="new-category__add"
+                            type="button"
+                            onClick={() => {
+                              if (newCategory.value.length > 0) {
+                                props.onAddCategory(newCategory);
+                                setNewCategory({ title: '', value: '' });
+                              }
+                            }}
+                          ></Button>
+                          <Button
+                            className="new-category__clear"
+                            onClick={() => {
+                              setNewCategory({ title: '', value: '' });
+                            }}
+                            style={{ color: '#fff', background: red[600] }}
+                          >
+                            <ClearIcon display="inline" />
+                          </Button>
+                        </div>
+                      )}
+                    </Select>
+                  }
+                  fullWidth
+                />
+
+                <FormHelperText>
+                  {errors.categories ? 'This field is required' : ''}
+                </FormHelperText>
+              </FormControl>
+            </Box>
+          </div>
+          <div className="text-column">
+            <Box my={3}>
+              <Controller
+                render={({ onChange, ...params }) => (
+                  <Autocomplete
+                    defaultValue={
+                      props.profile && props.countries && props.profile.country
+                        ? props.countries.filter(
+                            (item) => item.countryName === props.profile.country
+                          )[0]
+                        : props.countries[0]
+                    }
+                    options={props.countries}
+                    getOptionLabel={(option) => option.countryName}
+                    renderOption={(option) => <span>{option.countryName}</span>}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Choose a country"
+                        variant="outlined"
+                        autoComplete="off"
+                      />
+                    )}
+                    onChange={(e, data) => {
+                      data && props.onSelectCountry(data.countryName);
+                      return onChange(data);
+                    }}
                     {...params}
-                    label="Choose a country"
-                    variant="outlined"
-                    autoComplete="off"
                   />
                 )}
-                onChange={(e, data) => {
-                  data && props.onSelectCountry(data.countryName);
-                  return onChange(data);
-                }}
-                {...params}
+                name="country"
+                control={control}
               />
-            )}
-            name="country"
-            control={control}
-          />
-        </Box>
+            </Box>
+          </div>
+        </div>
         {props.states.length > 0 && (
           <Box my={3}>
             <Controller
@@ -565,121 +597,170 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
             />
           </Box>
         )}
-        <Box my={3}>
-          <TextField
-            id="phone"
-            name="phone"
-            defaultValue={(props.profile && props.profile.phone) || ''}
-            type="text"
-            variant="outlined"
-            label="Phone"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="website"
-            name="website"
-            defaultValue={(props.profile && props.profile.website) || ''}
-            type="text"
-            variant="outlined"
-            label="Website"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="type"
-            name="type"
-            defaultValue={(props.profile && props.profile.type) || ''}
-            type="text"
-            variant="outlined"
-            label="Type"
-            inputRef={register}
-            fullWidth
-          />
-        </Box>
+        <div className="text-row">
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="phone"
+                id="phone"
+                name="phone"
+                defaultValue={(props.profile && props.profile.phone) || ''}
+                type="text"
+                variant="outlined"
+                label="Phone"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="website"
+                id="website"
+                name="website"
+                defaultValue={(props.profile && props.profile.website) || ''}
+                type="text"
+                variant="outlined"
+                label="Website"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+          <div className="text-columns">
+            <Box my={3}>
+              <TextField
+                className="type"
+                id="type"
+                name="type"
+                defaultValue={(props.profile && props.profile.type) || ''}
+                type="text"
+                variant="outlined"
+                label="Type"
+                inputRef={register}
+                fullWidth
+              />
+            </Box>
+          </div>
+        </div>
         <Typography variant="overline" display="block" gutterBottom>
           Social Links
         </Typography>
         <Divider variant="middle" />
-        <Box my={3}>
-          <TextField
-            id="facebook"
-            name="facebook"
-            type="text"
-            variant="outlined"
-            label="Facebook"
-            inputRef={register}
+        <div className="text-row">
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                className="facebook"
+                id="facebook"
+                name="facebook"
+                type="text"
+                variant="outlined"
+                label="Facebook"
+                inputRef={register}
+                fullWidth
+                defaultValue={
+                  props.profile &&
+                  props.profile.socialLinks[0] &&
+                  props.profile.socialLinks[0].link
+                    ? props.profile.socialLinks[0].link
+                    : ''
+                }
+              />
+            </Box>
+          </div>
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                className="linkedin"
+                id="linkedin"
+                name="linkedin"
+                type="text"
+                variant="outlined"
+                label="LinkedIn"
+                inputRef={register}
+                fullWidth
+                defaultValue={
+                  props.profile &&
+                  props.profile.socialLinks[1] &&
+                  props.profile.socialLinks[1].link
+                    ? props.profile.socialLinks[1].link
+                    : ''
+                }
+              />
+            </Box>
+          </div>
+        </div>
+        <div className="text-row">
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                className="twitter"
+                id="twitter"
+                name="twitter"
+                type="text"
+                variant="outlined"
+                label="Twitter"
+                inputRef={register}
+                fullWidth
+                defaultValue={
+                  props.profile &&
+                  props.profile.socialLinks[2] &&
+                  props.profile.socialLinks[2].link
+                    ? props.profile.socialLinks[2].link
+                    : ''
+                }
+              />
+            </Box>
+          </div>
+          <div className="text-column">
+            <Box my={3}>
+              <TextField
+                className="instagram"
+                id="instagram"
+                name="instagram"
+                type="text"
+                variant="outlined"
+                label="Instagram"
+                inputRef={register}
+                fullWidth
+                defaultValue={
+                  props.profile &&
+                  props.profile.socialLinks[3] &&
+                  props.profile.socialLinks[3].link
+                    ? props.profile.socialLinks[3].link
+                    : ''
+                }
+              />
+            </Box>
+          </div>
+        </div>
+        <div className="select-button">
+          <Button
             fullWidth
-            defaultValue={
-              props.profile &&
-              props.profile.socialLinks[0] &&
-              props.profile.socialLinks[0].link
-                ? props.profile.socialLinks[0].link
-                : ''
-            }
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="linkedin"
-            name="linkedin"
-            type="text"
-            variant="outlined"
-            label="LinkedIn"
-            inputRef={register}
+            className="submit-form"
+            name="submit"
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Save
+          </Button>
+          <Button
             fullWidth
-            defaultValue={
-              props.profile &&
-              props.profile.socialLinks[1] &&
-              props.profile.socialLinks[1].link
-                ? props.profile.socialLinks[1].link
-                : ''
-            }
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="twitter"
-            name="twitter"
-            type="text"
-            variant="outlined"
-            label="Twitter"
-            inputRef={register}
-            fullWidth
-            defaultValue={
-              props.profile &&
-              props.profile.socialLinks[2] &&
-              props.profile.socialLinks[2].link
-                ? props.profile.socialLinks[2].link
-                : ''
-            }
-          />
-        </Box>
-        <Box my={3}>
-          <TextField
-            id="instagram"
-            name="instagram"
-            type="text"
-            variant="outlined"
-            label="Instagram"
-            inputRef={register}
-            fullWidth
-            defaultValue={
-              props.profile &&
-              props.profile.socialLinks[3] &&
-              props.profile.socialLinks[3].link
-                ? props.profile.socialLinks[3].link
-                : ''
-            }
-          />
-        </Box>
-        <Button name="submit" variant="contained" color="primary" type="submit">
-          SAVE
-        </Button>
+            className="cancel-form"
+            name="submit"
+            variant="contained"
+            color="secondary"
+            type="reset"
+            onClick={() => {
+              props.onCancel();
+            }}
+          >
+            Cancel
+          </Button>
+        </div>
       </form>
     </Grid>
   );

@@ -6,7 +6,7 @@ import './shared-courses-add-buttons.module.scss';
 export interface SharedCoursesAddButtonsProps {
   disabled: boolean;
   toggleDisabled?: () => void;
-  toggleAddDrawer?: () => void;
+  openAddCourseDialog?: Function;
 }
 
 export function SharedCoursesAddButtons(props: SharedCoursesAddButtonsProps) {
@@ -22,7 +22,7 @@ export function SharedCoursesAddButtons(props: SharedCoursesAddButtonsProps) {
         <Button
           className="margin-example"
           disabled={!disabled}
-          onClick={() => props.toggleAddDrawer()}
+          onClick={() => props.openAddCourseDialog}
           variant="contained"
           color="primary"
         >
