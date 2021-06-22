@@ -150,7 +150,6 @@ export const FeaturesProfile = (props) => {
         >
           <SharedCreateCourseForm
             onSubmit={addCourse}
-            onCancel={() => {}}
             categories={categories}
             lessons={lessons}
             toggleAddDrawer={() => setAddDrawer(false)}
