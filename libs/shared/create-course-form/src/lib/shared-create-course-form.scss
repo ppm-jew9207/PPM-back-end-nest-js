@@ -212,13 +212,14 @@ $error: #3f51b5;
       color: $error;
     }
   }
-  
+
   .text-row {
     display: flex;
     justify-content: space-between;
-    .prerequisites, .learning {
-    width: 100%;
-  }
+    .prerequisites,
+    .learning {
+      width: 100%;
+    }
   }
 
   .text-column {

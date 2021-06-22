@@ -18,7 +18,7 @@ import Box from '@material-ui/core/Box';
 interface Lesson {
   _id: string;
   title: string;
-  image:string;
+  image: string;
   authorName: string;
   imageUrl: string;
   description: string;
@@ -75,7 +75,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                       fontSize: '20px',
                     }}
                   >
-                    <AddCircleIcon fontSize="large"	/>
+                    <AddCircleIcon fontSize="large" />
                     Add Lesson
                   </Typography>
                 </Grid>
@@ -95,14 +95,20 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                           />
                         )}
                         <CardContent>
-                          <Typography variant="h6" >
-                            {lesson.title}
+                          <Typography variant="h6">{lesson.title}</Typography>
+                          <Typography
+                            variant="body1"
+                            gutterBottom={true}
+                            className="short-desc"
+                          >
+                            {lesson.description?.slice(0, 35)}
                           </Typography>
-                          <Typography variant="body1" gutterBottom={true} className="short-desc">
-                            {lesson.description?.slice(0,35)}
-                          </Typography>
-                          <Typography variant="body1" gutterBottom className="lesson-type">
-                              {lesson.type}
+                          <Typography
+                            variant="body1"
+                            gutterBottom
+                            className="lesson-type"
+                          >
+                            {lesson.type}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
