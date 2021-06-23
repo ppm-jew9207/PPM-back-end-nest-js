@@ -1,6 +1,12 @@
+header.navigation-bar {
+  background-color: #fff;
+  border-color: rgba(52, 64, 85, 0.3);
+  text-transform: none;
+  z-index: 3 !important;
+}
 .navigation-bar {
   .navigation-button {
-    color: #fff;
+    color: #344055;
     margin: 5px;
   }
   .navigation-button:hover {

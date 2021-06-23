@@ -5,7 +5,14 @@ import {
 } from '@ppm/shared/user-profile-card';
 import { Profile, SharedProfileForm, Category } from '@ppm/shared/profile-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { Drawer,  IconButton } from '@material-ui/core';
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Drawer,
+  IconButton,
+} from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
   userProfileActions,
@@ -13,7 +20,10 @@ import {
 } from '@ppm/data-access/user-profile';
 import './features-profile.scss';
 import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
-import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
+import {
+  categoriesActions,
+  categoriesSelectors,
+} from '@ppm/data-access/categories';
 import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
 import { LikeEnum, likesActions } from '@ppm/data-access/likes';
 import {
@@ -21,13 +31,13 @@ import {
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
 import { SharedCourseCard } from '@ppm/shared/course-card';
-import { CourseData, SharedCreateCourseForm } from '@ppm/shared/create-course-form';
+import {
+  CourseData,
+  SharedCreateCourseForm,
+} from '@ppm/shared/create-course-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
-import {
-  Button
-} from '@material-ui/core';
-
+import { Button } from '@material-ui/core';
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -37,18 +47,33 @@ const stateSelector = createStructuredSelector({
   countries: countriesApiSelectors.selectCountries(),
   states: countriesApiSelectors.selectStates(),
   cities: countriesApiSelectors.selectCities(),
-  lessons: lessonsSelectors.selectLessons()
+  lessons: lessonsSelectors.selectLessons(),
 });
 
 export const FeaturesProfile = (props) => {
   const [coursesState, setCoursesState] = useState([]);
   const dispatch = useDispatch();
-  const { profile, loading, courses, categories, countries, states, cities, lessons } = useSelector(stateSelector);
-  const [isMenuOpen, setMenuOpen] = useState(false);
-  const [addDrawer, setAddDrawer] = useState(false);
+  const {
+    profile,
+    loading,
+    courses,
+    categories,
+    countries,
+    states,
+    cities,
+    lessons,
+  } = useSelector(stateSelector);
+  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
+  const [isAddCourseDialogOpen, setIsAddCourseDialogOpen] = useState(false);
+  // openAddCourseDialog;
 
-  const toggleDrawer = (open: boolean) => {
-    setMenuOpen(open);
+  const handleClose = () => {
+    setIsProfileDialogOpen(false);
+    setIsAddCourseDialogOpen(false);
+  };
+
+  const openProfileDialog = () => {
+    setIsProfileDialogOpen(true);
   };
 
   const saveClick = (payload: any) => {
@@ -92,7 +117,7 @@ export const FeaturesProfile = (props) => {
     aboutMentor: '',
     mentorLocation: '',
     socialLinks: [],
-    toggleDrawer,
+    openProfileDialog,
   };
 
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
@@ -105,37 +130,49 @@ export const FeaturesProfile = (props) => {
         aboutMentor: profile.description,
         mentorLocation: profile.city,
         socialLinks: profile.socialLinks,
-        toggleDrawer: toggleDrawer,
+        openProfileDialog: openProfileDialog,
       });
     }
   }, [profile]);
 
   const addCourse = (data: CourseData) => {
-    setAddDrawer(false);
+    setIsAddCourseDialogOpen(false);
     dispatch(coursesActions.addCourse(data));
-  }
+  };
 
   return (
     <div className="features-profile">
       <div className="profile-card-container">
-        <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
+        <SharedUserProfileCard
+          {...data}
+          openProfileDialog={openProfileDialog}
+        />
       </div>
       <div className="content">
-        <div className='course-button'>
-        <Button variant="contained" color="primary" onClick={() => setAddDrawer(true)}>
-          Add Course
-        </Button>
+        <div className="course-button">
+          <Box mb={2}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setIsAddCourseDialogOpen(true)}
+            >
+              Add Course
+            </Button>
+          </Box>
         </div>
 
-        <Drawer anchor="right" open={addDrawer} onClose={() => setAddDrawer(false)}>
-            <SharedCreateCourseForm
-              onSubmit={addCourse}
-              onCancel={() => {}}
-              categories={categories}
-              lessons={lessons}
-              toggleAddDrawer={() => setAddDrawer(false)}
-            />
-        </Drawer>
+        <Dialog
+          maxWidth="lg"
+          open={isAddCourseDialogOpen}
+          onClose={handleClose}
+        >
+          <SharedCreateCourseForm
+            onSubmit={addCourse}
+            categories={categories}
+            lessons={lessons}
+            onCancel={handleClose}
+          />
+        </Dialog>
 
         {coursesState.map((course, i) => (
           <SharedCourseCard
@@ -173,21 +210,12 @@ export const FeaturesProfile = (props) => {
         ))}
       </div>
 
-      <Drawer
-        open={isMenuOpen}
-        ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
-        anchor="right"
-      >
-        <div className="shared-left-side-menu">
-          <IconButton
-            onClick={() => toggleDrawer(false)}
-            aria-label="close drawer"
-          >
-            <CloseIcon />
-          </IconButton>
+      <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="lg">
+        <DialogContent>
           <SharedProfileForm
-            profile={profile} 
-            categories={categories} 
+            onCancel={handleClose}
+            profile={profile}
+            categories={categories}
             countries={countries}
             cities={cities}
             states={states}
@@ -198,6 +226,8 @@ export const FeaturesProfile = (props) => {
               dispatch(countriesApiActions.getCities(stateName))
             }
             onSubmit={(profileData: Profile) => {
+              setIsProfileDialogOpen(false);
+
               dispatch(userProfileActions.update(profileData));
             }}
             onAddCategory={(categoryData: Category) => {
@@ -205,8 +235,8 @@ export const FeaturesProfile = (props) => {
               dispatch(categoriesActions.getAll());
             }}
           />
-        </div>
-      </Drawer>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

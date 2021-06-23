@@ -2,8 +2,9 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
 import { getUserProfileFailed, getUserProfileSuccess, updateSuccess, getOtherProfileSuccess, getOtherProfileFailed } from './actions';
 import { get, post, postFormData } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
-import { Profile } from '@ppm/shared/profile-form';
+import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
+import { Profile } from './types';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* getUserProfile() {
   try {
@@ -45,7 +46,7 @@ export function* getOtherUserProfile(actions: { type: string, payload: string })
 
 export function* updateUserProfile(actions: { type: string, payload: Profile }) {
   const data = actions.payload;
-  try {
+  try {    
     if (typeof(data.photo) !== 'string') {
       const file = data.photo[0];
       const formData = new FormData();
@@ -71,6 +72,16 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
         })
       );
     }
+
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.SUCCESS,
+        message: 'User profile updated'
+      })
+    );
+
+    yield put({ type: ActionTypes.USER_PROFILE_GET });
+    
   } catch (error) {}
 }
 

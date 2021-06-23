@@ -5,10 +5,20 @@ import SharedProfileForm from './shared-profile-form';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const categories = [{ _id: 'fasdfasdf', title: 'Programming', value: 'programming'}];
-const countries = [{ country_name: 'Lithuania'}, { country_name: 'Latvia'}, { country_name: 'Estonia' }];
-const states = [{ state_name: 'Kauno'}, {state_name: 'Vilniaus'}];
-const cities = [{city_name: 'Vilnius'}, { city_name: 'Kaunas'}, { city_name: 'Klaipėda'}];
+const categories = [
+  { _id: 'fasdfasdf', title: 'Programming', value: 'programming' },
+];
+const countries = [
+  { countryName: 'Lithuania' },
+  { countryName: 'Latvia' },
+  { countryName: 'Estonia' },
+];
+const states = [{ stateName: 'Kauno' }, { stateName: 'Vilniaus' }];
+const cities = [
+  { cityName: 'Vilnius' },
+  { cityName: 'Kaunas' },
+  { cityName: 'Klaipėda' },
+];
 
 const onSubmit = jest.fn();
 const onSelectCountry = jest.fn();
@@ -18,20 +28,21 @@ const onAddCategory = jest.fn();
 const profile = {
   _id: 'sadfasf234122',
   categories: [],
-  city: "Vilnius",
-  company: "IBM",
-  state: "Kauno",
-  country: "Lithuania",
-  description: "looong description",
-  email: "gintarazzz@gmail.com",
-  fieldOfProfession: "Super programmer",
-  firstName: "Gintaras",
-  lastName: "Kuskys",
-  phone: "098204820837",
-  photo: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+  city: 'Vilnius',
+  company: 'IBM',
+  state: 'Kauno',
+  country: 'Lithuania',
+  description: 'looong description',
+  email: 'gintarazzz@gmail.com',
+  fieldOfProfession: 'Super programmer',
+  firstName: 'Gintaras',
+  lastName: 'Kuskys',
+  phone: '098204820837',
+  photo:
+    'https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg',
   socialLinks: [],
-  type: "belekas",
-  website: "gardemarin.com"
+  type: 'belekas',
+  website: 'gardemarin.com',
 };
 
 describe(' SharedProfileForm', () => {

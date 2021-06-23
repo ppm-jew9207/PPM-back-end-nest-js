@@ -17,12 +17,11 @@ import {
   getAll as getAllAction,
   getAllByAuthor as getAllByAuthorAction,
   updateFailed,
-  addStudentToCourseFailed
+  addStudentToCourseFailed,
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
 import { snackbarActions } from '@ppm/data-access/snack-bar';
-import { ContainerActions } from './types';
 
 export function* createCourse(actions) {
   const data = actions.payload;
@@ -100,7 +99,7 @@ export function* getCourseById(actions) {
       throw new Error('Get by id failed');
     }
 
-    yield put(getByIdSuccess({ course: result[0]}));
+    yield put(getByIdSuccess({ course: result[0] }));
   } catch (error) {
     yield put(getByIdFailed(error));
   }
@@ -113,9 +112,7 @@ export function* getAll() {
     if (!Array.isArray(result)) {
       throw new Error('Failed load courses');
     }
-    yield put(
-      getAllSuccess({ list: result })
-    );
+    yield put(getAllSuccess({ list: result }));
   } catch (error) {
     yield put(getAllFailed(error));
   }
@@ -128,9 +125,7 @@ export function* getAllByAuthor() {
     if (result && !Array.isArray(result.data)) {
       throw new Error('Failed load user courses');
     }
-    yield put(
-      getAllSuccess({ list: result.data })
-    );
+    yield put(getAllSuccess({ list: result.data }));
   } catch (error) {
     yield put(getAllFailed(error));
   }
@@ -152,7 +147,7 @@ export function* getAllByAuthorId(actions) {
   }
 }
 
-export function* updateCourseFromList(actions : any) {
+export function* updateCourseFromList(actions: any) {
   const data = actions.payload;
   try {
     if (data.courseImage.length) {
@@ -165,16 +160,14 @@ export function* updateCourseFromList(actions : any) {
       if (imageResult) {
         const path = `/api/${PrivateRoutesPath.COURSES}/update/${data.id}`;
         yield call(post, path, { ...data, imageUrl: imageResult.data });
-        yield put( smallUpdateSuccess());
+        yield put(smallUpdateSuccess());
       }
     } else {
       const path = `/api/${PrivateRoutesPath.COURSES}/update/${data.id}`;
       yield call(post, path, data);
-      yield put(
-        smallUpdateSuccess()
-      );
+      yield put(smallUpdateSuccess());
     }
-    if(data.callback=="getAll") {
+    if (data.callback == 'getAll') {
       yield put(getAllAction());
     } else {
       yield put(getAllByAuthorAction());
@@ -190,54 +183,54 @@ export function* addCourses(actions) {
     const data = actions.payload;
     const result = yield call(post, path, data);
 
-    
     if (!result.data.success) {
       throw new Error('Failed to add course. Please try again.');
-    } 
-      yield put(addCourseSuccess());
+    }
+    yield put(addCourseSuccess());
 
-      yield put({type: ActionTypes.COURSE_GET_ALL_BY_AUTHOR});
+    yield put({ type: ActionTypes.COURSE_GET_ALL_BY_AUTHOR });
 
-      yield put(
-        snackbarActions.setMessage({
-          variant: MessagesStatus.SUCCESS,
-          message: 'The Course was created successfully.'
-        })
-      );
-    
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.SUCCESS,
+        message: 'The Course was created successfully.',
+      })
+    );
   } catch (error) {
-     yield put(addCourseFailed(error));
-     yield put(
-        snackbarActions.setMessage({
-          variant: MessagesStatus.ERROR,
-          message: error.message
-        })
-      );
+    yield put(addCourseFailed(error));
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message,
+      })
+    );
   }
 }
 
 export function* addStudentToCourse(actions) {
   try {
-    //TODO add here the function call 
-    if(!!actions.payload)
-    {
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/addToCourse/${actions.payload}`;
+    const result = yield call(post, path);
+    if (!!result.data.errorCourseExist) {
+      throw new Error(result.data.errorCourseExist);
+    } else if (!!actions.payload && result) {
       yield put(
         snackbarActions.setMessage({
           variant: MessagesStatus.SUCCESS,
-          message: 'You are successfully signed to the course!'
+          message: 'You are successfully signed to the course!',
         })
       );
-    }else {
+    } else {
       throw new Error('Failed to sign to the course. Please try again.');
     }
   } catch (error) {
     yield put(addStudentToCourseFailed(error));
-     yield put(
-        snackbarActions.setMessage({
-          variant: MessagesStatus.ERROR,
-          message: error.message
-        })
-      );
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message,
+      })
+    );
   }
 }
 

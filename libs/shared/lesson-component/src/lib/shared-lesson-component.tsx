@@ -63,7 +63,7 @@ export interface Lesson {
 
 export interface SharedLessonComponentProps {
   onSubmit?: (lesson: Lesson) => void;
-  onCancel?: () => void;
+  onCancel: () => void;
   mentors?: Mentor[];
   lesson?: Lesson;
   categories?: Category[];

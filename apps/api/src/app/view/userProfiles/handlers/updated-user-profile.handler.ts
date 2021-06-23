@@ -9,6 +9,5 @@ export class UserProfileUpdatedHandler
   @Inject() private readonly _userProfileModelService: UserProfileModelService;
   public async handle(event: UserProfileUpdated) {
     await this._userProfileModelService.update(event);
-    return null;
   }
 }

@@ -14,7 +14,13 @@ import {
 import { useLesson } from '@ppm/hooks/use-lesson';
 import { useSelector, useDispatch } from 'react-redux';
 import './features-course-page.scss';
-import { Drawer } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Drawer,
+} from '@material-ui/core';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
 import {
   userProfileActions,
@@ -39,7 +45,7 @@ export const FeaturesCoursePage = (props: {
 }) => {
   const actionButtonText = 'Add to lesson';
   const accordionTitle = 'Related lessons';
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isAddLessonDialogOpen, setIsAddLessonDialogOpen] = useState(false);
   const {
     title,
     description,
@@ -70,12 +76,13 @@ export const FeaturesCoursePage = (props: {
 
   const { id } = useParams();
   const { profile } = useSelector(stateSelector);
-  const { course, loading, onGetStartedClick } = useCourses(id);
+  const { course, loading } = useCourses(id);
+  const { onGetStartedClick } = useCourses(props.match?.params?.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!loading && isMenuOpen) {
-      setMenuOpen(false);
+    if (!loading && isAddLessonDialogOpen) {
+      setIsAddLessonDialogOpen(false);
     }
   }, [lessons]);
 
@@ -83,12 +90,12 @@ export const FeaturesCoursePage = (props: {
     dispatch(userProfileActions.getUserProfile());
   }, []);
 
-  const closeDrawer = () => {
-    setMenuOpen(false);
+  const handleClose = () => {
+    setIsAddLessonDialogOpen(false);
   };
 
-  const openDrawer = () => {
-    setMenuOpen(true);
+  const openAddLessonDialog = () => {
+    setIsAddLessonDialogOpen(true);
   };
 
   const showAddLessonBtn = () => {
@@ -120,7 +127,7 @@ export const FeaturesCoursePage = (props: {
             },
           ]}
           onGetStartedClick={onGetStartedClick}
-          getStartedButtonText="Get Started"
+          getStartedButtonText="Start the Course"
         />
         <SharedCourseDetails
           learnItems={course.learnItems}
@@ -130,22 +137,21 @@ export const FeaturesCoursePage = (props: {
           lessonsDescription={course.lessonsDescription}
           lessons={course.lessonsList}
           accordionTitle="Lessons"
-          onClick={openDrawer}
+          onClick={openAddLessonDialog}
           showAddButton={showAddLessonBtn()}
         />
-        <Drawer
-          open={isMenuOpen}
-          ModalProps={{ onBackdropClick: () => closeDrawer() }}
-        >
-          <SharedLessonComponent
-            onSubmit={(lesson) => createNewLesson(lesson)}
-            lesson={defaultLesson}
-            mentors={allMentorsList}
-            categories={allCategoriesList}
-            onCancel={closeDrawer}
-            courseId={props.match?.params?.id}
-          ></SharedLessonComponent>
-        </Drawer>
+        <Dialog open={isAddLessonDialogOpen} onClose={handleClose}>
+          <DialogContent>
+            <SharedLessonComponent
+              onSubmit={(lesson) => createNewLesson(lesson)}
+              lesson={defaultLesson}
+              mentors={allMentorsList}
+              categories={allCategoriesList}
+              courseId={props.match?.params?.id}
+              onCancel={handleClose}
+            ></SharedLessonComponent>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   } else {
