@@ -28,7 +28,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_ALL}`,
+    path: `/${PrivateRoutesPath.MENTORS}`,
     title: 'Mentors',
     icon: 'group',
     component: FeaturesMentors,
