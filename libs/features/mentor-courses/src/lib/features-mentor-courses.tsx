@@ -99,6 +99,7 @@ export const FeaturesMentorCourses = (props: {
         isEditable={false}
         lessons={coursesState}
         accordionTitle="Courses"
+        listCourses={true}
       />
     </div>
   );
