@@ -89,7 +89,8 @@ export const FeaturesMentorCourses = (props: {
       <SharedCourseInfo
         title={`${loadedProfile.firstName} ${loadedProfile.lastName}`}
         description={loadedProfile.description}
-        image={loadedProfile.photo}
+        // TODO: change this to user's photo
+        image="https://generative-placeholders.glitch.me/image?width=600&height=300"
         categories={categories}
         onGetStartedClick={() => alert('Contact form to be implemented')}
         getStartedButtonText="Contact Mentor"
