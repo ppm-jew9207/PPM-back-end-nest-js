@@ -38,5 +38,6 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
-  POST_ADD_COURSE = "POST_ADD_COURSE"
+  POST_ADD_COURSE = "POST_ADD_COURSE",
+  POST_ADD_STUDENT_TO_COURSE = '/addToCourse/:courseId',
 }

@@ -62,8 +62,8 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
       })
     );
 
-    yield put({type: ActionTypes.USER_PROFILE_GET});
-
+    yield put({ type: ActionTypes.USER_PROFILE_GET });
+    
   } catch (error) {}
 }
 

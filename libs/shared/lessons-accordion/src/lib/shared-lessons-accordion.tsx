@@ -84,7 +84,6 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                 <Grid key={i} item xs={3}>
                   <a href={`/lessons/${lesson._id}`} className="lesson-link">
                     <Card>
-                      {console.log(lesson)}
                       <CardActionArea>
                         {lesson.imageUrl && (
                           <CardMedia
