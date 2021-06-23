@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { SharedCourseCard } from '@ppm/shared/course-card';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
 import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
-import { likesActions } from '@ppm/data-access/likes';
 import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
-import { SharedCourseDetails } from '@ppm/shared/course-details';
 import { SharedCourseInfo } from '@ppm/shared/course-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
-import { mentorsActions, mentorsSelectors } from '@ppm/data-access/mentors';
-// import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-mentor-courses.scss';
-import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
 
 interface RouteInfo extends RouteProps {
@@ -42,10 +36,6 @@ export const FeaturesMentorCourses = (props: {
   );
   const [coursesState, setCoursesState] = useState([]);
   const [categories, setCategories] = useState([]);
-  const saveClick = (payload: any) => {
-    const data = { callback: 'getAll', ...payload };
-    dispatch(coursesActions.smallUpdate(data));
-  };
 
   useEffect(() => {
     courses.forEach((course) => {
