@@ -36,12 +36,11 @@ export const FeaturesMentorCourses = (props: {
   match: RouteComponentProps<RouteInfo>;
 }) => {
   const dispatch = useDispatch();
-  const { courses, loading } = useSelector(stateSelector);
+  const { courses, loading, loadedProfile, profile } = useSelector(
+    stateSelector
+  );
   const [coursesState, setCoursesState] = useState([]);
-  const { loadedProfile } = useSelector(stateSelector);
   const [categories, setCategories] = useState([]);
-  const { profile } = useSelector(stateSelector);
-  const { mentors } = useSelector(stateSelector);
   const saveClick = (payload: any) => {
     const data = { callback: 'getAll', ...payload };
     dispatch(coursesActions.smallUpdate(data));
@@ -50,10 +49,10 @@ export const FeaturesMentorCourses = (props: {
   const likeClick = (courseId: string, type: string) => {
     dispatch(likesActions.create({ course: courseId, type: type }));
     const clickedCourse = coursesState.find((item) => item._id === courseId);
-    const foundItem = clickedCourse.likesList.findIndex(
+    const foundItem = clickedCourse.likesList.some(
       (item) => item.type === type && item.user === profile._id
     );
-    if (foundItem !== -1) {
+    if (foundItem) {
       clickedCourse.likesList.splice(foundItem, 1);
     } else {
       clickedCourse.likesList.push({
