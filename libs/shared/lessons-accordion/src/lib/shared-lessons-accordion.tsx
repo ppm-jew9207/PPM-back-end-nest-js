@@ -32,6 +32,7 @@ export interface SharedLessonsAccordionProps {
   lessons: Lesson[];
   accordionTitle: string;
   showAddButton?: boolean;
+  listCourses?: boolean;
 }
 
 export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
@@ -82,7 +83,12 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
               )}
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
-                  <a href={`/lessons/${lesson._id}`} className="lesson-link">
+                  <a
+                    href={`/${props.listCourses ? 'courses' : 'lessons'}/${
+                      lesson._id
+                    }`}
+                    className="lesson-link"
+                  >
                     <Card>
                       <CardActionArea>
                         {lesson.imageUrl && (
