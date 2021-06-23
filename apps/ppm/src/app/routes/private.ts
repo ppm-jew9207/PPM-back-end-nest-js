@@ -10,6 +10,7 @@ import { FeaturesCourseForm } from '@ppm/features/course-form';
 import { FeaturesCoursePage } from '@ppm/features/course-page';
 import { FeaturesLessonPage } from '@ppm/features/lesson-page';
 import { FeaturesCourses } from '@ppm/features/courses';
+import { FeaturesMentorCourses } from '@ppm/features/mentor-courses';
 
 const PrivateRouter: RouterItem[] = [
   {
@@ -27,7 +28,7 @@ const PrivateRouter: RouterItem[] = [
     onMenu: true,
   },
   {
-    path: `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_ALL}`,
+    path: `/${PrivateRoutesPath.MENTORS}`,
     title: 'Mentors',
     icon: 'group',
     component: FeaturesMentors,
@@ -66,6 +67,13 @@ const PrivateRouter: RouterItem[] = [
     title: 'Courses',
     icon: null,
     component: FeaturesCoursePage,
+    onMenu: false,
+  },
+  {
+    path: `/${PrivateRoutesPath.MENTOR}${PrivateRoutesPath.GET_BY_ID}`,
+    title: 'Mentor\'s Courses',
+    icon: null,
+    component: FeaturesMentorCourses,
     onMenu: false,
   },
 ];

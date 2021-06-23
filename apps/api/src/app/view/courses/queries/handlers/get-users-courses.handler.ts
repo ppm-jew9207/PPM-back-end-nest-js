@@ -3,13 +3,13 @@ import { CoursesModelService } from '../../../../models/courses/courses.service'
 import { Inject } from '@nestjs/common';
 import { CoursesViewModel } from '../../../../models/courses/courses.interface';
 
-export class GetUsersCoursesQuery {
+export class GetUsersCourseQuery {
   constructor(public readonly id: string) {}
 }
 
-@QueryHandler(GetUsersCoursesQuery)
+@QueryHandler(GetUsersCourseQuery)
 export class GetUsersCoursesHandler
-  implements IQueryHandler<GetUsersCoursesQuery> {
+  implements IQueryHandler<GetUsersCourseQuery> {
   @Inject() private readonly _coursesViewService: CoursesModelService;
 
   async execute({ id }): Promise<CoursesViewModel[]> {

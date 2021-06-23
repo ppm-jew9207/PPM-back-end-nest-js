@@ -12,9 +12,14 @@ const selectUserProfile = () =>
     return subState.profile || null;
   });
 
+const selectOtherProfile = () =>
+  createSelector(selectUserProfileState, (subState) => {
+    return subState.loadedProfile || null;
+  });
+
 const selectLoading = () =>
   createSelector(selectUserProfileState, (subState) => {
     return subState.loading || false;
   });
 
-export { selectUserProfile, selectLoading };
+export { selectUserProfile, selectLoading, selectOtherProfile };

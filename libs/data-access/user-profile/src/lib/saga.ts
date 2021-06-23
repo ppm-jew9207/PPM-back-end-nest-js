@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { getUserProfileFailed, getUserProfileSuccess, updateSuccess } from './actions';
+import { getUserProfileFailed, getUserProfileSuccess, updateSuccess, getOtherProfileSuccess, getOtherProfileFailed } from './actions';
 import { get, post, postFormData } from '@ppm/data-access/http-requests';
 import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
 import { Profile } from './types';
@@ -19,6 +19,24 @@ export function* getUserProfile() {
       getUserProfileSuccess({
         profile: result.data,
         loading: false,
+      })
+    );
+  } catch (error) {
+    yield put(getUserProfileFailed());
+  }
+}
+
+export function* getOtherUserProfile(actions: { type: string, payload: string }) {
+  try {
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${actions.payload}`;
+    const result = yield call(get, path);
+    if (!result) {
+      yield put(getOtherProfileFailed());
+    }
+    yield put(
+      getOtherProfileSuccess({
+        loading: false,
+        loadedProfile: result.data,
       })
     );
   } catch (error) {
@@ -70,6 +88,7 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
 export function* userProfileSaga() {
   yield takeEvery(ActionTypes.USER_PROFILE_GET, getUserProfile);
   yield takeEvery(ActionTypes.USER_PROFILE_UPDATE, updateUserProfile);
+  yield takeEvery(ActionTypes.OTHER_USER_PROFILE_GET, getOtherUserProfile);
 }
 
 export default userProfileSaga;
