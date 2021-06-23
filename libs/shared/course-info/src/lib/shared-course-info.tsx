@@ -18,7 +18,7 @@ interface Category {
 export interface SharedCourseInfoProps {
   title: string;
   description: string;
-  creator: string;
+  creator?: string;
   image: string;
   categories: Category[];
   getStartedButtonText: string;
@@ -44,7 +44,7 @@ export const SharedCourseInfo = (props: SharedCourseInfoProps) => {
               display="block"
               gutterBottom
             >
-              Creator: {props.creator}
+              {props.creator ? `Creator: ${props.creator}` : ''}
             </Typography>
             <Typography
               className="course-description"

@@ -11,6 +11,7 @@ import {
 } from '@ppm/data-access/user-profile';
 import { SharedCourseDetails } from '@ppm/shared/course-details';
 import { SharedCourseInfo } from '@ppm/shared/course-info';
+import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 import { mentorsActions, mentorsSelectors } from '@ppm/data-access/mentors';
 // import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-mentor-courses.scss';
@@ -46,25 +47,11 @@ export const FeaturesMentorCourses = (props: {
     dispatch(coursesActions.smallUpdate(data));
   };
 
-  const likeClick = (courseId: string, type: string) => {
-    dispatch(likesActions.create({ course: courseId, type: type }));
-    const clickedCourse = coursesState.find((item) => item._id === courseId);
-    const foundItem = clickedCourse.likesList.some(
-      (item) => item.type === type && item.user === profile._id
-    );
-    if (foundItem) {
-      clickedCourse.likesList.splice(foundItem, 1);
-    } else {
-      clickedCourse.likesList.push({
-        course: courseId,
-        type: type,
-        user: profile._id,
-      });
-    }
-    setCoursesState([...courses]);
-  };
-
   useEffect(() => {
+    courses.forEach((course) => {
+      course.image = course.imageUrl;
+      course.authorName = course.creator.name;
+    });
     setCoursesState(courses);
   }, [courses]);
 
@@ -106,54 +93,23 @@ export const FeaturesMentorCourses = (props: {
   if (!coursesState) return <div className="no-items">No courses added...</div>;
   if (!loadedProfile)
     return <div className="no-items">No mentor selected...</div>;
+  console.log(coursesState);
 
   return (
     <div className="lessons">
       <SharedCourseInfo
         title={`${loadedProfile.firstName} ${loadedProfile.lastName}`}
         description={loadedProfile.description}
-        creator={`${loadedProfile.firstName} ${loadedProfile.lastName}`}
         image={loadedProfile.photo}
         categories={categories}
-        onGetStartedClick={() => alert('get started')}
-        getStartedButtonText="Get Started"
+        onGetStartedClick={() => alert('Contact form to be implemented')}
+        getStartedButtonText="Contact Mentor"
       />
-      {coursesState.length &&
-        coursesState.map((course, index) => (
-          <div key={course._id}>
-            <SharedCourseCard
-              id={course._id}
-              title={course.title}
-              author={{
-                _id: course.creator._id,
-                firstName: course.creator.name,
-                lastName: '',
-                img: course.creator.imageUrl,
-              }}
-              createAt={course.createdAt}
-              description={course.description}
-              like={
-                course.likesList
-                  ? course.likesList.filter(
-                      (like: any) => like.type === LikeEnum.Like
-                    ).length
-                  : 0
-              }
-              shared={
-                course.likesList
-                  ? course.likesList.filter(
-                      (like: any) => like.type === LikeEnum.Share
-                    ).length
-                  : 0
-              }
-              imgUrl={course.imageUrl}
-              onSaveClick={saveClick}
-              editable={profile?._id === course.creator._id}
-              onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-              onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-            />
-          </div>
-        ))}
+      <SharedLessonsAccordion
+        isEditable={false}
+        lessons={coursesState}
+        accordionTitle="Courses"
+      />
     </div>
   );
 };
