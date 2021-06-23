@@ -93,7 +93,6 @@ export const FeaturesMentorCourses = (props: {
   if (!coursesState) return <div className="no-items">No courses added...</div>;
   if (!loadedProfile)
     return <div className="no-items">No mentor selected...</div>;
-  console.log(coursesState);
 
   return (
     <div className="lessons">
