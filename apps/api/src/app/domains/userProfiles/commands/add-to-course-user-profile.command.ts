@@ -22,7 +22,7 @@ export class AddToCourseUserProfileHandler
       ? [...currentUserProfile.coursesIds]
       : [];
     if (currentUserProfile?.coursesIds?.includes(courseId)) {
-      return { errorCourseExist: 'You are already subscibed to that course.' };
+      return { errorCourseExist: 'You are already subscribed to this course.' };
     }
     coursesIdsEmpty.push(courseId);
     var updatedUserProfile = {

@@ -77,7 +77,9 @@ export const FeaturesCoursePage = (props: {
   const { id } = useParams();
   const { profile } = useSelector(stateSelector);
   const { course, loading } = useCourses(id);
-  const { onGetStartedClick } = useCourses(props.match?.params?.id);
+  const { onGetStartedClick, onRemoveFromCourseClick } = useCourses(
+    props.match?.params?.id
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -126,8 +128,16 @@ export const FeaturesCoursePage = (props: {
               checked: false,
             },
           ]}
-          onGetStartedClick={onGetStartedClick}
-          getStartedButtonText="Start the Course"
+          onGetStartedClick={
+            profile?.coursesIds?.includes(course?._id)
+              ? onRemoveFromCourseClick
+              : onGetStartedClick
+          }
+          getStartedButtonText={
+            profile?.coursesIds?.includes(course?._id)
+              ? 'Leave the Course'
+              : 'Start the Course'
+          }
         />
         <SharedCourseDetails
           learnItems={course.learnItems}

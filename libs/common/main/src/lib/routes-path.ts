@@ -24,7 +24,6 @@ export enum PrivateRoutesPath {
   STATE = '/:stateName/cities',
   GET_BY_COURSE_ID = '/:courseid',
 
-
   // TODO only for API
   POST_CREATE = '/create',
   POST_UPDATE = '/update/:id',
@@ -38,6 +37,7 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
-  POST_ADD_COURSE = "POST_ADD_COURSE",
+  POST_ADD_COURSE = 'POST_ADD_COURSE',
   POST_ADD_STUDENT_TO_COURSE = '/addToCourse/:courseId',
+  POST_REMOVE_STUDENT_FROM_COURSE = '/removeFromCourse/:courseId',
 }

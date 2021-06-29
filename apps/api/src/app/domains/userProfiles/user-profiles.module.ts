@@ -7,16 +7,18 @@ import { DeleteUserProfileHandler } from './commands/delete-user-profile.command
 import { UpdateUserProfileHandler } from './commands/update-user-profile.command';
 import { AddToCourseUserProfileHandler } from './commands/add-to-course-user-profile.command';
 import { UserProfileModelModule } from '../../models/userProfiles/user-profile.module';
+import { RemoveFromCourseUserProfileHandler } from './commands/remove-from-course-user-profile.command';
 
 const CommandHandlers = [
   CreateUserProfileHandler,
   DeleteUserProfileHandler,
   UpdateUserProfileHandler,
   AddToCourseUserProfileHandler,
+  RemoveFromCourseUserProfileHandler,
 ];
 
 @Module({
-  imports: [CqrsModule, UsersModelModule,UserProfileModelModule],
+  imports: [CqrsModule, UsersModelModule, UserProfileModelModule],
   controllers: [UserProfilesController],
   providers: [...CommandHandlers],
 })

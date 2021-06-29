@@ -18,6 +18,7 @@ import {
   getAllByAuthor as getAllByAuthorAction,
   updateFailed,
   addStudentToCourseFailed,
+  removeStudentFromCourseFailed,
 } from './actions';
 import { post, postFormData, get } from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
@@ -139,9 +140,7 @@ export function* getAllByAuthorId(actions) {
     if (result && !Array.isArray(result.data)) {
       throw new Error('Failed load user courses');
     }
-    yield put(
-      getAllSuccess({ list: result.data })
-    );
+    yield put(getAllSuccess({ list: result.data }));
   } catch (error) {
     yield put(getAllFailed(error));
   }
@@ -234,6 +233,31 @@ export function* addStudentToCourse(actions) {
   }
 }
 
+export function* removeStudentFromCourse(actions) {
+  try {
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/removeFromCourse/${actions.payload}`;
+    const result = yield call(post, path);
+    if (!!actions.payload && result) {
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'You are successfully signed off from the course!',
+        })
+      );
+    } else {
+      throw new Error('Failed to sign out from the course. Please try again.');
+    }
+  } catch (error) {
+    yield put(removeStudentFromCourseFailed(error));
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message,
+      })
+    );
+  }
+}
+
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
@@ -245,6 +269,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_SMALL_UPDATE, updateCourseFromList);
   yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
   yield takeEvery(ActionTypes.COURSE_ADD_STUDENT, addStudentToCourse);
+  yield takeEvery(ActionTypes.COURSE_REMOVE_STUDENT, removeStudentFromCourse);
 }
 
 export default coursesSaga;
