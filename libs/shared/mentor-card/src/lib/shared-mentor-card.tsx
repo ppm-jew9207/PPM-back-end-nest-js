@@ -72,9 +72,9 @@ export function MentorCard(props: MentorCardProps) {
       <CardActions>
         {!!props.socialLinks &&
           !!props.socialLinks.length &&
-          props.socialLinks.map((socialLink) => (
+          props.socialLinks.map((socialLink, index) => (
             <IconButton
-              key={socialLink.icon}
+              key={index}
               aria-label={socialLink.icon}
               href={socialLink.link}
               disabled={!socialLink.link}
