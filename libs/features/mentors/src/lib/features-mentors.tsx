@@ -35,9 +35,8 @@ export const FeaturesMentors = (props: FeaturesMentorsProps) => {
       <Grid container spacing={3}>
         {mentors.list.length &&
           mentors.list.map((mentor, index) => (
-            <Grid item md={4} xs={12}>
+            <Grid key={index} item md={4} xs={12}>
               <MentorCard
-                key={mentor._id}
                 mentorImage={mentor.photo}
                 fullName={`${mentor.firstName} ${mentor.lastName}`}
                 aboutMentor={mentor.description}
