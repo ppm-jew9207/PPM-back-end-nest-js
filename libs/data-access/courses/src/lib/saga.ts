@@ -237,7 +237,9 @@ export function* removeStudentFromCourse(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.USER_PROFILES}/removeFromCourse/${actions.payload}`;
     const result = yield call(post, path);
-    if (!!actions.payload && result) {
+    if (!!result.data.errorCourseExist) {
+      throw new Error(result.data.errorCourseExist);
+    } else if (!!actions.payload && result) {
       yield put(
         snackbarActions.setMessage({
           variant: MessagesStatus.SUCCESS,

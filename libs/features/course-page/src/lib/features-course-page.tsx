@@ -81,6 +81,7 @@ export const FeaturesCoursePage = (props: {
     props.match?.params?.id
   );
   const dispatch = useDispatch();
+  const [gsState, setGsState] = useState(false);
 
   useEffect(() => {
     if (!loading && isAddLessonDialogOpen) {
@@ -106,6 +107,9 @@ export const FeaturesCoursePage = (props: {
 
   if (loading) return <CircularProgress />;
 
+  if (!loading && !gsState && profile?.coursesIds?.includes(course?._id))
+    setGsState(true);
+
   if (course) {
     return (
       <div className="lessons">
@@ -129,14 +133,10 @@ export const FeaturesCoursePage = (props: {
             },
           ]}
           onGetStartedClick={
-            profile?.coursesIds?.includes(course?._id)
-              ? onRemoveFromCourseClick
-              : onGetStartedClick
+            gsState ? onRemoveFromCourseClick : onGetStartedClick
           }
           getStartedButtonText={
-            profile?.coursesIds?.includes(course?._id)
-              ? 'Leave the Course'
-              : 'Start the Course'
+            gsState ? 'Leave the Course' : 'Start the Course'
           }
         />
         <SharedCourseDetails
