@@ -81,7 +81,6 @@ export const FeaturesCoursePage = (props: {
     props.match?.params?.id
   );
   const dispatch = useDispatch();
-  const [gsState, setGsState] = useState(false);
 
   useEffect(() => {
     if (!loading && isAddLessonDialogOpen) {
@@ -91,6 +90,19 @@ export const FeaturesCoursePage = (props: {
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
+  }, []);
+  const [courseStarted, setCourseStarted] = useState(false);
+
+  useEffect(() => {
+    if (!loading && profile?.coursesIds?.includes(course?._id)) {
+      setCourseStarted(false);
+    } else if (
+      !loading &&
+      !!profile &&
+      !profile?.coursesIds?.includes(course?._id)
+    ) {
+      setCourseStarted(true);
+    }
   }, []);
 
   const handleClose = () => {
@@ -107,10 +119,13 @@ export const FeaturesCoursePage = (props: {
 
   if (loading) return <CircularProgress />;
 
-  if (!loading && !gsState && profile?.coursesIds?.includes(course?._id))
-    setGsState(true);
-
   if (course) {
+    if (
+      !loading &&
+      !courseStarted &&
+      profile?.coursesIds?.includes(course?._id)
+    )
+      setCourseStarted(true);
     return (
       <div className="lessons">
         <SharedCourseInfo
@@ -133,10 +148,18 @@ export const FeaturesCoursePage = (props: {
             },
           ]}
           onGetStartedClick={
-            gsState ? onRemoveFromCourseClick : onGetStartedClick
+            courseStarted
+              ? () => {
+                  onRemoveFromCourseClick();
+                  setCourseStarted(false);
+                }
+              : () => {
+                  onGetStartedClick();
+                  setCourseStarted(true);
+                }
           }
           getStartedButtonText={
-            gsState ? 'Leave the Course' : 'Start the Course'
+            courseStarted ? 'Leave the Course' : 'Start the Course'
           }
         />
         <SharedCourseDetails
