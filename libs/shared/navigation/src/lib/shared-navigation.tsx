@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './shared-navigation.scss';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,10 +30,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
             >
               <Button className="navigation-button">
                 <Icon>{button.icon}</Icon>
-                <span className="navigation-button-label">
-                  {' '}
-                  {button.label}{' '}
-                </span>
+                <span className="navigation-button-label">{button.label}</span>
               </Button>
             </Link>
           ))}
