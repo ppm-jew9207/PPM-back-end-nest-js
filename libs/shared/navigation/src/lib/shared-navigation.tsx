@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { Box } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-
+import Hidden from '@material-ui/core/Hidden';
 export interface SharedNavigationProps {
   buttons: {
     label: string;
@@ -22,24 +22,44 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
     <AppBar className="navigation-bar" elevation={2} position="sticky">
       <Toolbar>
         <Box display="flex" flexGrow={1}>
-          {props.buttons.map((button) => (
-            <Link
-              key={button.path}
-              href={button.path}
-              onClick={() => button.onClick}
-            >
-              <Button className="navigation-button">
-                <Icon>{button.icon}</Icon>
-                <span className="navigation-button-label">{button.label}</span>
-              </Button>
-            </Link>
-          ))}
+          <Hidden smDown>
+            {props.buttons.map((button) => (
+              <Link
+                key={button.path}
+                href={button.path}
+                onClick={() => button.onClick}
+              >
+                <Button className="navigation-button">
+                  <Icon>{button.icon}</Icon>
+                  <span className="navigation-button-label">
+                    {button.label}
+                  </span>
+                </Button>
+              </Link>
+            ))}
+          </Hidden>
         </Box>
-        <Link href="/user">
-          <Button>
-            <AccountCircleRoundedIcon fontSize="large" />
-          </Button>
-        </Link>
+        <Box mr={1}>
+          <div className="log-in">
+            <Link href="/login">
+              <Button>Log In</Button>
+            </Link>
+          </div>
+        </Box>
+        <Box mr={1}>
+          <div className="sign-up">
+            <Link href="/registry">
+              <Button>Sign Up</Button>
+            </Link>
+          </div>
+        </Box>
+        <Box mr={5}>
+          <Link href="/user">
+            <Button>
+              <AccountCircleRoundedIcon fontSize="large" />
+            </Button>
+          </Link>
+        </Box>
       </Toolbar>
     </AppBar>
   );
