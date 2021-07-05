@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-
+import React, { useState } from 'react';
 import LeftSideMenuList from './shared-left-side-menu-list/list';
 import './shared-left-side-menu.scss';
-
 import { Drawer, Typography, IconButton } from '@material-ui/core';
 import { Close as CloseIcon, Menu as MenuIcon } from '@material-ui/icons';
+import Hidden from '@material-ui/core/Hidden';
 
 interface Type {
-  name: string,
-  path: string,
-  icon: string
+  name: string;
+  path: string;
+  icon: string;
 }
 
 export interface SharedLeftSideMenuProps {
-  title: string,
-  menuItemsArray: Type[]
+  title: string;
+  menuItemsArray: Type[];
 }
 
 export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
@@ -26,17 +25,19 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
 
   return (
     <div>
-      <div className="shared-left-side-menu-button">
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={() => toggleDrawer(true)}
-          edge="start"
-          className="menu-button"
-        >
-          <MenuIcon />
-        </IconButton>
-      </div>
+      <Hidden smUp>
+        <div className="shared-left-side-menu-button">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={() => toggleDrawer(true)}
+            edge="start"
+            className="menu-button"
+          >
+            <MenuIcon />
+          </IconButton>
+        </div>
+      </Hidden>
       <Drawer
         open={isMenuOpen}
         ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
@@ -48,7 +49,7 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
           >
             <CloseIcon />
           </IconButton>
-          <LeftSideMenuList menuItemsArray={props.menuItemsArray}/>
+          <LeftSideMenuList menuItemsArray={props.menuItemsArray} />
         </div>
       </Drawer>
     </div>
