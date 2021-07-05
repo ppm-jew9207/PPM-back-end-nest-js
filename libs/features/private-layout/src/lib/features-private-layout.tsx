@@ -44,21 +44,28 @@ const testdata = [
 
 const buttons = [
   {
-    label: 'Home',
+    label: 'ppm',
     path: '/',
-    icon: 'home',
+    icon: 'facebook',
     onClick: () => null,
   },
   {
-    label: 'About',
-    path: '/About',
-    icon: 'info',
+    label: 'Dashboard',
+    path: '/dashboard',
+    icon: 'dashboard',
+    onClick: () => null,
+  },
+
+  {
+    label: 'Categories',
+    path: '/categories',
+    icon: 'list',
     onClick: () => null,
   },
   {
-    label: 'Contacts',
-    path: '/contacts',
-    icon: 'contacts',
+    label: 'My learning',
+    path: '/my-learning',
+    icon: 'bookmark',
     onClick: () => null,
   },
 ];
