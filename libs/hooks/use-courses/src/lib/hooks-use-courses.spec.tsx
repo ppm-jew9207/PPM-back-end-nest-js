@@ -17,7 +17,7 @@ describe('useCourses', () => {
   let result;
   it('should render successfully', () => {
     function HookRunner() {
-      result = useCourses(1);
+      result = useCourses('1');
       return null;
     }
     render(<HookRunner />);
@@ -31,6 +31,7 @@ describe('useCourses', () => {
       getCourseById: result.getCourseById,
       loading: undefined,
       onGetStartedClick: result.onGetStartedClick,
+      onRemoveFromCourseClick: result.onRemoveFromCourseClick,
     });
   });
 });

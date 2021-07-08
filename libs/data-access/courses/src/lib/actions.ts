@@ -92,9 +92,9 @@ export function addCourseSuccess() {
 
 export function addCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_ADD_FAILED, error);
-} 
+}
 
-export function addStudentToCourse(courseId:string) {
+export function addStudentToCourse(courseId: string) {
   return action(ActionTypes.COURSE_ADD_STUDENT, courseId);
 }
 
@@ -104,4 +104,16 @@ export function addStudentToCourseSuccess() {
 
 export function addStudentToCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_ADD_STUDENT_FAILED, error);
+}
+
+export function removeStudentFromCourse(courseId: string) {
+  return action(ActionTypes.COURSE_REMOVE_STUDENT, courseId);
+}
+
+export function removeStudentFromCourseSuccess() {
+  return action(ActionTypes.COURSE_REMOVE_STUDENT_SUCCESS);
+}
+
+export function removeStudentFromCourseFailed(error: Error) {
+  return action(ActionTypes.COURSE_REMOVE_STUDENT_FAILED, error);
 }

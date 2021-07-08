@@ -28,6 +28,15 @@ export function useCourses(courseId: string) {
   const onGetStartedClick = () => {
     dispatch(coursesActions.addStudentToCourse(courseId));
   };
+  const onRemoveFromCourseClick = () => {
+    dispatch(coursesActions.removeStudentFromCourse(courseId));
+  };
 
-  return { getCourseById, course, loading, onGetStartedClick };
+  return {
+    getCourseById,
+    course,
+    loading,
+    onGetStartedClick,
+    onRemoveFromCourseClick,
+  };
 }
