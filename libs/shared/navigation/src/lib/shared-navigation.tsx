@@ -36,7 +36,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
                   href={button.path}
                   onClick={() => button.onClick}
                 >
-                  <Button className="navigation-button">
+                  <Button disableRipple className="navigation-button">
                     <Icon>{button.icon}</Icon>
                     <span className="navigation-button-label">
                       {button.label}
@@ -68,7 +68,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         {isLoggedIn === true && (
           <Box>
             <Link href="/user" className="user-profile">
-              <Button>
+              <Button centerRipple={true}>
                 <AccountCircleRoundedIcon fontSize="large" />
               </Button>
             </Link>
