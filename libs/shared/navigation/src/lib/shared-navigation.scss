@@ -5,15 +5,24 @@ header.navigation-bar {
   z-index: 3 !important;
 }
 .navigation-bar {
-  .navigation-button {
-    color: #344055;
-    margin: 5px;
+  .MuiLink-underlineHover:hover {
+    text-decoration: none;
   }
-  .navigation-button:hover {
-    color: rgb(172, 165, 165);
+  .MuiButton-root {
+    color: #2d3979;
+    text-transform: none;
   }
-  .navigation-button-label {
-    margin: 5px;
+  .MuiButton-root:hover {
+    text-decoration: underline;
+    background-color: #fff;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #2d3979;
+    font-weight: bold;
+    .logo a:hover {
+      text-decoration: none;
+    }
   }
   .log-in {
     text-transform: none;
@@ -22,9 +31,6 @@ header.navigation-bar {
     border-radius: 0.2em;
     .log-in span {
       color: #3f51b5;
-    }
-    .MuiLink-underlineHover:hover {
-      text-decoration: none;
     }
   }
   .sign-up {
@@ -38,5 +44,8 @@ header.navigation-bar {
   }
   .sign-up span {
     color: #fff;
+  }
+  .user-profile a:hover {
+    border: 2px solid gray;
   }
 }
