@@ -5,18 +5,24 @@ import {
   UseInterceptors,
   Req,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetCoursesQuery } from './queries/handlers/get-courses.handler';
 import { GetCourseQuery } from './queries/handlers/get-course.handler';
+import { SearchCoursesQuery } from './queries/handlers/search-courses.handler';
 import { GetUsersCourseQuery } from './queries/handlers/get-users-course.handler';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiPropertyOptional } from '@nestjs/swagger';
 import { PrivateRoutesPath } from '@ppm/common/main';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggingInterceptor } from '../../common/interceptors/logging.interceptor';
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { CoursesViewModel } from '../../models/courses/courses.interface';
 
+class searchParams {
+  @ApiPropertyOptional()
+    search: string;
+}
 @Controller(PrivateRoutesPath.COURSES)
 @ApiTags(PrivateRoutesPath.COURSES)
 export class CoursesController {
@@ -48,7 +54,10 @@ export class CoursesController {
   }
 
   @Get()
-  async findAll(): Promise<CoursesViewModel[]> {
-    return this.queryBus.execute(new GetCoursesQuery());
+  async findAll(@Query() params: searchParams): Promise<CoursesViewModel[]> {
+    if(!params.search)
+      return this.queryBus.execute(new GetCoursesQuery());
+    return this.queryBus.execute(new SearchCoursesQuery(params.search));
   }
 }
+
