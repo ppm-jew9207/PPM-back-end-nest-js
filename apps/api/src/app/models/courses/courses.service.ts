@@ -86,4 +86,21 @@ export class CoursesModelService {
   async remove(id: string) {
     await this._model.deleteOne({ _id: Types.ObjectId(id) });
   }
+
+  async search(query: string) {
+    const searchQuery = {
+      $or: [
+        {
+          title: new RegExp(query, 'i'),
+        },
+        {
+          description: new RegExp(query, 'i'),
+        }
+      ]
+    }
+    const regex = new RegExp(query, 'i')
+    return this._model.aggregate([
+      { $match: searchQuery }
+    ]);
+  }
 }
