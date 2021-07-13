@@ -27,11 +27,12 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         <Typography className="logo">
           <a href="/">PPM</a>
         </Typography>
-        <Box display="flex menu-btn-s" flexGrow={1} ml={2}>
+        <Box display="flex" flexGrow={1} ml={2}>
           {isLoggedIn === true && (
             <Hidden smDown>
               {props.buttons.map((button) => (
                 <Link
+                  underline="none"
                   key={button.path}
                   href={button.path}
                   onClick={() => button.onClick}
@@ -66,9 +67,9 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
           </>
         )}
         {isLoggedIn === true && (
-          <Box>
-            <Link href="/user" className="user-profile">
-              <Button centerRipple={true}>
+          <Box className="user-profile">
+            <Link href="/user">
+              <Button disableRipple>
                 <AccountCircleRoundedIcon fontSize="large" />
               </Button>
             </Link>
@@ -78,5 +79,4 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
     </AppBar>
   );
 };
-
 export default SharedNavigation;

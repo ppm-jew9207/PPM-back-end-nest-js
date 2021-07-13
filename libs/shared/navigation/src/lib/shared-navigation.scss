@@ -5,15 +5,11 @@ header.navigation-bar {
   z-index: 3 !important;
 }
 .navigation-bar {
-  .MuiLink-underlineHover:hover {
-    text-decoration: none;
-  }
   .MuiButton-root {
     color: #2d3979;
     text-transform: none;
   }
   .MuiButton-root:hover {
-    text-decoration: underline;
     background-color: #fff;
   }
 
@@ -45,8 +41,5 @@ header.navigation-bar {
   }
   .sign-up span {
     color: #fff;
-  }
-  .user-profile a:hover {
-    border: 2px solid gray;
   }
 }
