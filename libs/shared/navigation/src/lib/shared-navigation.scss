@@ -5,12 +5,19 @@ header.navigation-bar {
   z-index: 3 !important;
 }
 .navigation-bar {
+  .MuiButton-root:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .menu-items:hover {
+    background-color: rgb(235, 230, 230);
+  }
   .MuiButton-root {
     color: #2d3979;
     text-transform: none;
   }
-  .MuiButton-root:hover {
-    background-color: #fff;
+  .navigation-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .logo a {
@@ -41,5 +48,10 @@ header.navigation-bar {
   }
   .sign-up span {
     color: #fff;
+  }
+  .user-profile {
+    .MuiButton-root:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
   }
 }

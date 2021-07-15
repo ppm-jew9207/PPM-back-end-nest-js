@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './shared-navigation.scss';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,6 +20,9 @@ export interface SharedNavigationProps {
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
   const isLoggedIn = !!getToken();
+  useEffect(() => {
+    const isLoggedIn = false;
+  }, []);
 
   return (
     <AppBar className="navigation-bar" elevation={2} position="sticky">
@@ -28,10 +31,11 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
           <a href="/">PPM</a>
         </Typography>
         <Box display="flex" flexGrow={1} ml={2}>
-          {isLoggedIn === true && (
+          {isLoggedIn && (
             <Hidden smDown>
               {props.buttons.map((button) => (
                 <Link
+                  className="menu-items"
                   underline="none"
                   key={button.path}
                   href={button.path}
@@ -48,7 +52,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
             </Hidden>
           )}
         </Box>
-        {!isLoggedIn === true && (
+        {!isLoggedIn && (
           <>
             <Box mr={1}>
               <div className="log-in">
@@ -66,7 +70,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
             </Box>
           </>
         )}
-        {isLoggedIn === true && (
+        {isLoggedIn && (
           <Box className="user-profile">
             <Link href="/user">
               <Button disableRipple>
