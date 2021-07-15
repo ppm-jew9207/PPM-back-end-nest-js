@@ -15,4 +15,11 @@ header.navigation-bar {
   .navigation-button-label {
     margin: 5px;
   }
+
+  .search-form {
+    margin-left: auto;
+    .search-input {
+      padding: 12px 0px;
+    }
+  }
 }
