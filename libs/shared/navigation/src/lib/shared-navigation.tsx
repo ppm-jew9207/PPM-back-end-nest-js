@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import './shared-navigation.scss';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,9 +25,11 @@ export interface SharedNavigationProps {
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
-  const submitSearch = (event: FormEvent<HTMLFormElement>) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const submitSearch = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    props.onSearch(event.target.search.value);
+    props.onSearch(searchQuery);
   };
 
   return (
@@ -53,6 +55,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
                 name="search"
                 placeholder="Search courses"
                 inputProps={{ 'aria-label': 'Search' }}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <IconButton type="submit" aria-label="search">
                 <SearchIcon />
