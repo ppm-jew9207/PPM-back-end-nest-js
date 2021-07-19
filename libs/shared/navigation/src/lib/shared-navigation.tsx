@@ -26,7 +26,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
 
   return (
     <AppBar className="navigation-bar" elevation={2} position="sticky">
-      <Toolbar>
+      <Toolbar disableGutters className="menu-toolbar">
         <Typography className="logo">
           <a href="/">PPM</a>
         </Typography>

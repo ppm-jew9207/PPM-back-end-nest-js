@@ -4,7 +4,13 @@ header.navigation-bar {
   text-transform: none;
   z-index: 3 !important;
 }
+
 .navigation-bar {
+  .MuiToolbar-regular {
+    @media (min-width: 600px) {
+      min-height: 56px;
+    }
+  }
   .MuiButton-root:hover {
     background-color: rgba(0, 0, 0, 0);
   }

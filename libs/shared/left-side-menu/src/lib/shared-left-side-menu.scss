@@ -1,6 +1,8 @@
 $hover-color: #2196f3;
 $background: #ffffff;
-
+.shared-left-side-menu-button {
+  top: -6px;
+}
 .shared-left-side-menu {
   background-color: $background;
   display: flex;
