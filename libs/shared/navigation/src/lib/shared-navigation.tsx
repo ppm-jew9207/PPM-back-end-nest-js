@@ -1,19 +1,20 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 import './shared-navigation.scss';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import { Box } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { Box, Typography } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-
+import Hidden from '@material-ui/core/Hidden';
+import { getToken } from '@ppm/data-access/local-storage';
 export interface SharedNavigationProps {
   buttons: {
     label: string;
@@ -25,6 +26,11 @@ export interface SharedNavigationProps {
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
+  const isLoggedIn = !!getToken();
+  useEffect(() => {
+    const isLoggedIn = false;
+  }, []);
+
   const [searchQuery, setSearchQuery] = useState('');
 
   const submitSearch = (event: SyntheticEvent<HTMLFormElement>) => {
@@ -35,19 +41,30 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
   return (
     <AppBar className="navigation-bar" elevation={2} position="sticky">
       <Toolbar>
-        <Box display="flex" flexGrow={1}>
-          {props.buttons.map((button) => (
-            <Link
-              key={button.path}
-              href={button.path}
-              onClick={() => button.onClick}
-            >
-              <Button className="navigation-button">
-                <Icon>{button.icon}</Icon>
-                <span className="navigation-button-label">{button.label}</span>
-              </Button>
-            </Link>
-          ))}
+        <Typography className="logo">
+          <a href="/">PPM</a>
+        </Typography>
+        <Box display="flex" flexGrow={1} ml={2}>
+          {isLoggedIn && (
+            <Hidden smDown>
+              {props.buttons.map((button) => (
+                <Link
+                  className="menu-items"
+                  underline="none"
+                  key={button.path}
+                  href={button.path}
+                  onClick={() => button.onClick}
+                >
+                  <Button disableRipple className="navigation-button">
+                    <Icon>{button.icon}</Icon>
+                    <span className="navigation-button-label">
+                      {button.label}
+                    </span>
+                  </Button>
+                </Link>
+              ))}
+            </Hidden>
+          )}
           {props.onSearch ? (
             <form noValidate onSubmit={submitSearch} className="search-form">
               <InputBase
@@ -65,14 +82,35 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
             ''
           )}
         </Box>
-        <Link href="/user">
-          <Button>
-            <AccountCircleRoundedIcon fontSize="large" />
-          </Button>
-        </Link>
+        {!isLoggedIn && (
+          <>
+            <Box mr={1}>
+              <div className="log-in">
+                <Link href="/login">
+                  <Button>Log In</Button>
+                </Link>
+              </div>
+            </Box>
+            <Box mr={1}>
+              <div className="sign-up">
+                <Link href="/registry">
+                  <Button>Sign Up</Button>
+                </Link>
+              </div>
+            </Box>
+          </>
+        )}
+        {isLoggedIn && (
+          <Box className="user-profile">
+            <Link href="/user">
+              <Button disableRipple>
+                <AccountCircleRoundedIcon fontSize="large" />
+              </Button>
+            </Link>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );
 };
-
 export default SharedNavigation;

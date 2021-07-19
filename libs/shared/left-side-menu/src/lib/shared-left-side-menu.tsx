@@ -25,7 +25,7 @@ export const SharedLeftSideMenu = (props: SharedLeftSideMenuProps) => {
 
   return (
     <div>
-      <Hidden smUp>
+      <Hidden mdUp>
         <div className="shared-left-side-menu-button">
           <IconButton
             color="inherit"

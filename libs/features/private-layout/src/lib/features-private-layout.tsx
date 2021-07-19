@@ -46,12 +46,6 @@ const testdata = [
 
 const buttons = [
   {
-    label: 'ppm',
-    path: '/',
-    icon: 'facebook',
-    onClick: () => null,
-  },
-  {
     label: 'Dashboard',
     path: '/dashboard',
     icon: 'dashboard',
