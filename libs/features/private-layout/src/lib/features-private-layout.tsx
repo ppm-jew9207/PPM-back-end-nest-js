@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { SharedLeftSideMenu } from '@ppm/shared/left-side-menu';
 import { SharedFooter } from '@ppm/shared/footer';
 import { SharedNavigation } from '@ppm/shared/navigation';
 import './features-private-layout.scss';
 import { RouterItem } from '@ppm/common/main';
+import { useHistory } from 'react-router-dom';
+
 const testMenu = {
   column1: {
     allMenu: [
@@ -73,6 +75,7 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
   const [menuItems, setMenuItems] = useState<
     { name: string; path: string; icon: string }[]
   >();
+  const history = useHistory();
 
   useEffect(() => {
     const menu = props.router
@@ -93,7 +96,12 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
   return (
     <div className="features-private-layout">
       <SharedLeftSideMenu title="" menuItemsArray={menuItems} />
-      <SharedNavigation buttons={buttons} />
+      <SharedNavigation
+        buttons={buttons}
+        onSearch={(q: string) => {
+          history.push(`/courses?${q}`);
+        }}
+      />
       <div className="content">{props.children}</div>
       <SharedFooter {...testMenu} />
     </div>
