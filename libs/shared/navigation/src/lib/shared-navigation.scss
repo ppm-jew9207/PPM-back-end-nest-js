@@ -58,7 +58,19 @@ header.navigation-bar {
   .search-form {
     margin-left: auto;
     .search-input {
-      padding: 12px 0px;
+      padding: 17px 0px;
+    }
+
+    svg {
+      margin: 0;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .search-form {
+      .search-input {
+        width: 55px;
+      }
     }
   }
 }
