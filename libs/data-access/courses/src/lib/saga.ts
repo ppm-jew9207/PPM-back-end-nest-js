@@ -106,9 +106,12 @@ export function* getCourseById(actions) {
   }
 }
 
-export function* getAll() {
+export function* getAll(search?) {
   try {
-    const path = `/api/${PrivateRoutesPath.COURSES}/`;
+    let path = `/api/${PrivateRoutesPath.COURSES}/`;
+    if (search) {
+      path += `?search=${search.payload}`;
+    }
     const result = yield call(get, path);
     if (!Array.isArray(result)) {
       throw new Error('Failed load courses');
@@ -167,7 +170,7 @@ export function* updateCourseFromList(actions: any) {
       yield put(smallUpdateSuccess());
     }
     if (data.callback == 'getAll') {
-      yield put(getAllAction());
+      yield put(getAllAction(null));
     } else {
       yield put(getAllByAuthorAction());
     }

@@ -2,8 +2,8 @@ import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
 import { CourseType } from './types';
 
-export function getAll() {
-  return action(ActionTypes.GET_ALL);
+export function getAll(payload: string) {
+  return action(ActionTypes.GET_ALL, payload);
 }
 
 export function getAllSuccess(payload: { list: CourseType[] }) {
