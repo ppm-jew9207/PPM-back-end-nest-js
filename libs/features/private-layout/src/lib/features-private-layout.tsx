@@ -99,7 +99,7 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
       <SharedNavigation
         buttons={buttons}
         onSearch={(q: string) => {
-          history.push(`/courses?${q}`);
+          history.push(`/courses?q=${q}`);
         }}
       />
       <div className="content">{props.children}</div>

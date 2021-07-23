@@ -4,8 +4,18 @@ import * as redux from 'react-redux';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import FeaturesCourses from './features-courses';
+import * as router from 'react-router-dom';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock('react-router-dom', () => ({
+  useLocation: jest.fn().mockReturnValue({
+    pathname: '/',
+    search: '',
+    hash: '',
+    state: null,
+  }),
+}));
 
 describe(' FeaturesCourses', () => {
   let storeMock;

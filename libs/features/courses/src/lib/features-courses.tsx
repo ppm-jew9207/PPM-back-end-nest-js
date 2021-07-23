@@ -12,6 +12,7 @@ import {
 // import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
+import { useLocation } from 'react-router-dom';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -21,9 +22,10 @@ const stateSelector = createStructuredSelector({
 
 export const FeaturesCourses = () => {
   const dispatch = useDispatch();
-  const { courses, loading } = useSelector(stateSelector);
+  const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
-  const { profile } = useSelector(stateSelector);
+
+  const searchQuery = new URLSearchParams(useLocation().search).get('q');
 
   const saveClick = (payload: any) => {
     const data = { callback: 'getAll', ...payload };
@@ -54,7 +56,7 @@ export const FeaturesCourses = () => {
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
-    dispatch(coursesActions.getAll());
+    dispatch(coursesActions.getAll(searchQuery));
   }, []);
 
   if (loading) return <CircularProgress />;
