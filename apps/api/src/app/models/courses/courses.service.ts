@@ -100,7 +100,12 @@ export class CoursesModelService {
     }
     const regex = new RegExp(query, 'i')
     return this._model.aggregate([
-      { $match: searchQuery }
-    ]);
+      { $match: searchQuery },
+      CATEGORIES_JOIN_QUERY,
+      LEARN_ITEMS_JOIN_QUERY,
+      LESSONS_JOIN_QUERY,
+      COURSES_ID_QUERY,
+      LIKES_JOIN_QUERY
+    ])
   }
 }
