@@ -4,7 +4,7 @@ import { SharedFooter } from '@ppm/shared/footer';
 import { SharedNavigation } from '@ppm/shared/navigation';
 import './features-private-layout.scss';
 import { RouterItem } from '@ppm/common/main';
-import { useHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 const testMenu = {
   column1: {
@@ -75,7 +75,7 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
   const [menuItems, setMenuItems] = useState<
     { name: string; path: string; icon: string }[]
   >();
-  const history = useHistory();
+  const history = createBrowserHistory({ forceRefresh: true });
 
   useEffect(() => {
     const menu = props.router
