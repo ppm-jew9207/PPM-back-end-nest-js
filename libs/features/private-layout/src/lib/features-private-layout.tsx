@@ -112,8 +112,7 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
     <div className="features-private-layout">
       <SharedLeftSideMenu title="" menuItemsArray={menuItems} />
       <SharedNavigation
-        isLoading={loading}
-        userImage={profile}
+        profile={profile}
         buttons={buttons}
         onSearch={(q: string) => {
           history.push(`/courses?q=${q}`);

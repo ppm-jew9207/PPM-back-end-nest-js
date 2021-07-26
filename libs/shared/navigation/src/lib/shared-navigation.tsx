@@ -24,10 +24,9 @@ export interface SharedNavigationProps {
     onClick: (id: string) => void;
   }[];
   onSearch?: (id: string) => void;
-  userImage: {
+  profile: {
     photo: string;
   };
-  isLoading: boolean;
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
@@ -65,22 +64,29 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
               ))}
             </Hidden>
           )}
-
-          {props.onSearch ? (
-            <form noValidate onSubmit={submitSearch} className="search-form">
-              <InputBase
-                className="search-input"
-                name="search"
-                placeholder="Search courses"
-                inputProps={{ 'aria-label': 'Search' }}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon />
-              </IconButton>
-            </form>
-          ) : (
-            ''
+          {isLoggedIn && (
+            <>
+              {props.onSearch ? (
+                <form
+                  noValidate
+                  onSubmit={submitSearch}
+                  className="search-form"
+                >
+                  <InputBase
+                    className="search-input"
+                    name="search"
+                    placeholder="Search courses"
+                    inputProps={{ 'aria-label': 'Search' }}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <IconButton type="submit" aria-label="search">
+                    <SearchIcon />
+                  </IconButton>
+                </form>
+              ) : (
+                ''
+              )}
+            </>
           )}
         </Box>
         {!isLoggedIn && (
@@ -104,15 +110,10 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         {isLoggedIn && (
           <Box className="user-profile">
             <Link href="/user">
-              {props.userImage && (
-                <img
-                  src={props.userImage.photo}
-                  alt=""
-                  width="40"
-                  height="40"
-                />
+              {props.profile && (
+                <img src={props.profile.photo} alt="" width="40" height="40" />
               )}
-              {!props.userImage && (
+              {!props.profile && (
                 <Button disableRipple>
                   <AccountCircleRoundedIcon fontSize="large" />
                 </Button>
