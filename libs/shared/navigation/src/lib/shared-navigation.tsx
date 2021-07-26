@@ -23,6 +23,7 @@ export interface SharedNavigationProps {
     onClick: (id: string) => void;
   }[];
   onSearch?: (id: string) => void;
+  photo?: string;
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
@@ -65,6 +66,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
               ))}
             </Hidden>
           )}
+
           {props.onSearch ? (
             <form noValidate onSubmit={submitSearch} className="search-form">
               <InputBase
