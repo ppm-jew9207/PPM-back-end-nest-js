@@ -111,7 +111,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
           <Box className="user-profile">
             <Link href="/user">
               {props.profile?.photo ? (
-                <img src={props.profile.photo} alt="" width="40" height="40" />
+                <img src={props.profile.photo} alt="profilePhoto" />
               ) : (
                 <Button disableRipple>
                   <AccountCircleRoundedIcon fontSize="large" />
