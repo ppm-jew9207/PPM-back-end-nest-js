@@ -15,6 +15,7 @@ import { Box, Typography } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Hidden from '@material-ui/core/Hidden';
 import { getToken } from '@ppm/data-access/local-storage';
+import { userInfo } from 'os';
 export interface SharedNavigationProps {
   buttons: {
     label: string;
@@ -23,17 +24,15 @@ export interface SharedNavigationProps {
     onClick: (id: string) => void;
   }[];
   onSearch?: (id: string) => void;
-  photo?: string;
+  userImage: {
+    photo: string;
+  };
+  isLoading: boolean;
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
   const isLoggedIn = !!getToken();
-  useEffect(() => {
-    const isLoggedIn = false;
-  }, []);
-
   const [searchQuery, setSearchQuery] = useState('');
-
   const submitSearch = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     props.onSearch(searchQuery);
@@ -105,9 +104,19 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         {isLoggedIn && (
           <Box className="user-profile">
             <Link href="/user">
-              <Button disableRipple>
-                <AccountCircleRoundedIcon fontSize="large" />
-              </Button>
+              {props.userImage && (
+                <img
+                  src={props.userImage.photo}
+                  alt=""
+                  width="40"
+                  height="40"
+                />
+              )}
+              {!props.userImage && (
+                <Button disableRipple>
+                  <AccountCircleRoundedIcon fontSize="large" />
+                </Button>
+              )}
             </Link>
           </Box>
         )}

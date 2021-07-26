@@ -53,6 +53,10 @@ header.navigation-bar {
     .MuiButton-root:hover {
       background-color: rgba(0, 0, 0, 0);
     }
+    img {
+      border-radius: 50%;
+      border: 1px solid gray;
+    }
   }
 
   .search-form {

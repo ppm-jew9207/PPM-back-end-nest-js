@@ -71,24 +71,23 @@ const buttons = [
     onClick: () => null,
   },
 ];
-
 export interface FeaturesPrivateLayoutProps {
   children: React.ReactNode;
   router: RouterItem[];
 }
-const stateSelector = createStructuredSelector({
-  profile: userProfileSelectors.selectUserProfile(),
-  loading: userProfileSelectors.selectLoading(),
-});
-const dispatch = useDispatch();
-const { profile, loading } = useSelector(stateSelector);
 
 export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
   const [menuItems, setMenuItems] = useState<
     { name: string; path: string; icon: string }[]
   >();
   const history = createBrowserHistory({ forceRefresh: true });
+  const stateSelector = createStructuredSelector({
+    profile: userProfileSelectors.selectUserProfile(),
+    loading: userProfileSelectors.selectLoading(),
+  });
 
+  const dispatch = useDispatch();
+  const { profile, loading } = useSelector(stateSelector);
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
   }, []);
@@ -113,7 +112,8 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
     <div className="features-private-layout">
       <SharedLeftSideMenu title="" menuItemsArray={menuItems} />
       <SharedNavigation
-        photo={profile.photo}
+        isLoading={loading}
+        userImage={profile}
         buttons={buttons}
         onSearch={(q: string) => {
           history.push(`/courses?q=${q}`);
