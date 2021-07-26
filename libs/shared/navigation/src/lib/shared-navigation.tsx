@@ -24,8 +24,8 @@ export interface SharedNavigationProps {
     onClick: (id: string) => void;
   }[];
   onSearch?: (id: string) => void;
-  profile: {
-    photo: string;
+  profile?: {
+    photo?: string;
   };
 }
 
@@ -110,10 +110,9 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         {isLoggedIn && (
           <Box className="user-profile">
             <Link href="/user">
-              {props.profile?.photo && (
+              {props.profile?.photo ? (
                 <img src={props.profile.photo} alt="" width="40" height="40" />
-              )}
-              {!props.profile?.photo && (
+              ) : (
                 <Button disableRipple>
                   <AccountCircleRoundedIcon fontSize="large" />
                 </Button>
