@@ -5,6 +5,12 @@ import { SharedNavigation } from '@ppm/shared/navigation';
 import './features-private-layout.scss';
 import { RouterItem } from '@ppm/common/main';
 import { createBrowserHistory } from 'history';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  userProfileSelectors,
+  userProfileActions,
+} from '@ppm/data-access/user-profile';
+import { createStructuredSelector } from 'reselect';
 
 const testMenu = {
   column1: {
@@ -65,7 +71,6 @@ const buttons = [
     onClick: () => null,
   },
 ];
-
 export interface FeaturesPrivateLayoutProps {
   children: React.ReactNode;
   router: RouterItem[];
@@ -76,6 +81,16 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
     { name: string; path: string; icon: string }[]
   >();
   const history = createBrowserHistory({ forceRefresh: true });
+  const stateSelector = createStructuredSelector({
+    profile: userProfileSelectors.selectUserProfile(),
+    loading: userProfileSelectors.selectLoading(),
+  });
+
+  const dispatch = useDispatch();
+  const { profile, loading } = useSelector(stateSelector);
+  useEffect(() => {
+    dispatch(userProfileActions.getUserProfile());
+  }, []);
 
   useEffect(() => {
     const menu = props.router
@@ -97,6 +112,7 @@ export const FeaturesPrivateLayout = (props: FeaturesPrivateLayoutProps) => {
     <div className="features-private-layout">
       <SharedLeftSideMenu title="" menuItemsArray={menuItems} />
       <SharedNavigation
+        profile={profile}
         buttons={buttons}
         onSearch={(q: string) => {
           history.push(`/courses?q=${q}`);
