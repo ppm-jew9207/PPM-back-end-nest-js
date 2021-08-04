@@ -59,15 +59,15 @@ const buttons = [
   },
 
   {
-    label: 'Categories',
-    path: '/categories',
+    label: 'Courses',
+    path: '/courses',
     icon: 'list',
     onClick: () => null,
   },
   {
-    label: 'My learning',
-    path: '/my-learning',
-    icon: 'bookmark',
+    label: 'Mentors',
+    path: '/mentors',
+    icon: 'people',
     onClick: () => null,
   },
 ];
