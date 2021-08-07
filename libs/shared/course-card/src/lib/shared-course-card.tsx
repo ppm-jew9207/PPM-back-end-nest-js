@@ -59,7 +59,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
   const getSortedTimeNames = (key: string) => {
     switch (key) {
       case 'months':
-        return 'mo.';
+        return 'month.';
       case 'days':
         return 'd.';
       case 'hours':
@@ -123,7 +123,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
           >
             <img
               className="card-img"
-              src={props.author.img}
+              src={props?.author?.img }
               alt="Course image"
               height="40"
               width="40"
@@ -159,7 +159,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
         <div className="card-content">
           <p>{props.description}</p>
           <Link to={`/courses/${props.id}`}>
-            <img src={props.imgUrl} alt="Course image" />
+            <img src={props?.imgUrl || 'https://cdn.shopify.com/s/files/1/0002/4680/8603/products/sjDBHUW_1600x1600.png?v=1606994170'} alt="Course image" />
           </Link>
         </div>
 

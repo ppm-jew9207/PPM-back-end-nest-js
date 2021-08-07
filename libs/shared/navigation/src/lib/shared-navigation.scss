@@ -3,6 +3,13 @@ header.navigation-bar {
   border-color: rgba(52, 64, 85, 0.3);
   text-transform: none;
   z-index: 3 !important;
+  > div {
+    width: 1230px;
+    margin: auto;
+  }
+  .material-icons{
+    margin-right: 10px;
+  }
 }
 .navigation-bar {
   .MuiButton-root:hover {
