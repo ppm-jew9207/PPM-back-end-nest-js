@@ -2770,6 +2770,27 @@
           }
         }
       }
+    },
+    "shared-filter": {
+      "root": "libs/shared/filter",
+      "sourceRoot": "libs/shared/filter/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/filter/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/filter"],
+          "options": {
+            "jestConfig": "libs/shared/filter/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

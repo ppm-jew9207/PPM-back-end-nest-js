@@ -125,7 +125,8 @@
       "@ppm/data-access/mentors": ["libs/data-access/mentors/src/index.ts"],
       "@ppm/features/mentor-courses": [
         "libs/features/mentor-courses/src/index.ts"
-      ]
+      ],
+      "@ppm/shared/filter": ["libs/shared/filter/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
