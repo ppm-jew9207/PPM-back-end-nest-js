@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SharedCourseCard } from '@ppm/shared/course-card';
+import { SharedFilter } from '@ppm/shared/filter';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
@@ -63,43 +64,49 @@ export const FeaturesCourses = () => {
 
   if (!coursesState) return <div className="no-items">No courses added...</div>;
   return (
-    <div className="course-cards">
-      {coursesState.length &&
-        coursesState.map((course, index) => (
-          <div key={course._id}>
-            <SharedCourseCard
-              id={course._id}
-              title={course.title}
-              author={{
-                _id: course.creator._id,
-                firstName: course.creator.name,
-                lastName: '',
-                img: course.creator.imageUrl,
-              }}
-              createAt={course.createdAt}
-              description={course.description}
-              like={
-                course.likesList
-                  ? course.likesList.filter(
-                      (like: any) => like.type === LikeEnum.Like
-                    ).length
-                  : 0
-              }
-              shared={
-                course.likesList
-                  ? course.likesList.filter(
-                      (like: any) => like.type === LikeEnum.Share
-                    ).length
-                  : 0
-              }
-              imgUrl={course.imageUrl}
-              onSaveClick={saveClick}
-              editable={profile?._id === course.creator._id}
-              onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-              onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-            />
-          </div>
-        ))}
+    <div className="flex-card">
+      <div className="filter-sidebar">
+        <SharedFilter />
+      </div>
+
+      <div className="course-cards">
+        {coursesState.length &&
+          coursesState.map((course, index) => (
+            <div key={course._id}>
+              <SharedCourseCard
+                id={course._id}
+                title={course.title}
+                author={{
+                  _id: course.creator._id,
+                  firstName: course.creator.name,
+                  lastName: '',
+                  img: course.creator.imageUrl,
+                }}
+                createAt={course.createdAt}
+                description={course.description}
+                like={
+                  course.likesList
+                    ? course.likesList.filter(
+                        (like: any) => like.type === LikeEnum.Like
+                      ).length
+                    : 0
+                }
+                shared={
+                  course.likesList
+                    ? course.likesList.filter(
+                        (like: any) => like.type === LikeEnum.Share
+                      ).length
+                    : 0
+                }
+                imgUrl={course.imageUrl}
+                onSaveClick={saveClick}
+                editable={profile?._id === course.creator._id}
+                onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
+              />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
