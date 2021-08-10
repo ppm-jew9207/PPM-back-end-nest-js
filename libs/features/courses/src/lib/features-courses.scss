@@ -1,7 +1,8 @@
 .flex-card {
   display: flex;
   .filter-sidebar {
-    width: 28rem;
+    position: relative;
+    width: 14rem;
     padding-right: 4rem;
     margin-right: 0.8rem;
     max-height: 240rem;
