@@ -36,30 +36,31 @@ export function SharedFilter(props: SharedFilterProps) {
         >
           <Typography>{props.title}</Typography>
         </AccordionSummary>
-        {props.details.map((detail, i) => (
-          <AccordionDetails key={i}>
-            {props.type === 'checkbox' ? (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={false}
-                    name={detail.label}
-                    color="primary"
-                  />
-                }
-                label={detail.label}
-              />
-            ) : (
-              <RadioGroup>
+        {!!props.details &&
+          props.details?.map((detail, i) => (
+            <AccordionDetails key={i}>
+              {props.type === 'checkbox' ? (
                 <FormControlLabel
-                  value={detail.name}
-                  control={<Radio />}
+                  control={
+                    <Checkbox
+                      checked={false}
+                      name={detail.label}
+                      color="primary"
+                    />
+                  }
                   label={detail.label}
                 />
-              </RadioGroup>
-            )}
-          </AccordionDetails>
-        ))}
+              ) : (
+                <RadioGroup>
+                  <FormControlLabel
+                    value={detail.name}
+                    control={<Radio />}
+                    label={detail.label}
+                  />
+                </RadioGroup>
+              )}
+            </AccordionDetails>
+          ))}
       </Accordion>
     </form>
   );
