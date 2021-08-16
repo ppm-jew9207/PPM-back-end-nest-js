@@ -84,6 +84,11 @@ export const FeaturesCourses = () => {
   const [coursesState, setCoursesState] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
   // Filter toggle
+  const [isActive, setIsActive] = useState(true);
+
+  const ToggleClass = () => {
+    setIsActive(!isActive);
+  };
 
   const searchQuery = new URLSearchParams(useLocation().search).get('q');
 
@@ -125,13 +130,24 @@ export const FeaturesCourses = () => {
   if (!coursesState) return <div className="no-items">No courses added...</div>;
   return (
     <div className="flex-card">
-      <div className="filter-sidebar">
-        <Button>
+      <div
+        className={`filter-sidebar ${
+          isActive ? 'filter-open' : 'filter-closed'
+        }`}
+      >
+        <Button
+          className="filter-button"
+          onClick={ToggleClass}
+          disableRipple={true}
+        >
           <FilterListIcon />
           <Typography>Filter</Typography>
         </Button>
-
-        <div className="filter-list">
+        <div
+          className={`filter-list ${
+            isActive ? 'filter-open' : 'filter-closed'
+          }`}
+        >
           {filtersList.length &&
             filtersList.map((filterList, index) => (
               <SharedFilter
