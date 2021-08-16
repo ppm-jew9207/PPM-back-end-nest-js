@@ -23,9 +23,17 @@ interface SharedFilterProps {
   details?: Detail[];
   title?: string;
   type?: string;
+  // handleCheckboxChange?: () => void;
+  // handleCheckboxChange?: () => void;
 }
 
 export function SharedFilter(props: SharedFilterProps) {
+  const [value, setValue] = React.useState('');
+
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((e.target as HTMLInputElement).value);
+  };
+
   return (
     <form className="filter-form">
       <Accordion>
@@ -43,15 +51,15 @@ export function SharedFilter(props: SharedFilterProps) {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={false}
                       name={detail.label}
+                      value={detail.name}
                       color="primary"
                     />
                   }
                   label={detail.label}
                 />
               ) : (
-                <RadioGroup>
+                <RadioGroup value={value} onChange={handleRadioChange}>
                   <FormControlLabel
                     value={detail.name}
                     control={<Radio />}

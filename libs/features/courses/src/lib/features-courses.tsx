@@ -14,6 +14,8 @@ import {
 import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import { Button, Typography, Drawer } from '@material-ui/core';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -25,11 +27,11 @@ const filter = [
     title: 'Ratings',
     type: 'radio',
     details: [
-      { label: '5 star', name: 'html' },
-      { label: '4 start', name: 'css' },
-      { label: '3 start', name: 'webdevelopment' },
-      { label: '2 start', name: 'react' },
-      { label: '1 start', name: 'javascript' },
+      { label: '5 star', name: '5 start' },
+      { label: '4 start', name: '4 start' },
+      { label: '3 start', name: '3 star' },
+      { label: '2 start', name: '2 star' },
+      { label: '1 start', name: '1 star' },
     ],
   },
   {
@@ -81,6 +83,7 @@ export const FeaturesCourses = () => {
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
+  // Filter toggle
 
   const searchQuery = new URLSearchParams(useLocation().search).get('q');
 
@@ -123,15 +126,22 @@ export const FeaturesCourses = () => {
   return (
     <div className="flex-card">
       <div className="filter-sidebar">
-        {filtersList.length &&
-          filtersList.map((filterList, index) => (
-            <SharedFilter
-              key={index}
-              title={filterList.title}
-              type={filterList.type}
-              details={filterList.details}
-            />
-          ))}
+        <Button>
+          <FilterListIcon />
+          <Typography>Filter</Typography>
+        </Button>
+
+        <div className="filter-list">
+          {filtersList.length &&
+            filtersList.map((filterList, index) => (
+              <SharedFilter
+                key={index}
+                title={filterList.title}
+                type={filterList.type}
+                details={filterList.details}
+              />
+            ))}
+        </div>
       </div>
 
       <div className="course-cards">
