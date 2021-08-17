@@ -23,6 +23,7 @@ export enum PrivateRoutesPath {
   COUNTRY = '/:countryName/states',
   STATE = '/:stateName/cities',
   GET_BY_COURSE_ID = '/:courseid',
+  FILTER = '/filter',
 
   // TODO only for API
   POST_CREATE = '/create',
