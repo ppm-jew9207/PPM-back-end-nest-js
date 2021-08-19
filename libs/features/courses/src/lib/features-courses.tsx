@@ -84,7 +84,7 @@ export const FeaturesCourses = () => {
       </ButtonGroup>
 
       <div className={'course-cards' + viewState}>
-        {coursesState.length &&
+        {coursesState?.length &&
           coursesState.map((course, index) => (
             <div key={course._id}>
               <SharedCourseCard
