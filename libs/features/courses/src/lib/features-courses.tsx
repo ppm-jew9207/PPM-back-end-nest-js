@@ -21,8 +21,7 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
   profile: userProfileSelectors.selectUserProfile(),
 });
-
-// TODO: remove when BE data available
+// TODO: remove when BE data available.
 const filter = [
   {
     title: 'Ratings',
