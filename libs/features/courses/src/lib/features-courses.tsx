@@ -83,7 +83,6 @@ export const FeaturesCourses = () => {
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
-  // Filter toggle
 
   const searchQuery = new URLSearchParams(useLocation().search).get('q');
 
@@ -132,7 +131,7 @@ export const FeaturesCourses = () => {
         </Button>
 
         <div className="filter-list">
-          {filtersList.length &&
+          {filtersList?.length &&
             filtersList.map((filterList, index) => (
               <SharedFilter
                 key={index}
@@ -145,7 +144,7 @@ export const FeaturesCourses = () => {
       </div>
 
       <div className="course-cards">
-        {coursesState.length &&
+        {coursesState?.length &&
           coursesState.map((course, index) => (
             <div key={course._id}>
               <SharedCourseCard
