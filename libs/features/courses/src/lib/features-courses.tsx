@@ -22,6 +22,8 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
   profile: userProfileSelectors.selectUserProfile(),
 });
+
+// TODO: remove when BE data available
 const filter = [
   {
     title: 'Ratings',
@@ -78,6 +80,7 @@ const filter = [
     ],
   },
 ];
+
 export const FeaturesCourses = () => {
   const dispatch = useDispatch();
   const { courses, loading, profile } = useSelector(stateSelector);
