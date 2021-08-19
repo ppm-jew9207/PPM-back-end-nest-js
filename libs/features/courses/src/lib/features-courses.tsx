@@ -22,6 +22,7 @@ const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
 });
 // TODO: remove when BE data available.
+
 const filter = [
   {
     title: 'Ratings',
@@ -78,6 +79,7 @@ const filter = [
     ],
   },
 ];
+
 export const FeaturesCourses = () => {
   const dispatch = useDispatch();
   const { courses, loading, profile } = useSelector(stateSelector);
@@ -160,7 +162,7 @@ export const FeaturesCourses = () => {
       </div>
 
       <div className="course-cards">
-        {coursesState.length &&
+        {coursesState?.length &&
           coursesState.map((course, index) => (
             <div key={course._id}>
               <SharedCourseCard
