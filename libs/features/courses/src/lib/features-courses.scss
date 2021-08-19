@@ -1,21 +1,15 @@
-.course-cards {
-  margin-top: 30px;
+.flex-card {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-items {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.course-card {
-  box-sizing: border-box;
-  max-width: 800px;
-  margin-bottom: 20px;
-  width: 100%;
+  .filter-sidebar {
+    position: relative;
+    width: 14rem;
+    padding-right: 4rem;
+    margin-right: 0.8rem;
+    max-height: 240rem;
+  }
+  .course-cards {
+    position: relative;
+    flex: 1;
+    min-width: 1px;
+  }
 }
