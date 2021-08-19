@@ -12,19 +12,14 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './shared-filter.module.scss';
 
-// Defining a type
 type Detail = {
   label: string;
   name: string;
 };
-
-// Defining an interface
 interface SharedFilterProps {
   details?: Detail[];
   title?: string;
   type?: string;
-  // handleCheckboxChange?: () => void;
-  // handleCheckboxChange?: () => void;
 }
 
 export function SharedFilter(props: SharedFilterProps) {

@@ -10,7 +10,6 @@ import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
-// import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
@@ -22,6 +21,8 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
   profile: userProfileSelectors.selectUserProfile(),
 });
+
+// TODO: remove when BE data available
 const filter = [
   {
     title: 'Ratings',
@@ -83,7 +84,6 @@ export const FeaturesCourses = () => {
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
-  // Filter toggle
   const [isActive, setIsActive] = useState(true);
 
   const ToggleClass = () => {
