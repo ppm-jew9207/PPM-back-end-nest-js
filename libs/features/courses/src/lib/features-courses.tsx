@@ -28,11 +28,11 @@ const filter = [
     title: 'Ratings',
     type: 'radio',
     details: [
-      { label: '5 star', name: '5 start' },
-      { label: '4 start', name: '4 start' },
-      { label: '3 start', name: '3 star' },
-      { label: '2 start', name: '2 star' },
-      { label: '1 start', name: '1 star' },
+      { label: '5 star', name: '5 star' },
+      { label: '4 star', name: '4 star' },
+      { label: '3 star', name: '3 star' },
+      { label: '2 star', name: '2 star' },
+      { label: '1 star', name: '1 star' },
     ],
   },
   {
