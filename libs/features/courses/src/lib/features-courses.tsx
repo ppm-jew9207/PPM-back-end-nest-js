@@ -10,7 +10,6 @@ import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
-// import { likesActions, likesSelectors } from '@ppm/data-access/likes';
 import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
@@ -22,18 +21,18 @@ const stateSelector = createStructuredSelector({
   loading: coursesSelectors.selectLoading(),
   profile: userProfileSelectors.selectUserProfile(),
 });
+// TODO: remove when BE data available.
 
-// TODO: remove when BE data available
 const filter = [
   {
     title: 'Ratings',
     type: 'radio',
     details: [
-      { label: '5 star', name: '5 start' },
-      { label: '4 start', name: '4 start' },
-      { label: '3 start', name: '3 star' },
-      { label: '2 start', name: '2 star' },
-      { label: '1 start', name: '1 star' },
+      { label: '5 star', name: '5 star' },
+      { label: '4 star', name: '4 star' },
+      { label: '3 star', name: '3 star' },
+      { label: '2 star', name: '2 star' },
+      { label: '1 star', name: '1 star' },
     ],
   },
   {
@@ -80,12 +79,16 @@ const filter = [
     ],
   },
 ];
-
 export const FeaturesCourses = () => {
   const dispatch = useDispatch();
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
+  const [isActive, setIsActive] = useState(true);
+
+  const ToggleClass = () => {
+    setIsActive(!isActive);
+  };
 
   const searchQuery = new URLSearchParams(useLocation().search).get('q');
 
@@ -127,14 +130,25 @@ export const FeaturesCourses = () => {
   if (!coursesState) return <div className="no-items">No courses added...</div>;
   return (
     <div className="flex-card">
-      <div className="filter-sidebar">
-        <Button>
+      <div
+        className={`filter-sidebar ${
+          isActive ? 'filter-open' : 'filter-closed'
+        }`}
+      >
+        <Button
+          className="filter-button"
+          onClick={ToggleClass}
+          disableRipple={true}
+        >
           <FilterListIcon />
           <Typography>Filter</Typography>
         </Button>
-
-        <div className="filter-list">
-          {filtersList?.length &&
+        <div
+          className={`filter-list ${
+            isActive ? 'filter-open' : 'filter-closed'
+          }`}
+        >
+          {filtersList.length &&
             filtersList.map((filterList, index) => (
               <SharedFilter
                 key={index}
@@ -147,7 +161,7 @@ export const FeaturesCourses = () => {
       </div>
 
       <div className="course-cards">
-        {coursesState?.length &&
+        {coursesState.length &&
           coursesState.map((course, index) => (
             <div key={course._id}>
               <SharedCourseCard

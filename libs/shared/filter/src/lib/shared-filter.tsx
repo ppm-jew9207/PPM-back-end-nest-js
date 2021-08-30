@@ -31,17 +31,17 @@ export function SharedFilter(props: SharedFilterProps) {
 
   return (
     <form className="filter-form">
-      <Accordion>
+      <Accordion elevation={2} square={true}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>{props.title}</Typography>
+          <Typography style={{ fontWeight: 'bold' }}>{props.title}</Typography>
         </AccordionSummary>
         {!!props.details &&
           props.details?.map((detail, i) => (
-            <AccordionDetails key={i}>
+            <AccordionDetails style={{ padding: '0px 16px 0px' }} key={i}>
               {props.type === 'checkbox' ? (
                 <FormControlLabel
                   control={
@@ -57,7 +57,7 @@ export function SharedFilter(props: SharedFilterProps) {
                 <RadioGroup value={value} onChange={handleRadioChange}>
                   <FormControlLabel
                     value={detail.name}
-                    control={<Radio />}
+                    control={<Radio color="primary" />}
                     label={detail.label}
                   />
                 </RadioGroup>
