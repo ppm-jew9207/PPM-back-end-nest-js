@@ -19,8 +19,15 @@ import {
   updateFailed,
   addStudentToCourseFailed,
   removeStudentFromCourseFailed,
+  filterCoursesFailed,
+  filterCoursesSuccess,
 } from './actions';
-import { post, postFormData, get } from '@ppm/data-access/http-requests';
+import {
+  post,
+  postFormData,
+  get,
+  getByQueryParams,
+} from '@ppm/data-access/http-requests';
 import { PrivateRoutesPath, MessagesStatus } from '@ppm/common/main';
 import { snackbarActions } from '@ppm/data-access/snack-bar';
 
@@ -263,6 +270,25 @@ export function* removeStudentFromCourse(actions) {
   }
 }
 
+export function* filterCourses(actions) {
+  try {
+    const path = `/api/${PrivateRoutesPath.COURSES}/filterCourses/${actions.payload}`;
+    const result = yield call(getByQueryParams, path, actions.payload);
+    if (result) {
+      yield put(filterCoursesSuccess(result));
+    }
+  } catch (error) {
+    yield put(filterCoursesFailed(error));
+    console.log(error);
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: 'filtravimas neivyko.',
+      })
+    );
+  }
+}
+
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
@@ -275,6 +301,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
   yield takeEvery(ActionTypes.COURSE_ADD_STUDENT, addStudentToCourse);
   yield takeEvery(ActionTypes.COURSE_REMOVE_STUDENT, removeStudentFromCourse);
+  yield takeEvery(ActionTypes.COURSE_FILTER, filterCourses);
 }
 
 export default coursesSaga;

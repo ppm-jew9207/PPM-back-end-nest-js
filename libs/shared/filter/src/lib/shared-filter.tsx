@@ -14,12 +14,13 @@ import './shared-filter.module.scss';
 
 type Detail = {
   label: string;
-  name: string;
+  value: string;
 };
 interface SharedFilterProps {
   details?: Detail[];
   title?: string;
   type?: string;
+  onChange: (queries: any) => void;
 }
 
 export function SharedFilter(props: SharedFilterProps) {
@@ -47,7 +48,7 @@ export function SharedFilter(props: SharedFilterProps) {
                   control={
                     <Checkbox
                       name={detail.label}
-                      value={detail.name}
+                      value={detail.value}
                       color="primary"
                     />
                   }
@@ -56,7 +57,7 @@ export function SharedFilter(props: SharedFilterProps) {
               ) : (
                 <RadioGroup value={value} onChange={handleRadioChange}>
                   <FormControlLabel
-                    value={detail.name}
+                    value={detail.value}
                     control={<Radio color="primary" />}
                     label={detail.label}
                   />

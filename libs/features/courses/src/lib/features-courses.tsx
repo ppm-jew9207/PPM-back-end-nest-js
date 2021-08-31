@@ -28,54 +28,54 @@ const filter = [
     title: 'Ratings',
     type: 'radio',
     details: [
-      { label: '5 star', name: '5 star' },
-      { label: '4 star', name: '4 star' },
-      { label: '3 star', name: '3 star' },
-      { label: '2 star', name: '2 star' },
-      { label: '1 star', name: '1 star' },
+      { label: '5 star', value: '5star' },
+      { label: '4 star', value: '4star' },
+      { label: '3 star', value: '3star' },
+      { label: '2 star', value: '2star' },
+      { label: '1 star', value: '1star' },
     ],
   },
   {
     title: 'Topic',
     type: 'checkbox',
     details: [
-      { label: 'HTML', name: 'html' },
-      { label: 'CSS', name: 'css' },
-      { label: 'Web development', name: 'webdevelopment' },
-      { label: 'React.js', name: 'react' },
-      { label: 'Javascript', name: 'javascript' },
+      { label: 'HTML', value: 'html' },
+      { label: 'CSS', value: 'css' },
+      { label: 'Web development', value: 'web-development' },
+      { label: 'React.js', value: 'react' },
+      { label: 'Javascript', value: 'javascript' },
     ],
   },
   {
-    title: 'Subcategory',
+    title: 'Category',
     type: 'checkbox',
     details: [
-      { label: 'Web development', name: 'text1' },
-      { label: 'Programming Languages', name: 'text1' },
-      { label: 'Game development', name: 'text1' },
-      { label: 'Web Design', name: 'text1' },
-      { label: 'Software Testing', name: 'text1' },
+      { label: 'Web development', value: 'web-development' },
+      { label: 'Programming Languages', value: 'programming-languages' },
+      { label: 'Game development', navalueme: 'game-development' },
+      { label: 'Web Design', value: 'web-design' },
+      { label: 'Software Testing', value: 'software-testing' },
     ],
   },
   {
     title: 'Level',
     type: 'checkbox',
     details: [
-      { label: 'All Levels', name: 'text1' },
-      { label: 'Beginner', name: 'text1' },
-      { label: 'Intermediate', name: 'text1' },
-      { label: 'Expert', name: 'text1' },
+      { label: 'All Levels', value: 'all-levels' },
+      { label: 'Beginner', value: 'beginner' },
+      { label: 'Intermediate', value: 'intermediate' },
+      { label: 'Expert', value: 'expert' },
     ],
   },
   {
     title: 'Video Duration',
     type: 'checkbox',
     details: [
-      { label: '0-1 hour', name: 'text1' },
-      { label: '1-3 hours', name: 'text1' },
-      { label: '3-6 hours', name: 'text1' },
-      { label: '6-10 hours', name: 'text1' },
-      { label: '10+ hours', name: 'text1' },
+      { label: '0-1 hour', value: '1-hour' },
+      { label: '1-3 hours', value: '3-hours' },
+      { label: '3-6 hours', value: '6-hours' },
+      { label: '6-10 hours', value: '10-hours' },
+      { label: '10+ hours', value: '10-plus-hours' },
     ],
   },
 ];
@@ -125,6 +125,10 @@ export const FeaturesCourses = () => {
     dispatch(coursesActions.getAll(searchQuery));
   }, []);
 
+  const filterData = (queries: any) => {
+    dispatch(coursesActions.filterCourses(queries));
+  };
+
   if (loading) return <CircularProgress />;
 
   if (!coursesState) return <div className="no-items">No courses added...</div>;
@@ -148,9 +152,10 @@ export const FeaturesCourses = () => {
             isActive ? 'filter-open' : 'filter-closed'
           }`}
         >
-          {filtersList.length &&
+          {filtersList?.length &&
             filtersList.map((filterList, index) => (
               <SharedFilter
+                onChange={filterData}
                 key={index}
                 title={filterList.title}
                 type={filterList.type}

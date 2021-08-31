@@ -64,6 +64,15 @@ export const get = (path) => {
   return response;
 };
 
+export const getByQueryParams = (path, query: any) => {
+  const queryString = new URLSearchParams(query).toString();
+  const response = request(path + queryString, {
+    method: 'GET',
+    ...requestOptions,
+  });
+  return response;
+};
+
 export const post = (path, data = {}) => {
   const response = request(path, {
     body: JSON.stringify(data),

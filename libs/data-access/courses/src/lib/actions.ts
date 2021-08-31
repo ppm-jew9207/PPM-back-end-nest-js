@@ -117,3 +117,15 @@ export function removeStudentFromCourseSuccess() {
 export function removeStudentFromCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_REMOVE_STUDENT_FAILED, error);
 }
+
+export function filterCourses(query: any) {
+  return action(ActionTypes.COURSE_FILTER, query);
+}
+
+export function filterCoursesSuccess(result: any) {
+  return action(ActionTypes.COURSE_FILTER_SUCCESS, result);
+}
+
+export function filterCoursesFailed(error: Error) {
+  return action(ActionTypes.COURSE_FILTER_FAILED, error);
+}
