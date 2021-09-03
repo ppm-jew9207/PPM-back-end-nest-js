@@ -28,11 +28,11 @@ const filter = [
     title: 'Ratings',
     type: 'radio',
     details: [
-      { label: '5 star', value: '5star' },
-      { label: '4 star', value: '4star' },
-      { label: '3 star', value: '3star' },
-      { label: '2 star', value: '2star' },
-      { label: '1 star', value: '1star' },
+      { label: '5 star', value: '5' },
+      { label: '4 star', value: '4' },
+      { label: '3 star', value: '3' },
+      { label: '2 star', value: '2' },
+      { label: '1 star', value: '1' },
     ],
   },
   {
@@ -48,9 +48,10 @@ const filter = [
   },
   {
     title: 'Category',
+    filterKey: 'categories',
     type: 'checkbox',
     details: [
-      { label: 'Web development', value: 'web-development' },
+      { label: 'Web development', value: '6000906c9d822649dbab00ad' },
       { label: 'Programming Languages', value: 'programming-languages' },
       { label: 'Game development', navalueme: 'game-development' },
       { label: 'Web Design', value: 'web-design' },
@@ -125,7 +126,7 @@ export const FeaturesCourses = () => {
     dispatch(coursesActions.getAll(searchQuery));
   }, []);
 
-  const filterData = (queries: any) => {
+  const filterChanges = (queries: any) => {
     dispatch(coursesActions.filterCourses(queries));
   };
 
@@ -152,16 +153,7 @@ export const FeaturesCourses = () => {
             isActive ? 'filter-open' : 'filter-closed'
           }`}
         >
-          {filtersList?.length &&
-            filtersList.map((filterList, index) => (
-              <SharedFilter
-                onChange={filterData}
-                key={index}
-                title={filterList.title}
-                type={filterList.type}
-                details={filterList.details}
-              />
-            ))}
+          <SharedFilter onChange={filterChanges} />
         </div>
       </div>
 

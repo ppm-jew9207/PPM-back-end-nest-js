@@ -272,7 +272,7 @@ export function* removeStudentFromCourse(actions) {
 
 export function* filterCourses(actions) {
   try {
-    const path = `/api/${PrivateRoutesPath.COURSES}/filterCourses/${actions.payload}`;
+    const path = `/api/${PrivateRoutesPath.COURSES}/filter?`;
     const result = yield call(getByQueryParams, path, actions.payload);
     if (result) {
       yield put(filterCoursesSuccess(result));

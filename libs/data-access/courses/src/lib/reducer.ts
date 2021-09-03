@@ -136,7 +136,6 @@ export function coursesReducer(
     case ActionTypes.COURSE_FILTER:
       return {
         ...state,
-        list: state.list,
         loading: true,
       };
     case ActionTypes.COURSE_FILTER_SUCCESS:
