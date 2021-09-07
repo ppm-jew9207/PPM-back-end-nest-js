@@ -3,19 +3,18 @@ import { render } from '@testing-library/react';
 
 import SharedFilter from './shared-filter';
 
-type Detail = {
-  label: string;
-  name: string;
-};
+interface FilterFormData {
+  rating?: string;
+  topic?: string[];
+  categories?: string[];
+}
 interface SharedFilterProps {
-  details?: Detail[];
-  title?: string;
-  type?: string;
+  onChange: (queries: FilterFormData) => void;
 }
 
 describe('SharedFilter', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<SharedFilter />);
+    const { baseElement } = render(<SharedFilter onChange={[]} />);
     expect(baseElement).toBeTruthy();
   });
 });
