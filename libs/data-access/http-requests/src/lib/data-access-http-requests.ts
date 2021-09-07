@@ -64,8 +64,8 @@ export const get = (path) => {
   return response;
 };
 
-export const getByQueryParams = (path, query: any) => {
-  const queryString = new URLSearchParams(query).toString();
+export const getByQueryParams = (path, queries: any) => {
+  const queryString = new URLSearchParams(queries).toString();
   const response = request(path + queryString, {
     method: 'GET',
     ...requestOptions,

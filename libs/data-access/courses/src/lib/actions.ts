@@ -118,8 +118,8 @@ export function removeStudentFromCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_REMOVE_STUDENT_FAILED, error);
 }
 
-export function filterCourses(query: any) {
-  return action(ActionTypes.COURSE_FILTER, query);
+export function filterCourses(queries: any) {
+  return action(ActionTypes.COURSE_FILTER, queries);
 }
 
 export function filterCoursesSuccess(result: any) {

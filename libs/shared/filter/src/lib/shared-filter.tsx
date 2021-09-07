@@ -13,159 +13,146 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './shared-filter.module.scss';
 import { useForm } from 'react-hook-form';
 
-const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+export interface FilterFormData {
+  rating?: string;
+  topic?: string[];
+  categories?: string[];
+}
+interface SharedFilter {
+  onChange: (queries: FilterFormData) => void;
+}
 
-export function SharedFilter(props: any) {
-  const [data, setData] = useState({});
-  const { register, handleSubmit, errors } = useForm();
+export function SharedFilter(props: SharedFilter) {
+  const { register, handleSubmit, errors, watch } = useForm();
+  const [state, setstate] = useState(true);
 
-  const onSubmit = (data: {
-    rating?: string;
-    topic?: string[];
-    categories?: string[];
-  }) => setData(JSON.stringify(data));
+  let data = watch();
 
-  console.log(data);
+  useEffect(() => {
+    if (state) {
+      onSubmit(data);
+      setstate(false);
+    }
+  }, [data]);
+
+  const onSubmit = (queries: FilterFormData) =>
+    props.onChange({
+      rating: queries.rating,
+      topic: queries.topic,
+      categories: queries.categories,
+    });
 
   return (
-    <form onChange={handleSubmit(onSubmit)} className="filter-form">
+    <form className="filter-form">
       <div className="rating">
-        <label>
-          <input
-            name="rating"
-            type="radio"
-            value="5"
-            onChange={onChange}
-            ref={register}
-          />
-          5 stars
-        </label>
-        <label>
-          <input
-            name="rating"
-            type="radio"
-            value="4"
-            onChange={onChange}
-            ref={register}
-          />
-          4 stars
-        </label>
-        <label>
-          <input
-            name="rating"
-            type="radio"
-            value="3"
-            onChange={onChange}
-            ref={register}
-          />
-          3 stars
-        </label>
-        <label>
-          <input
-            name="rating"
-            type="radio"
-            value="2"
-            onChange={onChange}
-            ref={register}
-          />
-          2 stars
-        </label>
-        <label>
-          <input
-            name="rating"
-            type="radio"
-            value="1"
-            onChange={onChange}
-            ref={register}
-          />
-          1 stars
-        </label>
+        <Accordion>
+          <AccordionSummary>
+            <Typography>Rating</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            style={{ display: 'inline-grid', padding: '0px 12px 0px' }}
+          >
+            <label>
+              <input name="rating" type="radio" value="5" ref={register} />5
+              stars
+            </label>
+            <label>
+              <input name="rating" type="radio" value="4" ref={register} />4
+              stars
+            </label>
+            <label>
+              <input name="rating" type="radio" value="3" ref={register} />3
+              stars
+            </label>
+            <label>
+              <input name="rating" type="radio" value="2" ref={register} />2
+              stars
+            </label>
+            <label>
+              <input name="rating" type="radio" value="1" ref={register} />1
+              stars
+            </label>
+          </AccordionDetails>
+        </Accordion>
       </div>
       <div className="topic">
-        <label>
-          <input
-            name="topic"
-            type="checkbox"
-            value="css"
-            onChange={onChange}
-            ref={register}
-          />
-          CSS
-        </label>
-        <br />
-        <label>
-          <input
-            name="topic"
-            type="checkbox"
-            value="html"
-            onChange={onChange}
-            ref={register}
-          />
-          HTML
-        </label>
-        <label>
-          <input
-            name="topic"
-            type="checkbox"
-            value="javascript"
-            onChange={onChange}
-            ref={register}
-          />
-          Javascript
-        </label>
-        <label>
-          <input
-            name="topic"
-            type="checkbox"
-            value="php"
-            onChange={onChange}
-            ref={register}
-          />
-          PHP
-        </label>
+        <Accordion>
+          <AccordionSummary>
+            <Typography>Topic</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            style={{ display: 'inline-grid', padding: '0px 12px 0px' }}
+          >
+            <label>
+              <input name="topic" type="checkbox" value="css" ref={register} />
+              CSS
+            </label>
+            <label>
+              <input name="topic" type="checkbox" value="html" ref={register} />
+              HTML
+            </label>
+            <label>
+              <input
+                name="topic"
+                type="checkbox"
+                value="javascript"
+                ref={register}
+              />
+              Javascript
+            </label>
+            <label>
+              <input name="topic" type="checkbox" value="php" ref={register} />
+              PHP
+            </label>
+          </AccordionDetails>
+        </Accordion>
       </div>
-      <br />
       <div className="categories">
-        <label>
-          <input
-            name="categories"
-            type="checkbox"
-            value="web-development"
-            onChange={onChange}
-            ref={register}
-          />
-          Web development
-        </label>
-        <label>
-          <input
-            name="categories"
-            type="checkbox"
-            value="game-development"
-            onChange={onChange}
-            ref={register}
-          />
-          Game development
-        </label>
-        <label>
-          <input
-            name="categories"
-            type="checkbox"
-            value="programming-languages"
-            onChange={onChange}
-            ref={register}
-          />
-          Programming languages
-        </label>
-        <label>
-          <input
-            name="categories"
-            type="checkbox"
-            value="web-design"
-            onChange={onChange}
-            ref={register}
-          />
-          Web design
-        </label>
+        <Accordion>
+          <AccordionSummary>
+            <Typography>Categories</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            style={{ display: 'inline-grid', padding: '0px 12px 0px' }}
+          >
+            <label>
+              <input
+                name="categories"
+                type="checkbox"
+                value="6000906c9d822649dbab00ad"
+                ref={register}
+              />
+              Web development
+            </label>
+            <label>
+              <input
+                name="categories"
+                type="checkbox"
+                value="6000908f9d822649dbab00ae"
+                ref={register}
+              />
+              Game development
+            </label>
+            <label>
+              <input
+                name="categories"
+                type="checkbox"
+                value="programming-languages"
+                ref={register}
+              />
+              Programming languages
+            </label>
+            <label>
+              <input
+                name="categories"
+                type="checkbox"
+                value="web-design"
+                ref={register}
+              />
+              Web design
+            </label>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </form>
   );
