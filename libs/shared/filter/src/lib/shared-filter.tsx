@@ -28,19 +28,19 @@ export function SharedFilter(props: SharedFilter) {
 
   let data = watch();
 
-  useEffect(() => {
-    if (state) {
-      onSubmit(data);
-      setstate(false);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (state) {
+  //     onSubmit(data);
+  //     setstate(false);
+  //   }
+  // }, [data]);
 
-  const onSubmit = (queries: FilterFormData) =>
-    props.onChange({
-      rating: queries.rating,
-      topic: queries.topic,
-      categories: queries.categories,
-    });
+  // const onSubmit = (queries: FilterFormData) =>
+  //   props.onChange({
+  //     rating: queries.rating,
+  //     topic: queries.topic,
+  //     categories: queries.categories,
+  //   });
 
   return (
     <form className="filter-form">
