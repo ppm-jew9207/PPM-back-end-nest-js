@@ -37,14 +37,13 @@ export function SharedFilter(props: SharedFilter) {
     }
   }, [data]);
 
-  const onSubmit = (queries: FilterFormData) => {
-    console.log(queries),
-      props.onSubmit({
-        rating: queries.rating,
-        topic: queries.topic,
-        categories: queries.categories,
-      });
-  };
+  const onSubmit = (queries: FilterFormData) =>
+    props.onSubmit({
+      rating: queries.rating,
+      topic: queries.topic,
+      categories: queries.categories,
+    });
+
   return (
     <div className="filter-form">
       <form onSubmit={handleSubmit(onSubmit)}>
