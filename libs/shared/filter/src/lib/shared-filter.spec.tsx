@@ -13,10 +13,14 @@ interface SharedFilter {
   onSubmit: (queries: FilterFormData) => void;
 }
 
+const onSubmit = () => {
+  // implement what you are trying to do in this function
+};
+
 describe('SharedFilter', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <SharedFilter onChange={[]} onSubmit={[]} />
+      <SharedFilter onChange={[]} onSubmit={onSubmit} />
     );
     expect(baseElement).toBeTruthy();
   });
