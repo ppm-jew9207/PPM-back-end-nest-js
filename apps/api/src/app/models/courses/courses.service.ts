@@ -16,8 +16,6 @@ import {
   searchParams,
   filterParams,
 } from '../../view/courses/courses.controller';
-import { userInfo } from 'os';
-
 @Injectable()
 export class CoursesModelService {
   @InjectModel(ViewModels.COURSES_VIEW) private _model!: Model<
