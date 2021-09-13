@@ -1,17 +1,18 @@
 .flex-card {
   display: flex;
+  padding-left: 400px;
   .filter-open {
     margin-right: 10px;
     width: 11rem;
     left: 0;
     transition-timing-function: ease-in;
-    transition: 0.4s;
+    transition: 0.2s;
   }
   .filter-closed {
     width: 0rem;
-    left: -220px;
+    left: -600px;
     transition-timing-function: ease-out;
-    transition: 0.4s;
+    transition: 0.2s;
   }
   .filter-sidebar {
     padding: 14px 0 0 10px;
@@ -48,7 +49,7 @@
 
   .course-card {
     box-sizing: border-box;
-    max-width: 800px;
+    max-width: 1200px;
     margin-bottom: 20px;
     width: 100%;
   }

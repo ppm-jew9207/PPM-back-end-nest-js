@@ -14,7 +14,7 @@ import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { Button, Typography, Drawer } from '@material-ui/core';
+import { Button, Typography, TextField } from '@material-ui/core';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -57,9 +57,9 @@ export const FeaturesCourses = () => {
     setCoursesState([...courses]);
   };
 
-  // useEffect(() => {
-  //   setCoursesState(courses);
-  // }, [courses]);
+  useEffect(() => {
+    setCoursesState(courses);
+  }, [courses]);
 
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
@@ -87,14 +87,14 @@ export const FeaturesCourses = () => {
             disableRipple={true}
           >
             <FilterListIcon />
-            <Typography>Filter</Typography>
+            <Typography style={{ fontWeight: 600 }}>Filter</Typography>
           </Button>
           <div
             className={`filter-list ${
               isActive ? 'filter-open' : 'filter-closed'
             }`}
           >
-            <SharedFilter onChange={(queries) => filterChanges(queries)} />
+            <SharedFilter onSubmit={(queries) => filterChanges(queries)} />
           </div>
         </div>
 
