@@ -12,8 +12,8 @@ import {
   Button,
 } from '@material-ui/core/';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import './shared-filter.module.scss';
 import { useForm } from 'react-hook-form';
+import './shared-filter.scss';
 
 export interface FilterFormData {
   rating?: string;
@@ -25,42 +25,28 @@ interface SharedFilter {
 }
 
 export function SharedFilter(props: SharedFilter) {
-  const { register, handleSubmit, errors, watch } = useForm();
-  const [state, setstate] = useState(true);
+  const { register, handleSubmit, errors } = useForm();
 
-  let data = watch();
-
-  useEffect(() => {
-    if (state) {
-      onSubmit(data);
-      setstate(false);
-    }
-  }, [data]);
-
-  const onSubmit = (queries: FilterFormData) =>
+  const onSubmit = (queries: FilterFormData) => {
     props.onSubmit({
       rating: queries.rating,
       topic: queries.topic,
       categories: queries.categories,
-    });
+    }),
+      console.log(queries);
+  };
 
   return (
     <div className="filter-form">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div
-          className="rating"
-          style={{
-            borderTop: '1px solid lightgray',
-            borderBottom: '1px solid lightgray',
-          }}
-        >
+        <div className="rating">
           <Accordion elevation={0}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: 'black' }} />}
+              expandIcon={<ExpandMoreIcon className="arrow-down" />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography style={{ fontWeight: 600 }}>Rating</Typography>
+              <Typography className="accordion-label">Rating</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <RadioGroup>
@@ -103,19 +89,14 @@ export function SharedFilter(props: SharedFilter) {
             </AccordionDetails>
           </Accordion>
         </div>
-        <div
-          className="topic"
-          style={{
-            borderBottom: '1px solid lightgray',
-          }}
-        >
+        <div className="topic">
           <Accordion elevation={0}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: 'black' }} />}
+              expandIcon={<ExpandMoreIcon className="arrow-down" />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography style={{ fontWeight: 600 }}>Topic</Typography>
+              <Typography className="accordion-label">Topic</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <FormGroup>
@@ -151,20 +132,14 @@ export function SharedFilter(props: SharedFilter) {
             </AccordionDetails>
           </Accordion>
         </div>
-        <div
-          className="categories"
-          style={{
-            borderBottom: '1px solid lightgray',
-            marginBottom: 15,
-          }}
-        >
+        <div className="categories">
           <Accordion elevation={0}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: 'black' }} />}
+              expandIcon={<ExpandMoreIcon className="arrow-down" />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography style={{ fontWeight: 600 }}>Categories</Typography>
+              <Typography className="accordion-label">Categories</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <FormGroup>
@@ -208,7 +183,7 @@ export function SharedFilter(props: SharedFilter) {
           type="submit"
           color="primary"
         >
-          Filter
+          Use filter
         </Button>
       </form>
     </div>

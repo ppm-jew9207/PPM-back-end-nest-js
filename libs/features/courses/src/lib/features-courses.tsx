@@ -67,7 +67,6 @@ export const FeaturesCourses = () => {
   }, []);
 
   const filterChanges = (queries: FilterFormData) => {
-    console.log(queries);
     dispatch(coursesActions.filterCourses(queries));
   };
 
@@ -76,25 +75,27 @@ export const FeaturesCourses = () => {
       {loading && <CircularProgress />}
       {!coursesState && <div className="no-items">No courses added...</div>}
       <div className="flex-card">
-        <div
-          className={`filter-sidebar ${
-            isActive ? 'filter-open' : 'filter-closed'
-          }`}
-        >
-          <Button
-            className="filter-button"
-            onClick={ToggleClass}
-            disableRipple={true}
-          >
-            <FilterListIcon />
-            <Typography style={{ fontWeight: 600 }}>Filter</Typography>
-          </Button>
+        <div className="fixed-sidebar">
           <div
-            className={`filter-list ${
+            className={`filter-sidebar ${
               isActive ? 'filter-open' : 'filter-closed'
             }`}
           >
-            <SharedFilter onSubmit={(queries) => filterChanges(queries)} />
+            <Button
+              className="filter-button"
+              onClick={ToggleClass}
+              disableRipple={true}
+            >
+              <FilterListIcon />
+              <Typography style={{ fontWeight: 600 }}>Filter</Typography>
+            </Button>
+            <div
+              className={`filter-list ${
+                isActive ? 'filter-open' : 'filter-closed'
+              }`}
+            >
+              <SharedFilter onSubmit={(queries) => filterChanges(queries)} />
+            </div>
           </div>
         </div>
 

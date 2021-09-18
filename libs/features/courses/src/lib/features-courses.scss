@@ -1,8 +1,8 @@
 .flex-card {
   display: flex;
-  padding-left: 400px;
+  padding-left: 320px;
   .filter-open {
-    margin-right: 10px;
+    margin-right: 100px;
     width: 11rem;
     left: 0;
     transition-timing-function: ease-in;
@@ -10,7 +10,7 @@
   }
   .filter-closed {
     width: 0rem;
-    left: -600px;
+    left: -700px;
     transition-timing-function: ease-out;
     transition: 0.2s;
   }

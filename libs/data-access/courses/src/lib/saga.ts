@@ -116,7 +116,7 @@ export function* getCourseById(actions) {
 export function* getAll(search?) {
   try {
     let path = `/api/${PrivateRoutesPath.COURSES}/`;
-    if (search) {
+    if (search?.payload) {
       path += `?search=${search.payload}`;
     }
     const result = yield call(get, path);
@@ -274,16 +274,18 @@ export function* filterCourses(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.COURSES}/filter?`;
     const result = yield call(getByQueryParams, path, actions.payload);
-    if (result) {
-      yield put(filterCoursesSuccess(result));
+
+    if (result === null) {
+      yield put(filterCoursesSuccess([]));
     }
+    yield put(filterCoursesSuccess(result));
   } catch (error) {
     yield put(filterCoursesFailed(error));
     console.log(error);
     yield put(
       snackbarActions.setMessage({
         variant: MessagesStatus.ERROR,
-        message: 'filtravimas neivyko.',
+        message: 'filter failed.',
       })
     );
   }
