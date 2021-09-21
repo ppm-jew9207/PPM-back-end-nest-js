@@ -26,7 +26,7 @@ interface SharedFilter {
 
 export function SharedFilter(props: SharedFilter) {
   const { register, handleSubmit, errors } = useForm();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
