@@ -15,6 +15,7 @@ import { Box, Typography } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Hidden from '@material-ui/core/Hidden';
 import { getToken } from '@ppm/data-access/local-storage';
+import { userInfo } from 'os';
 export interface SharedNavigationProps {
   buttons: {
     label: string;
@@ -23,16 +24,14 @@ export interface SharedNavigationProps {
     onClick: (id: string) => void;
   }[];
   onSearch?: (id: string) => void;
+  profile?: {
+    photo?: string;
+  };
 }
 
 export const SharedNavigation = (props: SharedNavigationProps) => {
   const isLoggedIn = !!getToken();
-  useEffect(() => {
-    const isLoggedIn = false;
-  }, []);
-
   const [searchQuery, setSearchQuery] = useState('');
-
   const submitSearch = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     props.onSearch(searchQuery);
@@ -65,21 +64,29 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
               ))}
             </Hidden>
           )}
-          {props.onSearch ? (
-            <form noValidate onSubmit={submitSearch} className="search-form">
-              <InputBase
-                className="search-input"
-                name="search"
-                placeholder="Search courses"
-                inputProps={{ 'aria-label': 'Search' }}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon />
-              </IconButton>
-            </form>
-          ) : (
-            ''
+          {isLoggedIn && (
+            <>
+              {props.onSearch ? (
+                <form
+                  noValidate
+                  onSubmit={submitSearch}
+                  className="search-form"
+                >
+                  <InputBase
+                    className="search-input"
+                    name="search"
+                    placeholder="Search courses"
+                    inputProps={{ 'aria-label': 'Search' }}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <IconButton type="submit" aria-label="search">
+                    <SearchIcon />
+                  </IconButton>
+                </form>
+              ) : (
+                ''
+              )}
+            </>
           )}
         </Box>
         {!isLoggedIn && (
@@ -103,9 +110,13 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         {isLoggedIn && (
           <Box className="user-profile">
             <Link href="/user">
-              <Button disableRipple>
-                <AccountCircleRoundedIcon fontSize="large" />
-              </Button>
+              {props.profile?.photo ? (
+                <img src={props.profile.photo} alt="profilePhoto" />
+              ) : (
+                <Button disableRipple>
+                  <AccountCircleRoundedIcon fontSize="large" />
+                </Button>
+              )}
             </Link>
           </Box>
         )}

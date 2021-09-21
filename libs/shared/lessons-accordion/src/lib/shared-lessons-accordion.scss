@@ -17,6 +17,9 @@ div.lessons-accordion {
   .lesson-link {
     text-decoration: none;
   }
+  .MuiSvgIcon-root {
+    margin-right: 6px;
+  }
 }
 
 .lesson-image {
@@ -25,10 +28,6 @@ div.lessons-accordion {
 
 .editIcon {
   cursor: pointer;
-}
-
-.MuiSvgIcon-root {
-  margin-right: 6px;
 }
 
 .addCircleIcon {
