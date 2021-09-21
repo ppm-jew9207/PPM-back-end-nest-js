@@ -14,7 +14,15 @@ import './features-courses.scss';
 import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import { Button, Typography, TextField } from '@material-ui/core';
+import {
+  Button,
+  Typography,
+  TextField,
+  Grid,
+  FormControl,
+  Select,
+  MenuItem,
+} from '@material-ui/core';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -26,10 +34,10 @@ export const FeaturesCourses = () => {
   const dispatch = useDispatch();
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
-  const [isActive, setIsActive] = useState(true);
+  const [isFilterActive, setIsFilterActive] = useState(true);
 
-  const ToggleClass = () => {
-    setIsActive(!isActive);
+  const ToggleFilter = () => {
+    setIsFilterActive(!isFilterActive);
   };
 
   const searchQuery = new URLSearchParams(useLocation().search).get('q');
@@ -74,70 +82,73 @@ export const FeaturesCourses = () => {
     <>
       {loading && <CircularProgress />}
       {!coursesState && <div className="no-items">No courses added...</div>}
-      <div className="flex-card">
-        <div className="fixed-sidebar">
-          <div
-            className={`filter-sidebar ${
-              isActive ? 'filter-open' : 'filter-closed'
-            }`}
-          >
+
+      <Grid container spacing={4} className="courses-container">
+        <Grid item xs={6} md={isFilterActive === true ? 3 : 1}>
+          <div className="fixedd">
             <Button
               className="filter-button"
-              onClick={ToggleClass}
+              onClick={ToggleFilter}
               disableRipple={true}
             >
               <FilterListIcon />
-              <Typography style={{ fontWeight: 600 }}>Filter</Typography>
+              <Typography>Filter</Typography>
             </Button>
             <div
-              className={`filter-list ${
-                isActive ? 'filter-open' : 'filter-closed'
+              className={`filter-sidebar ${
+                isFilterActive ? 'filter-open' : 'filter-closed'
               }`}
             >
               <SharedFilter onSubmit={(queries) => filterChanges(queries)} />
             </div>
           </div>
-        </div>
-
-        <div className="course-cards">
-          {coursesState.length &&
-            coursesState.map((course, index) => (
-              <div key={course._id}>
-                <SharedCourseCard
-                  id={course._id}
-                  title={course.title}
-                  author={{
-                    _id: course.creator._id,
-                    firstName: course.creator.name,
-                    lastName: '',
-                    img: course.creator.imageUrl,
-                  }}
-                  createAt={course.createdAt}
-                  description={course.description}
-                  like={
-                    course.likesList
-                      ? course.likesList.filter(
-                          (like: any) => like.type === LikeEnum.Like
-                        ).length
-                      : 0
-                  }
-                  shared={
-                    course.likesList
-                      ? course.likesList.filter(
-                          (like: any) => like.type === LikeEnum.Share
-                        ).length
-                      : 0
-                  }
-                  imgUrl={course.imageUrl}
-                  onSaveClick={saveClick}
-                  editable={profile?._id === course.creator._id}
-                  onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                  onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                />
-              </div>
-            ))}
-        </div>
-      </div>
+        </Grid>
+        <Grid
+          item
+          xs={6}
+          md={isFilterActive === true ? 9 : 11}
+          className="course-cards"
+        >
+          <div>
+            {coursesState.length &&
+              coursesState.map((course, index) => (
+                <div key={course._id}>
+                  <SharedCourseCard
+                    id={course._id}
+                    title={course.title}
+                    author={{
+                      _id: course.creator._id,
+                      firstName: course.creator.name,
+                      lastName: '',
+                      img: course.creator.imageUrl,
+                    }}
+                    createAt={course.createdAt}
+                    description={course.description}
+                    like={
+                      course.likesList
+                        ? course.likesList.filter(
+                            (like: any) => like.type === LikeEnum.Like
+                          ).length
+                        : 0
+                    }
+                    shared={
+                      course.likesList
+                        ? course.likesList.filter(
+                            (like: any) => like.type === LikeEnum.Share
+                          ).length
+                        : 0
+                    }
+                    imgUrl={course.imageUrl}
+                    onSaveClick={saveClick}
+                    editable={profile?._id === course.creator._id}
+                    onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                    onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
+                  />
+                </div>
+              ))}
+          </div>
+        </Grid>
+      </Grid>
     </>
   );
 };

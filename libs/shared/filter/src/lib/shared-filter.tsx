@@ -26,7 +26,11 @@ interface SharedFilter {
 
 export function SharedFilter(props: SharedFilter) {
   const { register, handleSubmit, errors } = useForm();
+  const [expanded, setExpanded] = React.useState(false);
 
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   const onSubmit = (queries: FilterFormData) => {
     props.onSubmit({
       rating: queries.rating,
@@ -40,7 +44,11 @@ export function SharedFilter(props: SharedFilter) {
     <div className="filter-form">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="rating">
-          <Accordion elevation={0}>
+          <Accordion
+            elevation={0}
+            expanded={expanded === 'panel1'}
+            onChange={handleChange('panel1')}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="arrow-down" />}
               aria-controls="panel1a-content"
@@ -90,11 +98,15 @@ export function SharedFilter(props: SharedFilter) {
           </Accordion>
         </div>
         <div className="topic">
-          <Accordion elevation={0}>
+          <Accordion
+            elevation={0}
+            expanded={expanded === 'panel2'}
+            onChange={handleChange('panel2')}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="arrow-down" />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+              aria-controls="panel2a-content"
+              id="panel2a-header"
             >
               <Typography className="accordion-label">Topic</Typography>
             </AccordionSummary>
@@ -133,11 +145,15 @@ export function SharedFilter(props: SharedFilter) {
           </Accordion>
         </div>
         <div className="categories">
-          <Accordion elevation={0}>
+          <Accordion
+            elevation={0}
+            expanded={expanded === 'panel3'}
+            onChange={handleChange('panel3')}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="arrow-down" />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+              aria-controls="panel3a-content"
+              id="panel3a-header"
             >
               <Typography className="accordion-label">Categories</Typography>
             </AccordionSummary>
