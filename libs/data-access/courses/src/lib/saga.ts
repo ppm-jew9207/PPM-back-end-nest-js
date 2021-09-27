@@ -274,10 +274,6 @@ export function* filterCourses(actions) {
   try {
     const path = `/api/${PrivateRoutesPath.COURSES}/filter?`;
     const result = yield call(getByQueryParams, path, actions.payload);
-
-    if (result === null) {
-      yield put(filterCoursesSuccess([]));
-    }
     yield put(filterCoursesSuccess(result));
   } catch (error) {
     yield put(filterCoursesFailed(error));

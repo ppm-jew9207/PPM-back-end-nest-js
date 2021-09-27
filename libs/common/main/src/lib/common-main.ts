@@ -18,25 +18,38 @@ export interface RouterItem {
   onMenu: boolean;
 }
 
-export interface ApiResponse{
-  success: boolean; 
+export interface ApiResponse {
+  success: boolean;
   message: string;
   data?: {
     response: string;
     status: number;
     message: string;
-  }
+  };
 }
 
-
-export interface History{
+export interface History {
   push(url: string): void;
 }
 
-export enum MessagesStatus{
+export enum MessagesStatus {
   SUCCESS = 'success',
   ERROR = 'error',
-  DEFAULT = 'default', 
+  DEFAULT = 'default',
   WARNING = 'warning',
-  INFO =  'info'
+  INFO = 'info',
+}
+export interface FilterFormData {
+  rating?: string;
+  topic?: string[];
+  categories?: string[];
+}
+export enum LikeEnum {
+  Like = 'like',
+  Share = 'share',
+}
+export interface LikeType {
+  course_id: string;
+  user_id: string;
+  type: LikeEnum;
 }

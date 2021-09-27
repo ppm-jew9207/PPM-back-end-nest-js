@@ -6,12 +6,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
 import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
 import { likesActions } from '@ppm/data-access/likes';
+
 import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
 import './features-courses.scss';
-import { LikeEnum } from 'libs/data-access/likes/src/lib/types';
+import { LikeEnum, LikeType } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import {
@@ -110,7 +111,7 @@ export const FeaturesCourses = () => {
           className="course-cards"
         >
           <div>
-            {coursesState.length &&
+            {coursesState?.length &&
               coursesState.map((course, index) => (
                 <div key={course._id}>
                   <SharedCourseCard
@@ -127,14 +128,14 @@ export const FeaturesCourses = () => {
                     like={
                       course.likesList
                         ? course.likesList.filter(
-                            (like: any) => like.type === LikeEnum.Like
+                            (like: LikeType) => like.type === LikeEnum.Like
                           ).length
                         : 0
                     }
                     shared={
                       course.likesList
                         ? course.likesList.filter(
-                            (like: any) => like.type === LikeEnum.Share
+                            (like: LikeType) => like.type === LikeEnum.Share
                           ).length
                         : 0
                     }
