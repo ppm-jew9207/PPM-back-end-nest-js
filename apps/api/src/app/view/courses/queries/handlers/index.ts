@@ -9,5 +9,5 @@ export const QueryHandlers = [
   GetCourseHandler,
   GetUsersCoursesHandler,
   SearchCoursesHandler,
-  FilterCoursesHandler
+  FilterCoursesHandler,
 ];

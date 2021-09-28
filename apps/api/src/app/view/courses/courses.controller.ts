@@ -11,7 +11,7 @@ import { QueryBus } from '@nestjs/cqrs';
 import { GetCoursesQuery } from './queries/handlers/get-courses.handler';
 import { GetCourseQuery } from './queries/handlers/get-course.handler';
 import { SearchCoursesQuery } from './queries/handlers/search-courses.handler';
-import { GetUsersCourseQuery } from './queries/handlers/get-users-course.handler';
+import { GetUsersCourseQuery } from './queries/handlers/get-users-courses.handler';
 import { FilterCoursesQuery } from './queries/handlers/filter-courses.handler';
 import {
   ApiTags,
@@ -25,15 +25,37 @@ import { LoggingInterceptor } from '../../common/interceptors/logging.intercepto
 import { TransformInterceptor } from '../../common/interceptors/transform.interceptor';
 import { CoursesViewModel } from '../../models/courses/courses.interface';
 
-class searchParams {
+export class searchParams {
   @ApiPropertyOptional()
   search: string;
+  @ApiPropertyOptional()
+  page: string;
+  @ApiPropertyOptional()
+  perPage: string;
+  @ApiPropertyOptional()
+  returnCount: boolean;
 }
-class filterParams {
+
+export class filterParams {
   @ApiPropertyOptional()
   categories: string;
   @ApiPropertyOptional()
   learnItems: string;
+  @ApiPropertyOptional()
+  page: string;
+  @ApiPropertyOptional()
+  perPage: string;
+  @ApiPropertyOptional()
+  returnCount: boolean;
+}
+
+class byUserIdParams {
+  @ApiPropertyOptional()
+  page: string;
+  @ApiPropertyOptional()
+  perPage: string;
+  @ApiPropertyOptional()
+  returnCount: boolean;
 }
 @Controller(PrivateRoutesPath.COURSES)
 @ApiTags(PrivateRoutesPath.COURSES)
@@ -46,20 +68,36 @@ export class CoursesController {
   @Get(`${PrivateRoutesPath.USER}${PrivateRoutesPath.GET_BY_ID}`)
   async getUsersCourseById(
     @Param('id') id: string,
+    @Query() params: byUserIdParams,
     @Req() request: any
   ): Promise<CoursesViewModel[]> {
-    const user = request.user;
-    const userId = user.id;
-    return this.queryBus.execute(new GetUsersCourseQuery(userId, id));
+    return this.queryBus.execute(
+      new GetUsersCourseQuery({
+        id: id,
+        page: params.page,
+        perPage: params.perPage,
+        returnCount: params.returnCount,
+      })
+    );
   }
 
   @ApiBearerAuth('JWT')
   @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(LoggingInterceptor, TransformInterceptor)
   @Get(PrivateRoutesPath.USER)
-  async getByUserId(@Req() request: any): Promise<CoursesViewModel> {
+  async getByUserId(
+    @Req() request: any,
+    @Query() params: byUserIdParams
+  ): Promise<CoursesViewModel> {
     const user = request.user;
-    return this.queryBus.execute(new GetUsersCourseQuery(user.id, user.id));
+    return this.queryBus.execute(
+      new GetUsersCourseQuery({
+        id: user.id,
+        page: params.page,
+        perPage: params.perPage,
+        returnCount: params.returnCount,
+      })
+    );
   }
 
   @Get(`${PrivateRoutesPath.FILTER}`)
@@ -70,7 +108,6 @@ export class CoursesController {
   async findFiltered(
     @Query() params: filterParams
   ): Promise<CoursesViewModel[]> {
-    if (!params.categories) return this.queryBus.execute(new GetCoursesQuery());
     return this.queryBus.execute(new FilterCoursesQuery(params));
   }
 
@@ -81,7 +118,8 @@ export class CoursesController {
 
   @Get()
   async findAll(@Query() params: searchParams): Promise<CoursesViewModel[]> {
-    if (!params.search) return this.queryBus.execute(new GetCoursesQuery());
-    return this.queryBus.execute(new SearchCoursesQuery(params.search));
+    if (!params.search)
+      return this.queryBus.execute(new GetCoursesQuery(params));
+    return this.queryBus.execute(new SearchCoursesQuery(params));
   }
 }
