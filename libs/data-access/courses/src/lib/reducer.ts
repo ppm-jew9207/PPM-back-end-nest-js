@@ -133,6 +133,23 @@ export function coursesReducer(
         course: state.course,
         loading: false,
       };
+    case ActionTypes.COURSE_FILTER:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionTypes.COURSE_FILTER_SUCCESS:
+      return {
+        ...state,
+        list: action.payload,
+        loading: false,
+      };
+    case ActionTypes.COURSE_FILTER_FAILED:
+      return {
+        ...state,
+        loading: false,
+      };
+
     default:
       return state;
   }

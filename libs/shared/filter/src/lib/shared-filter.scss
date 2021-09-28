@@ -1,0 +1,21 @@
+.filter-form {
+  width: 270px;
+  .MuiTypography-root.accordion-label {
+    font-weight: 600;
+  }
+  .arrow-down {
+    color: black;
+  }
+
+  .rating {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+  .topic {
+    border-bottom: 1px solid lightgray;
+  }
+  .categories {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 15px;
+  }
+}
