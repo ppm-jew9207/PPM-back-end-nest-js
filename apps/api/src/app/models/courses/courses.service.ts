@@ -16,8 +16,6 @@ import {
   searchParams,
   filterParams,
 } from '../../view/courses/courses.controller';
-import { userInfo } from 'os';
-
 @Injectable()
 export class CoursesModelService {
   @InjectModel(ViewModels.COURSES_VIEW) private _model!: Model<
@@ -39,7 +37,7 @@ export class CoursesModelService {
       LIKES_JOIN_QUERY,
     ]);
 
-    if (String(params.count) === 'true') {
+    if (String(params.returnCount) === 'true') {
       return result.count('count').exec();
     }
 
@@ -74,7 +72,7 @@ export class CoursesModelService {
     id: string;
     page?: string;
     perPage?: string;
-    count?: boolean;
+    returnCount?: boolean;
   }): Promise<CoursesViewModel[]> {
     let result = this._model.aggregate([
       {
@@ -87,7 +85,7 @@ export class CoursesModelService {
       LIKES_JOIN_QUERY,
     ]);
 
-    if (String(params.count) === 'true') {
+    if (String(params.returnCount) === 'true') {
       return result.count('count').exec();
     }
 
@@ -215,7 +213,7 @@ export class CoursesModelService {
       LIKES_JOIN_QUERY,
     ]);
 
-    if (String(params.count) === 'true') {
+    if (String(params.returnCount) === 'true') {
       return result.count('count').exec();
     }
 

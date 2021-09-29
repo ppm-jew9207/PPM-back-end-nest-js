@@ -7,7 +7,7 @@ interface params {
   id: string;
   perPage?: string;
   page?: string;
-  count?: boolean;
+  returnCount?: boolean;
 }
 export class GetUsersCourseQuery {
   constructor(public readonly params: params) {}

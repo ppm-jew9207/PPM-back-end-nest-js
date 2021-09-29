@@ -33,7 +33,7 @@ export class searchParams {
   @ApiPropertyOptional()
   perPage: string;
   @ApiPropertyOptional()
-  count: boolean;
+  returnCount: boolean;
 }
 
 export class filterParams {
@@ -46,7 +46,7 @@ export class filterParams {
   @ApiPropertyOptional()
   perPage: string;
   @ApiPropertyOptional()
-  count: boolean;
+  returnCount: boolean;
 }
 
 class byUserIdParams {
@@ -55,7 +55,7 @@ class byUserIdParams {
   @ApiPropertyOptional()
   perPage: string;
   @ApiPropertyOptional()
-  count: boolean;
+  returnCount: boolean;
 }
 @Controller(PrivateRoutesPath.COURSES)
 @ApiTags(PrivateRoutesPath.COURSES)
@@ -71,14 +71,12 @@ export class CoursesController {
     @Query() params: byUserIdParams,
     @Req() request: any
   ): Promise<CoursesViewModel[]> {
-    const user = request.user;
-    const userId = user.id;
     return this.queryBus.execute(
       new GetUsersCourseQuery({
-        id: userId,
+        id: id,
         page: params.page,
         perPage: params.perPage,
-        count: params.count,
+        returnCount: params.returnCount,
       })
     );
   }
@@ -97,7 +95,7 @@ export class CoursesController {
         id: user.id,
         page: params.page,
         perPage: params.perPage,
-        count: params.count,
+        returnCount: params.returnCount,
       })
     );
   }
