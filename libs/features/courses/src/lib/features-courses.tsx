@@ -87,7 +87,7 @@ export const FeaturesCourses = () => {
       {!coursesState && <div className="no-items">No courses added...</div>}
 
       <Grid container spacing={1} className="courses-container">
-        <Grid md={isFilterActive === true ? 3 : 1}>
+        <Grid item md={isFilterActive === true ? 3 : 1}>
           <div className="fixed">
             <Button
               className="filter-button"

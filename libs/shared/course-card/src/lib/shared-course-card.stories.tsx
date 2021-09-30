@@ -29,6 +29,7 @@ export const primary = () => {
 
   return (
     <SharedCourseCard
+      editable={props.editable}
       id={props.id}
       title={props.title}
       author={props.author}

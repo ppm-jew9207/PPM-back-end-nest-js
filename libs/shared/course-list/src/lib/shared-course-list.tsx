@@ -44,7 +44,7 @@ export interface SharedCourseListProps {
   like: number;
   shared: number;
   imgUrl: string;
-  editable: boolean;
+  editable?: boolean;
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;

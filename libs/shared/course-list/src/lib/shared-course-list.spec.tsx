@@ -1,42 +1,30 @@
-import { number, text, object } from '@storybook/addon-knobs';
 import React from 'react';
-import { SharedCourseList, SharedCourseListProps } from './shared-course-list';
+import { render } from '@testing-library/react';
 
-export default {
-  component: SharedCourseList,
-  title: 'SharedCourseList',
-};
+import SharedCourseList from './shared-course-list';
 
-export const primary = () => {
-  const props: SharedCourseListProps = {
-    id: 'sadsadsadsafgghg',
-    title: text('title', 'Title'),
-    author: object('author', {
-      _id: '1',
-      firstName: 'Name',
-      lastName: 'Surname',
-      img: 'https://placekitten.com/300/300',
-    }),
-    createAt: text('createAt', '2020-08-18'),
-    description: text(
-      'description',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-    ),
-    like: number('like', 30),
-    shared: number('shared', 60),
-    imgUrl: text('imgUrl', 'https://placekitten.com/600/600'),
-  };
-
-  return (
-    <SharedCourseList
-      id={props.id}
-      title={props.title}
-      author={props.author}
-      createAt={props.createAt}
-      description={props.description}
-      like={props.like}
-      shared={props.shared}
-      imgUrl={props.imgUrl}
-    />
-  );
-};
+describe('SharedCourseList', () => {
+  it('should render successfully', () => {
+    const { baseElement } = render(
+      <SharedCourseList
+        editable={false}
+        id={'sadsadsadsafgghg'}
+        title={'Name'}
+        author={{
+          _id: '1',
+          firstName: 'Name',
+          lastName: 'Surname',
+          img: 'https://placekitten.com/300/300',
+        }}
+        createAt={'2020-08-18'}
+        description={
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        }
+        like={30}
+        shared={30}
+        imgUrl={'https://placekitten.com/300/300'}
+      />
+    );
+    expect(baseElement).toBeTruthy();
+  });
+});
