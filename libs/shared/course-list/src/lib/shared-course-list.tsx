@@ -189,40 +189,38 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 <span>Rating:</span> 5
               </Typography>
             </Grid>
-            <Grid container md={12}>
-              <Grid item md={6}>
-                <Button
-                  className="space-between"
-                  variant="outlined"
-                  size="small"
-                  color="secondary"
-                  startIcon={<FavoriteIcon />}
-                  onClick={props.onLikeClick}
-                >
-                  {`like ${props.like}`}
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  startIcon={<ShareIcon />}
-                  onClick={props.onSharedClick}
-                >
-                  {`share ${props.shared}`}
-                </Button>
-              </Grid>
-              <Grid item md={6} container justify="flex-end">
-                <Button
-                  className="show-more"
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  startIcon={<MoreIcon />}
-                  href={`/courses/${props.id}`}
-                >
-                  Read More
-                </Button>
-              </Grid>
+            <Grid item md={6}>
+              <Button
+                className="space-between"
+                variant="outlined"
+                size="small"
+                color="secondary"
+                startIcon={<FavoriteIcon />}
+                onClick={props.onLikeClick}
+              >
+                {`like ${props.like}`}
+              </Button>
+              <Button
+                variant="outlined"
+                size="small"
+                color="primary"
+                startIcon={<ShareIcon />}
+                onClick={props.onSharedClick}
+              >
+                {`share ${props.shared}`}
+              </Button>
+            </Grid>
+            <Grid item md={6} container justify="flex-end">
+              <Button
+                className="show-more"
+                variant="outlined"
+                size="small"
+                color="primary"
+                startIcon={<MoreIcon />}
+                href={`/courses/${props.id}`}
+              >
+                Read More
+              </Button>
             </Grid>
           </Grid>
         </Grid>
