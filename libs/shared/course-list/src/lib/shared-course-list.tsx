@@ -136,7 +136,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
             </Link>
           </Grid>
 
-          <Grid container item md={8}>
+          <Grid container md={8}>
             <Grid item md={1}>
               <img
                 className="mentor-img"
@@ -166,12 +166,12 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 ''
               )}
             </Grid>
-            <Grid container md={12} className="description full">
+            <Grid item md={12} className="description full">
               <Typography variant="body2">
                 {`${props.description.substring(0, 150)}...`}
               </Typography>
             </Grid>
-            <Grid container md={12} className="categories">
+            <Grid item md={12} className="categories">
               {props.categories.map((category: Category) => {
                 return (
                   <Chip
@@ -184,13 +184,13 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 );
               })}
             </Grid>
-            <Grid container md={12} className="rating">
+            <Grid item md={12} className="rating">
               <Typography className="rating-text" variant="h6">
                 <span>Rating:</span> 5
               </Typography>
             </Grid>
             <Grid container md={12}>
-              <Grid md={6}>
+              <Grid item md={6}>
                 <Button
                   className="space-between"
                   variant="outlined"
@@ -211,7 +211,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
                   {`share ${props.shared}`}
                 </Button>
               </Grid>
-              <Grid md={6} container justify="flex-end">
+              <Grid item md={6} container justify="flex-end">
                 <Button
                   className="show-more"
                   variant="outlined"
