@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Typography,
@@ -8,17 +8,22 @@ import {
   Select,
   MenuItem,
   Link,
+  Chip,
 } from '@material-ui/core';
 
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import moment from 'moment';
-import { SystemUpdateAlt as SystemUpdateAltIcon } from '@material-ui/icons';
+import {
+  Category,
+  SystemUpdateAlt as SystemUpdateAltIcon,
+} from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
 import MoreIcon from '@material-ui/icons/More';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import StarIcon from '@material-ui/icons/Star';
 
 import './shared-course-list.scss';
 
@@ -28,7 +33,12 @@ export interface CourseFormData {
   courseImage: string;
   _id: string;
 }
-
+interface Category {
+  _id: string;
+  title: string;
+  value: string;
+  checked: boolean;
+}
 /* eslint-disable-next-line */
 export interface SharedCourseListProps {
   id: string;
@@ -44,6 +54,7 @@ export interface SharedCourseListProps {
   like: number;
   shared: number;
   imgUrl: string;
+  categories: Category[];
   editable?: boolean;
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
@@ -88,84 +99,277 @@ export function SharedCourseList(props: SharedCourseListProps) {
     }
     return string;
   };
+  const [editing, setEditing] = useState(false);
+  const [uploadedImg, setUploadedImg] = useState<ArrayBuffer | string>(null);
 
+  const { handleSubmit, register } = useForm();
+
+  const onFileLoad = (e: any) => {
+    const file = e.currentTarget.files[0];
+
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      setUploadedImg(e.target.result);
+    };
+    if (file) fileReader.readAsDataURL(file);
+  };
+
+  const saveEdit = (data: CourseFormData) => {
+    props.onSaveClick(data);
+    setEditing(false);
+  };
+
+  if (!editing) {
+    return (
+      <div className="course-list">
+        <Grid container spacing={2}>
+          <Grid item md={4}>
+            <Link>
+              <img
+                className="course-image full"
+                src={
+                  props?.imgUrl ||
+                  'https://cdn.shopify.com/s/files/1/0002/4680/8603/products/sjDBHUW_1600x1600.png?v=1606994170'
+                }
+                alt="Course image"
+              />
+            </Link>
+          </Grid>
+
+          <Grid container item md={8}>
+            <Grid item md={1}>
+              <img
+                className="mentor-img"
+                src={props?.author?.img}
+                alt="Course image"
+              />
+            </Grid>
+            <Grid item md={10} className="title-content">
+              <Typography>
+                <span className="author">{`
+                  ${props.author.firstName || ''} ${
+                  props.author.lastName || ''
+                } `}</span>
+                posted on
+                <span className="title">{` ${props.title}`}</span>
+              </Typography>
+              <Typography className="created-at">{`${timeCalculator(
+                props.createAt
+              )} ago`}</Typography>
+            </Grid>
+            <Grid item md={1}>
+              {props.editable ? (
+                <div className="editing-holder">
+                  <EditIcon onClick={() => setEditing(true)} />
+                </div>
+              ) : (
+                ''
+              )}
+            </Grid>
+            <Grid container md={12} className="description full">
+              <Typography variant="body2">
+                {`${props.description.substring(0, 150)}...`}
+              </Typography>
+            </Grid>
+            <Grid container md={12} className="categories">
+              {props.categories.map((category: Category) => {
+                return (
+                  <Chip
+                    className="chip-tag"
+                    size="small"
+                    variant="outlined"
+                    label={category.title}
+                    key={category._id}
+                  />
+                );
+              })}
+            </Grid>
+            <Grid container md={12} className="rating">
+              <Typography className="rating-text" variant="h6">
+                <span>Rating:</span> 5
+              </Typography>
+            </Grid>
+            <Grid container md={12}>
+              <Grid md={6}>
+                <Button
+                  className="space-between"
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  startIcon={<FavoriteIcon />}
+                  onClick={props.onLikeClick}
+                >
+                  {`like ${props.like}`}
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  startIcon={<ShareIcon />}
+                  onClick={props.onSharedClick}
+                >
+                  {`share ${props.shared}`}
+                </Button>
+              </Grid>
+              <Grid md={6} container justify="flex-end">
+                <Button
+                  className="show-more"
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  startIcon={<MoreIcon />}
+                  href={`/courses/${props.id}`}
+                >
+                  Read More
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
   return (
     <div className="course-list">
-      <Grid container spacing={2}>
-        <Grid item md={4} className="">
-          <Link>
-            <img
-              className="course-image"
-              src={
-                props?.imgUrl ||
-                'https://cdn.shopify.com/s/files/1/0002/4680/8603/products/sjDBHUW_1600x1600.png?v=1606994170'
-              }
-              alt="Course image"
-            />
-          </Link>
-        </Grid>
-
-        <Grid container item md={8}>
-          <Grid item md={1}>
-            <img
-              className="mentor-img"
-              src={props?.author?.img}
-              alt="Course image"
-            />
+      <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
+        <Grid container spacing={2}>
+          <Grid item md={4}>
+            <div className="image-container draggable-container">
+              <img
+                className="files-preview-container__image course-image"
+                src={
+                  props.imgUrl ||
+                  'https://cdn.shopify.com/s/files/1/0002/4680/8603/products/sjDBHUW_1600x1600.png?v=1606994170'
+                }
+                alt="Course image"
+              />
+              <div className="middle">
+                <Typography variant="body1" component="p" align="center">
+                  Drag and Drop Images Here
+                </Typography>
+                <SystemUpdateAltIcon display="inline" />
+                <TextField
+                  className="file-browser-input"
+                  inputRef={register()}
+                  type="file"
+                  id="file-browser-input"
+                  name="courseImage"
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onDrop={onFileLoad}
+                  onChange={onFileLoad}
+                />
+              </div>
+            </div>
           </Grid>
-          <Grid item md={11} className="title-content">
-            <Typography>
-              <span className="author">{`
-                  ${props.author.firstName || ''} ${
-                props.author.lastName || ''
-              } `}</span>
-              posted on
-              <span className="title">{` ${props.title}`}</span>
-            </Typography>
-            <Typography className="created-at">{`${timeCalculator(
-              props.createAt
-            )} ago`}</Typography>
-          </Grid>
-          <Grid item md={12} className="description">
-            <p>{`${props.description.substring(0, 250)}...`}</p>
-          </Grid>
-          <Grid container md={12}>
-            <Grid md={6}>
-              <Button
-                className="space-between"
-                variant="outlined"
-                size="small"
-                color="secondary"
-                startIcon={<FavoriteIcon />}
-                onClick={props.onLikeClick}
-              >
-                {`like ${props.like}`}
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                color="primary"
-                startIcon={<ShareIcon />}
-                onClick={props.onSharedClick}
-              >
-                {`share ${props.shared}`}
-              </Button>
+          <Grid container item md={8}>
+            <Grid item md={1}>
+              <img
+                className="mentor-img"
+                src={props?.author?.img}
+                alt="Course image"
+              />
             </Grid>
-            <Grid md={6} container justify="flex-end">
-              <Button
-                className="show-more"
-                variant="outlined"
-                size="small"
-                color="primary"
-                startIcon={<MoreIcon />}
-                href={`/courses/${props.id}`}
-              >
-                Read More
-              </Button>
+            <Grid item md={10} className="title-content">
+              <Typography>
+                <span className="author">{`
+              ${props.author.firstName || ''} ${
+                  props.author.lastName || ''
+                } `}</span>
+                {`posted on `}
+                <TextField
+                  inputRef={register()}
+                  id="title"
+                  name="title"
+                  defaultValue={props.title}
+                />
+              </Typography>
+              <Typography className="created-at">{`${timeCalculator(
+                props.createAt
+              )} ago`}</Typography>
+            </Grid>
+            <Grid item md={1}>
+              <div className="editing-holder editing">
+                <button type="submit">
+                  <SaveIcon fontSize="small" />
+                </button>
+              </div>
+            </Grid>
+            <Grid container md={12} className="description">
+              <TextField
+                inputRef={register()}
+                name="description"
+                id="description"
+                multiline
+                fullWidth
+                defaultValue={props.description}
+              />
+            </Grid>
+            <Grid container md={12} className="categories">
+              {props.categories.map((category: Category) => {
+                return (
+                  <Chip
+                    className="chip-tag"
+                    size="small"
+                    variant="outlined"
+                    label={category.title}
+                    key={category._id}
+                  />
+                );
+              })}
+            </Grid>
+            <Grid container md={12} className="rating">
+              <Typography className="rating-text" variant="h6">
+                <span>Rating:</span> 5
+              </Typography>
+            </Grid>
+            <Grid container md={12}>
+              <Grid md={6}>
+                <Button
+                  className="space-between"
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  startIcon={<FavoriteIcon />}
+                  onClick={props.onLikeClick}
+                >
+                  {`like ${props.like}`}
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  startIcon={<ShareIcon />}
+                  onClick={props.onSharedClick}
+                >
+                  {`share ${props.shared}`}
+                </Button>
+              </Grid>
+              <Grid md={6} container justify="flex-end">
+                <Button
+                  className="show-more"
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  startIcon={<MoreIcon />}
+                  href={`/courses/${props.id}`}
+                >
+                  Read More
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+        <TextField
+          inputRef={register()}
+          id="id"
+          name="id"
+          defaultValue={props.id}
+          className="hidden"
+        />
+      </form>
     </div>
   );
 }

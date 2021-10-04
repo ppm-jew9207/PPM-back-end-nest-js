@@ -231,7 +231,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
               </span>
             </a>
             <span>
-              posted on{' '}
+              {`posted on `}
               <TextField
                 inputRef={register()}
                 id="title"

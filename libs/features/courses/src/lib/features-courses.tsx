@@ -17,15 +17,8 @@ import { LikeEnum, LikeType } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-import {
-  Button,
-  Typography,
-  TextField,
-  Grid,
-  FormControl,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
+import { Button, Typography, Grid } from '@material-ui/core';
+import { Category } from '@material-ui/icons';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -116,6 +109,7 @@ export const FeaturesCourses = () => {
               coursesState.map((course, index) => (
                 <div key={course._id}>
                   <SharedCourseList
+                    categories={course.categories}
                     id={course._id}
                     title={course.title}
                     author={{
@@ -146,7 +140,7 @@ export const FeaturesCourses = () => {
                     onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
                     onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
                   />
-                  {/* <SharedCourseCard
+                  <SharedCourseCard
                     id={course._id}
                     title={course.title}
                     author={{
@@ -176,7 +170,7 @@ export const FeaturesCourses = () => {
                     editable={profile?._id === course.creator._id}
                     onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
                     onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                  /> */}
+                  />
                 </div>
               ))}
           </div>
