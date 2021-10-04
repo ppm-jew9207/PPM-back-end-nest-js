@@ -10,6 +10,7 @@ describe('SharedCourseList', () => {
         editable={false}
         id={'sadsadsadsafgghg'}
         title={'Name'}
+        categories={[]}
         author={{
           _id: '1',
           firstName: 'Name',
