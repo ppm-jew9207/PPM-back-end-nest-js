@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SharedAdvertDetails } from '@ppm/shared/advert-details';
-import { SharedAdvertInfo } from '@ppm/shared/advert-info';
+import { SharedCourseDetails } from '@ppm/shared/course-details';
+import { SharedCourseInfo } from '@ppm/shared/course-info';
 import { SharedLessonsAccordion } from '@ppm/shared/lessons-accordion';
 import { useLesson } from '@ppm/hooks/use-lesson';
 import { RouteComponentProps, RouteProps } from 'react-router-dom';
@@ -12,7 +12,7 @@ import {
   SharedLessonComponent,
 } from '@ppm/shared/lesson-component';
 import './features-lesson-page.scss';
-import { useAdverts } from '@ppm/hooks/use-adverts';
+import { useCourses } from '@ppm/hooks/use-courses';
 import {
   userProfileActions,
   userProfileSelectors,
@@ -99,7 +99,7 @@ export const FeaturesLessonPage = (props: {
 
   return (
     <div>
-      <SharedAdvertInfo
+      <SharedCourseInfo
         title={title}
         description={description}
         creator={creator}
@@ -109,7 +109,7 @@ export const FeaturesLessonPage = (props: {
         onGetStartedClick={onAction}
         startingDate={startingDate}
       />
-      <SharedAdvertDetails learnItems={learnItems} />
+      <SharedCourseDetails learnItems={learnItems} />
       <SharedLessonsAccordion
         lessons={lessons.filter(
           (lesson) => lesson._id !== props.match.params.id

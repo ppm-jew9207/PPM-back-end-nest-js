@@ -1,0 +1,42 @@
+.courses-container {
+  max-width: 1230px;
+  margin: auto !important;
+  overflow: hidden;
+  .filter-button {
+    text-transform: none;
+    position: sticky;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid #1c1d1f;
+    border-radius: 0%;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    .MuiTypography-body1 {
+      font-weight: 600;
+    }
+  }
+  .fixedd {
+    position: fixed;
+    overflow: hidden;
+  }
+  .filter-open {
+    margin-right: 200px;
+    left: 0;
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+  }
+  .filter-closed {
+    left: -300px;
+    transition-timing-function: ease-out;
+    transition: 0.2s;
+  }
+
+  .filter-sidebar {
+    position: relative;
+  }
+  .course-cards {
+    width: 100%;
+  }
+}

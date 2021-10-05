@@ -1,12 +1,90 @@
+header.navigation-bar {
+  background-color: #fff;
+  border-color: rgba(52, 64, 85, 0.3);
+  text-transform: none;
+  z-index: 3 !important;
+  > div {
+    width: 1230px;
+    margin: auto;
+  }
+  .material-icons {
+    margin-right: 10px;
+  }
+}
 .navigation-bar {
+  .MuiButton-root:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .menu-items:hover {
+    background-color: rgb(235, 230, 230);
+  }
+  .MuiButton-root {
+    color: #2d3979;
+    text-transform: none;
+  }
   .navigation-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .logo a {
+    text-decoration: none;
+    color: #2d3979;
+    font-weight: bold;
+    .logo a:hover {
+      text-decoration: none;
+    }
+  }
+  .log-in {
+    text-transform: none;
+    text-decoration: none;
+    border: 1px solid #3f51b5;
+    border-radius: 0.2em;
+    .log-in span {
+      color: #3f51b5;
+    }
+  }
+  .sign-up {
+    background-color: #3f51b5;
+    border: 1px solid #3f51b5;
+    border-radius: 0.2em;
+    text-transform: none;
+  }
+  .sign-up:hover {
+    background-color: #4659c4;
+  }
+  .sign-up span {
     color: #fff;
-    margin: 5px;
   }
-  .navigation-button:hover {
-    color: rgb(172, 165, 165);
+  .user-profile {
+    .MuiButton-root:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    img {
+      margin-left: 5px;
+      border-radius: 50%;
+      border: 1px solid gray;
+      width: 42px;
+      height: 42;
+    }
   }
-  .navigation-button-label {
-    margin: 5px;
+
+  .search-form {
+    margin-left: auto;
+    .search-input {
+      padding: 17px 0px;
+    }
+
+    svg {
+      margin: 0;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .search-form {
+      .search-input {
+        width: 55px;
+      }
+    }
   }
 }

@@ -1,14 +1,14 @@
 import { Document } from 'mongoose';
 export interface CountriesPayload {
-  country_name: string,
-  country_short_name: string,
-  country_phone_code: number
+  countryname: string,
+  countryShortName: string,
+  countryPhoneCode: number
 }
 export interface StatesPayload {
-  state_name: string;
+  stateName: string;
 }
 export interface CitiesPayload {
-  city_name: string;
+  cityName: string;
 }
 
 export type StatesApiViewModel = StatesPayload & Document;

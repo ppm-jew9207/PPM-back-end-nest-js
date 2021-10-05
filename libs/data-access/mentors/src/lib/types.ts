@@ -1,16 +1,18 @@
 import { ApplicationRootState } from 'types';
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
-
-export interface MentorType {
-  _id: string;
-  title: string;
-  value: string;
+export interface Mentor {
+  firstName: string;
+  lastName: string;
+  photo: string;
+  fieldOfProfession: string;
+  categories: string[];
+  city: string;
+  socialLinks: object[];
 }
 
 interface MentorsState {
-  readonly mentor?: MentorType;
-  readonly list: MentorType[];
+  readonly mentors: Mentor[];
   readonly loading: boolean;
 }
 

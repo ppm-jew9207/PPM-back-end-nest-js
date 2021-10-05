@@ -18,13 +18,15 @@ export class UserProfilePayloadDto implements UserProfile {
   @ApiProperty()
   public readonly fieldOfProfession: string;
   @ApiProperty()
-  public readonly company: string;
+  public readonly company?: string;
   @ApiProperty({ isArray: true, type: 'string' })
   public readonly categories: string[];
   @ApiProperty()
   public readonly city: string;
   @ApiProperty()
   public readonly country: string;
+  @ApiProperty()
+  public readonly state: string;
   @ApiProperty()
   public readonly phone: string;
   @ApiProperty()

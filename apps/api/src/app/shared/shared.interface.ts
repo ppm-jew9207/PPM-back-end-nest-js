@@ -6,6 +6,6 @@ export class UserRef {
   imageUrl?: string;
 }
 
-export class AdvertRef {
+export class CourseRef {
   _id: Types.ObjectId;
 }

@@ -5,84 +5,111 @@ import {
 } from '@ppm/shared/user-profile-card';
 import { Profile, SharedProfileForm, Category } from '@ppm/shared/profile-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { Drawer,  IconButton } from '@material-ui/core';
+import {
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Drawer,
+  IconButton,
+} from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
   userProfileActions,
   userProfileSelectors,
 } from '@ppm/data-access/user-profile';
 import './features-profile.scss';
-import { advertsActions, advertsSelectors } from '@ppm/data-access/adverts';
-import { categoriesActions, categoriesSelectors } from '@ppm/data-access/categories';
+import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
+import {
+  categoriesActions,
+  categoriesSelectors,
+} from '@ppm/data-access/categories';
 import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
 import { LikeEnum, likesActions } from '@ppm/data-access/likes';
 import {
   countriesApiActions,
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
-import { SharedAdvertCard } from '@ppm/shared/advert-card';
-import { SharedAdvertsAddButtons } from '@ppm/shared/adverts-add-buttons';
-import { SharedCreateAdvertForm } from '@ppm/shared/create-advert-form';
+import { SharedCourseCard } from '@ppm/shared/course-card';
+import {
+  CourseData,
+  SharedCreateCourseForm,
+} from '@ppm/shared/create-course-form';
 
 import { Close as CloseIcon } from '@material-ui/icons';
-
+import { Button } from '@material-ui/core';
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
   loading: userProfileSelectors.selectLoading(),
-  adverts: advertsSelectors.selectAdverts(),
+  courses: coursesSelectors.selectCourses(),
   categories: categoriesSelectors.selectCategories(),
   countries: countriesApiSelectors.selectCountries(),
   states: countriesApiSelectors.selectStates(),
   cities: countriesApiSelectors.selectCities(),
-  lessons: lessonsSelectors.selectLessons()
+  lessons: lessonsSelectors.selectLessons(),
 });
 
 export const FeaturesProfile = (props) => {
-  const [advertsState, setAdvertsState] = useState([]);
+  const [coursesState, setCoursesState] = useState([]);
   const dispatch = useDispatch();
-  const { profile, loading, adverts, categories, countries, states, cities, lessons } = useSelector(stateSelector);
-  const [isMenuOpen, setMenuOpen] = useState(false);
-  const [addDrawer, setAddDrawer] = useState(false);
+  const {
+    profile,
+    loading,
+    courses,
+    categories,
+    countries,
+    states,
+    cities,
+    lessons,
+  } = useSelector(stateSelector);
+  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
+  const [isAddCourseDialogOpen, setIsAddCourseDialogOpen] = useState(false);
+  // openAddCourseDialog;
 
-  const toggleDrawer = (open: boolean) => {
-    setMenuOpen(open);
+  const handleClose = () => {
+    setIsProfileDialogOpen(false);
+    setIsAddCourseDialogOpen(false);
+  };
+
+  const openProfileDialog = () => {
+    setIsProfileDialogOpen(true);
   };
 
   const saveClick = (payload: any) => {
     const data = { callback: 'getAllByAuthor', ...payload };
-    dispatch(advertsActions.smallUpdate(data));
+    dispatch(coursesActions.smallUpdate(data));
   };
 
-  const likeClick = (advertId: string, type: string) => {
-    dispatch(likesActions.create({ advert: advertId, type: type }));
-    const clickedAdvert = advertsState.find((item) => item._id === advertId);
-    const foundItem = clickedAdvert.likesList.findIndex(
+  const likeClick = (courseId: string, type: string) => {
+    dispatch(likesActions.create({ course: courseId, type: type }));
+    const clickedCourse = coursesState.find((item) => item._id === courseId);
+    const foundItem = clickedCourse.likesList.findIndex(
       (item) => item.type === type && item.user === profile._id
     );
     if (foundItem !== -1) {
-      clickedAdvert.likesList.splice(foundItem, 1);
+      clickedCourse.likesList.splice(foundItem, 1);
     } else {
-      clickedAdvert.likesList.push({
-        advert: advertId,
+      clickedCourse.likesList.push({
+        course: courseId,
         type: type,
         user: profile._id,
       });
     }
-    setAdvertsState([...adverts]);
+    setCoursesState([...courses]);
   };
 
   useEffect(() => {
-    setAdvertsState(adverts);
-  }, [adverts]);
+    setCoursesState(courses);
+  }, [courses]);
 
   useEffect(() => {
-    dispatch(advertsActions.getAllByAuthor());
+    dispatch(coursesActions.getAllByAuthor());
     dispatch(userProfileActions.getUserProfile());
     dispatch(categoriesActions.getAll());
     dispatch(countriesApiActions.getCountries());
     dispatch(lessonsActions.getAll());
-  }, [dispatch]);
+  }, []);
 
   const defaultData = {
     mentorImage: '',
@@ -90,7 +117,7 @@ export const FeaturesProfile = (props) => {
     aboutMentor: '',
     mentorLocation: '',
     socialLinks: [],
-    toggleDrawer,
+    openProfileDialog,
   };
 
   const [data, setData] = useState<SharedUserProfileCardProps>(defaultData);
@@ -103,85 +130,92 @@ export const FeaturesProfile = (props) => {
         aboutMentor: profile.description,
         mentorLocation: profile.city,
         socialLinks: profile.socialLinks,
-        toggleDrawer: toggleDrawer,
+        openProfileDialog: openProfileDialog,
       });
     }
   }, [profile]);
 
-  const addAdvert = () => {
-    setAddDrawer(false);
-  }
+  const addCourse = (data: CourseData) => {
+    setIsAddCourseDialogOpen(false);
+    dispatch(coursesActions.addCourse(data));
+  };
 
   return (
     <div className="features-profile">
       <div className="profile-card-container">
-        <SharedUserProfileCard {...data} toggleDrawer={toggleDrawer} />
+        <SharedUserProfileCard
+          {...data}
+          openProfileDialog={openProfileDialog}
+        />
       </div>
       <div className="content">
-        <SharedAdvertsAddButtons disabled={false} toggleAddDrawer={() => setAddDrawer(true)}/>
+        <div className="course-button">
+          <Box mb={2}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setIsAddCourseDialogOpen(true)}
+            >
+              Add Course
+            </Button>
+          </Box>
+        </div>
 
-        <Drawer anchor="right" open={addDrawer} onClose={() => setAddDrawer(false)}>
-            <SharedCreateAdvertForm
-              onSubmit={addAdvert}
-              onCancel={() => {}}
-              categories={categories}
-              lessons={lessons}
-              toggleAddDrawer={() => setAddDrawer(false)}
-            />
-        </Drawer>
+        <Dialog
+          maxWidth="lg"
+          open={isAddCourseDialogOpen}
+          onClose={handleClose}
+        >
+          <SharedCreateCourseForm
+            onSubmit={addCourse}
+            categories={categories}
+            lessons={lessons}
+            onCancel={handleClose}
+          />
+        </Dialog>
 
-        <SharedAdvertsAddButtons disabled={false} />
-        {advertsState.map((advert, i) => (
-          <SharedAdvertCard
-            id={advert._id}
-            key={advert._id}
-            title={advert.title}
+        {coursesState.map((course, i) => (
+          <SharedCourseCard
+            id={course._id}
+            key={course._id}
+            title={course.title}
             author={{
-              _id: advert.creator._id,
-              firstName: advert.creator.name,
+              _id: course.creator._id,
+              firstName: course.creator.name,
               lastName: '',
-              img: advert.creator.imageUrl,
+              img: course.creator.imageUrl,
             }}
-            createAt={advert.createdAt}
-            description={advert.description}
+            createAt={course.createdAt}
+            description={course.description}
             like={
-              advert.likesList
-                ? advert.likesList.filter(
+              course.likesList
+                ? course.likesList.filter(
                     (like: any) => like.type === LikeEnum.Like
                   ).length
                 : 0
             }
             shared={
-              advert.likesList
-                ? advert.likesList.filter(
+              course.likesList
+                ? course.likesList.filter(
                     (like: any) => like.type === LikeEnum.Share
                   ).length
                 : 0
             }
-            imgUrl={advert.imageUrl}
+            imgUrl={course.imageUrl}
             onSaveClick={saveClick}
-            editable={profile._id == advert.creator._id}
-            onLikeClick={() => likeClick(advert._id, LikeEnum.Like)}
-            onSharedClick={() => likeClick(advert._id, LikeEnum.Share)}
+            editable={profile?._id === course?.creator?._id}
+            onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+            onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
           />
         ))}
       </div>
 
-      <Drawer
-        open={isMenuOpen}
-        ModalProps={{ onBackdropClick: () => toggleDrawer(false) }}
-        anchor="right"
-      >
-        <div className="shared-left-side-menu">
-          <IconButton
-            onClick={() => toggleDrawer(false)}
-            aria-label="close drawer"
-          >
-            <CloseIcon />
-          </IconButton>
+      <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="lg">
+        <DialogContent>
           <SharedProfileForm
-            profile={profile} 
-            categories={categories} 
+            onCancel={handleClose}
+            profile={profile}
+            categories={categories}
             countries={countries}
             cities={cities}
             states={states}
@@ -192,6 +226,8 @@ export const FeaturesProfile = (props) => {
               dispatch(countriesApiActions.getCities(stateName))
             }
             onSubmit={(profileData: Profile) => {
+              setIsProfileDialogOpen(false);
+
               dispatch(userProfileActions.update(profileData));
             }}
             onAddCategory={(categoryData: Category) => {
@@ -199,8 +235,8 @@ export const FeaturesProfile = (props) => {
               dispatch(categoriesActions.getAll());
             }}
           />
-        </div>
-      </Drawer>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

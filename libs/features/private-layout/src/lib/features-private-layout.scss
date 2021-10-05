@@ -1,17 +1,17 @@
-.features-private-layout{
+.features-private-layout {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  .content{
+  .content {
     flex: 1;
   }
-  .shared-left-side-menu-button{
+  .shared-left-side-menu-button {
     z-index: 10;
-    position: absolute;
+    position: fixed;
   }
-  .navigation-bar{
+  .navigation-bar {
     padding-left: 50px;
-    position: relative;
+    position: sticky;
     z-index: 2;
   }
 }

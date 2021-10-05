@@ -8,7 +8,7 @@ import { MemoryRouter, Route } from 'react-router-dom';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   let storeMock;
   let component;
   const configureStoreMock = configureStore();

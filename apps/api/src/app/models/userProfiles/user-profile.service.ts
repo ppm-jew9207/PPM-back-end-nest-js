@@ -25,8 +25,8 @@ export class UserProfileModelService {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
   async update(data: UserProfileUpdated) {
-    await this.model.findOneAndUpdate(
-      { _id: Types.ObjectId(data.id) },
+    await this.model.updateOne(
+      { _id: new Types.ObjectId(data.id) },
       { $set: data.userProfile }
     );
   }
@@ -34,9 +34,27 @@ export class UserProfileModelService {
     return this.model.find().exec();
   }
   async getById(id: string): Promise<CreateUserProfilePayloadDto> {
-    return this.model.findById({ _id: Types.ObjectId(id) });
+    return this.model.findById(id);
   }
   async getByEmail(email: string) {
     return this.model.find({ email: email }).exec();
+  }
+  async getMentors(): Promise<UserProfilePayloadDto[]> {
+    return this.model.aggregate([
+      { $addFields: { userId: { $toString: '$_id' } } },
+      {
+        $lookup: {
+          from: 'courses',
+          localField: 'userId',
+          foreignField: 'creator._id',
+          as: 'courses',
+        },
+      },
+      {
+        $match: {
+          courses: { $ne: [] },
+        },
+      },
+    ]);
   }
 }

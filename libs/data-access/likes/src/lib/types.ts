@@ -3,11 +3,11 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
 export enum LikeEnum {
-  Like = "like",
-  Share = "share"
+  Like = 'like',
+  Share = 'share',
 }
 export interface LikeType {
-  advert_id: string;
+  course_id: string;
   user_id: string;
   type: LikeEnum;
 }

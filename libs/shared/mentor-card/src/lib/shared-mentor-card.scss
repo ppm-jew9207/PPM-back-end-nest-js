@@ -1,0 +1,19 @@
+.mentor-card-link {
+  text-decoration: none;
+}
+.mentor-card {
+  max-width: 285px;
+  & svg {
+    font-size: 240px;
+  }
+  & .title {
+    text-align: center;
+    color: #000;
+  }
+  height: 100%;
+}
+.mentor-media {
+  height: 240px;
+  margin: 8.4px auto;
+  width: 285px;
+}

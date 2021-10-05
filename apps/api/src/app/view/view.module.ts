@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { UserProfileViewModule } from './userProfiles/user-profiles.module';
-import { AdvertsViewModule } from './adverts/adverts.module';
+import { CoursesViewModule } from './courses/courses.module';
 import { LessonsViewModule } from './lessons/lessons.module';
 import { LearnItemsViewModule } from './learnItems/learnItems.module';
 import { CategoriesViewModule } from './categories/categories.module';
@@ -17,7 +17,7 @@ import { LikesViewModule } from './likes/likes.module';
     UserProfileViewModule,
     SettingsViewModule,
     PermissionsViewModule,
-    AdvertsViewModule,
+    CoursesViewModule,
     LessonsViewModule,
     LearnItemsViewModule,
     LikesViewModule,

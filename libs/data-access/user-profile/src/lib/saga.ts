@@ -1,9 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { getUserProfileFailed, getUserProfileSuccess, updateSuccess } from './actions';
+import { getUserProfileFailed, getUserProfileSuccess, updateSuccess, getOtherProfileSuccess, getOtherProfileFailed } from './actions';
 import { get, post, postFormData } from '@ppm/data-access/http-requests';
-import { PrivateRoutesPath } from '@ppm/common/main';
-import { Profile } from '@ppm/shared/profile-form';
+import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
+import { Profile } from './types';
+import { snackbarActions } from '@ppm/data-access/snack-bar';
 
 export function* getUserProfile() {
   try {
@@ -25,9 +26,27 @@ export function* getUserProfile() {
   }
 }
 
+export function* getOtherUserProfile(actions: { type: string, payload: string }) {
+  try {
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${actions.payload}`;
+    const result = yield call(get, path);
+    if (!result) {
+      yield put(getOtherProfileFailed());
+    }
+    yield put(
+      getOtherProfileSuccess({
+        loading: false,
+        loadedProfile: result.data,
+      })
+    );
+  } catch (error) {
+    yield put(getUserProfileFailed());
+  }
+}
+
 export function* updateUserProfile(actions: { type: string, payload: Profile }) {
   const data = actions.payload;
-  try {
+  try {    
     if (typeof(data.photo) !== 'string') {
       const file = data.photo[0];
       const formData = new FormData();
@@ -53,12 +72,23 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
         })
       );
     }
+
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.SUCCESS,
+        message: 'User profile updated'
+      })
+    );
+
+    yield put({ type: ActionTypes.USER_PROFILE_GET });
+    
   } catch (error) {}
 }
 
 export function* userProfileSaga() {
   yield takeEvery(ActionTypes.USER_PROFILE_GET, getUserProfile);
   yield takeEvery(ActionTypes.USER_PROFILE_UPDATE, updateUserProfile);
+  yield takeEvery(ActionTypes.OTHER_USER_PROFILE_GET, getOtherUserProfile);
 }
 
 export default userProfileSaga;

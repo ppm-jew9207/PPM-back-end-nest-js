@@ -7,7 +7,7 @@ import FeaturesForgotPassword from './features-forgot-password';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe(' FeaturesAdverts', () => {
+describe(' FeaturesCourses', () => {
   let storeMock;
   let component;
   const configureStoreMock = configureStore();

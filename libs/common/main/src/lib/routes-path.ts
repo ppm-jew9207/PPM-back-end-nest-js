@@ -2,8 +2,9 @@ export enum PrivateRoutesPath {
   DASHBOARD = 'dashboard',
   DASHBOARD_MENTOR = '/mentor/:id',
   MENTOR = 'mentor',
+  MENTORS = 'mentors',
   STUDENT = 'student',
-  ADVERTS = 'adverts',
+  COURSES = 'courses',
   LESSONS = 'lessons',
   LEARN_ITEMS = 'learn-items',
   USER = 'user',
@@ -21,8 +22,9 @@ export enum PrivateRoutesPath {
   CITIES = 'cities',
   COUNTRY = '/:countryName/states',
   STATE = '/:stateName/cities',
-  GET_BY_ADVERT_ID = '/:advertid',
-
+  GET_BY_COURSE_ID = '/:courseid',
+  FILTER = '/filter',
+  COUNT = '/count',
 
   // TODO only for API
   POST_CREATE = '/create',
@@ -37,5 +39,7 @@ export enum PrivateRoutesPath {
   POST_FORGOT_PASSWORD = '/forgot-password/:email',
   POST_FORGOT_PASSWORD_FE = '/forgot-password',
   POST_RESET_PASSWORD = '/reset-password',
-  POST_ADD_ADVERT = "POST_ADD_ADVERT"
+  POST_ADD_COURSE = 'POST_ADD_COURSE',
+  POST_ADD_STUDENT_TO_COURSE = '/addToCourse/:courseId',
+  POST_REMOVE_STUDENT_FROM_COURSE = '/removeFromCourse/:courseId',
 }

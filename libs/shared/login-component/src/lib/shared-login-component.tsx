@@ -12,9 +12,27 @@ import {
   FormControlLabel, 
   Grid
 } from '@material-ui/core';
+import {
+  makeStyles,
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core/styles";
 
 import './shared-login-component.scss';
 import { useForm } from 'react-hook-form';
+
+const useStyles = makeStyles({
+  link: {
+    textTransform: "none", 
+    '&:hover': {
+      backgroundColor: "transparent",
+      textDecoration: "underline",
+    }
+  },
+  button: {
+    textTransform: "none"
+  }
+});
 
 export interface SharedLoginComponentProps {
   onLogin: (loginData: {
@@ -27,6 +45,7 @@ export interface SharedLoginComponentProps {
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
   const { handleSubmit, register, errors } = useForm();
+  const classes = useStyles();
 
   return (
     <div className="login-component">
@@ -36,9 +55,9 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
         </Box>
         <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
           <Box my={1}>
-            <TextField
+            <TextField 
               id="email"
-              placeholder="Email"
+              placeholder="Email*"
               name="email"
               InputProps={{
                 startAdornment: (
@@ -59,10 +78,10 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             />
           </Box>
 
-          <Box my={1}>
+          <Box my={1} >
             <TextField
               id="password"
-              placeholder="Password"
+              placeholder="Password*"
               name="password"
               fullWidth
               InputProps={{
@@ -82,9 +101,8 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
               helperText={!errors.password ? '' : 'This field is required'}
             />
           </Box>
-
-          <Box display="flex" justifyContent="space-between">
-            <Box>
+          <Box display="flex" justifyContent="space-between" py={1}>     
+            <Box display="flex">
               <FormControlLabel
                 value="rememberMe"
                 control={<Checkbox color="primary" />}
@@ -94,22 +112,22 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
                 inputRef={register()}
               />
             </Box>
-            <Box py={0.5}>
-              <Button onClick={props.onForgotPassword} color="primary">
-                Forgot Password?
+            <Box>
+              <Button disableTouchRipple disableFocusRipple  onClick={props.onForgotPassword} className={classes.link}>
+                Forgot Password
               </Button>
             </Box>
           </Box>
-          <Box py={0.5}>
-            <Link to="/registry">
-              Registration
-            </Link>
-          </Box>
           <Grid container justify="center">
-            <Button variant="contained" color="primary" type="submit" fullWidth>
-              LOGIN
+            <Button variant="contained" color="primary" type="submit" fullWidth  className={classes.button}>
+              Log In
             </Button>
           </Grid>
+          <Box display="flex" justifyContent="center" py={1}>
+            <Button href="/registry" disableTouchRipple disableFocusRipple className={classes.link}>
+              Create Account
+            </Button>
+          </Box>
         </form>
       </Grid>
     </div>
