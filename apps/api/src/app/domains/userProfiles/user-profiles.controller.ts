@@ -50,7 +50,7 @@ export class UserProfilesController {
   async update(
     @Param('id') id: string,
     @Body() payload: UpdateUserProfilePayloadDto
-  ) {
+  ) {    
     return this._commandBus.execute(new UpdateUserProfileCommand(id, payload));
   }
   @Post(PrivateRoutesPath.POST_ADD_STUDENT_TO_COURSE)

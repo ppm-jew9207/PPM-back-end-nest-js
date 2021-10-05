@@ -24,10 +24,10 @@ export class UserProfileModelService {
   async delete(id: string) {
     await this.model.deleteOne({ _id: Types.ObjectId(id) });
   }
-  async update(data: UserProfileUpdated) {
+  async update(data: UserProfileUpdated) {    
     await this.model.updateOne(
       { _id: new Types.ObjectId(data.id) },
-      { $set: data.userProfile }
+      { $set: {...data.userProfile, photo: data.userProfile.imageUrl} }
     );
   }
   async getAll(): Promise<UserProfilePayloadDto[]> {
