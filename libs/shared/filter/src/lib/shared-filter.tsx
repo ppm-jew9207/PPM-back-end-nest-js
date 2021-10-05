@@ -31,14 +31,12 @@ export function SharedFilter(props: SharedFilter) {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const onSubmit = (queries: FilterFormData) => {
+  const onSubmit = (queries: FilterFormData) =>
     props.onSubmit({
       rating: queries.rating,
       topic: queries.topic,
       categories: queries.categories,
-    }),
-      console.log(queries);
-  };
+    });
 
   return (
     <div className="filter-form">
