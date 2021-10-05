@@ -140,7 +140,7 @@ export const FeaturesCourses = () => {
                     onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
                     onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
                   />
-                  <SharedCourseCard
+                  {/* <SharedCourseCard
                     id={course._id}
                     title={course.title}
                     author={{
@@ -170,7 +170,7 @@ export const FeaturesCourses = () => {
                     editable={profile?._id === course.creator._id}
                     onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
                     onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                  />
+                  /> */}
                 </div>
               ))}
           </div>

@@ -122,7 +122,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
   if (!editing) {
     return (
       <div className="course-list">
-        <Grid container spacing={2}>
+        <Grid container>
           <Grid item md={4}>
             <Link>
               <img
@@ -135,92 +135,95 @@ export function SharedCourseList(props: SharedCourseListProps) {
               />
             </Link>
           </Grid>
-
-          <Grid container md={8}>
-            <Grid item md={1}>
-              <img
-                className="mentor-img"
-                src={props?.author?.img}
-                alt="Course image"
-              />
-            </Grid>
-            <Grid item md={10} className="title-content">
-              <Typography>
-                <span className="author">{`
+          <Grid item md={8} container>
+            <Grid item md container direction="row">
+              <Grid item md={1}>
+                <img
+                  className="mentor-img"
+                  src={props?.author?.img}
+                  alt="Course image"
+                />
+              </Grid>
+              <Grid item md={10}>
+                <Typography>
+                  <span className="author">{`
                   ${props.author.firstName || ''} ${
-                  props.author.lastName || ''
-                } `}</span>
-                posted on
-                <span className="title">{` ${props.title}`}</span>
-              </Typography>
-              <Typography className="created-at">{`${timeCalculator(
-                props.createAt
-              )} ago`}</Typography>
-            </Grid>
-            <Grid item md={1}>
-              {props.editable ? (
-                <div className="editing-holder">
-                  <EditIcon onClick={() => setEditing(true)} />
-                </div>
-              ) : (
-                ''
-              )}
-            </Grid>
-            <Grid item md={12} className="description full">
-              <Typography variant="body2">
-                {`${props.description.substring(0, 150)}...`}
-              </Typography>
-            </Grid>
-            <Grid item md={12} className="categories">
-              {props.categories.map((category: Category) => {
-                return (
-                  <Chip
-                    className="chip-tag"
-                    size="small"
+                    props.author.lastName || ''
+                  } `}</span>
+                  posted on
+                  <span className="title">{` ${props.title}`}</span>
+                </Typography>
+                <Typography className="created-at">{`${timeCalculator(
+                  props.createAt
+                )} ago`}</Typography>
+              </Grid>
+              <Grid item md={1}>
+                {props.editable ? (
+                  <div className="editing-holder">
+                    <EditIcon onClick={() => setEditing(true)} />
+                  </div>
+                ) : (
+                  ''
+                )}
+              </Grid>
+              <Grid item md={12} className="description full">
+                <Typography variant="body2">
+                  {`${props.description.substring(0, 150)}...`}
+                </Typography>
+              </Grid>
+              <Grid item md={12} className="categories">
+                {props.categories.map((category: Category) => {
+                  return (
+                    <Chip
+                      className="chip-tag"
+                      size="small"
+                      variant="outlined"
+                      label={category.title}
+                      key={category._id}
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item md={12} className="rating">
+                <Typography className="rating-text" variant="h6">
+                  <span>Rating:</span> 5
+                </Typography>
+              </Grid>
+              <Grid item md={8}>
+                <Button
+                  className="space-between"
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  startIcon={<FavoriteIcon />}
+                  onClick={props.onLikeClick}
+                >
+                  {`like ${props.like}`}
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="primary"
+                  startIcon={<ShareIcon />}
+                  onClick={props.onSharedClick}
+                >
+                  {`share ${props.shared}`}
+                </Button>
+              </Grid>
+              <Grid item md={4}>
+                <Grid container item md justify="flex-end">
+                  <Button
+                    className="show-more"
                     variant="outlined"
-                    label={category.title}
-                    key={category._id}
-                  />
-                );
-              })}
-            </Grid>
-            <Grid item md={12} className="rating">
-              <Typography className="rating-text" variant="h6">
-                <span>Rating:</span> 5
-              </Typography>
-            </Grid>
-            <Grid item md={6}>
-              <Button
-                className="space-between"
-                variant="outlined"
-                size="small"
-                color="secondary"
-                startIcon={<FavoriteIcon />}
-                onClick={props.onLikeClick}
-              >
-                {`like ${props.like}`}
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                color="primary"
-                startIcon={<ShareIcon />}
-                onClick={props.onSharedClick}
-              >
-                {`share ${props.shared}`}
-              </Button>
-            </Grid>
-            <Grid item md={6} container justify="flex-end">
-              <Button
-                className="show-more"
-                variant="outlined"
-                size="small"
-                color="primary"
-                startIcon={<MoreIcon />}
-                href={`/courses/${props.id}`}
-              >
-                Read More
-              </Button>
+                    size="small"
+                    color="primary"
+                    startIcon={<MoreIcon />}
+                    href={`/courses/${props.id}`}
+                  >
+                    Read More
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
@@ -230,7 +233,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
   return (
     <div className="course-list">
       <form noValidate autoComplete="off" onSubmit={handleSubmit(saveEdit)}>
-        <Grid container spacing={2}>
+        <Grid container>
           <Grid item md={4}>
             <div className="image-container draggable-container">
               <img
@@ -262,69 +265,69 @@ export function SharedCourseList(props: SharedCourseListProps) {
               </div>
             </div>
           </Grid>
-          <Grid container item md={8}>
-            <Grid item md={1}>
-              <img
-                className="mentor-img"
-                src={props?.author?.img}
-                alt="Course image"
-              />
-            </Grid>
-            <Grid item md={10} className="title-content">
-              <Typography>
-                <span className="author">{`
-              ${props.author.firstName || ''} ${
-                  props.author.lastName || ''
-                } `}</span>
-                {`posted on `}
+          <Grid item md={8} container>
+            <Grid item md container direction="row">
+              <Grid item md={1}>
+                <img
+                  className="mentor-img"
+                  src={props?.author?.img}
+                  alt="Course image"
+                />
+              </Grid>
+              <Grid item md={10}>
+                <div>
+                  <span className="author">{`
+          ${props.author.firstName || ''} ${
+                    props.author.lastName || ''
+                  } `}</span>
+                  {`posted on `}
+                  <TextField
+                    inputRef={register()}
+                    id="title"
+                    name="title"
+                    defaultValue={props.title}
+                  />
+                </div>
+                <Typography className="created-at">{`${timeCalculator(
+                  props.createAt
+                )} ago`}</Typography>
+              </Grid>
+              <Grid item md={1}>
+                <div className="editing-holder editing">
+                  <button type="submit">
+                    <SaveIcon fontSize="small" />
+                  </button>
+                </div>
+              </Grid>
+              <Grid item md={12} className="description full">
                 <TextField
                   inputRef={register()}
-                  id="title"
-                  name="title"
-                  defaultValue={props.title}
+                  name="description"
+                  id="description"
+                  multiline
+                  fullWidth
+                  defaultValue={props.description}
                 />
-              </Typography>
-              <Typography className="created-at">{`${timeCalculator(
-                props.createAt
-              )} ago`}</Typography>
-            </Grid>
-            <Grid item md={1}>
-              <div className="editing-holder editing">
-                <button type="submit">
-                  <SaveIcon fontSize="small" />
-                </button>
-              </div>
-            </Grid>
-            <Grid container md={12} className="description">
-              <TextField
-                inputRef={register()}
-                name="description"
-                id="description"
-                multiline
-                fullWidth
-                defaultValue={props.description}
-              />
-            </Grid>
-            <Grid container md={12} className="categories">
-              {props.categories.map((category: Category) => {
-                return (
-                  <Chip
-                    className="chip-tag"
-                    size="small"
-                    variant="outlined"
-                    label={category.title}
-                    key={category._id}
-                  />
-                );
-              })}
-            </Grid>
-            <Grid container md={12} className="rating">
-              <Typography className="rating-text" variant="h6">
-                <span>Rating:</span> 5
-              </Typography>
-            </Grid>
-            <Grid container md={12}>
-              <Grid md={6}>
+              </Grid>
+              <Grid item md={12} className="categories">
+                {props.categories.map((category: Category) => {
+                  return (
+                    <Chip
+                      className="chip-tag"
+                      size="small"
+                      variant="outlined"
+                      label={category.title}
+                      key={category._id}
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item md={12} className="rating">
+                <Typography className="rating-text" variant="h6">
+                  <span>Rating:</span> 5
+                </Typography>
+              </Grid>
+              <Grid item md={8}>
                 <Button
                   className="space-between"
                   variant="outlined"
@@ -345,17 +348,19 @@ export function SharedCourseList(props: SharedCourseListProps) {
                   {`share ${props.shared}`}
                 </Button>
               </Grid>
-              <Grid md={6} container justify="flex-end">
-                <Button
-                  className="show-more"
-                  variant="outlined"
-                  size="small"
-                  color="primary"
-                  startIcon={<MoreIcon />}
-                  href={`/courses/${props.id}`}
-                >
-                  Read More
-                </Button>
+              <Grid item md={4}>
+                <Grid container item md justify="flex-end">
+                  <Button
+                    className="show-more"
+                    variant="outlined"
+                    size="small"
+                    color="primary"
+                    startIcon={<MoreIcon />}
+                    href={`/courses/${props.id}`}
+                  >
+                    Read More
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
