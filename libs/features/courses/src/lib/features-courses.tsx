@@ -15,10 +15,12 @@ import {
 import './features-courses.scss';
 import { LikeEnum, LikeType } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
-import FilterListIcon from '@material-ui/icons/FilterList';
-
 import { Button, Typography, Grid } from '@material-ui/core';
-import { Category } from '@material-ui/icons';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import Crop32Icon from '@material-ui/icons/Crop32';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -31,6 +33,13 @@ export const FeaturesCourses = () => {
   const { courses, loading, profile } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(true);
+  const [courseElement, setCourseElement] = React.useState('list');
+
+  const handleCourseCardChange = (event, newCourseElement) => {
+    if (newCourseElement !== null) {
+      setCourseElement(newCourseElement);
+    }
+  };
 
   const ToggleFilter = () => {
     setIsFilterActive(!isFilterActive);
@@ -80,7 +89,7 @@ export const FeaturesCourses = () => {
       {!coursesState && <div className="no-items">No courses added...</div>}
 
       <Grid container spacing={1} className="courses-container">
-        <Grid item md={isFilterActive === true ? 3 : 1}>
+        <Grid item md={isFilterActive === true ? 3 : 2}>
           <div className="fixed">
             <Button
               className="filter-button"
@@ -90,6 +99,20 @@ export const FeaturesCourses = () => {
               <FilterListIcon />
               <Typography>Filter</Typography>
             </Button>
+            <ToggleButtonGroup
+              className="toggle-group"
+              value={courseElement}
+              exclusive
+              onChange={handleCourseCardChange}
+              aria-label="text alignment"
+            >
+              <ToggleButton value="list" aria-label="list">
+                <ListAltIcon />
+              </ToggleButton>
+              <ToggleButton value="card" aria-label="card">
+                <Crop32Icon />
+              </ToggleButton>
+            </ToggleButtonGroup>
             <div
               className={`filter-sidebar ${
                 isFilterActive ? 'filter-open' : 'filter-closed'
@@ -101,76 +124,84 @@ export const FeaturesCourses = () => {
         </Grid>
         <Grid
           item
-          md={isFilterActive === true ? 9 : 11}
+          md={isFilterActive === true ? 9 : 10}
           className="course-cards"
         >
           <div>
             {coursesState?.length &&
               coursesState.map((course, index) => (
                 <div key={course._id}>
-                  <SharedCourseList
-                    categories={course.categories}
-                    id={course._id}
-                    title={course.title}
-                    author={{
-                      _id: course.creator._id,
-                      firstName: course.creator.name,
-                      lastName: '',
-                      img: course.creator.imageUrl,
-                    }}
-                    createAt={course.createdAt}
-                    description={course.description}
-                    like={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Like
-                          ).length
-                        : 0
-                    }
-                    shared={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Share
-                          ).length
-                        : 0
-                    }
-                    imgUrl={course.imageUrl}
-                    onSaveClick={saveClick}
-                    editable={profile?._id === course.creator._id}
-                    onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                    onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                  />
-                  {/* <SharedCourseCard
-                    id={course._id}
-                    title={course.title}
-                    author={{
-                      _id: course.creator._id,
-                      firstName: course.creator.name,
-                      lastName: '',
-                      img: course.creator.imageUrl,
-                    }}
-                    createAt={course.createdAt}
-                    description={course.description}
-                    like={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Like
-                          ).length
-                        : 0
-                    }
-                    shared={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Share
-                          ).length
-                        : 0
-                    }
-                    imgUrl={course.imageUrl}
-                    onSaveClick={saveClick}
-                    editable={profile?._id === course.creator._id}
-                    onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                    onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                  /> */}
+                  {courseElement === 'list' && (
+                    <SharedCourseList
+                      categories={course.categories}
+                      id={course._id}
+                      title={course.title}
+                      author={{
+                        _id: course.creator._id,
+                        firstName: course.creator.name,
+                        lastName: '',
+                        img: course.creator.imageUrl,
+                      }}
+                      createAt={course.createdAt}
+                      description={course.description}
+                      like={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Like
+                            ).length
+                          : 0
+                      }
+                      shared={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Share
+                            ).length
+                          : 0
+                      }
+                      imgUrl={course.imageUrl}
+                      onSaveClick={saveClick}
+                      editable={profile?._id === course.creator._id}
+                      onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                      onSharedClick={() =>
+                        likeClick(course._id, LikeEnum.Share)
+                      }
+                    />
+                  )}
+                  {courseElement === 'card' && (
+                    <SharedCourseCard
+                      id={course._id}
+                      title={course.title}
+                      author={{
+                        _id: course.creator._id,
+                        firstName: course.creator.name,
+                        lastName: '',
+                        img: course.creator.imageUrl,
+                      }}
+                      createAt={course.createdAt}
+                      description={course.description}
+                      like={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Like
+                            ).length
+                          : 0
+                      }
+                      shared={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Share
+                            ).length
+                          : 0
+                      }
+                      imgUrl={course.imageUrl}
+                      onSaveClick={saveClick}
+                      editable={profile?._id === course.creator._id}
+                      onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                      onSharedClick={() =>
+                        likeClick(course._id, LikeEnum.Share)
+                      }
+                    />
+                  )}
                 </div>
               ))}
           </div>
