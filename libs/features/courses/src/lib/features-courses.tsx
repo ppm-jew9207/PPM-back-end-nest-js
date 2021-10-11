@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SharedCourseCard } from '@ppm/shared/course-card';
+import { SharedCourseList } from '@ppm/shared/course-list';
 import { SharedFilter, FilterFormData } from '@ppm/shared/filter';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -15,15 +16,9 @@ import './features-courses.scss';
 import { LikeEnum, LikeType } from 'libs/data-access/likes/src/lib/types';
 import { useLocation } from 'react-router-dom';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import {
-  Button,
-  Typography,
-  TextField,
-  Grid,
-  FormControl,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
+
+import { Button, Typography, Grid } from '@material-ui/core';
+import { Category } from '@material-ui/icons';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -84,9 +79,9 @@ export const FeaturesCourses = () => {
       {loading && <CircularProgress />}
       {!coursesState && <div className="no-items">No courses added...</div>}
 
-      <Grid container spacing={4} className="courses-container">
-        <Grid item xs={6} md={isFilterActive === true ? 3 : 1}>
-          <div className="fixedd">
+      <Grid container spacing={1} className="courses-container">
+        <Grid item md={isFilterActive === true ? 3 : 1}>
+          <div className="fixed">
             <Button
               className="filter-button"
               onClick={ToggleFilter}
@@ -106,7 +101,6 @@ export const FeaturesCourses = () => {
         </Grid>
         <Grid
           item
-          xs={6}
           md={isFilterActive === true ? 9 : 11}
           className="course-cards"
         >
@@ -114,7 +108,8 @@ export const FeaturesCourses = () => {
             {coursesState?.length &&
               coursesState.map((course, index) => (
                 <div key={course._id}>
-                  <SharedCourseCard
+                  <SharedCourseList
+                    categories={course.categories}
                     id={course._id}
                     title={course.title}
                     author={{
@@ -145,6 +140,37 @@ export const FeaturesCourses = () => {
                     onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
                     onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
                   />
+                  {/* <SharedCourseCard
+                    id={course._id}
+                    title={course.title}
+                    author={{
+                      _id: course.creator._id,
+                      firstName: course.creator.name,
+                      lastName: '',
+                      img: course.creator.imageUrl,
+                    }}
+                    createAt={course.createdAt}
+                    description={course.description}
+                    like={
+                      course.likesList
+                        ? course.likesList.filter(
+                            (like: LikeType) => like.type === LikeEnum.Like
+                          ).length
+                        : 0
+                    }
+                    shared={
+                      course.likesList
+                        ? course.likesList.filter(
+                            (like: LikeType) => like.type === LikeEnum.Share
+                          ).length
+                        : 0
+                    }
+                    imgUrl={course.imageUrl}
+                    onSaveClick={saveClick}
+                    editable={profile?._id === course.creator._id}
+                    onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                    onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
+                  /> */}
                 </div>
               ))}
           </div>

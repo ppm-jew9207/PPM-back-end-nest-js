@@ -2791,6 +2791,27 @@
           }
         }
       }
+    },
+    "shared-course-list": {
+      "root": "libs/shared/course-list",
+      "sourceRoot": "libs/shared/course-list/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/course-list/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/course-list"],
+          "options": {
+            "jestConfig": "libs/shared/course-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
