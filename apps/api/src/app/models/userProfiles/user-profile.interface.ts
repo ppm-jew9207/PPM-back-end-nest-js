@@ -22,6 +22,7 @@ export interface CreateUserProfile {
   email: string;
   socialLinks?: SocialLink[];
   website?: string;
+  imageUrl?: string;
   coursesIds?: string[];
 }
 export interface UserProfile {
@@ -40,6 +41,7 @@ export interface UserProfile {
   email: string;
   socialLinks?: SocialLink[];
   website?: string;
+  imageUrl?: string;
   coursesIds?: string[];
 }
 

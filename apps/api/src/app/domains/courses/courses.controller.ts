@@ -31,7 +31,7 @@ export class CoursesController {
 
   @Post()
   async create(@Body() dto: CreateCoursePayloadDto, @Req() request: any) {
-    const user = request.user;
+    const user = request.user;    
     return this.commandBus.execute(new CreateCourse(dto, user));
   }
 
