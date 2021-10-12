@@ -2,11 +2,16 @@
   max-width: 1230px;
   margin: auto !important;
   overflow: hidden;
+  .toggle-group {
+    margin-left: 10px;
+
+    height: 46px;
+  }
   .filter-button {
     text-transform: none;
     position: sticky;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 17px;
     background-color: white;
     border: 1px solid #1c1d1f;
     border-radius: 0%;
