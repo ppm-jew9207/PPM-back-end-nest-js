@@ -124,7 +124,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
       <div className="course-list">
         <Grid container>
           <Grid item md={4}>
-            <Link>
+            <Link href={`/courses/${props.id}`}>
               <img
                 className="course-image full"
                 src={
@@ -146,12 +146,16 @@ export function SharedCourseList(props: SharedCourseListProps) {
               </Grid>
               <Grid item md={10}>
                 <Typography>
-                  <span className="author">{`
+                  <a href={`/mentor/${props.author._id}`}>
+                    <span className="author">{`
                   ${props.author.firstName || ''} ${
-                    props.author.lastName || ''
-                  } `}</span>
+                      props.author.lastName || ''
+                    } `}</span>
+                  </a>
                   posted on
-                  <span className="title">{` ${props.title}`}</span>
+                  <a href={`/courses/${props.id}`}>
+                    <span className="title">{` ${props.title}`}</span>
+                  </a>
                 </Typography>
                 <Typography className="created-at">{`${timeCalculator(
                   props.createAt
