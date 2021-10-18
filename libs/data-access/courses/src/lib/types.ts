@@ -27,6 +27,7 @@ interface CoursesState {
   readonly course?: CourseType;
   readonly list: CourseType[];
   readonly loading: boolean;
+  readonly count: number;
 }
 
 type AppActions = ActionType<typeof actions>;

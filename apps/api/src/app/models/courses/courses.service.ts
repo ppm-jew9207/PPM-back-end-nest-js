@@ -150,6 +150,7 @@ export class CoursesModelService {
   }
 
   async search(params: searchParams) {
+    /* Search parameters */
     const searchQuery = {
       $or: [
         {
@@ -162,27 +163,8 @@ export class CoursesModelService {
     };
     const regex = new RegExp(params.search, 'i');
 
-    if (params.perPage) {
-      this.perPage = parseInt(params.perPage);
-    }
-    if (params.page) {
-      this.page = parseInt(params.page);
-    }
-
-    return this._model
-      .aggregate([
-        { $match: searchQuery },
-        CATEGORIES_JOIN_QUERY,
-        LEARN_ITEMS_JOIN_QUERY,
-        LESSONS_JOIN_QUERY,
-        COURSES_ID_QUERY,
-        LIKES_JOIN_QUERY,
-      ])
-      .skip(this.perPage * (this.page - 1))
-      .limit(this.perPage);
-  }
-
-  async filter(params: filterParams) {
+    /* Filtering parameters
+    categories, learnItems*/
     let categories,
       learnItems = [];
     let searchQueryCategories = {};
@@ -201,9 +183,7 @@ export class CoursesModelService {
     }
 
     let result = this._model.aggregate([
-      {
-        $match: { _id: { $exists: true } },
-      },
+      { $match: searchQuery },
       { $match: searchQueryCategories },
       { $match: searchQueryLearnItems },
       CATEGORIES_JOIN_QUERY,
@@ -223,6 +203,7 @@ export class CoursesModelService {
     if (params.page) {
       this.page = parseInt(params.page);
     }
+
     return result.skip(this.perPage * (this.page - 1)).limit(this.perPage);
   }
 }

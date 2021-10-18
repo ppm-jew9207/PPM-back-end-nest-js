@@ -16,6 +16,11 @@ const selectCourses = () =>
     return subState.list || [];
   });
 
+const selectCoursesCount = () =>
+  createSelector(selectCoursesState, (subState) => {
+    return subState.count || [];
+  });
+
 const selectLoading = () =>
   createSelector(selectCoursesState, (subState) => {
     return subState.loading || false;
@@ -26,4 +31,4 @@ const selectCourse = () =>
     return subState.course || null;
   });
 
-export { selectCourses, selectCourse, selectLoading };
+export { selectCourses, selectCourse, selectLoading, selectCoursesCount };

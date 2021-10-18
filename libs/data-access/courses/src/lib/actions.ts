@@ -1,9 +1,9 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
 import { CourseType } from './types';
-import { FilterFormData } from '@ppm/common/main';
+import { QueryData } from '@ppm/features/courses';
 
-export function getAll(payload: string) {
+export function getAll(payload: QueryData) {
   return action(ActionTypes.GET_ALL, payload);
 }
 
@@ -119,14 +119,14 @@ export function removeStudentFromCourseFailed(error: Error) {
   return action(ActionTypes.COURSE_REMOVE_STUDENT_FAILED, error);
 }
 
-export function filterCourses(queries: FilterFormData) {
-  return action(ActionTypes.COURSE_FILTER, queries);
+export function loadAllCount(payload: QueryData) {
+  return action(ActionTypes.COURSE_ALL_COUNT, payload);
 }
 
-export function filterCoursesSuccess(result: CourseType[]) {
-  return action(ActionTypes.COURSE_FILTER_SUCCESS, result);
+export function loadAllCountSuccess(result: number) {
+  return action(ActionTypes.COURSE_ALL_COUNT_SUCCESS, result);
 }
 
-export function filterCoursesFailed(error: Error) {
-  return action(ActionTypes.COURSE_FILTER_FAILED, error);
+export function loadAllCountFailed(error: Error) {
+  return action(ActionTypes.COURSE_ALL_COUNT_FAILED, error);
 }

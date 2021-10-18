@@ -34,6 +34,10 @@ export class searchParams {
   perPage: string;
   @ApiPropertyOptional()
   returnCount: boolean;
+  @ApiPropertyOptional()
+  categories: string;
+  @ApiPropertyOptional()
+  learnItems: string;
 }
 
 export class filterParams {
@@ -100,23 +104,16 @@ export class CoursesController {
     );
   }
 
-  @Get(`${PrivateRoutesPath.FILTER}`)
-  @ApiOperation({
-    summary:
-      'Filter courses by parameters. Use IDs in the parameters. To provide multiple use comma for it, e.g.: (12345,12365)',
-  })
-  async findFiltered(
-    @Query() params: filterParams
-  ): Promise<CoursesViewModel[]> {
-    return this.queryBus.execute(new FilterCoursesQuery(params));
-  }
-
   @Get(`${PrivateRoutesPath.GET_BY_ID}`)
   async getById(@Param('id') id: string): Promise<CoursesViewModel> {
     return this.queryBus.execute(new GetCourseQuery(id));
   }
 
   @Get()
+  @ApiOperation({
+    summary:
+      'You can filter courses by categories or learn Items. Use IDs. To provide multiple use comma for it, e.g.: (12345,12365). Search finds records in title and description',
+  })
   async findAll(@Query() params: searchParams): Promise<CoursesViewModel[]> {
     if (!params.search)
       return this.queryBus.execute(new GetCoursesQuery(params));

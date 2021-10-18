@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { SharedCourseCard } from '@ppm/shared/course-card';
 import { SharedFilter, FilterFormData } from '@ppm/shared/filter';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,23 +26,44 @@ import {
   MenuItem,
 } from '@material-ui/core';
 
+export interface QueryData {
+  page?: number;
+  search?: string;
+  rating?: string;
+  topic?: string[];
+  categories?: string[];
+}
+
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
   loading: coursesSelectors.selectLoading(),
   profile: userProfileSelectors.selectUserProfile(),
+  count: coursesSelectors.selectCoursesCount(),
 });
 
 export const FeaturesCourses = () => {
   const dispatch = useDispatch();
-  const { courses, loading, profile } = useSelector(stateSelector);
+  const { courses, loading, profile, count } = useSelector(stateSelector);
   const [coursesState, setCoursesState] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(true);
+  const [queriesState, setQueriesState] = useState({});
 
   const ToggleFilter = () => {
     setIsFilterActive(!isFilterActive);
   };
 
-  const searchQuery = new URLSearchParams(useLocation().search).get('q');
+  let currentPage = 1;
+
+  const fetchMoreData = () => {
+    currentPage++;
+    setQueriesState({ ...queriesState, ...searchQuery, page: currentPage });
+    console.log('load more, page: ' + currentPage);
+    // TODO get next page of results
+  };
+
+  const searchQuery = {
+    search: new URLSearchParams(useLocation().search).get('q') || '',
+  };
 
   const saveClick = (payload: any) => {
     const data = { callback: 'getAll', ...payload };
@@ -73,10 +95,14 @@ export const FeaturesCourses = () => {
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
     dispatch(coursesActions.getAll(searchQuery));
+    dispatch(coursesActions.loadAllCount(searchQuery));
   }, []);
 
-  const filterChanges = (queries: FilterFormData) => {
-    dispatch(coursesActions.filterCourses(queries));
+  const filterChanges = (queries: QueryData) => {
+    queries = { ...queries, ...searchQuery };
+    setQueriesState(queries);
+    dispatch(coursesActions.getAll(queries));
+    dispatch(coursesActions.loadAllCount(queries));
   };
 
   return (
@@ -111,42 +137,51 @@ export const FeaturesCourses = () => {
           className="course-cards"
         >
           <div>
-            {coursesState?.length &&
-              coursesState.map((course, index) => (
-                <div key={course._id}>
-                  <SharedCourseCard
-                    id={course._id}
-                    title={course.title}
-                    author={{
-                      _id: course.creator._id,
-                      firstName: course.creator.name,
-                      lastName: '',
-                      img: course.creator.imageUrl,
-                    }}
-                    createAt={course.createdAt}
-                    description={course.description}
-                    like={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Like
-                          ).length
-                        : 0
-                    }
-                    shared={
-                      course.likesList
-                        ? course.likesList.filter(
-                            (like: LikeType) => like.type === LikeEnum.Share
-                          ).length
-                        : 0
-                    }
-                    imgUrl={course.imageUrl}
-                    onSaveClick={saveClick}
-                    editable={profile?._id === course.creator._id}
-                    onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                    onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-                  />
-                </div>
-              ))}
+            <InfiniteScroll
+              dataLength={coursesState?.length}
+              hasMore={count > coursesState?.length}
+              loader={<CircularProgress />}
+              next={fetchMoreData}
+            >
+              {coursesState?.length &&
+                coursesState.map((course, index) => (
+                  <div key={course._id}>
+                    <SharedCourseCard
+                      id={course._id}
+                      title={course.title}
+                      author={{
+                        _id: course.creator._id,
+                        firstName: course.creator.name,
+                        lastName: '',
+                        img: course.creator.imageUrl,
+                      }}
+                      createAt={course.createdAt}
+                      description={course.description}
+                      like={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Like
+                            ).length
+                          : 0
+                      }
+                      shared={
+                        course.likesList
+                          ? course.likesList.filter(
+                              (like: LikeType) => like.type === LikeEnum.Share
+                            ).length
+                          : 0
+                      }
+                      imgUrl={course.imageUrl}
+                      onSaveClick={saveClick}
+                      editable={profile?._id === course.creator._id}
+                      onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                      onSharedClick={() =>
+                        likeClick(course._id, LikeEnum.Share)
+                      }
+                    />
+                  </div>
+                ))}
+            </InfiniteScroll>
           </div>
         </Grid>
       </Grid>
