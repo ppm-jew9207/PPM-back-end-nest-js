@@ -19,8 +19,8 @@ import {
   updateFailed,
   addStudentToCourseFailed,
   removeStudentFromCourseFailed,
-  filterCoursesFailed,
-  filterCoursesSuccess,
+  loadAllCountSuccess,
+  loadAllCountFailed,
 } from './actions';
 import {
   post,
@@ -113,19 +113,30 @@ export function* getCourseById(actions) {
   }
 }
 
-export function* getAll(search?) {
+export function* getAll(action) {
   try {
-    let path = `/api/${PrivateRoutesPath.COURSES}/`;
-    if (search?.payload) {
-      path += `?search=${search.payload}`;
-    }
-    const result = yield call(get, path);
+    const path = `/api/${PrivateRoutesPath.COURSES}?`;
+    const result = yield call(getByQueryParams, path, action.payload);
     if (!Array.isArray(result)) {
       throw new Error('Failed load courses');
     }
     yield put(getAllSuccess({ list: result }));
   } catch (error) {
     yield put(getAllFailed(error));
+  }
+}
+
+export function* getAllCount(actions) {
+  try {
+    let query = { ...actions?.payload, returnCount: 'true' };
+    let path = `/api/${PrivateRoutesPath.COURSES}?`;
+    const result = yield call(getByQueryParams, path, query);
+    if (!Array.isArray(result)) {
+      throw new Error('Failed load courses count');
+    }
+    yield put(loadAllCountSuccess(result[0].count));
+  } catch (error) {
+    yield put(loadAllCountFailed(error));
   }
 }
 
@@ -270,20 +281,16 @@ export function* removeStudentFromCourse(actions) {
   }
 }
 
-export function* filterCourses(actions) {
+export function* loadMore(action) {
   try {
-    const path = `/api/${PrivateRoutesPath.COURSES}/filter?`;
-    const result = yield call(getByQueryParams, path, actions.payload);
-    yield put(filterCoursesSuccess(result));
+    const path = `/api/${PrivateRoutesPath.COURSES}?`;
+    const result = yield call(getByQueryParams, path, action.payload);
+    if (!Array.isArray(result)) {
+      throw new Error('Failed load courses');
+    }
+    yield put(getAllSuccess({ list: result }));
   } catch (error) {
-    yield put(filterCoursesFailed(error));
-    console.log(error);
-    yield put(
-      snackbarActions.setMessage({
-        variant: MessagesStatus.ERROR,
-        message: 'filter failed.',
-      })
-    );
+    yield put(getAllFailed(error));
   }
 }
 
@@ -299,7 +306,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_ADD, addCourses);
   yield takeEvery(ActionTypes.COURSE_ADD_STUDENT, addStudentToCourse);
   yield takeEvery(ActionTypes.COURSE_REMOVE_STUDENT, removeStudentFromCourse);
-  yield takeEvery(ActionTypes.COURSE_FILTER, filterCourses);
+  yield takeEvery(ActionTypes.COURSE_ALL_COUNT, getAllCount);
 }
 
 export default coursesSaga;
