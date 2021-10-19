@@ -62,5 +62,6 @@ module.exports = {
     '<rootDir>/libs/data-access/mentors',
     '<rootDir>/libs/features/mentor-courses',
     '<rootDir>/libs/shared/filter',
+    '<rootDir>/libs/shared/course-list',
   ],
 };

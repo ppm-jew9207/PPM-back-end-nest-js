@@ -126,7 +126,8 @@
       "@ppm/features/mentor-courses": [
         "libs/features/mentor-courses/src/index.ts"
       ],
-      "@ppm/shared/filter": ["libs/shared/filter/src/index.ts"]
+      "@ppm/shared/filter": ["libs/shared/filter/src/index.ts"],
+      "@ppm/shared/course-list": ["libs/shared/course-list/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
