@@ -61,7 +61,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
           >
             <Icon aria-label="location" className="profile-card-location-icon">
               <RoomIcon />
-            </Icon>{' '}
+            </Icon>
             {props.mentorLocation}
           </Typography>
         )}
@@ -85,7 +85,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
             Get Connected
           </Typography>
         )}
-        <CardActions>
+        <CardActions className="social-links">
           {!!props.socialLinks &&
             !!props.socialLinks.length &&
             props.socialLinks.map((socialLink) => (

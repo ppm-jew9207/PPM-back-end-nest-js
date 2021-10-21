@@ -31,22 +31,22 @@ const SOCIAL_LINKS = [
   {
     icon: 'facebook',
     link: '',
-    color: '#3b5999',
+    color: '#9b9c99',
   },
   {
     icon: 'twitter',
     link: '',
-    color: '#55acee',
+    color: '#9b9c99',
   },
   {
     icon: 'linkedin',
     link: '',
-    color: '#55acee',
+    color: '#9b9c99',
   },
   {
     icon: 'instagram',
     link: '',
-    color: '#55acee',
+    color: '#9b9c99',
   },
 ];
 

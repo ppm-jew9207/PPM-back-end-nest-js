@@ -12,6 +12,7 @@ import {
   DialogContent,
   Drawer,
   IconButton,
+  Grid,
 } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -25,19 +26,25 @@ import {
   categoriesSelectors,
 } from '@ppm/data-access/categories';
 import { lessonsActions, lessonsSelectors } from '@ppm/data-access/lessons';
-import { LikeEnum, likesActions } from '@ppm/data-access/likes';
+import { likesActions } from '@ppm/data-access/likes';
+import { LikeEnum, LikeType } from 'libs/data-access/likes/src/lib/types';
 import {
   countriesApiActions,
   countriesApiSelectors,
 } from '@ppm/data-access/countries-api';
 import { SharedCourseCard } from '@ppm/shared/course-card';
+import { SharedCourseList } from '@ppm/shared/course-list';
 import {
   CourseData,
   SharedCreateCourseForm,
 } from '@ppm/shared/create-course-form';
-
 import { Close as CloseIcon } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import Crop32Icon from '@material-ui/icons/Crop32';
 
 const stateSelector = createStructuredSelector({
   profile: userProfileSelectors.selectUserProfile(),
@@ -65,7 +72,13 @@ export const FeaturesProfile = (props) => {
   } = useSelector(stateSelector);
   const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
   const [isAddCourseDialogOpen, setIsAddCourseDialogOpen] = useState(false);
-  // openAddCourseDialog;
+  const [courseElement, setCourseElement] = React.useState('list');
+
+  const handleCourseCardChange = (event, newCourseElement) => {
+    if (newCourseElement !== null) {
+      setCourseElement(newCourseElement);
+    }
+  };
 
   const handleClose = () => {
     setIsProfileDialogOpen(false);
@@ -142,25 +155,127 @@ export const FeaturesProfile = (props) => {
 
   return (
     <div className="features-profile">
-      <div className="profile-card-container">
-        <SharedUserProfileCard
-          {...data}
-          openProfileDialog={openProfileDialog}
-        />
-      </div>
-      <div className="content">
-        <div className="course-button">
-          <Box mb={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => setIsAddCourseDialogOpen(true)}
-            >
-              Add Course
-            </Button>
-          </Box>
-        </div>
+      <Grid container spacing={2} className="profile-container">
+        <Grid item md={3} className="profile-card">
+          <SharedUserProfileCard
+            {...data}
+            openProfileDialog={openProfileDialog}
+          />
+        </Grid>
 
+        <Grid item md={9} container>
+          <Grid item md container direction="row">
+            <Grid item md={6} className="add-course">
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                onClick={() => setIsAddCourseDialogOpen(true)}
+              >
+                Add Course
+              </Button>
+            </Grid>
+            <Grid item md={6} className="courses-toggle">
+              <Grid container item md justify="flex-end">
+                <ToggleButtonGroup
+                  className="toggle-group"
+                  value={courseElement}
+                  exclusive
+                  onChange={handleCourseCardChange}
+                  aria-label="text alignment"
+                >
+                  <ToggleButton value="list" aria-label="list">
+                    <ListAltIcon />
+                  </ToggleButton>
+                  <ToggleButton value="card" aria-label="card">
+                    <Crop32Icon />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </Grid>
+            <Grid item md={12}>
+              {coursesState?.length &&
+                coursesState.map((course, index) => (
+                  <div key={course._id}>
+                    {courseElement === 'list' && (
+                      <SharedCourseList
+                        categories={course.categories}
+                        id={course._id}
+                        title={course.title}
+                        author={{
+                          _id: course.creator._id,
+                          firstName: course.creator.name,
+                          lastName: '',
+                          img: course.creator.imageUrl,
+                        }}
+                        createAt={course.createdAt}
+                        description={course.description}
+                        like={
+                          course.likesList
+                            ? course.likesList.filter(
+                                (like: LikeType) => like.type === LikeEnum.Like
+                              ).length
+                            : 0
+                        }
+                        shared={
+                          course.likesList
+                            ? course.likesList.filter(
+                                (like: LikeType) => like.type === LikeEnum.Share
+                              ).length
+                            : 0
+                        }
+                        imgUrl={course.imageUrl}
+                        onSaveClick={saveClick}
+                        editable={profile?._id === course.creator._id}
+                        onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                        onSharedClick={() =>
+                          likeClick(course._id, LikeEnum.Share)
+                        }
+                      />
+                    )}
+                    {courseElement === 'card' && (
+                      <SharedCourseCard
+                        id={course._id}
+                        title={course.title}
+                        author={{
+                          _id: course.creator._id,
+                          firstName: course.creator.name,
+                          lastName: '',
+                          img: course.creator.imageUrl,
+                        }}
+                        createAt={course.createdAt}
+                        description={course.description}
+                        like={
+                          course.likesList
+                            ? course.likesList.filter(
+                                (like: LikeType) => like.type === LikeEnum.Like
+                              ).length
+                            : 0
+                        }
+                        shared={
+                          course.likesList
+                            ? course.likesList.filter(
+                                (like: LikeType) => like.type === LikeEnum.Share
+                              ).length
+                            : 0
+                        }
+                        imgUrl={course.imageUrl}
+                        onSaveClick={saveClick}
+                        editable={profile?._id === course.creator._id}
+                        onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
+                        onSharedClick={() =>
+                          likeClick(course._id, LikeEnum.Share)
+                        }
+                      />
+                    )}
+                  </div>
+                ))}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <div className="content">
         <Dialog
           maxWidth="lg"
           open={isAddCourseDialogOpen}
@@ -174,69 +289,34 @@ export const FeaturesProfile = (props) => {
           />
         </Dialog>
 
-        {coursesState.map((course, i) => (
-          <SharedCourseCard
-            id={course._id}
-            key={course._id}
-            title={course.title}
-            author={{
-              _id: course.creator._id,
-              firstName: course.creator.name,
-              lastName: '',
-              img: course.creator.imageUrl,
-            }}
-            createAt={course.createdAt}
-            description={course.description}
-            like={
-              course.likesList
-                ? course.likesList.filter(
-                    (like: any) => like.type === LikeEnum.Like
-                  ).length
-                : 0
-            }
-            shared={
-              course.likesList
-                ? course.likesList.filter(
-                    (like: any) => like.type === LikeEnum.Share
-                  ).length
-                : 0
-            }
-            imgUrl={course.imageUrl}
-            onSaveClick={saveClick}
-            editable={profile?._id === course?.creator?._id}
-            onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-            onSharedClick={() => likeClick(course._id, LikeEnum.Share)}
-          />
-        ))}
+        <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="lg">
+          <DialogContent>
+            <SharedProfileForm
+              onCancel={handleClose}
+              profile={profile}
+              categories={categories}
+              countries={countries}
+              cities={cities}
+              states={states}
+              onSelectCountry={(countryName: string) =>
+                dispatch(countriesApiActions.getStates(countryName))
+              }
+              onSelectState={(stateName: string) =>
+                dispatch(countriesApiActions.getCities(stateName))
+              }
+              onSubmit={(profileData: Profile) => {
+                setIsProfileDialogOpen(false);
+
+                dispatch(userProfileActions.update(profileData));
+              }}
+              onAddCategory={(categoryData: Category) => {
+                dispatch(categoriesActions.create(categoryData));
+                dispatch(categoriesActions.getAll());
+              }}
+            />
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="lg">
-        <DialogContent>
-          <SharedProfileForm
-            onCancel={handleClose}
-            profile={profile}
-            categories={categories}
-            countries={countries}
-            cities={cities}
-            states={states}
-            onSelectCountry={(countryName: string) =>
-              dispatch(countriesApiActions.getStates(countryName))
-            }
-            onSelectState={(stateName: string) =>
-              dispatch(countriesApiActions.getCities(stateName))
-            }
-            onSubmit={(profileData: Profile) => {
-              setIsProfileDialogOpen(false);
-
-              dispatch(userProfileActions.update(profileData));
-            }}
-            onAddCategory={(categoryData: Category) => {
-              dispatch(categoriesActions.create(categoryData));
-              dispatch(categoriesActions.getAll());
-            }}
-          />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
