@@ -99,7 +99,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
                 {socialLink.link === '' ? (
                   <Icon
                     className={`profile-card-social-icon fab fa-${socialLink.icon}`}
-                    style={{ color: 'gray' }}
+                    style={{ color: 'lightgray' }}
                   ></Icon>
                 ) : (
                   <Icon
