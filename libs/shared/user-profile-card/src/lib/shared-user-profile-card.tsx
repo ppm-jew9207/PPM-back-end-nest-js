@@ -91,12 +91,13 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
             props.socialLinks.map((socialLink) => (
               <IconButton
                 key={socialLink.icon}
+                target="_blank"
                 aria-label={socialLink.icon}
-                href={socialLink.link}
+                href={`https://${socialLink.link}`}
                 disabled={!socialLink.link}
                 className="profile-card-social-button"
               >
-                {socialLink.link === '' ? (
+                {socialLink?.link === '' ? (
                   <Icon
                     className={`profile-card-social-icon fab fa-${socialLink.icon}`}
                     style={{ color: 'lightgray' }}
