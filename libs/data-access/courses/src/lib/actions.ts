@@ -130,3 +130,15 @@ export function loadAllCountSuccess(result: number) {
 export function loadAllCountFailed(error: Error) {
   return action(ActionTypes.COURSE_ALL_COUNT_FAILED, error);
 }
+
+export function loadMore(payload: QueryData) {
+  return action(ActionTypes.COURSE_LOAD_MORE, payload);
+}
+
+export function loadMoreSuccess(payload: { list: CourseType[] }) {
+  return action(ActionTypes.COURSE_LOAD_MORE_SUCCESS, payload);
+}
+
+export function loadMoreFailed(error: Error) {
+  return action(ActionTypes.COURSE_LOAD_MORE_FAILED, error);
+}

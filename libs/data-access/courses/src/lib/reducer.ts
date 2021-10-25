@@ -169,6 +169,22 @@ export function coursesReducer(
         ...state,
         loading: false,
       };
+    case ActionTypes.COURSE_LOAD_MORE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionTypes.COURSE_LOAD_MORE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        list: state.list.concat(action.payload.list),
+      };
+    case ActionTypes.COURSE_LOAD_MORE_FAILED:
+      return {
+        ...state,
+        loading: false,
+      };
 
     default:
       return state;
