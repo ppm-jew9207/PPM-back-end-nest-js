@@ -45,6 +45,7 @@ export const FeaturesCourses = () => {
   const [isFilterActive, setIsFilterActive] = useState(true);
   const [queriesState, setQueriesState] = useState({});
   const [courseElement, setCourseElement] = React.useState('list');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleCourseCardChange = (event, newCourseElement) => {
     if (newCourseElement !== null) {
@@ -56,13 +57,8 @@ export const FeaturesCourses = () => {
     setIsFilterActive(!isFilterActive);
   };
 
-  let currentPage = 1;
-
   const fetchMoreData = () => {
-    currentPage++;
-    setQueriesState({ ...queriesState, ...searchQuery, page: currentPage });
-    console.log('load more, page: ' + currentPage);
-    // TODO get next page of results
+    setCurrentPage(currentPage + 1);
   };
 
   const searchQuery = {
@@ -97,6 +93,17 @@ export const FeaturesCourses = () => {
   }, [courses]);
 
   useEffect(() => {
+    setQueriesState({ ...queriesState, ...searchQuery, page: currentPage + 1 });
+    dispatch(
+      coursesActions.loadMore({
+        ...queriesState,
+        ...searchQuery,
+        page: currentPage,
+      })
+    );
+  }, [currentPage]);
+
+  useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
     dispatch(coursesActions.getAll(searchQuery));
     dispatch(coursesActions.loadAllCount(searchQuery));
@@ -108,7 +115,6 @@ export const FeaturesCourses = () => {
     dispatch(coursesActions.getAll(queries));
     dispatch(coursesActions.loadAllCount(queries));
   };
-
   return (
     <>
       {loading && <CircularProgress />}

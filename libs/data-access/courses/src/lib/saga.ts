@@ -21,6 +21,8 @@ import {
   removeStudentFromCourseFailed,
   loadAllCountSuccess,
   loadAllCountFailed,
+  loadMoreSuccess,
+  loadMoreFailed,
 } from './actions';
 import {
   post,
@@ -288,9 +290,9 @@ export function* loadMore(action) {
     if (!Array.isArray(result)) {
       throw new Error('Failed load courses');
     }
-    yield put(getAllSuccess({ list: result }));
+    yield put(loadMoreSuccess({ list: result }));
   } catch (error) {
-    yield put(getAllFailed(error));
+    yield put(loadMoreFailed(error));
   }
 }
 
@@ -307,6 +309,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_ADD_STUDENT, addStudentToCourse);
   yield takeEvery(ActionTypes.COURSE_REMOVE_STUDENT, removeStudentFromCourse);
   yield takeEvery(ActionTypes.COURSE_ALL_COUNT, getAllCount);
+  yield takeEvery(ActionTypes.COURSE_LOAD_MORE, loadMore);
 }
 
 export default coursesSaga;
