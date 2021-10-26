@@ -160,82 +160,91 @@ export const FeaturesCourses = () => {
               loader={<CircularProgress />}
               next={fetchMoreData}
             >
-              {coursesState?.length &&
-                coursesState.map((course, index) => (
-                  <div key={course._id}>
-                    {courseElement === 'list' && (
-                      <SharedCourseList
-                        categories={course.categories}
-                        id={course._id}
-                        title={course.title}
-                        author={{
-                          _id: course.creator._id,
-                          firstName: course.creator.name,
-                          lastName: '',
-                          img: course.creator.imageUrl,
-                        }}
-                        createAt={course.createdAt}
-                        description={course.description}
-                        like={
-                          course.likesList
-                            ? course.likesList.filter(
-                                (like: LikeType) => like.type === LikeEnum.Like
-                              ).length
-                            : 0
-                        }
-                        shared={
-                          course.likesList
-                            ? course.likesList.filter(
-                                (like: LikeType) => like.type === LikeEnum.Share
-                              ).length
-                            : 0
-                        }
-                        imgUrl={course.imageUrl}
-                        onSaveClick={saveClick}
-                        editable={profile?._id === course.creator._id}
-                        onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                        onSharedClick={() =>
-                          likeClick(course._id, LikeEnum.Share)
-                        }
-                      />
-                    )}
-                    {courseElement === 'card' && (
-                      <SharedCourseCard
-                        id={course._id}
-                        title={course.title}
-                        author={{
-                          _id: course.creator._id,
-                          firstName: course.creator.name,
-                          lastName: '',
-                          img: course.creator.imageUrl,
-                        }}
-                        createAt={course.createdAt}
-                        description={course.description}
-                        like={
-                          course.likesList
-                            ? course.likesList.filter(
-                                (like: LikeType) => like.type === LikeEnum.Like
-                              ).length
-                            : 0
-                        }
-                        shared={
-                          course.likesList
-                            ? course.likesList.filter(
-                                (like: LikeType) => like.type === LikeEnum.Share
-                              ).length
-                            : 0
-                        }
-                        imgUrl={course.imageUrl}
-                        onSaveClick={saveClick}
-                        editable={profile?._id === course.creator._id}
-                        onLikeClick={() => likeClick(course._id, LikeEnum.Like)}
-                        onSharedClick={() =>
-                          likeClick(course._id, LikeEnum.Share)
-                        }
-                      />
-                    )}
-                  </div>
-                ))}
+              {coursesState?.length
+                ? coursesState.map((course, index) => (
+                    <div key={course._id}>
+                      {courseElement === 'list' && (
+                        <SharedCourseList
+                          categories={course.categories}
+                          id={course._id}
+                          title={course.title}
+                          author={{
+                            _id: course.creator._id,
+                            firstName: course.creator.name,
+                            lastName: '',
+                            img: course.creator.imageUrl,
+                          }}
+                          createAt={course.createdAt}
+                          description={course.description}
+                          like={
+                            course.likesList
+                              ? course.likesList.filter(
+                                  (like: LikeType) =>
+                                    like.type === LikeEnum.Like
+                                ).length
+                              : 0
+                          }
+                          shared={
+                            course.likesList
+                              ? course.likesList.filter(
+                                  (like: LikeType) =>
+                                    like.type === LikeEnum.Share
+                                ).length
+                              : 0
+                          }
+                          imgUrl={course.imageUrl}
+                          onSaveClick={saveClick}
+                          editable={profile?._id === course.creator._id}
+                          onLikeClick={() =>
+                            likeClick(course._id, LikeEnum.Like)
+                          }
+                          onSharedClick={() =>
+                            likeClick(course._id, LikeEnum.Share)
+                          }
+                        />
+                      )}
+                      {courseElement === 'card' && (
+                        <SharedCourseCard
+                          id={course._id}
+                          title={course.title}
+                          author={{
+                            _id: course.creator._id,
+                            firstName: course.creator.name,
+                            lastName: '',
+                            img: course.creator.imageUrl,
+                          }}
+                          createAt={course.createdAt}
+                          description={course.description}
+                          like={
+                            course.likesList
+                              ? course.likesList.filter(
+                                  (like: LikeType) =>
+                                    like.type === LikeEnum.Like
+                                ).length
+                              : 0
+                          }
+                          shared={
+                            course.likesList
+                              ? course.likesList.filter(
+                                  (like: LikeType) =>
+                                    like.type === LikeEnum.Share
+                                ).length
+                              : 0
+                          }
+                          imgUrl={course.imageUrl}
+                          onSaveClick={saveClick}
+                          editable={profile?._id === course.creator._id}
+                          onLikeClick={() =>
+                            likeClick(course._id, LikeEnum.Like)
+                          }
+                          onSharedClick={() =>
+                            likeClick(course._id, LikeEnum.Share)
+                          }
+                        />
+                      )}
+                    </div>
+                  ))
+                : ''}
             </InfiniteScroll>
           </div>
         </Grid>
