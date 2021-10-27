@@ -194,7 +194,7 @@ export const FeaturesProfile = (props) => {
               </Grid>
             </Grid>
             <Grid item md={12}>
-              {coursesState?.length &&
+              {!!coursesState?.length &&
                 coursesState.map((course, index) => (
                   <div key={course._id}>
                     {courseElement === 'list' && (
