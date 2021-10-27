@@ -14,6 +14,10 @@ $location-icon-color: rgba(0, 0, 0, 0.54);
     position: absolute;
     right: 15px;
     cursor: pointer;
+    color: #9b9c99;
+    &:hover {
+      color: #4b89c4;
+    }
   }
 
   & > div {
@@ -46,10 +50,13 @@ $location-icon-color: rgba(0, 0, 0, 0.54);
   }
   &-social {
     &-button[disabled] svg {
-      color: rgba(0, 0, 0, 0.26) !important;
+      color: rgba(206, 206, 206, 0.26) !important;
     }
     &-icon {
       font-size: 32px !important;
     }
+  }
+  .social-links {
+    padding: 21px;
   }
 }

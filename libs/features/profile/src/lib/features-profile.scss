@@ -1,16 +1,11 @@
-.features-profile {
-  display: flex;
-  flex-direction: row;
-  padding: 2rem;
-  .content {
-    flex: 1;
-    padding-left: 2rem;
-    overflow: auto;
-  }
-  .profile-card-container > div {
-    margin-top: 0;
-  }
-  .advert-button {
-    margin-bottom: 15px;
+.profile-container {
+  max-width: 1230px;
+  margin: auto !important;
+  overflow: hidden;
+
+  .add-course,
+  .courses-toggle {
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 }

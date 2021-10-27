@@ -31,22 +31,22 @@ const SOCIAL_LINKS = [
   {
     icon: 'facebook',
     link: '',
-    color: '#3b5999',
+    color: '#3b5998',
   },
   {
     icon: 'twitter',
     link: '',
-    color: '#55acee',
+    color: '#00acee',
   },
   {
     icon: 'linkedin',
     link: '',
-    color: '#55acee',
+    color: '#0e76a8',
   },
   {
     icon: 'instagram',
     link: '',
-    color: '#55acee',
+    color: '#8134af',
   },
 ];
 
@@ -673,12 +673,12 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <div className="text-column">
             <Box my={3}>
               <TextField
-                className="linkedin"
-                id="linkedin"
-                name="linkedin"
+                className="twitter"
+                id="twitter"
+                name="twitter"
                 type="text"
                 variant="outlined"
-                label="LinkedIn"
+                label="Twitter"
                 inputRef={register}
                 fullWidth
                 defaultValue={
@@ -696,12 +696,12 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
           <div className="text-column">
             <Box my={3}>
               <TextField
-                className="twitter"
-                id="twitter"
-                name="twitter"
+                className="linkedin"
+                id="linkedin"
+                name="linkedin"
                 type="text"
                 variant="outlined"
-                label="Twitter"
+                label="LinkedIn"
                 inputRef={register}
                 fullWidth
                 defaultValue={

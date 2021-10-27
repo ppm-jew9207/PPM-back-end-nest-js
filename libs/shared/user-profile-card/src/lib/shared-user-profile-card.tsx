@@ -61,7 +61,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
           >
             <Icon aria-label="location" className="profile-card-location-icon">
               <RoomIcon />
-            </Icon>{' '}
+            </Icon>
             {props.mentorLocation}
           </Typography>
         )}
@@ -85,21 +85,28 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
             Get Connected
           </Typography>
         )}
-        <CardActions>
-          {!!props.socialLinks &&
-            !!props.socialLinks.length &&
+        <CardActions className="social-links">
+          {!!props?.socialLinks?.length &&
             props.socialLinks.map((socialLink) => (
               <IconButton
                 key={socialLink.icon}
+                target="_blank"
                 aria-label={socialLink.icon}
-                href={socialLink.link}
+                href={`https://${socialLink.link}`}
                 disabled={!socialLink.link}
                 className="profile-card-social-button"
               >
-                <Icon
-                  className={`profile-card-social-icon fab fa-${socialLink.icon}`}
-                  style={{ color: socialLink.color }}
-                ></Icon>
+                {!socialLink?.link ? (
+                  <Icon
+                    className={`profile-card-social-icon fab fa-${socialLink.icon}`}
+                    style={{ color: 'lightgray' }}
+                  ></Icon>
+                ) : (
+                  <Icon
+                    className={`profile-card-social-icon fab fa-${socialLink.icon}`}
+                    style={{ color: socialLink.color }}
+                  ></Icon>
+                )}
               </IconButton>
             ))}
         </CardActions>
