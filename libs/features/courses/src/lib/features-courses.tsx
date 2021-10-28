@@ -117,9 +117,6 @@ export const FeaturesCourses = () => {
   };
   return (
     <>
-      {loading && <CircularProgress />}
-      {!coursesState && <div className="no-items">No courses added...</div>}
-
       <Grid container spacing={1} className="courses-container">
         <Grid item md={isFilterActive === true ? 3 : 2}>
           <div className="fixed">
@@ -166,7 +163,11 @@ export const FeaturesCourses = () => {
               loader={<CircularProgress />}
               next={fetchMoreData}
             >
-              {coursesState?.length &&
+              {loading && <CircularProgress />}
+              {!coursesState && (
+                <div className="no-items">No courses added...</div>
+              )}
+              {!!coursesState?.length &&
                 coursesState.map((course, index) => (
                   <div key={course._id}>
                     {courseElement === 'list' && (
