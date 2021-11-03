@@ -13,6 +13,7 @@ import {
   Drawer,
   IconButton,
   Grid,
+  CircularProgress,
 } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -194,6 +195,10 @@ export const FeaturesProfile = (props) => {
               </Grid>
             </Grid>
             <Grid item md={12}>
+              {loading && <CircularProgress />}
+              {!coursesState && (
+                <div className="no-items">No courses added...</div>
+              )}
               {!!coursesState?.length &&
                 coursesState.map((course, index) => (
                   <div key={course._id}>
