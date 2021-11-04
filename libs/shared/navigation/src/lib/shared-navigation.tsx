@@ -3,6 +3,7 @@ import './shared-navigation.scss';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Paper from '@material-ui/core/Paper';
@@ -41,7 +42,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
     <AppBar className="navigation-bar" elevation={2} position="sticky">
       <Toolbar>
         <Typography className="logo">
-          <a href="/">PPM</a>
+          <RouterLink to="/">PPM</RouterLink>
         </Typography>
         <Box display="flex" flexGrow={1} ml={2}>
           {isLoggedIn && (
@@ -49,9 +50,10 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
               {props.buttons.map((button) => (
                 <Link
                   className="menu-items"
+                  component={RouterLink}
                   underline="none"
                   key={button.path}
-                  href={button.path}
+                  to={button.path}
                   onClick={() => button.onClick}
                 >
                   <Button disableRipple className="navigation-button">
@@ -93,14 +95,14 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
           <>
             <Box mr={1}>
               <div className="log-in">
-                <Link href="/login">
+                <Link component={RouterLink} to="/login">
                   <Button>Log In</Button>
                 </Link>
               </div>
             </Box>
             <Box mr={1}>
               <div className="sign-up">
-                <Link href="/registry">
+                <Link component={RouterLink} to="/registry">
                   <Button>Sign Up</Button>
                 </Link>
               </div>
@@ -109,7 +111,7 @@ export const SharedNavigation = (props: SharedNavigationProps) => {
         )}
         {isLoggedIn && (
           <Box className="user-profile">
-            <Link href="/user">
+            <Link component={RouterLink} to="/user">
               {props.profile?.photo ? (
                 <img src={props.profile.photo} alt="profilePhoto" />
               ) : (

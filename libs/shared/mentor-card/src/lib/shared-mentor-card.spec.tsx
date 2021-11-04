@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import { MentorCard } from './shared-mentor-card';
 
 const mentorImage = 'https://placekitten.com/300/300';
@@ -27,7 +27,11 @@ const data = {
 
 describe(' SharedUserProfileCard', () => {
   it('should render successfully', () => {
-    const result = render(<MentorCard {...data} />);
+    const result = render(
+      <Router>
+        <MentorCard {...data} />
+      </Router>
+    );
     expect(result).toBeTruthy();
   });
 });

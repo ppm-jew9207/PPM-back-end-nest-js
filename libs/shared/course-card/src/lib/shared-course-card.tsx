@@ -131,13 +131,13 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
           </button>
 
           <div className="card-title">
-            <a href="url" onClick={() => props.onViewClick(props.author._id)}>
+            <Link to="url" onClick={() => props.onViewClick(props.author._id)}>
               <span>
                 {`
                   ${props.author.firstName || ''} ${props.author.lastName || ''}
                 `}
               </span>
-            </a>
+            </Link>
             <span>
               posted on&nbsp;
               <Link className="title" to={`/courses/${props.id}`}>
@@ -191,11 +191,12 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
             <div>{props.shared}</div>
           </Button>
           <Button
+            component={Link}
             variant="outlined"
             color="primary"
             className="rightButton"
             startIcon={<MoreIcon />}
-            href={`/courses/${props.id}`}
+            to={`/courses/${props.id}`}
           >
             <p>Read More</p>
           </Button>
@@ -221,7 +222,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
           </button>
 
           <div className="card-title">
-            <a href="url" onClick={() => props.onViewClick(props.author._id)}>
+            <Link to="url" onClick={() => props.onViewClick(props.author._id)}>
               <span>
                 {`
                     ${props.author.firstName || ''} ${
@@ -229,7 +230,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
                 }
                   `}
               </span>
-            </a>
+            </Link>
             <span>
               {`posted on `}
               <TextField

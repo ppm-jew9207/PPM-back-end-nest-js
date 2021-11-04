@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { Person as PersonIcon, Room as RoomIcon } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import './shared-mentor-card.scss';
 
 export interface MentorCardProps {
@@ -28,7 +29,7 @@ export interface SocialLink {
 export function MentorCard(props: MentorCardProps) {
   return (
     <Card className="mentor-card">
-      <a href={props.url} className="mentor-card-link">
+      <Link to={props.url} className="mentor-card-link">
         <CardActionArea>
           <CardMedia
             className="mentor-media"
@@ -68,7 +69,7 @@ export function MentorCard(props: MentorCardProps) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      </a>
+      </Link>
       <CardActions>
         {!!props.socialLinks &&
           !!props.socialLinks.length &&
