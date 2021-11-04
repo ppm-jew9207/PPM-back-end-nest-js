@@ -4,19 +4,17 @@ import {
   Typography,
   TextField,
   Grid,
-  FormControl,
-  Select,
-  MenuItem,
   Link,
   Chip,
 } from '@material-ui/core';
-
+import { Link as RouterLink } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import moment from 'moment';
 import {
   Category,
+  Router,
   SystemUpdateAlt as SystemUpdateAltIcon,
 } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
@@ -124,7 +122,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
       <div className="course-list">
         <Grid container>
           <Grid item md={4}>
-            <Link href={`/courses/${props.id}`}>
+            <Link component={RouterLink} to={`/courses/${props.id}`}>
               <img
                 className="course-image full"
                 src={
@@ -146,16 +144,16 @@ export function SharedCourseList(props: SharedCourseListProps) {
               </Grid>
               <Grid item md={10}>
                 <Typography>
-                  <a href={`/mentor/${props.author._id}`}>
+                  <RouterLink to={`/mentor/${props.author._id}`}>
                     <span className="author">{`
                   ${props.author.firstName || ''} ${
                       props.author.lastName || ''
                     } `}</span>
-                  </a>
+                  </RouterLink>
                   posted on
-                  <a href={`/courses/${props.id}`}>
+                  <RouterLink to={`/courses/${props.id}`}>
                     <span className="title">{` ${props.title}`}</span>
-                  </a>
+                  </RouterLink>
                 </Typography>
                 <Typography className="created-at">{`${timeCalculator(
                   props.createAt
@@ -222,7 +220,8 @@ export function SharedCourseList(props: SharedCourseListProps) {
                     size="small"
                     color="primary"
                     startIcon={<MoreIcon />}
-                    href={`/courses/${props.id}`}
+                    component={RouterLink}
+                    to={`/courses/${props.id}`}
                   >
                     Read More
                   </Button>
@@ -360,7 +359,8 @@ export function SharedCourseList(props: SharedCourseListProps) {
                     size="small"
                     color="primary"
                     startIcon={<MoreIcon />}
-                    href={`/courses/${props.id}`}
+                    component={RouterLink}
+                    to={`/courses/${props.id}`}
                   >
                     Read More
                   </Button>

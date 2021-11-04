@@ -3,6 +3,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 export interface Items {
   _id: string;
@@ -46,7 +47,7 @@ export const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
         {props.items.map((link) => (
           <div key={link._id}>
             <MenuItem onClick={handleClose}>
-              <Link href={link.path}>
+              <Link component={RouterLink} to={link.path}>
                 <div className="container">
                   <div>{link.title}</div>
                   <div>{link.timeStamp}</div>
