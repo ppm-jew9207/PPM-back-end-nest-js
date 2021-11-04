@@ -17,7 +17,13 @@ export const SharedForgotPasswordForm = (
   const { handleSubmit, register, errors } = useForm();
 
   return (
-    <Box maxWidth={500} display="flex" flexDirection="column" mx="auto">
+    <Box
+      maxWidth={500}
+      display="flex"
+      flexDirection="column"
+      mx="auto"
+      className="forgot-password-container"
+    >
       <Typography className="header" component="h1" variant="h5">
         {props.title}
         <Typography component="small" display="block">

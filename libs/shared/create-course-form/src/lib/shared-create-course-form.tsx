@@ -15,6 +15,8 @@ import {
   Checkbox,
   Chip,
   FormHelperText,
+  Grid,
+  Divider,
 } from '@material-ui/core';
 import './shared-create-course-form.scss';
 
@@ -159,103 +161,109 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
   };
 
   return (
-    <Box
-      maxWidth={500}
-      display="flex"
-      flexDirection="column"
-      mx="auto"
-      className="course-form"
-    >
-      <Typography className="header" component="h1" variant="h5">
-        New Course
-      </Typography>
-      <form autoComplete="off" onSubmit={handleSubmit(createCourseHandler)}>
-        <div className="inner-container">
-          <div className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}>
-            <TextField
-              inputRef={register({})}
-              type="file"
-              id="file-browser-input"
-              name="courseImage"
-              onDragOver={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              onDrop={onFileLoad.bind(this)}
-              onChange={onFileLoad.bind(this)}
+    <form autoComplete="off" onSubmit={handleSubmit(createCourseHandler)}>
+      <div className="course-form-container">
+        <Grid container spacing={1}>
+          <Grid item md={12}>
+            <Typography className="header" component="h1" variant="h5">
+              New Course
+            </Typography>
+            <Divider />
+          </Grid>
+
+          <Grid item md={12}>
+            <Controller
+              as={
+                <TextField
+                  error={!!errors.title}
+                  placeholder="Title"
+                  variant="outlined"
+                  margin="normal"
+                  id="standard-basic"
+                  fullWidth
+                  label={labels?.titleInputLabel}
+                  type="text"
+                  className="header"
+                  onChange={(event) =>
+                    setCourse({ ...course, title: event.target.value })
+                  }
+                />
+              }
+              name="title"
+              control={control}
+              defaultValue={(course && course.title) || ''}
+              rules={{ required: true }}
             />
-            <div className="files-preview-container">
-              <img
-                className="files-preview-container__image"
-                src={(!!uploadedImg && uploadedImg.toString()) || ''}
-                alt=""
+            <FormHelperText style={{ color: '#f44336' }}>
+              {errors.title ? 'This field is required' : ''}
+            </FormHelperText>
+          </Grid>
+          <Grid item md={12}>
+            <Controller
+              as={
+                <TextField
+                  error={!!errors.description}
+                  placeholder="Description"
+                  variant="outlined"
+                  rowsMax={6}
+                  margin="normal"
+                  fullWidth
+                  label={labels?.categoryInputLabel}
+                  type="text"
+                  className="description"
+                  onChange={(event) =>
+                    setCourse({ ...course, description: event.target.value })
+                  }
+                  multiline
+                  rows={2}
+                />
+              }
+              name="description"
+              control={control}
+              defaultValue={(course && course.description) || ''}
+              rules={{ required: true }}
+            />
+            <FormHelperText style={{ color: '#f44336' }}>
+              {errors.description ? 'This field is required' : ''}
+            </FormHelperText>
+          </Grid>
+          <Grid item md={12}>
+            <div
+              className={`draggable-container ${!uploadedImg ? 'empty' : ''}`}
+            >
+              <TextField
+                inputRef={register({})}
+                type="file"
+                id="file-browser-input"
+                name="courseImage"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={onFileLoad.bind(this)}
+                onChange={onFileLoad.bind(this)}
               />
+              <div className="files-preview-container">
+                <img
+                  className="files-preview-container__image"
+                  src={(!!uploadedImg && uploadedImg.toString()) || ''}
+                  alt=""
+                />
+              </div>
+              <div className="helper-text">
+                <Typography
+                  variant="body1"
+                  component="p"
+                  align="center"
+                  gutterBottom
+                >
+                  Drag and Drop Images Here
+                </Typography>
+                <SystemUpdateAltIcon display="inline" />
+              </div>
             </div>
-            <div className="helper-text">
-              <Typography
-                variant="body1"
-                component="p"
-                align="center"
-                gutterBottom
-              >
-                Drag and Drop Images Here
-              </Typography>
-              <SystemUpdateAltIcon display="inline" />
-            </div>
-          </div>
-        </div>
-        <Controller
-          as={
-            <TextField
-              error={!!errors.title}
-              placeholder="Title"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              label={labels?.titleInputLabel}
-              type="text"
-              className="header"
-              onChange={(event) =>
-                setCourse({ ...course, title: event.target.value })
-              }
-            />
-          }
-          name="title"
-          control={control}
-          defaultValue={(course && course.title) || ''}
-          rules={{ required: true }}
-        />
-        <FormHelperText style={{ color: '#f44336' }}>
-          {errors.title ? 'This field is required' : ''}
-        </FormHelperText>
-        <Controller
-          as={
-            <TextField
-              error={!!errors.description}
-              placeholder="Description"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              label={labels?.categoryInputLabel}
-              type="text"
-              className="description"
-              onChange={(event) =>
-                setCourse({ ...course, description: event.target.value })
-              }
-              multiline
-              rows={2}
-            />
-          }
-          name="description"
-          control={control}
-          defaultValue={(course && course.description) || ''}
-          rules={{ required: true }}
-        />
-        <FormHelperText style={{ color: '#f44336' }}>
-          {errors.description ? 'This field is required' : ''}
-        </FormHelperText>
-        <div className="text-row">
-          <div className="text-column">
+          </Grid>
+          <Grid item md={6}>
             <Controller
               as={
                 <TextField
@@ -267,9 +275,13 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                   type="text"
                   className="prerequisites"
                   onChange={(event) =>
-                    setCourse({ ...course, prerequisites: event.target.value })
+                    setCourse({
+                      ...course,
+                      prerequisites: event.target.value,
+                    })
                   }
                   multiline
+                  fullWidth
                 />
               }
               name="prerequisites"
@@ -280,8 +292,8 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             <FormHelperText style={{ color: '#f44336' }}>
               {errors.prerequisites ? 'This field is required' : ''}
             </FormHelperText>
-          </div>
-          <div className="text-column">
+          </Grid>
+          <Grid item md={6}>
             <Controller
               as={
                 <TextField
@@ -296,6 +308,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                     setCourse({ ...course, learning: event.target.value })
                   }
                   multiline
+                  fullWidth
                 />
               }
               name="learning"
@@ -306,109 +319,112 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             <FormHelperText style={{ color: '#f44336' }}>
               {errors.learning ? 'This field is required' : ''}
             </FormHelperText>
-          </div>
-        </div>
-        <Box my={3}>
-          <FormControl variant="outlined" fullWidth error={!!errors.categories}>
-            <InputLabel id="categoriesLabel">Categories *</InputLabel>
-            <Controller
-              name="categories"
-              defaultValue={[]}
-              control={control}
-              rules={{ validate: (value) => validateCategories(value) }}
-              onChange={([selected]) => {
-                return selected;
-              }}
-              as={
-                <Select
-                  id="categories"
-                  label="Categories"
-                  name="categories"
-                  value={categories}
-                  multiple
-                  input={<Input id="select-multiple-chip" />}
-                  inputRef={register}
-                  renderValue={renderCategoryValue}
-                  error={!!errors.categories}
-                >
-                  {props.categories &&
-                    props.categories.map((category: Category) => (
-                      <MenuItem key={category._id} value={category.value}>
-                        {category.title}
-                      </MenuItem>
-                    ))}
-                </Select>
-              }
+          </Grid>
+          <Grid item md={12}>
+            <FormControl
+              variant="outlined"
               fullWidth
-            />
-            <FormHelperText>
-              {errors.categories ? 'This field is required' : ''}
-            </FormHelperText>
-          </FormControl>
-        </Box>
-        <Box my={3}>
-          <FormControl variant="outlined" fullWidth error={!!errors.lessons}>
-            <InputLabel id="lessonsLabel">Lessons *</InputLabel>
-            <Controller
-              name="lessons"
-              defaultValue={[]}
-              control={control}
-              rules={{ validate: (value) => validateLessons(value) }}
-              onChange={([selected]) => {
-                return selected;
+              error={!!errors.categories}
+            >
+              <InputLabel id="categoriesLabel">Categories *</InputLabel>
+              <Controller
+                name="categories"
+                defaultValue={[]}
+                control={control}
+                rules={{ validate: (value) => validateCategories(value) }}
+                onChange={([selected]) => {
+                  return selected;
+                }}
+                as={
+                  <Select
+                    id="categories"
+                    label="Categories"
+                    name="categories"
+                    value={categories}
+                    multiple
+                    input={<Input id="select-multiple-chip" />}
+                    inputRef={register}
+                    renderValue={renderCategoryValue}
+                    error={!!errors.categories}
+                  >
+                    {props.categories &&
+                      props.categories.map((category: Category) => (
+                        <MenuItem key={category._id} value={category.value}>
+                          {category.title}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                }
+                fullWidth
+                multiline
+              />
+              <FormHelperText>
+                {errors.categories ? 'This field is required' : ''}
+              </FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item md={12}>
+            <FormControl variant="outlined" fullWidth error={!!errors.lessons}>
+              <InputLabel id="lessonsLabel">Lessons *</InputLabel>
+              <Controller
+                name="lessons"
+                defaultValue={[]}
+                control={control}
+                rules={{ validate: (value) => validateLessons(value) }}
+                onChange={([selected]) => {
+                  return selected;
+                }}
+                as={
+                  <Select
+                    id="lessons"
+                    label="Lessons"
+                    name="lessons"
+                    value={lessons}
+                    multiple
+                    input={<Input id="select-multiple-chip" />}
+                    inputRef={register}
+                    renderValue={renderLessonsValue}
+                    error={!!errors.lessons}
+                  >
+                    {props.lessons &&
+                      props.lessons.map((lesson: Lesson) => (
+                        <MenuItem key={lesson._id} value={lesson._id}>
+                          {lesson.title}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                }
+                fullWidth
+                multiline
+              />
+              <FormHelperText>
+                {errors.lessons ? 'This field is required' : ''}
+              </FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item md={6}>
+            <Button variant="contained" color="primary" type="submit" fullWidth>
+              Create
+            </Button>
+          </Grid>
+          <Grid item md={6}>
+            <Button
+              variant="contained"
+              color="secondary"
+              type="reset"
+              onClick={() => {
+                props.onCancel();
               }}
-              as={
-                <Select
-                  id="lessons"
-                  label="Lessons"
-                  name="lessons"
-                  value={lessons}
-                  multiple
-                  input={<Input id="select-multiple-chip" />}
-                  inputRef={register}
-                  renderValue={renderLessonsValue}
-                  error={!!errors.lessons}
-                >
-                  {props.lessons &&
-                    props.lessons.map((lesson: Lesson) => (
-                      <MenuItem key={lesson._id} value={lesson._id}>
-                        {lesson.title}
-                      </MenuItem>
-                    ))}
-                </Select>
-              }
               fullWidth
-            />
-            <FormHelperText>
-              {errors.lessons ? 'This field is required' : ''}
-            </FormHelperText>
-          </FormControl>
-        </Box>
-        <div className="select-button">
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            type="submit"
-            className="submit-form"
-          >
-            Create
-          </Button>
-          <Button
-            fullWidth
-            variant="contained"
-            color="secondary"
-            type="reset"
-            className="cancel-form"
-            onClick={() => {
-              props.onCancel();
-            }}
-          >
-            Cancel
-          </Button>
-        </div>
-      </form>
-    </Box>
+            >
+              Cancel
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+    </form>
   );
 };
 
