@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import SharedTopRightBar from './shared-top-right-bar';
 
 const DataFromDB = {
@@ -27,11 +27,14 @@ const DataFromDB = {
 describe(' SharedTopRightBar', () => {
   it('should render successfully', () => {
     const result = render(
-      <SharedTopRightBar
-      notifications={DataFromDB.notifications}
-      settings={DataFromDB.settings}
-      profile={DataFromDB.profile}
-    />);
+      <Router>
+        <SharedTopRightBar
+          notifications={DataFromDB.notifications}
+          settings={DataFromDB.settings}
+          profile={DataFromDB.profile}
+        />
+      </Router>
+    );
     expect(result).toBeTruthy();
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import SharedNavigation from './shared-navigation';
 
 const buttons = [
@@ -27,9 +27,10 @@ const buttons = [
 describe(' SharedNavigation', () => {
   it('should render successfully', () => {
     const result = render(
-    <SharedNavigation 
-      buttons={buttons}
-    />);
+      <Router>
+        <SharedNavigation buttons={buttons} />
+      </Router>
+    );
     expect(result).toBeTruthy();
   });
 });
