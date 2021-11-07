@@ -163,7 +163,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
   return (
     <form autoComplete="off" onSubmit={handleSubmit(createCourseHandler)}>
       <div className="course-form-container">
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item md={12}>
             <Typography className="header" component="h1" variant="h5">
               New Course
@@ -176,9 +176,8 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               as={
                 <TextField
                   error={!!errors.title}
-                  placeholder="Title"
+                  placeholder="Title *"
                   variant="outlined"
-                  margin="normal"
                   id="standard-basic"
                   fullWidth
                   label={labels?.titleInputLabel}
@@ -203,10 +202,9 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               as={
                 <TextField
                   error={!!errors.description}
-                  placeholder="Description"
+                  placeholder="Description *"
                   variant="outlined"
                   rowsMax={6}
-                  margin="normal"
                   fullWidth
                   label={labels?.categoryInputLabel}
                   type="text"
@@ -268,9 +266,9 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               as={
                 <TextField
                   error={!!errors.prerequisites}
-                  placeholder="Prerequisites"
+                  placeholder="Prerequisites *"
                   variant="outlined"
-                  margin="normal"
+                  rowsMax={6}
                   label={labels?.prerequisitesInputLabel}
                   type="text"
                   className="prerequisites"
@@ -298,17 +296,17 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
               as={
                 <TextField
                   error={!!errors.learning}
-                  placeholder="What will you learn?"
+                  placeholder="What will you learn? *"
                   variant="outlined"
-                  margin="normal"
+                  rowsMax={6}
                   label={labels?.learningInputLabel}
                   type="text"
                   className="learning"
                   onChange={(event) =>
                     setCourse({ ...course, learning: event.target.value })
                   }
-                  multiline
                   fullWidth
+                  multiline
                 />
               }
               name="learning"
@@ -321,11 +319,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
             </FormHelperText>
           </Grid>
           <Grid item md={12}>
-            <FormControl
-              variant="outlined"
-              fullWidth
-              error={!!errors.categories}
-            >
+            <FormControl fullWidth error={!!errors.categories}>
               <InputLabel id="categoriesLabel">Categories *</InputLabel>
               <Controller
                 name="categories"
@@ -356,7 +350,6 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                   </Select>
                 }
                 fullWidth
-                multiline
               />
               <FormHelperText>
                 {errors.categories ? 'This field is required' : ''}
@@ -365,8 +358,9 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           </Grid>
 
           <Grid item md={12}>
-            <FormControl variant="outlined" fullWidth error={!!errors.lessons}>
+            <FormControl fullWidth error={!!errors.lessons}>
               <InputLabel id="lessonsLabel">Lessons *</InputLabel>
+
               <Controller
                 name="lessons"
                 defaultValue={[]}
