@@ -17,6 +17,7 @@ import {
   FormHelperText,
   Grid,
   Divider,
+  OutlinedInput,
 } from '@material-ui/core';
 import './shared-create-course-form.scss';
 
@@ -105,7 +106,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
       categories[category.value] = category;
     });
     return (
-      <div>
+      <div className="multiple-selected">
         {selected.map(
           (value: string) =>
             categories[value] && (
@@ -122,7 +123,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
       lessons[lesson._id] = lesson;
     });
     return (
-      <div>
+      <div className="multiple-selected">
         {selected.map(
           (title: string) =>
             lessons[title] && <Chip key={title} label={lessons[title].title} />
@@ -320,7 +321,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           </Grid>
           <Grid item md={12}>
             <FormControl fullWidth error={!!errors.categories}>
-              <InputLabel id="categoriesLabel">Categories *</InputLabel>
+              <InputLabel className="categoriesLabel">Categories *</InputLabel>
               <Controller
                 name="categories"
                 defaultValue={[]}
@@ -331,12 +332,17 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                 }}
                 as={
                   <Select
+                    input={
+                      <OutlinedInput
+                        id="select-multiple-chip"
+                        label="Categories *"
+                      />
+                    }
                     id="categories"
                     label="Categories"
                     name="categories"
                     value={categories}
                     multiple
-                    input={<Input id="select-multiple-chip" />}
                     inputRef={register}
                     renderValue={renderCategoryValue}
                     error={!!errors.categories}
@@ -359,7 +365,7 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
 
           <Grid item md={12}>
             <FormControl fullWidth error={!!errors.lessons}>
-              <InputLabel id="lessonsLabel">Lessons *</InputLabel>
+              <InputLabel className="lessonsLabel">Lessons *</InputLabel>
 
               <Controller
                 name="lessons"
@@ -371,26 +377,34 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
                 }}
                 as={
                   <Select
+                    input={
+                      <OutlinedInput
+                        id="select-multiple-chip"
+                        label="Lessons *"
+                      />
+                    }
                     id="lessons"
                     label="Lessons"
                     name="lessons"
                     value={lessons}
                     multiple
-                    input={<Input id="select-multiple-chip" />}
                     inputRef={register}
                     renderValue={renderLessonsValue}
                     error={!!errors.lessons}
                   >
                     {props.lessons &&
                       props.lessons.map((lesson: Lesson) => (
-                        <MenuItem key={lesson._id} value={lesson._id}>
+                        <MenuItem
+                          className="testi"
+                          key={lesson._id}
+                          value={lesson._id}
+                        >
                           {lesson.title}
                         </MenuItem>
                       ))}
                   </Select>
                 }
                 fullWidth
-                multiline
               />
               <FormHelperText>
                 {errors.lessons ? 'This field is required' : ''}

@@ -9,6 +9,19 @@ $error: #3f51b5;
   .draggable-container.empty {
     min-height: 7em;
   }
+
+  .lessonsLabel,
+  .categoriesLabel {
+    padding-left: 17px;
+  }
+
+  .MuiSelect-selectMenu {
+    white-space: normal !important;
+    .MuiChip-root {
+      margin: 2px;
+    }
+  }
+
   .draggable-container {
     min-width: 100%;
     min-height: 10em;
