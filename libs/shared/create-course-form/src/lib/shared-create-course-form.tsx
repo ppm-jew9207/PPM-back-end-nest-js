@@ -413,12 +413,19 @@ export const SharedCreateCourseForm = (props: SharedCreateCourseFormProps) => {
           </Grid>
 
           <Grid item md={6}>
-            <Button variant="contained" color="primary" type="submit" fullWidth>
+            <Button
+              className="save-form"
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+            >
               Create
             </Button>
           </Grid>
           <Grid item md={6}>
             <Button
+              className="cancel-form"
               variant="contained"
               color="secondary"
               type="reset"

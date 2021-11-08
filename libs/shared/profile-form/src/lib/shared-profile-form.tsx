@@ -149,7 +149,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
   };
 
   const handleCategoriesChange = (event: ChangeEvent<{ value }>) => {
-    setCategories(event.target.value);
+    setCategories(event.target.value.limit());
   };
 
   const renderCategoryValue = (selected) => {
@@ -162,7 +162,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
         {selected.map(
           (value: string) =>
             categories[value] && (
-              <Chip key={value} label={categories[value].title} />
+              <OutlinedInput key={value} label={categories[value].title} />
             )
         )}
       </div>
@@ -343,7 +343,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
               </div>
             </div>
           </Grid>
-          <Grid item md={12}>
+          <Grid item md={12} className="padding-none">
             <TextField
               id="description"
               name="description"
@@ -419,7 +419,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                       />
                     }
                     inputRef={register}
-                    renderValue={renderCategoryValue}
                     error={!!errors.categories}
                   >
                     {props.categories.map((category: Category) => (

@@ -8,4 +8,7 @@
     margin-top: 5px;
     margin-bottom: 10px;
   }
+  .MuiDialogContent-root:first-child {
+    padding-top: 0 !important;
+  }
 }

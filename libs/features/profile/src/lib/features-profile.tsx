@@ -294,7 +294,7 @@ export const FeaturesProfile = (props) => {
           />
         </Dialog>
 
-        <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="md">
+        <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="sm">
           <DialogContent>
             <SharedProfileForm
               onCancel={handleClose}

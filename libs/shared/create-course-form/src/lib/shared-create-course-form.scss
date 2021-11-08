@@ -162,7 +162,8 @@ $error: #3f51b5;
       transform: translateX(-50%);
     }
   }
-  button {
-    padding: 0.9rem;
+
+  .MuiButton-fullWidth {
+    padding: 0.8rem !important;
   }
 }
