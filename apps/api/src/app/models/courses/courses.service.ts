@@ -22,7 +22,7 @@ export class CoursesModelService {
     CoursesViewModel
   >;
 
-  perPage: number = 5;
+  perPage: number = 25;
   page: number = 1;
 
   async getAll(params: searchParams): Promise<CoursesViewModel[]> {

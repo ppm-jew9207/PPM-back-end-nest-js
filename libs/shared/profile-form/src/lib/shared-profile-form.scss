@@ -40,7 +40,7 @@
 
     & > div > div:before,
     & > div > div:after {
-      content: none !important;
+      content: none;
     }
 
     &.empty {
@@ -150,12 +150,9 @@
   }
 
   .MuiButton-fullWidth {
-    padding: 0.8rem !important;
+    padding: 0.8rem;
   }
 
-  .MuiOutlinedInput-input {
-    padding: 11.5px 14px;
-  }
   .padding-none {
     .MuiOutlinedInput-input {
       padding: 0 0;

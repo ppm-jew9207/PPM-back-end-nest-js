@@ -446,7 +446,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                         onChange={handleNewCategoryInput}
                       />
                     </MenuItem>
-                    {newCategory.title.length > 0 && (
+                    {!!newCategory.title.length && (
                       <div className="new-category__control">
                         <Button
                           size="small"
@@ -461,7 +461,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                           className="new-category__add"
                           type="button"
                           onClick={() => {
-                            if (newCategory.value.length > 0) {
+                            if (!!newCategory.title.length) {
                               props.onAddCategory(newCategory);
                               setNewCategory({ title: '', value: '' });
                             }
@@ -555,7 +555,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
                 control={control}
               />
             )}
-            {props.cities.length > 0 && (
+            {!!props.cities.length && (
               <Controller
                 render={({ onChange, ...params }) => (
                   <Autocomplete
