@@ -13,8 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import './shared-lessons-accordion.scss';
 import { Edit as EditIcon } from '@material-ui/icons';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Box from '@material-ui/core/Box';
-
+import { Link } from 'react-router-dom';
 interface Lesson {
   _id: string;
   title: string;
@@ -83,8 +82,8 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
               )}
               {props.lessons.map((lesson, i) => (
                 <Grid key={i} item xs={3}>
-                  <a
-                    href={`/${props.listCourses ? 'courses' : 'lessons'}/${
+                  <Link
+                    to={`/${props.listCourses ? 'courses' : 'lessons'}/${
                       lesson._id
                     }`}
                     className="lesson-link"
@@ -118,7 +117,7 @@ export const SharedLessonsAccordion = (props: SharedLessonsAccordionProps) => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                  </a>
+                  </Link>
                 </Grid>
               ))}
             </Grid>

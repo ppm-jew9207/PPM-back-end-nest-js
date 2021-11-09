@@ -8,9 +8,9 @@ import {
   Menu,
   Badge,
   PopoverOrigin,
-  Link,
 } from '@material-ui/core';
 
+import { Link } from 'react-router-dom';
 import {
   AccountCircle,
   Settings as SettingsIcon,
@@ -80,7 +80,7 @@ const SharedTopMenuButton = (props: SharedTopMenuButtonProps) => {
             return (
               <div key={link._id}>
                 <MenuItem onClick={handleClose}>
-                  <Link href={link.path}>
+                  <Link to={link.path}>
                     <div className="container">
                       <div>{link.title}</div>
                       <div>{link.timeStamp}</div>
@@ -105,13 +105,13 @@ export const SharedTopRightBar = (props: SharedTopRightBarProps) => {
         </Badge>
       </SharedTopMenuButton>
 
-      <Link href={props.settings.path}>
+      <Link to={props.settings.path}>
         <IconButton color="primary">
           <SettingsIcon />
         </IconButton>
       </Link>
 
-      <Link href={props.profile.path}>
+      <Link to={props.profile.path}>
         <IconButton color="primary">
           <AccountCircle />
         </IconButton>
