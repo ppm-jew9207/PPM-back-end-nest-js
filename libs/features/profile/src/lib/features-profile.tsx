@@ -282,7 +282,7 @@ export const FeaturesProfile = (props) => {
 
       <div className="content">
         <Dialog
-          maxWidth="lg"
+          maxWidth="sm"
           open={isAddCourseDialogOpen}
           onClose={handleClose}
         >
@@ -294,7 +294,7 @@ export const FeaturesProfile = (props) => {
           />
         </Dialog>
 
-        <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="lg">
+        <Dialog open={isProfileDialogOpen} onClose={handleClose} maxWidth="sm">
           <DialogContent>
             <SharedProfileForm
               onCancel={handleClose}
