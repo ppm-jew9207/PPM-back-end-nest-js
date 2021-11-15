@@ -205,22 +205,27 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       website,
     } = formData;
 
+    //TODO:
     SOCIAL_LINKS.map((item) => {
       switch (item.icon) {
         case 'twitter': {
           if (twitter.length) item.link = twitter;
+          else item.link = '';
           break;
         }
         case 'linkedin': {
           if (linkedin.length) item.link = linkedin;
+          else item.link = '';
           break;
         }
         case 'facebook': {
           if (facebook.length) item.link = facebook;
+          else item.link = '';
           break;
         }
         case 'instagram': {
           if (instagram.length) item.link = instagram;
+          else item.link = '';
           break;
         }
       }
@@ -244,7 +249,6 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       socialLinks: SOCIAL_LINKS,
     };
     if (props.profile && props.profile._id) profileData._id = props.profile._id;
-
     props.onSubmit(profileData);
   };
 
