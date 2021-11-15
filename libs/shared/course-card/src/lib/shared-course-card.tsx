@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import MoreIcon from '@material-ui/icons/More';
 import { Link } from 'react-router-dom';
 import './shared-course-card.scss';
+import { SharedRank } from '@ppm/shared/rank';
 
 export interface CourseFormData {
   title: string;
@@ -293,16 +294,6 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
         </div>
 
         <div className="social-wrapper">
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<FavoriteIcon />}
-            onClick={props.onLikeClick}
-          >
-            <p>Like</p>
-            <div>{props.like}</div>
-          </Button>
-
           <Button
             variant="outlined"
             color="primary"

@@ -22,7 +22,7 @@ import MoreIcon from '@material-ui/icons/More';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import StarIcon from '@material-ui/icons/Star';
-
+import { SharedRank } from '@ppm/shared/rank';
 import './shared-course-list.scss';
 
 export interface CourseFormData {
@@ -187,21 +187,9 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 })}
               </Grid>
               <Grid item md={12} className="rating">
-                <Typography className="rating-text" variant="h6">
-                  <span>Rating:</span> 5
-                </Typography>
+                <SharedRank value={0} isRanked={false} onUpdate={() => {}} />
               </Grid>
               <Grid item md={8}>
-                <Button
-                  className="space-between"
-                  variant="outlined"
-                  size="small"
-                  color="secondary"
-                  startIcon={<FavoriteIcon />}
-                  onClick={props.onLikeClick}
-                >
-                  {`like ${props.like}`}
-                </Button>
                 <Button
                   variant="outlined"
                   size="small"

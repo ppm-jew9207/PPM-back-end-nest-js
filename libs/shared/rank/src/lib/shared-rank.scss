@@ -1,11 +1,11 @@
-.rank {
+.rank-container {
   display: flex;
   align-items: center;
 
-  &__summary {
-    span {
-      font-weight: 700;
-      color: #696969;
-    }
+  span.summary {
+    font-weight: 500;
+    color: gray;
+    padding-left: 5px;
+    padding-top: 2px;
   }
 }

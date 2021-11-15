@@ -36,19 +36,15 @@ export const SharedRank = (props: SharedRankProps) => {
   };
 
   return (
-    <div className="rank">
+    <div className="rank-container">
       <Rating
         disabled={rank.isRanked}
         name="hover-feedback"
         value={rank.value || null}
-        precision={0.5}
+        precision={1}
         onChange={handleChange}
       />
-      {!!rank && (
-        <Box ml={2} className="rank__summary">
-          <span>{rank.value}</span>
-        </Box>
-      )}
+      {!!rank && <span className="summary">{rank.value}</span>}
     </div>
   );
 };
