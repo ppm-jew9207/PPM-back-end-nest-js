@@ -169,18 +169,10 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
             />
           </Link>
         </div>
-
+        <div>
+          <SharedRank value={0} isRanked={false} onUpdate={() => {}} />
+        </div>
         <div className="social-wrapper">
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<FavoriteIcon />}
-            onClick={props.onLikeClick}
-          >
-            <p>Like</p>
-            <div>{props.like}</div>
-          </Button>
-
           <Button
             variant="outlined"
             color="primary"
