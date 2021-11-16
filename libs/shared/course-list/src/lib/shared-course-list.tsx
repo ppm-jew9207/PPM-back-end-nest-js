@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Button,
   Typography,
@@ -52,6 +52,7 @@ export interface SharedCourseListProps {
   like: number;
   shared: number;
   imgUrl: string;
+  children: any;
   categories: Category[];
   editable?: boolean;
   onViewClick?: (id: string) => void;
@@ -187,7 +188,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 })}
               </Grid>
               <Grid item md={12} className="rating">
-                <SharedRank value={0} isRanked={false} onUpdate={() => {}} />
+                {props.children}
               </Grid>
               <Grid item md={8}>
                 <Button

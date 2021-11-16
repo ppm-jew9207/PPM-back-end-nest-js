@@ -5,12 +5,10 @@ import { Rating } from '@material-ui/lab';
 import './shared-rank.scss';
 
 export interface SharedRank {
-  isRanked: boolean;
-  value: number;
+  isRanked?: boolean;
+  value?: number;
 }
-export interface SharedRankProps {
-  value: number;
-  isRanked: boolean;
+export interface SharedRankProps extends SharedRank {
   onUpdate: (data: SharedRank) => void;
 }
 
@@ -21,7 +19,7 @@ export const SharedRank = (props: SharedRankProps) => {
   });
 
   useEffect(() => {
-    setRank({ ...props });
+    setRank({ isRanked: props.isRanked, value: props.value });
   }, [props]);
 
   const handleChange = (event: ChangeEvent, newValue: number) => {

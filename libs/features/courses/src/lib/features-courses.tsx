@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { createStructuredSelector } from 'reselect';
 import { coursesActions, coursesSelectors } from '@ppm/data-access/courses';
 import { likesActions } from '@ppm/data-access/likes';
-
+import { SharedRank } from '@ppm/shared/rank';
 import {
   userProfileActions,
   userProfileSelectors,
@@ -204,7 +204,9 @@ export const FeaturesCourses = () => {
                         onSharedClick={() =>
                           likeClick(course._id, LikeEnum.Share)
                         }
-                      />
+                      >
+                        <SharedRank onUpdate={console.log} />
+                      </SharedCourseList>
                     )}
                     {courseElement === 'card' && (
                       <SharedCourseCard
