@@ -14,7 +14,7 @@ import { PrivateRoutesPath } from '@ppm/common/main';
 export function* getCountries() {
   try {
     const path = `/api/${PrivateRoutesPath.COUNTRIES}/`;
-    const result = yield call(get, path);
+    const result = [];
     yield !Array.isArray(result) && put(getCountriesFailed(null));
     yield put(
       getCountriesSuccess({
@@ -31,7 +31,7 @@ export function* getStates(actions) {
   try {
     const countryName = actions.payload;
     const path = `/api/${PrivateRoutesPath.COUNTRIES}/${countryName}/${PrivateRoutesPath.STATES}/`;
-    const result = yield call(get, path);
+    const result = [];
     yield !Array.isArray(result) && put(getStatesFailed(null));
 
     yield put(
@@ -49,7 +49,7 @@ export function* getCities(actions) {
   try {
     const stateName = actions.payload;
     const path = `/api/${PrivateRoutesPath.COUNTRIES}/${stateName}/${PrivateRoutesPath.CITIES}/`;
-    const result = yield call(get, path);
+    const result = [];
     yield !Array.isArray(result) && put(getCitiesFailed(null));
 
     yield put(
