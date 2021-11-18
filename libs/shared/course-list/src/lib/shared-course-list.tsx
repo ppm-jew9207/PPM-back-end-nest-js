@@ -52,7 +52,7 @@ export interface SharedCourseListProps {
   like: number;
   shared: number;
   imgUrl: string;
-  children: any;
+
   categories: Category[];
   editable?: boolean;
   onViewClick?: (id: string) => void;
@@ -188,7 +188,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 })}
               </Grid>
               <Grid item md={12} className="rating">
-                {props.children}
+                <SharedRank onUpdate={() => {}} name={props.id} />
               </Grid>
               <Grid item md={8}>
                 <Button

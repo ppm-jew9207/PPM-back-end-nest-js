@@ -10,6 +10,7 @@ export interface SharedRank {
 }
 export interface SharedRankProps extends SharedRank {
   onUpdate: (data: SharedRank) => void;
+  name: string;
 }
 
 export const SharedRank = (props: SharedRankProps) => {
@@ -37,7 +38,7 @@ export const SharedRank = (props: SharedRankProps) => {
     <div className="rank-container">
       <Rating
         disabled={rank.isRanked}
-        name="hover-feedback"
+        name={props.name}
         value={rank.value || null}
         precision={1}
         onChange={handleChange}

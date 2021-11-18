@@ -53,7 +53,7 @@ export const FeaturesCourses = () => {
     }
   };
 
-  const ToggleFilter = () => {
+  const toggleFilter = () => {
     setIsFilterActive(!isFilterActive);
   };
 
@@ -122,7 +122,7 @@ export const FeaturesCourses = () => {
           <div className="fixed">
             <Button
               className="filter-button"
-              onClick={ToggleFilter}
+              onClick={toggleFilter}
               disableRipple={true}
             >
               <FilterListIcon />
@@ -204,9 +204,7 @@ export const FeaturesCourses = () => {
                         onSharedClick={() =>
                           likeClick(course._id, LikeEnum.Share)
                         }
-                      >
-                        <SharedRank onUpdate={console.log} />
-                      </SharedCourseList>
+                      />
                     )}
                     {courseElement === 'card' && (
                       <SharedCourseCard
