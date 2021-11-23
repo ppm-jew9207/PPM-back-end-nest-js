@@ -21,7 +21,14 @@ export interface CourseFormData {
   courseImage: string;
   _id: string;
 }
-export interface SharedCourseCardProps {
+interface Category {
+  _id: string;
+  title: string;
+  value: string;
+  checked: boolean;
+}
+/* eslint-disable-next-line */
+export interface SharedCourseCardProps extends SharedRank {
   id: string;
   title: string;
   author?: {
@@ -33,13 +40,17 @@ export interface SharedCourseCardProps {
   createAt: string;
   description: string;
   like: number;
+  totalRating?: number;
+  averageRating?: number;
   shared: number;
   imgUrl: string;
-  editable: boolean;
+  categories: Category[];
+  editable?: boolean;
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
   onSaveClick?: (data: CourseFormData) => void;
+  onUpdate: (data: SharedRank) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -170,7 +181,12 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
           </Link>
         </div>
         <div>
-          <SharedRank value={0} isRanked={false} onUpdate={() => {}} />
+          <SharedRank
+            onUpdate={(data: SharedRank) => props.onUpdate(data)}
+            name={props.id}
+            totalRating={props.totalRating}
+            averageRating={props.averageRating}
+          />
         </div>
         <div className="social-wrapper">
           <Button

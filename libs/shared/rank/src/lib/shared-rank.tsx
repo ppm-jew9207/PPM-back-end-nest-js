@@ -9,8 +9,10 @@ export interface SharedRank {
   value?: number;
 }
 export interface SharedRankProps extends SharedRank {
-  onUpdate: (data: SharedRank) => void;
+  onUpdate?: (data: SharedRank) => void;
   name: string;
+  averageRating: number;
+  totalRating: number;
 }
 
 export const SharedRank = (props: SharedRankProps) => {

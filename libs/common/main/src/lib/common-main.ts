@@ -28,6 +28,42 @@ export interface ApiResponse {
   };
 }
 
+export class UserRef {
+  _id: string;
+  name: string;
+  imageUrl?: string;
+}
+
+export interface QueryData {
+  page?: number;
+  search?: string;
+  rating?: string;
+  topic?: string[];
+  categories?: string[];
+}
+export interface UpdateCourseRatingPayload {
+  courseId: number;
+  rating: number;
+}
+export interface CourseType {
+  _id?: string;
+  title?: string;
+  averageRating?: number;
+  totalRating?: number;
+  description?: string;
+  imageUrl?: string | FileList;
+  programmingLanguages?: string[];
+  preRequisites?: string;
+  courseImageUrl?: string | FileList;
+  lessonDescription?: string;
+  lessonsList?: string[];
+  creator?: UserRef;
+  categories?: string[];
+  learnItems?: string[];
+  updatedAt?: string;
+  createdAt?: string;
+}
+
 export interface History {
   push(url: string): void;
 }
@@ -52,4 +88,8 @@ export interface LikeType {
   course_id: string;
   user_id: string;
   type: LikeEnum;
+}
+
+export function isEmptyObject(obj) {
+  return Object.getOwnPropertyNames(obj).length === 0;
 }
