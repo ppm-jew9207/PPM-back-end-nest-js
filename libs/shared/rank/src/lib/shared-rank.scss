@@ -1,11 +1,21 @@
-.rank {
+.rank-container {
   display: flex;
   align-items: center;
-
-  &__summary {
-    span {
-      font-weight: 700;
-      color: #696969;
-    }
+  .average {
+    padding: 5px;
+    background: #4b89c4;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .MuiRating-root {
+    margin-left: 5px;
+    color: #4b89c4;
+  }
+  .total {
+    font-size: 10px;
+    padding-left: 5px;
+    color: gray;
   }
 }
