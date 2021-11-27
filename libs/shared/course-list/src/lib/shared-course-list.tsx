@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Button,
   Typography,
@@ -10,21 +10,17 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import moment from 'moment';
 import {
   Category,
-  Router,
   SystemUpdateAlt as SystemUpdateAltIcon,
 } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
 import MoreIcon from '@material-ui/icons/More';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import StarIcon from '@material-ui/icons/Star';
-
+import { SharedRank } from '@ppm/shared/rank';
 import './shared-course-list.scss';
-
 export interface CourseFormData {
   title: string;
   description: string;
@@ -38,7 +34,7 @@ interface Category {
   checked: boolean;
 }
 /* eslint-disable-next-line */
-export interface SharedCourseListProps {
+export interface SharedCourseListProps extends SharedRank {
   id: string;
   title: string;
   author?: {
@@ -50,6 +46,8 @@ export interface SharedCourseListProps {
   createAt: string;
   description: string;
   like: number;
+  totalRating?: number;
+  averageRating?: number;
   shared: number;
   imgUrl: string;
   categories: Category[];
@@ -58,6 +56,7 @@ export interface SharedCourseListProps {
   onLikeClick?: () => void;
   onSharedClick?: () => void;
   onSaveClick?: (data: CourseFormData) => void;
+  onUpdate: (data: SharedRank) => void;
 }
 
 export function SharedCourseList(props: SharedCourseListProps) {
@@ -111,6 +110,9 @@ export function SharedCourseList(props: SharedCourseListProps) {
     };
     if (file) fileReader.readAsDataURL(file);
   };
+
+  // perduoti perp props interface i features courses funkcija kuri atnaujina ratingo value.
+  const updateRating = (data) => {};
 
   const saveEdit = (data: CourseFormData) => {
     props.onSaveClick(data);
@@ -187,21 +189,14 @@ export function SharedCourseList(props: SharedCourseListProps) {
                 })}
               </Grid>
               <Grid item md={12} className="rating">
-                <Typography className="rating-text" variant="h6">
-                  <span>Rating:</span> 5
-                </Typography>
+                <SharedRank
+                  onUpdate={(data: SharedRank) => props.onUpdate(data)}
+                  name={props.id}
+                  totalRating={props.totalRating}
+                  averageRating={props.averageRating}
+                />
               </Grid>
               <Grid item md={8}>
-                <Button
-                  className="space-between"
-                  variant="outlined"
-                  size="small"
-                  color="secondary"
-                  startIcon={<FavoriteIcon />}
-                  onClick={props.onLikeClick}
-                >
-                  {`like ${props.like}`}
-                </Button>
                 <Button
                   variant="outlined"
                   size="small"

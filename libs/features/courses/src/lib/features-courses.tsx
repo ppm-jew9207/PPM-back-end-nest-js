@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { SharedCourseCard } from '@ppm/shared/course-card';
 import { SharedCourseList } from '@ppm/shared/course-list';
+import { SharedRank } from '@ppm/shared/rank';
 import { SharedFilter, FilterFormData } from '@ppm/shared/filter';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -22,14 +23,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Crop32Icon from '@material-ui/icons/Crop32';
-
-export interface QueryData {
-  page?: number;
-  search?: string;
-  rating?: string;
-  topic?: string[];
-  categories?: string[];
-}
+import { QueryData, isEmptyObject } from '@ppm/common/main';
 
 const stateSelector = createStructuredSelector({
   courses: coursesSelectors.selectCourses(),
@@ -53,7 +47,7 @@ export const FeaturesCourses = () => {
     }
   };
 
-  const ToggleFilter = () => {
+  const toggleFilter = () => {
     setIsFilterActive(!isFilterActive);
   };
 
@@ -103,6 +97,15 @@ export const FeaturesCourses = () => {
     );
   }, [currentPage]);
 
+  const onRatingUpdate = (data: SharedRank, courseId: any) => {
+    dispatch(
+      coursesActions.updateCourseRating({
+        ratingPayload: { rating: data.value, courseId },
+        params: isEmptyObject(queriesState) ? searchQuery : queriesState,
+      })
+    );
+  };
+
   useEffect(() => {
     dispatch(userProfileActions.getUserProfile());
     dispatch(coursesActions.getAll(searchQuery));
@@ -122,7 +125,7 @@ export const FeaturesCourses = () => {
           <div className="fixed">
             <Button
               className="filter-button"
-              onClick={ToggleFilter}
+              onClick={toggleFilter}
               disableRipple={true}
             >
               <FilterListIcon />
@@ -169,12 +172,17 @@ export const FeaturesCourses = () => {
               )}
               {!!coursesState?.length &&
                 coursesState.map((course, index) => (
-                  <div key={course._id}>
+                  <div key={index}>
                     {courseElement === 'list' && (
                       <SharedCourseList
                         categories={course.categories}
                         id={course._id}
                         title={course.title}
+                        totalRating={course.totalRating}
+                        averageRating={course.averageRating}
+                        onUpdate={(data) => {
+                          onRatingUpdate(data, course._id);
+                        }}
                         author={{
                           _id: course.creator._id,
                           firstName: course.creator.name,
@@ -208,8 +216,14 @@ export const FeaturesCourses = () => {
                     )}
                     {courseElement === 'card' && (
                       <SharedCourseCard
+                        categories={course.categories}
                         id={course._id}
                         title={course.title}
+                        totalRating={course.totalRating}
+                        averageRating={course.averageRating}
+                        onUpdate={(data) => {
+                          onRatingUpdate(data, course._id);
+                        }}
                         author={{
                           _id: course.creator._id,
                           firstName: course.creator.name,

@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import MoreIcon from '@material-ui/icons/More';
 import { Link } from 'react-router-dom';
 import './shared-course-card.scss';
+import { SharedRank } from '@ppm/shared/rank';
 
 export interface CourseFormData {
   title: string;
@@ -20,7 +21,14 @@ export interface CourseFormData {
   courseImage: string;
   _id: string;
 }
-export interface SharedCourseCardProps {
+interface Category {
+  _id: string;
+  title: string;
+  value: string;
+  checked: boolean;
+}
+/* eslint-disable-next-line */
+export interface SharedCourseCardProps extends SharedRank {
   id: string;
   title: string;
   author?: {
@@ -32,13 +40,17 @@ export interface SharedCourseCardProps {
   createAt: string;
   description: string;
   like: number;
+  totalRating?: number;
+  averageRating?: number;
   shared: number;
   imgUrl: string;
-  editable: boolean;
+  categories: Category[];
+  editable?: boolean;
   onViewClick?: (id: string) => void;
   onLikeClick?: () => void;
   onSharedClick?: () => void;
   onSaveClick?: (data: CourseFormData) => void;
+  onUpdate: (data: SharedRank) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -168,18 +180,15 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
             />
           </Link>
         </div>
-
+        <div>
+          <SharedRank
+            onUpdate={(data: SharedRank) => props.onUpdate(data)}
+            name={props.id}
+            totalRating={props.totalRating}
+            averageRating={props.averageRating}
+          />
+        </div>
         <div className="social-wrapper">
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<FavoriteIcon />}
-            onClick={props.onLikeClick}
-          >
-            <p>Like</p>
-            <div>{props.like}</div>
-          </Button>
-
           <Button
             variant="outlined"
             color="primary"
@@ -293,16 +302,6 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
         </div>
 
         <div className="social-wrapper">
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<FavoriteIcon />}
-            onClick={props.onLikeClick}
-          >
-            <p>Like</p>
-            <div>{props.like}</div>
-          </Button>
-
           <Button
             variant="outlined"
             color="primary"

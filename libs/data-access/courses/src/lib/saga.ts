@@ -23,6 +23,7 @@ import {
   loadAllCountFailed,
   loadMoreSuccess,
   loadMoreFailed,
+  updateCourseRatingFailed,
 } from './actions';
 import {
   post,
@@ -296,6 +297,39 @@ export function* loadMore(action) {
   }
 }
 
+export function* updateCourseRating(action) {
+  try {
+    // TODO change when backend will be implemented.
+    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${action.payload.ratingPayload.courseId}`;
+    console.log(path); // rating?
+
+    const result = yield call(post, path, {
+      rating: action.payload.ratingPayload.rating,
+    });
+    if (!!result.data) {
+      throw new Error(result.data);
+    } else if (!!result.data) {
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.SUCCESS,
+          message: 'You are successfully saved rating!',
+        })
+      );
+      yield put({ type: ActionTypes.GET_ALL, payload: action.payload.params });
+    } else {
+      throw new Error('Failed to save rating.');
+    }
+  } catch (error) {
+    yield put(updateCourseRatingFailed(error));
+    yield put(
+      snackbarActions.setMessage({
+        variant: MessagesStatus.ERROR,
+        message: error.message,
+      })
+    );
+  }
+}
+
 export function* coursesSaga() {
   yield takeEvery(ActionTypes.GET_ALL, getAll);
   yield takeEvery(ActionTypes.COURSE_CREATE, createCourse);
@@ -310,6 +344,7 @@ export function* coursesSaga() {
   yield takeEvery(ActionTypes.COURSE_REMOVE_STUDENT, removeStudentFromCourse);
   yield takeEvery(ActionTypes.COURSE_ALL_COUNT, getAllCount);
   yield takeEvery(ActionTypes.COURSE_LOAD_MORE, loadMore);
+  yield takeEvery(ActionTypes.COURSE_UPDATE_RATING, updateCourseRating);
 }
 
 export default coursesSaga;
