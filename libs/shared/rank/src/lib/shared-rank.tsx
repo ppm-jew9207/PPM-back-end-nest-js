@@ -48,6 +48,7 @@ export const SharedRank = (props: SharedRankProps) => {
         onChange={handleChange}
       />
       {!!rank && <span className="total">{`(${215})`}</span>}
+
     </div>
   );
 };

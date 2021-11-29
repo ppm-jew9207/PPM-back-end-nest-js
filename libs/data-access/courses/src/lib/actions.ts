@@ -1,7 +1,10 @@
 import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
-import { CourseType } from './types';
-import { QueryData } from '@ppm/features/courses';
+import {
+  CourseType,
+  QueryData,
+  UpdateCourseRatingPayload,
+} from '@ppm/common/main';
 
 export function getAll(payload: QueryData) {
   return action(ActionTypes.GET_ALL, payload);
@@ -141,4 +144,15 @@ export function loadMoreSuccess(payload: { list: CourseType[] }) {
 
 export function loadMoreFailed(error: Error) {
   return action(ActionTypes.COURSE_LOAD_MORE_FAILED, error);
+}
+
+export function updateCourseRating(payload: {
+  ratingPayload: UpdateCourseRatingPayload;
+  params: QueryData;
+}) {
+  return action(ActionTypes.COURSE_UPDATE_RATING, payload);
+}
+
+export function updateCourseRatingFailed(error: Error) {
+  return action(ActionTypes.COURSE_UPDATE_RATING_FAILED, error);
 }
