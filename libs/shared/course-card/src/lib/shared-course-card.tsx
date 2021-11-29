@@ -42,6 +42,7 @@ export interface SharedCourseCardProps extends SharedRank {
   like: number;
   totalRating?: number;
   averageRating?: number;
+  isCourseAuthor: boolean;
   shared: number;
   imgUrl: string;
   categories: Category[];
@@ -182,6 +183,7 @@ export const SharedCourseCard = (props: SharedCourseCardProps) => {
         </div>
         <div>
           <SharedRank
+            isCourseAuthor={props.isCourseAuthor}
             onUpdate={(data: SharedRank) => props.onUpdate(data)}
             name={props.id}
             totalRating={props.totalRating}

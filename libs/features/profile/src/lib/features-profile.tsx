@@ -205,9 +205,14 @@ export const FeaturesProfile = (props) => {
                   <div key={course._id}>
                     {courseElement === 'list' && (
                       <SharedCourseList
+                        key={index}
+                        isCourseAuthor={profile?._id === course.creator._id}
                         categories={course.categories}
                         id={course._id}
                         title={course.title}
+                        totalRating={course.totalRating}
+                        averageRating={course.averageRating}
+                        onUpdate={() => {}}
                         author={{
                           _id: course.creator._id,
                           firstName: course.creator.name,
@@ -241,8 +246,14 @@ export const FeaturesProfile = (props) => {
                     )}
                     {courseElement === 'card' && (
                       <SharedCourseCard
+                        key={index}
+                        isCourseAuthor={profile?._id === course.creator._id}
+                        categories={course.categories}
                         id={course._id}
                         title={course.title}
+                        totalRating={course.totalRating}
+                        averageRating={course.averageRating}
+                        onUpdate={(data) => {}}
                         author={{
                           _id: course.creator._id,
                           firstName: course.creator.name,

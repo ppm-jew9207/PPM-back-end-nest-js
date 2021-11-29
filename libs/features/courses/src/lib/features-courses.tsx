@@ -175,6 +175,8 @@ export const FeaturesCourses = () => {
                   <div key={index}>
                     {courseElement === 'list' && (
                       <SharedCourseList
+                        key={index}
+                        isCourseAuthor={profile?._id === course.creator._id}
                         categories={course.categories}
                         id={course._id}
                         title={course.title}
@@ -216,6 +218,8 @@ export const FeaturesCourses = () => {
                     )}
                     {courseElement === 'card' && (
                       <SharedCourseCard
+                        key={index}
+                        isCourseAuthor={profile?._id === course.creator._id}
                         categories={course.categories}
                         id={course._id}
                         title={course.title}
