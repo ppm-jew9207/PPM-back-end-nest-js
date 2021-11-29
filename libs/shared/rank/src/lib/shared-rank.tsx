@@ -39,6 +39,7 @@ export const SharedRank = (props: SharedRankProps) => {
 
   return (
     <div className="rank-container">
+      <p className="average">{4.5}</p>
       <Rating
         disabled={props.isCourseAuthor ? props.isCourseAuthor : rank.isRanked}
         name={props.name}
@@ -46,7 +47,7 @@ export const SharedRank = (props: SharedRankProps) => {
         precision={1}
         onChange={handleChange}
       />
-      {!!rank && <span className="summary">{rank.value}</span>}
+      {!!rank && <span className="total">{`(${215})`}</span>}
     </div>
   );
 };
