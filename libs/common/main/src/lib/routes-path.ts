@@ -28,7 +28,7 @@ export enum PrivateRoutesPath {
 
   // TODO only for API
   POST_CREATE = '/create',
-  POST_UPDATE = '/update/:id',
+  POST_UPDATE = '/update',
   POST_DELETE = '/delete/:id',
   GET_FIND_BY_ID = '/find-by-email',
   POST_LOGIN = '/login',

@@ -1,6 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionTypes } from './constants';
-import { getUserProfileFailed, getUserProfileSuccess, updateSuccess, getOtherProfileSuccess, getOtherProfileFailed } from './actions';
+import {
+  getUserProfileFailed,
+  getUserProfileSuccess,
+  updateSuccess,
+  getOtherProfileSuccess,
+  getOtherProfileFailed,
+} from './actions';
 import { get, post, postFormData } from '@ppm/data-access/http-requests';
 import { MessagesStatus, PrivateRoutesPath } from '@ppm/common/main';
 import { Profile } from './types';
@@ -26,7 +32,10 @@ export function* getUserProfile() {
   }
 }
 
-export function* getOtherUserProfile(actions: { type: string, payload: string }) {
+export function* getOtherUserProfile(actions: {
+  type: string;
+  payload: string;
+}) {
   try {
     const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${actions.payload}`;
     const result = yield call(get, path);
@@ -44,10 +53,17 @@ export function* getOtherUserProfile(actions: { type: string, payload: string })
   }
 }
 
-export function* updateUserProfile(actions: { type: string, payload: Profile }) {
+export function* updateUserProfile(actions: {
+  type: string;
+  payload: Profile;
+}) {
   const data = actions.payload;
-  try {    
-    if (typeof(data.photo) !== 'string') {
+  try {
+    if (
+      typeof data.photo !== 'string' &&
+      data.photo !== null &&
+      data.photo !== undefined
+    ) {
       const file = data.photo[0];
       const formData = new FormData();
       formData.append('file', file);
@@ -55,7 +71,7 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
       const imageResult = yield call(postFormData, path, formData);
 
       if (imageResult) {
-        const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update/${data._id}`;
+        const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update`;
         yield call(post, path, { ...data, imageUrl: imageResult.data });
         yield put(
           updateSuccess({
@@ -64,7 +80,7 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
         );
       }
     } else {
-      const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update/${data._id}`;
+      const path = `/api/${PrivateRoutesPath.USER_PROFILES}/update`;
       yield call(post, path, data);
       yield put(
         updateSuccess({
@@ -76,12 +92,11 @@ export function* updateUserProfile(actions: { type: string, payload: Profile }) 
     yield put(
       snackbarActions.setMessage({
         variant: MessagesStatus.SUCCESS,
-        message: 'User profile updated'
+        message: 'User profile updated',
       })
     );
 
     yield put({ type: ActionTypes.USER_PROFILE_GET });
-    
   } catch (error) {}
 }
 
