@@ -48,6 +48,7 @@ export interface SharedCourseListProps extends SharedRank {
   like: number;
   totalRating?: number;
   averageRating?: number;
+  isCourseAuthor: boolean;
   shared: number;
   imgUrl: string;
   categories: Category[];
@@ -190,6 +191,7 @@ export function SharedCourseList(props: SharedCourseListProps) {
               </Grid>
               <Grid item md={12} className="rating">
                 <SharedRank
+                  isCourseAuthor={props.isCourseAuthor}
                   onUpdate={(data: SharedRank) => props.onUpdate(data)}
                   name={props.id}
                   totalRating={props.totalRating}

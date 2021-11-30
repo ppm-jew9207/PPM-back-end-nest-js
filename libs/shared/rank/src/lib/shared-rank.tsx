@@ -13,6 +13,7 @@ export interface SharedRankProps extends SharedRank {
   name: string;
   averageRating: number;
   totalRating: number;
+  isCourseAuthor: boolean;
 }
 
 export const SharedRank = (props: SharedRankProps) => {
@@ -40,15 +41,13 @@ export const SharedRank = (props: SharedRankProps) => {
     <div className="rank-container">
       <p className="average">{4.5}</p>
       <Rating
-        size="medium"
-        disabled={rank.isRanked}
+        disabled={props.isCourseAuthor ? props.isCourseAuthor : rank.isRanked}
         name={props.name}
         value={rank.value || null}
         precision={1}
         onChange={handleChange}
       />
       {!!rank && <span className="total">{`(${215})`}</span>}
-
     </div>
   );
 };
