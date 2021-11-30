@@ -236,7 +236,7 @@ export const SharedProfileForm = (props: SharedProfileFormProps) => {
       firstName,
       lastName,
       email,
-      photo: imageUrl.length ? imageUrl : props.profile.photo,
+      photo: imageUrl.length ? imageUrl : props?.profile?.photo,
       fieldOfProfession,
       company,
       categories,

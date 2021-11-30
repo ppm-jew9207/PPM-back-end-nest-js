@@ -48,11 +48,15 @@ export class UserProfilesController {
 
   @Post(PrivateRoutesPath.POST_UPDATE)
   async update(
-    @Param('id') id: string,
+    @Req() request: Request,
     @Body() payload: UpdateUserProfilePayloadDto
-  ) {    
-    return this._commandBus.execute(new UpdateUserProfileCommand(id, payload));
+  ) {
+    const user: any = request.user;
+    return this._commandBus.execute(
+      new UpdateUserProfileCommand(user._id, payload)
+    );
   }
+
   @Post(PrivateRoutesPath.POST_ADD_STUDENT_TO_COURSE)
   @HttpCode(HttpStatus.OK)
   async addToCourse(

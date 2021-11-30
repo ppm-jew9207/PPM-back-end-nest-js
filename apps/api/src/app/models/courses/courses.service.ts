@@ -18,6 +18,9 @@ import {
 } from '../../view/courses/courses.controller';
 @Injectable()
 export class CoursesModelService {
+  filter(params: any): CoursesViewModel[] | PromiseLike<CoursesViewModel[]> {
+    throw new Error('Method not implemented.');
+  }
   @InjectModel(ViewModels.COURSES_VIEW) private _model!: Model<
     CoursesViewModel
   >;

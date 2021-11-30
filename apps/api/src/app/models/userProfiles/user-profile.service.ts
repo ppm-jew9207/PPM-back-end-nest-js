@@ -30,9 +30,10 @@ export class UserProfileModelService {
       data.userProfile.imageUrl
         ? { ...data.userProfile, photo: data.userProfile.imageUrl }
         : data.userProfile,
-      { upsert: false }
+      { upsert: true }
     );
   }
+
   async getAll(): Promise<UserProfilePayloadDto[]> {
     return this.model.find().exec();
   }
