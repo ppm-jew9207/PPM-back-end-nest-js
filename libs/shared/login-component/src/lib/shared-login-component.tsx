@@ -142,13 +142,13 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             </Button>
           </Grid>
           <Box display="flex" justifyContent="center" py={1}>
-            <GoogleLogin
+            {/* <GoogleLogin
               clientId={process.env.GOOGLE_CLIENT_ID}
               buttonText="Login with Google"
               onSuccess={props.onGoogleLogin}
               onFailure={props.onGoogleLogin}
               cookiePolicy={'single_host_origin'}
-            />
+            /> */}
           </Box>
           <Box display="flex" justifyContent="center" py={1}>
             <Button
