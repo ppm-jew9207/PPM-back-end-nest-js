@@ -2,36 +2,37 @@ import React from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Person from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
-import {BrowserRouter as Link} from 'react-router-dom';
-import { 
-  Box, 
-  Button, 
-  Checkbox, 
-  InputAdornment, 
-  TextField, 
-  FormControlLabel, 
-  Grid
+import { BrowserRouter as Link } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Checkbox,
+  InputAdornment,
+  TextField,
+  FormControlLabel,
+  Grid,
 } from '@material-ui/core';
 import {
   makeStyles,
   createMuiTheme,
-  MuiThemeProvider
-} from "@material-ui/core/styles";
+  MuiThemeProvider,
+} from '@material-ui/core/styles';
 
 import './shared-login-component.scss';
 import { useForm } from 'react-hook-form';
+import GoogleLogin from 'react-google-login';
 
 const useStyles = makeStyles({
   link: {
-    textTransform: "none", 
+    textTransform: 'none',
     '&:hover': {
-      backgroundColor: "transparent",
-      textDecoration: "underline",
-    }
+      backgroundColor: 'transparent',
+      textDecoration: 'underline',
+    },
   },
   button: {
-    textTransform: "none"
-  }
+    textTransform: 'none',
+  },
 });
 
 export interface SharedLoginComponentProps {
@@ -41,21 +42,27 @@ export interface SharedLoginComponentProps {
     rememberMe: boolean;
   }) => void;
   onForgotPassword: () => void;
+  onGoogleLogin: (response: any) => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
   const { handleSubmit, register, errors } = useForm();
   const classes = useStyles();
-
+  console.log(process.env);
   return (
     <div className="login-component">
-      <Grid className="login-card" container direction="column" justify="center">
+      <Grid
+        className="login-card"
+        container
+        direction="column"
+        justify="center"
+      >
         <Box display="flex" alignItems="center" mx="auto">
           <AccountCircle style={{ fontSize: '7.1875rem' }} />
         </Box>
         <form autoComplete="off" onSubmit={handleSubmit(props.onLogin)}>
           <Box my={1}>
-            <TextField 
+            <TextField
               id="email"
               placeholder="Email*"
               name="email"
@@ -78,7 +85,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
             />
           </Box>
 
-          <Box my={1} >
+          <Box my={1}>
             <TextField
               id="password"
               placeholder="Password*"
@@ -101,7 +108,7 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
               helperText={!errors.password ? '' : 'This field is required'}
             />
           </Box>
-          <Box display="flex" justifyContent="space-between" py={1}>     
+          <Box display="flex" justifyContent="space-between" py={1}>
             <Box display="flex">
               <FormControlLabel
                 value="rememberMe"
@@ -113,18 +120,43 @@ export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
               />
             </Box>
             <Box>
-              <Button disableTouchRipple disableFocusRipple  onClick={props.onForgotPassword} className={classes.link}>
+              <Button
+                disableTouchRipple
+                disableFocusRipple
+                onClick={props.onForgotPassword}
+                className={classes.link}
+              >
                 Forgot Password
               </Button>
             </Box>
           </Box>
           <Grid container justify="center">
-            <Button variant="contained" color="primary" type="submit" fullWidth  className={classes.button}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+              className={classes.button}
+            >
               Log In
             </Button>
           </Grid>
           <Box display="flex" justifyContent="center" py={1}>
-            <Button href="/registry" disableTouchRipple disableFocusRipple className={classes.link}>
+            <GoogleLogin
+              clientId={process.env.GOOGLE_CLIENT_ID}
+              buttonText="Login with Google"
+              onSuccess={props.onGoogleLogin}
+              onFailure={props.onGoogleLogin}
+              cookiePolicy={'single_host_origin'}
+            />
+          </Box>
+          <Box display="flex" justifyContent="center" py={1}>
+            <Button
+              href="/registry"
+              disableTouchRipple
+              disableFocusRipple
+              className={classes.link}
+            >
               Create Account
             </Button>
           </Box>
