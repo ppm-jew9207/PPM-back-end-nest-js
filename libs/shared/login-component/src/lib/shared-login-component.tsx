@@ -42,7 +42,7 @@ export interface SharedLoginComponentProps {
     rememberMe: boolean;
   }) => void;
   onForgotPassword: () => void;
-  onGoogleLogin: (response: any) => void;
+  onGoogleLogin?: (response: any) => void;
 }
 
 export const SharedLoginComponent = (props: SharedLoginComponentProps) => {
