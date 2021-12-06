@@ -9,6 +9,7 @@ import { CountriesApiViewModule } from './countriesApi/countriesApi.module';
 import { PermissionsViewModule } from './permissions/permissions.module';
 import { SettingsViewModule } from './settings/settings.module';
 import { LikesViewModule } from './likes/likes.module';
+import { RatingViewModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { LikesViewModule } from './likes/likes.module';
     LessonsViewModule,
     LearnItemsViewModule,
     LikesViewModule,
-    CountriesApiViewModule
+    CountriesApiViewModule,
+    RatingViewModule,
   ],
   controllers: [],
   providers: [],

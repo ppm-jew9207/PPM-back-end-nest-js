@@ -11,6 +11,7 @@ export enum PrivateRoutesPath {
   CATEGORIES = 'categories',
   SETTINGS = 'settings',
   IMAGES = 'images',
+  RATING = 'rating',
   LIKES = 'likes',
   SHARES = 'shares',
   USER_PROFILES = 'user-profiles',
