@@ -92,7 +92,7 @@ export const SharedUserProfileCard = (props: SharedUserProfileCardProps) => {
                 key={socialLink.icon}
                 target="_blank"
                 aria-label={socialLink.icon}
-                href={`https://${socialLink.link}`}
+                href={`${socialLink.link}`}
                 disabled={!socialLink.link}
                 className="profile-card-social-button"
               >
