@@ -8,9 +8,7 @@ import { RatingModelService } from '../../../models/rating/rating.service';
 export class RatingCreatedHandler implements IEventHandler<RatingCreated> {
   @Inject() private readonly _ratingModelService: RatingModelService;
 
-  public async handle(event: RatingCreated) {
-    await this._ratingModelService.createRating(event);
-
-    return null;
+  public async handle({ id, data }: RatingCreated) {
+    await this._ratingModelService.createRating(id, data);
   }
 }

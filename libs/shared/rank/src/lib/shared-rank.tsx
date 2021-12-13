@@ -51,4 +51,5 @@ export const SharedRank = (props: SharedRankProps) => {
     </div>
   );
 };
+
 export default SharedRank;

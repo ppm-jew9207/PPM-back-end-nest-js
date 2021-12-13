@@ -300,8 +300,8 @@ export function* loadMore(action) {
 export function* updateCourseRating(action) {
   try {
     // TODO change when backend will be implemented.
-    const path = `/api/${PrivateRoutesPath.RATING}/${action.payload.ratingPayload.courseId}`;
-    console.log(path); // rating?
+    const courseId = action.payload.ratingPayload.courseId;
+    const path = `/api/${PrivateRoutesPath.RATING}/${courseId}`;
 
     const result = yield call(post, path, {
       rating: action.payload.ratingPayload.rating,

@@ -4,9 +4,7 @@ import { UserRef } from '../../../shared/shared.interface';
 export interface CreateRating {
   courseId: string;
   ratingValue: number;
-  sumOfAllRating: number;
-  averageRating: number;
-  votedInTotal: number;
+  user: string;
 }
 export class CreateRatingPayloadDto implements CreateRating {
   @ApiProperty()
@@ -14,9 +12,5 @@ export class CreateRatingPayloadDto implements CreateRating {
   @ApiProperty()
   public readonly ratingValue: number;
   @ApiProperty()
-  public readonly sumOfAllRating: number;
-  @ApiProperty()
-  public readonly averageRating: number;
-  @ApiProperty()
-  public readonly votedInTotal: number;
+  public readonly user: string;
 }

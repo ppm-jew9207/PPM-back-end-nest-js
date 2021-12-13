@@ -100,7 +100,11 @@ export const FeaturesCourses = () => {
   const onRatingUpdate = (data: SharedRank, courseId: any) => {
     dispatch(
       coursesActions.updateCourseRating({
-        ratingPayload: { rating: data.value, courseId },
+        ratingPayload: {
+          rating: data.value,
+          userId: profile._id,
+          courseId,
+        },
         params: isEmptyObject(queriesState) ? searchQuery : queriesState,
       })
     );

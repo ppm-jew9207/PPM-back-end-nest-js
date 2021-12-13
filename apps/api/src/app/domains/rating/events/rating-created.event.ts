@@ -1,8 +1,8 @@
-import { CreateRating } from '../../../models/rating/dto/create-rating.dto';
+import { CreateRatingPayload } from '../../../models/rating/rating.interface';
 
 export class RatingCreated {
   constructor(
-    public readonly rating: CreateRating,
-    public readonly _id: string
+    public readonly id: string,
+    public readonly data: CreateRatingPayload
   ) {}
 }

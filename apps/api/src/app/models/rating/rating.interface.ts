@@ -1,12 +1,10 @@
 import { Document } from 'mongoose';
 import { UserRef } from '../../shared/shared.interface';
 
-export interface CreateRating {
+export interface CreateRatingPayload {
   courseId: string;
   ratingValue: number;
-  sumOfAllRating: number;
-  averageRating: number;
-  votedInTotal: number;
+  user: string;
 }
 
-export type RatingViewModel = CreateRating & Document;
+export type RatingViewModel = CreateRatingPayload & Document;

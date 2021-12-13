@@ -10,15 +10,18 @@ import { QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { PrivateRoutesPath } from '@ppm/common/main';
 import { CreateRatingPayloadDto } from '../../models/rating/dto/create-rating.dto';
-import { GetRatingsQuery } from './queries/handlers/get-ratings.handler';
+import { RatingViewModel } from '../../models/rating/rating.interface';
+import { GetCourseIdQuery } from './queries/handlers/get-courseId.handler';
 
 @Controller(PrivateRoutesPath.RATING)
 @ApiTags(PrivateRoutesPath.RATING)
 export class RatingController {
   constructor(private readonly queryBus: QueryBus) {}
 
-  @Get('all')
-  async getAll(): Promise<CreateRatingPayloadDto[]> {
-    return this.queryBus.execute(new GetRatingsQuery());
+  @Get(`${PrivateRoutesPath.GET_BY_COURSE_ID}`)
+  async getAllByCourseId(
+    @Param('courseid') courseId: string
+  ): Promise<RatingViewModel[]> {
+    return this.queryBus.execute(new GetCourseIdQuery(courseId));
   }
 }
