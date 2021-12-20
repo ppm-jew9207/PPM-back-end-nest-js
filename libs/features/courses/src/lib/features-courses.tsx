@@ -105,7 +105,9 @@ export const FeaturesCourses = () => {
           userId: profile._id,
           courseId,
         },
-        params: isEmptyObject(queriesState) ? searchQuery : queriesState,
+        params: isEmptyObject(queriesState)
+          ? searchQuery
+          : { ...queriesState, page: 1 },
       })
     );
   };

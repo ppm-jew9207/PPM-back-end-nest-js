@@ -3,14 +3,14 @@ import { UserRef } from '../../../shared/shared.interface';
 
 export interface CreateRating {
   courseId: string;
-  ratingValue: number;
-  user: string;
+  rating: number;
+  userId: string;
 }
 export class CreateRatingPayloadDto implements CreateRating {
   @ApiProperty()
   public readonly courseId: string;
   @ApiProperty()
-  public readonly ratingValue: number;
+  public readonly rating: number;
   @ApiProperty()
-  public readonly user: string;
+  public readonly userId: string;
 }

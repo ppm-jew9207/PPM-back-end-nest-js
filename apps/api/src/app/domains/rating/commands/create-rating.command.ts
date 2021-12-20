@@ -26,7 +26,6 @@ export class CreateRatingHandler implements ICommandHandler<CreateRating> {
   @Inject() private readonly _ratingService: RatingModelService;
 
   async execute({ data }: CreateRating) {
-    console.log(data);
     if (!data.courseId) {
       throw new HttpException(
         'Course ID not found',
@@ -37,6 +36,7 @@ export class CreateRatingHandler implements ICommandHandler<CreateRating> {
     const ratingData: CreateRatingPayload = {
       ...data,
     };
+
     const aggregate = new RatingAggregate();
 
     const id = new Types.ObjectId().toHexString();

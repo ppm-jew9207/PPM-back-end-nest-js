@@ -11,6 +11,7 @@ export class RatingModelService {
     id: string,
     data: CreateRatingPayload
   ): Promise<void> {
+    console.log(data, 'prie service');
     await this.model.findOneAndUpdate({ _id: Types.ObjectId(id) }, data, {
       upsert: true,
     });
@@ -28,19 +29,29 @@ export class RatingModelService {
     return result;
   }
 
-  async getAllByUserId(userId: string): Promise<RatingViewModel[]> {
-    const result = await this.model.aggregate([
-      {
-        $match: {
-          user: userId,
-        },
-      },
-    ]);
-    // ratingValue missing
+  async getTotalRatings(courseId: string) {
+    const result = await this.model.count({ courseId });
     return result;
   }
 
-  async getUserRating(
+  async getRatingSumByCourseId(courseId: string, rating: number) {
+    const result = await this.model.aggregate([
+      {
+        $match: {
+          courseId,
+        },
+      },
+      {
+        $group: {
+          _id: '$courseId',
+          ratingSum: { $sum: '$rating' },
+        },
+      },
+    ]);
+    return result;
+  }
+
+  async getUserStarValue(
     userId: string,
     courseId: string
   ): Promise<RatingViewModel[]> {
@@ -56,7 +67,7 @@ export class RatingModelService {
         },
       },
     ]);
-    // ratingValue missing
+
     return result;
   }
 }

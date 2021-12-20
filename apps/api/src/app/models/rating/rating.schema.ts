@@ -8,15 +8,13 @@ export const RatingSchema = new Schema(
       required: true,
       ref: ViewModels.COURSES_VIEW,
     },
-    user: {
+    userId: {
       type: String,
       required: true,
-      ref: ViewModels.USERS_VIEW,
     },
-    ratingValue: {
+    rating: {
       type: Number,
       required: true,
-      ref: ViewModels.RATINGS_VIEW,
     },
   },
   { timestamps: true }

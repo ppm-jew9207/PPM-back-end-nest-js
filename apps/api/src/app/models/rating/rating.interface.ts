@@ -3,8 +3,8 @@ import { UserRef } from '../../shared/shared.interface';
 
 export interface CreateRatingPayload {
   courseId: string;
-  ratingValue: number;
-  user: string;
+  rating: number;
+  userId: string;
 }
 
 export type RatingViewModel = CreateRatingPayload & Document;

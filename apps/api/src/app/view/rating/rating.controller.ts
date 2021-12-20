@@ -24,4 +24,11 @@ export class RatingController {
   ): Promise<RatingViewModel[]> {
     return this.queryBus.execute(new GetCourseIdQuery(courseId));
   }
+
+  @Get(`${PrivateRoutesPath.GET_BY_COURSE_ID}`)
+  async getTotalRating(
+    @Param('courseid') courseId: string
+  ): Promise<RatingViewModel[]> {
+    return this.queryBus.execute(new GetCourseIdQuery(courseId));
+  }
 }

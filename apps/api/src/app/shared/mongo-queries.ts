@@ -1,75 +1,100 @@
 export const CATEGORIES_JOIN_QUERY = {
   $lookup: {
     let: {
-      categoriesData: "$categories"
+      categoriesData: '$categories',
     },
-    from: "categories",
+    from: 'categories',
     pipeline: [
       {
         $match: {
-          $expr: {$and: [
-            {$in: [{
-             $toString: "$_id"
-           }, {$ifNull :['$$categoriesData',[]]}]}
-          ]}
-        }
-      }
+          $expr: {
+            $and: [
+              {
+                $in: [
+                  {
+                    $toString: '$_id',
+                  },
+                  { $ifNull: ['$$categoriesData', []] },
+                ],
+              },
+            ],
+          },
+        },
+      },
     ],
-    as: "categories"
-  }
+    as: 'categories',
+  },
 };
 
 export const LEARN_ITEMS_JOIN_QUERY = {
   $lookup: {
     let: {
-      learnItemsData: "$learnItems"
+      learnItemsData: '$learnItems',
     },
-    from: "learnitems",
+    from: 'learnitems',
     pipeline: [
       {
         $match: {
-          $expr: {$and: [
-            {$in: [{
-             $toString: "$_id"
-           }, {$ifNull :['$$learnItemsData',[]]}]}
-          ]}
-        }
-      }
+          $expr: {
+            $and: [
+              {
+                $in: [
+                  {
+                    $toString: '$_id',
+                  },
+                  { $ifNull: ['$$learnItemsData', []] },
+                ],
+              },
+            ],
+          },
+        },
+      },
     ],
-    as: "learnItems"
-  }
+    as: 'learnItems',
+  },
 };
 
 export const LESSONS_JOIN_QUERY = {
   $lookup: {
     let: {
-      lessonsListData: "$lessonsList"
+      lessonsListData: '$lessonsList',
     },
-    from: "lessons",
+    from: 'lessons',
     pipeline: [
       {
         $match: {
-          $expr: {$and: [
-            {$in: [{
-             $toString: "$_id"
-           }, {$ifNull :['$$lessonsListData',[]]}]}
-          ]}
-        }
-      }
+          $expr: {
+            $and: [
+              {
+                $in: [
+                  {
+                    $toString: '$_id',
+                  },
+                  { $ifNull: ['$$lessonsListData', []] },
+                ],
+              },
+            ],
+          },
+        },
+      },
     ],
-    as: "lessonsList"
-  }
+    as: 'lessonsList',
+  },
 };
 
 export const LIKES_JOIN_QUERY = {
   $lookup: {
-    from: "likes",
-    localField: "course_id",
-    foreignField: "course",
-    as: "likesList"
-  }
+    from: 'likes',
+    localField: 'course_id',
+    foreignField: 'course',
+    as: 'likesList',
+  },
+};
+
+export const RATING_JOIN_QUERY = {
+  // lookup
 };
 
 export const COURSES_ID_QUERY = {
-  "$addFields": { "course_id": { "$toString": "$_id" }},
+  $addFields: { course_id: { $toString: '$_id' } },
 };
