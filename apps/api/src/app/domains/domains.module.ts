@@ -19,6 +19,7 @@ import { PermissionUpdated } from './permissions/events/permission-updated.event
 import { SettingsDomainModule } from './settings/settings.module';
 import { ImagesDomainModule } from './images/images.module';
 import { LikesDomainModule } from './likes/likes.module';
+import { RatingDomainModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { LikesDomainModule } from './likes/likes.module';
     UserProfilesModule,
     SettingsDomainModule,
     ImagesDomainModule,
-    LikesDomainModule
+    LikesDomainModule,
+    RatingDomainModule,
   ],
   controllers: [],
   providers: [

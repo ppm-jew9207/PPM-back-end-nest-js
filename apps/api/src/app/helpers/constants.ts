@@ -5,6 +5,7 @@ export enum ViewModels {
   LESSONS_VIEW = 'Lessons',
   LEARN_ITEMS_VIEW = 'LearnItems',
   LIKES_VIEW = 'Likes',
+  RATINGS_VIEW = 'Ratings',
   CATEGORIES_VIEW = 'Categories',
   SETTINGS_VIEW = 'Settings',
   EMAIL_VERIFICATION = 'EmailVerification',
@@ -14,5 +15,5 @@ export enum ViewModels {
   STUDENTS = 'Students',
   PERMISSIONS_VIEW = 'Permissions',
   USER_PROFILES = 'UserProfiles',
-  COUNTRIES_API_VIEW = 'CountriesApi'
+  COUNTRIES_API_VIEW = 'CountriesApi',
 }

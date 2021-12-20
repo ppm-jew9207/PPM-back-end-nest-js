@@ -11,6 +11,7 @@ import {
   LESSONS_JOIN_QUERY,
   LIKES_JOIN_QUERY,
   COURSES_ID_QUERY,
+  RATING_JOIN_QUERY,
 } from '../../shared/mongo-queries';
 import {
   searchParams,
@@ -194,6 +195,7 @@ export class CoursesModelService {
       LESSONS_JOIN_QUERY,
       COURSES_ID_QUERY,
       LIKES_JOIN_QUERY,
+      // RATING_JOIN_QUERY,
     ]);
 
     if (String(params.returnCount) === 'true') {

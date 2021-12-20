@@ -300,25 +300,27 @@ export function* loadMore(action) {
 export function* updateCourseRating(action) {
   try {
     // TODO change when backend will be implemented.
-    const path = `/api/${PrivateRoutesPath.USER_PROFILES}/${action.payload.ratingPayload.courseId}`;
-    console.log(path); // rating?
 
-    const result = yield call(post, path, {
-      rating: action.payload.ratingPayload.rating,
-    });
-    if (!!result.data) {
-      throw new Error(result.data);
-    } else if (!!result.data) {
+    const path = `/api/${PrivateRoutesPath.RATING}/`;
+
+    const result = yield call(post, path, action.payload.ratingPayload);
+
+    if (!result.data.success) {
+      yield put(
+        snackbarActions.setMessage({
+          variant: MessagesStatus.ERROR,
+          message: result.data.message,
+        })
+      );
+    } else {
       yield put(
         snackbarActions.setMessage({
           variant: MessagesStatus.SUCCESS,
           message: 'You are successfully saved rating!',
         })
       );
-      yield put({ type: ActionTypes.GET_ALL, payload: action.payload.params });
-    } else {
-      throw new Error('Failed to save rating.');
     }
+    yield put({ type: ActionTypes.GET_ALL, payload: action.payload.params });
   } catch (error) {
     yield put(updateCourseRatingFailed(error));
     yield put(

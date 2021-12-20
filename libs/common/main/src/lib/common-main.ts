@@ -42,8 +42,9 @@ export interface QueryData {
   categories?: string[];
 }
 export interface UpdateCourseRatingPayload {
-  courseId: number;
+  courseId: string;
   rating: number;
+  userId: string;
 }
 export interface CourseType {
   _id?: string;
